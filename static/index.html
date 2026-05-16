@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>✨ AI 타로 리딩</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+KR:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d2b;
+      --bg2: #12123a;
+      --bg3: #1a1a4e;
+      --gold: #d4af37;
+      --gold-light: #f0d060;
+      --purple: #7b5ea7;
+      --purple-light: #a07fd4;
+      --text: #e8e0f0;
+      --text-dim: #9090b8;
+      --card-w: 110px;
+      --card-h: 190px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Serif KR', serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 10%, rgba(255,255,255,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 60%, rgba(255,255,255,.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 70% 40%, rgba(255,255,255,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 20%, rgba(255,255,255,.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 90%, rgba(255,255,255,.4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 15% 45%, rgba(255,255,255,.5) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px 30px;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+    header p {
+      color: var(--text-dim);
+      font-size: 1rem;
+      letter-spacing: 3px;
+    }
+    .divider {
+      width: 200px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 20px auto;
+    }
+
+    /* ── Step containers ── */
+    .step {
+      background: linear-gradient(135deg, var(--bg2), var(--bg3));
+      border: 1px solid rgba(212,175,55,.2);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+      transition: border-color .3s;
+    }
+    .step.active { border-color: rgba(212,175,55,.5); }
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .step-num {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--bg);
+      font-size: .85rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      background: rgba(13,13,43,.7);
+      border: 1px solid rgba(212,175,55,.3);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1rem;
+      padding: 16px;
+      resize: vertical;
+      transition: border-color .3s, box-shadow .3s;
+      outline: none;
+    }
+    textarea::placeholder { color: var(--text-dim); }
+    textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(212,175,55,.2);
+    }
+
+    /* ── AI 분석 로딩 ── */
+    .analyzing-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 24px;
+      color: var(--text-dim);
+      font-size: .95rem;
+      text-align: center;
+    }
+    .analyzing-ring {
+      width: 40px; height: 40px;
+      border: 3px solid rgba(212,175,55,.2);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    /* ── 선택된 스프레드 결과 박스 ── */
+    .spread-result-box {
+      background: rgba(123,94,167,.15);
+      border: 1px solid rgba(123,94,167,.5);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-top: 20px;
+    }
+    .spread-result-box .spread-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .spread-result-box .spread-card-count {
+      display: inline-block;
+      background: rgba(212,175,55,.15);
+      border: 1px solid rgba(212,175,55,.4);
+      border-radius: 20px;
+      color: var(--gold-light);
+      font-size: .8rem;
+      padding: 3px 12px;
+      margin-bottom: 10px;
+    }
+    .spread-result-box .spread-reason {
+      color: var(--text-dim);
+      font-size: .9rem;
+      line-height: 1.7;
+    }
+    .spread-result-box .spread-positions {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .spread-result-box .pos-tag {
+      background: rgba(13,13,43,.5);
+      border: 1px solid rgba(212,175,55,.2);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: .78rem;
+      padding: 4px 10px;
+    }
+    .spread-result-box .pos-tag span {
+      color: var(--gold-light);
+      margin-right: 4px;
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      background: linear-gradient(135deg, var(--gold), #b8941f);
+      border: none;
+      border-radius: 8px;
+      color: var(--bg);
+      cursor: pointer;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 12px 28px;
+      transition: all .2s;
+      letter-spacing: 1px;
+    }
+    .btn:hover {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      box-shadow: 0 4px 20px rgba(212,175,55,.4);
+      transform: translateY(-1px);
+    }
+    .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--purple);
+      color: var(--purple-light);
+    }
+    .btn-secondary:hover {
+      background: rgba(123,94,167,.2);
+      border-color: var(--purple-light);
+      box-shadow: 0 4px 20px rgba(123,94,167,.3);
+      transform: translateY(-1px);
+    }
+    .btn-save {
+      background: linear-gradient(135deg, #2d6a4f, #40916c);
+      color: #d8f3dc;
+      border: 1px solid #52b788;
+    }
+    .btn-save:hover {
+      background: linear-gradient(135deg, #40916c, #52b788);
+      transform: translateY(-1px);
+    }
+
+    /* ── Card drawing area ── */
+    #draw-area {
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .deck-fan {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      margin: 10px auto;
+      overflow: visible;
+    }
+    .deck-card {
+      position: absolute;
+      width: 62px;
+      height: 107px;
+      cursor: pointer;
+      transition: filter .15s ease, z-index 0s;
+    }
+    .deck-card:hover {
+      filter: brightness(1.3) drop-shadow(0 0 10px rgba(212,175,55,.8));
+      z-index: 9999 !important;
+    }
+    .deck-card .card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform .6s cubic-bezier(.4,0,.2,1);
+      border-radius: 8px;
+    }
+    .deck-card.flipped .card-inner { transform: rotateY(180deg); }
+    .deck-card.selected-card { pointer-events: none; }
+
+    .card-back, .card-front {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .card-back {
+      background: linear-gradient(135deg, #1a0a3a, #2d1460, #1a0a3a);
+      border: 2px solid rgba(212,175,55,.5);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .card-back::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px solid rgba(212,175,55,.3);
+      border-radius: 4px;
+    }
+    .card-back::after {
+      content: '✦';
+      color: rgba(212,175,55,.6);
+      font-size: 2rem;
+    }
+    .card-back .card-pattern {
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 8px,
+          rgba(123,94,167,.1) 8px,
+          rgba(123,94,167,.1) 9px
+        );
+    }
+    .card-front {
+      transform: rotateY(180deg);
+      background: #111;
+    }
+    .card-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .card-front.reversed img { transform: rotate(180deg); }
+
+    .draw-instruction {
+      text-align: center;
+      color: var(--text-dim);
+      font-size: .9rem;
+    }
+    .draw-instruction span { color: var(--gold); }
+
+    #drawn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      padding: 10px 0;
+    }
+    .drawn-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: fadeInUp .4s ease;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .drawn-card-img {
+      width: var(--card-w);
+      height: var(--card-h);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid rgba(212,175,55,.4);
+      box-shadow: 0 4px 15px rgba(0,0,0,.5);
+    }
+    .drawn-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .drawn-card-img.reversed img { transform: rotate(180deg); }
+    .drawn-card-label {
+      text-align: center;
+      font-size: .75rem;
+      color: var(--text-dim);
+      max-width: var(--card-w);
+    }
+    .drawn-card-name {
+      color: var(--text);
+      font-size: .85rem;
+      text-align: center;
+    }
+    .reversed-badge {
+      font-size: .65rem;
+      color: #e07070;
+      border: 1px solid #e07070;
+      border-radius: 4px;
+      padding: 1px 5px;
+    }
+
+    /* ── Reading ── */
+    .reading-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+    .reading-output {
+      background: rgba(13,13,43,.6);
+      border: 1px solid rgba(212,175,55,.2);
+      border-radius: 12px;
+      padding: 28px;
+      min-height: 200px;
+      line-height: 1.9;
+      font-size: 1rem;
+      white-space: pre-wrap;
+      position: relative;
+    }
+    .reading-output .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background: var(--gold);
+      animation: blink .7s step-end infinite;
+      vertical-align: text-bottom;
+      margin-left: 2px;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .spinner {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 24px;
+      color: var(--text-dim);
+    }
+    .spinner.active { display: flex; }
+    .spinner-ring {
+      width: 48px; height: 48px;
+      border: 3px solid rgba(212,175,55,.2);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .hidden { display: none !important; }
+    .mt-16 { margin-top: 16px; }
+    .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+    #reset-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 100;
+      opacity: .7;
+      font-size: .85rem;
+      padding: 10px 18px;
+    }
+    #reset-btn:hover { opacity: 1; }
+
+    .notif {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(212,175,55,.15);
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      padding: 10px 20px;
+      color: var(--gold);
+      font-size: .9rem;
+      z-index: 999;
+      opacity: 0;
+      transition: opacity .3s;
+      pointer-events: none;
+    }
+    .notif.show { opacity: 1; }
+
+    @media (max-width: 600px) {
+      :root { --card-w: 80px; --card-h: 138px; }
+      .step { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <h1>✨ AI 타로 리딩</h1>
+    <div class="divider"></div>
+    <p>당신의 운명을 읽어드립니다</p>
+  </header>
+
+  <!-- ── Step 1: 질문 입력 + AI 스프레드 선택 ── -->
+  <section class="step active" id="step1">
+    <div class="step-title"><div class="step-num">1</div> 질문을 입력하세요</div>
+
+    <!-- 질문 입력 -->
+    <div id="question-area">
+      <textarea id="question-input" placeholder="오늘의 고민을 적어주세요...&#10;예: 새로운 직장으로 이직해야 할까요? / 이 관계가 나에게 좋은 건가요?"></textarea>
+      <div class="mt-16">
+        <button class="btn" id="step1-next">다음 →</button>
+      </div>
+    </div>
+
+    <!-- AI 분석 중 -->
+    <div id="analyzing-area" class="hidden">
+      <div class="analyzing-box">
+        <div class="analyzing-ring"></div>
+        <div>질문을 분석하여 최적의 스프레드를 선택하고 있습니다...</div>
+      </div>
+    </div>
+
+    <!-- 스프레드 선택 결과 -->
+    <div id="spread-result-area" class="hidden">
+      <div class="spread-result-box">
+        <div class="spread-name" id="result-spread-name"></div>
+        <div class="spread-card-count" id="result-card-count"></div>
+        <div class="spread-reason" id="result-reason"></div>
+        <div class="spread-positions" id="result-positions"></div>
+      </div>
+      <div class="mt-16 row">
+        <button class="btn btn-secondary" id="reselect-btn">← 질문 다시 쓰기</button>
+        <button class="btn" id="go-draw-btn">카드 뽑기 →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Step 2: 카드 뽑기 ── -->
+  <section class="step hidden" id="step2">
+    <div class="step-title"><div class="step-num">2</div> 카드를 뽑으세요</div>
+    <div id="draw-area">
+      <div class="draw-instruction">
+        마음을 집중하고 끌리는 카드를 클릭하세요<br/>
+        <span id="draw-counter">0</span> / <span id="draw-total">3</span> 장 선택됨
+      </div>
+      <div class="deck-fan" id="deck-fan"></div>
+      <div id="drawn-row"></div>
+    </div>
+    <div class="mt-16 row">
+      <button class="btn btn-secondary" id="step2-back">← 이전</button>
+      <button class="btn" id="step2-next" disabled>리딩 시작 ✨</button>
+    </div>
+  </section>
+
+  <!-- ── Step 3: AI 리딩 ── -->
+  <section class="step hidden" id="reading-section">
+    <div class="step-title"><div class="step-num">3</div> AI 타로 리딩</div>
+    <div class="reading-cards" id="reading-cards"></div>
+    <div class="spinner" id="loading-spinner">
+      <div class="spinner-ring"></div>
+      <span>카드를 읽는 중...</span>
+    </div>
+    <div class="reading-output" id="reading-output"></div>
+    <div class="mt-16 row">
+      <button class="btn btn-secondary" id="back-to-draw">← 다시 뽑기</button>
+      <button class="btn btn-save" id="save-reading-btn">💾 리딩 저장</button>
+      <button class="btn" id="new-reading-btn">새 리딩 시작</button>
+    </div>
+  </section>
+
+</div>
+
+<button class="btn btn-secondary" id="reset-btn" style="display:none">↺ 처음으로</button>
+<div class="notif" id="notif"></div>
+
+<script>
+let allCards = [];
+let selectedSpread = null;
+let cardCount = 3;
+let deckCards = [];
+let drawnCards = [];
+
+function notify(msg, dur = 2000) {
+  const el = document.getElementById('notif');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), dur);
+}
+function show(id) { document.getElementById(id).classList.remove('hidden'); }
+function hide(id) { document.getElementById(id).classList.add('hidden'); }
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// ── 초기화 ──
+async function init() {
+  try {
+    const res = await fetch('/api/cards');
+    allCards = await res.json();
+  } catch (e) {
+    notify('서버에 연결할 수 없습니다.', 4000);
+  }
+}
+
+// ── Step 1: 질문 → AI 스프레드 선택 ──
+document.getElementById('step1-next').addEventListener('click', async () => {
+  const q = document.getElementById('question-input').value.trim();
+  if (!q) { notify('질문을 먼저 입력해주세요'); return; }
+
+  hide('question-area');
+  show('analyzing-area');
+
+  try {
+    const res = await fetch('/api/select-spread', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question: q })
+    });
+    if (!res.ok) throw new Error('서버 오류');
+    const spread = await res.json();
+
+    selectedSpread = spread;
+    cardCount = spread.card_count || 3;
+
+    // 결과 표시
+    document.getElementById('result-spread-name').textContent = spread.name || '';
+    document.getElementById('result-card-count').textContent = `${cardCount}장`;
+    document.getElementById('result-reason').textContent = spread.reason || '';
+
+    // 포지션 태그
+    const posEl = document.getElementById('result-positions');
+    posEl.innerHTML = '';
+    if (spread.positions && spread.positions.length > 0) {
+      spread.positions.forEach((p, i) => {
+        const meaning = p.meanings && p.meanings[0] ? p.meanings[0] : `${i + 1}번 카드`;
+        const tag = document.createElement('div');
+        tag.className = 'pos-tag';
+        tag.innerHTML = `<span>${i + 1}.</span>${meaning}`;
+        posEl.appendChild(tag);
+      });
+    }
+
+    hide('analyzing-area');
+    show('spread-result-area');
+
+  } catch (e) {
+    hide('analyzing-area');
+    show('question-area');
+    notify('스프레드 선택 중 오류가 발생했습니다. 다시 시도해주세요.');
+  }
+});
+
+// 질문 다시 쓰기
+document.getElementById('reselect-btn').addEventListener('click', () => {
+  hide('spread-result-area');
+  show('question-area');
+  selectedSpread = null;
+});
+
+// 카드 뽑기로 진행
+document.getElementById('go-draw-btn').addEventListener('click', () => {
+  hide('step1');
+  show('step2');
+  buildDeck();
+  document.getElementById('step2').scrollIntoView({ behavior: 'smooth' });
+});
+
+// ── Step 2: 카드 뽑기 ──
+
+// 카드 수별 배치 레이아웃: [col, row] (0-based, 좌상단 기준)
+const SPREAD_LAYOUTS = {
+  1:  [[0,0]],
+  2:  [[0,0],[1,0]],
+  3:  [[0,0],[1,0],[2,0]],
+  4:  [[0,0],[1,0],[2,0],[3,0]],
+  5:  [[1,0],[0,1],[2,1],[0,2],[2,2]],              // 십자형
+  6:  [[0,0],[1,0],[2,0],[0,1],[1,1],[2,1]],        // 3×2 그리드
+  7:  [[1,0],[0,1],[2,1],[0,2],[2,2],[1,2],[1,3]],  // 피라미드 (이미지 참고)
+  8:  [[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]],
+  9:  [[0,0],[1,0],[2,0],[0,1],[1,1],[2,1],[0,2],[1,2],[2,2]],
+  10: [[0,0],[1,0],[2,0],[0,1],[1,1],[2,1],[0,2],[1,2],[2,2],[1,3]],
+};
+
+function initDrawnRow() {
+  const row = document.getElementById('drawn-row');
+  row.innerHTML = '';
+  const layout = SPREAD_LAYOUTS[cardCount];
+  const cardW = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-w')) || 110;
+  const cardH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-h')) || 190;
+  const unitX = cardW + 12;
+  const unitY = cardH + 58; // 카드 + 라벨 영역
+
+  if (layout) {
+    const maxCol = Math.max(...layout.map(([c]) => c));
+    const maxRow = Math.max(...layout.map(([,r]) => r));
+    row.style.position = 'relative';
+    row.style.width    = `${(maxCol + 1) * unitX}px`;
+    row.style.height   = `${(maxRow + 1) * unitY}px`;
+    row.style.display  = 'block';
+    row.dataset.unitX  = unitX;
+    row.dataset.unitY  = unitY;
+  } else {
+    row.style.position = '';
+    row.style.width    = '';
+    row.style.height   = '';
+    row.style.display  = 'flex';
+  }
+}
+
+function buildDeck() {
+  drawnCards = [];
+  deckCards = shuffle(allCards.map((_, i) => i));
+  document.getElementById('draw-counter').textContent = '0';
+  document.getElementById('draw-total').textContent = cardCount;
+  initDrawnRow();
+  document.getElementById('step2-next').disabled = true;
+  renderDeck();
+}
+
+function renderDeck() {
+  const fan = document.getElementById('deck-fan');
+  fan.innerHTML = '';
+  const total = deckCards.length;
+  const CARD_W = 62, CARD_H = 107;
+
+  const fanW = fan.offsetWidth || 700;
+  const fanH = fan.offsetHeight || 380;
+
+  // 호(arc) 파라미터
+  const spreadDeg = 160; // 전체 펼침 각도
+  const halfRad = (spreadDeg / 2) * Math.PI / 180;
+
+  // 반지름: 양쪽 끝 카드가 컨테이너 폭의 약 46%에 오도록
+  const R = (fanW * 0.46) / Math.sin(halfRad);
+
+  // 피벗(회전 중심): 컨테이너 하단 중앙보다 아래쪽
+  const pivotX = fanW / 2;
+  const pivotY = fanH + 40;
+
+  for (let i = 0; i < total; i++) {
+    const angleDeg = -spreadDeg / 2 + (spreadDeg / (total - 1)) * i;
+    const angleRad = angleDeg * Math.PI / 180;
+
+    // 카드 하단 중앙이 피벗으로부터 반지름 R 거리에 위치
+    const cx = pivotX + R * Math.sin(angleRad);
+    const cy = pivotY - R * Math.cos(angleRad);
+
+    const div = document.createElement('div');
+    div.className = 'deck-card';
+    div.dataset.deckIdx = i;
+    div.style.left = `${cx - CARD_W / 2}px`;
+    div.style.top  = `${cy - CARD_H}px`;
+    div.style.transformOrigin = `${CARD_W / 2}px ${CARD_H}px`; // 카드 하단 중앙 기준 회전
+    div.style.transform = `rotate(${angleDeg}deg)`;
+    div.style.zIndex = i;
+    div.innerHTML = `
+      <div class="card-inner">
+        <div class="card-back"><div class="card-pattern"></div></div>
+        <div class="card-front"></div>
+      </div>`;
+    div.addEventListener('click', () => selectCard(i));
+    fan.appendChild(div);
+  }
+}
+
+function selectCard(deckIdx) {
+  if (drawnCards.length >= cardCount) return;
+
+  const card = allCards[deckCards[deckIdx]];
+  const reversed = Math.random() < 0.5;
+
+  let positionMeaning = '';
+  if (selectedSpread && selectedSpread.positions) {
+    const posData = selectedSpread.positions[drawnCards.length];
+    if (posData && posData.meanings && posData.meanings.length > 0) {
+      positionMeaning = posData.meanings[0];
+    }
+  }
+
+  const deckCardEl = document.querySelector(`.deck-card[data-deck-idx="${deckIdx}"]`);
+  if (deckCardEl) {
+    const front = deckCardEl.querySelector('.card-front');
+    front.innerHTML = `<img src="/images/${card.image_file}" alt="${card.name_ko}" loading="lazy" />`;
+    if (reversed) front.classList.add('reversed');
+    deckCardEl.classList.add('flipped', 'selected-card');
+    deckCardEl.style.zIndex = 100 + drawnCards.length;
+  }
+
+  const cardIndex = drawnCards.length; // push 전 인덱스
+  drawnCards.push({ card, reversed, positionMeaning, deckIdx });
+
+  const row = document.getElementById('drawn-row');
+  const el = document.createElement('div');
+  el.className = 'drawn-card';
+
+  const layout = SPREAD_LAYOUTS[cardCount];
+  if (layout && cardIndex < layout.length) {
+    const [col, rowIdx] = layout[cardIndex];
+    const unitX = parseFloat(row.dataset.unitX) || 122;
+    const unitY = parseFloat(row.dataset.unitY) || 248;
+    el.style.position = 'absolute';
+    el.style.left = `${col * unitX}px`;
+    el.style.top  = `${rowIdx * unitY}px`;
+  }
+
+  el.innerHTML = `
+    <div class="drawn-card-img ${reversed ? 'reversed' : ''}">
+      <img src="/images/${card.image_file}" alt="${card.name_ko}" loading="lazy" />
+    </div>
+    <div class="drawn-card-name">${card.name_ko}</div>
+    <div class="drawn-card-label">
+      ${positionMeaning ? `<span style="color:var(--gold-light)">${positionMeaning}</span><br/>` : ''}
+      ${reversed ? '<span class="reversed-badge">역방향</span>' : '<span style="color:#90d490;font-size:.7rem">정방향</span>'}
+    </div>`;
+  row.appendChild(el);
+
+  document.getElementById('draw-counter').textContent = drawnCards.length;
+
+  if (drawnCards.length >= cardCount) {
+    document.getElementById('step2-next').disabled = false;
+    notify(`${cardCount}장 모두 선택되었습니다!`);
+  }
+}
+
+document.getElementById('step2-back').addEventListener('click', () => {
+  hide('step2');
+  // step1으로 돌아가되 spread 결과 보여주기
+  show('step1');
+  hide('question-area');
+  hide('analyzing-area');
+  show('spread-result-area');
+  document.getElementById('step1').scrollIntoView({ behavior: 'smooth' });
+});
+
+document.getElementById('step2-next').addEventListener('click', () => {
+  hide('step2');
+  show('reading-section');
+  document.getElementById('reset-btn').style.display = '';
+  startReading();
+  document.getElementById('reading-section').scrollIntoView({ behavior: 'smooth' });
+});
+
+// ── Step 3: AI 리딩 ──
+function renderReadingCards() {
+  const container = document.getElementById('reading-cards');
+  container.innerHTML = '';
+  drawnCards.forEach(({ card, reversed, positionMeaning }) => {
+    const el = document.createElement('div');
+    el.className = 'drawn-card';
+    el.innerHTML = `
+      <div class="drawn-card-img ${reversed ? 'reversed' : ''}">
+        <img src="/images/${card.image_file}" alt="${card.name_ko}" loading="lazy" />
+      </div>
+      <div class="drawn-card-name">${card.name_ko}</div>
+      <div class="drawn-card-label">
+        ${positionMeaning ? `<span style="color:var(--gold-light)">${positionMeaning}</span><br/>` : ''}
+        ${reversed ? '<span class="reversed-badge">역방향</span>' : '<span style="color:#90d490;font-size:.7rem">정방향</span>'}
+      </div>`;
+    container.appendChild(el);
+  });
+}
+
+async function startReading() {
+  renderReadingCards();
+  const output = document.getElementById('reading-output');
+  const spinner = document.getElementById('loading-spinner');
+  output.innerHTML = '';
+  spinner.classList.add('active');
+
+  const question = document.getElementById('question-input').value.trim();
+  const spreadName = selectedSpread ? selectedSpread.name : `${cardCount}카드 스프레드`;
+
+  const payload = {
+    question,
+    spread_name: spreadName,
+    cards: drawnCards.map(({ card, reversed, positionMeaning }) => ({
+      name_ko: card.name_ko,
+      name_en: card.name_en,
+      meaning: card.meaning || '',
+      symbols: card.symbols || {},
+      reversed,
+      position_meaning: positionMeaning || '',
+      image_file: card.image_file
+    }))
+  };
+
+  try {
+    const resp = await fetch('/api/reading', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+
+    spinner.classList.remove('active');
+    const cursor = document.createElement('span');
+    cursor.className = 'cursor';
+    output.appendChild(cursor);
+
+    const reader = resp.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop();
+      for (const line of lines) {
+        if (!line.startsWith('data: ')) continue;
+        const data = line.slice(6);
+        if (data === '[DONE]') { cursor.remove(); return; }
+        const text = data.replace(/\\n/g, '\n');
+        cursor.insertAdjacentText('beforebegin', text);
+        output.scrollTop = output.scrollHeight;
+      }
+    }
+    cursor.remove();
+  } catch (e) {
+    spinner.classList.remove('active');
+    output.textContent = '리딩 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.\n\n' + e.message;
+  }
+}
+
+document.getElementById('back-to-draw').addEventListener('click', () => {
+  hide('reading-section');
+  show('step2');
+  buildDeck();
+  document.getElementById('step2').scrollIntoView({ behavior: 'smooth' });
+});
+
+document.getElementById('save-reading-btn').addEventListener('click', async () => {
+  const question = document.getElementById('question-input').value.trim();
+  const readingText = document.getElementById('reading-output').innerText.trim();
+  if (!readingText) { notify('저장할 리딩 내용이 없습니다.'); return; }
+
+  notify('HTML 파일 생성 중...');
+
+  const now = new Date();
+  const dateStr = now.toLocaleString('ko-KR', {
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit'
+  });
+  const spreadName = selectedSpread ? selectedSpread.name : `${cardCount}카드 스프레드`;
+
+  async function toDataUrl(src) {
+    return new Promise(resolve => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => {
+        const MAX_W = 220, MAX_H = 380;
+        const ratio = Math.min(MAX_W / img.naturalWidth, MAX_H / img.naturalHeight, 1);
+        const canvas = document.createElement('canvas');
+        canvas.width  = Math.round(img.naturalWidth  * ratio);
+        canvas.height = Math.round(img.naturalHeight * ratio);
+        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+        resolve(canvas.toDataURL('image/jpeg', 0.75));
+      };
+      img.onerror = () => resolve(src);
+      img.src = src;
+    });
+  }
+
+  const cardDataList = await Promise.all(drawnCards.map(async (dc) => ({
+    name_ko: dc.card.name_ko,
+    name_en: dc.card.name_en,
+    reversed: dc.reversed,
+    positionMeaning: dc.positionMeaning || '',
+    dataUrl: dc.card.image_file ? await toDataUrl(`/images/${dc.card.image_file}`) : ''
+  })));
+
+  const cardsHtml = cardDataList.map((c, i) => `
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:110px">
+      <div style="width:110px;height:190px;border-radius:8px;overflow:hidden;border:1px solid rgba(212,175,55,.4);box-shadow:0 4px 16px rgba(0,0,0,.5)">
+        ${c.dataUrl
+          ? `<img src="${c.dataUrl}" alt="${c.name_ko}" style="width:100%;height:100%;object-fit:cover;${c.reversed ? 'transform:rotate(180deg)' : ''}" />`
+          : `<div style="width:100%;height:100%;background:#1a1a4e;display:flex;align-items:center;justify-content:center;color:#d4af37;font-size:.8rem;text-align:center;padding:8px">${c.name_ko}</div>`}
+      </div>
+      <div style="font-size:.75rem;color:#e8e0f0;text-align:center;line-height:1.4">
+        ${c.positionMeaning ? `<div style="color:#f0d060;margin-bottom:2px">${c.positionMeaning}</div>` : ''}
+        <div style="font-weight:600">${c.name_ko}</div>
+        <div style="color:${c.reversed ? '#f08080' : '#90d490'};font-size:.7rem">${c.reversed ? '역방향' : '정방향'}</div>
+      </div>
+    </div>`).join('');
+
+  const readingHtml = readingText
+    .split('\n')
+    .map(line => line.trim() === '' ? '<br/>' : `<p style="margin:0 0 6px">${line}</p>`)
+    .join('');
+
+  const html = `<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>AI 타로 리딩 — ${dateStr}</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+KR:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#0d0d2b;color:#e8e0f0;font-family:'Noto Serif KR',serif;min-height:100vh;padding:40px 20px 80px}
+  .wrap{max-width:860px;margin:0 auto}
+  h1{font-family:'Playfair Display',serif;font-size:2rem;background:linear-gradient(135deg,#d4af37,#f0d060,#d4af37);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;letter-spacing:2px;margin-bottom:6px}
+  .sub{text-align:center;color:#9090b8;font-size:.85rem;letter-spacing:3px;margin-bottom:30px}
+  .divider{width:200px;height:1px;background:linear-gradient(90deg,transparent,#d4af37,transparent);margin:0 auto 30px}
+  .section{background:linear-gradient(135deg,#12123a,#1a1a4e);border:1px solid rgba(212,175,55,.2);border-radius:14px;padding:24px 28px;margin-bottom:20px}
+  .label{color:#d4af37;font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:10px;letter-spacing:1px}
+  .question-text{font-size:1.05rem;line-height:1.8;color:#e8e0f0}
+  .spread-badge{display:inline-block;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.4);border-radius:20px;color:#f0d060;font-size:.85rem;padding:4px 14px}
+  .cards-row{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;padding:4px 0}
+  .reading-body{line-height:1.9;font-size:.97rem;color:#e8e0f0}
+  .footer{text-align:center;color:#9090b8;font-size:.75rem;margin-top:30px;letter-spacing:1px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>✨ AI 타로 리딩</h1>
+  <div class="sub">${dateStr}</div>
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="label">질문</div>
+    <div class="question-text">${question}</div>
+  </div>
+
+  <div class="section">
+    <div class="label">스프레드</div>
+    <span class="spread-badge">${spreadName}</span>
+  </div>
+
+  <div class="section">
+    <div class="label">뽑은 카드</div>
+    <div class="cards-row">${cardsHtml}</div>
+  </div>
+
+  <div class="section">
+    <div class="label">리딩 해설</div>
+    <div class="reading-body">${readingHtml}</div>
+  </div>
+
+  <div class="footer">AI 타로 리딩 — Generated by Claude</div>
+</div>
+</body>
+</html>`;
+
+  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const fileName = `타로리딩_${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}_${String(now.getHours()).padStart(2,'0')}${String(now.getMinutes()).padStart(2,'0')}.html`;
+  a.href = url;
+  a.download = fileName;
+  a.click();
+  URL.revokeObjectURL(url);
+  notify('리딩이 저장되었습니다! 📄');
+});
+
+document.getElementById('new-reading-btn').addEventListener('click', resetAll);
+document.getElementById('reset-btn').addEventListener('click', resetAll);
+
+function resetAll() {
+  hide('reading-section');
+  hide('step2');
+  show('step1');
+  show('question-area');
+  hide('analyzing-area');
+  hide('spread-result-area');
+  document.getElementById('question-input').value = '';
+  document.getElementById('reading-output').innerHTML = '';
+  document.getElementById('reading-cards').innerHTML = '';
+  document.getElementById('reset-btn').style.display = 'none';
+  selectedSpread = null;
+  cardCount = 3;
+  drawnCards = [];
+  document.getElementById('step1').scrollIntoView({ behavior: 'smooth' });
+}
+
+init();
+</script>
+</body>
+</html>
