@@ -475,38 +475,58 @@
       .step { padding: 20px; }
     }
 
-    /* ── 로그인 오버레이 ── */
-    #login-overlay {
-      position: fixed; inset: 0; z-index: 1000;
-      background: var(--bg);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 32px;
-    }
-    #login-overlay h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 5vw, 2.8rem);
-      background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text; letter-spacing: 2px; text-align: center;
-    }
-    #login-overlay p {
-      color: var(--text-dim); font-size: .95rem;
-      letter-spacing: 2px; text-align: center;
-    }
-    #google-login-btn {
+    /* ── 구글 로그인 버튼 공통 ── */
+    .google-btn {
       display: flex; align-items: center; gap: 12px;
       background: #fff; color: #333;
       border: none; border-radius: 8px;
-      padding: 14px 28px; font-size: 1rem; font-weight: 600;
+      padding: 13px 24px; font-size: .95rem; font-weight: 600;
       cursor: pointer; transition: box-shadow .2s, transform .2s;
       font-family: 'Noto Serif KR', serif;
     }
-    #google-login-btn:hover {
-      box-shadow: 0 4px 20px rgba(255,255,255,.2);
+    .google-btn:hover {
+      box-shadow: 0 4px 20px rgba(255,255,255,.25);
       transform: translateY(-1px);
     }
-    #google-login-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .google-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ── 리딩 콘텐츠 게이트 ── */
+    #reading-wrapper { position: relative; }
+    #reading-wrapper.gated {
+      max-height: 300px;
+      overflow: hidden;
+      transition: max-height .7s ease;
+    }
+    #reading-wrapper.ungating { max-height: 2000px; }
+    #reading-fade {
+      display: none;
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background: linear-gradient(transparent, #12123a);
+      pointer-events: none;
+    }
+    #reading-wrapper.gated #reading-fade { display: block; }
+    #reading-gate {
+      display: none;
+      flex-direction: column; align-items: center;
+      gap: 14px; padding: 28px 24px;
+      background: linear-gradient(135deg, #12123a, #1a1a4e);
+      border: 1px solid rgba(212,175,55,.3);
+      border-top: none; border-radius: 0 0 14px 14px;
+      text-align: center;
+    }
+    #reading-gate.visible { display: flex; }
+    #reading-gate .gate-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold); font-size: 1.1rem;
+    }
+    #reading-gate .gate-desc { color: var(--text-dim); font-size: .85rem; }
+    #reading-gate .free-badge {
+      background: rgba(212,175,55,.12);
+      border: 1px solid rgba(212,175,55,.4);
+      border-radius: 20px; color: var(--gold-light);
+      font-size: .78rem; padding: 3px 14px;
+    }
 
     /* ── 헤더 유저 정보 ── */
     .user-info {
@@ -531,21 +551,6 @@
 </head>
 <body>
 
-<!-- ── 로그인 오버레이 ── -->
-<div id="login-overlay">
-  <h2>✨ AI 타로 리딩</h2>
-  <p>TAROT · READING · AI</p>
-  <div class="divider"></div>
-  <button id="google-login-btn">
-    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-      <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-      <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-      <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-    </svg>
-    Google로 로그인
-  </button>
-</div>
 
 <div class="container">
 
@@ -620,7 +625,24 @@
       <div class="spinner-ring"></div>
       <span>카드를 읽는 중...</span>
     </div>
-    <div class="reading-output" id="reading-output"></div>
+    <div id="reading-wrapper">
+      <div class="reading-output" id="reading-output"></div>
+      <div id="reading-fade"></div>
+    </div>
+    <div id="reading-gate">
+      <div class="gate-title">✨ 전체 리딩 보기</div>
+      <div class="free-badge">무료 3회 제공</div>
+      <div class="gate-desc">Google 계정으로 로그인하면 전체 리딩을 확인할 수 있습니다.</div>
+      <button class="google-btn" id="gate-login-btn">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+        Google로 계속하기
+      </button>
+    </div>
     <div class="mt-16 row">
       <button class="btn btn-secondary" id="back-to-draw">← 다시 뽑기</button>
       <button class="btn btn-save" id="save-reading-btn">💾 리딩 저장</button>
@@ -975,7 +997,11 @@ async function startReading() {
       for (const line of lines) {
         if (!line.startsWith('data: ')) continue;
         const data = line.slice(6);
-        if (data === '[DONE]') { cursor.remove(); return; }
+        if (data === '[DONE]') {
+          cursor.remove();
+          if (!window.currentUser) window.applyReadingGate();
+          return;
+        }
         const text = data.replace(/\\n/g, '\n');
         cursor.insertAdjacentText('beforebegin', text);
         output.scrollTop = output.scrollHeight;
@@ -1159,23 +1185,40 @@ init();
   const app   = initializeApp(firebaseConfig);
   const auth  = getAuth(app);
 
+  // 게이트 적용 (비로그인 상태에서 리딩 완료 시)
+  window.applyReadingGate = () => {
+    document.getElementById('reading-wrapper').classList.add('gated');
+    document.getElementById('reading-gate').classList.add('visible');
+    document.getElementById('reading-gate').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
+
+  // 게이트 해제 (로그인 완료 시)
+  const removeGate = () => {
+    const wrapper = document.getElementById('reading-wrapper');
+    const gate    = document.getElementById('reading-gate');
+    wrapper.classList.add('ungating');
+    wrapper.classList.remove('gated');
+    gate.classList.remove('visible');
+    setTimeout(() => wrapper.classList.remove('ungating'), 700);
+  };
+
   // 로그인 상태 변화 감지
   onAuthStateChanged(auth, (user) => {
-    const overlay  = document.getElementById('login-overlay');
+    window.currentUser = user;
     const userInfo = document.getElementById('user-info');
     if (user) {
-      overlay.style.display = 'none';
       userInfo.style.display = 'flex';
       document.getElementById('user-avatar').src = user.photoURL || '';
       document.getElementById('user-name').textContent = user.displayName || user.email;
+      // 게이트가 열려있으면 해제
+      if (document.getElementById('reading-gate').classList.contains('visible')) removeGate();
     } else {
-      overlay.style.display = 'flex';
       userInfo.style.display = 'none';
     }
   });
 
-  // Google 로그인
-  document.getElementById('google-login-btn').addEventListener('click', async () => {
+  // 게이트 내 Google 로그인 버튼
+  document.getElementById('gate-login-btn').addEventListener('click', async () => {
     try {
       await signInWithPopup(auth, new GoogleAuthProvider());
     } catch (e) {
@@ -1183,7 +1226,7 @@ init();
     }
   });
 
-  // 로그아웃
+  // 헤더 로그아웃
   document.getElementById('logout-btn').addEventListener('click', () => signOut(auth));
 </script>
 </body>
