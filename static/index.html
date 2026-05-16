@@ -547,6 +547,14 @@
       transition: border-color .2s, color .2s;
     }
     .user-info button:hover { border-color: var(--gold); color: var(--gold); }
+    #free-badge {
+      font-size: .75rem; padding: 3px 10px;
+      border-radius: 20px; border: 1px solid;
+      white-space: nowrap;
+    }
+    #free-badge.plenty  { color: #90d490; border-color: rgba(144,212,144,.4); }
+    #free-badge.warning { color: #f0d060; border-color: rgba(240,208,96,.4); }
+    #free-badge.empty   { color: #f08080; border-color: rgba(240,128,128,.4); }
   </style>
 </head>
 <body>
@@ -558,6 +566,7 @@
     <div class="user-info" id="user-info">
       <img id="user-avatar" src="" alt="프로필" />
       <span id="user-name"></span>
+      <span id="free-badge" class="plenty"></span>
       <button id="logout-btn">로그아웃</button>
     </div>
     <h1>✨ AI 타로 리딩</h1>
@@ -999,7 +1008,11 @@ async function startReading() {
         const data = line.slice(6);
         if (data === '[DONE]') {
           cursor.remove();
-          if (!window.currentUser) window.applyReadingGate();
+          if (!window.currentUser) {
+            window.applyReadingGate();
+          } else {
+            window.recordReading && window.recordReading();
+          }
           return;
         }
         const text = data.replace(/\\n/g, '\n');
@@ -1172,6 +1185,10 @@ init();
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
   import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
     from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+  import { getFirestore, doc, getDoc, setDoc, updateDoc, increment }
+    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+  const FREE_LIMIT = 3;
 
   const firebaseConfig = {
     apiKey: "AIzaSyDJ8KP4yPw_VcblGMtO-tTTkukhdwP6Ifg",
@@ -1182,17 +1199,46 @@ init();
     appId: "1:1067477977686:web:c3a49c8e36748186f849f7"
   };
 
-  const app   = initializeApp(firebaseConfig);
-  const auth  = getAuth(app);
+  const app  = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db   = getFirestore(app);
 
-  // 게이트 적용 (비로그인 상태에서 리딩 완료 시)
+  // ── 무료 잔여 횟수 배지 업데이트 ──
+  function updateFreeBadge(freeUsed) {
+    const remaining = Math.max(0, FREE_LIMIT - freeUsed);
+    const badge = document.getElementById('free-badge');
+    badge.textContent = `무료 ${remaining}회 남음`;
+    badge.className = remaining >= 2 ? 'plenty' : remaining === 1 ? 'warning' : 'empty';
+    badge.id = 'free-badge';
+  }
+
+  // ── Firestore: 사용자 문서 가져오기 (없으면 생성) ──
+  async function loadUserDoc(user) {
+    const ref  = doc(db, 'users', user.uid);
+    const snap = await getDoc(ref);
+    if (!snap.exists()) {
+      await setDoc(ref, { email: user.email, free_used: 0, created_at: new Date() });
+      return 0;
+    }
+    return snap.data().free_used || 0;
+  }
+
+  // ── Firestore: 리딩 1회 기록 ──
+  window.recordReading = async () => {
+    if (!window.currentUser) return;
+    const ref = doc(db, 'users', window.currentUser.uid);
+    await updateDoc(ref, { free_used: increment(1) });
+    window.freeUsed = (window.freeUsed || 0) + 1;
+    updateFreeBadge(window.freeUsed);
+  };
+
+  // ── 게이트 적용 / 해제 ──
   window.applyReadingGate = () => {
     document.getElementById('reading-wrapper').classList.add('gated');
     document.getElementById('reading-gate').classList.add('visible');
     document.getElementById('reading-gate').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   };
 
-  // 게이트 해제 (로그인 완료 시)
   const removeGate = () => {
     const wrapper = document.getElementById('reading-wrapper');
     const gate    = document.getElementById('reading-gate');
@@ -1202,14 +1248,17 @@ init();
     setTimeout(() => wrapper.classList.remove('ungating'), 700);
   };
 
-  // 로그인 상태 변화 감지
-  onAuthStateChanged(auth, (user) => {
+  // ── 로그인 상태 변화 감지 ──
+  onAuthStateChanged(auth, async (user) => {
     window.currentUser = user;
     const userInfo = document.getElementById('user-info');
     if (user) {
       userInfo.style.display = 'flex';
       document.getElementById('user-avatar').src = user.photoURL || '';
       document.getElementById('user-name').textContent = user.displayName || user.email;
+      // Firestore에서 사용 횟수 로드
+      window.freeUsed = await loadUserDoc(user);
+      updateFreeBadge(window.freeUsed);
       // 게이트가 열려있으면 해제
       if (document.getElementById('reading-gate').classList.contains('visible')) removeGate();
     } else {
@@ -1217,16 +1266,13 @@ init();
     }
   });
 
-  // 게이트 내 Google 로그인 버튼
+  // ── 게이트 내 로그인 버튼 ──
   document.getElementById('gate-login-btn').addEventListener('click', async () => {
-    try {
-      await signInWithPopup(auth, new GoogleAuthProvider());
-    } catch (e) {
-      console.error('로그인 실패', e);
-    }
+    try { await signInWithPopup(auth, new GoogleAuthProvider()); }
+    catch (e) { console.error('로그인 실패', e); }
   });
 
-  // 헤더 로그아웃
+  // ── 헤더 로그아웃 ──
   document.getElementById('logout-btn').addEventListener('click', () => signOut(auth));
 </script>
 </body>
