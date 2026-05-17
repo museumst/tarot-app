@@ -1010,7 +1010,7 @@ async function startReading() {
           cursor.remove();
           if (!window.currentUser) {
             window.applyReadingGate();
-          } else {
+          } else if (!window.isAdmin || !window.isAdmin()) {
             window.recordReading && window.recordReading();
           }
           return;
@@ -1189,6 +1189,7 @@ init();
     from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
   const FREE_LIMIT = 3;
+  const ADMIN_EMAILS = ['museumst@gmail.com'];
 
   const firebaseConfig = {
     apiKey: "AIzaSyDJ8KP4yPw_VcblGMtO-tTTkukhdwP6Ifg",
@@ -1226,11 +1227,15 @@ init();
   // ── Firestore: 리딩 1회 기록 ──
   window.recordReading = async () => {
     if (!window.currentUser) return;
+    if (ADMIN_EMAILS.includes(window.currentUser.email)) return; // 관리자는 차감 안 함
     const ref = doc(db, 'users', window.currentUser.uid);
     await updateDoc(ref, { free_used: increment(1) });
     window.freeUsed = (window.freeUsed || 0) + 1;
     updateFreeBadge(window.freeUsed);
   };
+
+  // ── 관리자 여부 확인 ──
+  window.isAdmin = () => window.currentUser && ADMIN_EMAILS.includes(window.currentUser.email);
 
   // ── 게이트 적용 / 해제 ──
   window.applyReadingGate = () => {
@@ -1257,8 +1262,13 @@ init();
       document.getElementById('user-avatar').src = user.photoURL || '';
       document.getElementById('user-name').textContent = user.displayName || user.email;
       // Firestore에서 사용 횟수 로드
-      window.freeUsed = await loadUserDoc(user);
-      updateFreeBadge(window.freeUsed);
+      if (ADMIN_EMAILS.includes(user.email)) {
+        const badge = document.getElementById('free-badge');
+        badge.textContent = '무제한'; badge.className = 'plenty'; badge.id = 'free-badge';
+      } else {
+        window.freeUsed = await loadUserDoc(user);
+        updateFreeBadge(window.freeUsed);
+      }
       // 게이트가 열려있으면 해제
       if (document.getElementById('reading-gate').classList.contains('visible')) removeGate();
     } else {
