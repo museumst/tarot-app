@@ -1,7 +1,8 @@
 import json
 import os
 import anthropic
-from fastapi import FastAPI
+import httpx
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, StreamingResponse
@@ -17,6 +18,9 @@ LANG_NAMES = {
     'zh': 'Chinese', 'it': 'Italian', 'id': 'Indonesian',
     'vi': 'Vietnamese', 'tr': 'Turkish', 'pl': 'Polish',
 }
+
+# 포트원 API Secret (Render 대시보드에서도 PORTONE_API_SECRET 환경변수를 설정해야 합니다)
+PORTONE_API_SECRET = os.environ.get("PORTONE_API_SECRET", "")
 
 app.add_middleware(
     CORSMiddleware,
@@ -54,6 +58,39 @@ async def get_spreads():
     # Filter spreads with actual card positions
     valid_spreads = [s for s in spreads if s.get("card_count") and s.get("positions")]
     return valid_spreads
+
+
+class PaymentVerifyRequest(BaseModel):
+    payment_id: str
+    amount: int
+    uid: str
+
+
+@app.post("/api/payment/verify")
+async def verify_payment(request: PaymentVerifyRequest):
+    # 포트원 API로 결제 정보 조회
+    async with httpx.AsyncClient() as client:
+        resp = await client.get(
+            f"https://api.portone.io/payments/{request.payment_id}",
+            headers={"Authorization": f"PortOne {PORTONE_API_SECRET}"}
+        )
+
+    if resp.status_code != 200:
+        raise HTTPException(status_code=400, detail="결제 정보 조회 실패")
+
+    data = resp.json()
+
+    # 결제 상태 확인
+    if data.get("status") != "PAID":
+        raise HTTPException(status_code=400, detail="결제가 완료되지 않았습니다.")
+
+    # 금액 위변조 검증
+    paid = data.get("amount", {}).get("total", 0)
+    if paid != request.amount:
+        raise HTTPException(status_code=400, detail="결제 금액이 일치하지 않습니다.")
+
+    credits = request.amount // 100
+    return {"ok": True, "credits": credits}
 
 
 class SpreadSelectRequest(BaseModel):
