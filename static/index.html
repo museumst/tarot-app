@@ -248,7 +248,6 @@
 
     /* ── Card drawing area ── */
     #draw-area {
-      min-height: 260px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -256,22 +255,31 @@
     }
 
     .deck-fan {
-      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
       width: 100%;
-      height: 380px;
-      margin: 10px auto;
-      overflow: visible;
+      padding: 10px 0;
     }
     .deck-card {
-      position: absolute;
-      width: 62px;
-      height: 107px;
+      width: 46px;
+      height: 80px;
       cursor: pointer;
-      transition: filter .15s ease, z-index 0s;
+      flex-shrink: 0;
+      position: relative;
+      transition: filter .15s, transform .15s, opacity .3s;
     }
     .deck-card:hover {
-      filter: brightness(1.3) drop-shadow(0 0 10px rgba(212,175,55,.8));
-      z-index: 9999 !important;
+      filter: brightness(1.4) drop-shadow(0 0 10px rgba(212,175,55,.8));
+      transform: translateY(-6px) scale(1.1);
+      z-index: 10;
+    }
+    .deck-card.selected-card {
+      opacity: 0.2;
+      pointer-events: none;
+      transform: none !important;
+      filter: none !important;
     }
     .deck-card .card-inner {
       width: 100%;
@@ -701,7 +709,23 @@ async function init() {
 // ── Step 1: 질문 → AI 스프레드 선택 ──
 document.getElementById('step1-next').addEventListener('click', async () => {
   const q = document.getElementById('question-input').value.trim();
-  if (!q) { notify('질문을 먼저 입력해주세요'); return; }
+
+  // 질문 없으면 → 오늘의 운세 (1장)
+  if (!q) {
+    document.getElementById('question-input').value = '오늘의 운세';
+    cardCount = 1;
+    selectedSpread = {
+      name: '오늘의 운세',
+      card_count: 1,
+      positions: [{ position: 1, meanings: ['오늘의 메시지'] }],
+      reason: '오늘 하루를 위한 한 장의 카드'
+    };
+    hide('step1');
+    show('step2');
+    buildDeck();
+    document.getElementById('step2').scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
 
   hide('question-area');
   show('analyzing-area');
@@ -816,39 +840,11 @@ function buildDeck() {
 function renderDeck() {
   const fan = document.getElementById('deck-fan');
   fan.innerHTML = '';
-  const total = deckCards.length;
-  const CARD_W = 62, CARD_H = 107;
 
-  const fanW = fan.offsetWidth || 700;
-  const fanH = fan.offsetHeight || 380;
-
-  // 호(arc) 파라미터
-  const spreadDeg = 160; // 전체 펼침 각도
-  const halfRad = (spreadDeg / 2) * Math.PI / 180;
-
-  // 반지름: 양쪽 끝 카드가 컨테이너 폭의 약 46%에 오도록
-  const R = (fanW * 0.46) / Math.sin(halfRad);
-
-  // 피벗(회전 중심): 컨테이너 하단 중앙보다 아래쪽
-  const pivotX = fanW / 2;
-  const pivotY = fanH + 40;
-
-  for (let i = 0; i < total; i++) {
-    const angleDeg = -spreadDeg / 2 + (spreadDeg / (total - 1)) * i;
-    const angleRad = angleDeg * Math.PI / 180;
-
-    // 카드 하단 중앙이 피벗으로부터 반지름 R 거리에 위치
-    const cx = pivotX + R * Math.sin(angleRad);
-    const cy = pivotY - R * Math.cos(angleRad);
-
+  for (let i = 0; i < deckCards.length; i++) {
     const div = document.createElement('div');
     div.className = 'deck-card';
     div.dataset.deckIdx = i;
-    div.style.left = `${cx - CARD_W / 2}px`;
-    div.style.top  = `${cy - CARD_H}px`;
-    div.style.transformOrigin = `${CARD_W / 2}px ${CARD_H}px`; // 카드 하단 중앙 기준 회전
-    div.style.transform = `rotate(${angleDeg}deg)`;
-    div.style.zIndex = i;
     div.innerHTML = `
       <div class="card-inner">
         <div class="card-back"><div class="card-pattern"></div></div>
@@ -879,7 +875,6 @@ function selectCard(deckIdx) {
     front.innerHTML = `<img src="/images/${card.image_file}" alt="${card.name_ko}" loading="lazy" />`;
     if (reversed) front.classList.add('reversed');
     deckCardEl.classList.add('flipped', 'selected-card');
-    deckCardEl.style.zIndex = 100 + drawnCards.length;
   }
 
   const cardIndex = drawnCards.length; // push 전 인덱스
