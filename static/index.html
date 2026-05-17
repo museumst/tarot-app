@@ -11,15 +11,15 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #f5f0e8;
-      --bg2: #ede8df;
-      --bg3: #e4ddd4;
-      --gold: #9a7a2a;
-      --gold-light: #c49840;
-      --purple: #7d6650;
-      --purple-light: #a08870;
-      --text: #2a1c10;
-      --text-dim: #8a7060;
+      --bg: #0d0d2b;
+      --bg2: #12123a;
+      --bg3: #1a1a4e;
+      --gold: #d4af37;
+      --gold-light: #f0d060;
+      --purple: #7b5ea7;
+      --purple-light: #a07fd4;
+      --text: #e8e0f0;
+      --text-dim: #9090b8;
       --card-w: 110px;
       --card-h: 190px;
     }
@@ -39,13 +39,16 @@
       position: fixed;
       inset: 0;
       background-image:
-        radial-gradient(2px 2px at 20% 30%, rgba(154,122,42,.12) 0%, transparent 100%),
-        radial-gradient(2px 2px at 60% 10%, rgba(154,122,42,.10) 0%, transparent 100%),
-        radial-gradient(2px 2px at 80% 60%, rgba(154,122,42,.08) 0%, transparent 100%),
-        radial-gradient(2px 2px at 10% 80%, rgba(154,122,42,.10) 0%, transparent 100%),
-        radial-gradient(2px 2px at 70% 40%, rgba(154,122,42,.08) 0%, transparent 100%),
-        radial-gradient(2px 2px at 90% 20%, rgba(154,122,42,.10) 0%, transparent 100%),
-        radial-gradient(2px 2px at 30% 90%, rgba(154,122,42,.08) 0%, transparent 100%);
+        radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 10%, rgba(255,255,255,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 60%, rgba(255,255,255,.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 70% 40%, rgba(255,255,255,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 20%, rgba(255,255,255,.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 90%, rgba(255,255,255,.4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 15% 45%, rgba(255,255,255,.5) 0%, transparent 100%);
       pointer-events: none;
       z-index: 0;
     }
@@ -60,7 +63,7 @@
 
     header {
       text-align: center;
-      padding: 80px 20px 30px;
+      padding: 50px 20px 30px;
     }
     header h1 {
       font-family: 'Playfair Display', serif;
@@ -118,8 +121,8 @@
     textarea {
       width: 100%;
       min-height: 120px;
-      background: rgba(255,252,246,.9);
-      border: 1px solid rgba(154,122,42,.3);
+      background: rgba(13,13,43,.7);
+      border: 1px solid rgba(212,175,55,.3);
       border-radius: 10px;
       color: var(--text);
       font-family: 'Noto Serif KR', serif;
@@ -132,7 +135,7 @@
     textarea::placeholder { color: var(--text-dim); }
     textarea:focus {
       border-color: var(--gold);
-      box-shadow: 0 0 20px rgba(154,122,42,.15);
+      box-shadow: 0 0 20px rgba(212,175,55,.2);
     }
 
     /* ── AI 분석 로딩 ── */
@@ -148,7 +151,7 @@
     }
     .analyzing-ring {
       width: 40px; height: 40px;
-      border: 3px solid rgba(154,122,42,.2);
+      border: 3px solid rgba(212,175,55,.2);
       border-top-color: var(--gold);
       border-radius: 50%;
       animation: spin 1s linear infinite;
@@ -156,8 +159,8 @@
 
     /* ── 선택된 스프레드 결과 박스 ── */
     .spread-result-box {
-      background: rgba(125,102,80,.08);
-      border: 1px solid rgba(125,102,80,.35);
+      background: rgba(123,94,167,.15);
+      border: 1px solid rgba(123,94,167,.5);
       border-radius: 12px;
       padding: 20px 24px;
       margin-top: 20px;
@@ -170,8 +173,8 @@
     }
     .spread-result-box .spread-card-count {
       display: inline-block;
-      background: rgba(154,122,42,.1);
-      border: 1px solid rgba(154,122,42,.35);
+      background: rgba(212,175,55,.15);
+      border: 1px solid rgba(212,175,55,.4);
       border-radius: 20px;
       color: var(--gold-light);
       font-size: .8rem;
@@ -190,8 +193,8 @@
       gap: 8px;
     }
     .spread-result-box .pos-tag {
-      background: rgba(255,252,246,.8);
-      border: 1px solid rgba(154,122,42,.2);
+      background: rgba(13,13,43,.5);
+      border: 1px solid rgba(212,175,55,.2);
       border-radius: 6px;
       color: var(--text);
       font-size: .78rem;
@@ -228,9 +231,9 @@
       color: var(--purple-light);
     }
     .btn-secondary:hover {
-      background: rgba(125,102,80,.12);
+      background: rgba(123,94,167,.2);
       border-color: var(--purple-light);
-      box-shadow: 0 4px 20px rgba(125,102,80,.2);
+      box-shadow: 0 4px 20px rgba(123,94,167,.3);
       transform: translateY(-1px);
     }
     .btn-save {
@@ -289,15 +292,15 @@
       overflow: hidden;
     }
     .card-back {
-      background: linear-gradient(135deg, #2a1800, #4a2e10, #2a1800);
-      border: 2px solid rgba(154,122,42,.6);
+      background: linear-gradient(135deg, #1a0a3a, #2d1460, #1a0a3a);
+      border: 2px solid rgba(212,175,55,.5);
       display: flex; align-items: center; justify-content: center;
     }
     .card-back::before {
       content: '';
       position: absolute;
       inset: 6px;
-      border: 1px solid rgba(154,122,42,.4);
+      border: 1px solid rgba(212,175,55,.3);
       border-radius: 4px;
     }
     .card-back::after {
@@ -395,8 +398,8 @@
       margin-bottom: 28px;
     }
     .reading-output {
-      background: rgba(255,252,246,.85);
-      border: 1px solid rgba(154,122,42,.2);
+      background: rgba(13,13,43,.6);
+      border: 1px solid rgba(212,175,55,.2);
       border-radius: 12px;
       padding: 28px;
       min-height: 200px;
@@ -427,7 +430,7 @@
     .spinner.active { display: flex; }
     .spinner-ring {
       width: 48px; height: 48px;
-      border: 3px solid rgba(154,122,42,.2);
+      border: 3px solid rgba(212,175,55,.2);
       border-top-color: var(--gold);
       border-radius: 50%;
       animation: spin 1s linear infinite;
@@ -454,7 +457,7 @@
       top: 20px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(154,122,42,.12);
+      background: rgba(212,175,55,.15);
       border: 1px solid var(--gold);
       border-radius: 8px;
       padding: 10px 20px;
@@ -503,13 +506,12 @@
       pointer-events: none;
     }
     #reading-wrapper.gated #reading-fade { display: block; }
-    #reading-fade { background: linear-gradient(transparent, #ede8df); }
     #reading-gate {
       display: none;
       flex-direction: column; align-items: center;
       gap: 14px; padding: 28px 24px;
-      background: linear-gradient(135deg, #ede8df, #e4ddd4);
-      border: 1px solid rgba(154,122,42,.3);
+      background: linear-gradient(135deg, #12123a, #1a1a4e);
+      border: 1px solid rgba(212,175,55,.3);
       border-top: none; border-radius: 0 0 14px 14px;
       text-align: center;
     }
@@ -1100,12 +1102,12 @@ document.getElementById('save-reading-btn').addEventListener('click', async () =
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+KR:wght@300;400;600&display=swap" rel="stylesheet"/>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:#f5f0e8;color:#2a1c10;font-family:'Noto Serif KR',serif;min-height:100vh;padding:40px 20px 80px}
+  body{background:#0d0d2b;color:#e8e0f0;font-family:'Noto Serif KR',serif;min-height:100vh;padding:40px 20px 80px}
   .wrap{max-width:860px;margin:0 auto}
   h1{font-family:'Playfair Display',serif;font-size:2rem;background:linear-gradient(135deg,#d4af37,#f0d060,#d4af37);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;letter-spacing:2px;margin-bottom:6px}
   .sub{text-align:center;color:#9090b8;font-size:.85rem;letter-spacing:3px;margin-bottom:30px}
   .divider{width:200px;height:1px;background:linear-gradient(90deg,transparent,#d4af37,transparent);margin:0 auto 30px}
-  .section{background:linear-gradient(135deg,#ede8df,#e4ddd4);border:1px solid rgba(154,122,42,.2);border-radius:14px;padding:24px 28px;margin-bottom:20px}
+  .section{background:linear-gradient(135deg,#12123a,#1a1a4e);border:1px solid rgba(212,175,55,.2);border-radius:14px;padding:24px 28px;margin-bottom:20px}
   .label{color:#d4af37;font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:10px;letter-spacing:1px}
   .question-text{font-size:1.05rem;line-height:1.8;color:#e8e0f0}
   .spread-badge{display:inline-block;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.4);border-radius:20px;color:#f0d060;font-size:.85rem;padding:4px 14px}
