@@ -10,6 +10,12 @@ from typing import List, Optional
 
 app = FastAPI(title="AI Tarot Reading")
 
+LANG_NAMES = {
+    'ko': '한국어', 'en': 'English', 'ja': 'Japanese',
+    'es': 'Spanish', 'fr': 'French', 'de': 'German',
+    'pt': 'Portuguese', 'th': 'Thai', 'ru': 'Russian',
+}
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -50,6 +56,7 @@ async def get_spreads():
 
 class SpreadSelectRequest(BaseModel):
     question: str
+    language: str = 'ko'
 
 
 @app.post("/api/select-spread")
@@ -66,6 +73,7 @@ async def select_spread(request: SpreadSelectRequest):
         for i, s in enumerate(valid_spreads)
     ])
 
+    lang_name = LANG_NAMES.get(request.language, 'Korean')
     client = anthropic.Anthropic()
     response = client.messages.create(
         model="claude-haiku-4-5-20251001",
@@ -78,7 +86,8 @@ async def select_spread(request: SpreadSelectRequest):
 위 질문에 가장 적합한 스프레드 하나를 선택하고 이유를 한 문장으로 설명하세요.
 반드시 아래 JSON 형식으로만 응답하세요 (다른 텍스트 없이):
 {{"index": 1, "reason": "선택 이유"}}
-index는 1부터 시작합니다."""}]
+index는 1부터 시작합니다.
+위 JSON에서 reason 값은 반드시 {lang_name}으로 작성하세요."""}]
     )
 
     import re
@@ -112,6 +121,7 @@ class ReadingRequest(BaseModel):
     question: str
     cards: List[DrawnCard]
     spread_name: str
+    language: str = 'ko'
 
 
 @app.post("/api/reading")
@@ -151,7 +161,8 @@ async def tarot_reading(request: ReadingRequest):
 
 각 카드의 위치 의미와 방향(정/역방향)을 고려하고, 카드들 사이의 연결과 흐름을 분석하여 종합적인 메시지를 전달해주세요. 내담자의 상황에 공감하며 구체적이고 실용적인 조언을 포함해주세요."""
 
-        system_prompt = """당신은 20년 경력의 전문 타로 리더입니다. 깊은 통찰력과 균형 잡힌 시각을 가지고 있으며, 내담자가 자신의 상황을 있는 그대로 직면하고 더 넓게 볼 수 있도록 돕습니다.
+        lang_name = LANG_NAMES.get(request.language, 'Korean')
+        system_prompt = f"""당신은 20년 경력의 전문 타로 리더입니다. 깊은 통찰력과 균형 잡힌 시각을 가지고 있으며, 내담자가 자신의 상황을 있는 그대로 직면하고 더 넓게 볼 수 있도록 돕습니다.
 
 리딩 방식:
 - 각 카드의 위치와 방향(정/역방향)을 명확히 언급하세요
@@ -161,7 +172,7 @@ async def tarot_reading(request: ReadingRequest):
 - 좋은 카드가 나왔다면 그 긍정적 에너지를 인정하되, 놓치기 쉬운 맹점이나 주의할 점도 균형 있게 짚어주세요
 - 결과를 좋게 포장하려 하지 말고, 내담자가 상황의 여러 면을 스스로 볼 수 있도록 시각을 넓혀주는 것을 목표로 하세요
 - 현실적이고 구체적인 조언을 제공하세요
-- 모든 응답은 한국어로 작성하세요
+- Write all responses in {lang_name}.
 - 전문적이되 친근한 말투를 사용하세요
 - 각 카드별로 단락을 나눠서 읽기 쉽게 구성하세요
 

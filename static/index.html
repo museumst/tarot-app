@@ -536,10 +536,44 @@
       font-size: .78rem; padding: 3px 14px;
     }
 
+    /* ── 언어 선택기 ── */
+    #top-bar {
+      position: fixed; top: 16px; right: 20px; z-index: 500;
+      display: flex; align-items: center; gap: 10px;
+    }
+    #lang-selector { position: relative; }
+    #lang-btn {
+      background: rgba(13,13,43,.85);
+      border: 1px solid rgba(212,175,55,.35);
+      border-radius: 8px; color: var(--text);
+      padding: 6px 12px; cursor: pointer;
+      display: flex; align-items: center; gap: 6px;
+      font-family: 'Noto Serif KR', serif; font-size: .82rem;
+      white-space: nowrap; transition: border-color .2s;
+    }
+    #lang-btn:hover { border-color: var(--gold); }
+    #lang-dropdown {
+      display: none; position: absolute;
+      top: calc(100% + 6px); right: 0;
+      background: #12123a;
+      border: 1px solid rgba(212,175,55,.3);
+      border-radius: 10px; min-width: 165px;
+      overflow: hidden; z-index: 1000;
+      box-shadow: 0 8px 24px rgba(0,0,0,.5);
+    }
+    #lang-dropdown.open { display: block; }
+    .lang-opt {
+      padding: 9px 14px; cursor: pointer;
+      display: flex; align-items: center; gap: 9px;
+      font-size: .84rem; color: var(--text);
+      transition: background .15s;
+    }
+    .lang-opt:hover { background: rgba(212,175,55,.1); }
+    .lang-opt.active { color: var(--gold); font-weight: 600; }
+
     /* ── 헤더 유저 정보 ── */
     .user-info {
       display: none; align-items: center; gap: 10px;
-      position: fixed; top: 16px; right: 20px; z-index: 500;
     }
     .user-info img {
       width: 34px; height: 34px; border-radius: 50%;
@@ -570,26 +604,34 @@
 
 <div class="container">
 
-  <header style="position:relative">
+  <div id="top-bar">
+    <!-- 언어 선택기 -->
+    <div id="lang-selector">
+      <button id="lang-btn">🇰🇷 한국어 ▾</button>
+      <div id="lang-dropdown"></div>
+    </div>
+    <!-- 유저 정보 -->
     <div class="user-info" id="user-info">
       <img id="user-avatar" src="" alt="프로필" />
       <span id="user-name"></span>
       <span id="free-badge" class="plenty"></span>
       <button id="logout-btn">로그아웃</button>
     </div>
-    <h1>✨ 타로 리딩</h1>
+  </div>
+  <header style="position:relative">
+    <h1 id="hdr-title">✨ 타로 리딩</h1>
     <div class="divider"></div>
-    <p>당신의 운명을 읽어드립니다</p>
+    <p id="hdr-sub">당신의 운명을 읽어드립니다</p>
   </header>
 
   <!-- ── Step 1: 질문 입력 + AI 스프레드 선택 ── -->
   <section class="step active" id="step1">
-    <div class="step-title"><div class="step-num">1</div> 질문을 입력하세요</div>
+    <div class="step-title"><div class="step-num">1</div> <span id="s1-title">질문을 입력하세요</span></div>
 
     <!-- 질문 입력 -->
     <div id="question-area">
       <textarea id="question-input" placeholder="오늘의 고민을 적어주세요...&#10;예: 새로운 직장으로 이직해야 할까요? / 이 관계가 나에게 좋은 건가요?"></textarea>
-      <p style="color:var(--text-dim);font-size:.8rem;margin-top:8px;letter-spacing:.5px">질문을 입력하지 않고 카드 선택을 누르면 오늘의 운세를 봐드립니다.</p>
+      <p id="question-hint" style="color:var(--text-dim);font-size:.8rem;margin-top:8px;letter-spacing:.5px">질문을 입력하지 않고 카드 선택을 누르면 오늘의 운세를 봐드립니다.</p>
       <div class="mt-16">
         <button class="btn" id="step1-next">카드선택 →</button>
       </div>
@@ -599,7 +641,7 @@
     <div id="analyzing-area" class="hidden">
       <div class="analyzing-box">
         <div class="analyzing-ring"></div>
-        <div>질문을 분석하여 최적의 스프레드를 선택하고 있습니다...</div>
+        <div id="analyzing-text">질문을 분석하여 최적의 스프레드를 선택하고 있습니다...</div>
       </div>
     </div>
 
@@ -620,11 +662,11 @@
 
   <!-- ── Step 2: 카드 뽑기 ── -->
   <section class="step hidden" id="step2">
-    <div class="step-title"><div class="step-num">2</div> 카드를 뽑으세요</div>
+    <div class="step-title"><div class="step-num">2</div> <span id="s2-title">카드를 뽑으세요</span></div>
     <div id="draw-area">
       <div class="draw-instruction">
-        마음을 집중하고 끌리는 카드를 클릭하세요<br/>
-        <span id="draw-counter">0</span> / <span id="draw-total">3</span> 장 선택됨
+        <span id="draw-instr-text">마음을 집중하고 끌리는 카드를 클릭하세요</span><br/>
+        <span id="draw-counter">0</span> / <span id="draw-total">3</span> <span id="draw-suffix">장 선택됨</span>
       </div>
       <div class="deck-fan" id="deck-fan"></div>
       <div id="drawn-row"></div>
@@ -637,20 +679,20 @@
 
   <!-- ── Step 3: AI 리딩 ── -->
   <section class="step hidden" id="reading-section">
-    <div class="step-title"><div class="step-num">3</div> AI 타로 리딩</div>
+    <div class="step-title"><div class="step-num">3</div> <span id="s3-title">AI 타로 리딩</span></div>
     <div class="reading-cards" id="reading-cards"></div>
     <div class="spinner" id="loading-spinner">
       <div class="spinner-ring"></div>
-      <span>카드를 읽는 중...</span>
+      <span id="spinner-text">카드를 읽는 중...</span>
     </div>
     <div id="reading-wrapper">
       <div class="reading-output" id="reading-output"></div>
       <div id="reading-fade"></div>
     </div>
     <div id="reading-gate">
-      <div class="gate-title">✨ 전체 리딩 보기</div>
-      <div class="free-badge">무료 3회 제공</div>
-      <div class="gate-desc">Google 계정으로 로그인하면 전체 리딩을 확인할 수 있습니다.</div>
+      <div class="gate-title" id="gate-title">✨ 전체 리딩 보기</div>
+      <div class="free-badge" id="gate-free-badge">무료 3회 제공</div>
+      <div class="gate-desc" id="gate-desc">Google 계정으로 로그인하면 전체 리딩을 확인할 수 있습니다.</div>
       <button class="google-btn" id="gate-login-btn">
         <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
           <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
@@ -658,7 +700,7 @@
           <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
           <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
         </svg>
-        Google로 계속하기
+        <span id="gate-login-text">Google로 계속하기</span>
       </button>
     </div>
     <div class="mt-16 row">
@@ -674,6 +716,316 @@
 <div class="notif" id="notif"></div>
 
 <script>
+// ── 다국어 ──
+const LANG_LIST = [
+  { code:'ko', flag:'🇰🇷', label:'한국어' },
+  { code:'en', flag:'🇺🇸', label:'English' },
+  { code:'ja', flag:'🇯🇵', label:'日本語' },
+  { code:'es', flag:'🇪🇸', label:'Español' },
+  { code:'fr', flag:'🇫🇷', label:'Français' },
+  { code:'de', flag:'🇩🇪', label:'Deutsch' },
+  { code:'pt', flag:'🇵🇹', label:'Português' },
+  { code:'th', flag:'🇹🇭', label:'ภาษาไทย' },
+  { code:'ru', flag:'🇷🇺', label:'Русский' },
+];
+
+const TRANSLATIONS = {
+  ko: {
+    title:'✨ 타로 리딩', subtitle:'당신의 운명을 읽어드립니다',
+    s1_title:'질문을 입력하세요',
+    q_placeholder:'오늘의 고민을 적어주세요...\n예: 새로운 직장으로 이직해야 할까요? / 이 관계가 나에게 좋은 건가요?',
+    q_hint:'질문을 입력하지 않고 카드 선택을 누르면 오늘의 운세를 봐드립니다.',
+    btn_select:'카드선택 →', analyzing:'질문을 분석하여 최적의 스프레드를 선택하고 있습니다...',
+    btn_reselect:'← 질문 다시 쓰기', btn_go_draw:'카드 뽑기 →',
+    s2_title:'카드를 뽑으세요', draw_instr:'마음을 집중하고 끌리는 카드를 클릭하세요',
+    draw_suffix:'장 선택됨', btn_back:'← 이전', btn_start:'리딩 시작 ✨',
+    s3_title:'AI 타로 리딩', spinner:'카드를 읽는 중...',
+    gate_title:'✨ 전체 리딩 보기', gate_badge:'무료 3회 제공',
+    gate_desc:'Google 계정으로 로그인하면 전체 리딩을 확인할 수 있습니다.',
+    gate_btn:'Google로 계속하기',
+    btn_back_draw:'← 다시 뽑기', btn_save:'💾 리딩 저장',
+    btn_new:'새 리딩 시작', btn_reset:'↺ 처음으로',
+    reversed:'역방향', upright:'정방향', logout:'로그아웃',
+    free_left: n => `무료 ${n}회 남음`, unlimited:'무제한',
+    notify_all: n => `${n}장 모두 선택되었습니다!`,
+    notify_saving:'HTML 파일 생성 중...', notify_saved:'리딩이 저장되었습니다! 📄',
+    notify_no_content:'저장할 리딩 내용이 없습니다.',
+    notify_server:'서버에 연결할 수 없습니다.',
+    notify_spread_err:'스프레드 선택 중 오류가 발생했습니다. 다시 시도해주세요.',
+    daily:'오늘의 운세', daily_pos:'오늘의 메시지', daily_reason:'오늘 하루를 위한 한 장의 카드',
+  },
+  en: {
+    title:'✨ Tarot Reading', subtitle:'Let the cards reveal your path',
+    s1_title:'Enter your question',
+    q_placeholder:"What's on your mind?\ne.g. Should I change jobs? / Is this relationship good for me?",
+    q_hint:'Leave blank and click "Select Cards" for your daily fortune.',
+    btn_select:'Select Cards →', analyzing:'Finding the best spread for your question...',
+    btn_reselect:'← Rewrite Question', btn_go_draw:'Draw Cards →',
+    s2_title:'Draw your cards', draw_instr:'Focus your mind and click the card that calls to you',
+    draw_suffix:'card(s) selected', btn_back:'← Back', btn_start:'Start Reading ✨',
+    s3_title:'Tarot Reading', spinner:'Reading the cards...',
+    gate_title:'✨ View Full Reading', gate_badge:'3 free readings',
+    gate_desc:'Sign in with Google to unlock the full reading.',
+    gate_btn:'Continue with Google',
+    btn_back_draw:'← Draw Again', btn_save:'💾 Save Reading',
+    btn_new:'New Reading', btn_reset:'↺ Start Over',
+    reversed:'Reversed', upright:'Upright', logout:'Logout',
+    free_left: n => `${n} free reading${n!==1?'s':''} left`, unlimited:'Unlimited',
+    notify_all: n => `All ${n} cards selected!`,
+    notify_saving:'Generating HTML file...', notify_saved:'Reading saved! 📄',
+    notify_no_content:'No reading to save.',
+    notify_server:'Cannot connect to server.',
+    notify_spread_err:'Error selecting spread. Please try again.',
+    daily:'Daily Fortune', daily_pos:"Today's Message", daily_reason:'One card for your day',
+  },
+  ja: {
+    title:'✨ タロット占い', subtitle:'あなたの運命をお伝えします',
+    s1_title:'質問を入力してください',
+    q_placeholder:'今日のお悩みをどうぞ...\n例：転職すべきでしょうか？/ この関係は私に良いものですか？',
+    q_hint:'空白のままカード選択を押すと、今日の運勢をお伝えします。',
+    btn_select:'カードを選ぶ →', analyzing:'最適なスプレッドを選択中...',
+    btn_reselect:'← 質問を書き直す', btn_go_draw:'カードを引く →',
+    s2_title:'カードを引いてください', draw_instr:'心を集中させ、引かれるカードをクリックしてください',
+    draw_suffix:'枚選択済み', btn_back:'← 戻る', btn_start:'占いを始める ✨',
+    s3_title:'タロット占い', spinner:'カードを読み解き中...',
+    gate_title:'✨ 全文を見る', gate_badge:'無料3回提供',
+    gate_desc:'Googleアカウントでログインすると全文をご確認いただけます。',
+    gate_btn:'Googleで続ける',
+    btn_back_draw:'← 引き直す', btn_save:'💾 保存する',
+    btn_new:'新しい占い', btn_reset:'↺ 最初から',
+    reversed:'逆位置', upright:'正位置', logout:'ログアウト',
+    free_left: n => `残り${n}回無料`, unlimited:'無制限',
+    notify_all: n => `${n}枚すべて選択されました！`,
+    notify_saving:'HTMLファイル生成中...', notify_saved:'保存されました！ 📄',
+    notify_no_content:'保存する内容がありません。',
+    notify_server:'サーバーに接続できません。',
+    notify_spread_err:'スプレッド選択中にエラーが発生しました。',
+    daily:'今日の運勢', daily_pos:'今日のメッセージ', daily_reason:'今日のための一枚',
+  },
+  es: {
+    title:'✨ Lectura de Tarot', subtitle:'Las cartas revelarán tu camino',
+    s1_title:'Escribe tu pregunta',
+    q_placeholder:'¿Qué te preocupa hoy?\nEj: ¿Debería cambiar de trabajo? / ¿Esta relación me conviene?',
+    q_hint:'Deja en blanco y pulsa "Seleccionar" para tu fortuna del día.',
+    btn_select:'Seleccionar →', analyzing:'Buscando la mejor tirada para tu pregunta...',
+    btn_reselect:'← Reescribir', btn_go_draw:'Sacar Cartas →',
+    s2_title:'Saca tus cartas', draw_instr:'Concéntrate y haz clic en la carta que te llame',
+    draw_suffix:'carta(s) seleccionada(s)', btn_back:'← Atrás', btn_start:'Iniciar Lectura ✨',
+    s3_title:'Lectura de Tarot', spinner:'Leyendo las cartas...',
+    gate_title:'✨ Ver Lectura Completa', gate_badge:'3 lecturas gratuitas',
+    gate_desc:'Inicia sesión con Google para ver la lectura completa.',
+    gate_btn:'Continuar con Google',
+    btn_back_draw:'← Volver a Sacar', btn_save:'💾 Guardar Lectura',
+    btn_new:'Nueva Lectura', btn_reset:'↺ Empezar de Nuevo',
+    reversed:'Invertida', upright:'Derecha', logout:'Cerrar Sesión',
+    free_left: n => `${n} lectura${n!==1?'s':''} gratuita${n!==1?'s':''} restante${n!==1?'s':''}`, unlimited:'Ilimitado',
+    notify_all: n => `¡${n} cartas seleccionadas!`,
+    notify_saving:'Generando archivo HTML...', notify_saved:'¡Lectura guardada! 📄',
+    notify_no_content:'No hay lectura para guardar.',
+    notify_server:'No se puede conectar al servidor.',
+    notify_spread_err:'Error al seleccionar la tirada. Inténtalo de nuevo.',
+    daily:'Fortuna del Día', daily_pos:'Mensaje del Día', daily_reason:'Una carta para tu día',
+  },
+  fr: {
+    title:'✨ Lecture de Tarot', subtitle:'Les cartes révéleront votre chemin',
+    s1_title:'Entrez votre question',
+    q_placeholder:"Qu'est-ce qui vous préoccupe ?\nEx: Devrais-je changer d'emploi ? / Cette relation est-elle bonne pour moi ?",
+    q_hint:'Laissez vide et cliquez "Sélectionner" pour votre fortune du jour.',
+    btn_select:'Sélectionner →', analyzing:'Recherche du meilleur tirage pour votre question...',
+    btn_reselect:'← Réécrire', btn_go_draw:'Tirer les Cartes →',
+    s2_title:'Tirez vos cartes', draw_instr:'Concentrez-vous et cliquez sur la carte qui vous attire',
+    draw_suffix:'carte(s) sélectionnée(s)', btn_back:'← Retour', btn_start:'Commencer ✨',
+    s3_title:'Lecture de Tarot', spinner:'Lecture des cartes...',
+    gate_title:'✨ Voir la Lecture Complète', gate_badge:'3 lectures gratuites',
+    gate_desc:'Connectez-vous avec Google pour voir la lecture complète.',
+    gate_btn:'Continuer avec Google',
+    btn_back_draw:'← Retirer', btn_save:'💾 Sauvegarder',
+    btn_new:'Nouvelle Lecture', btn_reset:'↺ Recommencer',
+    reversed:'Renversée', upright:'Droite', logout:'Déconnexion',
+    free_left: n => `${n} lecture${n>1?'s':''} gratuite${n>1?'s':''} restante${n>1?'s':''}`, unlimited:'Illimité',
+    notify_all: n => `${n} cartes sélectionnées !`,
+    notify_saving:'Génération du fichier HTML...', notify_saved:'Lecture sauvegardée ! 📄',
+    notify_no_content:'Aucune lecture à sauvegarder.',
+    notify_server:'Impossible de se connecter au serveur.',
+    notify_spread_err:'Erreur lors de la sélection. Réessayez.',
+    daily:'Fortune du Jour', daily_pos:'Message du Jour', daily_reason:'Une carte pour votre journée',
+  },
+  de: {
+    title:'✨ Tarot-Legung', subtitle:'Die Karten enthüllen Ihren Weg',
+    s1_title:'Geben Sie Ihre Frage ein',
+    q_placeholder:'Was beschäftigt Sie heute?\nZ.B.: Soll ich den Job wechseln? / Ist diese Beziehung gut für mich?',
+    q_hint:'Leer lassen und "Karten wählen" klicken für Ihr Tageshoroskop.',
+    btn_select:'Karten wählen →', analyzing:'Suche nach dem besten Legesystem...',
+    btn_reselect:'← Neu schreiben', btn_go_draw:'Karten ziehen →',
+    s2_title:'Ziehen Sie Ihre Karten', draw_instr:'Konzentrieren Sie sich und klicken Sie auf die Karte, die Sie anzieht',
+    draw_suffix:'Karte(n) ausgewählt', btn_back:'← Zurück', btn_start:'Legung starten ✨',
+    s3_title:'Tarot-Legung', spinner:'Karten werden gelesen...',
+    gate_title:'✨ Vollständige Legung ansehen', gate_badge:'3 kostenlose Legungen',
+    gate_desc:'Melden Sie sich mit Google an, um die vollständige Legung zu sehen.',
+    gate_btn:'Mit Google fortfahren',
+    btn_back_draw:'← Neu ziehen', btn_save:'💾 Legung speichern',
+    btn_new:'Neue Legung', btn_reset:'↺ Von vorne beginnen',
+    reversed:'Umgekehrt', upright:'Aufrecht', logout:'Abmelden',
+    free_left: n => `${n} kostenlose Legung${n!==1?'en':''} übrig`, unlimited:'Unbegrenzt',
+    notify_all: n => `Alle ${n} Karten ausgewählt!`,
+    notify_saving:'HTML-Datei wird erstellt...', notify_saved:'Legung gespeichert! 📄',
+    notify_no_content:'Keine Legung zum Speichern.',
+    notify_server:'Verbindung zum Server nicht möglich.',
+    notify_spread_err:'Fehler bei der Auswahl. Bitte erneut versuchen.',
+    daily:'Tageshoroskop', daily_pos:'Nachricht des Tages', daily_reason:'Eine Karte für Ihren Tag',
+  },
+  pt: {
+    title:'✨ Leitura de Tarot', subtitle:'As cartas revelarão o seu caminho',
+    s1_title:'Digite a sua pergunta',
+    q_placeholder:'O que o preocupa hoje?\nEx: Devo mudar de emprego? / Este relacionamento é bom para mim?',
+    q_hint:'Deixe em branco e clique "Selecionar" para sua fortuna do dia.',
+    btn_select:'Selecionar →', analyzing:'Encontrando a melhor tiragem para sua pergunta...',
+    btn_reselect:'← Reescrever', btn_go_draw:'Tirar Cartas →',
+    s2_title:'Tire suas cartas', draw_instr:'Concentre-se e clique na carta que te chamar',
+    draw_suffix:'carta(s) selecionada(s)', btn_back:'← Voltar', btn_start:'Iniciar Leitura ✨',
+    s3_title:'Leitura de Tarot', spinner:'Lendo as cartas...',
+    gate_title:'✨ Ver Leitura Completa', gate_badge:'3 leituras gratuitas',
+    gate_desc:'Faça login com o Google para ver a leitura completa.',
+    gate_btn:'Continuar com Google',
+    btn_back_draw:'← Tirar Novamente', btn_save:'💾 Salvar Leitura',
+    btn_new:'Nova Leitura', btn_reset:'↺ Recomeçar',
+    reversed:'Invertida', upright:'Direita', logout:'Sair',
+    free_left: n => `${n} leitura${n!==1?'s':''} gratuita${n!==1?'s':''} restante${n!==1?'s':''}`, unlimited:'Ilimitado',
+    notify_all: n => `${n} cartas selecionadas!`,
+    notify_saving:'Gerando arquivo HTML...', notify_saved:'Leitura salva! 📄',
+    notify_no_content:'Nenhuma leitura para salvar.',
+    notify_server:'Não é possível conectar ao servidor.',
+    notify_spread_err:'Erro ao selecionar a tiragem. Tente novamente.',
+    daily:'Fortuna do Dia', daily_pos:'Mensagem do Dia', daily_reason:'Uma carta para o seu dia',
+  },
+  th: {
+    title:'✨ การอ่านไพ่ทาโรต์', subtitle:'ไพ่จะเปิดเผยเส้นทางของคุณ',
+    s1_title:'ป้อนคำถามของคุณ',
+    q_placeholder:'อะไรที่คุณกังวลวันนี้?\nเช่น ควรเปลี่ยนงานไหม? / ความสัมพันธ์นี้ดีสำหรับฉันไหม?',
+    q_hint:'ปล่อยว่างและคลิก "เลือกไพ่" เพื่อดูดวงประจำวัน',
+    btn_select:'เลือกไพ่ →', analyzing:'กำลังหาการวางไพ่ที่เหมาะสมที่สุด...',
+    btn_reselect:'← เขียนใหม่', btn_go_draw:'จั่วไพ่ →',
+    s2_title:'จั่วไพ่ของคุณ', draw_instr:'ตั้งสมาธิและคลิกไพ่ที่ดึงดูดคุณ',
+    draw_suffix:'ใบที่เลือก', btn_back:'← กลับ', btn_start:'เริ่มการอ่าน ✨',
+    s3_title:'การอ่านไพ่ทาโรต์', spinner:'กำลังอ่านไพ่...',
+    gate_title:'✨ ดูการอ่านทั้งหมด', gate_badge:'ฟรี 3 ครั้ง',
+    gate_desc:'เข้าสู่ระบบด้วย Google เพื่อดูการอ่านทั้งหมด',
+    gate_btn:'ดำเนินการต่อด้วย Google',
+    btn_back_draw:'← จั่วใหม่', btn_save:'💾 บันทึก',
+    btn_new:'การอ่านใหม่', btn_reset:'↺ เริ่มต้นใหม่',
+    reversed:'กลับด้าน', upright:'ตั้งตรง', logout:'ออกจากระบบ',
+    free_left: n => `เหลือ ${n} ครั้ง`, unlimited:'ไม่จำกัด',
+    notify_all: n => `เลือกครบ ${n} ใบแล้ว!`,
+    notify_saving:'กำลังสร้างไฟล์ HTML...', notify_saved:'บันทึกแล้ว! 📄',
+    notify_no_content:'ไม่มีการอ่านให้บันทึก',
+    notify_server:'ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้',
+    notify_spread_err:'เกิดข้อผิดพลาด กรุณาลองใหม่',
+    daily:'ดวงประจำวัน', daily_pos:'ข้อความประจำวัน', daily_reason:'ไพ่หนึ่งใบสำหรับวันของคุณ',
+  },
+  ru: {
+    title:'✨ Расклад Таро', subtitle:'Карты откроют ваш путь',
+    s1_title:'Введите ваш вопрос',
+    q_placeholder:'Что вас беспокоит сегодня?\nНапр.: Стоит ли мне сменить работу? / Эти отношения хороши для меня?',
+    q_hint:'Оставьте поле пустым и нажмите "Выбрать карты" для гороскопа на день.',
+    btn_select:'Выбрать карты →', analyzing:'Поиск лучшего расклада для вашего вопроса...',
+    btn_reselect:'← Переписать', btn_go_draw:'Вытянуть карты →',
+    s2_title:'Вытяните ваши карты', draw_instr:'Сосредоточьтесь и нажмите на карту, которая вас привлекает',
+    draw_suffix:'карт(а) выбрано', btn_back:'← Назад', btn_start:'Начать расклад ✨',
+    s3_title:'Расклад Таро', spinner:'Читаем карты...',
+    gate_title:'✨ Посмотреть полный расклад', gate_badge:'3 бесплатных расклада',
+    gate_desc:'Войдите через Google, чтобы увидеть полный расклад.',
+    gate_btn:'Продолжить с Google',
+    btn_back_draw:'← Вытянуть снова', btn_save:'💾 Сохранить расклад',
+    btn_new:'Новый расклад', btn_reset:'↺ Начать сначала',
+    reversed:'Перевёрнутая', upright:'Прямая', logout:'Выйти',
+    free_left: n => `Осталось ${n} расклад${n===1?'':n<5?'а':'ов'}`, unlimited:'Безлимитно',
+    notify_all: n => `Все ${n} карт выбраны!`,
+    notify_saving:'Создание HTML-файла...', notify_saved:'Расклад сохранён! 📄',
+    notify_no_content:'Нечего сохранять.',
+    notify_server:'Нет подключения к серверу.',
+    notify_spread_err:'Ошибка при выборе расклада. Попробуйте ещё раз.',
+    daily:'Гороскоп на день', daily_pos:'Сообщение дня', daily_reason:'Одна карта для вашего дня',
+  },
+};
+
+let currentLang = localStorage.getItem('tarot-lang') || 'ko';
+
+function t(key, ...args) {
+  const tr = TRANSLATIONS[currentLang] || TRANSLATIONS.ko;
+  const val = tr[key] ?? TRANSLATIONS.ko[key];
+  return typeof val === 'function' ? val(...args) : (val ?? key);
+}
+
+function applyLang() {
+  const el = id => document.getElementById(id);
+
+  el('hdr-title').textContent = t('title');
+  el('hdr-sub').textContent   = t('subtitle');
+  el('s1-title').textContent  = t('s1_title');
+  el('question-input').placeholder = t('q_placeholder');
+  el('question-hint').textContent  = t('q_hint');
+  el('step1-next').textContent     = t('btn_select');
+  el('analyzing-text').textContent = t('analyzing');
+  el('reselect-btn').textContent   = t('btn_reselect');
+  el('go-draw-btn').textContent    = t('btn_go_draw');
+  el('s2-title').textContent       = t('s2_title');
+  el('draw-instr-text').textContent = t('draw_instr');
+  el('draw-suffix').textContent    = t('draw_suffix');
+  el('step2-back').textContent     = t('btn_back');
+  el('step2-next').textContent     = t('btn_start');
+  el('s3-title').textContent       = t('s3_title');
+  el('spinner-text').textContent   = t('spinner');
+  el('gate-title').textContent     = t('gate_title');
+  el('gate-free-badge').textContent = t('gate_badge');
+  el('gate-desc').textContent      = t('gate_desc');
+  el('gate-login-text').textContent = t('gate_btn');
+  el('back-to-draw').textContent   = t('btn_back_draw');
+  el('save-reading-btn').textContent = t('btn_save');
+  el('new-reading-btn').textContent = t('btn_new');
+  el('reset-btn').textContent      = t('btn_reset');
+  el('logout-btn').textContent     = t('logout');
+
+  // 랭 버튼 레이블 업데이트
+  const lang = LANG_LIST.find(l => l.code === currentLang);
+  el('lang-btn').textContent = `${lang.flag} ${lang.label} ▾`;
+
+  // 드롭다운 active 표시
+  document.querySelectorAll('.lang-opt').forEach(opt => {
+    opt.classList.toggle('active', opt.dataset.code === currentLang);
+  });
+}
+
+function buildLangDropdown() {
+  const dd = document.getElementById('lang-dropdown');
+  dd.innerHTML = '';
+  LANG_LIST.forEach(({ code, flag, label }) => {
+    const div = document.createElement('div');
+    div.className = 'lang-opt' + (code === currentLang ? ' active' : '');
+    div.dataset.code = code;
+    div.textContent = `${flag} ${label}`;
+    div.addEventListener('click', () => {
+      currentLang = code;
+      localStorage.setItem('tarot-lang', code);
+      applyLang();
+      document.getElementById('lang-dropdown').classList.remove('open');
+    });
+    dd.appendChild(div);
+  });
+}
+
+document.getElementById('lang-btn').addEventListener('click', (e) => {
+  e.stopPropagation();
+  document.getElementById('lang-dropdown').classList.toggle('open');
+});
+document.addEventListener('click', () => {
+  document.getElementById('lang-dropdown').classList.remove('open');
+});
+
+buildLangDropdown();
+applyLang();
+window.t = t;
+
+// ── 상태 변수 ──
 let allCards = [];
 let selectedSpread = null;
 let cardCount = 3;
@@ -703,7 +1055,7 @@ async function init() {
     const res = await fetch('/api/cards');
     allCards = await res.json();
   } catch (e) {
-    notify('서버에 연결할 수 없습니다.', 4000);
+    notify(t('notify_server'), 4000);
   }
 }
 
@@ -713,13 +1065,13 @@ document.getElementById('step1-next').addEventListener('click', async () => {
 
   // 질문 없으면 → 오늘의 운세 (1장)
   if (!q) {
-    document.getElementById('question-input').value = '오늘의 운세';
+    document.getElementById('question-input').value = t('daily');
     cardCount = 1;
     selectedSpread = {
-      name: '오늘의 운세',
+      name: t('daily'),
       card_count: 1,
-      positions: [{ position: 1, meanings: ['오늘의 메시지'] }],
-      reason: '오늘 하루를 위한 한 장의 카드'
+      positions: [{ position: 1, meanings: [t('daily_pos')] }],
+      reason: t('daily_reason')
     };
     hide('step1');
     show('step2');
@@ -735,7 +1087,7 @@ document.getElementById('step1-next').addEventListener('click', async () => {
     const res = await fetch('/api/select-spread', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question: q })
+      body: JSON.stringify({ question: q, language: currentLang })
     });
     if (!res.ok) throw new Error('서버 오류');
     const spread = await res.json();
@@ -767,7 +1119,7 @@ document.getElementById('step1-next').addEventListener('click', async () => {
   } catch (e) {
     hide('analyzing-area');
     show('question-area');
-    notify('스프레드 선택 중 오류가 발생했습니다. 다시 시도해주세요.');
+    notify(t('notify_spread_err'));
   }
 });
 
@@ -902,7 +1254,7 @@ function selectCard(deckIdx) {
     <div class="drawn-card-name">${card.name_ko}</div>
     <div class="drawn-card-label">
       ${positionMeaning ? `<span style="color:var(--gold-light)">${positionMeaning}</span><br/>` : ''}
-      ${reversed ? '<span class="reversed-badge">역방향</span>' : '<span style="color:#90d490;font-size:.7rem">정방향</span>'}
+      ${reversed ? `<span class="reversed-badge">${t('reversed')}</span>` : `<span style="color:#90d490;font-size:.7rem">${t('upright')}</span>`}
     </div>`;
   row.appendChild(el);
 
@@ -910,7 +1262,7 @@ function selectCard(deckIdx) {
 
   if (drawnCards.length >= cardCount) {
     document.getElementById('step2-next').disabled = false;
-    notify(`${cardCount}장 모두 선택되었습니다!`);
+    notify(t('notify_all', cardCount));
   }
 }
 
@@ -946,7 +1298,7 @@ function renderReadingCards() {
       <div class="drawn-card-name">${card.name_ko}</div>
       <div class="drawn-card-label">
         ${positionMeaning ? `<span style="color:var(--gold-light)">${positionMeaning}</span><br/>` : ''}
-        ${reversed ? '<span class="reversed-badge">역방향</span>' : '<span style="color:#90d490;font-size:.7rem">정방향</span>'}
+        ${reversed ? `<span class="reversed-badge">${t('reversed')}</span>` : `<span style="color:#90d490;font-size:.7rem">${t('upright')}</span>`}
       </div>`;
     container.appendChild(el);
   });
@@ -965,6 +1317,7 @@ async function startReading() {
   const payload = {
     question,
     spread_name: spreadName,
+    language: currentLang,
     cards: drawnCards.map(({ card, reversed, positionMeaning }) => ({
       name_ko: card.name_ko,
       name_en: card.name_en,
@@ -1033,9 +1386,9 @@ document.getElementById('back-to-draw').addEventListener('click', () => {
 document.getElementById('save-reading-btn').addEventListener('click', async () => {
   const question = document.getElementById('question-input').value.trim();
   const readingText = document.getElementById('reading-output').innerText.trim();
-  if (!readingText) { notify('저장할 리딩 내용이 없습니다.'); return; }
+  if (!readingText) { notify(t('notify_no_content')); return; }
 
-  notify('HTML 파일 생성 중...');
+  notify(t('notify_saving'));
 
   const now = new Date();
   const dateStr = now.toLocaleString('ko-KR', {
@@ -1151,7 +1504,7 @@ document.getElementById('save-reading-btn').addEventListener('click', async () =
   a.download = fileName;
   a.click();
   URL.revokeObjectURL(url);
-  notify('리딩이 저장되었습니다! 📄');
+  notify(t('notify_saved'));
 });
 
 document.getElementById('new-reading-btn').addEventListener('click', resetAll);
@@ -1204,7 +1557,7 @@ init();
   function updateFreeBadge(freeUsed) {
     const remaining = Math.max(0, FREE_LIMIT - freeUsed);
     const badge = document.getElementById('free-badge');
-    badge.textContent = `무료 ${remaining}회 남음`;
+    badge.textContent = window.t ? window.t('free_left', remaining) : `무료 ${remaining}회 남음`;
     badge.className = remaining >= 2 ? 'plenty' : remaining === 1 ? 'warning' : 'empty';
     badge.id = 'free-badge';
   }
@@ -1260,7 +1613,7 @@ init();
       // Firestore에서 사용 횟수 로드
       if (ADMIN_EMAILS.includes(user.email)) {
         const badge = document.getElementById('free-badge');
-        badge.textContent = '무제한'; badge.className = 'plenty'; badge.id = 'free-badge';
+        badge.textContent = window.t ? window.t('unlimited') : '무제한'; badge.className = 'plenty'; badge.id = 'free-badge';
       } else {
         window.freeUsed = await loadUserDoc(user);
         updateFreeBadge(window.freeUsed);
