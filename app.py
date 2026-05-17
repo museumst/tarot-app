@@ -14,6 +14,8 @@ LANG_NAMES = {
     'ko': '한국어', 'en': 'English', 'ja': 'Japanese',
     'es': 'Spanish', 'fr': 'French', 'de': 'German',
     'pt': 'Portuguese', 'th': 'Thai', 'ru': 'Russian',
+    'zh': 'Chinese', 'it': 'Italian', 'id': 'Indonesian',
+    'vi': 'Vietnamese', 'tr': 'Turkish', 'pl': 'Polish',
 }
 
 app.add_middleware(
