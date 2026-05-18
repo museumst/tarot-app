@@ -1510,10 +1510,12 @@ function selectCard(deckIdx) {
   const card = allCards[deckCards[deckIdx]];
   const reversed = Math.random() < 0.5;
 
-  let positionMeaning = '';
+  // 포지션 의미: 한국어는 JSON 원본, 그 외 언어는 번역 레이블
+  const cardIdx = drawnCards.length;
+  let positionMeaning = t('card_label', cardIdx); // 기본값: "Card 1" 등
   if (selectedSpread && selectedSpread.positions) {
-    const posData = selectedSpread.positions[drawnCards.length];
-    if (posData && posData.meanings && posData.meanings.length > 0) {
+    const posData = selectedSpread.positions[cardIdx];
+    if (currentLang === 'ko' && posData && posData.meanings && posData.meanings[0]) {
       positionMeaning = posData.meanings[0];
     }
   }
@@ -1521,7 +1523,7 @@ function selectCard(deckIdx) {
   const deckCardEl = document.querySelector(`.deck-card[data-deck-idx="${deckIdx}"]`);
   if (deckCardEl) {
     const front = deckCardEl.querySelector('.card-front');
-    front.innerHTML = `<img src="/images/${card.image_file}" alt="${card.name_ko}" loading="lazy" />`;
+    front.innerHTML = `<img src="/images/${card.image_file}" alt="${card.name_en}" loading="lazy" />`;
     if (reversed) front.classList.add('reversed');
     deckCardEl.classList.add('flipped', 'selected-card');
   }
@@ -1545,9 +1547,9 @@ function selectCard(deckIdx) {
 
   el.innerHTML = `
     <div class="drawn-card-img ${reversed ? 'reversed' : ''}">
-      <img src="/images/${card.image_file}" alt="${card.name_ko}" loading="lazy" />
+      <img src="/images/${card.image_file}" alt="${card.name_en}" loading="lazy" />
     </div>
-    <div class="drawn-card-name">${card.name_ko}</div>
+    <div class="drawn-card-name">${currentLang === 'ko' ? card.name_ko : card.name_en}</div>
     <div class="drawn-card-label">
       ${positionMeaning ? `<span style="color:var(--gold-light)">${positionMeaning}</span><br/>` : ''}
       ${reversed ? `<span class="reversed-badge">${t('reversed')}</span>` : `<span style="color:#90d490;font-size:.7rem">${t('upright')}</span>`}
@@ -1595,9 +1597,9 @@ function renderReadingCards() {
     el.className = 'drawn-card';
     el.innerHTML = `
       <div class="drawn-card-img ${reversed ? 'reversed' : ''}">
-        <img src="/images/${card.image_file}" alt="${card.name_ko}" loading="lazy" />
+        <img src="/images/${card.image_file}" alt="${card.name_en}" loading="lazy" />
       </div>
-      <div class="drawn-card-name">${card.name_ko}</div>
+      <div class="drawn-card-name">${currentLang === 'ko' ? card.name_ko : card.name_en}</div>
       <div class="drawn-card-label">
         ${positionMeaning ? `<span style="color:var(--gold-light)">${positionMeaning}</span><br/>` : ''}
         ${reversed ? `<span class="reversed-badge">${t('reversed')}</span>` : `<span style="color:#90d490;font-size:.7rem">${t('upright')}</span>`}
