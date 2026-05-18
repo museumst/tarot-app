@@ -662,6 +662,22 @@
     }
     #charge-close:hover { color: var(--text); }
     #charge-status { color: var(--text-dim); font-size: .82rem; min-height: 20px; }
+    #charge-phone-wrap {
+      margin-bottom: 16px; text-align: left;
+    }
+    #charge-phone-wrap label {
+      display: block; font-size: .78rem; color: var(--text-dim); margin-bottom: 6px;
+    }
+    #charge-phone {
+      width: 100%; padding: 10px 14px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(212,175,55,.3);
+      border-radius: 8px; color: var(--text);
+      font-size: .92rem; font-family: 'Noto Serif KR', serif;
+      outline: none; transition: border-color .2s;
+    }
+    #charge-phone:focus { border-color: var(--gold); }
+    #charge-phone::placeholder { color: var(--text-dim); }
 
     /* ── 크레딧 부족 안내 ── */
     #no-credit-box {
@@ -806,6 +822,10 @@
     <button id="charge-close" onclick="closeChargeModal()">✕</button>
     <h3>✨ 크레딧 충전</h3>
     <p>크레딧 1개 = 리딩 1회 (100원)</p>
+    <div id="charge-phone-wrap">
+      <label for="charge-phone">📱 휴대폰 번호 (이니시스 결제 필수)</label>
+      <input id="charge-phone" type="tel" placeholder="010-0000-0000" maxlength="13" />
+    </div>
     <div class="charge-options">
       <div class="charge-opt" onclick="startPayment(1000)">
         <span class="opt-amount">1,000원</span>
@@ -1814,7 +1834,17 @@ function updateCreditBadge(credits) {
 function openChargeModal() {
   document.getElementById('charge-modal').classList.add('open');
   document.getElementById('charge-status').textContent = '';
+  // 전화번호는 유지 (재충전 시 번거롭지 않게)
 }
+
+// 전화번호 입력 자동 포맷 (010-1234-5678)
+document.getElementById('charge-phone').addEventListener('input', function() {
+  let v = this.value.replace(/\D/g, '');
+  if (v.length > 11) v = v.slice(0, 11);
+  if (v.length >= 8) v = v.slice(0,3) + '-' + v.slice(3,7) + '-' + v.slice(7);
+  else if (v.length >= 4) v = v.slice(0,3) + '-' + v.slice(3);
+  this.value = v;
+});
 function closeChargeModal() {
   document.getElementById('charge-modal').classList.remove('open');
 }
@@ -1845,6 +1875,14 @@ async function startPayment(amount) {
     return;
   }
 
+  // 전화번호 검증
+  const phoneRaw = (document.getElementById('charge-phone').value || '').replace(/\D/g, '');
+  if (!phoneRaw || phoneRaw.length < 10) {
+    statusEl.textContent = '휴대폰 번호를 올바르게 입력해 주세요.';
+    document.getElementById('charge-phone').focus();
+    return;
+  }
+
   statusEl.textContent = '결제창을 여는 중...';
 
   try {
@@ -1862,6 +1900,7 @@ async function startPayment(amount) {
       customer: {
         email: window.currentUser.email,
         fullName: window.currentUser.displayName || '고객',
+        phoneNumber: phoneRaw,
       },
     });
 
@@ -2029,7 +2068,7 @@ init();
       // 게이트가 열려있으면 해제
       if (document.getElementById('reading-gate').classList.contains('visible')) removeGate();
     } else {
-      loginBtn.style.display = '';
+      loginBtn.style.display = 'block';
       userInfo.style.display = 'none';
       document.getElementById('credit-badge').style.display = 'none';
       window.userCredits = 0;
