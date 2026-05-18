@@ -449,17 +449,6 @@
     .mt-16 { margin-top: 16px; }
     .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 
-    #reset-btn {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 100;
-      opacity: .7;
-      font-size: .85rem;
-      padding: 10px 18px;
-    }
-    #reset-btn:hover { opacity: 1; }
-
     .notif {
       position: fixed;
       top: 20px;
@@ -813,7 +802,6 @@
 
 </div>
 
-<button class="btn btn-secondary" id="reset-btn" style="display:none">↺ 처음으로</button>
 <div class="notif" id="notif"></div>
 
 <!-- 충전 모달 -->
@@ -1276,7 +1264,6 @@ function applyLang() {
   el('back-to-draw').textContent   = t('btn_back_draw');
   el('save-reading-btn').textContent = t('btn_save');
   el('new-reading-btn').textContent = t('btn_new');
-  el('reset-btn').textContent      = t('btn_reset');
   el('logout-btn').textContent     = t('logout');
 
   // 랭 버튼 레이블 업데이트
@@ -1583,7 +1570,6 @@ document.getElementById('step2-next').addEventListener('click', () => {
   document.getElementById('no-credit-box').classList.remove('visible');
   hide('step2');
   show('reading-section');
-  document.getElementById('reset-btn').style.display = '';
   startReading();
   document.getElementById('reading-section').scrollIntoView({ behavior: 'smooth' });
 });
@@ -1818,7 +1804,6 @@ document.getElementById('save-reading-btn').addEventListener('click', async () =
 });
 
 document.getElementById('new-reading-btn').addEventListener('click', resetAll);
-document.getElementById('reset-btn').addEventListener('click', resetAll);
 
 function resetAll() {
   hide('reading-section');
@@ -1830,7 +1815,6 @@ function resetAll() {
   document.getElementById('question-input').value = '';
   document.getElementById('reading-output').innerHTML = '';
   document.getElementById('reading-cards').innerHTML = '';
-  document.getElementById('reset-btn').style.display = 'none';
   selectedSpread = null;
   cardCount = 3;
   drawnCards = [];
