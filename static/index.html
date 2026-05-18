@@ -1886,7 +1886,8 @@ async function startPayment(amount) {
   statusEl.textContent = '결제창을 여는 중...';
 
   try {
-    const paymentId = `tarot_${window.currentUser.uid}_${Date.now()}`;
+    // 이니시스 oid 최대 40자 제한: "t_" + uid 앞 14자 + "_" + 타임스탬프 뒤 8자리 = 25자
+    const paymentId = `t_${window.currentUser.uid.slice(0, 14)}_${Date.now().toString().slice(-8)}`;
     const credits = amount / 100;
 
     const response = await PortOne.requestPayment({
