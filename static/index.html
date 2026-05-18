@@ -888,6 +888,7 @@ const TRANSLATIONS = {
     notify_server:'서버에 연결할 수 없습니다.',
     notify_spread_err:'스프레드 선택 중 오류가 발생했습니다. 다시 시도해주세요.',
     daily:'오늘의 운세', daily_pos:'오늘의 메시지', daily_reason:'오늘 하루를 위한 한 장의 카드',
+    card_unit: n => `${n}장`, card_label: i => `${i+1}번 카드`,
   },
   en: {
     title:'✨ Tarot Reading', subtitle:'Let the cards reveal your path',
@@ -912,6 +913,7 @@ const TRANSLATIONS = {
     notify_server:'Cannot connect to server.',
     notify_spread_err:'Error selecting spread. Please try again.',
     daily:'Daily Fortune', daily_pos:"Today's Message", daily_reason:'One card for your day',
+    card_unit: n => `${n} cards`, card_label: i => `Card ${i+1}`,
   },
   ja: {
     title:'✨ タロット占い', subtitle:'あなたの運命をお伝えします',
@@ -936,6 +938,7 @@ const TRANSLATIONS = {
     notify_server:'サーバーに接続できません。',
     notify_spread_err:'スプレッド選択中にエラーが発生しました。',
     daily:'今日の運勢', daily_pos:'今日のメッセージ', daily_reason:'今日のための一枚',
+    card_unit: n => `${n}枚`, card_label: i => `カード${i+1}`,
   },
   es: {
     title:'✨ Lectura de Tarot', subtitle:'Las cartas revelarán tu camino',
@@ -960,6 +963,7 @@ const TRANSLATIONS = {
     notify_server:'No se puede conectar al servidor.',
     notify_spread_err:'Error al seleccionar la tirada. Inténtalo de nuevo.',
     daily:'Fortuna del Día', daily_pos:'Mensaje del Día', daily_reason:'Una carta para tu día',
+    card_unit: n => `${n} cartas`, card_label: i => `Carta ${i+1}`,
   },
   fr: {
     title:'✨ Lecture de Tarot', subtitle:'Les cartes révéleront votre chemin',
@@ -984,6 +988,7 @@ const TRANSLATIONS = {
     notify_server:'Impossible de se connecter au serveur.',
     notify_spread_err:'Erreur lors de la sélection. Réessayez.',
     daily:'Fortune du Jour', daily_pos:'Message du Jour', daily_reason:'Une carte pour votre journée',
+    card_unit: n => `${n} cartes`, card_label: i => `Carte ${i+1}`,
   },
   de: {
     title:'✨ Tarot-Legung', subtitle:'Die Karten enthüllen Ihren Weg',
@@ -1008,6 +1013,7 @@ const TRANSLATIONS = {
     notify_server:'Verbindung zum Server nicht möglich.',
     notify_spread_err:'Fehler bei der Auswahl. Bitte erneut versuchen.',
     daily:'Tageshoroskop', daily_pos:'Nachricht des Tages', daily_reason:'Eine Karte für Ihren Tag',
+    card_unit: n => `${n} Karten`, card_label: i => `Karte ${i+1}`,
   },
   pt: {
     title:'✨ Leitura de Tarot', subtitle:'As cartas revelarão o seu caminho',
@@ -1032,6 +1038,7 @@ const TRANSLATIONS = {
     notify_server:'Não é possível conectar ao servidor.',
     notify_spread_err:'Erro ao selecionar a tiragem. Tente novamente.',
     daily:'Fortuna do Dia', daily_pos:'Mensagem do Dia', daily_reason:'Uma carta para o seu dia',
+    card_unit: n => `${n} cartas`, card_label: i => `Carta ${i+1}`,
   },
   th: {
     title:'✨ การอ่านไพ่ทาโรต์', subtitle:'ไพ่จะเปิดเผยเส้นทางของคุณ',
@@ -1056,6 +1063,7 @@ const TRANSLATIONS = {
     notify_server:'ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้',
     notify_spread_err:'เกิดข้อผิดพลาด กรุณาลองใหม่',
     daily:'ดวงประจำวัน', daily_pos:'ข้อความประจำวัน', daily_reason:'ไพ่หนึ่งใบสำหรับวันของคุณ',
+    card_unit: n => `${n} ใบ`, card_label: i => `ไพ่ ${i+1}`,
   },
   ru: {
     title:'✨ Расклад Таро', subtitle:'Карты откроют ваш путь',
@@ -1080,6 +1088,7 @@ const TRANSLATIONS = {
     notify_server:'Нет подключения к серверу.',
     notify_spread_err:'Ошибка при выборе расклада. Попробуйте ещё раз.',
     daily:'Гороскоп на день', daily_pos:'Сообщение дня', daily_reason:'Одна карта для вашего дня',
+    card_unit: n => `${n} карт`, card_label: i => `Карта ${i+1}`,
   },
   zh: {
     title:'✨ 塔罗占卜', subtitle:'牌将为您揭示命运',
@@ -1104,6 +1113,7 @@ const TRANSLATIONS = {
     notify_server:'无法连接到服务器。',
     notify_spread_err:'选择牌阵时出错，请重试。',
     daily:'今日运势', daily_pos:'今日信息', daily_reason:'为您今天准备的一张牌',
+    card_unit: n => `${n}张`, card_label: i => `第${i+1}张`,
   },
   it: {
     title:'✨ Lettura dei Tarocchi', subtitle:'Le carte riveleranno il tuo cammino',
@@ -1128,6 +1138,7 @@ const TRANSLATIONS = {
     notify_server:'Impossibile connettersi al server.',
     notify_spread_err:'Errore nella selezione. Riprova.',
     daily:'Fortuna del Giorno', daily_pos:'Messaggio del Giorno', daily_reason:'Una carta per la tua giornata',
+    card_unit: n => `${n} carte`, card_label: i => `Carta ${i+1}`,
   },
   id: {
     title:'✨ Pembacaan Tarot', subtitle:'Kartu akan mengungkap jalanmu',
@@ -1152,6 +1163,7 @@ const TRANSLATIONS = {
     notify_server:'Tidak dapat terhubung ke server.',
     notify_spread_err:'Kesalahan saat memilih susunan. Coba lagi.',
     daily:'Ramalan Harian', daily_pos:'Pesan Hari Ini', daily_reason:'Satu kartu untuk harimu',
+    card_unit: n => `${n} kartu`, card_label: i => `Kartu ${i+1}`,
   },
   vi: {
     title:'✨ Đọc Bài Tarot', subtitle:'Bài sẽ tiết lộ con đường của bạn',
@@ -1176,6 +1188,7 @@ const TRANSLATIONS = {
     notify_server:'Không thể kết nối đến máy chủ.',
     notify_spread_err:'Lỗi khi chọn trải bài. Vui lòng thử lại.',
     daily:'Vận May Hôm Nay', daily_pos:'Thông Điệp Hôm Nay', daily_reason:'Một lá bài cho ngày của bạn',
+    card_unit: n => `${n} lá`, card_label: i => `Lá ${i+1}`,
   },
   tr: {
     title:'✨ Tarot Okuması', subtitle:'Kartlar yolunuzu aydınlatacak',
@@ -1200,6 +1213,7 @@ const TRANSLATIONS = {
     notify_server:'Sunucuya bağlanılamıyor.',
     notify_spread_err:'Açılım seçilirken hata oluştu. Tekrar deneyin.',
     daily:'Günlük Fal', daily_pos:'Günün Mesajı', daily_reason:'Gününüz için bir kart',
+    card_unit: n => `${n} kart`, card_label: i => `Kart ${i+1}`,
   },
   pl: {
     title:'✨ Czytanie Tarota', subtitle:'Karty ujawnią Twoją drogę',
@@ -1224,6 +1238,7 @@ const TRANSLATIONS = {
     notify_server:'Nie można połączyć z serwerem.',
     notify_spread_err:'Błąd wyboru układu. Spróbuj ponownie.',
     daily:'Dzienna fortuna', daily_pos:'Wiadomość dnia', daily_reason:'Jedna karta na Twój dzień',
+    card_unit: n => `${n} kart`, card_label: i => `Karta ${i+1}`,
   },
 };
 
@@ -1375,16 +1390,18 @@ document.getElementById('step1-next').addEventListener('click', async () => {
     cardCount = spread.card_count || 3;
 
     // 결과 표시
-    document.getElementById('result-spread-name').textContent = spread.name || '';
-    document.getElementById('result-card-count').textContent = `${cardCount}장`;
+    document.getElementById('result-spread-name').textContent = spread.name_translated || spread.name || '';
+    document.getElementById('result-card-count').textContent = t('card_unit', cardCount);
     document.getElementById('result-reason').textContent = spread.reason || '';
 
-    // 포지션 태그
+    // 포지션 태그 (한국어만 JSON 원본 의미 사용, 그 외 언어는 번역된 레이블)
     const posEl = document.getElementById('result-positions');
     posEl.innerHTML = '';
     if (spread.positions && spread.positions.length > 0) {
       spread.positions.forEach((p, i) => {
-        const meaning = p.meanings && p.meanings[0] ? p.meanings[0] : `${i + 1}번 카드`;
+        const meaning = (currentLang === 'ko' && p.meanings && p.meanings[0])
+          ? p.meanings[0]
+          : t('card_label', i);
         const tag = document.createElement('div');
         tag.className = 'pos-tag';
         tag.innerHTML = `<span>${i + 1}.</span>${meaning}`;

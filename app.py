@@ -124,25 +124,27 @@ async def select_spread(request: SpreadSelectRequest):
 
 위 질문에 가장 적합한 스프레드 하나를 선택하고 이유를 한 문장으로 설명하세요.
 반드시 아래 JSON 형식으로만 응답하세요 (다른 텍스트 없이):
-{{"index": 1, "reason": "선택 이유"}}
+{{"index": 1, "name_translated": "스프레드 이름 번역", "reason": "선택 이유"}}
 index는 1부터 시작합니다.
-위 JSON에서 reason 값은 반드시 {lang_name}으로 작성하세요."""}]
+name_translated는 선택한 스프레드의 이름을 {lang_name}으로 번역한 것입니다.
+reason 값과 name_translated 값은 반드시 {lang_name}으로 작성하세요."""}]
     )
 
     import re
     text = response.content[0].text.strip()
     m = re.search(r'\{.*\}', text, re.DOTALL)
     if not m:
-        result = {"index": 1, "reason": "질문에 균형 잡힌 시각을 제공하기 위해 선택했습니다."}
+        result = {"index": 1, "name_translated": "", "reason": "질문에 균형 잡힌 시각을 제공하기 위해 선택했습니다."}
     else:
         try:
             result = json.loads(m.group())
         except Exception:
-            result = {"index": 1, "reason": "질문에 균형 잡힌 시각을 제공하기 위해 선택했습니다."}
+            result = {"index": 1, "name_translated": "", "reason": "질문에 균형 잡힌 시각을 제공하기 위해 선택했습니다."}
 
     idx = max(0, min(int(result.get("index", 1)) - 1, len(valid_spreads) - 1))
     spread = dict(valid_spreads[idx])
     spread["reason"] = result.get("reason", "")
+    spread["name_translated"] = result.get("name_translated", "") or spread.get("name", "")
     return spread
 
 
