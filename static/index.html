@@ -607,6 +607,24 @@
     }
     #credit-badge:hover { border-color: var(--gold); color: var(--gold); }
     #credit-badge.low { color: #f08080; border-color: rgba(240,128,128,.5); }
+
+    /* ── 헤더 로그인 버튼 ── */
+    .header-login-btn {
+      display: none;
+      background: transparent;
+      border: 1px solid rgba(212,175,55,.4);
+      border-radius: 8px;
+      color: var(--gold);
+      font-size: .8rem;
+      padding: 6px 14px;
+      cursor: pointer;
+      font-family: 'Noto Serif KR', serif;
+      transition: background .2s, border-color .2s;
+    }
+    .header-login-btn:hover {
+      background: rgba(212,175,55,.1);
+      border-color: var(--gold);
+    }
     #credit-badge.empty { color: #f05050; border-color: rgba(240,80,80,.6); animation: pulse .8s ease-in-out infinite alternate; }
     @keyframes pulse { from { opacity: 1; } to { opacity: .5; } }
 
@@ -669,6 +687,8 @@
       <button id="lang-btn">🇰🇷 한국어 ▾</button>
       <div id="lang-dropdown"></div>
     </div>
+    <!-- 로그아웃 상태 로그인 버튼 -->
+    <button id="header-login-btn" class="header-login-btn">🔑 로그인</button>
     <!-- 유저 정보 -->
     <div class="user-info" id="user-info">
       <img id="user-avatar" src="" alt="프로필" />
@@ -1819,6 +1839,12 @@ async function startPayment(amount) {
     return;
   }
   const statusEl = document.getElementById('charge-status');
+
+  if (typeof PortOne === 'undefined') {
+    statusEl.textContent = '결제 모듈이 로드되지 않았습니다. 페이지를 새로고침해 주세요.';
+    return;
+  }
+
   statusEl.textContent = '결제창을 여는 중...';
 
   try {
@@ -1876,8 +1902,9 @@ async function startPayment(amount) {
     document.getElementById('no-credit-box').classList.remove('visible');
 
   } catch (e) {
-    statusEl.textContent = '결제 중 오류가 발생했습니다.';
-    console.error(e);
+    const msg = e?.message || String(e) || '알 수 없는 오류';
+    statusEl.textContent = `오류: ${msg}`;
+    console.error('[결제 오류]', e);
   }
 }
 
@@ -1984,7 +2011,9 @@ init();
   onAuthStateChanged(auth, async (user) => {
     window.currentUser = user;
     const userInfo = document.getElementById('user-info');
+    const loginBtn = document.getElementById('header-login-btn');
     if (user) {
+      loginBtn.style.display = 'none';
       userInfo.style.display = 'flex';
       document.getElementById('user-avatar').src = user.photoURL || '';
       document.getElementById('user-name').textContent = user.displayName || user.email;
@@ -2000,17 +2029,22 @@ init();
       // 게이트가 열려있으면 해제
       if (document.getElementById('reading-gate').classList.contains('visible')) removeGate();
     } else {
+      loginBtn.style.display = '';
       userInfo.style.display = 'none';
       document.getElementById('credit-badge').style.display = 'none';
       window.userCredits = 0;
     }
   });
 
-  // ── 게이트 내 로그인 버튼 ──
-  document.getElementById('gate-login-btn').addEventListener('click', async () => {
+  // ── 헤더 로그인 버튼 ──
+  const signIn = async () => {
     try { await signInWithPopup(auth, new GoogleAuthProvider()); }
     catch (e) { console.error('로그인 실패', e); }
-  });
+  };
+  document.getElementById('header-login-btn').addEventListener('click', signIn);
+
+  // ── 게이트 내 로그인 버튼 ──
+  document.getElementById('gate-login-btn').addEventListener('click', signIn);
 
   // ── 헤더 로그아웃 ──
   document.getElementById('logout-btn').addEventListener('click', () => signOut(auth));
