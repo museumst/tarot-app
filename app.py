@@ -41,6 +41,10 @@ app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), na
 async def index():
     return FileResponse(os.path.join(BASE_DIR, "static", "index.html"))
 
+@app.get("/legal.html")
+async def legal():
+    return FileResponse(os.path.join(BASE_DIR, "static", "legal.html"))
+
 
 @app.get("/api/cards")
 async def get_cards():

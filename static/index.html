@@ -10,6 +10,29 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    #site-footer {
+      border-top: 1px solid rgba(212,175,55,.15);
+      margin-top: 60px;
+      padding: 32px 20px;
+      text-align: center;
+    }
+    .footer-inner { max-width: 960px; margin: 0 auto; }
+    .footer-links {
+      display: flex; justify-content: center; gap: 24px;
+      margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--text-dim); font-size: .82rem;
+      text-decoration: none; letter-spacing: .5px;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-biz {
+      color: var(--text-dim); font-size: .75rem;
+      line-height: 1.8; margin-bottom: 12px;
+    }
+    .footer-copy { color: var(--text-dim); font-size: .72rem; opacity: .6; }
+
     :root {
       --bg: #0d0d2b;
       --bg2: #12123a;
@@ -2093,5 +2116,20 @@ init();
   document.getElementById('logout-btn').addEventListener('click', () => signOut(auth));
 </script>
 <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
+
+<footer id="site-footer">
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="/legal.html#terms" target="_blank">이용약관</a>
+      <a href="/legal.html#privacy" target="_blank">개인정보처리방침</a>
+      <a href="/legal.html#refund" target="_blank">환불정책</a>
+    </div>
+    <div class="footer-biz">
+      상호명: 회색돌 &nbsp;|&nbsp; 대표자: 박상범 &nbsp;|&nbsp; 사업자등록번호: 247-08-03432<br/>
+      통신판매업 신고번호: 준비 중 &nbsp;|&nbsp; 문의: ashoshostudio@gmail.com
+    </div>
+    <div class="footer-copy">© 2025 울트라타로. All rights reserved.</div>
+  </div>
+</footer>
 </body>
 </html>
