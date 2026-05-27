@@ -6,7 +6,7 @@
   <title>✨ 타로 리딩</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -90,7 +90,7 @@
       padding: 50px 20px 30px;
     }
     header h1 {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Noto Sans KR', sans-serif;
       font-size: clamp(2rem, 6vw, 3.2rem);
       font-weight: 700;
       background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold));
@@ -123,7 +123,7 @@
     }
     .step.active { border-color: rgba(212,175,55,.5); }
     .step-title {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Noto Sans KR', sans-serif;
       font-size: 1.3rem;
       color: var(--gold);
       margin-bottom: 20px;
@@ -149,7 +149,7 @@
       border: 1px solid rgba(212,175,55,.3);
       border-radius: 10px;
       color: var(--text);
-      font-family: 'Noto Serif KR', serif;
+      font-family: 'Noto Sans KR', sans-serif;
       font-size: 1rem;
       padding: 16px;
       resize: vertical;
@@ -190,7 +190,7 @@
       margin-top: 20px;
     }
     .spread-result-box .spread-name {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Noto Sans KR', sans-serif;
       font-size: 1.2rem;
       color: var(--gold);
       margin-bottom: 8px;
@@ -236,7 +236,7 @@
       border-radius: 8px;
       color: var(--bg);
       cursor: pointer;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Noto Sans KR', sans-serif;
       font-size: 1rem;
       font-weight: 700;
       padding: 12px 28px;
@@ -503,7 +503,7 @@
       border: none; border-radius: 8px;
       padding: 13px 24px; font-size: .95rem; font-weight: 600;
       cursor: pointer; transition: box-shadow .2s, transform .2s;
-      font-family: 'Noto Serif KR', serif;
+      font-family: 'Noto Sans KR', sans-serif;
     }
     .google-btn:hover {
       box-shadow: 0 4px 20px rgba(255,255,255,.25);
@@ -538,7 +538,7 @@
     }
     #reading-gate.visible { display: flex; }
     #reading-gate .gate-title {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Noto Sans KR', sans-serif;
       color: var(--gold); font-size: 1.1rem;
     }
     #reading-gate .gate-desc { color: var(--text-dim); font-size: .85rem; }
@@ -561,7 +561,7 @@
       border-radius: 8px; color: var(--text);
       padding: 6px 12px; cursor: pointer;
       display: flex; align-items: center; gap: 6px;
-      font-family: 'Noto Serif KR', serif; font-size: .82rem;
+      font-family: 'Noto Sans KR', sans-serif; font-size: .82rem;
       white-space: nowrap; transition: border-color .2s;
     }
     #lang-btn:hover { border-color: var(--gold); }
@@ -631,7 +631,7 @@
       font-size: .8rem;
       padding: 6px 14px;
       cursor: pointer;
-      font-family: 'Noto Serif KR', serif;
+      font-family: 'Noto Sans KR', sans-serif;
       transition: background .2s, border-color .2s;
     }
     .header-login-btn:hover {
@@ -654,7 +654,7 @@
       text-align: center; position: relative;
     }
     #charge-box h3 {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Noto Sans KR', sans-serif;
       color: var(--gold); font-size: 1.3rem; margin-bottom: 8px;
     }
     #charge-box p { color: var(--text-dim); font-size: .85rem; margin-bottom: 24px; }
@@ -686,7 +686,7 @@
       background: rgba(255,255,255,.05);
       border: 1px solid rgba(212,175,55,.3);
       border-radius: 8px; color: var(--text);
-      font-size: .92rem; font-family: 'Noto Serif KR', serif;
+      font-size: .92rem; font-family: 'Noto Sans KR', sans-serif;
       outline: none; transition: border-color .2s;
     }
     #charge-phone:focus { border-color: var(--gold); }
@@ -701,7 +701,7 @@
       margin-top: 16px; text-align: center;
     }
     #no-credit-box.visible { display: flex; }
-    #no-credit-box .nc-title { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.1rem; }
+    #no-credit-box .nc-title { font-family: 'Noto Sans KR', sans-serif; color: var(--gold); font-size: 1.1rem; }
     #no-credit-box .nc-desc { color: var(--text-dim); font-size: .85rem; }
   </style>
 </head>
@@ -1768,16 +1768,16 @@ document.getElementById('save-reading-btn').addEventListener('click', async () =
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>AI 타로 리딩 — ${dateStr}</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+KR:wght@300;400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet"/>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:#0e0c1a;color:#e8e0d0;font-family:'Noto Sans KR',sans-serif;font-weight:300;min-height:100vh;padding:40px 20px 80px}
   .wrap{max-width:860px;margin:0 auto}
-  h1{font-family:'Playfair Display',serif;font-size:2rem;background:linear-gradient(135deg,#d4af37,#f0d060,#d4af37);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;letter-spacing:2px;margin-bottom:6px}
+  h1{font-family:'Noto Sans KR',sans-serif;font-size:2rem;background:linear-gradient(135deg,#d4af37,#f0d060,#d4af37);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;letter-spacing:2px;margin-bottom:6px}
   .sub{text-align:center;color:#9090b8;font-size:.85rem;letter-spacing:3px;margin-bottom:30px}
   .divider{width:200px;height:1px;background:linear-gradient(90deg,transparent,#d4af37,transparent);margin:0 auto 30px}
   .section{background:linear-gradient(135deg,#16122a,#1e1836);border:1px solid rgba(212,175,55,.2);border-radius:14px;padding:24px 28px;margin-bottom:20px}
-  .label{color:#d4af37;font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:10px;letter-spacing:1px}
+  .label{color:#d4af37;font-family:'Noto Sans KR',sans-serif;font-size:1rem;margin-bottom:10px;letter-spacing:1px}
   .question-text{font-size:1.05rem;line-height:1.8;color:#e8e0f0}
   .spread-badge{display:inline-block;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.4);border-radius:20px;color:#f0d060;font-size:.85rem;padding:4px 14px}
   .cards-row{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;padding:4px 0}
