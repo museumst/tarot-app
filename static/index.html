@@ -6,7 +6,7 @@
   <title>✨ 타로 리딩</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+KR:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -34,15 +34,15 @@
     .footer-copy { color: var(--text-dim); font-size: .72rem; opacity: .6; }
 
     :root {
-      --bg: #0d0d2b;
-      --bg2: #12123a;
-      --bg3: #1a1a4e;
-      --gold: #d4af37;
-      --gold-light: #f0d060;
-      --purple: #7b5ea7;
-      --purple-light: #a07fd4;
-      --text: #e8e0f0;
-      --text-dim: #9090b8;
+      --bg: #0e0c1a;
+      --bg2: #16122a;
+      --bg3: #1e1836;
+      --gold: #c9a84c;
+      --gold-light: #e8c870;
+      --purple: #2a2245;
+      --purple-light: #3d3460;
+      --text: #e8e0d0;
+      --text-dim: #8a8099;
       --card-w: 110px;
       --card-h: 190px;
     }
@@ -52,7 +52,8 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Noto Serif KR', serif;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 300;
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -323,7 +324,7 @@
       overflow: hidden;
     }
     .card-back {
-      background: linear-gradient(135deg, #1a0a3a, #2d1460, #1a0a3a);
+      background: linear-gradient(135deg, #0e0c1a, #1e1836, #0e0c1a);
       border: 2px solid rgba(212,175,55,.5);
       display: flex; align-items: center; justify-content: center;
     }
@@ -522,7 +523,7 @@
       display: none;
       position: absolute; bottom: 0; left: 0; right: 0;
       height: 200px;
-      background: linear-gradient(transparent, #12123a);
+      background: linear-gradient(transparent, #16122a);
       pointer-events: none;
     }
     #reading-wrapper.gated #reading-fade { display: block; }
@@ -530,7 +531,7 @@
       display: none;
       flex-direction: column; align-items: center;
       gap: 14px; padding: 28px 24px;
-      background: linear-gradient(135deg, #12123a, #1a1a4e);
+      background: linear-gradient(135deg, #16122a, #1e1836);
       border: 1px solid rgba(212,175,55,.3);
       border-top: none; border-radius: 0 0 14px 14px;
       text-align: center;
@@ -567,7 +568,7 @@
     #lang-dropdown {
       display: none; position: absolute;
       top: calc(100% + 6px); right: 0;
-      background: #12123a;
+      background: #16122a;
       border: 1px solid rgba(212,175,55,.3);
       border-radius: 10px; min-width: 165px;
       overflow: hidden; z-index: 1000;
@@ -647,7 +648,7 @@
     }
     #charge-modal.open { display: flex; }
     #charge-box {
-      background: linear-gradient(135deg, #12123a, #1a1a4e);
+      background: linear-gradient(135deg, #16122a, #1e1836);
       border: 1px solid rgba(212,175,55,.4);
       border-radius: 18px; padding: 36px 32px; width: 360px; max-width: 90vw;
       text-align: center; position: relative;
@@ -695,7 +696,7 @@
     #no-credit-box {
       display: none; flex-direction: column; align-items: center;
       gap: 14px; padding: 28px 24px;
-      background: linear-gradient(135deg, #12123a, #1a1a4e);
+      background: linear-gradient(135deg, #16122a, #1e1836);
       border: 1px solid rgba(212,175,55,.3); border-radius: 14px;
       margin-top: 16px; text-align: center;
     }
@@ -1747,7 +1748,7 @@ document.getElementById('save-reading-btn').addEventListener('click', async () =
       <div style="width:110px;height:190px;border-radius:8px;overflow:hidden;border:1px solid rgba(212,175,55,.4);box-shadow:0 4px 16px rgba(0,0,0,.5)">
         ${c.dataUrl
           ? `<img src="${c.dataUrl}" alt="${c.name_ko}" style="width:100%;height:100%;object-fit:cover;${c.reversed ? 'transform:rotate(180deg)' : ''}" />`
-          : `<div style="width:100%;height:100%;background:#1a1a4e;display:flex;align-items:center;justify-content:center;color:#d4af37;font-size:.8rem;text-align:center;padding:8px">${c.name_ko}</div>`}
+          : `<div style="width:100%;height:100%;background:#1e1836;display:flex;align-items:center;justify-content:center;color:#c9a84c;font-size:.8rem;text-align:center;padding:8px">${c.name_ko}</div>`}
       </div>
       <div style="font-size:.75rem;color:#e8e0f0;text-align:center;line-height:1.4">
         ${c.positionMeaning ? `<div style="color:#f0d060;margin-bottom:2px">${c.positionMeaning}</div>` : ''}
@@ -1770,12 +1771,12 @@ document.getElementById('save-reading-btn').addEventListener('click', async () =
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+KR:wght@300;400;600&display=swap" rel="stylesheet"/>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:#0d0d2b;color:#e8e0f0;font-family:'Noto Serif KR',serif;min-height:100vh;padding:40px 20px 80px}
+  body{background:#0e0c1a;color:#e8e0d0;font-family:'Noto Sans KR',sans-serif;font-weight:300;min-height:100vh;padding:40px 20px 80px}
   .wrap{max-width:860px;margin:0 auto}
   h1{font-family:'Playfair Display',serif;font-size:2rem;background:linear-gradient(135deg,#d4af37,#f0d060,#d4af37);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;letter-spacing:2px;margin-bottom:6px}
   .sub{text-align:center;color:#9090b8;font-size:.85rem;letter-spacing:3px;margin-bottom:30px}
   .divider{width:200px;height:1px;background:linear-gradient(90deg,transparent,#d4af37,transparent);margin:0 auto 30px}
-  .section{background:linear-gradient(135deg,#12123a,#1a1a4e);border:1px solid rgba(212,175,55,.2);border-radius:14px;padding:24px 28px;margin-bottom:20px}
+  .section{background:linear-gradient(135deg,#16122a,#1e1836);border:1px solid rgba(212,175,55,.2);border-radius:14px;padding:24px 28px;margin-bottom:20px}
   .label{color:#d4af37;font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:10px;letter-spacing:1px}
   .question-text{font-size:1.05rem;line-height:1.8;color:#e8e0f0}
   .spread-badge{display:inline-block;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.4);border-radius:20px;color:#f0d060;font-size:.85rem;padding:4px 14px}
