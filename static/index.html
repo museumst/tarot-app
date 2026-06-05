@@ -366,7 +366,6 @@
       object-fit: cover;
       display: block;
     }
-    .card-front.reversed img { transform: rotate(180deg); }
 
     .draw-instruction {
       text-align: center;
@@ -405,7 +404,6 @@
       width: 100%; height: 100%;
       object-fit: cover; display: block;
     }
-    .drawn-card-img.reversed img { transform: rotate(180deg); }
     .drawn-card-label {
       text-align: center;
       font-size: .75rem;
@@ -416,13 +414,6 @@
       color: var(--text);
       font-size: .85rem;
       text-align: center;
-    }
-    .reversed-badge {
-      font-size: .65rem;
-      color: #e07070;
-      border: 1px solid #e07070;
-      border-radius: 4px;
-      padding: 1px 5px;
     }
 
     /* ── Reading ── */
@@ -896,7 +887,7 @@ const TRANSLATIONS = {
     gate_btn:'Google로 계속하기',
     btn_back_draw:'← 다시 뽑기', btn_save:'💾 리딩 저장',
     btn_new:'새 리딩 시작', btn_reset:'↺ 처음으로',
-    reversed:'역방향', upright:'정방향', logout:'로그아웃',
+    logout:'로그아웃',
     free_left: n => `무료 ${n}회 남음`, unlimited:'무제한',
     notify_all: n => `${n}장 모두 선택되었습니다!`,
     notify_saving:'HTML 파일 생성 중...', notify_saved:'리딩이 저장되었습니다! 📄',
@@ -921,7 +912,7 @@ const TRANSLATIONS = {
     gate_btn:'Continue with Google',
     btn_back_draw:'← Draw Again', btn_save:'💾 Save Reading',
     btn_new:'New Reading', btn_reset:'↺ Start Over',
-    reversed:'Reversed', upright:'Upright', logout:'Logout',
+    logout:'Logout',
     free_left: n => `${n} free reading${n!==1?'s':''} left`, unlimited:'Unlimited',
     notify_all: n => `All ${n} cards selected!`,
     notify_saving:'Generating HTML file...', notify_saved:'Reading saved! 📄',
@@ -946,7 +937,7 @@ const TRANSLATIONS = {
     gate_btn:'Googleで続ける',
     btn_back_draw:'← 引き直す', btn_save:'💾 保存する',
     btn_new:'新しい占い', btn_reset:'↺ 最初から',
-    reversed:'逆位置', upright:'正位置', logout:'ログアウト',
+    logout:'ログアウト',
     free_left: n => `残り${n}回無料`, unlimited:'無制限',
     notify_all: n => `${n}枚すべて選択されました！`,
     notify_saving:'HTMLファイル生成中...', notify_saved:'保存されました！ 📄',
@@ -971,7 +962,7 @@ const TRANSLATIONS = {
     gate_btn:'Continuar con Google',
     btn_back_draw:'← Volver a Sacar', btn_save:'💾 Guardar Lectura',
     btn_new:'Nueva Lectura', btn_reset:'↺ Empezar de Nuevo',
-    reversed:'Invertida', upright:'Derecha', logout:'Cerrar Sesión',
+    logout:'Cerrar Sesión',
     free_left: n => `${n} lectura${n!==1?'s':''} gratuita${n!==1?'s':''} restante${n!==1?'s':''}`, unlimited:'Ilimitado',
     notify_all: n => `¡${n} cartas seleccionadas!`,
     notify_saving:'Generando archivo HTML...', notify_saved:'¡Lectura guardada! 📄',
@@ -996,7 +987,7 @@ const TRANSLATIONS = {
     gate_btn:'Continuer avec Google',
     btn_back_draw:'← Retirer', btn_save:'💾 Sauvegarder',
     btn_new:'Nouvelle Lecture', btn_reset:'↺ Recommencer',
-    reversed:'Renversée', upright:'Droite', logout:'Déconnexion',
+    logout:'Déconnexion',
     free_left: n => `${n} lecture${n>1?'s':''} gratuite${n>1?'s':''} restante${n>1?'s':''}`, unlimited:'Illimité',
     notify_all: n => `${n} cartes sélectionnées !`,
     notify_saving:'Génération du fichier HTML...', notify_saved:'Lecture sauvegardée ! 📄',
@@ -1021,7 +1012,7 @@ const TRANSLATIONS = {
     gate_btn:'Mit Google fortfahren',
     btn_back_draw:'← Neu ziehen', btn_save:'💾 Legung speichern',
     btn_new:'Neue Legung', btn_reset:'↺ Von vorne beginnen',
-    reversed:'Umgekehrt', upright:'Aufrecht', logout:'Abmelden',
+    logout:'Abmelden',
     free_left: n => `${n} kostenlose Legung${n!==1?'en':''} übrig`, unlimited:'Unbegrenzt',
     notify_all: n => `Alle ${n} Karten ausgewählt!`,
     notify_saving:'HTML-Datei wird erstellt...', notify_saved:'Legung gespeichert! 📄',
@@ -1046,7 +1037,7 @@ const TRANSLATIONS = {
     gate_btn:'Continuar com Google',
     btn_back_draw:'← Tirar Novamente', btn_save:'💾 Salvar Leitura',
     btn_new:'Nova Leitura', btn_reset:'↺ Recomeçar',
-    reversed:'Invertida', upright:'Direita', logout:'Sair',
+    logout:'Sair',
     free_left: n => `${n} leitura${n!==1?'s':''} gratuita${n!==1?'s':''} restante${n!==1?'s':''}`, unlimited:'Ilimitado',
     notify_all: n => `${n} cartas selecionadas!`,
     notify_saving:'Gerando arquivo HTML...', notify_saved:'Leitura salva! 📄',
@@ -1071,7 +1062,7 @@ const TRANSLATIONS = {
     gate_btn:'ดำเนินการต่อด้วย Google',
     btn_back_draw:'← จั่วใหม่', btn_save:'💾 บันทึก',
     btn_new:'การอ่านใหม่', btn_reset:'↺ เริ่มต้นใหม่',
-    reversed:'กลับด้าน', upright:'ตั้งตรง', logout:'ออกจากระบบ',
+    logout:'ออกจากระบบ',
     free_left: n => `เหลือ ${n} ครั้ง`, unlimited:'ไม่จำกัด',
     notify_all: n => `เลือกครบ ${n} ใบแล้ว!`,
     notify_saving:'กำลังสร้างไฟล์ HTML...', notify_saved:'บันทึกแล้ว! 📄',
@@ -1096,7 +1087,7 @@ const TRANSLATIONS = {
     gate_btn:'Продолжить с Google',
     btn_back_draw:'← Вытянуть снова', btn_save:'💾 Сохранить расклад',
     btn_new:'Новый расклад', btn_reset:'↺ Начать сначала',
-    reversed:'Перевёрнутая', upright:'Прямая', logout:'Выйти',
+    logout:'Выйти',
     free_left: n => `Осталось ${n} расклад${n===1?'':n<5?'а':'ов'}`, unlimited:'Безлимитно',
     notify_all: n => `Все ${n} карт выбраны!`,
     notify_saving:'Создание HTML-файла...', notify_saved:'Расклад сохранён! 📄',
@@ -1121,7 +1112,7 @@ const TRANSLATIONS = {
     gate_btn:'使用Google继续',
     btn_back_draw:'← 重新抽牌', btn_save:'💾 保存解读',
     btn_new:'新的占卜', btn_reset:'↺ 重新开始',
-    reversed:'逆位', upright:'正位', logout:'退出登录',
+    logout:'退出登录',
     free_left: n => `剩余${n}次免费`, unlimited:'无限制',
     notify_all: n => `已选择全部${n}张！`,
     notify_saving:'正在生成HTML文件...', notify_saved:'解读已保存！ 📄',
@@ -1146,7 +1137,7 @@ const TRANSLATIONS = {
     gate_btn:'Continua con Google',
     btn_back_draw:'← Ripesca', btn_save:'💾 Salva Lettura',
     btn_new:'Nuova Lettura', btn_reset:'↺ Ricomincia',
-    reversed:'Rovesciata', upright:'Dritta', logout:'Esci',
+    logout:'Esci',
     free_left: n => `${n} lettura${n!==1?'e':''} gratuita${n!==1?'e':''} rimasta${n!==1?'e':''}`, unlimited:'Illimitato',
     notify_all: n => `Tutte le ${n} carte selezionate!`,
     notify_saving:'Generazione file HTML...', notify_saved:'Lettura salvata! 📄',
@@ -1171,7 +1162,7 @@ const TRANSLATIONS = {
     gate_btn:'Lanjutkan dengan Google',
     btn_back_draw:'← Ambil Ulang', btn_save:'💾 Simpan Pembacaan',
     btn_new:'Pembacaan Baru', btn_reset:'↺ Mulai Ulang',
-    reversed:'Terbalik', upright:'Tegak', logout:'Keluar',
+    logout:'Keluar',
     free_left: n => `${n} pembacaan gratis tersisa`, unlimited:'Tidak Terbatas',
     notify_all: n => `Semua ${n} kartu dipilih!`,
     notify_saving:'Membuat file HTML...', notify_saved:'Pembacaan disimpan! 📄',
@@ -1196,7 +1187,7 @@ const TRANSLATIONS = {
     gate_btn:'Tiếp tục với Google',
     btn_back_draw:'← Rút Lại', btn_save:'💾 Lưu Bài Đọc',
     btn_new:'Bài Đọc Mới', btn_reset:'↺ Bắt đầu lại',
-    reversed:'Ngược', upright:'Xuôi', logout:'Đăng xuất',
+    logout:'Đăng xuất',
     free_left: n => `Còn ${n} lần miễn phí`, unlimited:'Không giới hạn',
     notify_all: n => `Đã chọn đủ ${n} lá!`,
     notify_saving:'Đang tạo file HTML...', notify_saved:'Đã lưu bài đọc! 📄',
@@ -1221,7 +1212,7 @@ const TRANSLATIONS = {
     gate_btn:'Google ile Devam Et',
     btn_back_draw:'← Yeniden Çek', btn_save:'💾 Okumayı Kaydet',
     btn_new:'Yeni Okuma', btn_reset:'↺ Başa Dön',
-    reversed:'Ters', upright:'Düz', logout:'Çıkış Yap',
+    logout:'Çıkış Yap',
     free_left: n => `${n} ücretsiz okuma kaldı`, unlimited:'Sınırsız',
     notify_all: n => `${n} kartın tamamı seçildi!`,
     notify_saving:'HTML dosyası oluşturuluyor...', notify_saved:'Okuma kaydedildi! 📄',
@@ -1246,7 +1237,7 @@ const TRANSLATIONS = {
     gate_btn:'Kontynuuj z Google',
     btn_back_draw:'← Dobierz ponownie', btn_save:'💾 Zapisz czytanie',
     btn_new:'Nowe czytanie', btn_reset:'↺ Zacznij od nowa',
-    reversed:'Odwrócona', upright:'Prosta', logout:'Wyloguj',
+    logout:'Wyloguj',
     free_left: n => `Pozostało ${n} bezpłatne${n===1?'':n<5?'':'ch'} czytanie${n===1?'':n<5?'a':'ń'}`, unlimited:'Nieograniczone',
     notify_all: n => `Wszystkie ${n} karty wybrane!`,
     notify_saving:'Generowanie pliku HTML...', notify_saved:'Czytanie zapisane! 📄',
@@ -1523,7 +1514,6 @@ function selectCard(deckIdx) {
   if (drawnCards.length >= cardCount) return;
 
   const card = allCards[deckCards[deckIdx]];
-  const reversed = Math.random() < 0.5;
 
   // 포지션 의미: 한국어는 JSON 원본, 그 외 언어는 번역 레이블
   const cardIdx = drawnCards.length;
@@ -1539,12 +1529,11 @@ function selectCard(deckIdx) {
   if (deckCardEl) {
     const front = deckCardEl.querySelector('.card-front');
     front.innerHTML = `<img src="/images/${card.image_file}" alt="${card.name_en}" loading="lazy" />`;
-    if (reversed) front.classList.add('reversed');
     deckCardEl.classList.add('flipped', 'selected-card');
   }
 
   const cardIndex = drawnCards.length; // push 전 인덱스
-  drawnCards.push({ card, reversed, positionMeaning, deckIdx });
+  drawnCards.push({ card, positionMeaning, deckIdx });
 
   const row = document.getElementById('drawn-row');
   const el = document.createElement('div');
@@ -1561,13 +1550,12 @@ function selectCard(deckIdx) {
   }
 
   el.innerHTML = `
-    <div class="drawn-card-img ${reversed ? 'reversed' : ''}">
+    <div class="drawn-card-img">
       <img src="/images/${card.image_file}" alt="${card.name_en}" loading="lazy" />
     </div>
     <div class="drawn-card-name">${currentLang === 'ko' ? card.name_ko : card.name_en}</div>
     <div class="drawn-card-label">
-      ${positionMeaning ? `<span style="color:var(--gold-light)">${positionMeaning}</span><br/>` : ''}
-      ${reversed ? `<span class="reversed-badge">${t('reversed')}</span>` : `<span style="color:#90d490;font-size:.7rem">${t('upright')}</span>`}
+      ${positionMeaning ? `<span style="color:var(--gold-light)">${positionMeaning}</span>` : ''}
     </div>`;
   row.appendChild(el);
 
@@ -1606,17 +1594,16 @@ document.getElementById('step2-next').addEventListener('click', () => {
 function renderReadingCards() {
   const container = document.getElementById('reading-cards');
   container.innerHTML = '';
-  drawnCards.forEach(({ card, reversed, positionMeaning }) => {
+  drawnCards.forEach(({ card, positionMeaning }) => {
     const el = document.createElement('div');
     el.className = 'drawn-card';
     el.innerHTML = `
-      <div class="drawn-card-img ${reversed ? 'reversed' : ''}">
+      <div class="drawn-card-img">
         <img src="/images/${card.image_file}" alt="${card.name_en}" loading="lazy" />
       </div>
       <div class="drawn-card-name">${currentLang === 'ko' ? card.name_ko : card.name_en}</div>
       <div class="drawn-card-label">
-        ${positionMeaning ? `<span style="color:var(--gold-light)">${positionMeaning}</span><br/>` : ''}
-        ${reversed ? `<span class="reversed-badge">${t('reversed')}</span>` : `<span style="color:#90d490;font-size:.7rem">${t('upright')}</span>`}
+        ${positionMeaning ? `<span style="color:var(--gold-light)">${positionMeaning}</span>` : ''}
       </div>`;
     container.appendChild(el);
   });
@@ -1636,12 +1623,12 @@ async function startReading() {
     question,
     spread_name: spreadName,
     language: currentLang,
-    cards: drawnCards.map(({ card, reversed, positionMeaning }) => ({
+    cards: drawnCards.map(({ card, positionMeaning }) => ({
       name_ko: card.name_ko,
       name_en: card.name_en,
       meaning: card.meaning || '',
       symbols: card.symbols || {},
-      reversed,
+      reversed: false,
       position_meaning: positionMeaning || '',
       image_file: card.image_file
     }))
@@ -1742,7 +1729,6 @@ document.getElementById('save-reading-btn').addEventListener('click', async () =
   const cardDataList = await Promise.all(drawnCards.map(async (dc) => ({
     name_ko: dc.card.name_ko,
     name_en: dc.card.name_en,
-    reversed: dc.reversed,
     positionMeaning: dc.positionMeaning || '',
     dataUrl: dc.card.image_file ? await toDataUrl(`/images/${dc.card.image_file}`) : ''
   })));
@@ -1751,13 +1737,12 @@ document.getElementById('save-reading-btn').addEventListener('click', async () =
     <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:110px">
       <div style="width:110px;height:190px;border-radius:8px;overflow:hidden;border:1px solid rgba(212,175,55,.4);box-shadow:0 4px 16px rgba(0,0,0,.5)">
         ${c.dataUrl
-          ? `<img src="${c.dataUrl}" alt="${c.name_ko}" style="width:100%;height:100%;object-fit:cover;${c.reversed ? 'transform:rotate(180deg)' : ''}" />`
+          ? `<img src="${c.dataUrl}" alt="${c.name_ko}" style="width:100%;height:100%;object-fit:cover;" />`
           : `<div style="width:100%;height:100%;background:#1e1836;display:flex;align-items:center;justify-content:center;color:#c9a84c;font-size:.8rem;text-align:center;padding:8px">${c.name_ko}</div>`}
       </div>
       <div style="font-size:.75rem;color:#e8e0f0;text-align:center;line-height:1.4">
         ${c.positionMeaning ? `<div style="color:#f0d060;margin-bottom:2px">${c.positionMeaning}</div>` : ''}
         <div style="font-weight:600">${c.name_ko}</div>
-        <div style="color:${c.reversed ? '#f08080' : '#90d490'};font-size:.7rem">${c.reversed ? '역방향' : '정방향'}</div>
       </div>
     </div>`).join('');
 

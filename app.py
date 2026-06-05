@@ -177,7 +177,6 @@ async def tarot_reading(request: ReadingRequest):
         # Build the user prompt
         cards_text = ""
         for i, card in enumerate(request.cards, 1):
-            direction = "역방향" if card.reversed else "정방향"
             position_text = f"\n  - 위치 의미: {card.position_meaning}" if card.position_meaning else ""
 
             # Extract key symbols
@@ -191,7 +190,7 @@ async def tarot_reading(request: ReadingRequest):
             meaning_preview = card.meaning[:200] + "..." if len(card.meaning) > 200 else card.meaning
 
             cards_text += f"""
-카드 {i}: {card.name_ko} ({card.name_en}) - {direction}{position_text}{symbols_text}
+카드 {i}: {card.name_ko} ({card.name_en}){position_text}{symbols_text}
   - 핵심 의미: {meaning_preview}
 """
 
@@ -204,7 +203,7 @@ async def tarot_reading(request: ReadingRequest):
 
 위 카드들을 바탕으로 내담자의 질문에 대한 깊이 있는 타로 리딩을 해주세요.
 
-각 카드의 위치 의미와 방향(정/역방향)을 고려하고, 카드들 사이의 연결과 흐름을 분석하여 종합적인 메시지를 전달해주세요. 내담자의 상황에 공감하며 구체적이고 실용적인 조언을 포함해주세요."""
+각 카드의 위치 의미와 카드들 사이의 연결과 흐름을 분석하여 종합적인 메시지를 전달해주세요. 내담자의 상황에 공감하며 구체적이고 실용적인 조언을 포함해주세요."""
 
         lang_name = LANG_NAMES.get(request.language, 'Korean')
         system_prompt = f"""CRITICAL INSTRUCTION: You MUST write your ENTIRE response in {lang_name}. Every single word must be in {lang_name}. Do not use any other language.
@@ -212,7 +211,7 @@ async def tarot_reading(request: ReadingRequest):
 You are a professional tarot reader with 20 years of experience. You have deep insight and a balanced perspective, helping clients face their situations clearly and see the bigger picture.
 
 Reading approach:
-- Clearly mention each card's position and orientation (upright/reversed)
+- Clearly mention each card's position meaning
 - Analyze the energy flow and connections between cards
 - Interpret what the cards show without exaggeration or minimization
 - For difficult cards: honestly address the challenge, but also mention lessons or growth potential within the situation
