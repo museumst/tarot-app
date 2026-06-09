@@ -1268,7 +1268,14 @@ const TRANSLATIONS = {
   },
 };
 
-let currentLang = localStorage.getItem('tarot-lang') || 'ko';
+function detectLang() {
+  const saved = localStorage.getItem('tarot-lang');
+  if (saved) return saved;
+  const supported = ['ko','en','ja','es','fr','de','pt','th','ru','zh','it','id','vi','tr','pl'];
+  const browser = (navigator.language || 'en').split('-')[0].toLowerCase();
+  return supported.includes(browser) ? browser : 'en';
+}
+let currentLang = detectLang();
 
 function t(key, ...args) {
   const tr = TRANSLATIONS[currentLang] || TRANSLATIONS.ko;
