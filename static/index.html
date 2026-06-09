@@ -2243,55 +2243,408 @@ function openContent(type) {
 
 function closeContent() { document.getElementById('content-panel').classList.remove('open'); }
 
+const CONTENT_TEXT = {
+  ko: {
+    about_title: '울트라타로란?',
+    about_p1: '울트라타로는 단순히 카드의 텍스트 해설을 읽어주는 서비스가 아닙니다. AI가 당신의 질문을 깊이 이해하고, 뽑힌 카드들의 상징·위치 의미·카드 간 에너지 흐름을 종합하여 <strong style="color:var(--gold)">당신만을 위한 맞춤형 해석</strong>을 제공합니다.',
+    about_h2: '다른 타로 앱과 무엇이 다른가요?',
+    about_p2: '대부분의 타로 앱은 카드를 뽑으면 미리 저장된 텍스트를 보여줍니다. 울트라타로는 Claude AI가 질문의 맥락, 스프레드의 위치 의미, 카드들 사이의 관계를 실시간으로 분석하여 마치 숙련된 타로 리더와 1:1 상담을 받는 것 같은 경험을 제공합니다.',
+    about_h3: '주요 특징',
+    feat1_title: 'AI 맞춤 해석', feat1_desc: '질문에 최적화된 개인화 리딩',
+    feat2_title: '28가지 스프레드', feat2_desc: '질문에 맞는 스프레드를 AI가 자동 선택',
+    feat3_title: '15개 언어', feat3_desc: '브라우저 언어 자동 감지',
+    feat4_title: '정방향 해석', feat4_desc: '카드 본연의 다면적 의미에 집중',
+    tarot_h1: '타로카드의 역사',
+    tarot_p1: '타로는 15세기 이탈리아에서 카드 게임으로 시작되었습니다. 18세기 프랑스의 신비주의자들이 점술 도구로 발전시켰고, 20세기 아서 에드워드 웨이트(A.E. Waite)가 현재 가장 널리 쓰이는 라이더-웨이트 덱을 완성했습니다.',
+    tarot_h2: '78장의 구성',
+    tarot_major: '메이저 아르카나 (22장)',
+    tarot_p2: '바보(0번)부터 세계(21번)까지, 인생의 큰 여정과 보편적 원형을 상징합니다. 운명적 흐름이나 삶의 중요한 전환점을 나타냅니다.',
+    tarot_minor: '마이너 아르카나 (56장)',
+    tarot_p3: '완드·컵·소드·펜타클 4개 수트로 구성됩니다. 일상적 상황과 감정, 행동, 물질적 현실을 다루며 에이스~10의 숫자 카드와 페이지·나이트·퀸·킹의 코트 카드로 이루어집니다.',
+    tarot_h3: '스프레드란?',
+    tarot_p4: '카드를 배치하는 방식과 각 위치의 의미를 정의한 틀입니다. 3카드 스프레드는 \'과거-현재-미래\'를 나타내고, 켈틱 크로스는 10장으로 상황을 다각도로 분석합니다. 울트라타로는 28가지 스프레드 중 질문에 가장 적합한 것을 AI가 자동으로 선택합니다.',
+    tarot_h4: '타로를 대하는 방법',
+    tarot_p5: '타로는 미래를 결정짓는 예언 도구가 아닙니다. 현재 상황을 다양한 시각으로 바라보고 내면의 목소리에 귀 기울이며, 더 나은 선택을 위한 통찰을 얻는 성찰의 도구입니다. 카드는 당신에게 질문을 던지고, 답은 결국 당신 안에 있습니다.',
+    search_placeholder: '카드 이름으로 검색...', loading: '카드를 불러오는 중...', load_error: '카드를 불러오지 못했습니다.', no_result: '검색 결과가 없습니다.',
+  },
+  en: {
+    about_title: 'What is Ultra Tarot?',
+    about_p1: 'Ultra Tarot is more than a simple card reference app. The AI deeply understands your question and synthesizes the symbols, positional meanings, and energy flow between cards to deliver a <strong style="color:var(--gold)">personalized reading just for you</strong>.',
+    about_h2: 'How is it different from other tarot apps?',
+    about_p2: 'Most tarot apps show pre-written text when you draw a card. Ultra Tarot uses Claude AI to analyze the context of your question, the positional meanings of the spread, and the relationships between cards in real time — like a 1-on-1 session with an experienced tarot reader.',
+    about_h3: 'Key Features',
+    feat1_title: 'AI-Personalized Reading', feat1_desc: 'Tailored interpretation for your question',
+    feat2_title: '28 Spreads', feat2_desc: 'AI automatically selects the best spread',
+    feat3_title: '15 Languages', feat3_desc: 'Auto-detects your browser language',
+    feat4_title: 'Upright Interpretation', feat4_desc: 'Focus on the card\'s multifaceted meaning',
+    tarot_h1: 'History of Tarot',
+    tarot_p1: 'Tarot began as a card game in 15th-century Italy. French mystics in the 18th century developed it into a divination tool, and in the 20th century A.E. Waite completed the Rider-Waite deck — the most widely used tarot deck today.',
+    tarot_h2: 'The 78 Cards',
+    tarot_major: 'Major Arcana (22 cards)',
+    tarot_p2: 'From The Fool (0) to The World (21), these cards symbolize life\'s major journeys and universal archetypes, representing turning points and larger forces at work.',
+    tarot_minor: 'Minor Arcana (56 cards)',
+    tarot_p3: 'Divided into four suits — Wands, Cups, Swords, and Pentacles — these cards address everyday situations, emotions, actions, and material reality, including pip cards (Ace–10) and court cards (Page, Knight, Queen, King).',
+    tarot_h3: 'What is a Spread?',
+    tarot_p4: 'A spread defines how cards are laid out and the meaning of each position. A 3-card spread covers Past–Present–Future; the Celtic Cross uses 10 cards for in-depth analysis. Ultra Tarot\'s AI automatically selects the most suitable spread from 28 options.',
+    tarot_h4: 'How to Approach Tarot',
+    tarot_p5: 'Tarot is not a prophecy that determines your future. It is a reflective tool that helps you view your situation from multiple angles, listen to your inner voice, and gain insight for better decisions. The cards pose the questions — the answers are already within you.',
+    search_placeholder: 'Search by card name...', loading: 'Loading cards...', load_error: 'Failed to load cards.', no_result: 'No results found.',
+  },
+  ja: {
+    about_title: 'ウルトラタロットとは？',
+    about_p1: 'ウルトラタロットは、単なるカード解説アプリではありません。AIがあなたの質問を深く理解し、引いたカードの象徴・位置の意味・カード間のエネルギーの流れを総合して、<strong style="color:var(--gold)">あなただけのオーダーメイド解釈</strong>をお届けします。',
+    about_h2: '他のタロットアプリとの違い',
+    about_p2: '多くのタロットアプリはカードを引くと事前に書かれたテキストを表示します。ウルトラタロットはClaude AIが質問の文脈、スプレッドの位置の意味、カード同士の関係をリアルタイムで分析し、熟練のタロットリーダーと1対1で相談しているような体験を提供します。',
+    about_h3: '主な特徴',
+    feat1_title: 'AIパーソナル解釈', feat1_desc: '質問に最適化された個人化リーディング',
+    feat2_title: '28種のスプレッド', feat2_desc: '最適なスプレッドをAIが自動選択',
+    feat3_title: '15言語対応', feat3_desc: 'ブラウザ言語を自動検出',
+    feat4_title: '正位置解釈', feat4_desc: 'カード本来の多面的な意味に集中',
+    tarot_h1: 'タロットの歴史',
+    tarot_p1: 'タロットは15世紀イタリアでカードゲームとして始まりました。18世紀にフランスの神秘主義者たちが占いのツールとして発展させ、20世紀にA.E.ウェイトが現在最も広く使われているライダー・ウェイト版を完成させました。',
+    tarot_h2: '78枚の構成',
+    tarot_major: '大アルカナ（22枚）',
+    tarot_p2: '愚者（0番）から世界（21番）まで、人生の大きな旅路と普遍的な原型を象徴します。運命的な流れや人生の重要な転換点を表します。',
+    tarot_minor: '小アルカナ（56枚）',
+    tarot_p3: 'ワンド・カップ・ソード・ペンタクルの4スートで構成されます。日常的な状況や感情、行動、物質的現実を扱い、エース〜10の数札とページ・ナイト・クイーン・キングのコートカードから成ります。',
+    tarot_h3: 'スプレッドとは？',
+    tarot_p4: 'カードの配置方法と各位置の意味を定義した枠組みです。3枚スプレッドは「過去・現在・未来」を表し、ケルティッククロスは10枚で状況を多角的に分析します。ウルトラタロットは28種のスプレッドから最適なものをAIが自動選択します。',
+    tarot_h4: 'タロットとの向き合い方',
+    tarot_p5: 'タロットは未来を決定づける予言ツールではありません。現在の状況を多角的に見つめ、内なる声に耳を傾け、より良い選択のための洞察を得る内省のツールです。カードはあなたに問いを投げかけ、答えは最終的にあなたの中にあります。',
+    search_placeholder: 'カード名で検索...', loading: 'カードを読み込み中...', load_error: 'カードの読み込みに失敗しました。', no_result: '検索結果がありません。',
+  },
+  zh: {
+    about_title: '关于超级塔罗',
+    about_p1: '超级塔罗不仅仅是一款展示牌义的应用。AI深度理解您的问题，综合分析抽到的牌的象征、位置含义和牌间能量流动，为您提供<strong style="color:var(--gold)">专属于您的个性化解读</strong>。',
+    about_h2: '与其他塔罗应用有何不同？',
+    about_p2: '大多数塔罗应用抽牌后仅显示预设文本。超级塔罗使用Claude AI实时分析问题背景、牌阵位置含义和牌之间的关系，带来如同与资深塔罗师1对1咨询的体验。',
+    about_h3: '主要特点',
+    feat1_title: 'AI个性化解读', feat1_desc: '针对您的问题量身定制',
+    feat2_title: '28种牌阵', feat2_desc: 'AI自动选择最合适的牌阵',
+    feat3_title: '15种语言', feat3_desc: '自动检测浏览器语言',
+    feat4_title: '正位解读', feat4_desc: '专注于牌的多维含义',
+    tarot_h1: '塔罗牌的历史',
+    tarot_p1: '塔罗牌起源于15世纪意大利的纸牌游戏。18世纪法国神秘主义者将其发展为占卜工具，20世纪A.E.韦特完成了如今最广泛使用的莱德-韦特牌组。',
+    tarot_h2: '78张牌的构成',
+    tarot_major: '大阿卡那（22张）',
+    tarot_p2: '从愚者（0号）到世界（21号），象征人生的重大旅程和普世原型，代表命运的转折与重要时刻。',
+    tarot_minor: '小阿卡那（56张）',
+    tarot_p3: '分为权杖、圣杯、宝剑、星币四个牌组，涵盖日常情境、情感、行动和物质现实，包括A到10的数字牌和侍从、骑士、王后、国王四张宫廷牌。',
+    tarot_h3: '什么是牌阵？',
+    tarot_p4: '牌阵定义了牌的排列方式和各位置的含义。三张牌阵代表"过去-现在-未来"，凯尔特十字阵用10张牌多角度分析情况。超级塔罗的AI会从28种牌阵中自动选择最合适的。',
+    tarot_h4: '如何对待塔罗',
+    tarot_p5: '塔罗不是决定未来的预言工具，而是帮助您从多角度审视现状、聆听内心声音、获得更好决策洞见的反思工具。牌向您提问，答案终究在您心中。',
+    search_placeholder: '搜索牌名...', loading: '加载中...', load_error: '加载失败。', no_result: '无搜索结果。',
+  },
+  es: {
+    about_title: '¿Qué es Ultra Tarot?',
+    about_p1: 'Ultra Tarot es mucho más que una simple app de referencia de cartas. La IA comprende profundamente tu pregunta y sintetiza los símbolos, significados posicionales y el flujo de energía entre cartas para ofrecerte una <strong style="color:var(--gold)">lectura personalizada solo para ti</strong>.',
+    about_h2: '¿En qué se diferencia de otras apps de tarot?',
+    about_p2: 'La mayoría de las apps de tarot muestran texto predefinido al sacar una carta. Ultra Tarot usa Claude AI para analizar en tiempo real el contexto de tu pregunta, los significados posicionales de la tirada y las relaciones entre cartas, como una sesión 1 a 1 con un lector experto.',
+    about_h3: 'Características principales',
+    feat1_title: 'Lectura personalizada con IA', feat1_desc: 'Interpretación adaptada a tu pregunta',
+    feat2_title: '28 tiradas', feat2_desc: 'La IA selecciona la tirada más adecuada',
+    feat3_title: '15 idiomas', feat3_desc: 'Detecta automáticamente el idioma del navegador',
+    feat4_title: 'Interpretación en posición normal', feat4_desc: 'Enfocada en el significado multifacético de la carta',
+    tarot_h1: 'Historia del Tarot',
+    tarot_p1: 'El tarot comenzó como un juego de cartas en la Italia del siglo XV. Los místicos franceses del siglo XVIII lo desarrollaron como herramienta de adivinación, y en el siglo XX A.E. Waite completó el mazo Rider-Waite, el más utilizado en la actualidad.',
+    tarot_h2: 'Las 78 cartas',
+    tarot_major: 'Arcanos Mayores (22 cartas)',
+    tarot_p2: 'Desde El Loco (0) hasta El Mundo (21), simbolizan los grandes viajes de la vida y los arquetipos universales, representando puntos de inflexión y fuerzas mayores.',
+    tarot_minor: 'Arcanos Menores (56 cartas)',
+    tarot_p3: 'Divididos en cuatro palos —Bastos, Copas, Espadas y Oros— tratan situaciones cotidianas, emociones, acciones y la realidad material, incluyendo cartas numéricas (As–10) y figuras (Sota, Caballero, Reina, Rey).',
+    tarot_h3: '¿Qué es una tirada?',
+    tarot_p4: 'Una tirada define cómo se colocan las cartas y el significado de cada posición. La tirada de 3 cartas cubre Pasado–Presente–Futuro; la Cruz Celta usa 10 cartas para un análisis profundo. La IA de Ultra Tarot selecciona automáticamente la mejor tirada entre 28 opciones.',
+    tarot_h4: 'Cómo acercarse al Tarot',
+    tarot_p5: 'El tarot no es una profecía que determina tu futuro. Es una herramienta de reflexión que te ayuda a ver tu situación desde múltiples ángulos, escuchar tu voz interior y obtener perspectiva para mejores decisiones. Las cartas hacen las preguntas; las respuestas ya están dentro de ti.',
+    search_placeholder: 'Buscar por nombre de carta...', loading: 'Cargando cartas...', load_error: 'Error al cargar las cartas.', no_result: 'Sin resultados.',
+  },
+  fr: {
+    about_title: "Qu'est-ce qu'Ultra Tarot ?",
+    about_p1: "Ultra Tarot est bien plus qu'une simple appli de référence. L'IA comprend profondément votre question et synthétise les symboles, les significations positionnelles et le flux d'énergie entre les cartes pour vous offrir une <strong style=\"color:var(--gold)\">lecture personnalisée rien que pour vous</strong>.",
+    about_h2: 'En quoi est-ce différent des autres apps de tarot ?',
+    about_p2: "La plupart des apps de tarot affichent un texte prédéfini lorsqu'une carte est tirée. Ultra Tarot utilise Claude AI pour analyser en temps réel le contexte de votre question, les significations positionnelles du tirage et les relations entre cartes, comme une consultation 1 pour 1 avec un lecteur expérimenté.",
+    about_h3: 'Fonctionnalités principales',
+    feat1_title: 'Lecture IA personnalisée', feat1_desc: 'Interprétation adaptée à votre question',
+    feat2_title: '28 tirages', feat2_desc: "L'IA sélectionne automatiquement le meilleur tirage",
+    feat3_title: '15 langues', feat3_desc: 'Détection automatique de la langue du navigateur',
+    feat4_title: 'Interprétation à l\'endroit', feat4_desc: 'Centré sur le sens multidimensionnel de la carte',
+    tarot_h1: 'Histoire du Tarot',
+    tarot_p1: "Le tarot a débuté comme un jeu de cartes en Italie au XVe siècle. Les mystiques français du XVIIIe siècle l'ont développé en outil divinatoire, et au XXe siècle A.E. Waite a achevé le jeu Rider-Waite, le plus utilisé aujourd'hui.",
+    tarot_h2: 'Les 78 cartes',
+    tarot_major: 'Arcanes Majeurs (22 cartes)',
+    tarot_p2: "Du Fou (0) au Monde (21), ces cartes symbolisent les grands voyages de la vie et les archétypes universels, représentant les tournants importants et les forces à l'œuvre.",
+    tarot_minor: 'Arcanes Mineurs (56 cartes)',
+    tarot_p3: 'Divisés en quatre couleurs — Bâtons, Coupes, Épées et Pentacles — ils traitent des situations quotidiennes, émotions, actions et réalités matérielles, avec des cartes numériques (As–10) et des figures (Valet, Cavalier, Reine, Roi).',
+    tarot_h3: "Qu'est-ce qu'un tirage ?",
+    tarot_p4: "Un tirage définit la disposition des cartes et le sens de chaque position. Le tirage à 3 cartes couvre Passé–Présent–Futur ; la Croix Celtique utilise 10 cartes pour une analyse approfondie. L'IA d'Ultra Tarot sélectionne automatiquement le tirage le plus adapté parmi 28 options.",
+    tarot_h4: 'Comment aborder le Tarot',
+    tarot_p5: "Le tarot n'est pas une prophétie qui détermine votre avenir. C'est un outil de réflexion qui vous aide à voir votre situation sous différents angles, à écouter votre voix intérieure et à trouver des perspectives pour de meilleures décisions. Les cartes posent les questions — les réponses sont déjà en vous.",
+    search_placeholder: 'Rechercher par nom de carte...', loading: 'Chargement des cartes...', load_error: 'Échec du chargement.', no_result: 'Aucun résultat.',
+  },
+  de: {
+    about_title: 'Was ist Ultra Tarot?',
+    about_p1: 'Ultra Tarot ist weit mehr als eine einfache Karten-Referenz-App. Die KI versteht Ihre Frage tiefgründig und analysiert Symbole, Positionsbedeutungen und Energieflüsse zwischen den Karten, um Ihnen eine <strong style="color:var(--gold)">personalisierte Deutung nur für Sie</strong> zu liefern.',
+    about_h2: 'Was ist der Unterschied zu anderen Tarot-Apps?',
+    about_p2: 'Die meisten Tarot-Apps zeigen vordefinierten Text, wenn eine Karte gezogen wird. Ultra Tarot nutzt Claude AI, um in Echtzeit den Kontext Ihrer Frage, die Positionsbedeutungen des Legesystems und die Beziehungen zwischen den Karten zu analysieren — wie eine 1-zu-1-Sitzung mit einem erfahrenen Tarot-Leser.',
+    about_h3: 'Hauptmerkmale',
+    feat1_title: 'KI-personalisierte Deutung', feat1_desc: 'Auf Ihre Frage zugeschnittene Interpretation',
+    feat2_title: '28 Legesysteme', feat2_desc: 'KI wählt automatisch das passendste aus',
+    feat3_title: '15 Sprachen', feat3_desc: 'Automatische Browser-Spracherkennung',
+    feat4_title: 'Aufrechte Deutung', feat4_desc: 'Fokus auf die vielschichtige Kartenbedeutung',
+    tarot_h1: 'Geschichte des Tarots',
+    tarot_p1: 'Tarot begann im 15. Jahrhundert in Italien als Kartenspiel. Französische Mystiker des 18. Jahrhunderts entwickelten es zu einem Wahrsagewerkzeug, und im 20. Jahrhundert vollendete A.E. Waite das Rider-Waite-Deck — das heute am weitesten verbreitete Tarot-Deck.',
+    tarot_h2: 'Die 78 Karten',
+    tarot_major: 'Große Arkana (22 Karten)',
+    tarot_p2: 'Vom Narren (0) bis zur Welt (21) symbolisieren diese Karten die großen Lebensreisen und universelle Archetypen und stellen wichtige Wendepunkte dar.',
+    tarot_minor: 'Kleine Arkana (56 Karten)',
+    tarot_p3: 'Aufgeteilt in vier Farben — Stäbe, Kelche, Schwerter und Münzen — behandeln sie alltägliche Situationen, Gefühle, Handlungen und materielle Realität, mit Zahlenkarten (As–10) und Hofkarten (Bube, Ritter, Königin, König).',
+    tarot_h3: 'Was ist ein Legesystem?',
+    tarot_p4: 'Ein Legesystem definiert die Anordnung der Karten und die Bedeutung jeder Position. Das 3-Karten-Legesystem steht für Vergangenheit–Gegenwart–Zukunft; das Keltische Kreuz verwendet 10 Karten für eine tiefe Analyse. Die KI von Ultra Tarot wählt automatisch das passendste aus 28 Systemen.',
+    tarot_h4: 'Umgang mit dem Tarot',
+    tarot_p5: 'Tarot ist keine Prophezeiung, die Ihre Zukunft bestimmt. Es ist ein Reflexionswerkzeug, das Ihnen hilft, Ihre Situation aus verschiedenen Blickwinkeln zu betrachten, auf Ihre innere Stimme zu hören und Einsichten für bessere Entscheidungen zu gewinnen. Die Karten stellen die Fragen — die Antworten liegen bereits in Ihnen.',
+    search_placeholder: 'Nach Kartenname suchen...', loading: 'Karten werden geladen...', load_error: 'Laden fehlgeschlagen.', no_result: 'Keine Ergebnisse.',
+  },
+  pt: {
+    about_title: 'O que é o Ultra Tarot?',
+    about_p1: 'O Ultra Tarot é muito mais do que um simples app de referência de cartas. A IA compreende profundamente sua pergunta e sintetiza símbolos, significados posicionais e o fluxo de energia entre as cartas para oferecer uma <strong style="color:var(--gold)">leitura personalizada só para você</strong>.',
+    about_h2: 'Como é diferente de outros apps de tarot?',
+    about_p2: 'A maioria dos apps de tarot exibe texto pré-definido ao comprar uma carta. O Ultra Tarot usa Claude AI para analisar em tempo real o contexto da sua pergunta, os significados posicionais do spread e as relações entre as cartas, como uma sessão 1 a 1 com um leitor experiente.',
+    about_h3: 'Principais recursos',
+    feat1_title: 'Leitura personalizada com IA', feat1_desc: 'Interpretação adaptada à sua pergunta',
+    feat2_title: '28 spreads', feat2_desc: 'A IA seleciona automaticamente o spread ideal',
+    feat3_title: '15 idiomas', feat3_desc: 'Detecção automática do idioma do navegador',
+    feat4_title: 'Interpretação na posição normal', feat4_desc: 'Foco no significado multifacetado da carta',
+    tarot_h1: 'História do Tarot',
+    tarot_p1: 'O tarot começou como um jogo de cartas na Itália do século XV. Místicos franceses do século XVIII o desenvolveram como ferramenta de adivinhação, e no século XX A.E. Waite completou o baralho Rider-Waite, o mais usado atualmente.',
+    tarot_h2: 'As 78 cartas',
+    tarot_major: 'Arcanos Maiores (22 cartas)',
+    tarot_p2: 'Do Louco (0) ao Mundo (21), simbolizam as grandes jornadas da vida e arquétipos universais, representando pontos de virada e forças maiores em ação.',
+    tarot_minor: 'Arcanos Menores (56 cartas)',
+    tarot_p3: 'Divididos em quatro naipes — Paus, Copas, Espadas e Ouros — tratam de situações cotidianas, emoções, ações e realidade material, com cartas numéricas (Ás–10) e figuras (Valete, Cavaleiro, Rainha, Rei).',
+    tarot_h3: 'O que é um spread?',
+    tarot_p4: "Um spread define como as cartas são dispostas e o significado de cada posição. O spread de 3 cartas cobre Passado–Presente–Futuro; a Cruz Celta usa 10 cartas para análise aprofundada. A IA do Ultra Tarot seleciona automaticamente o spread mais adequado entre 28 opções.",
+    tarot_h4: 'Como se aproximar do Tarot',
+    tarot_p5: 'O tarot não é uma profecia que determina seu futuro. É uma ferramenta de reflexão que ajuda a ver sua situação por múltiplos ângulos, ouvir sua voz interior e obter insights para melhores decisões. As cartas fazem as perguntas — as respostas já estão dentro de você.',
+    search_placeholder: 'Buscar por nome da carta...', loading: 'Carregando cartas...', load_error: 'Falha ao carregar.', no_result: 'Sem resultados.',
+  },
+  it: {
+    about_title: "Cos'è Ultra Tarot?",
+    about_p1: "Ultra Tarot è molto più di una semplice app di riferimento per le carte. L'IA comprende profondamente la tua domanda e sintetizza simboli, significati posizionali e il flusso energetico tra le carte per offrirti una <strong style=\"color:var(--gold)\">lettura personalizzata solo per te</strong>.",
+    about_h2: 'Come si differenzia dalle altre app di tarot?',
+    about_p2: "La maggior parte delle app di tarot mostra testo predefinito quando si estrae una carta. Ultra Tarot usa Claude AI per analizzare in tempo reale il contesto della tua domanda, i significati posizionali dello spread e le relazioni tra le carte, come una sessione 1 a 1 con un lettore esperto.",
+    about_h3: 'Caratteristiche principali',
+    feat1_title: 'Lettura IA personalizzata', feat1_desc: 'Interpretazione adattata alla tua domanda',
+    feat2_title: '28 spread', feat2_desc: "L'IA seleziona automaticamente lo spread migliore",
+    feat3_title: '15 lingue', feat3_desc: 'Rileva automaticamente la lingua del browser',
+    feat4_title: 'Interpretazione diritta', feat4_desc: 'Focalizata sul significato poliedrico della carta',
+    tarot_h1: 'Storia dei Tarocchi',
+    tarot_p1: "I tarocchi nacquero come gioco di carte nell'Italia del XV secolo. I mistici francesi del XVIII secolo li svilupparono come strumento divinatorio, e nel XX secolo A.E. Waite completò il mazzo Rider-Waite, il più diffuso ancora oggi.",
+    tarot_h2: 'Le 78 carte',
+    tarot_major: 'Arcani Maggiori (22 carte)',
+    tarot_p2: "Dal Matto (0) al Mondo (21), simboleggiano i grandi viaggi della vita e gli archetipi universali, rappresentando punti di svolta e forze più grandi in azione.",
+    tarot_minor: 'Arcani Minori (56 carte)',
+    tarot_p3: "Divisi in quattro semi — Bastoni, Coppe, Spade e Denari — trattano situazioni quotidiane, emozioni, azioni e realtà materiale, con carte numeriche (Asso–10) e figure (Fante, Cavaliere, Regina, Re).",
+    tarot_h3: "Cos'è uno spread?",
+    tarot_p4: "Uno spread definisce come le carte vengono disposte e il significato di ogni posizione. Lo spread a 3 carte copre Passato–Presente–Futuro; la Croce Celtica usa 10 carte per un'analisi approfondita. L'IA di Ultra Tarot seleziona automaticamente lo spread più adatto tra 28 opzioni.",
+    tarot_h4: 'Come approcciarsi ai Tarocchi',
+    tarot_p5: 'I tarocchi non sono una profezia che determina il tuo futuro. Sono uno strumento di riflessione che ti aiuta a vedere la tua situazione da più angolazioni, ascoltare la tua voce interiore e ottenere intuizioni per decisioni migliori. Le carte pongono le domande — le risposte sono già dentro di te.',
+    search_placeholder: 'Cerca per nome carta...', loading: 'Caricamento carte...', load_error: 'Caricamento fallito.', no_result: 'Nessun risultato.',
+  },
+  ru: {
+    about_title: 'Что такое Ultra Tarot?',
+    about_p1: 'Ultra Tarot — это гораздо больше, чем простое приложение со значениями карт. ИИ глубоко понимает ваш вопрос и синтезирует символику, позиционные значения и поток энергии между картами, создавая <strong style="color:var(--gold)">персонализированное толкование специально для вас</strong>.',
+    about_h2: 'Чем отличается от других приложений таро?',
+    about_p2: 'Большинство приложений таро показывают заранее написанный текст при выборе карты. Ultra Tarot использует Claude AI для анализа контекста вашего вопроса, позиционных значений расклада и взаимосвязей между картами в реальном времени — как сеанс один на один с опытным таролог.',
+    about_h3: 'Основные возможности',
+    feat1_title: 'ИИ-персонализация', feat1_desc: 'Толкование, адаптированное к вашему вопросу',
+    feat2_title: '28 раскладов', feat2_desc: 'ИИ автоматически выбирает лучший расклад',
+    feat3_title: '15 языков', feat3_desc: 'Автоопределение языка браузера',
+    feat4_title: 'Прямое положение', feat4_desc: 'Акцент на многогранном значении карты',
+    tarot_h1: 'История Таро',
+    tarot_p1: 'Таро возникло как карточная игра в Италии XV века. Французские мистики XVIII века превратили его в инструмент гадания, а в XX веке А.Э. Уэйт завершил создание колоды Райдера-Уэйта — наиболее популярной сегодня.',
+    tarot_h2: '78 карт',
+    tarot_major: 'Старшие Арканы (22 карты)',
+    tarot_p2: 'От Шута (0) до Мира (21), эти карты символизируют великие жизненные путешествия и универсальные архетипы, отражают поворотные точки и значимые силы.',
+    tarot_minor: 'Младшие Арканы (56 карт)',
+    tarot_p3: 'Разделены на четыре масти — Жезлы, Кубки, Мечи и Пентакли — охватывают повседневные ситуации, эмоции, действия и материальную реальность, включая числовые карты (Туз–10) и придворные карты (Паж, Рыцарь, Королева, Король).',
+    tarot_h3: 'Что такое расклад?',
+    tarot_p4: 'Расклад определяет способ размещения карт и значение каждой позиции. Расклад из 3 карт охватывает Прошлое–Настоящее–Будущее; Кельтский Крест использует 10 карт для глубокого анализа. ИИ Ultra Tarot автоматически выбирает наиболее подходящий расклад из 28 вариантов.',
+    tarot_h4: 'Как воспринимать Таро',
+    tarot_p5: 'Таро — не пророчество, определяющее ваше будущее. Это инструмент рефлексии, помогающий рассмотреть ситуацию с разных сторон, прислушаться к внутреннему голосу и получить озарение для лучших решений. Карты задают вопросы — ответы уже внутри вас.',
+    search_placeholder: 'Поиск по названию карты...', loading: 'Загрузка карт...', load_error: 'Ошибка загрузки.', no_result: 'Нет результатов.',
+  },
+  th: {
+    about_title: 'Ultra Tarot คืออะไร?',
+    about_p1: 'Ultra Tarot ไม่ใช่แค่แอปอ้างอิงไพ่ธรรมดา AI เข้าใจคำถามของคุณอย่างลึกซึ้งและวิเคราะห์สัญลักษณ์ ความหมายตามตำแหน่ง และพลังงานระหว่างไพ่ เพื่อมอบ<strong style="color:var(--gold)">การอ่านที่ปรับแต่งเฉพาะสำหรับคุณ</strong>',
+    about_h2: 'แตกต่างจากแอปไพ่ยิปซีอื่นอย่างไร?',
+    about_p2: 'แอปไพ่ยิปซีส่วนใหญ่แสดงข้อความที่เขียนไว้ล่วงหน้าเมื่อจั่วไพ่ Ultra Tarot ใช้ Claude AI วิเคราะห์บริบทคำถาม ความหมายตำแหน่งในการวางไพ่ และความสัมพันธ์ระหว่างไพ่แบบเรียลไทม์ เหมือนการปรึกษากับนักอ่านไพ่มืออาชีพแบบ 1 ต่อ 1',
+    about_h3: 'คุณสมบัติหลัก',
+    feat1_title: 'การอ่านแบบ AI', feat1_desc: 'การตีความที่ปรับให้เหมาะกับคำถามของคุณ',
+    feat2_title: '28 รูปแบบการวาง', feat2_desc: 'AI เลือกรูปแบบที่เหมาะสมที่สุดโดยอัตโนมัติ',
+    feat3_title: '15 ภาษา', feat3_desc: 'ตรวจจับภาษาเบราว์เซอร์อัตโนมัติ',
+    feat4_title: 'การตีความตำแหน่งตั้ง', feat4_desc: 'มุ่งเน้นความหมายหลากหลายของไพ่',
+    tarot_h1: 'ประวัติไพ่ทาโรต์',
+    tarot_p1: 'ไพ่ทาโรต์เริ่มต้นเป็นเกมไพ่ในอิตาลีศตวรรษที่ 15 นักลึกลับชาวฝรั่งเศสในศตวรรษที่ 18 พัฒนาเป็นเครื่องมือทำนาย และในศตวรรษที่ 20 A.E. Waite ได้สร้าง Rider-Waite deck ที่ใช้แพร่หลายที่สุดในปัจจุบัน',
+    tarot_h2: 'โครงสร้างไพ่ 78 ใบ',
+    tarot_major: 'อาร์คาน่าใหญ่ (22 ใบ)',
+    tarot_p2: 'ตั้งแต่ The Fool (0) ถึง The World (21) สื่อถึงการเดินทางครั้งสำคัญในชีวิตและต้นแบบสากล แสดงถึงจุดเปลี่ยนและแรงขับเคลื่อนที่ยิ่งใหญ่',
+    tarot_minor: 'อาร์คาน่าเล็ก (56 ใบ)',
+    tarot_p3: 'แบ่งเป็น 4 ชุด ได้แก่ Wands, Cups, Swords, Pentacles ครอบคลุมสถานการณ์ในชีวิตประจำวัน อารมณ์ การกระทำ และความเป็นจริงทางวัตถุ',
+    tarot_h3: 'การวางไพ่คืออะไร?',
+    tarot_p4: 'การวางไพ่กำหนดวิธีจัดเรียงไพ่และความหมายของแต่ละตำแหน่ง การวาง 3 ใบครอบคลุมอดีต–ปัจจุบัน–อนาคต Celtic Cross ใช้ 10 ใบสำหรับการวิเคราะห์เชิงลึก AI ของ Ultra Tarot เลือกการวางที่เหมาะสมที่สุดโดยอัตโนมัติจาก 28 รูปแบบ',
+    tarot_h4: 'วิธีเข้าถึงไพ่ทาโรต์',
+    tarot_p5: 'ไพ่ทาโรต์ไม่ใช่คำทำนายที่กำหนดอนาคตของคุณ แต่เป็นเครื่องมือสะท้อนความคิดที่ช่วยให้คุณมองสถานการณ์จากหลายมุม ฟังเสียงภายใน และรับข้อมูลเชิงลึกเพื่อตัดสินใจที่ดีขึ้น ไพ่ตั้งคำถาม — คำตอบอยู่ในตัวคุณแล้ว',
+    search_placeholder: 'ค้นหาด้วยชื่อไพ่...', loading: 'กำลังโหลดไพ่...', load_error: 'โหลดไม่สำเร็จ', no_result: 'ไม่พบผลลัพธ์',
+  },
+  id: {
+    about_title: 'Apa itu Ultra Tarot?',
+    about_p1: 'Ultra Tarot jauh lebih dari sekadar aplikasi referensi kartu. AI memahami pertanyaan Anda secara mendalam dan mensintesis simbol, makna posisi, serta aliran energi antar kartu untuk memberikan <strong style="color:var(--gold)">bacaan yang dipersonalisasi khusus untuk Anda</strong>.',
+    about_h2: 'Apa bedanya dengan aplikasi tarot lain?',
+    about_p2: 'Kebanyakan aplikasi tarot menampilkan teks yang sudah ditulis sebelumnya saat kartu ditarik. Ultra Tarot menggunakan Claude AI untuk menganalisis konteks pertanyaan, makna posisi spread, dan hubungan antar kartu secara real time — seperti konsultasi 1 lawan 1 dengan pembaca tarot berpengalaman.',
+    about_h3: 'Fitur Utama',
+    feat1_title: 'Bacaan AI Personal', feat1_desc: 'Interpretasi yang disesuaikan dengan pertanyaan Anda',
+    feat2_title: '28 Spread', feat2_desc: 'AI memilih spread terbaik secara otomatis',
+    feat3_title: '15 Bahasa', feat3_desc: 'Deteksi bahasa browser otomatis',
+    feat4_title: 'Interpretasi Tegak', feat4_desc: 'Fokus pada makna multidimensi kartu',
+    tarot_h1: 'Sejarah Tarot',
+    tarot_p1: 'Tarot dimulai sebagai permainan kartu di Italia abad ke-15. Para mistikus Prancis abad ke-18 mengembangkannya menjadi alat meramal, dan pada abad ke-20 A.E. Waite menyelesaikan deck Rider-Waite yang paling banyak digunakan saat ini.',
+    tarot_h2: '78 Kartu',
+    tarot_major: 'Arkana Mayor (22 kartu)',
+    tarot_p2: 'Dari The Fool (0) hingga The World (21), melambangkan perjalanan besar kehidupan dan arketipe universal, mewakili titik balik dan kekuatan yang lebih besar.',
+    tarot_minor: 'Arkana Minor (56 kartu)',
+    tarot_p3: 'Dibagi menjadi empat suit — Tongkat, Cangkir, Pedang, dan Pentakel — mencakup situasi sehari-hari, emosi, tindakan, dan realitas material, dengan kartu angka (As–10) dan kartu istana (Page, Knight, Queen, King).',
+    tarot_h3: 'Apa itu Spread?',
+    tarot_p4: 'Spread mendefinisikan cara kartu diletakkan dan makna setiap posisi. Spread 3 kartu mencakup Masa Lalu–Sekarang–Masa Depan; Celtic Cross menggunakan 10 kartu untuk analisis mendalam. AI Ultra Tarot secara otomatis memilih spread yang paling sesuai dari 28 pilihan.',
+    tarot_h4: 'Cara Mendekati Tarot',
+    tarot_p5: 'Tarot bukan ramalan yang menentukan masa depan Anda. Ini adalah alat refleksi yang membantu Anda melihat situasi dari berbagai sudut, mendengarkan suara batin, dan mendapatkan wawasan untuk keputusan yang lebih baik. Kartu mengajukan pertanyaan — jawabannya sudah ada dalam diri Anda.',
+    search_placeholder: 'Cari nama kartu...', loading: 'Memuat kartu...', load_error: 'Gagal memuat.', no_result: 'Tidak ada hasil.',
+  },
+  vi: {
+    about_title: 'Ultra Tarot là gì?',
+    about_p1: 'Ultra Tarot không chỉ là ứng dụng tra cứu ý nghĩa bài. AI hiểu sâu câu hỏi của bạn và tổng hợp biểu tượng, ý nghĩa vị trí và luồng năng lượng giữa các lá bài để cung cấp <strong style="color:var(--gold)">bản đọc cá nhân hóa dành riêng cho bạn</strong>.',
+    about_h2: 'Khác biệt với các app tarot khác?',
+    about_p2: 'Hầu hết các app tarot hiển thị văn bản soạn sẵn khi rút bài. Ultra Tarot dùng Claude AI phân tích bối cảnh câu hỏi, ý nghĩa vị trí trong trải bài và mối quan hệ giữa các lá bài theo thời gian thực — như buổi tham vấn 1-1 với chuyên gia tarot.',
+    about_h3: 'Tính năng chính',
+    feat1_title: 'Đọc bài AI cá nhân', feat1_desc: 'Diễn giải tối ưu cho câu hỏi của bạn',
+    feat2_title: '28 kiểu trải bài', feat2_desc: 'AI tự động chọn kiểu trải phù hợp nhất',
+    feat3_title: '15 ngôn ngữ', feat3_desc: 'Tự động nhận diện ngôn ngữ trình duyệt',
+    feat4_title: 'Diễn giải chiều thuận', feat4_desc: 'Tập trung vào ý nghĩa đa chiều của lá bài',
+    tarot_h1: 'Lịch sử Tarot',
+    tarot_p1: 'Tarot bắt đầu là trò chơi bài ở Ý thế kỷ 15. Các nhà huyền bí học Pháp thế kỷ 18 phát triển thành công cụ bói toán, và thế kỷ 20 A.E. Waite hoàn thiện bộ bài Rider-Waite — phổ biến nhất hiện nay.',
+    tarot_h2: '78 lá bài',
+    tarot_major: 'Đại Bí Ẩn (22 lá)',
+    tarot_p2: 'Từ The Fool (0) đến The World (21), tượng trưng cho hành trình lớn của cuộc đời và các nguyên mẫu phổ quát, đại diện cho những bước ngoặt quan trọng.',
+    tarot_minor: 'Tiểu Bí Ẩn (56 lá)',
+    tarot_p3: 'Chia thành bốn chất — Gậy, Chén, Kiếm, Xu Vàng — đề cập tình huống hàng ngày, cảm xúc, hành động và thực tại vật chất, gồm bài số (Át–10) và bài triều đình (Page, Hiệp sĩ, Hoàng hậu, Vua).',
+    tarot_h3: 'Trải bài là gì?',
+    tarot_p4: 'Trải bài xác định cách đặt bài và ý nghĩa từng vị trí. Trải 3 lá đề cập Quá khứ–Hiện tại–Tương lai; Celtic Cross dùng 10 lá để phân tích sâu. AI của Ultra Tarot tự động chọn kiểu trải phù hợp nhất từ 28 lựa chọn.',
+    tarot_h4: 'Cách tiếp cận Tarot',
+    tarot_p5: 'Tarot không phải lời tiên tri quyết định tương lai bạn. Đây là công cụ phản tư giúp bạn nhìn hoàn cảnh từ nhiều góc độ, lắng nghe tiếng nói nội tâm và có thêm nhận thức để quyết định tốt hơn. Bài đặt câu hỏi — câu trả lời đã có trong bạn.',
+    search_placeholder: 'Tìm theo tên lá bài...', loading: 'Đang tải bài...', load_error: 'Tải thất bại.', no_result: 'Không có kết quả.',
+  },
+  tr: {
+    about_title: 'Ultra Tarot Nedir?',
+    about_p1: 'Ultra Tarot, basit bir kart referans uygulamasından çok daha fazlasıdır. Yapay zeka sorunuzu derinlemesine anlayarak çekilen kartların sembollerini, konum anlamlarını ve kartlar arasındaki enerji akışını sentezleyerek <strong style="color:var(--gold)">sadece size özel kişiselleştirilmiş bir okuma</strong> sunar.',
+    about_h2: 'Diğer tarot uygulamalarından farkı nedir?',
+    about_p2: 'Çoğu tarot uygulaması kart çekildiğinde önceden yazılmış metin gösterir. Ultra Tarot, sorunuzun bağlamını, spredeki konum anlamlarını ve kartlar arasındaki ilişkileri gerçek zamanlı olarak analiz etmek için Claude AI kullanır — deneyimli bir tarot okuyucusuyla bire bir seans gibi.',
+    about_h3: 'Temel Özellikler',
+    feat1_title: 'AI Kişisel Okuma', feat1_desc: 'Sorunuza özel yorum',
+    feat2_title: '28 Spread', feat2_desc: 'AI en uygun spreadi otomatik seçer',
+    feat3_title: '15 Dil', feat3_desc: 'Tarayıcı dilini otomatik algılar',
+    feat4_title: 'Düz Yorum', feat4_desc: 'Kartın çok boyutlu anlamına odaklanır',
+    tarot_h1: 'Tarot\'un Tarihi',
+    tarot_p1: '15. yüzyıl İtalya\'sında kart oyunu olarak başladı. 18. yüzyılda Fransız mistikler onu kehanet aracı olarak geliştirdi; 20. yüzyılda A.E. Waite günümüzde en yaygın kullanılan Rider-Waite destesini tamamladı.',
+    tarot_h2: '78 Kart',
+    tarot_major: 'Büyük Arkana (22 kart)',
+    tarot_p2: 'The Fool\'dan (0) The World\'e (21) kadar, hayatın büyük yolculuklarını ve evrensel arketipleri sembolize eder; önemli dönüm noktalarını ve büyük güçleri temsil eder.',
+    tarot_minor: 'Küçük Arkana (56 kart)',
+    tarot_p3: 'Değnekler, Kupalar, Kılıçlar ve Pentakllar olmak üzere dört takıma bölünür; günlük durumlar, duygular, eylemler ve maddi gerçekliği kapsar; sayı kartları (As–10) ve saray kartları (Sayfa, Şövalye, Kraliçe, Kral) içerir.',
+    tarot_h3: 'Spread Nedir?',
+    tarot_p4: 'Spread, kartların nasıl yerleştirileceğini ve her pozisyonun anlamını tanımlar. 3 kartlı spread Geçmiş–Şimdi–Gelecek\'i kapsar; Kelt Haçı 10 kart ile derinlemesine analiz yapar. Ultra Tarot\'un AI\'si 28 seçenek arasından en uygun spreadi otomatik seçer.',
+    tarot_h4: 'Tarota Yaklaşım',
+    tarot_p5: 'Tarot, geleceğinizi belirleyen bir kehanet değildir. Durumunuzu farklı açılardan görmenize, iç sesinizi dinlemenize ve daha iyi kararlar için sezgi kazanmanıza yardımcı olan bir yansıma aracıdır. Kartlar soruları sorar — yanıtlar zaten içinizdedir.',
+    search_placeholder: 'Kart adıyla ara...', loading: 'Kartlar yükleniyor...', load_error: 'Yükleme başarısız.', no_result: 'Sonuç bulunamadı.',
+  },
+  pl: {
+    about_title: 'Czym jest Ultra Tarot?',
+    about_p1: 'Ultra Tarot to znacznie więcej niż prosta aplikacja referencyjna. AI głęboko rozumie Twoje pytanie i syntetyzuje symbole, znaczenia pozycji i przepływ energii między kartami, aby dostarczyć <strong style="color:var(--gold)">spersonalizowaną interpretację stworzoną specjalnie dla Ciebie</strong>.',
+    about_h2: 'Czym różni się od innych aplikacji tarota?',
+    about_p2: 'Większość aplikacji tarota wyświetla z góry napisany tekst po wylosowaniu karty. Ultra Tarot używa Claude AI do analizy kontekstu pytania, znaczeń pozycji w układzie i relacji między kartami w czasie rzeczywistym — jak sesja 1 na 1 z doświadczonym tarologiem.',
+    about_h3: 'Kluczowe funkcje',
+    feat1_title: 'Spersonalizowane AI', feat1_desc: 'Interpretacja dostosowana do Twojego pytania',
+    feat2_title: '28 układów', feat2_desc: 'AI automatycznie wybiera najlepszy układ',
+    feat3_title: '15 języków', feat3_desc: 'Automatyczne wykrywanie języka przeglądarki',
+    feat4_title: 'Interpretacja prosta', feat4_desc: 'Skupienie na wielowymiarowym znaczeniu karty',
+    tarot_h1: 'Historia Tarota',
+    tarot_p1: 'Tarot zaczął jako gra karciana we Włoszech XV wieku. Francuscy mistycy XVIII wieku rozwinęli go jako narzędzie wróżbiarskie, a w XX wieku A.E. Waite ukończył talię Rider-Waite — dziś najszerzej stosowaną.',
+    tarot_h2: '78 kart',
+    tarot_major: 'Wielkie Arkana (22 karty)',
+    tarot_p2: 'Od Głupca (0) do Świata (21), symbolizują wielkie podróże życia i uniwersalne archetypy, reprezentując punkty zwrotne i większe siły.',
+    tarot_minor: 'Małe Arkana (56 kart)',
+    tarot_p3: 'Podzielone na cztery kolory — Różdżki, Kielichy, Miecze i Pentakle — obejmują codzienne sytuacje, emocje, działania i rzeczywistość materialną, z kartami liczbowymi (As–10) i figurami (Walet, Rycerz, Królowa, Król).',
+    tarot_h3: 'Czym jest układ?',
+    tarot_p4: 'Układ definiuje sposób rozmieszczenia kart i znaczenie każdej pozycji. Układ 3 kart obejmuje Przeszłość–Teraźniejszość–Przyszłość; Celtycki Krzyż używa 10 kart do dogłębnej analizy. AI Ultra Tarot automatycznie wybiera najbardziej odpowiedni układ spośród 28 opcji.',
+    tarot_h4: 'Jak podejść do Tarota',
+    tarot_p5: 'Tarot nie jest proroctwem, które określa Twoją przyszłość. To narzędzie refleksji pomagające spojrzeć na sytuację z wielu stron, wysłuchać wewnętrznego głosu i zyskać wgląd dla lepszych decyzji. Karty zadają pytania — odpowiedzi są już w Tobie.',
+    search_placeholder: 'Szukaj po nazwie karty...', loading: 'Ładowanie kart...', load_error: 'Ładowanie nie powiodło się.', no_result: 'Brak wyników.',
+  },
+};
+
+function getCT() { return CONTENT_TEXT[currentLang] || CONTENT_TEXT.en; }
+
 function getAboutContent() {
+  const t = getCT();
   return `
   <div class="info-section">
-    <h3>울트라타로란?</h3>
-    <p>울트라타로는 단순히 카드의 텍스트 해설을 읽어주는 서비스가 아닙니다. AI가 당신의 질문을 깊이 이해하고, 뽑힌 카드들의 상징·위치 의미·카드 간 에너지 흐름을 종합하여 <strong style="color:var(--gold)">당신만을 위한 맞춤형 해석</strong>을 제공합니다.</p>
+    <h3>${t.about_title}</h3>
+    <p>${t.about_p1}</p>
   </div>
   <div class="info-section">
-    <h3>다른 타로 앱과 무엇이 다른가요?</h3>
-    <p>대부분의 타로 앱은 카드를 뽑으면 미리 저장된 텍스트를 보여줍니다. 울트라타로는 Claude AI가 질문의 맥락, 스프레드의 위치 의미, 카드들 사이의 관계를 실시간으로 분석하여 마치 숙련된 타로 리더와 1:1 상담을 받는 것 같은 경험을 제공합니다.</p>
+    <h3>${t.about_h2}</h3>
+    <p>${t.about_p2}</p>
   </div>
   <div class="info-section">
-    <h3>주요 특징</h3>
+    <h3>${t.about_h3}</h3>
     <div class="feature-grid">
-      <div class="feature-card"><div class="feat-icon">🤖</div><div class="feat-title">AI 맞춤 해석</div><div class="feat-desc">질문에 최적화된 개인화 리딩</div></div>
-      <div class="feature-card"><div class="feat-icon">🗺️</div><div class="feat-title">28가지 스프레드</div><div class="feat-desc">질문에 맞는 스프레드를 AI가 자동 선택</div></div>
-      <div class="feature-card"><div class="feat-icon">🌍</div><div class="feat-title">15개 언어</div><div class="feat-desc">브라우저 언어 자동 감지</div></div>
-      <div class="feature-card"><div class="feat-icon">✨</div><div class="feat-title">정방향 해석</div><div class="feat-desc">카드 본연의 다면적 의미에 집중</div></div>
+      <div class="feature-card"><div class="feat-icon">🤖</div><div class="feat-title">${t.feat1_title}</div><div class="feat-desc">${t.feat1_desc}</div></div>
+      <div class="feature-card"><div class="feat-icon">🗺️</div><div class="feat-title">${t.feat2_title}</div><div class="feat-desc">${t.feat2_desc}</div></div>
+      <div class="feature-card"><div class="feat-icon">🌍</div><div class="feat-title">${t.feat3_title}</div><div class="feat-desc">${t.feat3_desc}</div></div>
+      <div class="feature-card"><div class="feat-icon">✨</div><div class="feat-title">${t.feat4_title}</div><div class="feat-desc">${t.feat4_desc}</div></div>
     </div>
   </div>`;
 }
 
 function getTarotContent() {
+  const t = getCT();
   return `
   <div class="info-section">
-    <h3>타로카드의 역사</h3>
-    <p>타로는 15세기 이탈리아에서 카드 게임으로 시작되었습니다. 18세기 프랑스의 신비주의자들이 점술 도구로 발전시켰고, 20세기 아서 에드워드 웨이트(A.E. Waite)가 현재 가장 널리 쓰이는 라이더-웨이트 덱을 완성했습니다.</p>
+    <h3>${t.tarot_h1}</h3>
+    <p>${t.tarot_p1}</p>
   </div>
   <div class="info-section">
-    <h3>78장의 구성</h3>
-    <p><strong style="color:var(--gold)">메이저 아르카나 (22장)</strong><br/>바보(0번)부터 세계(21번)까지, 인생의 큰 여정과 보편적 원형을 상징합니다. 운명적 흐름이나 삶의 중요한 전환점을 나타냅니다.</p>
-    <p><strong style="color:var(--gold)">마이너 아르카나 (56장)</strong><br/>완드·컵·소드·펜타클 4개 수트로 구성됩니다. 일상적 상황과 감정, 행동, 물질적 현실을 다루며 에이스~10의 숫자 카드와 페이지·나이트·퀸·킹의 코트 카드로 이루어집니다.</p>
+    <h3>${t.tarot_h2}</h3>
+    <p><strong style="color:var(--gold)">${t.tarot_major}</strong><br/>${t.tarot_p2}</p>
+    <p><strong style="color:var(--gold)">${t.tarot_minor}</strong><br/>${t.tarot_p3}</p>
   </div>
   <div class="info-section">
-    <h3>스프레드란?</h3>
-    <p>카드를 배치하는 방식과 각 위치의 의미를 정의한 틀입니다. 3카드 스프레드는 '과거-현재-미래'를 나타내고, 켈틱 크로스는 10장으로 상황을 다각도로 분석합니다. 울트라타로는 28가지 스프레드 중 질문에 가장 적합한 것을 AI가 자동으로 선택합니다.</p>
+    <h3>${t.tarot_h3}</h3>
+    <p>${t.tarot_p4}</p>
   </div>
   <div class="info-section">
-    <h3>타로를 대하는 방법</h3>
-    <p>타로는 미래를 결정짓는 예언 도구가 아닙니다. 현재 상황을 다양한 시각으로 바라보고 내면의 목소리에 귀 기울이며, 더 나은 선택을 위한 통찰을 얻는 성찰의 도구입니다. 카드는 당신에게 질문을 던지고, 답은 결국 당신 안에 있습니다.</p>
+    <h3>${t.tarot_h4}</h3>
+    <p>${t.tarot_p5}</p>
   </div>`;
 }
 
 function getCardDictHTML() {
+  const t = getCT();
   return `
   <div class="card-dict-search">
-    <input type="text" id="card-search-input" placeholder="카드 이름으로 검색..." oninput="filterCards(this.value)" />
+    <input type="text" id="card-search-input" placeholder="${t.search_placeholder}" oninput="filterCards(this.value)" />
   </div>
   <div class="card-dict-grid" id="card-dict-grid">
-    <div style="text-align:center;padding:40px;color:var(--text-dim);grid-column:1/-1">카드를 불러오는 중...</div>
+    <div style="text-align:center;padding:40px;color:var(--text-dim);grid-column:1/-1">${t.loading}</div>
   </div>`;
 }
 
@@ -2304,15 +2657,16 @@ async function loadCardDict() {
     renderCardDict(allCardData);
   } catch(e) {
     const g = document.getElementById('card-dict-grid');
-    if (g) g.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-dim);grid-column:1/-1">카드를 불러오지 못했습니다.</div>';
+    if (g) g.innerHTML = `<div style="text-align:center;padding:40px;color:var(--text-dim);grid-column:1/-1">${getCT().load_error}</div>`;
   }
 }
 
 function renderCardDict(cards) {
   const grid = document.getElementById('card-dict-grid');
   if (!grid) return;
+  const t = getCT();
   grid.innerHTML = cards.length === 0
-    ? '<div style="text-align:center;padding:40px;color:var(--text-dim);grid-column:1/-1">검색 결과가 없습니다.</div>'
+    ? `<div style="text-align:center;padding:40px;color:var(--text-dim);grid-column:1/-1">${t.no_result}</div>`
     : cards.map(card => `
       <div class="dict-card" onclick="openCardDetail('${card.name_en.replace(/'/g,"\\'")}')">
         <img src="/images/${card.image_file}" alt="${card.name_en}" loading="lazy" />
