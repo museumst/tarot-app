@@ -1050,6 +1050,24 @@
 
 <script>
 // ── 다국어 ──
+const NAV_LABELS = {
+  ko: { about:'앱 소개', tarot:'타로카드란?', cards:'카드 의미 사전', back:'← 뒤로' },
+  en: { about:'About', tarot:'What is Tarot?', cards:'Card Meanings', back:'← Back' },
+  ja: { about:'アプリについて', tarot:'タロットとは？', cards:'カードの意味', back:'← 戻る' },
+  zh: { about:'关于应用', tarot:'什么是塔罗？', cards:'牌义', back:'← 返回' },
+  es: { about:'Sobre la App', tarot:'¿Qué es el Tarot?', cards:'Significados', back:'← Volver' },
+  fr: { about:'À propos', tarot:"Qu'est-ce que le Tarot?", cards:'Significations', back:'← Retour' },
+  de: { about:'Über die App', tarot:'Was ist Tarot?', cards:'Kartenbedeutungen', back:'← Zurück' },
+  pt: { about:'Sobre o App', tarot:'O que é Tarot?', cards:'Significados', back:'← Voltar' },
+  it: { about:'Informazioni', tarot:"Cos'è il Tarot?", cards:'Significati', back:'← Indietro' },
+  ru: { about:'О приложении', tarot:'Что такое Таро?', cards:'Значения карт', back:'← Назад' },
+  th: { about:'เกี่ยวกับแอป', tarot:'ไพ่ทาโรต์คืออะไร?', cards:'ความหมายของไพ่', back:'← ย้อนกลับ' },
+  id: { about:'Tentang Aplikasi', tarot:'Apa itu Tarot?', cards:'Makna Kartu', back:'← Kembali' },
+  vi: { about:'Giới thiệu', tarot:'Tarot là gì?', cards:'Ý nghĩa bài', back:'← Quay lại' },
+  tr: { about:'Hakkında', tarot:'Tarot Nedir?', cards:'Kart Anlamları', back:'← Geri' },
+  pl: { about:'O aplikacji', tarot:'Czym jest Tarot?', cards:'Znaczenia kart', back:'← Wstecz' },
+};
+
 const LANG_LIST = [
   { code:'ko', flag:'🇰🇷', label:'한국어' },
   { code:'en', flag:'🇺🇸', label:'English' },
@@ -2196,23 +2214,6 @@ function toggleNav() { document.getElementById('nav-overlay').classList.toggle('
 function closeNav()  { document.getElementById('nav-overlay').classList.remove('open'); }
 function handleNavOverlayClick(e) { if (e.target === document.getElementById('nav-overlay')) closeNav(); }
 
-const NAV_LABELS = {
-  ko: { about:'앱 소개', tarot:'타로카드란?', cards:'카드 의미 사전', back:'← 뒤로' },
-  en: { about:'About', tarot:'What is Tarot?', cards:'Card Meanings', back:'← Back' },
-  ja: { about:'アプリについて', tarot:'タロットとは？', cards:'カードの意味', back:'← 戻る' },
-  zh: { about:'关于应用', tarot:'什么是塔罗？', cards:'牌义', back:'← 返回' },
-  es: { about:'Sobre la App', tarot:'¿Qué es el Tarot?', cards:'Significados', back:'← Volver' },
-  fr: { about:'À propos', tarot:'Qu\'est-ce que le Tarot?', cards:'Significations', back:'← Retour' },
-  de: { about:'Über die App', tarot:'Was ist Tarot?', cards:'Kartenbedeutungen', back:'← Zurück' },
-  pt: { about:'Sobre o App', tarot:'O que é Tarot?', cards:'Significados', back:'← Voltar' },
-  it: { about:'Informazioni', tarot:'Cos\'è il Tarot?', cards:'Significati', back:'← Indietro' },
-  ru: { about:'О приложении', tarot:'Что такое Таро?', cards:'Значения карт', back:'← Назад' },
-  th: { about:'เกี่ยวกับแอป', tarot:'ไพ่ทาโรต์คืออะไร?', cards:'ความหมายของไพ่', back:'← ย้อนกลับ' },
-  id: { about:'Tentang Aplikasi', tarot:'Apa itu Tarot?', cards:'Makna Kartu', back:'← Kembali' },
-  vi: { about:'Giới thiệu', tarot:'Tarot là gì?', cards:'Ý nghĩa bài', back:'← Quay lại' },
-  tr: { about:'Hakkında', tarot:'Tarot Nedir?', cards:'Kart Anlamları', back:'← Geri' },
-  pl: { about:'O aplikacji', tarot:'Czym jest Tarot?', cards:'Znaczenia kart', back:'← Wstecz' },
-};
 
 function updateMenuLabels() {
   const L = NAV_LABELS[currentLang] || NAV_LABELS.en;
