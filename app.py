@@ -93,7 +93,8 @@ async def verify_payment(request: PaymentVerifyRequest):
     if paid != request.amount:
         raise HTTPException(status_code=400, detail="결제 금액이 일치하지 않습니다.")
 
-    credits = request.amount // 100
+    CREDIT_TABLE = {1000: 10, 3000: 35, 5000: 60}
+    credits = CREDIT_TABLE.get(request.amount, request.amount // 100)
     return {"ok": True, "credits": credits}
 
 
