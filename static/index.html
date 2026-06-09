@@ -1011,6 +1011,43 @@
   </div>
 </div>
 
+<!-- ── 햄버거 메뉴 버튼 ── -->
+<button id="menu-btn" onclick="toggleNav()">☰</button>
+
+<!-- ── 네비게이션 오버레이 ── -->
+<div id="nav-overlay" onclick="handleNavOverlayClick(event)">
+  <nav id="nav-panel">
+    <button id="nav-close" onclick="closeNav()">✕</button>
+    <div class="nav-logo">✨ 울트라타로</div>
+    <button class="nav-item" onclick="openContent('about')">
+      <span id="nav-label-about">앱 소개</span>
+    </button>
+    <button class="nav-item" onclick="openContent('tarot')">
+      <span id="nav-label-tarot">타로카드란?</span>
+    </button>
+    <button class="nav-item" onclick="openContent('cards')">
+      <span id="nav-label-cards">카드 의미 사전</span>
+    </button>
+  </nav>
+</div>
+
+<!-- ── 콘텐츠 패널 ── -->
+<div id="content-panel">
+  <div id="content-header">
+    <button id="content-back" onclick="closeContent()">← 뒤로</button>
+    <h2 id="content-title"></h2>
+  </div>
+  <div id="content-body"></div>
+</div>
+
+<!-- ── 카드 상세 모달 ── -->
+<div id="card-detail-modal" onclick="closeCardDetail(event)">
+  <div id="card-detail-box">
+    <button id="card-detail-close" onclick="closeCardDetail()">✕</button>
+    <div class="card-detail-inner" id="card-detail-inner"></div>
+  </div>
+</div>
+
 <script>
 // ── 다국어 ──
 const LANG_LIST = [
@@ -2179,10 +2216,11 @@ const NAV_LABELS = {
 
 function updateMenuLabels() {
   const L = NAV_LABELS[currentLang] || NAV_LABELS.en;
-  document.getElementById('nav-label-about').textContent  = L.about;
-  document.getElementById('nav-label-tarot').textContent  = L.tarot;
-  document.getElementById('nav-label-cards').textContent  = L.cards;
-  document.getElementById('content-back').textContent     = L.back;
+  const s = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  s('nav-label-about', L.about);
+  s('nav-label-tarot', L.tarot);
+  s('nav-label-cards', L.cards);
+  s('content-back',    L.back);
 }
 
 // ── 콘텐츠 패널 ──
@@ -2452,43 +2490,6 @@ init();
   document.getElementById('logout-btn').addEventListener('click', () => signOut(auth));
 </script>
 <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
-
-<!-- ── 햄버거 메뉴 버튼 ── -->
-<button id="menu-btn" onclick="toggleNav()">☰</button>
-
-<!-- ── 네비게이션 오버레이 ── -->
-<div id="nav-overlay" onclick="handleNavOverlayClick(event)">
-  <nav id="nav-panel">
-    <button id="nav-close" onclick="closeNav()">✕</button>
-    <div class="nav-logo">✨ 울트라타로</div>
-    <button class="nav-item" onclick="openContent('about')">
-      <span id="nav-label-about">앱 소개</span>
-    </button>
-    <button class="nav-item" onclick="openContent('tarot')">
-      <span id="nav-label-tarot">타로카드란?</span>
-    </button>
-    <button class="nav-item" onclick="openContent('cards')">
-      <span id="nav-label-cards">카드 의미 사전</span>
-    </button>
-  </nav>
-</div>
-
-<!-- ── 콘텐츠 패널 ── -->
-<div id="content-panel">
-  <div id="content-header">
-    <button id="content-back" onclick="closeContent()">← 뒤로</button>
-    <h2 id="content-title"></h2>
-  </div>
-  <div id="content-body"></div>
-</div>
-
-<!-- ── 카드 상세 모달 ── -->
-<div id="card-detail-modal" onclick="closeCardDetail(event)">
-  <div id="card-detail-box">
-    <button id="card-detail-close" onclick="closeCardDetail()">✕</button>
-    <div class="card-detail-inner" id="card-detail-inner"></div>
-  </div>
-</div>
 
 <footer id="site-footer">
   <div class="footer-inner">
