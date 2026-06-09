@@ -670,6 +670,21 @@
     }
     #charge-close:hover { color: var(--text); }
     #charge-status { color: var(--text-dim); font-size: .82rem; min-height: 20px; }
+    .pay-method-tabs {
+      display: flex; gap: 8px; margin-bottom: 20px;
+    }
+    .pay-method-tab {
+      flex: 1; padding: 10px 8px; border-radius: 10px; cursor: pointer;
+      border: 1px solid rgba(196,169,107,.25);
+      background: rgba(196,169,107,.05);
+      color: var(--text-dim); font-size: .85rem;
+      font-family: 'Noto Sans KR', sans-serif;
+      transition: all .2s; display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .pay-method-tab.active {
+      border-color: var(--gold); background: rgba(196,169,107,.15);
+      color: var(--gold); font-weight: 700;
+    }
     #charge-phone-wrap {
       margin-bottom: 16px; text-align: left;
     }
@@ -829,6 +844,10 @@
     <button id="charge-close" onclick="closeChargeModal()">✕</button>
     <h3>✨ 크레딧 충전</h3>
     <p>크레딧 1개 = 리딩 1회 (100원)</p>
+    <div class="pay-method-tabs">
+      <button class="pay-method-tab active" id="tab-card" onclick="selectPayMethod('card')">💳 신용카드</button>
+      <button class="pay-method-tab" id="tab-kakao" onclick="selectPayMethod('kakao')">🟡 카카오페이</button>
+    </div>
     <div id="charge-phone-wrap">
       <label for="charge-phone">📱 휴대폰 번호 (이니시스 결제 필수)</label>
       <input id="charge-phone" type="tel" placeholder="010-0000-0000" maxlength="13" />
@@ -1836,8 +1855,19 @@ function resetAll() {
 
 // ── 포트원 v2 설정 ──
 const FREE_LIMIT = 3; // Firebase 모듈과 동기화
-const PORTONE_STORE_ID  = 'store-62ed5f10-8b20-4a78-90f1-8b1bd9d6b313';
-const PORTONE_CHANNEL_KEY = 'channel-key-70b6a6b0-bd5b-4c1e-a829-ca1e92dd7efb';
+const PORTONE_STORE_ID       = 'store-62ed5f10-8b20-4a78-90f1-8b1bd9d6b313';
+const PORTONE_CHANNEL_KEY    = 'channel-key-70b6a6b0-bd5b-4c1e-a829-ca1e92dd7efb'; // KG이니시스
+const PORTONE_KAKAO_KEY      = 'channel-key-97b2196f-1b3f-4526-8f66-20a4b32288d1'; // 카카오페이
+const CREDIT_TABLE_JS        = {1000: 10, 3000: 35, 5000: 60};
+
+let selectedPayMethod = 'card';
+
+function selectPayMethod(method) {
+  selectedPayMethod = method;
+  document.getElementById('tab-card').classList.toggle('active', method === 'card');
+  document.getElementById('tab-kakao').classList.toggle('active', method === 'kakao');
+  document.getElementById('charge-phone-wrap').style.display = method === 'card' ? '' : 'none';
+}
 
 // ── 크레딧 UI ──
 function updateCreditBadge(credits) {
@@ -1891,35 +1921,46 @@ async function startPayment(amount) {
     return;
   }
 
-  // 전화번호 검증
-  const phoneRaw = (document.getElementById('charge-phone').value || '').replace(/\D/g, '');
-  if (!phoneRaw || phoneRaw.length < 10) {
-    statusEl.textContent = '휴대폰 번호를 올바르게 입력해 주세요.';
-    document.getElementById('charge-phone').focus();
-    return;
+  // 신용카드일 때만 전화번호 검증
+  let phoneRaw = '';
+  if (selectedPayMethod === 'card') {
+    phoneRaw = (document.getElementById('charge-phone').value || '').replace(/\D/g, '');
+    if (!phoneRaw || phoneRaw.length < 10) {
+      statusEl.textContent = '휴대폰 번호를 올바르게 입력해 주세요.';
+      document.getElementById('charge-phone').focus();
+      return;
+    }
   }
 
   statusEl.textContent = '결제창을 여는 중...';
 
   try {
-    // 이니시스 oid 최대 40자 제한: "t_" + uid 앞 14자 + "_" + 타임스탬프 뒤 8자리 = 25자
     const paymentId = `t_${window.currentUser.uid.slice(0, 14)}_${Date.now().toString().slice(-8)}`;
-    const credits = amount / 100;
+    const credits = CREDIT_TABLE_JS[amount] || (amount / 100);
 
-    const response = await PortOne.requestPayment({
+    const paymentParams = {
       storeId: PORTONE_STORE_ID,
-      channelKey: PORTONE_CHANNEL_KEY,
       paymentId,
       orderName: `타로 크레딧 ${credits}회`,
       totalAmount: amount,
       currency: 'KRW',
-      payMethod: 'CARD',
       customer: {
         email: window.currentUser.email,
         fullName: window.currentUser.displayName || '고객',
-        phoneNumber: phoneRaw,
       },
-    });
+    };
+
+    if (selectedPayMethod === 'kakao') {
+      paymentParams.channelKey = PORTONE_KAKAO_KEY;
+      paymentParams.payMethod = 'EASY_PAY';
+      paymentParams.easyPay = { easyPayProvider: 'KAKAOPAY' };
+    } else {
+      paymentParams.channelKey = PORTONE_CHANNEL_KEY;
+      paymentParams.payMethod = 'CARD';
+      paymentParams.customer.phoneNumber = phoneRaw;
+    }
+
+    const response = await PortOne.requestPayment(paymentParams);
 
     if (response.code != null) {
       statusEl.textContent = `결제 실패: ${response.message}`;
