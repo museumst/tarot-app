@@ -964,9 +964,9 @@
       </button>
     </div>
     <div id="no-credit-box">
-      <div class="nc-title">💳 크레딧이 부족합니다</div>
-      <div class="nc-desc">리딩 1회에 크레딧 1개(100원)가 필요합니다.</div>
-      <button class="btn" onclick="openChargeModal()">지금 충전하기</button>
+      <div class="nc-title" id="no-credit-title">💳 크레딧이 부족합니다</div>
+      <div class="nc-desc" id="no-credit-desc">리딩 1회에 크레딧 1개(100원)가 필요합니다.</div>
+      <button class="btn" id="no-credit-btn" onclick="openChargeModal()">지금 충전하기</button>
     </div>
     <div class="mt-16 row">
       <button class="btn btn-secondary" id="back-to-draw">← 다시 뽑기</button>
@@ -983,28 +983,28 @@
 <div id="charge-modal">
   <div id="charge-box">
     <button id="charge-close" onclick="closeChargeModal()">✕</button>
-    <h3>✨ 크레딧 충전</h3>
-    <p>크레딧 1개 = 리딩 1회 (100원)</p>
+    <h3 id="charge-modal-title">✨ 크레딧 충전</h3>
+    <p id="charge-modal-desc">크레딧 1개 = 리딩 1회 (100원)</p>
     <div class="pay-method-tabs">
       <button class="pay-method-tab active" id="tab-card" onclick="selectPayMethod('card')">💳 신용카드</button>
       <button class="pay-method-tab" id="tab-kakao" onclick="selectPayMethod('kakao')">🟡 카카오페이</button>
     </div>
     <div id="charge-phone-wrap">
-      <label for="charge-phone">📱 휴대폰 번호 (이니시스 결제 필수)</label>
+      <label id="charge-phone-label" for="charge-phone">📱 휴대폰 번호 (이니시스 결제 필수)</label>
       <input id="charge-phone" type="tel" placeholder="010-0000-0000" maxlength="13" />
     </div>
     <div class="charge-options">
       <div class="charge-opt" onclick="startPayment(1000)">
         <span class="opt-amount">1,000원</span>
-        <span class="opt-credits">10회 이용</span>
+        <span class="opt-credits" id="charge-opt-1">10회 이용</span>
       </div>
       <div class="charge-opt" onclick="startPayment(3000)">
         <span class="opt-amount">3,000원</span>
-        <span class="opt-credits">35회 이용</span>
+        <span class="opt-credits" id="charge-opt-2">35회 이용</span>
       </div>
       <div class="charge-opt" onclick="startPayment(5000)">
         <span class="opt-amount">5,000원</span>
-        <span class="opt-credits">60회 이용</span>
+        <span class="opt-credits" id="charge-opt-3">60회 이용</span>
       </div>
     </div>
     <div id="charge-status"></div>
@@ -1507,6 +1507,7 @@ function applyLang() {
   el('new-reading-btn').textContent = t('btn_new');
   el('logout-btn').textContent     = t('logout');
   updateMenuLabels();
+  updateChargeLangUI();
 
   // 랭 버튼 레이블 업데이트
   const lang = LANG_LIST.find(l => l.code === currentLang);
@@ -2082,9 +2083,9 @@ function updateCreditBadge(credits) {
 }
 
 function openChargeModal() {
+  updateChargeLangUI();
   document.getElementById('charge-modal').classList.add('open');
   document.getElementById('charge-status').textContent = '';
-  // 전화번호는 유지 (재충전 시 번거롭지 않게)
 }
 
 // 전화번호 입력 자동 포맷 (010-1234-5678)
@@ -2114,29 +2115,29 @@ function canStartReading() {
 
 // ── 포트원 결제 요청 ──
 async function startPayment(amount) {
+  const t = getCT();
   if (!window.currentUser) {
-    notify('로그인 후 충전할 수 있습니다.');
+    notify(t.pay_login);
     return;
   }
   const statusEl = document.getElementById('charge-status');
 
   if (typeof PortOne === 'undefined') {
-    statusEl.textContent = '결제 모듈이 로드되지 않았습니다. 페이지를 새로고침해 주세요.';
+    statusEl.textContent = t.pay_no_module;
     return;
   }
 
-  // 신용카드일 때만 전화번호 검증
   let phoneRaw = '';
   if (selectedPayMethod === 'card') {
     phoneRaw = (document.getElementById('charge-phone').value || '').replace(/\D/g, '');
     if (!phoneRaw || phoneRaw.length < 10) {
-      statusEl.textContent = '휴대폰 번호를 올바르게 입력해 주세요.';
+      statusEl.textContent = t.pay_phone_err;
       document.getElementById('charge-phone').focus();
       return;
     }
   }
 
-  statusEl.textContent = '결제창을 여는 중...';
+  statusEl.textContent = t.pay_opening;
 
   try {
     const paymentId = `t_${window.currentUser.uid.slice(0, 14)}_${Date.now().toString().slice(-8)}`;
@@ -2167,12 +2168,11 @@ async function startPayment(amount) {
     const response = await PortOne.requestPayment(paymentParams);
 
     if (response.code != null) {
-      statusEl.textContent = `결제 실패: ${response.message}`;
+      statusEl.textContent = t.pay_failed(response.message);
       return;
     }
 
-    // 서버 검증
-    statusEl.textContent = '결제 확인 중...';
+    statusEl.textContent = t.pay_verifying;
     const verifyRes = await fetch('/api/payment/verify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -2185,26 +2185,23 @@ async function startPayment(amount) {
 
     if (!verifyRes.ok) {
       const err = await verifyRes.json();
-      statusEl.textContent = `검증 실패: ${err.detail}`;
+      statusEl.textContent = t.pay_verify_failed(err.detail);
       return;
     }
 
     const result = await verifyRes.json();
 
-    // Firestore 크레딧 업데이트
     if (window.addCredits) {
       await window.addCredits(result.credits);
     }
 
     closeChargeModal();
-    notify(`충전 완료! ${result.credits}회가 추가되었습니다. 🎉`);
-
-    // no-credit-box 숨기기
+    notify(t.pay_success(result.credits));
     document.getElementById('no-credit-box').classList.remove('visible');
 
   } catch (e) {
-    const msg = e?.message || String(e) || '알 수 없는 오류';
-    statusEl.textContent = `오류: ${msg}`;
+    const msg = e?.message || String(e) || '?';
+    statusEl.textContent = t.pay_error(msg);
     console.error('[결제 오류]', e);
   }
 }
@@ -2266,6 +2263,15 @@ const CONTENT_TEXT = {
     tarot_h4: '타로를 대하는 방법',
     tarot_p5: '타로는 미래를 결정짓는 예언 도구가 아닙니다. 현재 상황을 다양한 시각으로 바라보고 내면의 목소리에 귀 기울이며, 더 나은 선택을 위한 통찰을 얻는 성찰의 도구입니다. 카드는 당신에게 질문을 던지고, 답은 결국 당신 안에 있습니다.',
     search_placeholder: '카드 이름으로 검색...', loading: '카드를 불러오는 중...', load_error: '카드를 불러오지 못했습니다.', no_result: '검색 결과가 없습니다.',
+    charge_title: '✨ 크레딧 충전', charge_desc: '크레딧 1개 = 리딩 1회 (100원)',
+    charge_tab_card: '💳 신용카드', charge_tab_kakao: '🟡 카카오페이',
+    charge_phone_label: '📱 휴대폰 번호 (이니시스 결제 필수)',
+    charge_opt: n => `${n}회 이용`,
+    no_credit_title: '💳 크레딧이 부족합니다', no_credit_desc: '리딩 1회에 크레딧 1개(100원)가 필요합니다.', no_credit_btn: '지금 충전하기',
+    pay_login: '로그인 후 충전할 수 있습니다.', pay_no_module: '결제 모듈이 로드되지 않았습니다. 페이지를 새로고침해 주세요.',
+    pay_phone_err: '휴대폰 번호를 올바르게 입력해 주세요.', pay_opening: '결제창을 여는 중...', pay_verifying: '결제 확인 중...',
+    pay_failed: m => `결제 실패: ${m}`, pay_verify_failed: m => `검증 실패: ${m}`, pay_error: m => `오류: ${m}`,
+    pay_success: n => `충전 완료! ${n}회가 추가되었습니다. 🎉`, badge_title: '클릭하여 충전',
   },
   en: {
     about_title: 'What is Ultra Tarot?',
@@ -2289,6 +2295,15 @@ const CONTENT_TEXT = {
     tarot_h4: 'How to Approach Tarot',
     tarot_p5: 'Tarot is not a prophecy that determines your future. It is a reflective tool that helps you view your situation from multiple angles, listen to your inner voice, and gain insight for better decisions. The cards pose the questions — the answers are already within you.',
     search_placeholder: 'Search by card name...', loading: 'Loading cards...', load_error: 'Failed to load cards.', no_result: 'No results found.',
+    charge_title: '✨ Credit Top-Up', charge_desc: '1 credit = 1 reading (₩100)',
+    charge_tab_card: '💳 Credit Card', charge_tab_kakao: '🟡 Kakao Pay',
+    charge_phone_label: '📱 Phone Number (required for card payment)',
+    charge_opt: n => `${n} readings`,
+    no_credit_title: '💳 Insufficient Credits', no_credit_desc: '1 credit (₩100) is required per reading.', no_credit_btn: 'Top Up Now',
+    pay_login: 'Please log in to top up.', pay_no_module: 'Payment module not loaded. Please refresh the page.',
+    pay_phone_err: 'Please enter a valid phone number.', pay_opening: 'Opening payment window...', pay_verifying: 'Verifying payment...',
+    pay_failed: m => `Payment failed: ${m}`, pay_verify_failed: m => `Verification failed: ${m}`, pay_error: m => `Error: ${m}`,
+    pay_success: n => `Top-up complete! ${n} readings added. 🎉`, badge_title: 'Click to top up',
   },
   ja: {
     about_title: 'ウルトラタロットとは？',
@@ -2312,6 +2327,15 @@ const CONTENT_TEXT = {
     tarot_h4: 'タロットとの向き合い方',
     tarot_p5: 'タロットは未来を決定づける予言ツールではありません。現在の状況を多角的に見つめ、内なる声に耳を傾け、より良い選択のための洞察を得る内省のツールです。カードはあなたに問いを投げかけ、答えは最終的にあなたの中にあります。',
     search_placeholder: 'カード名で検索...', loading: 'カードを読み込み中...', load_error: 'カードの読み込みに失敗しました。', no_result: '検索結果がありません。',
+    charge_title: '✨ クレジット チャージ', charge_desc: 'クレジット1個 = リーディング1回 (₩100)',
+    charge_tab_card: '💳 クレジットカード', charge_tab_kakao: '🟡 カカオペイ',
+    charge_phone_label: '📱 電話番号 (カード決済に必須)',
+    charge_opt: n => `${n}回利用`,
+    no_credit_title: '💳 クレジット不足', no_credit_desc: 'リーディング1回につきクレジット1個（₩100）が必要です。', no_credit_btn: '今すぐチャージ',
+    pay_login: 'ログイン後にチャージできます。', pay_no_module: '決済モジュールが読み込まれていません。ページを更新してください。',
+    pay_phone_err: '正しい電話番号を入力してください。', pay_opening: '決済画面を開いています...', pay_verifying: '決済確認中...',
+    pay_failed: m => `決済失敗: ${m}`, pay_verify_failed: m => `検証失敗: ${m}`, pay_error: m => `エラー: ${m}`,
+    pay_success: n => `チャージ完了！${n}回分が追加されました。🎉`, badge_title: 'クリックしてチャージ',
   },
   zh: {
     about_title: '关于超级塔罗',
@@ -2335,6 +2359,15 @@ const CONTENT_TEXT = {
     tarot_h4: '如何对待塔罗',
     tarot_p5: '塔罗不是决定未来的预言工具，而是帮助您从多角度审视现状、聆听内心声音、获得更好决策洞见的反思工具。牌向您提问，答案终究在您心中。',
     search_placeholder: '搜索牌名...', loading: '加载中...', load_error: '加载失败。', no_result: '无搜索结果。',
+    charge_title: '✨ 充值积分', charge_desc: '1积分 = 1次占卜 (₩100)',
+    charge_tab_card: '💳 信用卡', charge_tab_kakao: '🟡 Kakao Pay',
+    charge_phone_label: '📱 手机号码 (刷卡必填)',
+    charge_opt: n => `${n}次占卜`,
+    no_credit_title: '💳 积分不足', no_credit_desc: '每次占卜需要1积分（₩100）。', no_credit_btn: '立即充值',
+    pay_login: '请登录后充值。', pay_no_module: '支付模块未加载，请刷新页面。',
+    pay_phone_err: '请输入有效的手机号码。', pay_opening: '正在打开支付窗口...', pay_verifying: '正在验证支付...',
+    pay_failed: m => `支付失败: ${m}`, pay_verify_failed: m => `验证失败: ${m}`, pay_error: m => `错误: ${m}`,
+    pay_success: n => `充值成功！已添加${n}次占卜。🎉`, badge_title: '点击充值',
   },
   es: {
     about_title: '¿Qué es Ultra Tarot?',
@@ -2358,6 +2391,15 @@ const CONTENT_TEXT = {
     tarot_h4: 'Cómo acercarse al Tarot',
     tarot_p5: 'El tarot no es una profecía que determina tu futuro. Es una herramienta de reflexión que te ayuda a ver tu situación desde múltiples ángulos, escuchar tu voz interior y obtener perspectiva para mejores decisiones. Las cartas hacen las preguntas; las respuestas ya están dentro de ti.',
     search_placeholder: 'Buscar por nombre de carta...', loading: 'Cargando cartas...', load_error: 'Error al cargar las cartas.', no_result: 'Sin resultados.',
+    charge_title: '✨ Recargar Créditos', charge_desc: '1 crédito = 1 lectura (₩100)',
+    charge_tab_card: '💳 Tarjeta de Crédito', charge_tab_kakao: '🟡 Kakao Pay',
+    charge_phone_label: '📱 Número de teléfono (requerido)',
+    charge_opt: n => `${n} lecturas`,
+    no_credit_title: '💳 Créditos Insuficientes', no_credit_desc: 'Se necesita 1 crédito (₩100) por lectura.', no_credit_btn: 'Recargar Ahora',
+    pay_login: 'Inicia sesión para recargar.', pay_no_module: 'Módulo de pago no cargado. Actualiza la página.',
+    pay_phone_err: 'Ingresa un número de teléfono válido.', pay_opening: 'Abriendo ventana de pago...', pay_verifying: 'Verificando pago...',
+    pay_failed: m => `Pago fallido: ${m}`, pay_verify_failed: m => `Verificación fallida: ${m}`, pay_error: m => `Error: ${m}`,
+    pay_success: n => `¡Recarga completa! ${n} lecturas añadidas. 🎉`, badge_title: 'Clic para recargar',
   },
   fr: {
     about_title: "Qu'est-ce qu'Ultra Tarot ?",
@@ -2381,6 +2423,15 @@ const CONTENT_TEXT = {
     tarot_h4: 'Comment aborder le Tarot',
     tarot_p5: "Le tarot n'est pas une prophétie qui détermine votre avenir. C'est un outil de réflexion qui vous aide à voir votre situation sous différents angles, à écouter votre voix intérieure et à trouver des perspectives pour de meilleures décisions. Les cartes posent les questions — les réponses sont déjà en vous.",
     search_placeholder: 'Rechercher par nom de carte...', loading: 'Chargement des cartes...', load_error: 'Échec du chargement.', no_result: 'Aucun résultat.',
+    charge_title: '✨ Recharger des Crédits', charge_desc: '1 crédit = 1 lecture (₩100)',
+    charge_tab_card: '💳 Carte Bancaire', charge_tab_kakao: '🟡 Kakao Pay',
+    charge_phone_label: '📱 Numéro de téléphone (requis)',
+    charge_opt: n => `${n} lectures`,
+    no_credit_title: '💳 Crédits Insuffisants', no_credit_desc: '1 crédit (₩100) est requis par lecture.', no_credit_btn: 'Recharger Maintenant',
+    pay_login: 'Connectez-vous pour recharger.', pay_no_module: 'Module de paiement non chargé. Actualisez la page.',
+    pay_phone_err: 'Entrez un numéro de téléphone valide.', pay_opening: 'Ouverture de la fenêtre de paiement...', pay_verifying: 'Vérification du paiement...',
+    pay_failed: m => `Paiement échoué: ${m}`, pay_verify_failed: m => `Vérification échouée: ${m}`, pay_error: m => `Erreur: ${m}`,
+    pay_success: n => `Rechargement réussi ! ${n} lectures ajoutées. 🎉`, badge_title: 'Cliquez pour recharger',
   },
   de: {
     about_title: 'Was ist Ultra Tarot?',
@@ -2404,6 +2455,15 @@ const CONTENT_TEXT = {
     tarot_h4: 'Umgang mit dem Tarot',
     tarot_p5: 'Tarot ist keine Prophezeiung, die Ihre Zukunft bestimmt. Es ist ein Reflexionswerkzeug, das Ihnen hilft, Ihre Situation aus verschiedenen Blickwinkeln zu betrachten, auf Ihre innere Stimme zu hören und Einsichten für bessere Entscheidungen zu gewinnen. Die Karten stellen die Fragen — die Antworten liegen bereits in Ihnen.',
     search_placeholder: 'Nach Kartenname suchen...', loading: 'Karten werden geladen...', load_error: 'Laden fehlgeschlagen.', no_result: 'Keine Ergebnisse.',
+    charge_title: '✨ Credits Aufladen', charge_desc: '1 Credit = 1 Legung (₩100)',
+    charge_tab_card: '💳 Kreditkarte', charge_tab_kakao: '🟡 Kakao Pay',
+    charge_phone_label: '📱 Telefonnummer (erforderlich)',
+    charge_opt: n => `${n} Legungen`,
+    no_credit_title: '💳 Nicht genug Credits', no_credit_desc: '1 Credit (₩100) wird pro Legung benötigt.', no_credit_btn: 'Jetzt Aufladen',
+    pay_login: 'Bitte melden Sie sich an, um aufzuladen.', pay_no_module: 'Zahlungsmodul nicht geladen. Bitte aktualisieren Sie die Seite.',
+    pay_phone_err: 'Bitte geben Sie eine gültige Telefonnummer ein.', pay_opening: 'Zahlungsfenster wird geöffnet...', pay_verifying: 'Zahlung wird überprüft...',
+    pay_failed: m => `Zahlung fehlgeschlagen: ${m}`, pay_verify_failed: m => `Verifizierung fehlgeschlagen: ${m}`, pay_error: m => `Fehler: ${m}`,
+    pay_success: n => `Aufladung abgeschlossen! ${n} Legungen hinzugefügt. 🎉`, badge_title: 'Klicken zum Aufladen',
   },
   pt: {
     about_title: 'O que é o Ultra Tarot?',
@@ -2427,6 +2487,15 @@ const CONTENT_TEXT = {
     tarot_h4: 'Como se aproximar do Tarot',
     tarot_p5: 'O tarot não é uma profecia que determina seu futuro. É uma ferramenta de reflexão que ajuda a ver sua situação por múltiplos ângulos, ouvir sua voz interior e obter insights para melhores decisões. As cartas fazem as perguntas — as respostas já estão dentro de você.',
     search_placeholder: 'Buscar por nome da carta...', loading: 'Carregando cartas...', load_error: 'Falha ao carregar.', no_result: 'Sem resultados.',
+    charge_title: '✨ Recarregar Créditos', charge_desc: '1 crédito = 1 leitura (₩100)',
+    charge_tab_card: '💳 Cartão de Crédito', charge_tab_kakao: '🟡 Kakao Pay',
+    charge_phone_label: '📱 Número de telefone (obrigatório)',
+    charge_opt: n => `${n} leituras`,
+    no_credit_title: '💳 Créditos Insuficientes', no_credit_desc: '1 crédito (₩100) é necessário por leitura.', no_credit_btn: 'Recarregar Agora',
+    pay_login: 'Faça login para recarregar.', pay_no_module: 'Módulo de pagamento não carregado. Atualize a página.',
+    pay_phone_err: 'Insira um número de telefone válido.', pay_opening: 'Abrindo janela de pagamento...', pay_verifying: 'Verificando pagamento...',
+    pay_failed: m => `Pagamento falhou: ${m}`, pay_verify_failed: m => `Verificação falhou: ${m}`, pay_error: m => `Erro: ${m}`,
+    pay_success: n => `Recarga completa! ${n} leituras adicionadas. 🎉`, badge_title: 'Clique para recarregar',
   },
   it: {
     about_title: "Cos'è Ultra Tarot?",
@@ -2450,6 +2519,15 @@ const CONTENT_TEXT = {
     tarot_h4: 'Come approcciarsi ai Tarocchi',
     tarot_p5: 'I tarocchi non sono una profezia che determina il tuo futuro. Sono uno strumento di riflessione che ti aiuta a vedere la tua situazione da più angolazioni, ascoltare la tua voce interiore e ottenere intuizioni per decisioni migliori. Le carte pongono le domande — le risposte sono già dentro di te.',
     search_placeholder: 'Cerca per nome carta...', loading: 'Caricamento carte...', load_error: 'Caricamento fallito.', no_result: 'Nessun risultato.',
+    charge_title: '✨ Ricarica Crediti', charge_desc: '1 credito = 1 lettura (₩100)',
+    charge_tab_card: '💳 Carta di Credito', charge_tab_kakao: '🟡 Kakao Pay',
+    charge_phone_label: '📱 Numero di telefono (richiesto)',
+    charge_opt: n => `${n} letture`,
+    no_credit_title: '💳 Crediti Insufficienti', no_credit_desc: 'È necessario 1 credito (₩100) per lettura.', no_credit_btn: 'Ricarica Ora',
+    pay_login: 'Accedi per ricaricare.', pay_no_module: 'Modulo di pagamento non caricato. Aggiorna la pagina.',
+    pay_phone_err: 'Inserisci un numero di telefono valido.', pay_opening: 'Apertura finestra di pagamento...', pay_verifying: 'Verifica pagamento...',
+    pay_failed: m => `Pagamento fallito: ${m}`, pay_verify_failed: m => `Verifica fallita: ${m}`, pay_error: m => `Errore: ${m}`,
+    pay_success: n => `Ricarica completata! ${n} letture aggiunte. 🎉`, badge_title: 'Clicca per ricaricare',
   },
   ru: {
     about_title: 'Что такое Ultra Tarot?',
@@ -2473,6 +2551,15 @@ const CONTENT_TEXT = {
     tarot_h4: 'Как воспринимать Таро',
     tarot_p5: 'Таро — не пророчество, определяющее ваше будущее. Это инструмент рефлексии, помогающий рассмотреть ситуацию с разных сторон, прислушаться к внутреннему голосу и получить озарение для лучших решений. Карты задают вопросы — ответы уже внутри вас.',
     search_placeholder: 'Поиск по названию карты...', loading: 'Загрузка карт...', load_error: 'Ошибка загрузки.', no_result: 'Нет результатов.',
+    charge_title: '✨ Пополнить Кредиты', charge_desc: '1 кредит = 1 расклад (₩100)',
+    charge_tab_card: '💳 Банковская карта', charge_tab_kakao: '🟡 Kakao Pay',
+    charge_phone_label: '📱 Номер телефона (обязательно)',
+    charge_opt: n => `${n} раскладов`,
+    no_credit_title: '💳 Недостаточно кредитов', no_credit_desc: 'Для расклада необходим 1 кредит (₩100).', no_credit_btn: 'Пополнить сейчас',
+    pay_login: 'Войдите, чтобы пополнить.', pay_no_module: 'Модуль оплаты не загружен. Обновите страницу.',
+    pay_phone_err: 'Введите корректный номер телефона.', pay_opening: 'Открытие окна оплаты...', pay_verifying: 'Проверка оплаты...',
+    pay_failed: m => `Оплата не прошла: ${m}`, pay_verify_failed: m => `Ошибка проверки: ${m}`, pay_error: m => `Ошибка: ${m}`,
+    pay_success: n => `Пополнение выполнено! Добавлено ${n} раскладов. 🎉`, badge_title: 'Нажмите для пополнения',
   },
   th: {
     about_title: 'Ultra Tarot คืออะไร?',
@@ -2496,6 +2583,15 @@ const CONTENT_TEXT = {
     tarot_h4: 'วิธีเข้าถึงไพ่ทาโรต์',
     tarot_p5: 'ไพ่ทาโรต์ไม่ใช่คำทำนายที่กำหนดอนาคตของคุณ แต่เป็นเครื่องมือสะท้อนความคิดที่ช่วยให้คุณมองสถานการณ์จากหลายมุม ฟังเสียงภายใน และรับข้อมูลเชิงลึกเพื่อตัดสินใจที่ดีขึ้น ไพ่ตั้งคำถาม — คำตอบอยู่ในตัวคุณแล้ว',
     search_placeholder: 'ค้นหาด้วยชื่อไพ่...', loading: 'กำลังโหลดไพ่...', load_error: 'โหลดไม่สำเร็จ', no_result: 'ไม่พบผลลัพธ์',
+    charge_title: '✨ เติมเครดิต', charge_desc: '1 เครดิต = 1 ครั้ง (₩100)',
+    charge_tab_card: '💳 บัตรเครดิต', charge_tab_kakao: '🟡 Kakao Pay',
+    charge_phone_label: '📱 หมายเลขโทรศัพท์ (จำเป็น)',
+    charge_opt: n => `${n} ครั้ง`,
+    no_credit_title: '💳 เครดิตไม่เพียงพอ', no_credit_desc: 'ต้องใช้ 1 เครดิต (₩100) ต่อการอ่านบั้น', no_credit_btn: 'เติมเครดิตเดี๋ยวนี้',
+    pay_login: 'กรุณาเข้าสู่ระบบเพื่อเติมเครดิต', pay_no_module: 'โมดูลชำระเงินไม่ถูกโหลด กรุณารีเฟรชหน้า',
+    pay_phone_err: 'กรุณากรอกหมายเลขโทรศัพท์ที่ถูกต้อง', pay_opening: 'กำลังเปิดหน้าชำระเงิน...', pay_verifying: 'กำลังตรวจสอบการชำระเงิน...',
+    pay_failed: m => `ชำระเงินล้มเหลว: ${m}`, pay_verify_failed: m => `การตรวจสอบล้มเหลว: ${m}`, pay_error: m => `ข้อผิดพลาด: ${m}`,
+    pay_success: n => `เติมเครดิตสำเร็จ! เพิ่ม ${n} ครั้ง 🎉`, badge_title: 'คลิกเพื่อเติมเครดิต',
   },
   id: {
     about_title: 'Apa itu Ultra Tarot?',
@@ -2519,6 +2615,15 @@ const CONTENT_TEXT = {
     tarot_h4: 'Cara Mendekati Tarot',
     tarot_p5: 'Tarot bukan ramalan yang menentukan masa depan Anda. Ini adalah alat refleksi yang membantu Anda melihat situasi dari berbagai sudut, mendengarkan suara batin, dan mendapatkan wawasan untuk keputusan yang lebih baik. Kartu mengajukan pertanyaan — jawabannya sudah ada dalam diri Anda.',
     search_placeholder: 'Cari nama kartu...', loading: 'Memuat kartu...', load_error: 'Gagal memuat.', no_result: 'Tidak ada hasil.',
+    charge_title: '✨ Isi Ulang Kredit', charge_desc: '1 kredit = 1 bacaan (₩100)',
+    charge_tab_card: '💳 Kartu Kredit', charge_tab_kakao: '🟡 Kakao Pay',
+    charge_phone_label: '📱 Nomor Telepon (wajib)',
+    charge_opt: n => `${n} bacaan`,
+    no_credit_title: '💳 Kredit Tidak Cukup', no_credit_desc: '1 kredit (₩100) diperlukan per bacaan.', no_credit_btn: 'Isi Ulang Sekarang',
+    pay_login: 'Silakan masuk untuk mengisi ulang.', pay_no_module: 'Modul pembayaran tidak dimuat. Segarkan halaman.',
+    pay_phone_err: 'Masukkan nomor telepon yang valid.', pay_opening: 'Membuka jendela pembayaran...', pay_verifying: 'Memverifikasi pembayaran...',
+    pay_failed: m => `Pembayaran gagal: ${m}`, pay_verify_failed: m => `Verifikasi gagal: ${m}`, pay_error: m => `Kesalahan: ${m}`,
+    pay_success: n => `Isi ulang selesai! ${n} bacaan ditambahkan. 🎉`, badge_title: 'Klik untuk isi ulang',
   },
   vi: {
     about_title: 'Ultra Tarot là gì?',
@@ -2542,6 +2647,15 @@ const CONTENT_TEXT = {
     tarot_h4: 'Cách tiếp cận Tarot',
     tarot_p5: 'Tarot không phải lời tiên tri quyết định tương lai bạn. Đây là công cụ phản tư giúp bạn nhìn hoàn cảnh từ nhiều góc độ, lắng nghe tiếng nói nội tâm và có thêm nhận thức để quyết định tốt hơn. Bài đặt câu hỏi — câu trả lời đã có trong bạn.',
     search_placeholder: 'Tìm theo tên lá bài...', loading: 'Đang tải bài...', load_error: 'Tải thất bại.', no_result: 'Không có kết quả.',
+    charge_title: '✨ Nạp Thêm Lượt', charge_desc: '1 lượt = 1 lần đọc bài (₩100)',
+    charge_tab_card: '💳 Thẻ Tín Dụng', charge_tab_kakao: '🟡 Kakao Pay',
+    charge_phone_label: '📱 Số điện thoại (bắt buộc)',
+    charge_opt: n => `${n} lần đọc`,
+    no_credit_title: '💳 Không đủ lượt', no_credit_desc: 'Cần 1 lượt (₩100) cho mỗi lần đọc bài.', no_credit_btn: 'Nạp Ngay',
+    pay_login: 'Vui lòng đăng nhập để nạp thêm.', pay_no_module: 'Mô-đun thanh toán chưa tải. Vui lòng làm mới trang.',
+    pay_phone_err: 'Vui lòng nhập số điện thoại hợp lệ.', pay_opening: 'Đang mở cửa sổ thanh toán...', pay_verifying: 'Đang xác minh thanh toán...',
+    pay_failed: m => `Thanh toán thất bại: ${m}`, pay_verify_failed: m => `Xác minh thất bại: ${m}`, pay_error: m => `Lỗi: ${m}`,
+    pay_success: n => `Nạp thành công! Đã thêm ${n} lần đọc. 🎉`, badge_title: 'Nhấn để nạp thêm',
   },
   tr: {
     about_title: 'Ultra Tarot Nedir?',
@@ -2565,6 +2679,15 @@ const CONTENT_TEXT = {
     tarot_h4: 'Tarota Yaklaşım',
     tarot_p5: 'Tarot, geleceğinizi belirleyen bir kehanet değildir. Durumunuzu farklı açılardan görmenize, iç sesinizi dinlemenize ve daha iyi kararlar için sezgi kazanmanıza yardımcı olan bir yansıma aracıdır. Kartlar soruları sorar — yanıtlar zaten içinizdedir.',
     search_placeholder: 'Kart adıyla ara...', loading: 'Kartlar yükleniyor...', load_error: 'Yükleme başarısız.', no_result: 'Sonuç bulunamadı.',
+    charge_title: '✨ Kredi Yükle', charge_desc: '1 kredi = 1 okuma (₩100)',
+    charge_tab_card: '💳 Kredi Kartı', charge_tab_kakao: '🟡 Kakao Pay',
+    charge_phone_label: '📱 Telefon Numarası (gerekli)',
+    charge_opt: n => `${n} okuma`,
+    no_credit_title: '💳 Kredi Yetersiz', no_credit_desc: 'Her okuma için 1 kredi (₩100) gereklidir.', no_credit_btn: 'Şimdi Yükle',
+    pay_login: 'Yüklemek için giriş yapın.', pay_no_module: 'Ödeme modülü yüklenmedi. Sayfayı yenileyin.',
+    pay_phone_err: 'Geçerli bir telefon numarası girin.', pay_opening: 'Ödeme penceresi açılıyor...', pay_verifying: 'Ödeme doğrulanıyor...',
+    pay_failed: m => `Ödeme başarısız: ${m}`, pay_verify_failed: m => `Doğrulama başarısız: ${m}`, pay_error: m => `Hata: ${m}`,
+    pay_success: n => `Yükleme tamamlandı! ${n} okuma eklendi. 🎉`, badge_title: 'Yüklemek için tıklayın',
   },
   pl: {
     about_title: 'Czym jest Ultra Tarot?',
@@ -2588,10 +2711,37 @@ const CONTENT_TEXT = {
     tarot_h4: 'Jak podejść do Tarota',
     tarot_p5: 'Tarot nie jest proroctwem, które określa Twoją przyszłość. To narzędzie refleksji pomagające spojrzeć na sytuację z wielu stron, wysłuchać wewnętrznego głosu i zyskać wgląd dla lepszych decyzji. Karty zadają pytania — odpowiedzi są już w Tobie.',
     search_placeholder: 'Szukaj po nazwie karty...', loading: 'Ładowanie kart...', load_error: 'Ładowanie nie powiodło się.', no_result: 'Brak wyników.',
+    charge_title: '✨ Doładuj Kredyty', charge_desc: '1 kredyt = 1 czytanie (₩100)',
+    charge_tab_card: '💳 Karta Kredytowa', charge_tab_kakao: '🟡 Kakao Pay',
+    charge_phone_label: '📱 Numer telefonu (wymagany)',
+    charge_opt: n => `${n} czytań`,
+    no_credit_title: '💳 Niewystarczające kredyty', no_credit_desc: '1 kredyt (₩100) jest wymagany na czytanie.', no_credit_btn: 'Doładuj Teraz',
+    pay_login: 'Zaloguj się, aby doładować.', pay_no_module: 'Moduł płatności nie załadowany. Odśwież stronę.',
+    pay_phone_err: 'Wprowadź prawidłowy numer telefonu.', pay_opening: 'Otwieranie okna płatności...', pay_verifying: 'Weryfikacja płatności...',
+    pay_failed: m => `Płatność nieudana: ${m}`, pay_verify_failed: m => `Weryfikacja nieudana: ${m}`, pay_error: m => `Błąd: ${m}`,
+    pay_success: n => `Doładowanie zakończone! Dodano ${n} czytań. 🎉`, badge_title: 'Kliknij aby doładować',
   },
 };
 
 function getCT() { return CONTENT_TEXT[currentLang] || CONTENT_TEXT.en; }
+
+function updateChargeLangUI() {
+  const t = getCT();
+  const s = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  s('charge-modal-title', t.charge_title);
+  s('charge-modal-desc',  t.charge_desc);
+  s('tab-card',           t.charge_tab_card);
+  s('tab-kakao',          t.charge_tab_kakao);
+  s('charge-phone-label', t.charge_phone_label);
+  s('charge-opt-1', t.charge_opt(10));
+  s('charge-opt-2', t.charge_opt(35));
+  s('charge-opt-3', t.charge_opt(60));
+  s('no-credit-title', t.no_credit_title);
+  s('no-credit-desc',  t.no_credit_desc);
+  s('no-credit-btn',   t.no_credit_btn);
+  const badge = document.getElementById('credit-badge');
+  if (badge) badge.title = t.badge_title;
+}
 
 function getAboutContent() {
   const t = getCT();
