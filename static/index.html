@@ -670,6 +670,53 @@
     }
     #charge-close:hover { color: var(--text); }
     #charge-status { color: var(--text-dim); font-size: .82rem; min-height: 20px; }
+    /* 크레딧 내역 버튼 */
+    #history-btn {
+      background: none; border: 1px solid rgba(196,169,107,.35);
+      color: var(--text-dim); border-radius: 20px; padding: 3px 10px;
+      font-size: .72rem; cursor: pointer; transition: all .2s;
+    }
+    #history-btn:hover { border-color: var(--gold); color: var(--gold); }
+    /* 크레딧 내역 모달 */
+    #history-modal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.7); z-index: 9000;
+      align-items: center; justify-content: center;
+    }
+    #history-modal.open { display: flex; }
+    #history-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px 24px; width: min(94vw, 480px);
+      max-height: 80vh; display: flex; flex-direction: column;
+      position: relative;
+    }
+    #history-box h3 { font-family: 'Noto Sans KR',sans-serif; color: var(--gold); margin-bottom: 6px; }
+    #history-balance {
+      font-size: .85rem; color: var(--text-dim);
+      margin-bottom: 16px; padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    #history-balance strong { color: var(--gold); font-size: 1.1rem; }
+    #history-list { overflow-y: auto; flex: 1; }
+    .history-row {
+      display: grid; grid-template-columns: 80px 1fr auto auto;
+      gap: 6px 10px; align-items: center;
+      padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.06);
+      font-size: .8rem;
+    }
+    .history-row:last-child { border-bottom: none; }
+    .history-date { color: var(--text-dim); font-size: .72rem; }
+    .history-purpose { color: var(--text); }
+    .history-credits.charge { color: #7ecb7e; }
+    .history-credits.use { color: #f08080; }
+    .history-krw { color: var(--text-dim); font-size: .72rem; text-align: right; }
+    #history-empty { color: var(--text-dim); text-align: center; padding: 30px 0; font-size: .85rem; }
+    #history-close {
+      position: absolute; top: 14px; right: 18px;
+      background: none; border: none; color: var(--text-dim);
+      font-size: 1.3rem; cursor: pointer;
+    }
+    #history-close:hover { color: var(--text); }
     .pay-method-tabs {
       display: flex; gap: 8px; margin-bottom: 20px;
     }
@@ -875,6 +922,7 @@
       <span id="user-name"></span>
       <span id="free-badge" class="plenty"></span>
       <span id="credit-badge" onclick="openChargeModal()" title="클릭하여 충전"></span>
+      <button id="history-btn" onclick="openHistoryModal()" title="크레딧 이용내역">내역</button>
       <button id="logout-btn">로그아웃</button>
     </div>
   </div>
@@ -985,6 +1033,7 @@
     <button id="charge-close" onclick="closeChargeModal()">✕</button>
     <h3 id="charge-modal-title">✨ 크레딧 충전</h3>
     <p id="charge-modal-desc">크레딧 1개 = 리딩 1회 (100원)</p>
+    <p style="font-size:.75rem;color:rgba(196,169,107,.6);margin-top:-14px;margin-bottom:16px;">※ 충전 후 1년 이내 미사용 크레딧은 자동 소멸됩니다.</p>
     <div class="pay-method-tabs">
       <button class="pay-method-tab active" id="tab-card" onclick="selectPayMethod('card')">💳 신용카드</button>
       <button class="pay-method-tab" id="tab-kakao" onclick="selectPayMethod('kakao')">🟡 카카오페이</button>
@@ -1008,6 +1057,17 @@
       </div>
     </div>
     <div id="charge-status"></div>
+  </div>
+</div>
+
+<div id="history-modal">
+  <div id="history-box">
+    <button id="history-close" onclick="closeHistoryModal()">✕</button>
+    <h3>💳 크레딧 이용내역</h3>
+    <div id="history-balance">잔여 크레딧: <strong id="history-balance-val">—</strong>회</div>
+    <div id="history-list">
+      <div id="history-empty">내역을 불러오는 중...</div>
+    </div>
   </div>
 </div>
 
@@ -2104,6 +2164,73 @@ document.getElementById('charge-modal').addEventListener('click', e => {
   if (e.target === document.getElementById('charge-modal')) closeChargeModal();
 });
 
+// ── 크레딧 내역 모달 ──
+function openHistoryModal() {
+  document.getElementById('history-modal').classList.add('open');
+  loadCreditHistory();
+}
+function closeHistoryModal() {
+  document.getElementById('history-modal').classList.remove('open');
+}
+document.getElementById('history-modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('history-modal')) closeHistoryModal();
+});
+
+async function loadCreditHistory() {
+  const listEl = document.getElementById('history-list');
+  const balEl  = document.getElementById('history-balance-val');
+  balEl.textContent = window.userCredits ?? '—';
+  listEl.innerHTML = '<div id="history-empty">불러오는 중...</div>';
+
+  if (!window.currentUser) {
+    listEl.innerHTML = '<div id="history-empty">로그인이 필요합니다.</div>';
+    return;
+  }
+
+  try {
+    const { getFirestore, collection, query, orderBy, limit, getDocs, doc } =
+      await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
+    const { initializeApp, getApps } =
+      await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
+
+    const app = getApps()[0];
+    const db2 = getFirestore(app);
+    const uid = window.currentUser.uid;
+    const q = query(
+      collection(db2, 'users', uid, 'creditHistory'),
+      orderBy('date', 'desc'), limit(60)
+    );
+    const snap = await getDocs(q);
+
+    if (snap.empty) {
+      listEl.innerHTML = '<div id="history-empty">이용 내역이 없습니다.</div>';
+      return;
+    }
+
+    const fmt = d => d ? new Date(d.seconds * 1000).toLocaleDateString('ko-KR', { month:'2-digit', day:'2-digit' }) : '—';
+    const rows = snap.docs.map(d => {
+      const r = d.data();
+      const isCharge = r.type === 'charge';
+      const credStr = isCharge ? `+${r.credits}회` : `${r.credits}회`;
+      const krwStr  = `${(r.amount_krw || 0).toLocaleString()}원`;
+      return `<div class="history-row">
+        <span class="history-date">${fmt(r.date)}</span>
+        <span class="history-purpose">${r.purpose || (isCharge ? '충전' : '사용')}</span>
+        <span class="history-credits ${isCharge ? 'charge' : 'use'}">${credStr}</span>
+        <span class="history-krw">${krwStr}</span>
+      </div>`;
+    }).join('');
+
+    listEl.innerHTML = `
+      <div class="history-row" style="font-size:.72rem;color:var(--text-dim);font-weight:600;padding-bottom:6px;">
+        <span>날짜</span><span>내용</span><span>크레딧</span><span style="text-align:right">금액</span>
+      </div>
+      ${rows}`;
+  } catch (err) {
+    listEl.innerHTML = `<div id="history-empty">오류: ${err.message}</div>`;
+  }
+}
+
 // ── 결제 가능 여부 확인 ──
 function canStartReading() {
   if (!window.currentUser) return true; // 비로그인: 리딩 후 게이트
@@ -2192,7 +2319,7 @@ async function startPayment(amount) {
     const result = await verifyRes.json();
 
     if (window.addCredits) {
-      await window.addCredits(result.credits);
+      await window.addCredits(result.credits, amount);
     }
 
     closeChargeModal();
@@ -2860,7 +2987,8 @@ init();
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
   import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
     from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
-  import { getFirestore, doc, getDoc, setDoc, updateDoc, increment }
+  import { getFirestore, doc, getDoc, setDoc, updateDoc, increment,
+           addDoc, collection, serverTimestamp, query, orderBy, limit, getDocs }
     from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
   const FREE_LIMIT = 3;
@@ -2915,10 +3043,17 @@ init();
   };
 
   // ── 크레딧 추가 (충전 후 호출) ──
-  window.addCredits = async (amount) => {
+  window.addCredits = async (amount, amountKrw) => {
     if (!window.currentUser) return;
-    const ref = doc(db, 'users', window.currentUser.uid);
+    const uid = window.currentUser.uid;
+    const ref = doc(db, 'users', uid);
     await updateDoc(ref, { credits: increment(amount) });
+    await addDoc(collection(db, 'users', uid, 'creditHistory'), {
+      type: 'charge', credits: amount,
+      amount_krw: amountKrw || amount * 100,
+      purpose: `타로 크레딧 ${amount}회 충전`,
+      date: serverTimestamp()
+    });
     window.userCredits = (window.userCredits || 0) + amount;
     updateCreditBadge(window.userCredits);
   };
@@ -2927,8 +3062,14 @@ init();
   window.deductCredit = async () => {
     if (!window.currentUser) return;
     if (window.isAdmin && window.isAdmin()) return;
-    const ref = doc(db, 'users', window.currentUser.uid);
+    const uid = window.currentUser.uid;
+    const ref = doc(db, 'users', uid);
     await updateDoc(ref, { credits: increment(-1) });
+    await addDoc(collection(db, 'users', uid, 'creditHistory'), {
+      type: 'use', credits: -1, amount_krw: 100,
+      purpose: '타로 리딩',
+      date: serverTimestamp()
+    });
     window.userCredits = Math.max(0, (window.userCredits || 0) - 1);
     updateCreditBadge(window.userCredits);
   };
@@ -3005,8 +3146,9 @@ init();
     </div>
     <div class="footer-biz">
       상호명: 회색돌 &nbsp;|&nbsp; 대표자: 박상범 &nbsp;|&nbsp; 사업자등록번호: 247-08-03432<br/>
-      주소: 남양주시 양지로240번길 37 &nbsp;|&nbsp; 전화: 010-6786-8812<br/>
-      통신판매업 신고번호: 2026-진접오남-0322 &nbsp;|&nbsp; 문의: ashoshostudio@gmail.com
+      주소: 경기도 남양주시 양지로240번길 37 &nbsp;|&nbsp; 전화: 010-6786-8812<br/>
+      통신판매업 신고번호: 2026-진접오남-0322 &nbsp;|&nbsp; 문의: ashoshostudio@gmail.com<br/>
+      <span style="color:rgba(196,169,107,.7);font-size:.78rem;">모든 거래에 대한 책임과 환불, 민원 등은 <strong>회색돌</strong>에서 진행합니다. &nbsp;|&nbsp; 민원담당자: 박상범 (010-6786-8812)</span>
     </div>
     <div class="footer-copy">© 2025 울트라타로. All rights reserved.</div>
   </div>
