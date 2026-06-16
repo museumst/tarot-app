@@ -3134,17 +3134,22 @@ init();
       userInfo.style.display = 'flex';
       document.getElementById('user-avatar').src = user.photoURL || '';
       document.getElementById('user-name').textContent = user.displayName || user.email;
+      document.getElementById('credit-badge').style.display = '';
+      updateCreditBadge(window.userCredits || 0);
       // Firestore에서 사용 횟수 로드
       if (ADMIN_EMAILS.includes(user.email)) {
         const badge = document.getElementById('free-badge');
         badge.textContent = window.t ? window.t('unlimited') : '무제한'; badge.className = 'plenty'; badge.id = 'free-badge';
-        updateCreditBadge(window.userCredits || 0); // 즉시 표시
-        loadUserDoc(user).catch(() => {}); // 백그라운드로 크레딧 잔액 로드
+        loadUserDoc(user).catch(err => console.warn('크레딧 로드 실패', err)); // 백그라운드로 크레딧 잔액 로드
       } else {
-        window.freeUsed = await loadUserDoc(user);
-        updateFreeBadge(window.freeUsed);
+        updateFreeBadge(window.freeUsed || 0);
+        try {
+          window.freeUsed = await loadUserDoc(user);
+          updateFreeBadge(window.freeUsed);
+        } catch (err) {
+          console.warn('사용자 크레딧 로드 실패', err);
+        }
       }
-      document.getElementById('credit-badge').style.display = '';
       // 게이트가 열려있으면 해제
       if (document.getElementById('reading-gate').classList.contains('visible')) removeGate();
     } else {
