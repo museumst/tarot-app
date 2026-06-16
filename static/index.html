@@ -608,13 +608,14 @@
 
     /* ── 크레딧 배지 ── */
     #credit-badge {
-      font-size: .75rem; padding: 3px 10px;
-      border-radius: 20px; border: 1px solid rgba(160,127,212,.5);
-      color: #a07fd4; white-space: nowrap; cursor: pointer;
-      transition: border-color .2s, color .2s;
+      font-size: .78rem; padding: 5px 13px;
+      border-radius: 20px; border: 1px solid rgba(196,169,107,.6);
+      color: var(--gold); white-space: nowrap; cursor: pointer;
+      transition: all .2s; font-weight: 600;
+      background: rgba(196,169,107,.08);
     }
-    #credit-badge:hover { border-color: var(--gold); color: var(--gold); }
-    #credit-badge.low { color: #f08080; border-color: rgba(240,128,128,.5); }
+    #credit-badge:hover { background: rgba(196,169,107,.18); border-color: var(--gold); }
+    #credit-badge.low { color: #f08080; border-color: rgba(240,128,128,.6); background: rgba(240,128,128,.07); }
 
     /* ── 헤더 로그인 버튼 ── */
     .header-login-btn {
@@ -633,8 +634,21 @@
       background: rgba(196,169,107,.1);
       border-color: var(--gold);
     }
-    #credit-badge.empty { color: #f05050; border-color: rgba(240,80,80,.6); animation: pulse .8s ease-in-out infinite alternate; }
+    #credit-badge.empty { color: var(--gold); border-color: var(--gold); background: rgba(196,169,107,.15); }
     @keyframes pulse { from { opacity: 1; } to { opacity: .5; } }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+    .shake { animation: shake .4s ease; }
+    .charge-opt.disabled { opacity: .4; pointer-events: none; cursor: not-allowed; }
+    #phone-err-msg {
+      color: #f08080; font-size: .78rem; margin: -12px 0 10px;
+      display: none; font-weight: 600;
+    }
 
     /* ── 충전 모달 ── */
     #charge-modal {
@@ -1041,6 +1055,7 @@
     <div id="charge-phone-wrap">
       <label id="charge-phone-label" for="charge-phone">📱 휴대폰 번호 (이니시스 결제 필수)</label>
       <input id="charge-phone" type="tel" placeholder="010-0000-0000" maxlength="13" />
+      <div id="phone-err-msg">📵 휴대폰 번호를 먼저 입력해 주세요.</div>
     </div>
     <div class="charge-options">
       <div class="charge-opt" onclick="startPayment(1000)">
@@ -2138,7 +2153,7 @@ function selectPayMethod(method) {
 function updateCreditBadge(credits) {
   const el = document.getElementById('credit-badge');
   if (!el) return;
-  el.textContent = `💳 ${credits}`;
+  el.textContent = credits === 0 ? '💳 충전하기' : `💳 ${credits}회`;
   el.className = credits === 0 ? 'empty' : credits <= 5 ? 'low' : '';
 }
 
@@ -2146,16 +2161,26 @@ function openChargeModal() {
   updateChargeLangUI();
   document.getElementById('charge-modal').classList.add('open');
   document.getElementById('charge-status').textContent = '';
+  initChargeOptState();
 }
 
-// 전화번호 입력 자동 포맷 (010-1234-5678)
+// 전화번호 입력 자동 포맷 + charge-opt 활성화
 document.getElementById('charge-phone').addEventListener('input', function() {
   let v = this.value.replace(/\D/g, '');
   if (v.length > 11) v = v.slice(0, 11);
   if (v.length >= 8) v = v.slice(0,3) + '-' + v.slice(3,7) + '-' + v.slice(7);
   else if (v.length >= 4) v = v.slice(0,3) + '-' + v.slice(3);
   this.value = v;
+  const valid = v.length >= 10;
+  document.querySelectorAll('.charge-opt').forEach(el => el.classList.toggle('disabled', !valid));
+  document.getElementById('phone-err-msg').style.display = valid ? 'none' : 'block';
 });
+function initChargeOptState() {
+  const v = (document.getElementById('charge-phone').value || '').replace(/\D/g, '');
+  const valid = v.length >= 10;
+  document.querySelectorAll('.charge-opt').forEach(el => el.classList.toggle('disabled', !valid));
+  document.getElementById('phone-err-msg').style.display = valid ? 'none' : 'block';
+}
 function closeChargeModal() {
   document.getElementById('charge-modal').classList.remove('open');
 }
@@ -2258,8 +2283,14 @@ async function startPayment(amount) {
   if (selectedPayMethod === 'card') {
     phoneRaw = (document.getElementById('charge-phone').value || '').replace(/\D/g, '');
     if (!phoneRaw || phoneRaw.length < 10) {
-      statusEl.textContent = t.pay_phone_err;
-      document.getElementById('charge-phone').focus();
+      const phoneEl = document.getElementById('charge-phone');
+      const errEl = document.getElementById('phone-err-msg');
+      errEl.style.display = 'block';
+      phoneEl.classList.remove('shake');
+      void phoneEl.offsetWidth; // reflow to restart animation
+      phoneEl.classList.add('shake');
+      phoneEl.focus();
+      setTimeout(() => phoneEl.classList.remove('shake'), 500);
       return;
     }
   }
