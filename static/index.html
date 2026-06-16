@@ -3138,6 +3138,7 @@ init();
       if (ADMIN_EMAILS.includes(user.email)) {
         const badge = document.getElementById('free-badge');
         badge.textContent = window.t ? window.t('unlimited') : '무제한'; badge.className = 'plenty'; badge.id = 'free-badge';
+        await loadUserDoc(user); // 관리자도 크레딧 잔액은 정상 로드
       } else {
         window.freeUsed = await loadUserDoc(user);
         updateFreeBadge(window.freeUsed);
