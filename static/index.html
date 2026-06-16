@@ -935,7 +935,7 @@
       <img id="user-avatar" src="" alt="프로필" />
       <span id="user-name"></span>
       <span id="free-badge" class="plenty"></span>
-      <span id="credit-badge" onclick="openChargeModal()" title="클릭하여 충전"></span>
+      <span id="credit-badge" data-charge-trigger role="button" tabindex="0" title="클릭하여 충전"></span>
       <button id="history-btn" onclick="openHistoryModal()" title="크레딧 이용내역">내역</button>
       <button id="logout-btn">로그아웃</button>
     </div>
@@ -1028,7 +1028,7 @@
     <div id="no-credit-box">
       <div class="nc-title" id="no-credit-title">💳 크레딧이 부족합니다</div>
       <div class="nc-desc" id="no-credit-desc">리딩 1회에 크레딧 1개(100원)가 필요합니다.</div>
-      <button class="btn" id="no-credit-btn" onclick="openChargeModal()">지금 충전하기</button>
+      <button class="btn" id="no-credit-btn" data-charge-trigger>지금 충전하기</button>
     </div>
     <div class="mt-16 row">
       <button class="btn btn-secondary" id="back-to-draw">← 다시 뽑기</button>
@@ -2158,11 +2158,28 @@ function updateCreditBadge(credits) {
 }
 
 function openChargeModal() {
-  updateChargeLangUI();
-  document.getElementById('charge-modal').classList.add('open');
-  document.getElementById('charge-status').textContent = '';
-  initChargeOptState();
+  const modal = document.getElementById('charge-modal');
+  if (!modal) return;
+  modal.classList.add('open');
+  const status = document.getElementById('charge-status');
+  if (status) status.textContent = '';
+  try { updateChargeLangUI(); } catch (err) { console.warn('충전 모달 문구 업데이트 실패', err); }
+  try { initChargeOptState(); } catch (err) { console.warn('충전 옵션 상태 초기화 실패', err); }
 }
+window.openChargeModal = openChargeModal;
+
+document.querySelectorAll('[data-charge-trigger]').forEach(trigger => {
+  trigger.addEventListener('click', event => {
+    event.preventDefault();
+    openChargeModal();
+  });
+  trigger.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openChargeModal();
+    }
+  });
+});
 
 // 전화번호 입력 자동 포맷 + charge-opt 활성화
 document.getElementById('charge-phone').addEventListener('input', function() {
