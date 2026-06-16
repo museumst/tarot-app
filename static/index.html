@@ -1620,10 +1620,6 @@ document.addEventListener('click', () => {
   document.getElementById('lang-dropdown').classList.remove('open');
 });
 
-buildLangDropdown();
-applyLang();
-window.t = t;
-
 // ── 상태 변수 ──
 let allCards = [];
 let selectedSpread = null;
@@ -3028,6 +3024,10 @@ function closeCardDetail(e) {
   }
 }
 
+// 부트스트랩: 모든 const(CONTENT_TEXT 등) 선언 이후에 실행해야 TDZ 에러를 피함
+buildLangDropdown();
+applyLang();
+window.t = t;
 init();
 </script>
 
