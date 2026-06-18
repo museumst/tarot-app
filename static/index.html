@@ -2143,6 +2143,7 @@ function selectPayMethod(method) {
   document.getElementById('tab-card').classList.toggle('active', method === 'card');
   document.getElementById('tab-kakao').classList.toggle('active', method === 'kakao');
   document.getElementById('charge-phone-wrap').style.display = method === 'card' ? '' : 'none';
+  refreshChargeOptState();
 }
 
 // ── 크레딧 UI ──
@@ -2177,6 +2178,20 @@ document.querySelectorAll('[data-charge-trigger]').forEach(trigger => {
   });
 });
 
+// 결제수단/전화번호 상태에 따라 충전 옵션 활성화 여부 갱신
+// - 신용카드: 전화번호가 유효해야 활성화 (이니시스 필수)
+// - 카카오페이: 전화번호 불필요 → 항상 활성화
+function refreshChargeOptState() {
+  const v = (document.getElementById('charge-phone').value || '').replace(/\D/g, '');
+  const phoneValid = v.length >= 10;
+  const needPhone = selectedPayMethod === 'card';
+  const enabled = needPhone ? phoneValid : true;
+  document.querySelectorAll('.charge-opt').forEach(el => el.classList.toggle('disabled', !enabled));
+  document.getElementById('phone-err-msg').style.display = (needPhone && !phoneValid) ? 'block' : 'none';
+}
+// 하위 호환용 별칭
+function initChargeOptState() { refreshChargeOptState(); }
+
 // 전화번호 입력 자동 포맷 + charge-opt 활성화
 document.getElementById('charge-phone').addEventListener('input', function() {
   let v = this.value.replace(/\D/g, '');
@@ -2184,16 +2199,8 @@ document.getElementById('charge-phone').addEventListener('input', function() {
   if (v.length >= 8) v = v.slice(0,3) + '-' + v.slice(3,7) + '-' + v.slice(7);
   else if (v.length >= 4) v = v.slice(0,3) + '-' + v.slice(3);
   this.value = v;
-  const valid = v.length >= 10;
-  document.querySelectorAll('.charge-opt').forEach(el => el.classList.toggle('disabled', !valid));
-  document.getElementById('phone-err-msg').style.display = valid ? 'none' : 'block';
+  refreshChargeOptState();
 });
-function initChargeOptState() {
-  const v = (document.getElementById('charge-phone').value || '').replace(/\D/g, '');
-  const valid = v.length >= 10;
-  document.querySelectorAll('.charge-opt').forEach(el => el.classList.toggle('disabled', !valid));
-  document.getElementById('phone-err-msg').style.display = valid ? 'none' : 'block';
-}
 function closeChargeModal() {
   document.getElementById('charge-modal').classList.remove('open');
 }
