@@ -2225,7 +2225,7 @@ document.getElementById('history-modal').addEventListener('click', e => {
 async function loadCreditHistory() {
   const listEl = document.getElementById('history-list');
   const balEl  = document.getElementById('history-balance-val');
-  balEl.textContent = window.userCredits ?? '—';
+  balEl.textContent = window.userCredits ?? 0;
   listEl.innerHTML = '<div id="history-empty">불러오는 중...</div>';
 
   if (!window.currentUser) {
