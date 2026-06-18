@@ -713,8 +713,8 @@
     #history-balance strong { color: var(--gold); font-size: 1.1rem; }
     #history-list { overflow-y: auto; flex: 1; }
     .history-row {
-      display: grid; grid-template-columns: 80px 1fr auto auto;
-      gap: 6px 10px; align-items: center;
+      display: grid; grid-template-columns: 64px 1fr auto auto auto;
+      gap: 6px 9px; align-items: center;
       padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.06);
       font-size: .8rem;
     }
@@ -724,6 +724,7 @@
     .history-credits.charge { color: #7ecb7e; }
     .history-credits.use { color: #f08080; }
     .history-krw { color: var(--text-dim); font-size: .72rem; text-align: right; }
+    .history-balance-col { color: var(--gold); font-size: .72rem; text-align: right; white-space: nowrap; }
     #history-empty { color: var(--text-dim); text-align: center; padding: 30px 0; font-size: .85rem; }
     #history-close {
       position: absolute; top: 14px; right: 18px;
@@ -2253,22 +2254,27 @@ async function loadCreditHistory() {
     }
 
     const fmt = d => d ? new Date(d.seconds * 1000).toLocaleDateString('ko-KR', { month:'2-digit', day:'2-digit' }) : '—';
+    // 잔여 크레딧(running balance): 현재 잔액에서 최신→과거 순으로 거꾸로 계산
+    let running = window.userCredits || 0;
     const rows = snap.docs.map(d => {
       const r = d.data();
       const isCharge = r.type === 'charge';
       const credStr = isCharge ? `+${r.credits}회` : `${r.credits}회`;
       const krwStr  = `${(r.amount_krw || 0).toLocaleString()}원`;
+      const balanceAfter = running;        // 이 거래 직후 잔여
+      running = running - (r.credits || 0); // 다음(과거) 거래 직후 잔여
       return `<div class="history-row">
         <span class="history-date">${fmt(r.date)}</span>
         <span class="history-purpose">${r.purpose || (isCharge ? '충전' : '사용')}</span>
         <span class="history-credits ${isCharge ? 'charge' : 'use'}">${credStr}</span>
         <span class="history-krw">${krwStr}</span>
+        <span class="history-balance-col">잔여 ${balanceAfter}회</span>
       </div>`;
     }).join('');
 
     listEl.innerHTML = `
       <div class="history-row" style="font-size:.72rem;color:var(--text-dim);font-weight:600;padding-bottom:6px;">
-        <span>날짜</span><span>내용</span><span>크레딧</span><span style="text-align:right">금액</span>
+        <span>날짜</span><span>내용</span><span>크레딧</span><span style="text-align:right">금액</span><span style="text-align:right">잔여</span>
       </div>
       ${rows}`;
   } catch (err) {
