@@ -490,23 +490,25 @@
       :root { --card-w: 80px; --card-h: 138px; }
       .step { padding: 20px; }
 
-      /* 모바일: 상단 고정바가 본문과 겹치지 않도록 처리 */
+      /* 모바일: 상단 고정바 정돈 (2줄 — 1행: 메뉴·언어 / 2행: 유저정보) */
       #top-bar {
         left: 0; right: 0; top: 0;
-        padding: 9px 12px 9px 58px;              /* 왼쪽은 메뉴 버튼 자리 확보 */
-        background: rgba(10,12,24,.95);
+        padding: 8px 12px 10px 56px;             /* 왼쪽은 메뉴 버튼 자리 확보 */
+        background: rgba(10,12,24,.96);
         -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
         border-bottom: 1px solid rgba(196,169,107,.15);
-        justify-content: flex-end; flex-wrap: wrap; gap: 6px;
+        justify-content: flex-end; align-items: center;
+        flex-wrap: wrap; gap: 6px; row-gap: 8px;
       }
-      #menu-btn { top: 9px; left: 12px; }
-      .user-info { gap: 6px; }
-      .user-info #user-name { display: none; }   /* 좁은 화면에선 이름 숨김 */
-      #lang-btn { padding: 5px 9px; font-size: .76rem; }
-      .user-info button { padding: 3px 8px; font-size: .7rem; }
-      #free-badge { font-size: .7rem; padding: 3px 8px; }
-      #credit-badge { font-size: .72rem; padding: 4px 10px; }
-      header { padding-top: 78px; }              /* 고정바 아래에서 본문 시작 */
+      #menu-btn { top: 8px; left: 12px; }
+      .user-info { gap: 7px; flex-wrap: nowrap; }  /* 유저정보는 한 줄로 */
+      .user-info #user-name { display: none; }     /* 좁은 화면에선 이름 숨김 */
+      .user-info img { width: 28px; height: 28px; }
+      #lang-btn { padding: 6px 11px; font-size: .78rem; }
+      .user-info button { padding: 4px 9px; font-size: .72rem; }
+      #free-badge { font-size: .72rem; padding: 4px 9px; }
+      #credit-badge { font-size: .74rem; padding: 4px 11px; }
+      header { padding-top: 96px; }              /* 고정바(2줄) 아래에서 본문 시작 */
     }
 
     /* ── 구글 로그인 버튼 공통 ── */
@@ -612,6 +614,7 @@
       background: transparent; border: 1px solid rgba(196,169,107,.3);
       border-radius: 6px; color: var(--text-dim);
       font-size: .75rem; padding: 4px 10px; cursor: pointer;
+      white-space: nowrap;
       transition: border-color .2s, color .2s;
     }
     .user-info button:hover { border-color: var(--gold); color: var(--gold); }
