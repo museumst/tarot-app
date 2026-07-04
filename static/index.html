@@ -489,6 +489,24 @@
     @media (max-width: 600px) {
       :root { --card-w: 80px; --card-h: 138px; }
       .step { padding: 20px; }
+
+      /* 모바일: 상단 고정바가 본문과 겹치지 않도록 처리 */
+      #top-bar {
+        left: 0; right: 0; top: 0;
+        padding: 9px 12px 9px 58px;              /* 왼쪽은 메뉴 버튼 자리 확보 */
+        background: rgba(10,12,24,.95);
+        -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+        border-bottom: 1px solid rgba(196,169,107,.15);
+        justify-content: flex-end; flex-wrap: wrap; gap: 6px;
+      }
+      #menu-btn { top: 9px; left: 12px; }
+      .user-info { gap: 6px; }
+      .user-info #user-name { display: none; }   /* 좁은 화면에선 이름 숨김 */
+      #lang-btn { padding: 5px 9px; font-size: .76rem; }
+      .user-info button { padding: 3px 8px; font-size: .7rem; }
+      #free-badge { font-size: .7rem; padding: 3px 8px; }
+      #credit-badge { font-size: .72rem; padding: 4px 10px; }
+      header { padding-top: 78px; }              /* 고정바 아래에서 본문 시작 */
     }
 
     /* ── 구글 로그인 버튼 공통 ── */
