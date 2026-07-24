@@ -19,6 +19,44 @@ LANG_NAMES = {
     'vi': 'Vietnamese', 'tr': 'Turkish', 'pl': 'Polish',
 }
 
+# ── 양자택일(선택) 질문 감지 ──
+# 두 선택지 중 하나를 고르는 질문이면 비교 스프레드 + 비교 프롬프트로 분기한다.
+_BINARY_MARKERS = [
+    "vs", "versus", "v.s",
+    "아니면", "둘 중", "둘중", "중 하나", "중하나", "중 어느", "중 어떤",
+    "중 어디", "중에서", "어느 쪽", "어느쪽", "어느 것", "어떤 걸",
+    "할까 말까", "할까말까", "갈까 말까", "살까 말까", "그만둘까", "말까",
+    "either", " or not",
+    "それとも", "どっち", "どちら",
+    "还是", "哪个", "哪一个", "或者", "还是不",
+]
+
+
+def is_binary_question(text: str) -> bool:
+    """A vs B 형태의 양자택일/선택 질문인지 판별."""
+    import re
+    t = (text or "").lower()
+    if any(m in t for m in _BINARY_MARKERS):
+        return True
+    # 영어: "should I X or Y", "X or Y?" 등 (or + 질문/비교 신호가 함께일 때만)
+    if re.search(r'\bor\b', t) and ('?' in t or 'should' in t or 'better' in t):
+        return True
+    return False
+
+
+# 코드로 정의하는 양자택일 비교 스프레드 (spreads.json에는 없음)
+COMPARISON_SPREAD = {
+    "name": "양자택일 비교 스프레드",
+    "card_count": 3,
+    "positions": [
+        {"position": 1, "meanings": ["선택지 A(첫 번째 길)의 흐름과 예상 결과"]},
+        {"position": 2, "meanings": ["선택지 B(두 번째 길)의 흐름과 예상 결과"]},
+        {"position": 3, "meanings": ["종합 조언과 결정을 위한 핵심"]},
+    ],
+    "when_to_use": "두 가지 선택지 중 하나를 결정해야 할 때",
+    "how_to_read": "각 선택지를 카드에 대응시켜 비교한 뒤 종합적으로 판단한다",
+}
+
 # 포트원 API Secret (Render 대시보드에서도 PORTONE_API_SECRET 환경변수를 설정해야 합니다)
 PORTONE_API_SECRET = os.environ.get("PORTONE_API_SECRET", "")
 
@@ -105,6 +143,31 @@ class SpreadSelectRequest(BaseModel):
 
 @app.post("/api/select-spread")
 async def select_spread(request: SpreadSelectRequest):
+    # 양자택일(선택) 질문이면 비교 스프레드로 분기
+    if is_binary_question(request.question):
+        lang_name = LANG_NAMES.get(request.language, 'Korean')
+        spread = json.loads(json.dumps(COMPARISON_SPREAD))  # deep copy
+        if request.language == 'ko':
+            spread["name_translated"] = spread["name"]
+            spread["reason"] = "두 가지 선택지를 각각 카드에 대응시켜 비교·판단하기 위해 선택했습니다."
+        else:
+            import re as _re
+            client = anthropic.Anthropic()
+            tr = client.messages.create(
+                model="claude-haiku-4-5-20251001",
+                max_tokens=200,
+                messages=[{"role": "user", "content": f"""Translate the following JSON values into {lang_name}. Respond ONLY with JSON, no other text:
+{{"name": "Two-Choice Comparison Spread", "reason": "Chosen to compare your two options side by side, each mapped to a card, then reach a conclusion."}}"""}]
+            )
+            m = _re.search(r'\{.*\}', tr.content[0].text, _re.DOTALL)
+            try:
+                d = json.loads(m.group()) if m else {}
+            except Exception:
+                d = {}
+            spread["name_translated"] = d.get("name") or spread["name"]
+            spread["reason"] = d.get("reason") or ""
+        return spread
+
     with open(os.path.join(BASE_DIR, "output", "spreads.json"), encoding="utf-8") as f:
         spreads = json.load(f)
     valid_spreads = [
@@ -229,6 +292,15 @@ Formatting rules (strictly follow):
 - Express emphasis naturally through sentences, not symbols
 
 REMINDER: Your entire response must be written in {lang_name}."""
+
+        # 양자택일(선택) 질문이면 비교/종합판단 지시를 추가
+        if is_binary_question(request.question):
+            system_prompt += """
+
+IMPORTANT - This is an either/or (binary choice) question. Handle it as a COMPARISON reading:
+- Treat the first card as "Option A" (the first path), the second card as "Option B" (the second path), and the final card as synthesis/advice.
+- Clearly compare the energy and the likely outcome of each option side by side.
+- After the comparison, add a section (angle-bracket title, e.g. <Final Judgment>) that states which option the cards lean toward and why, giving the client a clear, well-reasoned direction. Note that this is guidance for reflection, not a guaranteed outcome."""
 
         async with client.messages.stream(
             model="claude-haiku-4-5-20251001",
