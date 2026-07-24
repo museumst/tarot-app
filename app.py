@@ -24,7 +24,12 @@ LANG_NAMES = {
 _BINARY_MARKERS = [
     "vs", "versus", "v.s",
     "아니면", "둘 중", "둘중", "중 하나", "중하나", "중 어느", "중 어떤",
-    "중 어디", "중에서", "어느 쪽", "어느쪽", "어느 것", "어떤 걸",
+    "중 어디", "중에서", "중에 어떤", "중에 어느", "중에 뭐", "중에 무엇",
+    "어느 쪽", "어느쪽", "어느 것", "어떤 걸",
+    "어떤 게 나", "어떤게 나", "어느 게 나", "어느게 나",
+    "어떤 게 좋", "어떤게 좋", "어느 게 좋", "어느게 좋",
+    "뭐가 나", "뭐가 좋", "무엇이 나", "무엇이 좋",
+    "더 나은", "더 나을", "더 좋은", "더 좋을", "더 나은지",
     "할까 말까", "할까말까", "갈까 말까", "살까 말까", "그만둘까", "말까",
     "either", " or not",
     "それとも", "どっち", "どちら",
@@ -175,9 +180,13 @@ async def select_spread(request: SpreadSelectRequest):
         if s.get("card_count") and s.get("positions") and s.get("name")
     ]
 
+    # 비교 스프레드를 후보 마지막에 포함(키워드에 안 걸린 선택 질문의 의미 기반 폴백)
+    candidates = valid_spreads + [COMPARISON_SPREAD]
+    comp_num = len(candidates)  # 비교 스프레드의 1-based 번호
+
     spread_list = "\n".join([
         f"{i+1}. {s.get('name','')} ({s.get('card_count',3)}장) - {(s.get('when_to_use') or '')[:60]}"
-        for i, s in enumerate(valid_spreads)
+        for i, s in enumerate(candidates)
     ])
 
     lang_name = LANG_NAMES.get(request.language, 'Korean')
@@ -191,6 +200,7 @@ async def select_spread(request: SpreadSelectRequest):
 {spread_list}
 
 위 질문에 가장 적합한 스프레드 하나를 선택하고 이유를 한 문장으로 설명하세요.
+[중요] 질문이 두 개 이상의 구체적인 선택지(예: A vs B, 제품 A와 제품 B 중 어느 것, 이직할까 말까) 중 하나를 고르는 '선택 질문'이라면, 반드시 '양자택일 비교 스프레드'({comp_num}번)를 선택하세요.
 반드시 아래 JSON 형식으로만 응답하세요 (다른 텍스트 없이):
 {{"index": 1, "name_translated": "스프레드 이름 번역", "reason": "선택 이유"}}
 index는 1부터 시작합니다.
@@ -209,8 +219,8 @@ reason 값과 name_translated 값은 반드시 {lang_name}으로 작성하세요
         except Exception:
             result = {"index": 1, "name_translated": "", "reason": "질문에 균형 잡힌 시각을 제공하기 위해 선택했습니다."}
 
-    idx = max(0, min(int(result.get("index", 1)) - 1, len(valid_spreads) - 1))
-    spread = dict(valid_spreads[idx])
+    idx = max(0, min(int(result.get("index", 1)) - 1, len(candidates) - 1))
+    spread = dict(candidates[idx])
     spread["reason"] = result.get("reason", "")
     spread["name_translated"] = result.get("name_translated", "") or spread.get("name", "")
     return spread
@@ -293,8 +303,8 @@ Formatting rules (strictly follow):
 
 REMINDER: Your entire response must be written in {lang_name}."""
 
-        # 양자택일(선택) 질문이면 비교/종합판단 지시를 추가
-        if is_binary_question(request.question):
+        # 양자택일(선택) 질문이거나 비교 스프레드가 선택된 경우 비교/종합판단 지시를 추가
+        if is_binary_question(request.question) or request.spread_name == COMPARISON_SPREAD["name"]:
             system_prompt += """
 
 IMPORTANT - This is an either/or (binary choice) question. Handle it as a COMPARISON reading:
