@@ -213,11 +213,6 @@ class SpreadSelectRequest(BaseModel):
 
 @app.post("/api/select-spread")
 async def select_spread(request: SpreadSelectRequest):
-    # 선택 질문(키워드 감지)이면 선택지 개수에 맞춘 비교 스프레드로 분기
-    if is_binary_question(request.question):
-        client = anthropic.Anthropic()
-        return build_comparison_spread(count_options(request.question), request.language, client)
-
     with open(os.path.join(BASE_DIR, "output", "spreads.json"), encoding="utf-8") as f:
         spreads = json.load(f)
     valid_spreads = [
@@ -225,7 +220,7 @@ async def select_spread(request: SpreadSelectRequest):
         if s.get("card_count") and s.get("positions") and s.get("name")
     ]
 
-    # 비교 스프레드를 후보 마지막에 포함(키워드에 안 걸린 선택 질문의 의미 기반 폴백)
+    # 비교 스프레드를 후보 마지막에 포함(선택 질문의 의미 기반 폴백)
     candidates = valid_spreads + [COMPARISON_SPREAD]
     comp_num = len(candidates)  # 비교 스프레드의 1-based 번호
 
@@ -246,8 +241,9 @@ async def select_spread(request: SpreadSelectRequest):
 
 위 질문에 가장 적합한 스프레드 하나를 선택하고 이유를 한 문장으로 설명하세요.
 [중요] 질문이 두 개 이상의 구체적인 선택지(예: A vs B, 제품 A와 제품 B 중 어느 것, 세 가지 중 뭐가 좋을지, 이직할까 말까) 중 하나를 고르는 '선택 질문'이라면, 반드시 '선택 비교 스프레드'({comp_num}번)를 선택하세요.
+또한 사용자가 고민하는 '선택지(보기)의 개수'를 정확히 세어 options_count에 담으세요. 선택 질문이 아니면 options_count는 0입니다. (번호목록·기호뿐 아니라 "제주도, 부산, 강릉 중" 같은 자유서술도 개수를 세어야 합니다.)
 반드시 아래 JSON 형식으로만 응답하세요 (다른 텍스트 없이):
-{{"index": 1, "name_translated": "스프레드 이름 번역", "reason": "선택 이유"}}
+{{"index": 1, "name_translated": "스프레드 이름 번역", "reason": "선택 이유", "options_count": 0}}
 index는 1부터 시작합니다.
 name_translated는 선택한 스프레드의 이름을 {lang_name}으로 번역한 것입니다.
 reason 값과 name_translated 값은 반드시 {lang_name}으로 작성하세요."""}]
@@ -257,18 +253,28 @@ reason 값과 name_translated 값은 반드시 {lang_name}으로 작성하세요
     text = response.content[0].text.strip()
     m = re.search(r'\{.*\}', text, re.DOTALL)
     if not m:
-        result = {"index": 1, "name_translated": "", "reason": "질문에 균형 잡힌 시각을 제공하기 위해 선택했습니다."}
+        result = {"index": 1, "name_translated": "", "reason": "질문에 균형 잡힌 시각을 제공하기 위해 선택했습니다.", "options_count": 0}
     else:
         try:
             result = json.loads(m.group())
         except Exception:
-            result = {"index": 1, "name_translated": "", "reason": "질문에 균형 잡힌 시각을 제공하기 위해 선택했습니다."}
+            result = {"index": 1, "name_translated": "", "reason": "질문에 균형 잡힌 시각을 제공하기 위해 선택했습니다.", "options_count": 0}
 
     idx = max(0, min(int(result.get("index", 1)) - 1, len(candidates) - 1))
     chosen = candidates[idx]
-    # Haiku가 비교 스프레드를 골랐다면 선택지 개수에 맞춰 동적으로 재구성
-    if chosen is COMPARISON_SPREAD:
-        return build_comparison_spread(count_options(request.question), request.language, client)
+
+    # 선택 질문 여부: 키워드 감지 또는 AI가 비교 스프레드 선택 또는 AI가 선택지 2개 이상으로 판단
+    try:
+        ai_n = int(result.get("options_count") or 0)
+    except (TypeError, ValueError):
+        ai_n = 0
+    is_choice = is_binary_question(request.question) or (chosen is COMPARISON_SPREAD) or ai_n >= 2
+
+    if is_choice:
+        # 선택지 개수: AI 판단(우선) → 실패 시 정규식 폴백
+        n = ai_n if ai_n >= 2 else count_options(request.question)
+        return build_comparison_spread(n, request.language, client)
+
     spread = dict(chosen)
     spread["reason"] = result.get("reason", "")
     spread["name_translated"] = result.get("name_translated", "") or spread.get("name", "")
