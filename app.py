@@ -49,18 +49,83 @@ def is_binary_question(text: str) -> bool:
     return False
 
 
-# 코드로 정의하는 양자택일 비교 스프레드 (spreads.json에는 없음)
+# 코드로 정의하는 선택 비교 스프레드 (spreads.json에는 없음). Haiku 후보 목록 표시용 기본형.
 COMPARISON_SPREAD = {
-    "name": "양자택일 비교 스프레드",
+    "name": "선택 비교 스프레드",
     "card_count": 3,
     "positions": [
-        {"position": 1, "meanings": ["선택지 A(첫 번째 길)의 흐름과 예상 결과"]},
-        {"position": 2, "meanings": ["선택지 B(두 번째 길)의 흐름과 예상 결과"]},
+        {"position": 1, "meanings": ["선택지 1의 흐름과 예상 결과"]},
+        {"position": 2, "meanings": ["선택지 2의 흐름과 예상 결과"]},
         {"position": 3, "meanings": ["종합 조언과 결정을 위한 핵심"]},
     ],
-    "when_to_use": "두 가지 선택지 중 하나를 결정해야 할 때",
+    "when_to_use": "여러 선택지(2개 이상) 중 하나를 결정해야 할 때",
     "how_to_read": "각 선택지를 카드에 대응시켜 비교한 뒤 종합적으로 판단한다",
 }
+COMPARISON_MAX_OPTIONS = 5  # 카드가 너무 많아지지 않도록 상한
+
+
+def count_options(text: str) -> int:
+    """질문에 제시된 선택지 개수를 추정 (번호목록/동그라미숫자/구분자 기반). 기본 2, 최대 5."""
+    import re
+    t = text or ""
+    circled = "①②③④⑤⑥⑦⑧⑨"
+    nums = set()
+    if any(c in t for c in circled):
+        for c in t:
+            if c in circled:
+                nums.add(circled.index(c) + 1)
+    else:
+        for m in re.findall(r'(?:^|[\s(])([1-9])[.)．、]', t):
+            nums.add(int(m))
+    # 1,2,3... 연속으로 몇 개인지
+    seq = 0
+    i = 1
+    while i in nums:
+        seq += 1
+        i += 1
+    # 구분자(vs, or, 또는) 기반 추정
+    low = t.lower()
+    sep = sum(low.count(s) for s in [" vs ", "vs.", " or ", "또는"])
+    by_sep = sep + 1 if sep >= 1 else 0
+    n = max(seq if seq >= 2 else 0, by_sep if by_sep >= 2 else 0, 2)
+    return min(n, COMPARISON_MAX_OPTIONS)
+
+
+def build_comparison_spread(n_options: int, language: str, client) -> dict:
+    """선택지 개수(n)에 맞춰 카드 n+1장짜리 비교 스프레드를 생성 (마지막 1장은 종합 조언)."""
+    n = max(2, min(int(n_options), COMPARISON_MAX_OPTIONS))
+    positions = [
+        {"position": i + 1, "meanings": [f"선택지 {i + 1}의 흐름과 예상 결과"]}
+        for i in range(n)
+    ]
+    positions.append({"position": n + 1, "meanings": ["종합 조언과 결정을 위한 핵심"]})
+    name = "양자택일 비교 스프레드" if n == 2 else f"{n}가지 선택 비교 스프레드"
+    spread = {
+        "name": name,
+        "card_count": n + 1,
+        "positions": positions,
+        "when_to_use": "여러 선택지 중 하나를 결정해야 할 때",
+        "how_to_read": "각 선택지를 카드에 대응시켜 비교한 뒤 종합적으로 판단한다",
+    }
+    if language == 'ko':
+        spread["name_translated"] = name
+        spread["reason"] = f"{n}가지 선택지를 각각 카드에 대응시켜 비교·판단하기 위해 선택했습니다."
+    else:
+        import re as _re
+        try:
+            tr = client.messages.create(
+                model="claude-haiku-4-5-20251001",
+                max_tokens=200,
+                messages=[{"role": "user", "content": f"""Translate these JSON values into {LANG_NAMES.get(language, 'English')}. Respond ONLY with JSON, no other text:
+{{"name": "Comparison Spread for {n} Options", "reason": "Chosen to compare your {n} options side by side, each mapped to a card, then reach a conclusion."}}"""}]
+            )
+            m = _re.search(r'\{.*\}', tr.content[0].text, _re.DOTALL)
+            d = json.loads(m.group()) if m else {}
+        except Exception:
+            d = {}
+        spread["name_translated"] = d.get("name") or name
+        spread["reason"] = d.get("reason") or ""
+    return spread
 
 # 포트원 API Secret (Render 대시보드에서도 PORTONE_API_SECRET 환경변수를 설정해야 합니다)
 PORTONE_API_SECRET = os.environ.get("PORTONE_API_SECRET", "")
@@ -148,30 +213,10 @@ class SpreadSelectRequest(BaseModel):
 
 @app.post("/api/select-spread")
 async def select_spread(request: SpreadSelectRequest):
-    # 양자택일(선택) 질문이면 비교 스프레드로 분기
+    # 선택 질문(키워드 감지)이면 선택지 개수에 맞춘 비교 스프레드로 분기
     if is_binary_question(request.question):
-        lang_name = LANG_NAMES.get(request.language, 'Korean')
-        spread = json.loads(json.dumps(COMPARISON_SPREAD))  # deep copy
-        if request.language == 'ko':
-            spread["name_translated"] = spread["name"]
-            spread["reason"] = "두 가지 선택지를 각각 카드에 대응시켜 비교·판단하기 위해 선택했습니다."
-        else:
-            import re as _re
-            client = anthropic.Anthropic()
-            tr = client.messages.create(
-                model="claude-haiku-4-5-20251001",
-                max_tokens=200,
-                messages=[{"role": "user", "content": f"""Translate the following JSON values into {lang_name}. Respond ONLY with JSON, no other text:
-{{"name": "Two-Choice Comparison Spread", "reason": "Chosen to compare your two options side by side, each mapped to a card, then reach a conclusion."}}"""}]
-            )
-            m = _re.search(r'\{.*\}', tr.content[0].text, _re.DOTALL)
-            try:
-                d = json.loads(m.group()) if m else {}
-            except Exception:
-                d = {}
-            spread["name_translated"] = d.get("name") or spread["name"]
-            spread["reason"] = d.get("reason") or ""
-        return spread
+        client = anthropic.Anthropic()
+        return build_comparison_spread(count_options(request.question), request.language, client)
 
     with open(os.path.join(BASE_DIR, "output", "spreads.json"), encoding="utf-8") as f:
         spreads = json.load(f)
@@ -200,7 +245,7 @@ async def select_spread(request: SpreadSelectRequest):
 {spread_list}
 
 위 질문에 가장 적합한 스프레드 하나를 선택하고 이유를 한 문장으로 설명하세요.
-[중요] 질문이 두 개 이상의 구체적인 선택지(예: A vs B, 제품 A와 제품 B 중 어느 것, 이직할까 말까) 중 하나를 고르는 '선택 질문'이라면, 반드시 '양자택일 비교 스프레드'({comp_num}번)를 선택하세요.
+[중요] 질문이 두 개 이상의 구체적인 선택지(예: A vs B, 제품 A와 제품 B 중 어느 것, 세 가지 중 뭐가 좋을지, 이직할까 말까) 중 하나를 고르는 '선택 질문'이라면, 반드시 '선택 비교 스프레드'({comp_num}번)를 선택하세요.
 반드시 아래 JSON 형식으로만 응답하세요 (다른 텍스트 없이):
 {{"index": 1, "name_translated": "스프레드 이름 번역", "reason": "선택 이유"}}
 index는 1부터 시작합니다.
@@ -220,7 +265,11 @@ reason 값과 name_translated 값은 반드시 {lang_name}으로 작성하세요
             result = {"index": 1, "name_translated": "", "reason": "질문에 균형 잡힌 시각을 제공하기 위해 선택했습니다."}
 
     idx = max(0, min(int(result.get("index", 1)) - 1, len(candidates) - 1))
-    spread = dict(candidates[idx])
+    chosen = candidates[idx]
+    # Haiku가 비교 스프레드를 골랐다면 선택지 개수에 맞춰 동적으로 재구성
+    if chosen is COMPARISON_SPREAD:
+        return build_comparison_spread(count_options(request.question), request.language, client)
+    spread = dict(chosen)
     spread["reason"] = result.get("reason", "")
     spread["name_translated"] = result.get("name_translated", "") or spread.get("name", "")
     return spread
@@ -303,13 +352,13 @@ Formatting rules (strictly follow):
 
 REMINDER: Your entire response must be written in {lang_name}."""
 
-        # 양자택일(선택) 질문이거나 비교 스프레드가 선택된 경우 비교/종합판단 지시를 추가
-        if is_binary_question(request.question) or request.spread_name == COMPARISON_SPREAD["name"]:
+        # 선택 질문이거나 비교 스프레드가 선택된 경우 비교/종합판단 지시를 추가
+        if is_binary_question(request.question) or "비교 스프레드" in (request.spread_name or ""):
             system_prompt += """
 
-IMPORTANT - This is an either/or (binary choice) question. Handle it as a COMPARISON reading:
-- Treat the first card as "Option A" (the first path), the second card as "Option B" (the second path), and the final card as synthesis/advice.
-- Clearly compare the energy and the likely outcome of each option side by side.
+IMPORTANT - This is a CHOICE question where the user is deciding among two or more options. Handle it as a COMPARISON reading:
+- Treat EACH card except the last one as one of the options the user listed, in the SAME order (1st card = the user's first option, 2nd card = second option, and so on). The LAST card is the synthesis/advice.
+- Clearly compare the energy and the likely outcome of every option side by side.
 - After the comparison, add a section (angle-bracket title, e.g. <Final Judgment>) that states which option the cards lean toward and why, giving the client a clear, well-reasoned direction. Note that this is guidance for reflection, not a guaranteed outcome."""
 
         async with client.messages.stream(
