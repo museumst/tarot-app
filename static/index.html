@@ -2200,16 +2200,13 @@ document.querySelectorAll('[data-charge-trigger]').forEach(trigger => {
   });
 });
 
-// 결제수단/전화번호 상태에 따라 충전 옵션 활성화 여부 갱신
-// - 신용카드: 전화번호가 유효해야 활성화 (이니시스 필수)
-// - 카카오페이: 전화번호 불필요 → 항상 활성화
+// 충전 옵션(결제버튼)은 항상 활성화 상태로 표시한다.
+// - 신용카드 전화번호 필수 검증은 클릭 시 startPayment에서 흔들림+안내로 처리
+// - 안내 메시지는 평소 숨김, 번호 없이 결제 시도할 때만 노출
 function refreshChargeOptState() {
-  const v = (document.getElementById('charge-phone').value || '').replace(/\D/g, '');
-  const phoneValid = v.length >= 10;
-  const needPhone = selectedPayMethod === 'card';
-  const enabled = needPhone ? phoneValid : true;
-  document.querySelectorAll('.charge-opt').forEach(el => el.classList.toggle('disabled', !enabled));
-  document.getElementById('phone-err-msg').style.display = (needPhone && !phoneValid) ? 'block' : 'none';
+  document.querySelectorAll('.charge-opt').forEach(el => el.classList.remove('disabled'));
+  const err = document.getElementById('phone-err-msg');
+  if (err) err.style.display = 'none';
 }
 // 하위 호환용 별칭
 function initChargeOptState() { refreshChargeOptState(); }
