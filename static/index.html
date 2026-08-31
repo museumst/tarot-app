@@ -655,6 +655,9 @@
       background: rgba(196,169,107,.1);
       border-color: var(--gold);
     }
+    /* 비회원 결제 버튼 (2차적) */
+    #guest-checkout-btn { color: var(--text-dim); border-color: rgba(196,169,107,.25); }
+    #guest-checkout-btn:hover { color: var(--gold); border-color: var(--gold); }
     #credit-badge.empty { color: var(--gold); border-color: var(--gold); background: rgba(196,169,107,.15); }
     @keyframes pulse { from { opacity: 1; } to { opacity: .5; } }
     @keyframes shake {
@@ -952,6 +955,7 @@
     </div>
     <!-- 로그아웃 상태 로그인 버튼 -->
     <button id="header-login-btn" class="header-login-btn">🔑 로그인</button>
+    <button id="guest-checkout-btn" class="header-login-btn">🛒 비회원 결제</button>
     <!-- 유저 정보 -->
     <div class="user-info" id="user-info">
       <img id="user-avatar" src="" alt="프로필" />
@@ -3064,7 +3068,7 @@ init();
 
 <script type="module">
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-  import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
+  import { getAuth, GoogleAuthProvider, signInWithPopup, signInAnonymously, signOut, onAuthStateChanged }
     from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
   import { getFirestore, doc, getDoc, setDoc, updateDoc, increment,
            addDoc, collection, serverTimestamp, query, orderBy, limit, getDocs }
@@ -3177,11 +3181,13 @@ init();
     window.currentUser = user;
     const userInfo = document.getElementById('user-info');
     const loginBtn = document.getElementById('header-login-btn');
+    const guestBtn = document.getElementById('guest-checkout-btn');
     if (user) {
       loginBtn.style.display = 'none';
+      if (guestBtn) guestBtn.style.display = 'none';
       userInfo.style.display = 'flex';
       document.getElementById('user-avatar').src = user.photoURL || '';
-      document.getElementById('user-name').textContent = user.displayName || user.email;
+      document.getElementById('user-name').textContent = user.isAnonymous ? '비회원' : (user.displayName || user.email);
       document.getElementById('credit-badge').style.display = '';
       updateCreditBadge(window.userCredits || 0);
       // Firestore에서 사용 횟수 로드
@@ -3202,6 +3208,7 @@ init();
       if (document.getElementById('reading-gate').classList.contains('visible')) removeGate();
     } else {
       loginBtn.style.display = 'block';
+      if (guestBtn) guestBtn.style.display = 'block';
       userInfo.style.display = 'none';
       document.getElementById('credit-badge').style.display = 'none';
       window.userCredits = 0;
@@ -3217,6 +3224,19 @@ init();
 
   // ── 게이트 내 로그인 버튼 ──
   document.getElementById('gate-login-btn').addEventListener('click', signIn);
+
+  // ── 비회원(게스트) 결제: 익명 로그인 후 충전창 열기 ──
+  const signInGuest = async () => {
+    try {
+      await signInAnonymously(auth);
+      // 인증 상태 반영 후 충전 모달 열기
+      setTimeout(() => { try { openChargeModal(); } catch (e) {} }, 400);
+    } catch (e) {
+      console.error('비회원 결제 진입 실패', e);
+      notify('비회원 결제를 시작할 수 없습니다. 잠시 후 다시 시도해 주세요.');
+    }
+  };
+  document.getElementById('guest-checkout-btn').addEventListener('click', signInGuest);
 
   // ── 헤더 로그아웃 ──
   document.getElementById('logout-btn').addEventListener('click', () => signOut(auth));
