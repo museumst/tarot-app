@@ -2356,8 +2356,10 @@ async function startPayment(amount) {
       totalAmount: amount,
       currency: 'KRW',
       customer: {
-        email: window.currentUser.email,
-        fullName: window.currentUser.displayName || '고객',
+        // 이니시스 V2 카드결제는 구매자 이메일이 필수. 비회원(익명)은 이메일이 없으므로
+        // uid 기반 placeholder 이메일을 부여한다.
+        email: window.currentUser.email || `guest_${window.currentUser.uid.slice(0, 16)}@ultratarot.com`,
+        fullName: window.currentUser.displayName || (window.currentUser.isAnonymous ? '비회원' : '고객'),
       },
     };
 
