@@ -2171,9 +2171,8 @@ const FREE_LIMIT = 3; // Firebase 모듈과 동기화
 const PORTONE_STORE_ID       = 'store-62ed5f10-8b20-4a78-90f1-8b1bd9d6b313';
 const PORTONE_CHANNEL_KEY    = 'channel-key-ea86fb8b-0d7c-4cb0-8050-f40df63a4980'; // KG이니시스 실연동 (심사 완료 후 복원)
 const PORTONE_KAKAO_KEY      = 'channel-key-97b2196f-1b3f-4526-8f66-20a4b32288d1'; // 카카오페이 테스트
-// ⚠️ 페이팔: 현재 샌드박스 테스트 채널 (한국↔한국 결제 불가로 실계정 테스트 불가하여 임시 전환)
-//    테스트 완료 후 실연동키로 복원: channel-key-f492c3d9-a3c6-4765-ab40-10b8d11c309e
-const PORTONE_PAYPAL_KEY     = 'channel-key-46fd9e40-55b1-4e8d-bfb1-7aa990108d22'; // 페이팔 테스트 (paypal_v2 / SPB)
+// 페이팔 실연동 (paypal_v2 / SPB). 샌드박스 테스트키는 channel-key-46fd9e40-55b1-4e8d-bfb1-7aa990108d22
+const PORTONE_PAYPAL_KEY     = 'channel-key-f492c3d9-a3c6-4765-ab40-10b8d11c309e';
 const CREDIT_TABLE_JS        = {1000: 10, 3000: 35, 5000: 60};
 // PayPal은 USD만 가능. 금액은 최소단위(센트) 기준: $0.99 -> 99
 const KRW_TO_USD_CENTS       = {1000: 99, 3000: 299, 5000: 499};
