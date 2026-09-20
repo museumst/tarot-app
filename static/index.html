@@ -669,6 +669,11 @@
     }
     .shake { animation: shake .4s ease; }
     .charge-opt.disabled { opacity: .4; pointer-events: none; cursor: not-allowed; }
+    /* PayPal 모드: 금액을 '선택'하는 방식 */
+    .charge-opt.selected { border-color: var(--gold); background: rgba(196,169,107,.16); }
+    #paypal-wrap { margin-top: 4px; margin-bottom: 14px; }
+    #paypal-hint { color: var(--text-dim); font-size: .76rem; margin-bottom: 10px; }
+    #paypal-btn-container { min-height: 48px; }
     #phone-err-msg {
       color: #f08080; font-size: .78rem; margin: 8px 0 2px;
       display: none; font-weight: 600;
@@ -1077,6 +1082,7 @@
     <div class="pay-method-tabs">
       <button class="pay-method-tab active" id="tab-card" onclick="selectPayMethod('card')">💳 신용카드</button>
       <button class="pay-method-tab" id="tab-kakao" onclick="selectPayMethod('kakao')">🟡 카카오페이</button>
+      <button class="pay-method-tab" id="tab-paypal" onclick="selectPayMethod('paypal')" style="display:none">🅿️ PayPal</button>
     </div>
     <div id="charge-phone-wrap">
       <label id="charge-phone-label" for="charge-phone">📱 휴대폰 번호 (이니시스 결제 필수)</label>
@@ -1084,18 +1090,23 @@
       <div id="phone-err-msg">📵 휴대폰 번호를 먼저 입력해 주세요.</div>
     </div>
     <div class="charge-options">
-      <div class="charge-opt" onclick="startPayment(1000)">
-        <span class="opt-amount">1,000원</span>
+      <div class="charge-opt" data-krw="1000" onclick="onChargeOptClick(1000)">
+        <span class="opt-amount" id="opt-amt-1">1,000원</span>
         <span class="opt-credits" id="charge-opt-1">10회 이용</span>
       </div>
-      <div class="charge-opt" onclick="startPayment(3000)">
-        <span class="opt-amount">3,000원</span>
+      <div class="charge-opt" data-krw="3000" onclick="onChargeOptClick(3000)">
+        <span class="opt-amount" id="opt-amt-2">3,000원</span>
         <span class="opt-credits" id="charge-opt-2">35회 이용</span>
       </div>
-      <div class="charge-opt" onclick="startPayment(5000)">
-        <span class="opt-amount">5,000원</span>
+      <div class="charge-opt" data-krw="5000" onclick="onChargeOptClick(5000)">
+        <span class="opt-amount" id="opt-amt-3">5,000원</span>
         <span class="opt-credits" id="charge-opt-3">60회 이용</span>
       </div>
+    </div>
+    <!-- PayPal 스마트 결제 버튼 (해외 결제) -->
+    <div id="paypal-wrap" style="display:none">
+      <div id="paypal-hint">Select an amount above, then pay with PayPal.</div>
+      <div class="portone-ui-container" id="paypal-btn-container"></div>
     </div>
     <div id="charge-status"></div>
   </div>
@@ -2160,16 +2171,62 @@ const FREE_LIMIT = 3; // Firebase 모듈과 동기화
 const PORTONE_STORE_ID       = 'store-62ed5f10-8b20-4a78-90f1-8b1bd9d6b313';
 const PORTONE_CHANNEL_KEY    = 'channel-key-ea86fb8b-0d7c-4cb0-8050-f40df63a4980'; // KG이니시스 실연동 (심사 완료 후 복원)
 const PORTONE_KAKAO_KEY      = 'channel-key-97b2196f-1b3f-4526-8f66-20a4b32288d1'; // 카카오페이 테스트
+const PORTONE_PAYPAL_KEY     = 'channel-key-f492c3d9-a3c6-4765-ab40-10b8d11c309e'; // 페이팔 실연동 (paypal_v2 / SPB)
 const CREDIT_TABLE_JS        = {1000: 10, 3000: 35, 5000: 60};
+// PayPal은 USD만 가능. 금액은 최소단위(센트) 기준: $0.99 -> 99
+const KRW_TO_USD_CENTS       = {1000: 99, 3000: 299, 5000: 499};
+const USD_LABEL              = {99: '$0.99', 299: '$2.99', 499: '$4.99'};
 
 let selectedPayMethod = 'card';
+let paypalSelectedKrw = 1000;   // PayPal 모드에서 선택된 상품(원화 기준 키)
+let paypalUILoaded = false;     // loadPaymentUI는 최초 1회만 호출
 
 function selectPayMethod(method) {
   selectedPayMethod = method;
   document.getElementById('tab-card').classList.toggle('active', method === 'card');
   document.getElementById('tab-kakao').classList.toggle('active', method === 'kakao');
+  const tabPaypal = document.getElementById('tab-paypal');
+  if (tabPaypal) tabPaypal.classList.toggle('active', method === 'paypal');
+
   document.getElementById('charge-phone-wrap').style.display = method === 'card' ? '' : 'none';
+  document.getElementById('paypal-wrap').style.display = method === 'paypal' ? '' : 'none';
+
+  updateChargeAmountLabels();
   refreshChargeOptState();
+
+  if (method === 'paypal') {
+    highlightPaypalOption(paypalSelectedKrw);
+    initPaypalUI();
+  } else {
+    document.querySelectorAll('.charge-opt').forEach(el => el.classList.remove('selected'));
+  }
+}
+
+// 금액 라벨을 결제수단에 맞게(원화/USD) 표시
+function updateChargeAmountLabels() {
+  const isPaypal = selectedPayMethod === 'paypal';
+  [1000, 3000, 5000].forEach((krw, i) => {
+    const el = document.getElementById(`opt-amt-${i + 1}`);
+    if (!el) return;
+    el.textContent = isPaypal ? USD_LABEL[KRW_TO_USD_CENTS[krw]] : `${krw.toLocaleString()}원`;
+  });
+}
+
+// 충전 옵션 클릭: PayPal은 '선택', 나머지는 즉시 결제
+function onChargeOptClick(krw) {
+  if (selectedPayMethod === 'paypal') {
+    paypalSelectedKrw = krw;
+    highlightPaypalOption(krw);
+    updatePaypalAmount();
+  } else {
+    startPayment(krw);
+  }
+}
+
+function highlightPaypalOption(krw) {
+  document.querySelectorAll('.charge-opt').forEach(el => {
+    el.classList.toggle('selected', Number(el.dataset.krw) === krw);
+  });
 }
 
 // ── 크레딧 UI ──
@@ -2411,6 +2468,96 @@ async function startPayment(amount) {
     const msg = e?.message || String(e) || '?';
     statusEl.textContent = t.pay_error(msg);
     console.error('[결제 오류]', e);
+  }
+}
+
+// ── PayPal (SPB) 결제 ──
+// 카드/카카오와 달리 버튼을 미리 렌더링하는 loadPaymentUI 방식이며, 통화는 USD 고정이다.
+function newPaymentId() {
+  const uid = (window.currentUser && window.currentUser.uid) ? window.currentUser.uid.slice(0, 14) : 'guest';
+  return `t_${uid}_${Date.now().toString().slice(-8)}`;
+}
+
+function buildPaypalRequest() {
+  const cents = KRW_TO_USD_CENTS[paypalSelectedKrw];
+  const credits = CREDIT_TABLE_JS[paypalSelectedKrw];
+  return {
+    uiType: 'PAYPAL_SPB',
+    storeId: PORTONE_STORE_ID,
+    channelKey: PORTONE_PAYPAL_KEY,
+    paymentId: newPaymentId(),
+    orderName: `Tarot Credits x${credits}`,
+    totalAmount: cents,          // USD 최소단위(센트)
+    currency: 'CURRENCY_USD',
+    customer: {
+      fullName: (window.currentUser && window.currentUser.displayName) || 'Guest',
+      email: (window.currentUser && window.currentUser.email)
+        || `guest_${((window.currentUser && window.currentUser.uid) || 'x').slice(0, 16)}@ultratarot.com`,
+    },
+  };
+}
+
+function initPaypalUI() {
+  const statusEl = document.getElementById('charge-status');
+  if (typeof PortOne === 'undefined' || !PortOne.loadPaymentUI) {
+    statusEl.textContent = 'PayPal module is not ready. Please refresh and try again.';
+    return;
+  }
+  if (paypalUILoaded) { updatePaypalAmount(); return; }
+  paypalUILoaded = true;
+  try {
+    PortOne.loadPaymentUI(buildPaypalRequest(), {
+      onPaymentSuccess: (response) => { handlePaypalSuccess(response); },
+      onPaymentFail: (error) => {
+        statusEl.textContent = `Payment failed: ${(error && error.message) || error}`;
+        console.error('[PayPal 결제 실패]', error);
+      },
+    });
+  } catch (e) {
+    paypalUILoaded = false;
+    statusEl.textContent = `PayPal load error: ${e?.message || e}`;
+    console.error('[PayPal 로드 오류]', e);
+  }
+}
+
+function updatePaypalAmount() {
+  if (!paypalUILoaded || typeof PortOne === 'undefined' || !PortOne.updateLoadPaymentUIRequest) return;
+  try { PortOne.updateLoadPaymentUIRequest(buildPaypalRequest()); }
+  catch (e) { console.error('[PayPal 금액 갱신 실패]', e); }
+}
+
+async function handlePaypalSuccess(response) {
+  const statusEl = document.getElementById('charge-status');
+  const cents = KRW_TO_USD_CENTS[paypalSelectedKrw];
+  try {
+    statusEl.textContent = 'Verifying payment...';
+    const verifyRes = await fetch('/api/payment/verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        payment_id: response.paymentId,
+        amount: cents,
+        uid: window.currentUser.uid,
+      }),
+    });
+    if (!verifyRes.ok) {
+      const err = await verifyRes.json().catch(() => ({}));
+      statusEl.textContent = `Verification failed: ${err.detail || 'unknown error'}`;
+      return;
+    }
+    const result = await verifyRes.json();
+    if (window.addCredits) {
+      // 내역에는 실제 결제 통화(USD 센트)가 아닌 상품 기준 원화 금액을 기록
+      await window.addCredits(result.credits, paypalSelectedKrw);
+    }
+    closeChargeModal();
+    notify(getCT().pay_success(result.credits));
+    document.getElementById('no-credit-box').classList.remove('visible');
+    // 다음 결제를 위해 새 paymentId 발급
+    updatePaypalAmount();
+  } catch (e) {
+    statusEl.textContent = `Error: ${e?.message || e}`;
+    console.error('[PayPal 후처리 오류]', e);
   }
 }
 
@@ -2949,6 +3096,16 @@ function updateChargeLangUI() {
   s('no-credit-btn',   t.no_credit_btn);
   const badge = document.getElementById('credit-badge');
   if (badge) badge.title = t.badge_title;
+
+  // PayPal은 해외 고객 전용 (판매자·구매자가 모두 한국이면 페이팔 정책상 결제 불가)
+  // → 한국어가 아닐 때만 노출하고, 한국어로 돌아오면 카드 결제로 되돌린다.
+  const tabPaypal = document.getElementById('tab-paypal');
+  if (tabPaypal) {
+    const showPaypal = currentLang !== 'ko';
+    tabPaypal.style.display = showPaypal ? '' : 'none';
+    if (!showPaypal && selectedPayMethod === 'paypal') selectPayMethod('card');
+  }
+  updateChargeAmountLabels();
 }
 
 function getAboutContent() {

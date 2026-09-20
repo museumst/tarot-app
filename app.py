@@ -201,8 +201,25 @@ async def verify_payment(request: PaymentVerifyRequest):
     if paid != request.amount:
         raise HTTPException(status_code=400, detail="결제 금액이 일치하지 않습니다.")
 
-    CREDIT_TABLE = {1000: 10, 3000: 35, 5000: 60}
-    credits = CREDIT_TABLE.get(request.amount, request.amount // 100)
+    # 통화 확인 (KRW 금액으로 USD 크레딧을 받는 식의 교차 위변조 방지)
+    currency = (data.get("currency") or data.get("amount", {}).get("currency") or "").upper()
+    if currency.startswith("CURRENCY_"):
+        currency = currency[len("CURRENCY_"):]
+
+    # 통화별 상품표 (USD는 최소 단위=센트 기준: $0.99 -> 99)
+    CREDIT_TABLE_KRW = {1000: 10, 3000: 35, 5000: 60}
+    CREDIT_TABLE_USD = {99: 10, 299: 35, 499: 60}
+
+    if currency == "USD":
+        credits = CREDIT_TABLE_USD.get(paid)
+    elif currency == "KRW":
+        credits = CREDIT_TABLE_KRW.get(paid)
+    else:
+        raise HTTPException(status_code=400, detail=f"지원하지 않는 결제 통화입니다: {currency or 'unknown'}")
+
+    if credits is None:
+        raise HTTPException(status_code=400, detail="유효하지 않은 결제 금액입니다.")
+
     return {"ok": True, "credits": credits}
 
 
