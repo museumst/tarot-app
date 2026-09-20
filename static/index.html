@@ -2302,6 +2302,14 @@ document.getElementById('history-modal').addEventListener('click', e => {
   if (e.target === document.getElementById('history-modal')) closeHistoryModal();
 });
 
+// 내역 금액 표시: 실제 결제 통화 기준 (구 기록은 currency 없이 amount_krw만 있으므로 KRW로 처리)
+function fmtHistoryAmount(r) {
+  const cur = r.currency || 'KRW';
+  const val = (typeof r.amount === 'number') ? r.amount : (r.amount_krw || 0);
+  if (cur === 'USD') return `$${val.toFixed(2)}`;
+  return `${val.toLocaleString()}원`;
+}
+
 async function loadCreditHistory() {
   const listEl = document.getElementById('history-list');
   const balEl  = document.getElementById('history-balance-val');
@@ -2340,7 +2348,7 @@ async function loadCreditHistory() {
       const r = d.data();
       const isCharge = r.type === 'charge';
       const credStr = isCharge ? `+${r.credits}회` : `${r.credits}회`;
-      const krwStr  = `${(r.amount_krw || 0).toLocaleString()}원`;
+      const krwStr  = fmtHistoryAmount(r);
       const balanceAfter = running;        // 이 거래 직후 잔여
       running = running - (r.credits || 0); // 다음(과거) 거래 직후 잔여
       return `<div class="history-row">
@@ -2458,7 +2466,7 @@ async function startPayment(amount) {
     const result = await verifyRes.json();
 
     if (window.addCredits) {
-      await window.addCredits(result.credits, amount);
+      await window.addCredits(result.credits, amount, 'KRW');
     }
 
     closeChargeModal();
@@ -2548,8 +2556,8 @@ async function handlePaypalSuccess(response) {
     }
     const result = await verifyRes.json();
     if (window.addCredits) {
-      // 내역에는 실제 결제 통화(USD 센트)가 아닌 상품 기준 원화 금액을 기록
-      await window.addCredits(result.credits, paypalSelectedKrw);
+      // 실제 결제 통화(USD)와 금액($0.99 등)을 그대로 기록
+      await window.addCredits(result.credits, cents / 100, 'USD');
     }
     closeChargeModal();
     notify(getCT().pay_success(result.credits));
@@ -3286,18 +3294,23 @@ init();
   };
 
   // ── 크레딧 추가 (충전 후 호출) ──
-  window.addCredits = async (amount, amountKrw) => {
+  // amount: 실제 결제 금액(표시 단위 — KRW는 1000, USD는 0.99), currency: 'KRW' | 'USD'
+  window.addCredits = async (credits, amount, currency) => {
     if (!window.currentUser) return;
     const uid = window.currentUser.uid;
+    const cur = currency || 'KRW';
+    const amt = (typeof amount === 'number') ? amount : credits * 100;
     const ref = doc(db, 'users', uid);
-    await updateDoc(ref, { credits: increment(amount) });
+    await updateDoc(ref, { credits: increment(credits) });
     await addDoc(collection(db, 'users', uid, 'creditHistory'), {
-      type: 'charge', credits: amount,
-      amount_krw: amountKrw || amount * 100,
-      purpose: `타로 크레딧 ${amount}회 충전`,
+      type: 'charge', credits,
+      currency: cur,
+      amount: amt,
+      amount_krw: cur === 'KRW' ? amt : null,  // 기존 기록과의 하위호환
+      purpose: `타로 크레딧 ${credits}회 충전`,
       date: serverTimestamp()
     });
-    window.userCredits = (window.userCredits || 0) + amount;
+    window.userCredits = (window.userCredits || 0) + credits;
     updateCreditBadge(window.userCredits);
   };
 
@@ -3309,7 +3322,8 @@ init();
     const ref = doc(db, 'users', uid);
     await updateDoc(ref, { credits: increment(-1) });
     await addDoc(collection(db, 'users', uid, 'creditHistory'), {
-      type: 'use', credits: -1, amount_krw: 100,
+      type: 'use', credits: -1,
+      currency: 'KRW', amount: 100, amount_krw: 100,
       purpose: '타로 리딩',
       date: serverTimestamp()
     });
