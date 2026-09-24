@@ -1078,7 +1078,7 @@
     <button id="charge-close" onclick="closeChargeModal()">✕</button>
     <h3 id="charge-modal-title">✨ 크레딧 충전</h3>
     <p id="charge-modal-desc">크레딧 1개 = 리딩 1회 (100원)</p>
-    <p style="font-size:.75rem;color:rgba(196,169,107,.6);margin-top:-14px;margin-bottom:16px;">※ 충전 후 1년 이내 미사용 크레딧은 자동 소멸됩니다.</p>
+    <p id="charge-expiry-notice" style="font-size:.75rem;color:rgba(196,169,107,.6);margin-top:-14px;margin-bottom:16px;">※ 충전 후 1년 이내 미사용 크레딧은 자동 소멸됩니다.</p>
     <div class="pay-method-tabs">
       <button class="pay-method-tab active" id="tab-card" onclick="selectPayMethod('card')">💳 신용카드</button>
       <button class="pay-method-tab" id="tab-kakao" onclick="selectPayMethod('kakao')">🟡 카카오페이</button>
@@ -3087,10 +3087,89 @@ const CONTENT_TEXT = {
   },
 };
 
+const CHARGE_UI_COPY = {
+  ko: {
+    expiry: '※ 충전 후 1년 이내 미사용 크레딧은 자동 소멸됩니다.',
+    paypalHint: '위에서 금액을 선택한 뒤 PayPal로 결제하세요.',
+    phoneError: '📵 휴대폰 번호를 먼저 입력해 주세요.',
+  },
+  en: {
+    expiry: 'Unused credits expire automatically one year after purchase.',
+    paypalHint: 'Select an amount above, then pay with PayPal.',
+    phoneError: '📵 Please enter your phone number first.',
+  },
+  ja: {
+    expiry: 'チャージ後1年以内に未使用のクレジットは自動的に失効します。',
+    paypalHint: '上で金額を選択してから、PayPalでお支払いください。',
+    phoneError: '📵 先に電話番号を入力してください。',
+  },
+  zh: {
+    expiry: '充值后一年内未使用的积分将自动失效。',
+    paypalHint: '请先在上方选择金额，然后使用 PayPal 付款。',
+    phoneError: '📵 请先输入手机号码。',
+  },
+  es: {
+    expiry: 'Los créditos no utilizados caducan automáticamente un año después de la recarga.',
+    paypalHint: 'Selecciona un importe arriba y paga con PayPal.',
+    phoneError: '📵 Introduce primero tu número de teléfono.',
+  },
+  fr: {
+    expiry: 'Les crédits non utilisés expirent automatiquement un an après le rechargement.',
+    paypalHint: 'Sélectionnez un montant ci-dessus, puis payez avec PayPal.',
+    phoneError: '📵 Saisissez d’abord votre numéro de téléphone.',
+  },
+  de: {
+    expiry: 'Nicht genutzte Credits verfallen automatisch ein Jahr nach dem Aufladen.',
+    paypalHint: 'Wählen Sie oben einen Betrag und bezahlen Sie anschließend mit PayPal.',
+    phoneError: '📵 Bitte geben Sie zuerst Ihre Telefonnummer ein.',
+  },
+  pt: {
+    expiry: 'Créditos não utilizados expiram automaticamente um ano após a recarga.',
+    paypalHint: 'Selecione um valor acima e pague com PayPal.',
+    phoneError: '📵 Informe primeiro o seu número de telefone.',
+  },
+  th: {
+    expiry: 'เครดิตที่ไม่ได้ใช้จะหมดอายุโดยอัตโนมัติหนึ่งปีหลังจากเติมเงิน',
+    paypalHint: 'เลือกจำนวนเงินด้านบน แล้วชำระด้วย PayPal',
+    phoneError: '📵 โปรดกรอกหมายเลขโทรศัพท์ก่อน',
+  },
+  ru: {
+    expiry: 'Неиспользованные кредиты автоматически сгорают через год после пополнения.',
+    paypalHint: 'Выберите сумму выше, затем оплатите через PayPal.',
+    phoneError: '📵 Сначала введите номер телефона.',
+  },
+  it: {
+    expiry: 'I crediti non utilizzati scadono automaticamente un anno dopo la ricarica.',
+    paypalHint: 'Seleziona un importo qui sopra, poi paga con PayPal.',
+    phoneError: '📵 Inserisci prima il numero di telefono.',
+  },
+  id: {
+    expiry: 'Kredit yang tidak digunakan akan kedaluwarsa otomatis satu tahun setelah isi ulang.',
+    paypalHint: 'Pilih nominal di atas, lalu bayar dengan PayPal.',
+    phoneError: '📵 Masukkan nomor telepon terlebih dahulu.',
+  },
+  vi: {
+    expiry: 'Lượt chưa sử dụng sẽ tự động hết hạn sau một năm kể từ ngày nạp.',
+    paypalHint: 'Chọn số tiền ở trên, sau đó thanh toán bằng PayPal.',
+    phoneError: '📵 Vui lòng nhập số điện thoại trước.',
+  },
+  tr: {
+    expiry: 'Kullanılmayan krediler yüklemeden bir yıl sonra otomatik olarak sona erer.',
+    paypalHint: 'Yukarıdan bir tutar seçin, ardından PayPal ile ödeme yapın.',
+    phoneError: '📵 Lütfen önce telefon numaranızı girin.',
+  },
+  pl: {
+    expiry: 'Niewykorzystane kredyty wygasają automatycznie rok po doładowaniu.',
+    paypalHint: 'Wybierz kwotę powyżej, a następnie zapłać przez PayPal.',
+    phoneError: '📵 Najpierw wpisz numer telefonu.',
+  },
+};
+
 function getCT() { return CONTENT_TEXT[currentLang] || CONTENT_TEXT.en; }
 
 function updateChargeLangUI() {
   const t = getCT();
+  const chargeCopy = CHARGE_UI_COPY[currentLang] || CHARGE_UI_COPY.en;
   const s = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
   s('charge-modal-title', t.charge_title);
   s('charge-modal-desc',  t.charge_desc);
@@ -3100,6 +3179,9 @@ function updateChargeLangUI() {
   s('charge-opt-1', t.charge_opt(10));
   s('charge-opt-2', t.charge_opt(35));
   s('charge-opt-3', t.charge_opt(60));
+  s('charge-expiry-notice', chargeCopy.expiry);
+  s('paypal-hint', chargeCopy.paypalHint);
+  s('phone-err-msg', chargeCopy.phoneError);
   s('no-credit-title', t.no_credit_title);
   s('no-credit-desc',  t.no_credit_desc);
   s('no-credit-btn',   t.no_credit_btn);
