@@ -1576,6 +1576,24 @@ const TRANSLATIONS = {
   },
 };
 
+const HEADER_CREDIT_COPY = {
+  ko: { topUp: '💳 충전하기', balance: n => `💳 ${n}회`, history: '내역', historyTitle: '크레딧 이용내역' },
+  en: { topUp: '💳 Top Up', balance: n => `💳 ${n} credits`, history: 'History', historyTitle: 'Credit history' },
+  ja: { topUp: '💳 チャージ', balance: n => `💳 ${n}回`, history: '履歴', historyTitle: 'クレジット利用履歴' },
+  es: { topUp: '💳 Recargar', balance: n => `💳 ${n} créditos`, history: 'Historial', historyTitle: 'Historial de créditos' },
+  fr: { topUp: '💳 Recharger', balance: n => `💳 ${n} crédits`, history: 'Historique', historyTitle: 'Historique des crédits' },
+  de: { topUp: '💳 Aufladen', balance: n => `💳 ${n} Credits`, history: 'Verlauf', historyTitle: 'Credit-Verlauf' },
+  pt: { topUp: '💳 Recarregar', balance: n => `💳 ${n} créditos`, history: 'Histórico', historyTitle: 'Histórico de créditos' },
+  th: { topUp: '💳 เติมเครดิต', balance: n => `💳 ${n} เครดิต`, history: 'ประวัติ', historyTitle: 'ประวัติเครดิต' },
+  ru: { topUp: '💳 Пополнить', balance: n => `💳 ${n} кредитов`, history: 'История', historyTitle: 'История кредитов' },
+  zh: { topUp: '💳 充值', balance: n => `💳 ${n}积分`, history: '记录', historyTitle: '积分记录' },
+  it: { topUp: '💳 Ricarica', balance: n => `💳 ${n} crediti`, history: 'Storico', historyTitle: 'Storico crediti' },
+  id: { topUp: '💳 Isi Ulang', balance: n => `💳 ${n} kredit`, history: 'Riwayat', historyTitle: 'Riwayat kredit' },
+  vi: { topUp: '💳 Nạp thêm', balance: n => `💳 ${n} lượt`, history: 'Lịch sử', historyTitle: 'Lịch sử lượt' },
+  tr: { topUp: '💳 Kredi Yükle', balance: n => `💳 ${n} kredi`, history: 'Geçmiş', historyTitle: 'Kredi geçmişi' },
+  pl: { topUp: '💳 Doładuj', balance: n => `💳 ${n} kredytów`, history: 'Historia', historyTitle: 'Historia kredytów' },
+};
+
 function detectLang() {
   const saved = localStorage.getItem('tarot-lang');
   if (saved) return saved;
@@ -1620,6 +1638,7 @@ function applyLang() {
   el('logout-btn').textContent     = t('logout');
   updateMenuLabels();
   updateChargeLangUI();
+  updateHeaderCreditUI();
 
   // 랭 버튼 레이블 업데이트
   const lang = LANG_LIST.find(l => l.code === currentLang);
@@ -2234,8 +2253,19 @@ function highlightPaypalOption(krw) {
 function updateCreditBadge(credits) {
   const el = document.getElementById('credit-badge');
   if (!el) return;
-  el.textContent = credits === 0 ? '💳 충전하기' : `💳 ${credits}회`;
+  const copy = HEADER_CREDIT_COPY[currentLang] || HEADER_CREDIT_COPY.en;
+  el.textContent = credits === 0 ? copy.topUp : copy.balance(credits);
   el.className = credits === 0 ? 'empty' : credits <= 5 ? 'low' : '';
+}
+
+function updateHeaderCreditUI() {
+  const copy = HEADER_CREDIT_COPY[currentLang] || HEADER_CREDIT_COPY.en;
+  const historyButton = document.getElementById('history-btn');
+  if (historyButton) {
+    historyButton.textContent = copy.history;
+    historyButton.title = copy.historyTitle;
+  }
+  updateCreditBadge(window.userCredits || 0);
 }
 
 function openChargeModal() {
