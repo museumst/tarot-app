@@ -761,6 +761,33 @@
       font-size: 1.3rem; cursor: pointer;
     }
     #history-close:hover { color: var(--text); }
+    #saved-readings-modal {
+      display: none; position: fixed; inset: 0; z-index: 9001;
+      background: rgba(0,0,0,.7); align-items: center; justify-content: center;
+    }
+    #saved-readings-modal.open { display: flex; }
+    #saved-readings-box {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 26px 22px; width: min(94vw, 560px); max-height: 82vh;
+      display: flex; flex-direction: column; position: relative;
+    }
+    #saved-readings-box h3 { color: var(--gold); margin: 0 30px 14px 0; }
+    #saved-readings-close {
+      position: absolute; top: 12px; right: 16px; background: none; border: 0;
+      color: var(--text-dim); font-size: 1.3rem; cursor: pointer;
+    }
+    #saved-readings-list { overflow-y: auto; }
+    .saved-reading-item {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      width: 100%; padding: 12px 2px; border: 0; border-bottom: 1px solid var(--border);
+      background: transparent; color: var(--text); text-align: left; cursor: pointer;
+    }
+    .saved-reading-item:hover { color: var(--gold); }
+    .saved-reading-date { color: var(--text-dim); font-size: .75rem; white-space: nowrap; }
+    #saved-reading-detail { overflow-y: auto; white-space: pre-wrap; line-height: 1.75; }
+    #saved-reading-detail h4 { color: var(--gold); margin: 14px 0 6px; }
+    #saved-reading-back { align-self: flex-start; margin-bottom: 10px; }
+    #saved-readings-empty { padding: 24px 0; text-align: center; color: var(--text-dim); }
     .pay-method-tabs {
       display: flex; gap: 8px; margin-bottom: 20px;
     }
@@ -1123,6 +1150,15 @@
   </div>
 </div>
 
+<div id="saved-readings-modal">
+  <section id="saved-readings-box" aria-labelledby="saved-readings-title">
+    <button id="saved-readings-close" onclick="closeSavedReadings()" aria-label="Close">✕</button>
+    <h3 id="saved-readings-title">저장한 리딩</h3>
+    <div id="saved-readings-list"><div id="saved-readings-empty">불러오는 중...</div></div>
+    <div id="saved-reading-detail" hidden></div>
+  </section>
+</div>
+
 <!-- ── 햄버거 메뉴 버튼 ── -->
 <button id="menu-btn" onclick="toggleNav()">☰</button>
 
@@ -1130,7 +1166,7 @@
 <div id="nav-overlay" onclick="handleNavOverlayClick(event)">
   <nav id="nav-panel">
     <button id="nav-close" onclick="closeNav()">✕</button>
-    <div class="nav-logo">✨ 울트라타로</div>
+    <div class="nav-logo" id="nav-logo">✨ 울트라타로</div>
     <button class="nav-item" onclick="openContent('about')">
       <span id="nav-label-about">앱 소개</span>
     </button>
@@ -1139,6 +1175,9 @@
     </button>
     <button class="nav-item" onclick="openContent('cards')">
       <span id="nav-label-cards">카드 의미 사전</span>
+    </button>
+    <button class="nav-item" onclick="closeNav(); openSavedReadings();">
+      <span id="nav-label-saved">저장한 리딩</span>
     </button>
   </nav>
 </div>
@@ -1594,6 +1633,28 @@ const HEADER_CREDIT_COPY = {
   pl: { topUp: '💳 Doładuj', balance: n => `💳 ${n} kredytów`, history: 'Historia', historyTitle: 'Historia kredytów' },
 };
 
+const SAVED_READING_COPY = {
+  ko: { saved: '저장한 리딩', saving: '리딩 저장 중...', done: '리딩을 서버에 저장했습니다.', failed: '리딩 저장에 실패했습니다.', empty: '저장한 리딩이 없습니다.', loading: '불러오는 중...', login: '저장한 리딩을 보려면 로그인해 주세요.', back: '← 목록', question: '질문', spread: '스프레드', cards: '뽑은 카드', reading: '리딩 해설', device: '익명 계정은 기기 간 동기화를 위해 Google 계정 연결이 필요합니다.', link: 'Google 계정 연결' },
+  en: { saved: 'Saved Readings', saving: 'Saving reading...', done: 'Reading saved to your account.', failed: 'Could not save the reading.', empty: 'No saved readings.', loading: 'Loading...', login: 'Please sign in to view saved readings.', back: '← List', question: 'Question', spread: 'Spread', cards: 'Cards', reading: 'Reading', device: 'Link a Google account to sync anonymous readings across devices.', link: 'Link Google account' },
+  ja: { saved: '保存したリーディング', saving: '保存中...', done: 'アカウントに保存しました。', failed: '保存できませんでした。', empty: '保存したリーディングはありません。', loading: '読み込み中...', login: '保存したリーディングを見るにはログインしてください。', back: '← 一覧', question: '質問', spread: 'スプレッド', cards: '引いたカード', reading: 'リーディング', device: '匿名アカウントは、端末間同期のためGoogleアカウントとの連携が必要です。', link: 'Googleアカウントを連携' },
+  es: { saved: 'Lecturas guardadas', saving: 'Guardando lectura...', done: 'Lectura guardada en tu cuenta.', failed: 'No se pudo guardar la lectura.', empty: 'No hay lecturas guardadas.', loading: 'Cargando...', login: 'Inicia sesión para ver tus lecturas guardadas.', back: '← Lista', question: 'Pregunta', spread: 'Tirada', cards: 'Cartas', reading: 'Lectura', device: 'Vincula una cuenta de Google para sincronizar las lecturas anónimas entre dispositivos.', link: 'Vincular Google' },
+  fr: { saved: 'Lectures enregistrées', saving: 'Enregistrement...', done: 'Lecture enregistrée sur votre compte.', failed: 'Impossible d’enregistrer la lecture.', empty: 'Aucune lecture enregistrée.', loading: 'Chargement...', login: 'Connectez-vous pour voir vos lectures.', back: '← Liste', question: 'Question', spread: 'Tirage', cards: 'Cartes tirées', reading: 'Interprétation', device: 'Associez un compte Google pour synchroniser vos lectures anonymes entre appareils.', link: 'Associer Google' },
+  de: { saved: 'Gespeicherte Legungen', saving: 'Legung wird gespeichert...', done: 'Legung im Konto gespeichert.', failed: 'Legung konnte nicht gespeichert werden.', empty: 'Keine gespeicherten Legungen.', loading: 'Wird geladen...', login: 'Bitte anmelden, um gespeicherte Legungen zu sehen.', back: '← Liste', question: 'Frage', spread: 'Legung', cards: 'Gezogene Karten', reading: 'Deutung', device: 'Verknüpfe ein Google-Konto, um anonyme Legungen auf mehreren Geräten zu synchronisieren.', link: 'Google-Konto verknüpfen' },
+  pt: { saved: 'Leituras salvas', saving: 'Salvando leitura...', done: 'Leitura salva na sua conta.', failed: 'Não foi possível salvar.', empty: 'Nenhuma leitura salva.', loading: 'Carregando...', login: 'Entre para ver suas leituras salvas.', back: '← Lista', question: 'Pergunta', spread: 'Tirada', cards: 'Cartas', reading: 'Leitura', device: 'Vincule uma conta Google para sincronizar leituras anônimas entre dispositivos.', link: 'Vincular Google' },
+  th: { saved: 'การอ่านที่บันทึกไว้', saving: 'กำลังบันทึก...', done: 'บันทึกในบัญชีแล้ว', failed: 'บันทึกไม่สำเร็จ', empty: 'ไม่มีรายการที่บันทึกไว้', loading: 'กำลังโหลด...', login: 'เข้าสู่ระบบเพื่อดูรายการที่บันทึกไว้', back: '← รายการ', question: 'คำถาม', spread: 'รูปแบบไพ่', cards: 'ไพ่ที่เลือก', reading: 'คำทำนาย', device: 'เชื่อมต่อบัญชี Google เพื่อซิงค์ข้อมูลจากบัญชีผู้เยี่ยมชมไปยังอุปกรณ์อื่น', link: 'เชื่อมต่อ Google' },
+  ru: { saved: 'Сохранённые расклады', saving: 'Сохранение...', done: 'Расклад сохранён в аккаунте.', failed: 'Не удалось сохранить расклад.', empty: 'Нет сохранённых раскладов.', loading: 'Загрузка...', login: 'Войдите, чтобы просмотреть сохранённые расклады.', back: '← Список', question: 'Вопрос', spread: 'Расклад', cards: 'Вытянутые карты', reading: 'Толкование', device: 'Свяжите аккаунт Google, чтобы синхронизировать анонимные расклады между устройствами.', link: 'Связать с Google' },
+  zh: { saved: '已保存的解读', saving: '正在保存...', done: '已保存到账户。', failed: '保存失败。', empty: '没有已保存的解读。', loading: '加载中...', login: '请登录以查看已保存的解读。', back: '← 列表', question: '问题', spread: '牌阵', cards: '抽到的牌', reading: '解读', device: '关联 Google 账号即可在多台设备间同步匿名账户的解读。', link: '关联 Google 账号' },
+  it: { saved: 'Letture salvate', saving: 'Salvataggio...', done: 'Lettura salvata nel tuo account.', failed: 'Impossibile salvare la lettura.', empty: 'Nessuna lettura salvata.', loading: 'Caricamento...', login: 'Accedi per vedere le letture salvate.', back: '← Elenco', question: 'Domanda', spread: 'Schema', cards: 'Carte estratte', reading: 'Lettura', device: 'Collega un account Google per sincronizzare le letture anonime tra dispositivi.', link: 'Collega Google' },
+  id: { saved: 'Bacaan tersimpan', saving: 'Menyimpan bacaan...', done: 'Bacaan tersimpan di akun Anda.', failed: 'Bacaan gagal disimpan.', empty: 'Belum ada bacaan tersimpan.', loading: 'Memuat...', login: 'Masuk untuk melihat bacaan tersimpan.', back: '← Daftar', question: 'Pertanyaan', spread: 'Sebaran', cards: 'Kartu terpilih', reading: 'Bacaan', device: 'Hubungkan akun Google untuk menyinkronkan bacaan anonim antarperangkat.', link: 'Hubungkan Google' },
+  vi: { saved: 'Bài đọc đã lưu', saving: 'Đang lưu...', done: 'Đã lưu vào tài khoản.', failed: 'Không thể lưu bài đọc.', empty: 'Chưa có bài đọc nào.', loading: 'Đang tải...', login: 'Vui lòng đăng nhập để xem bài đã lưu.', back: '← Danh sách', question: 'Câu hỏi', spread: 'Trải bài', cards: 'Lá bài đã rút', reading: 'Diễn giải', device: 'Liên kết tài khoản Google để đồng bộ bài đọc ẩn danh giữa các thiết bị.', link: 'Liên kết Google' },
+  tr: { saved: 'Kaydedilen açılımlar', saving: 'Açılım kaydediliyor...', done: 'Açılım hesabınıza kaydedildi.', failed: 'Açılım kaydedilemedi.', empty: 'Kaydedilmiş açılım yok.', loading: 'Yükleniyor...', login: 'Kaydedilen açılımları görmek için giriş yapın.', back: '← Liste', question: 'Soru', spread: 'Açılım', cards: 'Çekilen kartlar', reading: 'Yorum', device: 'Anonim açılımları cihazlar arasında eşitlemek için Google hesabı bağlayın.', link: 'Google hesabını bağla' },
+  pl: { saved: 'Zapisane rozkłady', saving: 'Zapisywanie...', done: 'Rozkład zapisany na koncie.', failed: 'Nie udało się zapisać rozkładu.', empty: 'Brak zapisanych rozkładów.', loading: 'Ładowanie...', login: 'Zaloguj się, aby zobaczyć zapisane rozkłady.', back: '← Lista', question: 'Pytanie', spread: 'Rozkład', cards: 'Wylosowane karty', reading: 'Interpretacja', device: 'Połącz konto Google, aby synchronizować anonimowe zapisy na różnych urządzeniach.', link: 'Połącz Google' },
+};
+
+function savedReadingText(key) {
+  return (SAVED_READING_COPY[currentLang] || SAVED_READING_COPY.en)[key];
+}
+
 function detectLang() {
   const saved = localStorage.getItem('tarot-lang');
   if (saved) return saved;
@@ -1634,6 +1695,8 @@ function applyLang() {
   el('gate-login-text').textContent = t('gate_btn');
   el('back-to-draw').textContent   = t('btn_back_draw');
   el('save-reading-btn').textContent = t('btn_save');
+  el('nav-label-saved').textContent = savedReadingText('saved');
+  el('saved-readings-title').textContent = savedReadingText('saved');
   el('new-reading-btn').textContent = t('btn_new');
   el('logout-btn').textContent     = t('logout');
   updateMenuLabels();
@@ -2049,122 +2112,30 @@ document.getElementById('save-reading-btn').addEventListener('click', async () =
   const question = document.getElementById('question-input').value.trim();
   const readingText = document.getElementById('reading-output').innerText.trim();
   if (!readingText) { notify(t('notify_no_content')); return; }
-
-  notify(t('notify_saving'));
-
-  const now = new Date();
-  const dateStr = now.toLocaleString('ko-KR', {
-    year: 'numeric', month: '2-digit', day: '2-digit',
-    hour: '2-digit', minute: '2-digit'
-  });
-  const spreadName = selectedSpread ? selectedSpread.name : `${cardCount}카드 스프레드`;
-
-  async function toDataUrl(src) {
-    return new Promise(resolve => {
-      const img = new Image();
-      img.crossOrigin = 'anonymous';
-      img.onload = () => {
-        const MAX_W = 220, MAX_H = 380;
-        const ratio = Math.min(MAX_W / img.naturalWidth, MAX_H / img.naturalHeight, 1);
-        const canvas = document.createElement('canvas');
-        canvas.width  = Math.round(img.naturalWidth  * ratio);
-        canvas.height = Math.round(img.naturalHeight * ratio);
-        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
-        resolve(canvas.toDataURL('image/jpeg', 0.75));
-      };
-      img.onerror = () => resolve(src);
-      img.src = src;
+  if (!window.saveReadingRecord) { notify(savedReadingText('failed')); return; }
+  const saveButton = document.getElementById('save-reading-btn');
+  saveButton.disabled = true;
+  notify(savedReadingText('saving'));
+  try {
+    await window.saveReadingRecord({
+      question,
+      spreadName: selectedSpread ? selectedSpread.name : `${cardCount}카드 스프레드`,
+      cards: drawnCards.map(({ card, positionMeaning }) => ({
+        name_ko: card.name_ko || '',
+        name_en: card.name_en || '',
+        positionMeaning: positionMeaning || '',
+        image_file: card.image_file || ''
+      })),
+      reading: readingText,
+      language: currentLang
     });
+    notify(savedReadingText('done'));
+  } catch (err) {
+    console.error('리딩 저장 실패', err);
+    notify(`${savedReadingText('failed')} ${err.message || ''}`);
+  } finally {
+    saveButton.disabled = false;
   }
-
-  const cardDataList = await Promise.all(drawnCards.map(async (dc) => ({
-    name_ko: dc.card.name_ko,
-    name_en: dc.card.name_en,
-    positionMeaning: dc.positionMeaning || '',
-    dataUrl: dc.card.image_file ? await toDataUrl(`/images/${dc.card.image_file}`) : ''
-  })));
-
-  const cardsHtml = cardDataList.map((c, i) => `
-    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:110px">
-      <div style="width:110px;height:190px;border-radius:8px;overflow:hidden;border:1px solid rgba(196,169,107,.4);box-shadow:0 4px 16px rgba(0,0,0,.5)">
-        ${c.dataUrl
-          ? `<img src="${c.dataUrl}" alt="${c.name_ko}" style="width:100%;height:100%;object-fit:cover;" />`
-          : `<div style="width:100%;height:100%;background:#1e1836;display:flex;align-items:center;justify-content:center;color:#c9a84c;font-size:.8rem;text-align:center;padding:8px">${c.name_ko}</div>`}
-      </div>
-      <div style="font-size:.75rem;color:#e8e0f0;text-align:center;line-height:1.4">
-        ${c.positionMeaning ? `<div style="color:#f0d060;margin-bottom:2px">${c.positionMeaning}</div>` : ''}
-        <div style="font-weight:600">${c.name_ko}</div>
-      </div>
-    </div>`).join('');
-
-  const readingHtml = readingText
-    .split('\n')
-    .map(line => line.trim() === '' ? '<br/>' : `<p style="margin:0 0 6px">${line}</p>`)
-    .join('');
-
-  const html = `<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>AI 타로 리딩 — ${dateStr}</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet"/>
-<style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:#111218;color:#e8e3d8;font-family:'Noto Sans KR',sans-serif;font-weight:300;min-height:100vh;padding:40px 20px 80px}
-  .wrap{max-width:860px;margin:0 auto}
-  h1{font-family:'Noto Sans KR',sans-serif;font-size:2rem;background:linear-gradient(135deg,#c4a96b,#d9bf8e,#c4a96b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;letter-spacing:2px;margin-bottom:6px}
-  .sub{text-align:center;color:#7c8090;font-size:.85rem;letter-spacing:3px;margin-bottom:30px}
-  .divider{width:200px;height:1px;background:linear-gradient(90deg,transparent,#c4a96b,transparent);margin:0 auto 30px}
-  .section{background:linear-gradient(135deg,#181a26,#1e2035);border:1px solid rgba(196,169,107,.2);border-radius:14px;padding:24px 28px;margin-bottom:20px}
-  .label{color:#c4a96b;font-family:'Noto Sans KR',sans-serif;font-size:1rem;margin-bottom:10px;letter-spacing:1px}
-  .question-text{font-size:1.05rem;line-height:1.8;color:#e8e3d8}
-  .spread-badge{display:inline-block;background:rgba(196,169,107,.12);border:1px solid rgba(196,169,107,.4);border-radius:20px;color:#d9bf8e;font-size:.85rem;padding:4px 14px}
-  .cards-row{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;padding:4px 0}
-  .reading-body{line-height:1.9;font-size:.97rem;color:#e8e3d8}
-  .footer{text-align:center;color:#7c8090;font-size:.75rem;margin-top:30px;letter-spacing:1px}
-</style>
-</head>
-<body>
-<div class="wrap">
-  <h1>✨ AI 타로 리딩</h1>
-  <div class="sub">${dateStr}</div>
-  <div class="divider"></div>
-
-  <div class="section">
-    <div class="label">질문</div>
-    <div class="question-text">${question}</div>
-  </div>
-
-  <div class="section">
-    <div class="label">스프레드</div>
-    <span class="spread-badge">${spreadName}</span>
-  </div>
-
-  <div class="section">
-    <div class="label">뽑은 카드</div>
-    <div class="cards-row">${cardsHtml}</div>
-  </div>
-
-  <div class="section">
-    <div class="label">리딩 해설</div>
-    <div class="reading-body">${readingHtml}</div>
-  </div>
-
-  <div class="footer">AI 타로 리딩 — Generated by Claude</div>
-</div>
-</body>
-</html>`;
-
-  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  const fileName = `타로리딩_${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}_${String(now.getHours()).padStart(2,'0')}${String(now.getMinutes()).padStart(2,'0')}.html`;
-  a.href = url;
-  a.download = fileName;
-  a.click();
-  URL.revokeObjectURL(url);
-  notify(t('notify_saved'));
 });
 
 document.getElementById('new-reading-btn').addEventListener('click', resetAll);
@@ -2609,6 +2580,7 @@ function handleNavOverlayClick(e) { if (e.target === document.getElementById('na
 function updateMenuLabels() {
   const L = NAV_LABELS[currentLang] || NAV_LABELS.en;
   const s = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  s('nav-logo', `✨ ${currentLang === 'ko' ? '울트라타로' : 'Ultra Tarot'}`);
   s('nav-label-about', L.about);
   s('nav-label-tarot', L.tarot);
   s('nav-label-cards', L.cards);
@@ -3339,6 +3311,115 @@ function closeCardDetail(e) {
   }
 }
 
+async function openSavedReadings() {
+  const modal = document.getElementById('saved-readings-modal');
+  const list = document.getElementById('saved-readings-list');
+  const detail = document.getElementById('saved-reading-detail');
+  modal.classList.add('open');
+  detail.hidden = true;
+  list.hidden = false;
+  list.replaceChildren();
+  const status = document.createElement('div');
+  status.id = 'saved-readings-empty';
+  status.textContent = savedReadingText('loading');
+  list.append(status);
+
+  if (!window.currentUser) {
+    status.textContent = savedReadingText('login');
+    return;
+  }
+  if (!window.fetchSavedReadings) {
+    status.textContent = savedReadingText('failed');
+    return;
+  }
+  try {
+    const readings = await window.fetchSavedReadings();
+    list.replaceChildren();
+    if (!readings.length) {
+      status.textContent = savedReadingText('empty');
+      list.append(status);
+      return;
+    }
+    readings.forEach(reading => {
+      const button = document.createElement('button');
+      button.className = 'saved-reading-item';
+      const title = document.createElement('span');
+      title.textContent = reading.question || reading.spreadName || savedReadingText('saved');
+      const date = document.createElement('span');
+      date.className = 'saved-reading-date';
+      const value = reading.createdAt?.toDate ? reading.createdAt.toDate() : new Date(reading.createdAt || 0);
+      date.textContent = Number.isNaN(value.getTime()) ? '' : value.toLocaleDateString();
+      button.append(title, date);
+      button.addEventListener('click', () => showSavedReadingDetail(reading));
+      list.append(button);
+    });
+    if (window.currentUser.isAnonymous) {
+      const note = document.createElement('p');
+      note.id = 'saved-readings-empty';
+      note.textContent = savedReadingText('device');
+      list.append(note);
+      const linkButton = document.createElement('button');
+      linkButton.type = 'button';
+      linkButton.className = 'btn';
+      linkButton.textContent = savedReadingText('link');
+      linkButton.addEventListener('click', async () => {
+        linkButton.disabled = true;
+        try {
+          await window.linkAnonymousAccount();
+          await openSavedReadings();
+        } catch (err) {
+          console.error('Google 계정 연결 실패', err);
+          notify(`${savedReadingText('failed')} ${err.message || ''}`);
+          linkButton.disabled = false;
+        }
+      });
+      list.append(linkButton);
+    }
+  } catch (err) {
+    console.error('저장 리딩 조회 실패', err);
+    status.textContent = `${savedReadingText('failed')} ${err.message || ''}`;
+    list.append(status);
+  }
+}
+
+function showSavedReadingDetail(reading) {
+  const list = document.getElementById('saved-readings-list');
+  const detail = document.getElementById('saved-reading-detail');
+  const back = document.createElement('button');
+  back.type = 'button';
+  back.id = 'saved-reading-back';
+  back.className = 'btn btn-secondary';
+  back.textContent = savedReadingText('back');
+  back.addEventListener('click', () => {
+    detail.hidden = true;
+    list.hidden = false;
+  });
+  const title = document.createElement('h4');
+  title.textContent = `${reading.question || ''}`;
+  const spread = document.createElement('p');
+  spread.textContent = `${savedReadingText('spread')}: ${reading.spreadName || ''}`;
+  const cardsHeading = document.createElement('h4');
+  cardsHeading.textContent = savedReadingText('cards');
+  const cards = document.createElement('p');
+  cards.textContent = (reading.cards || []).map(card => [card.positionMeaning, card.name_ko, card.name_en].filter(Boolean).join(' · ')).join('\n');
+  const readingHeading = document.createElement('h4');
+  readingHeading.textContent = savedReadingText('reading');
+  const body = document.createElement('div');
+  body.textContent = reading.reading || '';
+  detail.replaceChildren(back, title, spread, cardsHeading, cards, readingHeading, body);
+  list.hidden = true;
+  detail.hidden = false;
+  detail.scrollTop = 0;
+}
+
+function closeSavedReadings() {
+  document.getElementById('saved-readings-modal').classList.remove('open');
+}
+
+document.getElementById('saved-readings-modal').addEventListener('click', event => {
+  if (event.target.id === 'saved-readings-modal') closeSavedReadings();
+});
+
 // 부트스트랩: 모든 const(CONTENT_TEXT 등) 선언 이후에 실행해야 TDZ 에러를 피함
 buildLangDropdown();
 applyLang();
@@ -3348,7 +3429,7 @@ init();
 
 <script type="module">
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-  import { getAuth, GoogleAuthProvider, signInWithPopup, signInAnonymously, signOut, onAuthStateChanged }
+  import { getAuth, GoogleAuthProvider, signInWithPopup, linkWithPopup, signInAnonymously, signOut, onAuthStateChanged }
     from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
   import { getFirestore, doc, getDoc, setDoc, updateDoc, increment,
            addDoc, collection, serverTimestamp, query, orderBy, limit, getDocs }
@@ -3394,6 +3475,37 @@ init();
     updateCreditBadge(window.userCredits);
     return data.free_used || 0;
   }
+
+  window.saveReadingRecord = async (reading) => {
+    const user = auth.currentUser;
+    if (!user) throw new Error('로그인이 필요합니다.');
+    const readingsRef = collection(db, 'users', user.uid, 'readings');
+    await addDoc(readingsRef, {
+      question: String(reading.question || '').slice(0, 2000),
+      spreadName: String(reading.spreadName || '').slice(0, 200),
+      cards: Array.isArray(reading.cards) ? reading.cards.slice(0, 10) : [],
+      reading: String(reading.reading || '').slice(0, 30000),
+      language: String(reading.language || 'en').slice(0, 8),
+      createdAt: serverTimestamp()
+    });
+  };
+
+  window.fetchSavedReadings = async () => {
+    const user = auth.currentUser;
+    if (!user) throw new Error('로그인이 필요합니다.');
+    const q = query(
+      collection(db, 'users', user.uid, 'readings'),
+      orderBy('createdAt', 'desc'), limit(100)
+    );
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map(item => ({ id: item.id, ...item.data() }));
+  };
+
+  window.linkAnonymousAccount = async () => {
+    const user = auth.currentUser;
+    if (!user || !user.isAnonymous) throw new Error('익명 계정이 아닙니다.');
+    await linkWithPopup(user, new GoogleAuthProvider());
+  };
 
   // ── Firestore: 리딩 1회 기록 ──
   window.recordReading = async () => {

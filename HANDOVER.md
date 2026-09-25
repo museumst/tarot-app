@@ -196,11 +196,19 @@ users/{uid}/creditHistory/{autoId}     # 크레딧 이용내역
   ├─ amount_krw: number|null  # 구버전 호환 필드
   ├─ purpose:    string
   └─ date:       serverTimestamp
+
+users/{uid}/readings/{autoId}           # 사용자가 저장한 리딩
+  ├─ question:   string
+  ├─ spreadName: string
+  ├─ cards:      array                  # 카드 이름, 이미지 파일명, 포지션 의미
+  ├─ reading:    string                 # 해석 전문
+  ├─ language:   string                 # 저장 당시 UI 언어
+  └─ createdAt:  serverTimestamp
 ```
 
 > `currency`/`amount`는 나중에 추가된 필드입니다. **`currency`가 없는 과거 기록은 KRW로 간주**해 표시합니다 (`fmtHistoryAmount()`).
 
-### 보안 규칙 (Firebase 콘솔에서 관리, 저장소에 파일 없음)
+### 보안 규칙 (`firestore.rules`; Firebase 콘솔에도 게시 필요)
 ```
 rules_version = '2';
 service cloud.firestore {
@@ -210,11 +218,16 @@ service cloud.firestore {
       match /creditHistory/{docId} {
         allow read, write: if request.auth != null && request.auth.uid == uid;
       }
+      match /readings/{readingId} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
     }
   }
 }
 ```
-⚠️ **Firestore 규칙은 하위 컬렉션에 자동 상속되지 않습니다.** `creditHistory` 규칙을 빠뜨려 "Missing or insufficient permissions" 오류가 났던 사고가 있었습니다.
+⚠️ **Firestore 규칙은 하위 컬렉션에 자동 상속되지 않습니다.** `creditHistory` 또는 `readings` 규칙을 빠뜨리면 해당 기능에서 "Missing or insufficient permissions" 오류가 납니다. 새 하위 컬렉션을 추가할 때 Firebase 콘솔의 규칙도 함께 갱신하세요. Firebase 콘솔에서 `firestore.rules` 내용을 게시해야 실제 서비스에 적용됩니다.
+
+저장 리딩은 `users/{uid}/readings`에 보관하며 소유 계정만 읽고 쓸 수 있습니다. 익명 계정은 기기별 Firebase UID를 사용하지만, 저장 리딩 화면의 Google 계정 연결 기능으로 익명 UID를 Google 계정에 연결하면 기존 데이터와 크레딧을 유지하면서 다른 기기에서도 접근할 수 있습니다.
 
 ---
 
