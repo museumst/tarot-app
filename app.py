@@ -1,11 +1,13 @@
 import json
 import os
+import re
+import html as _html
 import anthropic
 import httpx
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, StreamingResponse
+from fastapi.responses import FileResponse, StreamingResponse, HTMLResponse, PlainTextResponse, Response
 from pydantic import BaseModel
 from typing import List, Optional
 
@@ -170,6 +172,226 @@ async def get_spreads():
     # Filter spreads with actual card positions
     valid_spreads = [s for s in spreads if s.get("card_count") and s.get("positions")]
     return valid_spreads
+
+
+# ──────────────────────────────────────────────────────────────
+# 타로 카드 도감 (SEO 유입용 정적 페이지)
+#   /cards           : 전체 목록
+#   /card/{slug}     : 카드 상세
+#   /sitemap.xml, /robots.txt
+# 검색엔진이 읽을 수 있도록 서버에서 HTML을 직접 렌더링한다.
+# ──────────────────────────────────────────────────────────────
+SITE_URL = "https://ultratarot.com"
+_CARDS_CACHE = None
+
+_SUITS = [("CUPS", "컵"), ("WANDS", "완드"), ("SWORDS", "소드"), ("PENTACLES", "펜타클")]
+
+
+def _slugify(name: str) -> str:
+    return re.sub(r'[^a-z0-9]+', '-', (name or '').lower()).strip('-')
+
+
+def _suit_of(name_en: str):
+    for key, label in _SUITS:
+        if key in (name_en or '').upper():
+            return key, label
+    return "MAJOR", "메이저 아르카나"
+
+
+def load_deck():
+    """카드 데이터를 슬러그/수트 정보와 함께 로드 (최초 1회 캐시)."""
+    global _CARDS_CACHE
+    if _CARDS_CACHE is None:
+        with open(os.path.join(BASE_DIR, "output", "cards.json"), encoding="utf-8") as f:
+            raw = json.load(f)
+        deck = []
+        for c in raw:
+            if not c.get("image_file"):
+                continue
+            c = dict(c)
+            c["slug"] = _slugify(c.get("name_en"))
+            c["suit"], c["suit_label"] = _suit_of(c.get("name_en"))
+            deck.append(c)
+        _CARDS_CACHE = deck
+    return _CARDS_CACHE
+
+
+def _e(s) -> str:
+    return _html.escape(str(s or ''))
+
+
+def _shell(title: str, desc: str, canonical: str, body: str, og_image: str) -> str:
+    """도감 페이지 공통 HTML 껍데기 (본 사이트와 동일한 다크/골드 테마)."""
+    return f"""<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{_e(title)}</title>
+<meta name="description" content="{_e(desc)}">
+<link rel="canonical" href="{_e(canonical)}">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0d0d1a">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="울트라타로">
+<meta property="og:url" content="{_e(canonical)}">
+<meta property="og:title" content="{_e(title)}">
+<meta property="og:description" content="{_e(desc)}">
+<meta property="og:image" content="{_e(og_image)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{_e(title)}">
+<meta name="twitter:description" content="{_e(desc)}">
+<meta name="twitter:image" content="{_e(og_image)}">
+<link rel="icon" href="/static/favicon.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
+  body{{background:#0d0d1a;color:#e8e3d8;font-family:'Noto Sans KR',sans-serif;font-weight:300;line-height:1.75}}
+  a{{color:#c4a96b;text-decoration:none}} a:hover{{color:#d9bf8e}}
+  .wrap{{max-width:900px;margin:0 auto;padding:28px 20px 80px}}
+  .topbar{{border-bottom:1px solid rgba(196,169,107,.18);padding-bottom:16px;margin-bottom:34px;
+          display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}}
+  .brand{{font-weight:700;font-size:1.12rem;color:#d9bf8e}}
+  .nav a{{font-size:.86rem;margin-left:16px}}
+  h1{{font-size:clamp(1.7rem,4.6vw,2.5rem);font-weight:700;color:#d9bf8e;margin-bottom:6px;line-height:1.3}}
+  h2{{font-size:1.1rem;color:#c4a96b;margin:34px 0 12px;font-weight:500}}
+  .sub{{color:#7c8090;font-size:.92rem;margin-bottom:26px}}
+  .card-head{{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start}}
+  .card-img{{width:210px;flex-shrink:0}}
+  .card-img img{{width:100%;border-radius:10px;border:1px solid rgba(196,169,107,.45);display:block}}
+  .card-body{{flex:1;min-width:250px}}
+  p{{margin-bottom:14px}}
+  .sym{{border:1px solid rgba(196,169,107,.2);border-radius:10px;padding:16px 18px;background:rgba(255,255,255,.02)}}
+  .sym div{{margin-bottom:10px}} .sym div:last-child{{margin-bottom:0}}
+  .sym b{{color:#c4a96b;font-weight:500;display:block;font-size:.86rem;margin-bottom:2px}}
+  .cta{{display:inline-block;margin:30px 0 8px;background:linear-gradient(135deg,#8a6d2f,#c4a96b);
+       color:#1a1626;font-weight:700;padding:14px 30px;border-radius:9px}}
+  .cta:hover{{color:#1a1626;filter:brightness(1.08)}}
+  .pager{{display:flex;justify-content:space-between;gap:12px;margin-top:40px;
+         border-top:1px solid rgba(196,169,107,.18);padding-top:18px;font-size:.9rem}}
+  .grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:16px}}
+  .tile{{display:block;text-align:center}}
+  .tile img{{width:100%;border-radius:8px;border:1px solid rgba(196,169,107,.3);display:block;margin-bottom:7px}}
+  .tile span{{font-size:.84rem;color:#e8e3d8}}
+  .tile small{{display:block;color:#7c8090;font-size:.72rem}}
+  footer{{margin-top:56px;border-top:1px solid rgba(196,169,107,.15);padding-top:20px;
+         color:#7c8090;font-size:.78rem;text-align:center}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="brand" href="/">✨ 울트라타로</a>
+    <div class="nav"><a href="/cards">카드 도감</a><a href="/">타로 보기</a></div>
+  </div>
+  {body}
+  <footer>
+    <a href="/">울트라타로</a> · AI가 읽어주는 타로 카드 ·
+    <a href="/legal.html#terms">이용약관</a> ·
+    <a href="/legal.html#privacy">개인정보처리방침</a>
+  </footer>
+</div>
+</body>
+</html>"""
+
+
+@app.get("/cards", response_class=HTMLResponse)
+async def cards_index():
+    deck = load_deck()
+    groups = [("MAJOR", "메이저 아르카나")] + _SUITS
+    sections = []
+    for key, label in groups:
+        items = [c for c in deck if c["suit"] == key]
+        if not items:
+            continue
+        tiles = "".join(
+            f'<a class="tile" href="/card/{_e(c["slug"])}">'
+            f'<img src="/images/{_e(c["image_file"])}" alt="{_e(c["name_ko"])} 타로카드" loading="lazy">'
+            f'<span>{_e(c["name_ko"])}</span><small>{_e(c["name_en"])}</small></a>'
+            for c in items
+        )
+        suffix = "" if key == "MAJOR" else " 수트"
+        sections.append(f'<h2>{_e(label)}{suffix} ({len(items)}장)</h2><div class="grid">{tiles}</div>')
+
+    body = (
+        "<h1>타로 카드 도감</h1>"
+        f'<p class="sub">타로 카드 {len(deck)}장의 의미와 상징을 정리했습니다. '
+        "카드를 눌러 자세한 해설을 확인하세요.</p>"
+        + "".join(sections)
+        + '<p style="text-align:center"><a class="cta" href="/">내 타로 보러 가기 →</a></p>'
+    )
+    return _shell(
+        f"타로 카드 의미 총정리 — 타로카드 {len(deck)}장 도감 | 울트라타로",
+        f"타로 카드 {len(deck)}장의 의미와 상징을 한눈에. 메이저 아르카나부터 컵·완드·소드·펜타클까지 카드별 해설을 확인하세요.",
+        f"{SITE_URL}/cards",
+        body,
+        f"{SITE_URL}/static/og-image.jpg",
+    )
+
+
+@app.get("/card/{slug}", response_class=HTMLResponse)
+async def card_detail(slug: str):
+    deck = load_deck()
+    idx = next((i for i, c in enumerate(deck) if c["slug"] == slug), None)
+    if idx is None:
+        raise HTTPException(status_code=404, detail="카드를 찾을 수 없습니다.")
+    c = deck[idx]
+    prev_c = deck[idx - 1] if idx > 0 else None
+    next_c = deck[idx + 1] if idx < len(deck) - 1 else None
+
+    syms = c.get("symbols") or {}
+    sym_html = "".join(f"<div><b>{_e(k)}</b>{_e(v)}</div>" for k, v in syms.items())
+    sym_block = f'<h2>카드 속 상징</h2><div class="sym">{sym_html}</div>' if sym_html else ""
+
+    reversed_txt = (c.get("reversed") or "").strip()
+    rev_block = f"<h2>역방향 의미</h2><p>{_e(reversed_txt)}</p>" if reversed_txt else ""
+
+    pager = '<div class="pager">'
+    pager += f'<a href="/card/{_e(prev_c["slug"])}">← {_e(prev_c["name_ko"])}</a>' if prev_c else "<span></span>"
+    pager += f'<a href="/card/{_e(next_c["slug"])}">{_e(next_c["name_ko"])} →</a>' if next_c else "<span></span>"
+    pager += "</div>"
+
+    meaning = (c.get("meaning") or "").strip()
+    body = f"""
+  <div class="card-head">
+    <div class="card-img">
+      <img src="/images/{_e(c['image_file'])}" alt="{_e(c['name_ko'])}({_e(c['name_en'])}) 타로카드 이미지">
+    </div>
+    <div class="card-body">
+      <h1>{_e(c['name_ko'])}</h1>
+      <p class="sub">{_e(c['name_en'])} · {_e(c['suit_label'])}</p>
+      <h2 style="margin-top:8px">카드의 의미</h2>
+      <p>{_e(meaning)}</p>
+    </div>
+  </div>
+  {sym_block}
+  {rev_block}
+  <p style="text-align:center"><a class="cta" href="/">이 카드로 내 타로 보기 →</a></p>
+  <p style="text-align:center;font-size:.85rem"><a href="/cards">← 전체 카드 도감</a></p>
+  {pager}
+"""
+    desc = (meaning[:150] + "…") if len(meaning) > 150 else meaning
+    return _shell(
+        f"{c['name_ko']}({c['name_en']}) 타로카드 의미와 상징 | 울트라타로",
+        desc or f"{c['name_ko']} 타로카드의 의미와 상징을 알아보세요.",
+        f"{SITE_URL}/card/{c['slug']}",
+        body,
+        f"{SITE_URL}/images/{c['image_file']}",
+    )
+
+
+@app.get("/sitemap.xml")
+async def sitemap():
+    urls = [f"{SITE_URL}/", f"{SITE_URL}/cards", f"{SITE_URL}/legal.html"]
+    urls += [f"{SITE_URL}/card/{c['slug']}" for c in load_deck()]
+    items = "".join(f"<url><loc>{u}</loc></url>" for u in urls)
+    xml = f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{items}</urlset>'
+    return Response(content=xml, media_type="application/xml")
+
+
+@app.get("/robots.txt", response_class=PlainTextResponse)
+async def robots():
+    return f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n"
 
 
 class PaymentVerifyRequest(BaseModel):
