@@ -151,6 +151,17 @@ app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), na
 async def index():
     return FileResponse(os.path.join(BASE_DIR, "static", "index.html"))
 
+# ── 검색엔진 소유권 확인 파일 (루트 경로에서 그대로 서빙되어야 함) ──
+@app.get("/googlefa1b26a823641718.html")
+async def google_site_verification():
+    return FileResponse(os.path.join(BASE_DIR, "static", "googlefa1b26a823641718.html"))
+
+
+@app.get("/naverbecce9a4943175d5c9badc65c8e9e828.html")
+async def naver_site_verification():
+    return FileResponse(os.path.join(BASE_DIR, "static", "naverbecce9a4943175d5c9badc65c8e9e828.html"))
+
+
 @app.get("/legal.html")
 async def legal():
     return FileResponse(os.path.join(BASE_DIR, "static", "legal.html"))
