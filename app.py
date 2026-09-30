@@ -343,8 +343,19 @@ async def card_detail(slug: str):
     sym_html = "".join(f"<div><b>{_e(k)}</b>{_e(v)}</div>" for k, v in syms.items())
     sym_block = f'<h2>카드 속 상징</h2><div class="sym">{sym_html}</div>' if sym_html else ""
 
-    reversed_txt = (c.get("reversed") or "").strip()
-    rev_block = f"<h2>역방향 의미</h2><p>{_e(reversed_txt)}</p>" if reversed_txt else ""
+    # 보강된 해설(seo)이 있으면 상세 섹션을 구성하고, 없으면 기존 meaning만 보여준다
+    seo = c.get("seo") or {}
+    rev_block = ""
+    topic_block = ""
+    advice_block = ""
+    if seo.get("reversed"):
+        rev_block = f"<h2>역방향으로 나왔을 때</h2><p>{_e(seo['reversed'])}</p>"
+    topics = [("love", "연애·인간관계"), ("career", "직장·진로"), ("money", "금전·재물")]
+    parts = [f"<h2>{label}</h2><p>{_e(seo[key])}</p>" for key, label in topics if seo.get(key)]
+    if parts:
+        topic_block = "".join(parts)
+    if seo.get("advice"):
+        advice_block = f'<h2>이 카드의 조언</h2><div class="sym"><p style="margin:0">{_e(seo["advice"])}</p></div>'
 
     pager = '<div class="pager">'
     pager += f'<a href="/card/{_e(prev_c["slug"])}">← {_e(prev_c["name_ko"])}</a>' if prev_c else "<span></span>"
@@ -352,6 +363,8 @@ async def card_detail(slug: str):
     pager += "</div>"
 
     meaning = (c.get("meaning") or "").strip()
+    upright = (seo.get("upright") or "").strip()
+    intro = f"<p>{_e(meaning)}</p>" + (f"<p>{_e(upright)}</p>" if upright else "")
     body = f"""
   <div class="card-head">
     <div class="card-img">
@@ -361,16 +374,19 @@ async def card_detail(slug: str):
       <h1>{_e(c['name_ko'])}</h1>
       <p class="sub">{_e(c['name_en'])} · {_e(c['suit_label'])}</p>
       <h2 style="margin-top:8px">카드의 의미</h2>
-      <p>{_e(meaning)}</p>
+      {intro}
     </div>
   </div>
   {sym_block}
   {rev_block}
+  {topic_block}
+  {advice_block}
   <p style="text-align:center"><a class="cta" href="/">이 카드로 내 타로 보기 →</a></p>
   <p style="text-align:center;font-size:.85rem"><a href="/cards">← 전체 카드 도감</a></p>
   {pager}
 """
-    desc = (meaning[:150] + "…") if len(meaning) > 150 else meaning
+    desc_src = upright or meaning
+    desc = (desc_src[:150] + "…") if len(desc_src) > 150 else desc_src
     return _shell(
         f"{c['name_ko']}({c['name_en']}) 타로카드 의미와 상징 | 울트라타로",
         desc or f"{c['name_ko']} 타로카드의 의미와 상징을 알아보세요.",
