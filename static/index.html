@@ -302,6 +302,18 @@
       background: linear-gradient(135deg, #40916c, #52b788);
       transform: translateY(-1px);
     }
+    /* 결과 공유 버튼 (바이럴 유도 — 저장보다 눈에 띄게) */
+    .btn-share {
+      background: linear-gradient(135deg, #8a6d2f, #c4a96b);
+      color: #1a1626;
+      border: 1px solid var(--gold-light);
+      font-weight: 700;
+    }
+    .btn-share:hover {
+      background: linear-gradient(135deg, #c4a96b, #d9bf8e);
+      transform: translateY(-1px);
+    }
+    .btn-share:disabled { opacity: .6; cursor: wait; transform: none; }
 
     /* ── Card drawing area ── */
     #draw-area {
@@ -1119,6 +1131,7 @@
     </div>
     <div class="mt-16 row">
       <button class="btn btn-secondary" id="back-to-draw">← 다시 뽑기</button>
+      <button class="btn btn-share" id="share-reading-btn">🔗 결과 공유</button>
       <button class="btn btn-save" id="save-reading-btn">💾 리딩 저장</button>
       <button class="btn" id="new-reading-btn">새 리딩 시작</button>
     </div>
@@ -1280,7 +1293,7 @@ const TRANSLATIONS = {
     gate_title:'✨ 전체 리딩 보기', gate_badge:'무료 3회 제공',
     gate_desc:'Google 계정으로 로그인하면 전체 리딩을 확인할 수 있습니다.',
     gate_btn:'Google로 계속하기',
-    btn_back_draw:'← 다시 뽑기', btn_save:'💾 리딩 저장',
+    btn_back_draw:'← 다시 뽑기', btn_save:'💾 리딩 저장', btn_share:'🔗 결과 공유', share_ready:'이미지를 저장했어요 · 공유해 보세요!', share_failed:'공유에 실패했어요',
     btn_new:'새 리딩 시작', btn_reset:'↺ 처음으로',
     logout:'로그아웃',
     free_left: n => `무료 ${n}회 남음`, unlimited:'무제한',
@@ -1305,7 +1318,7 @@ const TRANSLATIONS = {
     gate_title:'✨ View Full Reading', gate_badge:'3 free readings',
     gate_desc:'Sign in with Google to unlock the full reading.',
     gate_btn:'Continue with Google',
-    btn_back_draw:'← Draw Again', btn_save:'💾 Save Reading',
+    btn_back_draw:'← Draw Again', btn_save:'💾 Save Reading', btn_share:'🔗 Share Result', share_ready:'Image saved — share it!', share_failed:'Sharing failed',
     btn_new:'New Reading', btn_reset:'↺ Start Over',
     logout:'Logout',
     free_left: n => `${n} free reading${n!==1?'s':''} left`, unlimited:'Unlimited',
@@ -1330,7 +1343,7 @@ const TRANSLATIONS = {
     gate_title:'✨ 全文を見る', gate_badge:'無料3回提供',
     gate_desc:'Googleアカウントでログインすると全文をご確認いただけます。',
     gate_btn:'Googleで続ける',
-    btn_back_draw:'← 引き直す', btn_save:'💾 保存する',
+    btn_back_draw:'← 引き直す', btn_save:'💾 保存する', btn_share:'🔗 結果をシェア', share_ready:'画像を保存しました。シェアしてください！', share_failed:'共有に失敗しました',
     btn_new:'新しい占い', btn_reset:'↺ 最初から',
     logout:'ログアウト',
     free_left: n => `残り${n}回無料`, unlimited:'無制限',
@@ -1355,7 +1368,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Ver Lectura Completa', gate_badge:'3 lecturas gratuitas',
     gate_desc:'Inicia sesión con Google para ver la lectura completa.',
     gate_btn:'Continuar con Google',
-    btn_back_draw:'← Volver a Sacar', btn_save:'💾 Guardar Lectura',
+    btn_back_draw:'← Volver a Sacar', btn_save:'💾 Guardar Lectura', btn_share:'🔗 Compartir', share_ready:'¡Imagen guardada, compártela!', share_failed:'Error al compartir',
     btn_new:'Nueva Lectura', btn_reset:'↺ Empezar de Nuevo',
     logout:'Cerrar Sesión',
     free_left: n => `${n} lectura${n!==1?'s':''} gratuita${n!==1?'s':''} restante${n!==1?'s':''}`, unlimited:'Ilimitado',
@@ -1380,7 +1393,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Voir la Lecture Complète', gate_badge:'3 lectures gratuites',
     gate_desc:'Connectez-vous avec Google pour voir la lecture complète.',
     gate_btn:'Continuer avec Google',
-    btn_back_draw:'← Retirer', btn_save:'💾 Sauvegarder',
+    btn_back_draw:'← Retirer', btn_save:'💾 Sauvegarder', btn_share:'🔗 Partager', share_ready:'Image enregistrée — partagez-la !', share_failed:'Échec du partage',
     btn_new:'Nouvelle Lecture', btn_reset:'↺ Recommencer',
     logout:'Déconnexion',
     free_left: n => `${n} lecture${n>1?'s':''} gratuite${n>1?'s':''} restante${n>1?'s':''}`, unlimited:'Illimité',
@@ -1405,7 +1418,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Vollständige Legung ansehen', gate_badge:'3 kostenlose Legungen',
     gate_desc:'Melden Sie sich mit Google an, um die vollständige Legung zu sehen.',
     gate_btn:'Mit Google fortfahren',
-    btn_back_draw:'← Neu ziehen', btn_save:'💾 Legung speichern',
+    btn_back_draw:'← Neu ziehen', btn_save:'💾 Legung speichern', btn_share:'🔗 Teilen', share_ready:'Bild gespeichert – teile es!', share_failed:'Teilen fehlgeschlagen',
     btn_new:'Neue Legung', btn_reset:'↺ Von vorne beginnen',
     logout:'Abmelden',
     free_left: n => `${n} kostenlose Legung${n!==1?'en':''} übrig`, unlimited:'Unbegrenzt',
@@ -1430,7 +1443,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Ver Leitura Completa', gate_badge:'3 leituras gratuitas',
     gate_desc:'Faça login com o Google para ver a leitura completa.',
     gate_btn:'Continuar com Google',
-    btn_back_draw:'← Tirar Novamente', btn_save:'💾 Salvar Leitura',
+    btn_back_draw:'← Tirar Novamente', btn_save:'💾 Salvar Leitura', btn_share:'🔗 Compartilhar', share_ready:'Imagem salva — compartilhe!', share_failed:'Falha ao compartilhar',
     btn_new:'Nova Leitura', btn_reset:'↺ Recomeçar',
     logout:'Sair',
     free_left: n => `${n} leitura${n!==1?'s':''} gratuita${n!==1?'s':''} restante${n!==1?'s':''}`, unlimited:'Ilimitado',
@@ -1455,7 +1468,7 @@ const TRANSLATIONS = {
     gate_title:'✨ ดูการอ่านทั้งหมด', gate_badge:'ฟรี 3 ครั้ง',
     gate_desc:'เข้าสู่ระบบด้วย Google เพื่อดูการอ่านทั้งหมด',
     gate_btn:'ดำเนินการต่อด้วย Google',
-    btn_back_draw:'← จั่วใหม่', btn_save:'💾 บันทึก',
+    btn_back_draw:'← จั่วใหม่', btn_save:'💾 บันทึก', btn_share:'🔗 แชร์ผลลัพธ์', share_ready:'บันทึกรูปแล้ว มาแชร์กันเลย!', share_failed:'แชร์ไม่สำเร็จ',
     btn_new:'การอ่านใหม่', btn_reset:'↺ เริ่มต้นใหม่',
     logout:'ออกจากระบบ',
     free_left: n => `เหลือ ${n} ครั้ง`, unlimited:'ไม่จำกัด',
@@ -1480,7 +1493,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Посмотреть полный расклад', gate_badge:'3 бесплатных расклада',
     gate_desc:'Войдите через Google, чтобы увидеть полный расклад.',
     gate_btn:'Продолжить с Google',
-    btn_back_draw:'← Вытянуть снова', btn_save:'💾 Сохранить расклад',
+    btn_back_draw:'← Вытянуть снова', btn_save:'💾 Сохранить расклад', btn_share:'🔗 Поделиться', share_ready:'Изображение сохранено — поделитесь!', share_failed:'Не удалось поделиться',
     btn_new:'Новый расклад', btn_reset:'↺ Начать сначала',
     logout:'Выйти',
     free_left: n => `Осталось ${n} расклад${n===1?'':n<5?'а':'ов'}`, unlimited:'Безлимитно',
@@ -1505,7 +1518,7 @@ const TRANSLATIONS = {
     gate_title:'✨ 查看完整解读', gate_badge:'免费3次',
     gate_desc:'使用Google账号登录即可查看完整解读。',
     gate_btn:'使用Google继续',
-    btn_back_draw:'← 重新抽牌', btn_save:'💾 保存解读',
+    btn_back_draw:'← 重新抽牌', btn_save:'💾 保存解读', btn_share:'🔗 分享结果', share_ready:'图片已保存，快分享吧！', share_failed:'分享失败',
     btn_new:'新的占卜', btn_reset:'↺ 重新开始',
     logout:'退出登录',
     free_left: n => `剩余${n}次免费`, unlimited:'无限制',
@@ -1530,7 +1543,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Visualizza la Lettura Completa', gate_badge:'3 letture gratuite',
     gate_desc:'Accedi con Google per vedere la lettura completa.',
     gate_btn:'Continua con Google',
-    btn_back_draw:'← Ripesca', btn_save:'💾 Salva Lettura',
+    btn_back_draw:'← Ripesca', btn_save:'💾 Salva Lettura', btn_share:'🔗 Condividi', share_ready:'Immagine salvata — condividila!', share_failed:'Condivisione non riuscita',
     btn_new:'Nuova Lettura', btn_reset:'↺ Ricomincia',
     logout:'Esci',
     free_left: n => `${n} lettura${n!==1?'e':''} gratuita${n!==1?'e':''} rimasta${n!==1?'e':''}`, unlimited:'Illimitato',
@@ -1555,7 +1568,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Lihat Pembacaan Lengkap', gate_badge:'3 pembacaan gratis',
     gate_desc:'Masuk dengan Google untuk melihat pembacaan lengkap.',
     gate_btn:'Lanjutkan dengan Google',
-    btn_back_draw:'← Ambil Ulang', btn_save:'💾 Simpan Pembacaan',
+    btn_back_draw:'← Ambil Ulang', btn_save:'💾 Simpan Pembacaan', btn_share:'🔗 Bagikan', share_ready:'Gambar tersimpan — bagikan!', share_failed:'Gagal membagikan',
     btn_new:'Pembacaan Baru', btn_reset:'↺ Mulai Ulang',
     logout:'Keluar',
     free_left: n => `${n} pembacaan gratis tersisa`, unlimited:'Tidak Terbatas',
@@ -1580,7 +1593,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Xem Toàn Bộ Bài Đọc', gate_badge:'3 lần đọc miễn phí',
     gate_desc:'Đăng nhập bằng Google để xem toàn bộ bài đọc.',
     gate_btn:'Tiếp tục với Google',
-    btn_back_draw:'← Rút Lại', btn_save:'💾 Lưu Bài Đọc',
+    btn_back_draw:'← Rút Lại', btn_save:'💾 Lưu Bài Đọc', btn_share:'🔗 Chia Sẻ', share_ready:'Đã lưu ảnh — hãy chia sẻ!', share_failed:'Chia sẻ thất bại',
     btn_new:'Bài Đọc Mới', btn_reset:'↺ Bắt đầu lại',
     logout:'Đăng xuất',
     free_left: n => `Còn ${n} lần miễn phí`, unlimited:'Không giới hạn',
@@ -1605,7 +1618,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Tam Okumayı Gör', gate_badge:'3 ücretsiz okuma',
     gate_desc:'Tam okumayı görmek için Google ile giriş yapın.',
     gate_btn:'Google ile Devam Et',
-    btn_back_draw:'← Yeniden Çek', btn_save:'💾 Okumayı Kaydet',
+    btn_back_draw:'← Yeniden Çek', btn_save:'💾 Okumayı Kaydet', btn_share:'🔗 Paylaş', share_ready:'Görsel kaydedildi — paylaşın!', share_failed:'Paylaşım başarısız',
     btn_new:'Yeni Okuma', btn_reset:'↺ Başa Dön',
     logout:'Çıkış Yap',
     free_left: n => `${n} ücretsiz okuma kaldı`, unlimited:'Sınırsız',
@@ -1630,7 +1643,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Zobacz pełne czytanie', gate_badge:'3 bezpłatne czytania',
     gate_desc:'Zaloguj się przez Google, aby zobaczyć pełne czytanie.',
     gate_btn:'Kontynuuj z Google',
-    btn_back_draw:'← Dobierz ponownie', btn_save:'💾 Zapisz czytanie',
+    btn_back_draw:'← Dobierz ponownie', btn_save:'💾 Zapisz czytanie', btn_share:'🔗 Udostępnij', share_ready:'Obraz zapisany — udostępnij!', share_failed:'Udostępnianie nie powiodło się',
     btn_new:'Nowe czytanie', btn_reset:'↺ Zacznij od nowa',
     logout:'Wyloguj',
     free_left: n => `Pozostało ${n} bezpłatne${n===1?'':n<5?'':'ch'} czytanie${n===1?'':n<5?'a':'ń'}`, unlimited:'Nieograniczone',
@@ -1723,6 +1736,7 @@ function applyLang() {
   el('gate-desc').textContent      = t('gate_desc');
   el('gate-login-text').textContent = t('gate_btn');
   el('back-to-draw').textContent   = t('btn_back_draw');
+  el('share-reading-btn').textContent = t('btn_share');
   el('save-reading-btn').textContent = t('btn_save');
   el('nav-label-saved').textContent = savedReadingText('saved');
   el('saved-readings-title').textContent = savedReadingText('saved');
@@ -2135,6 +2149,168 @@ document.getElementById('back-to-draw').addEventListener('click', () => {
   show('step2');
   buildDeck();
   document.getElementById('step2').scrollIntoView({ behavior: 'smooth' });
+});
+
+// ── 리딩 결과 공유 ──────────────────────────────────────────────
+// 결과를 브랜드 이미지로 만들어 네이티브 공유 시트로 넘긴다.
+// (지원 안 되는 환경에서는 이미지 저장 + 링크 복사로 대체)
+const SHARE_URL = 'https://ultratarot.com';
+
+function loadImg(src) {
+  return new Promise((resolve) => {
+    const im = new Image();
+    im.onload = () => resolve(im);
+    im.onerror = () => resolve(null);
+    im.src = src;   // 동일 출처(/images)라 canvas가 오염되지 않음
+  });
+}
+
+// 한국어는 공백 기준 줄바꿈이 잘 안 되므로 글자 단위로 감싼다
+function wrapLines(ctx, text, maxW, maxLines) {
+  const lines = [];
+  let cur = '';
+  for (const ch of text) {
+    if (ch === '\n') { lines.push(cur); cur = ''; if (lines.length >= maxLines) break; continue; }
+    const test = cur + ch;
+    if (ctx.measureText(test).width > maxW && cur) {
+      lines.push(cur); cur = ch;
+      if (lines.length >= maxLines) break;
+    } else { cur = test; }
+  }
+  if (lines.length < maxLines && cur) lines.push(cur);
+  if (lines.length === maxLines) {
+    const last = lines[maxLines - 1];
+    if (last && ctx.measureText(last).width > maxW - 30) {
+      lines[maxLines - 1] = last.slice(0, -2) + '…';
+    }
+  }
+  return lines;
+}
+
+async function buildShareImage() {
+  const W = 1080, H = 1350;
+  const cv = document.createElement('canvas');
+  cv.width = W; cv.height = H;
+  const ctx = cv.getContext('2d');
+
+  // 배경
+  ctx.fillStyle = '#0d0d1a';
+  ctx.fillRect(0, 0, W, H);
+  const g = ctx.createRadialGradient(W / 2, H * 0.34, 40, W / 2, H * 0.34, W * 0.85);
+  g.addColorStop(0, 'rgba(60,48,110,.55)');
+  g.addColorStop(1, 'rgba(13,13,26,0)');
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, W, H);
+
+  // 별
+  for (let i = 0; i < 120; i++) {
+    const x = Math.random() * W, y = Math.random() * H, r = Math.random() < 0.15 ? 2 : 1;
+    ctx.fillStyle = `rgba(255,255,255,${0.25 + Math.random() * 0.5})`;
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+  }
+
+  ctx.textAlign = 'center';
+
+  // 헤더
+  ctx.fillStyle = '#d9bf8e';
+  ctx.font = '700 52px "Noto Sans KR", sans-serif';
+  ctx.fillText('✨ 울트라타로', W / 2, 108);
+
+  // 질문
+  const q = (document.getElementById('question-input').value || '').trim();
+  let y = 176;
+  if (q) {
+    ctx.fillStyle = 'rgba(232,227,216,.92)';
+    ctx.font = '400 34px "Noto Sans KR", sans-serif';
+    wrapLines(ctx, `“${q}”`, W - 160, 2).forEach((ln) => { ctx.fillText(ln, W / 2, y); y += 46; });
+    y += 14;
+  } else {
+    y = 186;
+  }
+
+  // 카드 (최대 5장)
+  const cards = drawnCards.slice(0, 5);
+  const imgs = await Promise.all(cards.map(({ card }) => loadImg(`/images/${card.image_file}`)));
+  const n = Math.max(cards.length, 1);
+  const cw = Math.min(190, Math.floor((W - 120) / n) - 16);
+  const ch = Math.round(cw * 1.72);
+  const gap = 16;
+  const totalW = n * cw + (n - 1) * gap;
+  let cxp = (W - totalW) / 2;
+  const cardTop = y;
+
+  imgs.forEach((im, i) => {
+    const x = cxp + i * (cw + gap);
+    ctx.fillStyle = '#c4a96b';
+    ctx.fillRect(x - 3, cardTop - 3, cw + 6, ch + 6);   // 금색 테두리
+    if (im) ctx.drawImage(im, x, cardTop, cw, ch);
+    else { ctx.fillStyle = '#1a1730'; ctx.fillRect(x, cardTop, cw, ch); }
+    // 카드 이름
+    ctx.fillStyle = '#d9bf8e';
+    ctx.font = '500 21px "Noto Sans KR", sans-serif';
+    const nm = currentLang === 'ko'
+      ? (cards[i].card.name_ko || cards[i].card.name_en || '')
+      : (cards[i].card.name_en || '');
+    const short = nm.length > 10 ? nm.slice(0, 9) + '…' : nm;
+    ctx.fillText(short, x + cw / 2, cardTop + ch + 30);
+  });
+
+  // 해석 발췌
+  let body = (document.getElementById('reading-output').innerText || '').trim();
+  body = body.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+  const bodyTop = cardTop + ch + 84;
+  ctx.fillStyle = 'rgba(232,227,216,.88)';
+  ctx.font = '300 30px "Noto Sans KR", sans-serif';
+  ctx.textAlign = 'left';
+  const bodyMaxLines = Math.max(4, Math.floor((H - 150 - bodyTop) / 46));
+  wrapLines(ctx, body, W - 160, bodyMaxLines).forEach((ln, i) => ctx.fillText(ln, 80, bodyTop + i * 46));
+
+  // 푸터
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#c4a96b';
+  ctx.fillRect(W / 2 - 60, H - 132, 120, 2);
+  ctx.font = '500 30px "Noto Sans KR", sans-serif';
+  ctx.fillText('ultratarot.com', W / 2, H - 82);
+  ctx.fillStyle = 'rgba(150,145,160,.9)';
+  ctx.font = '300 24px "Noto Sans KR", sans-serif';
+  ctx.fillText('AI가 읽어주는 타로 카드 · 무료 3회', W / 2, H - 44);
+
+  return new Promise((resolve) => cv.toBlob(resolve, 'image/jpeg', 0.9));
+}
+
+document.getElementById('share-reading-btn').addEventListener('click', async () => {
+  const btn = document.getElementById('share-reading-btn');
+  const readingText = (document.getElementById('reading-output').innerText || '').trim();
+  if (!readingText) { notify(t('notify_no_content')); return; }
+
+  btn.disabled = true;
+  try {
+    const blob = await buildShareImage();
+    const file = blob ? new File([blob], 'ultratarot.jpg', { type: 'image/jpeg' }) : null;
+    const shareText = `${t('title')} — ${SHARE_URL}`;
+
+    // 1) 네이티브 공유(모바일: 카톡/인스타 등)
+    if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({ files: [file], text: shareText });
+      return;
+    }
+    // 2) 대체: 이미지 저장 + 링크 복사
+    if (blob) {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'ultratarot.jpg';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 4000);
+    }
+    try { await navigator.clipboard.writeText(SHARE_URL); } catch (e) {}
+    notify(t('share_ready'), 2600);
+  } catch (e) {
+    if (e && e.name === 'AbortError') return;   // 사용자가 공유 취소
+    console.error('[공유 실패]', e);
+    notify(t('share_failed'));
+  } finally {
+    btn.disabled = false;
+  }
 });
 
 document.getElementById('save-reading-btn').addEventListener('click', async () => {
