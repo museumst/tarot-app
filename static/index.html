@@ -315,6 +315,50 @@
     }
     .btn-share:disabled { opacity: .6; cursor: wait; transform: none; }
 
+    /* ── 공유 모달 ── */
+    #share-modal {
+      display: none; position: fixed; inset: 0; z-index: 9500;
+      background: rgba(0,0,0,.72); align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    #share-modal.open { display: flex; }
+    #share-box {
+      background: linear-gradient(160deg, #16122a, #1e1836);
+      border: 1px solid rgba(196,169,107,.3); border-radius: 16px;
+      padding: 26px 24px; width: 100%; max-width: 420px;
+      max-height: 90vh; overflow-y: auto; position: relative; text-align: center;
+    }
+    #share-close {
+      position: absolute; top: 12px; right: 14px;
+      background: none; border: none; color: var(--text-dim);
+      font-size: 1.1rem; cursor: pointer;
+    }
+    #share-modal-title {
+      font-family: 'Noto Sans KR', sans-serif; color: var(--gold);
+      font-size: 1.15rem; margin-bottom: 16px;
+    }
+    #share-preview {
+      width: 100%; max-height: 42vh; object-fit: contain;
+      border-radius: 10px; border: 1px solid rgba(196,169,107,.25);
+      background: #0d0d1a; margin-bottom: 18px;
+    }
+    .share-actions { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .share-act {
+      background: rgba(196,169,107,.1); border: 1px solid rgba(196,169,107,.4);
+      color: var(--gold-light); border-radius: 9px; padding: 11px;
+      font-size: .88rem; cursor: pointer; font-family: 'Noto Sans KR', sans-serif;
+      transition: background .2s, border-color .2s;
+    }
+    .share-act:hover { background: rgba(196,169,107,.22); border-color: var(--gold); }
+    .share-sns { display: flex; gap: 10px; justify-content: center; }
+    .share-sns-btn {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.18);
+      color: #e8e3d8; font-size: .82rem; font-weight: 700; cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .share-sns-btn:hover { background: rgba(255,255,255,.16); transform: translateY(-2px); }
+
     /* ── Card drawing area ── */
     #draw-area {
       display: flex;
@@ -1141,6 +1185,26 @@
 
 <div class="notif" id="notif"></div>
 
+<!-- 공유 모달 (데스크톱 등 네이티브 공유 시트가 없는 환경) -->
+<div id="share-modal">
+  <div id="share-box">
+    <button id="share-close" onclick="closeShareModal()">✕</button>
+    <h3 id="share-modal-title">결과 공유</h3>
+    <img id="share-preview" alt="" />
+    <div class="share-actions">
+      <button class="share-act" id="share-copy-image">🖼️ 이미지 복사</button>
+      <button class="share-act" id="share-save-image">⬇️ 이미지 저장</button>
+      <button class="share-act" id="share-copy-link">🔗 링크 복사</button>
+    </div>
+    <div class="share-sns">
+      <button class="share-sns-btn" data-sns="x">𝕏</button>
+      <button class="share-sns-btn" data-sns="facebook">f</button>
+      <button class="share-sns-btn" data-sns="threads">@</button>
+      <button class="share-sns-btn" data-sns="line">LINE</button>
+    </div>
+  </div>
+</div>
+
 <!-- 충전 모달 -->
 <div id="charge-modal">
   <div id="charge-box">
@@ -1293,7 +1357,7 @@ const TRANSLATIONS = {
     gate_title:'✨ 전체 리딩 보기', gate_badge:'무료 3회 제공',
     gate_desc:'Google 계정으로 로그인하면 전체 리딩을 확인할 수 있습니다.',
     gate_btn:'Google로 계속하기',
-    btn_back_draw:'← 다시 뽑기', btn_save:'💾 리딩 저장', btn_share:'🔗 결과 공유', share_ready:'이미지를 저장했어요 · 공유해 보세요!', share_failed:'공유에 실패했어요',
+    btn_back_draw:'← 다시 뽑기', btn_save:'💾 리딩 저장', btn_share:'🔗 결과 공유', share_modal_title:'결과 공유', share_copy_image:'이미지 복사', share_save_image:'이미지 저장', share_copy_link:'링크 복사', share_copied_image:'이미지를 복사했어요', share_copied_link:'링크를 복사했어요', share_ready:'이미지를 저장했어요 · 공유해 보세요!', share_failed:'공유에 실패했어요',
     btn_new:'새 리딩 시작', btn_reset:'↺ 처음으로',
     logout:'로그아웃',
     free_left: n => `무료 ${n}회 남음`, unlimited:'무제한',
@@ -1318,7 +1382,7 @@ const TRANSLATIONS = {
     gate_title:'✨ View Full Reading', gate_badge:'3 free readings',
     gate_desc:'Sign in with Google to unlock the full reading.',
     gate_btn:'Continue with Google',
-    btn_back_draw:'← Draw Again', btn_save:'💾 Save Reading', btn_share:'🔗 Share Result', share_ready:'Image saved — share it!', share_failed:'Sharing failed',
+    btn_back_draw:'← Draw Again', btn_save:'💾 Save Reading', btn_share:'🔗 Share Result', share_modal_title:'Share Result', share_copy_image:'Copy Image', share_save_image:'Save Image', share_copy_link:'Copy Link', share_copied_image:'Image copied', share_copied_link:'Link copied', share_ready:'Image saved — share it!', share_failed:'Sharing failed',
     btn_new:'New Reading', btn_reset:'↺ Start Over',
     logout:'Logout',
     free_left: n => `${n} free reading${n!==1?'s':''} left`, unlimited:'Unlimited',
@@ -1343,7 +1407,7 @@ const TRANSLATIONS = {
     gate_title:'✨ 全文を見る', gate_badge:'無料3回提供',
     gate_desc:'Googleアカウントでログインすると全文をご確認いただけます。',
     gate_btn:'Googleで続ける',
-    btn_back_draw:'← 引き直す', btn_save:'💾 保存する', btn_share:'🔗 結果をシェア', share_ready:'画像を保存しました。シェアしてください！', share_failed:'共有に失敗しました',
+    btn_back_draw:'← 引き直す', btn_save:'💾 保存する', btn_share:'🔗 結果をシェア', share_modal_title:'結果をシェア', share_copy_image:'画像をコピー', share_save_image:'画像を保存', share_copy_link:'リンクをコピー', share_copied_image:'画像をコピーしました', share_copied_link:'リンクをコピーしました', share_ready:'画像を保存しました。シェアしてください！', share_failed:'共有に失敗しました',
     btn_new:'新しい占い', btn_reset:'↺ 最初から',
     logout:'ログアウト',
     free_left: n => `残り${n}回無料`, unlimited:'無制限',
@@ -1368,7 +1432,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Ver Lectura Completa', gate_badge:'3 lecturas gratuitas',
     gate_desc:'Inicia sesión con Google para ver la lectura completa.',
     gate_btn:'Continuar con Google',
-    btn_back_draw:'← Volver a Sacar', btn_save:'💾 Guardar Lectura', btn_share:'🔗 Compartir', share_ready:'¡Imagen guardada, compártela!', share_failed:'Error al compartir',
+    btn_back_draw:'← Volver a Sacar', btn_save:'💾 Guardar Lectura', btn_share:'🔗 Compartir', share_modal_title:'Compartir', share_copy_image:'Copiar imagen', share_save_image:'Guardar imagen', share_copy_link:'Copiar enlace', share_copied_image:'Imagen copiada', share_copied_link:'Enlace copiado', share_ready:'¡Imagen guardada, compártela!', share_failed:'Error al compartir',
     btn_new:'Nueva Lectura', btn_reset:'↺ Empezar de Nuevo',
     logout:'Cerrar Sesión',
     free_left: n => `${n} lectura${n!==1?'s':''} gratuita${n!==1?'s':''} restante${n!==1?'s':''}`, unlimited:'Ilimitado',
@@ -1393,7 +1457,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Voir la Lecture Complète', gate_badge:'3 lectures gratuites',
     gate_desc:'Connectez-vous avec Google pour voir la lecture complète.',
     gate_btn:'Continuer avec Google',
-    btn_back_draw:'← Retirer', btn_save:'💾 Sauvegarder', btn_share:'🔗 Partager', share_ready:'Image enregistrée — partagez-la !', share_failed:'Échec du partage',
+    btn_back_draw:'← Retirer', btn_save:'💾 Sauvegarder', btn_share:'🔗 Partager', share_modal_title:'Partager', share_copy_image:'Copier l\'image', share_save_image:'Enregistrer l\'image', share_copy_link:'Copier le lien', share_copied_image:'Image copiée', share_copied_link:'Lien copié', share_ready:'Image enregistrée — partagez-la !', share_failed:'Échec du partage',
     btn_new:'Nouvelle Lecture', btn_reset:'↺ Recommencer',
     logout:'Déconnexion',
     free_left: n => `${n} lecture${n>1?'s':''} gratuite${n>1?'s':''} restante${n>1?'s':''}`, unlimited:'Illimité',
@@ -1418,7 +1482,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Vollständige Legung ansehen', gate_badge:'3 kostenlose Legungen',
     gate_desc:'Melden Sie sich mit Google an, um die vollständige Legung zu sehen.',
     gate_btn:'Mit Google fortfahren',
-    btn_back_draw:'← Neu ziehen', btn_save:'💾 Legung speichern', btn_share:'🔗 Teilen', share_ready:'Bild gespeichert – teile es!', share_failed:'Teilen fehlgeschlagen',
+    btn_back_draw:'← Neu ziehen', btn_save:'💾 Legung speichern', btn_share:'🔗 Teilen', share_modal_title:'Teilen', share_copy_image:'Bild kopieren', share_save_image:'Bild speichern', share_copy_link:'Link kopieren', share_copied_image:'Bild kopiert', share_copied_link:'Link kopiert', share_ready:'Bild gespeichert – teile es!', share_failed:'Teilen fehlgeschlagen',
     btn_new:'Neue Legung', btn_reset:'↺ Von vorne beginnen',
     logout:'Abmelden',
     free_left: n => `${n} kostenlose Legung${n!==1?'en':''} übrig`, unlimited:'Unbegrenzt',
@@ -1443,7 +1507,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Ver Leitura Completa', gate_badge:'3 leituras gratuitas',
     gate_desc:'Faça login com o Google para ver a leitura completa.',
     gate_btn:'Continuar com Google',
-    btn_back_draw:'← Tirar Novamente', btn_save:'💾 Salvar Leitura', btn_share:'🔗 Compartilhar', share_ready:'Imagem salva — compartilhe!', share_failed:'Falha ao compartilhar',
+    btn_back_draw:'← Tirar Novamente', btn_save:'💾 Salvar Leitura', btn_share:'🔗 Compartilhar', share_modal_title:'Compartilhar', share_copy_image:'Copiar imagem', share_save_image:'Salvar imagem', share_copy_link:'Copiar link', share_copied_image:'Imagem copiada', share_copied_link:'Link copiado', share_ready:'Imagem salva — compartilhe!', share_failed:'Falha ao compartilhar',
     btn_new:'Nova Leitura', btn_reset:'↺ Recomeçar',
     logout:'Sair',
     free_left: n => `${n} leitura${n!==1?'s':''} gratuita${n!==1?'s':''} restante${n!==1?'s':''}`, unlimited:'Ilimitado',
@@ -1468,7 +1532,7 @@ const TRANSLATIONS = {
     gate_title:'✨ ดูการอ่านทั้งหมด', gate_badge:'ฟรี 3 ครั้ง',
     gate_desc:'เข้าสู่ระบบด้วย Google เพื่อดูการอ่านทั้งหมด',
     gate_btn:'ดำเนินการต่อด้วย Google',
-    btn_back_draw:'← จั่วใหม่', btn_save:'💾 บันทึก', btn_share:'🔗 แชร์ผลลัพธ์', share_ready:'บันทึกรูปแล้ว มาแชร์กันเลย!', share_failed:'แชร์ไม่สำเร็จ',
+    btn_back_draw:'← จั่วใหม่', btn_save:'💾 บันทึก', btn_share:'🔗 แชร์ผลลัพธ์', share_modal_title:'แชร์ผลลัพธ์', share_copy_image:'คัดลอกรูป', share_save_image:'บันทึกรูป', share_copy_link:'คัดลอกลิงก์', share_copied_image:'คัดลอกรูปแล้ว', share_copied_link:'คัดลอกลิงก์แล้ว', share_ready:'บันทึกรูปแล้ว มาแชร์กันเลย!', share_failed:'แชร์ไม่สำเร็จ',
     btn_new:'การอ่านใหม่', btn_reset:'↺ เริ่มต้นใหม่',
     logout:'ออกจากระบบ',
     free_left: n => `เหลือ ${n} ครั้ง`, unlimited:'ไม่จำกัด',
@@ -1493,7 +1557,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Посмотреть полный расклад', gate_badge:'3 бесплатных расклада',
     gate_desc:'Войдите через Google, чтобы увидеть полный расклад.',
     gate_btn:'Продолжить с Google',
-    btn_back_draw:'← Вытянуть снова', btn_save:'💾 Сохранить расклад', btn_share:'🔗 Поделиться', share_ready:'Изображение сохранено — поделитесь!', share_failed:'Не удалось поделиться',
+    btn_back_draw:'← Вытянуть снова', btn_save:'💾 Сохранить расклад', btn_share:'🔗 Поделиться', share_modal_title:'Поделиться', share_copy_image:'Копировать изображение', share_save_image:'Сохранить изображение', share_copy_link:'Копировать ссылку', share_copied_image:'Изображение скопировано', share_copied_link:'Ссылка скопирована', share_ready:'Изображение сохранено — поделитесь!', share_failed:'Не удалось поделиться',
     btn_new:'Новый расклад', btn_reset:'↺ Начать сначала',
     logout:'Выйти',
     free_left: n => `Осталось ${n} расклад${n===1?'':n<5?'а':'ов'}`, unlimited:'Безлимитно',
@@ -1518,7 +1582,7 @@ const TRANSLATIONS = {
     gate_title:'✨ 查看完整解读', gate_badge:'免费3次',
     gate_desc:'使用Google账号登录即可查看完整解读。',
     gate_btn:'使用Google继续',
-    btn_back_draw:'← 重新抽牌', btn_save:'💾 保存解读', btn_share:'🔗 分享结果', share_ready:'图片已保存，快分享吧！', share_failed:'分享失败',
+    btn_back_draw:'← 重新抽牌', btn_save:'💾 保存解读', btn_share:'🔗 分享结果', share_modal_title:'分享结果', share_copy_image:'复制图片', share_save_image:'保存图片', share_copy_link:'复制链接', share_copied_image:'图片已复制', share_copied_link:'链接已复制', share_ready:'图片已保存，快分享吧！', share_failed:'分享失败',
     btn_new:'新的占卜', btn_reset:'↺ 重新开始',
     logout:'退出登录',
     free_left: n => `剩余${n}次免费`, unlimited:'无限制',
@@ -1543,7 +1607,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Visualizza la Lettura Completa', gate_badge:'3 letture gratuite',
     gate_desc:'Accedi con Google per vedere la lettura completa.',
     gate_btn:'Continua con Google',
-    btn_back_draw:'← Ripesca', btn_save:'💾 Salva Lettura', btn_share:'🔗 Condividi', share_ready:'Immagine salvata — condividila!', share_failed:'Condivisione non riuscita',
+    btn_back_draw:'← Ripesca', btn_save:'💾 Salva Lettura', btn_share:'🔗 Condividi', share_modal_title:'Condividi', share_copy_image:'Copia immagine', share_save_image:'Salva immagine', share_copy_link:'Copia link', share_copied_image:'Immagine copiata', share_copied_link:'Link copiato', share_ready:'Immagine salvata — condividila!', share_failed:'Condivisione non riuscita',
     btn_new:'Nuova Lettura', btn_reset:'↺ Ricomincia',
     logout:'Esci',
     free_left: n => `${n} lettura${n!==1?'e':''} gratuita${n!==1?'e':''} rimasta${n!==1?'e':''}`, unlimited:'Illimitato',
@@ -1568,7 +1632,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Lihat Pembacaan Lengkap', gate_badge:'3 pembacaan gratis',
     gate_desc:'Masuk dengan Google untuk melihat pembacaan lengkap.',
     gate_btn:'Lanjutkan dengan Google',
-    btn_back_draw:'← Ambil Ulang', btn_save:'💾 Simpan Pembacaan', btn_share:'🔗 Bagikan', share_ready:'Gambar tersimpan — bagikan!', share_failed:'Gagal membagikan',
+    btn_back_draw:'← Ambil Ulang', btn_save:'💾 Simpan Pembacaan', btn_share:'🔗 Bagikan', share_modal_title:'Bagikan', share_copy_image:'Salin gambar', share_save_image:'Simpan gambar', share_copy_link:'Salin tautan', share_copied_image:'Gambar disalin', share_copied_link:'Tautan disalin', share_ready:'Gambar tersimpan — bagikan!', share_failed:'Gagal membagikan',
     btn_new:'Pembacaan Baru', btn_reset:'↺ Mulai Ulang',
     logout:'Keluar',
     free_left: n => `${n} pembacaan gratis tersisa`, unlimited:'Tidak Terbatas',
@@ -1593,7 +1657,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Xem Toàn Bộ Bài Đọc', gate_badge:'3 lần đọc miễn phí',
     gate_desc:'Đăng nhập bằng Google để xem toàn bộ bài đọc.',
     gate_btn:'Tiếp tục với Google',
-    btn_back_draw:'← Rút Lại', btn_save:'💾 Lưu Bài Đọc', btn_share:'🔗 Chia Sẻ', share_ready:'Đã lưu ảnh — hãy chia sẻ!', share_failed:'Chia sẻ thất bại',
+    btn_back_draw:'← Rút Lại', btn_save:'💾 Lưu Bài Đọc', btn_share:'🔗 Chia Sẻ', share_modal_title:'Chia Sẻ', share_copy_image:'Sao chép ảnh', share_save_image:'Lưu ảnh', share_copy_link:'Sao chép liên kết', share_copied_image:'Đã sao chép ảnh', share_copied_link:'Đã sao chép liên kết', share_ready:'Đã lưu ảnh — hãy chia sẻ!', share_failed:'Chia sẻ thất bại',
     btn_new:'Bài Đọc Mới', btn_reset:'↺ Bắt đầu lại',
     logout:'Đăng xuất',
     free_left: n => `Còn ${n} lần miễn phí`, unlimited:'Không giới hạn',
@@ -1618,7 +1682,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Tam Okumayı Gör', gate_badge:'3 ücretsiz okuma',
     gate_desc:'Tam okumayı görmek için Google ile giriş yapın.',
     gate_btn:'Google ile Devam Et',
-    btn_back_draw:'← Yeniden Çek', btn_save:'💾 Okumayı Kaydet', btn_share:'🔗 Paylaş', share_ready:'Görsel kaydedildi — paylaşın!', share_failed:'Paylaşım başarısız',
+    btn_back_draw:'← Yeniden Çek', btn_save:'💾 Okumayı Kaydet', btn_share:'🔗 Paylaş', share_modal_title:'Paylaş', share_copy_image:'Görseli kopyala', share_save_image:'Görseli kaydet', share_copy_link:'Bağlantıyı kopyala', share_copied_image:'Görsel kopyalandı', share_copied_link:'Bağlantı kopyalandı', share_ready:'Görsel kaydedildi — paylaşın!', share_failed:'Paylaşım başarısız',
     btn_new:'Yeni Okuma', btn_reset:'↺ Başa Dön',
     logout:'Çıkış Yap',
     free_left: n => `${n} ücretsiz okuma kaldı`, unlimited:'Sınırsız',
@@ -1643,7 +1707,7 @@ const TRANSLATIONS = {
     gate_title:'✨ Zobacz pełne czytanie', gate_badge:'3 bezpłatne czytania',
     gate_desc:'Zaloguj się przez Google, aby zobaczyć pełne czytanie.',
     gate_btn:'Kontynuuj z Google',
-    btn_back_draw:'← Dobierz ponownie', btn_save:'💾 Zapisz czytanie', btn_share:'🔗 Udostępnij', share_ready:'Obraz zapisany — udostępnij!', share_failed:'Udostępnianie nie powiodło się',
+    btn_back_draw:'← Dobierz ponownie', btn_save:'💾 Zapisz czytanie', btn_share:'🔗 Udostępnij', share_modal_title:'Udostępnij', share_copy_image:'Kopiuj obraz', share_save_image:'Zapisz obraz', share_copy_link:'Kopiuj link', share_copied_image:'Skopiowano obraz', share_copied_link:'Skopiowano link', share_ready:'Obraz zapisany — udostępnij!', share_failed:'Udostępnianie nie powiodło się',
     btn_new:'Nowe czytanie', btn_reset:'↺ Zacznij od nowa',
     logout:'Wyloguj',
     free_left: n => `Pozostało ${n} bezpłatne${n===1?'':n<5?'':'ch'} czytanie${n===1?'':n<5?'a':'ń'}`, unlimited:'Nieograniczone',
@@ -2187,7 +2251,7 @@ function wrapLines(ctx, text, maxW, maxLines) {
   return lines;
 }
 
-async function buildShareImage() {
+async function buildShareCanvas() {
   const W = 1080, H = 1350;
   const cv = document.createElement('canvas');
   cv.width = W; cv.height = H;
@@ -2275,8 +2339,96 @@ async function buildShareImage() {
   ctx.font = '300 24px "Noto Sans KR", sans-serif';
   ctx.fillText('AI가 읽어주는 타로 카드 · 무료 3회', W / 2, H - 44);
 
-  return new Promise((resolve) => cv.toBlob(resolve, 'image/jpeg', 0.9));
+  return cv;
 }
+
+function canvasToBlob(cv, mime = 'image/jpeg', q = 0.9) {
+  return new Promise((resolve) => cv.toBlob(resolve, mime, q));
+}
+
+let shareCanvas = null;   // 공유 모달에서 재사용
+
+function closeShareModal() {
+  document.getElementById('share-modal').classList.remove('open');
+}
+document.getElementById('share-modal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('share-modal')) closeShareModal();
+});
+
+function openShareModal(cv) {
+  shareCanvas = cv;
+  const m = document.getElementById('share-modal');
+  document.getElementById('share-preview').src = cv.toDataURL('image/jpeg', 0.9);
+  document.getElementById('share-modal-title').textContent = t('share_modal_title');
+  document.getElementById('share-copy-image').textContent = '🖼️ ' + t('share_copy_image');
+  document.getElementById('share-save-image').textContent = '⬇️ ' + t('share_save_image');
+  document.getElementById('share-copy-link').textContent  = '🔗 ' + t('share_copy_link');
+  m.classList.add('open');
+}
+
+// 이미지 클립보드 복사 (카톡 데스크톱·슬랙 등에 바로 붙여넣기)
+document.getElementById('share-copy-image').addEventListener('click', async () => {
+  if (!shareCanvas) return;
+  try {
+    const png = await canvasToBlob(shareCanvas, 'image/png');
+    await navigator.clipboard.write([new ClipboardItem({ 'image/png': png })]);
+    notify(t('share_copied_image'), 2400);
+  } catch (e) {
+    console.warn('이미지 복사 미지원 → 저장으로 대체', e);
+    document.getElementById('share-save-image').click();
+  }
+});
+
+document.getElementById('share-save-image').addEventListener('click', async () => {
+  if (!shareCanvas) return;
+  const blob = await canvasToBlob(shareCanvas, 'image/jpeg', 0.9);
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'ultratarot.jpg';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 4000);
+  notify(t('share_ready'), 2400);
+});
+
+// 클립보드 복사 (Clipboard API 차단/비보안 컨텍스트 대비 폴백 포함)
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch (e) {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:-1000px;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand('copy');
+      ta.remove();
+      return ok;
+    } catch (e2) { return false; }
+  }
+}
+
+document.getElementById('share-copy-link').addEventListener('click', async () => {
+  notify(await copyText(SHARE_URL) ? t('share_copied_link') : t('share_failed'), 2400);
+});
+
+// SNS 공유는 링크를 넘긴다 (OG 태그 덕분에 미리보기 카드가 표시됨)
+document.querySelectorAll('.share-sns-btn').forEach((b) => {
+  b.addEventListener('click', () => {
+    const text = encodeURIComponent(t('title'));
+    const url = encodeURIComponent(SHARE_URL);
+    const map = {
+      x:        `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+      threads:  `https://www.threads.net/intent/post?text=${text}%20${url}`,
+      line:     `https://social-plugins.line.me/lineit/share?url=${url}`,
+    };
+    const target = map[b.dataset.sns];
+    if (target) window.open(target, '_blank', 'noopener,noreferrer,width=600,height=640');
+  });
+});
 
 document.getElementById('share-reading-btn').addEventListener('click', async () => {
   const btn = document.getElementById('share-reading-btn');
@@ -2285,25 +2437,18 @@ document.getElementById('share-reading-btn').addEventListener('click', async () 
 
   btn.disabled = true;
   try {
-    const blob = await buildShareImage();
-    const file = blob ? new File([blob], 'ultratarot.jpg', { type: 'image/jpeg' }) : null;
-    const shareText = `${t('title')} — ${SHARE_URL}`;
+    const cv = await buildShareCanvas();
 
-    // 1) 네이티브 공유(모바일: 카톡/인스타 등)
+    // 1) 이미지까지 공유 가능한 환경(주로 모바일) → 네이티브 공유 시트
+    const jpg = await canvasToBlob(cv, 'image/jpeg', 0.9);
+    const file = jpg ? new File([jpg], 'ultratarot.jpg', { type: 'image/jpeg' }) : null;
     if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
-      await navigator.share({ files: [file], text: shareText });
+      await navigator.share({ files: [file], text: `${t('title')} — ${SHARE_URL}` });
       return;
     }
-    // 2) 대체: 이미지 저장 + 링크 복사
-    if (blob) {
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = 'ultratarot.jpg';
-      document.body.appendChild(a); a.click(); a.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 4000);
-    }
-    try { await navigator.clipboard.writeText(SHARE_URL); } catch (e) {}
-    notify(t('share_ready'), 2600);
+
+    // 2) 그 외(데스크톱) → 공유 모달: 이미지 복사/저장, 링크 복사, SNS
+    openShareModal(cv);
   } catch (e) {
     if (e && e.name === 'AbortError') return;   // 사용자가 공유 취소
     console.error('[공유 실패]', e);
