@@ -283,6 +283,11 @@ def _shell(title: str, desc: str, canonical: str, body: str, og_image: str) -> s
   .grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:16px}}
   .tile{{display:block;text-align:center}}
   .tile img{{width:100%;border-radius:8px;border:1px solid rgba(196,169,107,.3);display:block;margin-bottom:7px}}
+  #card-search{{width:100%;padding:13px 16px;margin-bottom:8px;border-radius:9px;
+    background:rgba(255,255,255,.04);border:1px solid rgba(196,169,107,.3);
+    color:#e8e3d8;font-family:'Noto Sans KR',sans-serif;font-size:.95rem}}
+  #card-search:focus{{outline:none;border-color:#c4a96b}}
+  #card-search::placeholder{{color:#7c8090}}
   .tile span{{font-size:.84rem;color:#e8e3d8}}
   .tile small{{display:block;color:#7c8090;font-size:.72rem}}
   footer{{margin-top:56px;border-top:1px solid rgba(196,169,107,.15);padding-top:20px;
@@ -322,12 +327,36 @@ async def cards_index():
             for c in items
         )
         suffix = "" if key == "MAJOR" else " 수트"
-        sections.append(f'<h2>{_e(label)}{suffix} ({len(items)}장)</h2><div class="grid">{tiles}</div>')
+        sections.append(
+            f'<section class="suit-sec"><h2>{_e(label)}{suffix} ({len(items)}장)</h2>'
+            f'<div class="grid">{tiles}</div></section>'
+        )
 
+    search = (
+        '<input id="card-search" type="search" placeholder="카드 이름으로 검색..." '
+        'oninput="filterCards(this.value)" autocomplete="off">'
+        '<p id="no-result" style="display:none;color:#7c8090">검색 결과가 없습니다.</p>'
+        "<script>\n"
+        "function filterCards(q){\n"
+        "  q=(q||'').trim().toLowerCase();\n"
+        "  var shown=0;\n"
+        "  document.querySelectorAll('.tile').forEach(function(el){\n"
+        "    var hit=!q||el.textContent.toLowerCase().indexOf(q)>-1;\n"
+        "    el.style.display=hit?'':'none'; if(hit)shown++;\n"
+        "  });\n"
+        "  document.querySelectorAll('.suit-sec').forEach(function(sec){\n"
+        "    var any=sec.querySelectorAll('.tile:not([style*=\"none\"])').length;\n"
+        "    sec.style.display=any?'':'none';\n"
+        "  });\n"
+        "  document.getElementById('no-result').style.display=shown?'none':'';\n"
+        "}\n"
+        "</script>"
+    )
     body = (
         "<h1>타로 카드 도감</h1>"
         f'<p class="sub">타로 카드 {len(deck)}장의 의미와 상징을 정리했습니다. '
         "카드를 눌러 자세한 해설을 확인하세요.</p>"
+        + search
         + "".join(sections)
         + '<p style="text-align:center"><a class="cta" href="/">내 타로 보러 가기 →</a></p>'
     )
