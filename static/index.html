@@ -1290,7 +1290,7 @@
     <button class="nav-item" onclick="openContent('tarot')">
       <span id="nav-label-tarot">타로카드란?</span>
     </button>
-    <button class="nav-item" onclick="closeNav(); location.href='/cards';">
+    <button class="nav-item" onclick="location.href = cardsHref();">
       <span id="nav-label-cards">카드 도감</span>
     </button>
     <button class="nav-item" onclick="closeNav(); openSavedReadings();">
@@ -1773,9 +1773,12 @@ function savedReadingText(key) {
 }
 
 function detectLang() {
+  const supported = ['ko','en','ja','es','fr','de','pt','th','ru','zh','it','id','vi','tr','pl'];
+  // 카드 도감 등 다른 페이지에서 ?lang=xx 로 넘어온 경우 우선 적용하고 저장
+  const q = new URLSearchParams(location.search).get('lang');
+  if (q && supported.includes(q)) { localStorage.setItem('tarot-lang', q); return q; }
   const saved = localStorage.getItem('tarot-lang');
   if (saved) return saved;
-  const supported = ['ko','en','ja','es','fr','de','pt','th','ru','zh','it','id','vi','tr','pl'];
   const browser = (navigator.language || 'en').split('-')[0].toLowerCase();
   return supported.includes(browser) ? browser : 'en';
 }
@@ -1787,8 +1790,21 @@ function t(key, ...args) {
   return typeof val === 'function' ? val(...args) : (val ?? key);
 }
 
+// 카드 도감 주소: 한국어는 /cards, 그 외는 /{언어코드}/cards
+function cardsHref() { return currentLang === 'ko' ? '/cards' : '/' + currentLang + '/cards'; }
+
+// 푸터는 이 스크립트보다 문서 뒤쪽에 있어, 최초 실행 시에는 없을 수 있다 → DOMContentLoaded 에서도 호출
+function updateFooterCardsLink() {
+  const fcl = document.getElementById('footer-cards-link');
+  if (!fcl) return;
+  fcl.href = cardsHref();
+  fcl.textContent = (NAV_LABELS[currentLang] || NAV_LABELS.en).cards;   // 메뉴와 같은 명칭
+}
+document.addEventListener('DOMContentLoaded', updateFooterCardsLink);
+
 function applyLang() {
   const el = id => document.getElementById(id);
+  updateFooterCardsLink();
 
   el('hdr-title').textContent = t('title');
   el('hdr-sub').textContent   = t('subtitle');
@@ -4020,7 +4036,7 @@ init();
 <footer id="site-footer">
   <div class="footer-inner">
     <div class="footer-links">
-      <a href="/cards">카드 도감</a>
+      <a href="/cards" id="footer-cards-link">카드 도감</a>
       <a href="/legal.html#pricing" target="_blank">이용요금</a>
       <a href="/legal.html#terms" target="_blank">이용약관</a>
       <a href="/legal.html#privacy" target="_blank">개인정보처리방침</a>

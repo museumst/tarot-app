@@ -57,12 +57,16 @@ tarot-project/
 ├── app.py                 # FastAPI 백엔드 (전부 여기에 있음)
 ├── Procfile               # Railway 실행 명령
 ├── requirements.txt       # fastapi, uvicorn, anthropic, httpx, python-multipart
+├── tarot_i18n.py          # 카드 도감 다국어 공통 정의(언어 목록, UI 원문, 용어집) — app.py/번역 스크립트가 공유
+├── translate_cards.py     # 카드 도감 14개 언어 번역 생성 스크립트 (재개 가능)
+├── enrich_cards.py        # 카드 해설 보강(seo 필드) 생성 스크립트
 ├── static/
 │   ├── index.html         # 프론트엔드 전체 (SPA, 단일 파일)
 │   └── legal.html         # 법적 고지 5종 (탭 UI)
 ├── output/
-│   ├── cards.json         # 타로 카드 75장 데이터
-│   └── spreads.json       # 스프레드 28종 데이터
+│   ├── cards.json         # 타로 카드 75장 데이터 (meaning/symbols + 보강된 seo 필드)
+│   ├── spreads.json       # 스프레드 28종 데이터
+│   └── i18n/              # 도감 번역 결과: ui_{lang}.json, cards_{lang}.json (14개 언어)
 ├── tarot_images/          # 카드 이미지 (78개) → /images 로 서빙
 ├── menual/                # KG이니시스 상점관리자 PDF 매뉴얼 (참고용)
 ├── extract.py, rewrite_cards.py, apply_cards.py 등
@@ -82,6 +86,10 @@ tarot-project/
 |---|---|---|
 | GET | `/` | `static/index.html` 반환 |
 | GET | `/legal.html` | 법적 고지 페이지 |
+| GET | `/cards`, `/card/{slug}` | **카드 도감**(한국어, 서버 렌더링 HTML — SEO용) |
+| GET | `/{lang}/cards`, `/{lang}/card/{slug}` | 카드 도감 14개 언어판 (`/en/cards` 등). `/ko/...`는 301로 `/cards` |
+| GET | `/sitemap.xml`, `/robots.txt` | 번역이 완료된 페이지만 사이트맵에 포함 |
+| GET | `/google….html`, `/naver….html` | 검색엔진 소유확인 파일(루트 경로에서 서빙) |
 | GET | `/api/cards` | 카드 75장 JSON |
 | GET | `/api/spreads` | 스프레드 목록 |
 | POST | `/api/select-spread` | 질문 → 적합한 스프레드 선택 (Claude 호출) |
@@ -297,6 +305,29 @@ PayPal은 `requestPayment`가 **아니라** 버튼을 미리 렌더링하는 방
 
 > ⚠️ 스프레드의 `positions` 의미는 **한국어일 때만** 원문을 사용하고, 다른 언어는 "Card 1" 같은 일반 레이블을 씁니다. 그래서 다국어 해석 품질은 **리딩 프롬프트**에 의존합니다.
 
+### 카드 도감 다국어 (서버 렌더링)
+
+도감(`/cards`)은 메인 앱(클라이언트 렌더링)과 별개로 **서버가 HTML을 직접 만듭니다**(검색엔진이 본문을 읽어야 하므로).
+
+- **URL 규칙**: 한국어는 기존 그대로 `/cards`, `/card/{slug}`. 나머지 14개 언어는 `/{lang}/cards`, `/{lang}/card/{slug}`.
+  언어는 **쿠키/브라우저 설정이 아니라 URL로 결정**합니다(검색엔진 색인과 hreflang 때문). 자동 리다이렉트는 하지 않습니다.
+- **hreflang**: 각 페이지 `<head>`에 번역이 존재하는 모든 언어판을 `rel="alternate"`로 나열, `x-default`는 영어.
+- **번역이 없는 카드**는 한국어/영어 폴백으로 보여주되 `noindex`가 붙습니다(미완성 페이지가 색인되지 않도록). 사이트맵에도 제외.
+- **언어 연동**: 메인 앱은 `localStorage['tarot-lang']`를 쓰고, 도감의 언어 선택기도 같은 키에 저장합니다.
+  도감 → 메인 앱 이동은 `/?lang=xx`로 넘기며 `detectLang()`이 이 값을 우선 적용합니다.
+  메인 앱 메뉴/푸터의 도감 링크는 `cardsHref()`가 현재 언어에 맞게 만듭니다.
+- **공개 기준**: 한 언어의 74장 번역이 **모두** 끝난 경우에만 그 언어를 공개합니다(`lang_ready`). 미완성 언어(`/de/...` 등)는 영어판으로
+  302 이동하고 사이트맵·hreflang·언어선택기에서 제외됩니다. **2026-10 현재 공개: ko, en, ja, es** (fr은 65/74, 나머지 미번역).
+  이어서 하려면 API 크레딧을 충전한 뒤 `python3 translate_cards.py --cards-only --workers 10` 만 다시 실행하면 됩니다(남은 것만 번역).
+- **데이터 생성**: `python3 translate_cards.py` (UI 문구만: `--ui-only --force`, 일부 언어: `--langs en ja`, 파일럿: `--limit 2`).
+  이미 번역된 항목은 건너뛰므로 중단 후 재실행해도 안전합니다.
+- **원문 수정 시**: `output/cards.json`의 `meaning/symbols/seo`를 고치면 `--force`로 다시 번역해야 하고,
+  `tarot_i18n.UI_KO` 문구를 고치면 `--ui-only --force`로 다시 번역해야 합니다. 둘 다 **서버 재시작**이 필요합니다(캐시).
+- **용어 통일**: 수트 용어(컵/완드/소드/펜타클)는 `tarot_i18n.SUIT_TERMS`에 언어별로 고정해 번역 프롬프트와 UI에 모두 강제합니다.
+  어색한 UI 문구는 `UI_OVERRIDES`로 고정하며, 번역 파일보다 우선 적용됩니다(`app.get_ui`).
+- **번역 품질 검증**: 번역 결과에 해당 언어에 없어야 할 문자(한글·한자 등)가 섞이면 자동 재시도합니다(`check_scripts`).
+  Haiku로 시험했을 때 태국어 본문에 중국어 글자가 섞인 실제 사례가 있어 추가했고, 기본 모델은 `claude-sonnet-5`입니다(`TRANSLATE_MODEL`로 변경).
+
 ---
 
 ## 11. 타로 도메인 로직
@@ -361,6 +392,9 @@ PayPal은 `requestPayment`가 **아니라** 버튼을 미리 렌더링하는 방
 | PayPal "한국 계정 간 결제 불가" | PayPal 정책 (판매자·구매자 모두 한국) | 비한국어에만 노출 + 샌드박스로 테스트 |
 | 배포해도 반영 안 됨 | **Railway-GitHub 연결 끊김** | Railway 연결 상태 확인 |
 | 심사자가 로그인 불가 | Google의 낯선 기기 본인인증 (우리가 못 끔) | 익명 로그인(비회원 결제) 도입 |
+| 번역이 중간에 멈추고 이후 호출이 전부 `400 invalid_request_error` | **Anthropic API 크레딧 잔액 소진**(메시지: credit balance is too low). 운영 사이트의 AI 호출도 같은 계정이면 같이 막힘(HTTP 500) | Console → Plans & Billing 에서 충전. 로그 메시지가 80자에서 잘려 원인이 안 보이니 작은 호출 1건으로 실제 메시지 확인 |
+| 번역 스크립트를 `pkill -f translate_cards.py`로 끄면 감시 셸도 같이 죽음 | 감시 명령어 안에 같은 문자열이 들어 있어 `-f` 매칭에 걸림 | 백그라운드 작업은 **PID 파일**로 추적 |
+| 번역문에 다른 나라 글자가 섞임(태국어 본문에 `剑`) | 모델이 저자원 언어에서 코드 스위칭 | `check_scripts` 자동 재시도 + 더 강한 모델 |
 | 카드 데이터를 고쳤는데 도감 페이지에 반영 안 됨 | `load_deck()`이 `cards.json`을 **최초 1회만 읽고 캐시** | **서버 재시작(재배포)** 필요. 로컬은 프로세스 재시작 |
 
 ---

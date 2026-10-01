@@ -7,9 +7,11 @@ import httpx
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, StreamingResponse, HTMLResponse, PlainTextResponse, Response
+from fastapi.responses import FileResponse, StreamingResponse, HTMLResponse, PlainTextResponse, Response, RedirectResponse
 from pydantic import BaseModel
 from typing import List, Optional
+
+from tarot_i18n import SITE_LANGS, LANG_LABELS, OG_LOCALE, UI_KO, ui_overrides
 
 app = FastAPI(title="AI Tarot Reading")
 
@@ -186,27 +188,39 @@ async def get_spreads():
 
 
 # ──────────────────────────────────────────────────────────────
-# 타로 카드 도감 (SEO 유입용 정적 페이지)
-#   /cards           : 전체 목록
-#   /card/{slug}     : 카드 상세
+# 타로 카드 도감 (SEO 유입용, 15개 언어)
+#   /cards, /card/{slug}                : 한국어 (기본, 기존 URL 유지)
+#   /{lang}/cards, /{lang}/card/{slug}  : 그 외 14개 언어
 #   /sitemap.xml, /robots.txt
 # 검색엔진이 읽을 수 있도록 서버에서 HTML을 직접 렌더링한다.
+# 번역 데이터는 translate_cards.py 가 output/i18n/ 에 생성한다.
 # ──────────────────────────────────────────────────────────────
 SITE_URL = "https://ultratarot.com"
+I18N_DIR = os.path.join(BASE_DIR, "output", "i18n")
 _CARDS_CACHE = None
+_I18N_CACHE = {}
 
-_SUITS = [("CUPS", "컵"), ("WANDS", "완드"), ("SWORDS", "소드"), ("PENTACLES", "펜타클")]
+_SUIT_KEYS = {"CUPS": "cups", "WANDS": "wands", "SWORDS": "swords", "PENTACLES": "pentacles"}
+_SUIT_ORDER = ["CUPS", "WANDS", "SWORDS", "PENTACLES"]
+
+# 메인 앱 네비게이션 라벨과 동일하게 맞춘다 (모델 번역보다 우선)
+NAV_CARDS = {
+    "ko": "카드 도감", "en": "Card Guide", "ja": "カード図鑑", "zh": "塔罗牌图鉴",
+    "es": "Guía de Cartas", "fr": "Guide des Cartes", "de": "Kartenführer", "pt": "Guia de Cartas",
+    "it": "Guida alle Carte", "ru": "Справочник карт", "th": "สารานุกรมไพ่", "id": "Panduan Kartu",
+    "vi": "Từ điển bài", "tr": "Kart Rehberi", "pl": "Przewodnik po kartach",
+}
 
 
 def _slugify(name: str) -> str:
     return re.sub(r'[^a-z0-9]+', '-', (name or '').lower()).strip('-')
 
 
-def _suit_of(name_en: str):
-    for key, label in _SUITS:
+def _suit_of(name_en: str) -> str:
+    for key in _SUIT_ORDER:
         if key in (name_en or '').upper():
-            return key, label
-    return "MAJOR", "메이저 아르카나"
+            return key
+    return "MAJOR"
 
 
 def load_deck():
@@ -221,30 +235,156 @@ def load_deck():
                 continue
             c = dict(c)
             c["slug"] = _slugify(c.get("name_en"))
-            c["suit"], c["suit_label"] = _suit_of(c.get("name_en"))
+            c["suit"] = _suit_of(c.get("name_en"))
             deck.append(c)
         _CARDS_CACHE = deck
     return _CARDS_CACHE
+
+
+def _read_json(path, default):
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return default
+
+
+def get_ui(lang: str) -> dict:
+    """도감 UI 문구. 번역이 없는 키는 한국어 원문으로 대체한다."""
+    key = ("ui", lang)
+    if key not in _I18N_CACHE:
+        ui = dict(UI_KO)
+        if lang != "ko":
+            ui.update(_read_json(os.path.join(I18N_DIR, f"ui_{lang}.json"), {}))
+            ui.update(ui_overrides(lang))          # 수트 용어·어색한 문구는 고정값이 번역보다 우선
+        ui["nav_cards"] = NAV_CARDS.get(lang, ui["nav_cards"])
+        _I18N_CACHE[key] = ui
+    return _I18N_CACHE[key]
+
+
+def get_cards_i18n(lang: str) -> dict:
+    key = ("cards", lang)
+    if key not in _I18N_CACHE:
+        _I18N_CACHE[key] = {} if lang == "ko" else _read_json(os.path.join(I18N_DIR, f"cards_{lang}.json"), {})
+    return _I18N_CACHE[key]
+
+
+def lang_ready(lang: str) -> bool:
+    """언어 단위로 '모든 카드의 번역이 끝난' 경우에만 공개한다.
+    일부만 번역된 언어는 한글/영문 본문이 섞여 보이므로 공개하지 않는다
+    (sitemap·hreflang·언어선택기에서 제외하고, 접근 시 영어판으로 보낸다)."""
+    if lang == "ko":
+        return True
+    key = ("ready", lang)
+    if key not in _I18N_CACHE:
+        has_ui = os.path.exists(os.path.join(I18N_DIR, f"ui_{lang}.json"))
+        tr = get_cards_i18n(lang)
+        _I18N_CACHE[key] = has_ui and all(c["slug"] in tr for c in load_deck())
+    return _I18N_CACHE[key]
+
+
+def card_ready(lang: str, slug: str) -> bool:
+    return lang_ready(lang)
+
+
+def _fallback_url(path_for) -> str:
+    """번역이 없는 언어로 들어온 경우의 대체 주소: 영어판 → (없으면) 한국어판."""
+    return path_for("en") if lang_ready("en") else path_for("ko")
+
+
+def _prefix(lang: str) -> str:
+    return "" if lang == "ko" else f"/{lang}"
+
+
+def cards_path(lang: str) -> str:
+    return f"{_prefix(lang)}/cards"
+
+
+def card_path(lang: str, slug: str) -> str:
+    return f"{_prefix(lang)}/card/{slug}"
+
+
+def home_path(lang: str) -> str:
+    # 메인 앱은 ?lang= 값을 읽어 해당 언어로 열린다
+    return "/" if lang == "ko" else f"/?lang={lang}"
+
+
+def brand_of(lang: str) -> str:
+    return "울트라타로" if lang == "ko" else "Ultra Tarot"
+
+
+def _fmt(text: str, **kw) -> str:
+    for k, v in kw.items():
+        text = text.replace("{" + k + "}", str(v))
+    return text
+
+
+def _fmt_name(tpl: str, name: str, name_en: str, **kw) -> str:
+    """{name}({name_en}) 형태 문구에서, 이름이 영문명과 같으면 괄호 부분을 생략한다."""
+    if name.strip().lower() == name_en.strip().lower():
+        tpl = re.sub(r"\s*[（(]\{name_en\}[）)]", "", tpl)
+    return _fmt(tpl, name=name, name_en=name_en, **kw)
+
+
+def suit_text(ui: dict, key: str) -> str:
+    if key == "MAJOR":
+        return ui["major"]
+    return _fmt(ui["suit_label"], suit=ui[_SUIT_KEYS[key]])
+
+
+def localize(c: dict, lang: str) -> dict:
+    """카드 한 장을 해당 언어의 표시용 dict 로 변환. 번역이 없으면 ok=False 로 한국어 대체."""
+    ui = get_ui(lang)
+    seo = c.get("seo") or {}
+    sym = c.get("symbols") or {}
+    t = get_cards_i18n(lang).get(c["slug"]) if lang != "ko" else None
+    if lang == "ko" or not t:
+        name = c["name_ko"] if lang == "ko" else c["name_en"]
+        meaning, up = (c.get("meaning") or "").strip(), (seo.get("upright") or "").strip()
+        rest = {k: (seo.get(k) or "").strip() for k in ("reversed", "love", "career", "money", "advice")}
+        syms = [(ui["sym_person"], sym.get("핵심인물")), (ui["sym_symbol"], sym.get("주요상징")), (ui["sym_bg"], sym.get("배경"))]
+        ok = lang == "ko"
+    else:
+        name, meaning, up = t["name"], t["meaning"], t["upright"]
+        rest = {k: t.get(k, "") for k in ("reversed", "love", "career", "money", "advice")}
+        syms = [(ui["sym_person"], t.get("sym_person")), (ui["sym_symbol"], t.get("sym_symbol")), (ui["sym_bg"], t.get("sym_bg"))]
+        ok = True
+    return {"name": name, "meaning": meaning, "upright": up, "syms": [(l, v) for l, v in syms if v], "ok": ok, **rest}
 
 
 def _e(s) -> str:
     return _html.escape(str(s or ''))
 
 
-def _shell(title: str, desc: str, canonical: str, body: str, og_image: str) -> str:
+def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
+          alt_paths: dict, noindex: bool = False) -> str:
     """도감 페이지 공통 HTML 껍데기 (본 사이트와 동일한 다크/골드 테마)."""
+    ui = get_ui(lang)
+    canonical = f"{SITE_URL}{path}"
+    hreflangs = "".join(
+        f'<link rel="alternate" hreflang="{code}" href="{SITE_URL}{p}">' for code, p in alt_paths.items()
+    )
+    if "en" in alt_paths:
+        hreflangs += f'<link rel="alternate" hreflang="x-default" href="{SITE_URL}{alt_paths["en"]}">'
+    options = "".join(
+        f'<option value="{_e(p)}" data-code="{code}"{" selected" if code == lang else ""}>{_e(LANG_LABELS[code])}</option>'
+        for code, p in alt_paths.items()
+    )
+    robots = "noindex, follow" if noindex else "index, follow"
     return f"""<!DOCTYPE html>
-<html lang="ko">
+<html lang="{lang}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{_e(title)}</title>
 <meta name="description" content="{_e(desc)}">
 <link rel="canonical" href="{_e(canonical)}">
-<meta name="robots" content="index, follow">
+{hreflangs}
+<meta name="robots" content="{robots}">
 <meta name="theme-color" content="#0d0d1a">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="울트라타로">
+<meta property="og:site_name" content="{_e(brand_of(lang))}">
+<meta property="og:locale" content="{OG_LOCALE[lang]}">
 <meta property="og:url" content="{_e(canonical)}">
 <meta property="og:title" content="{_e(title)}">
 <meta property="og:description" content="{_e(desc)}">
@@ -257,13 +397,17 @@ def _shell(title: str, desc: str, canonical: str, body: str, og_image: str) -> s
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
-  body{{background:#0d0d1a;color:#e8e3d8;font-family:'Noto Sans KR',sans-serif;font-weight:300;line-height:1.75}}
+  body{{background:#0d0d1a;color:#e8e3d8;font-family:'Noto Sans KR','Noto Sans',system-ui,sans-serif;font-weight:300;line-height:1.75}}
   a{{color:#c4a96b;text-decoration:none}} a:hover{{color:#d9bf8e}}
   .wrap{{max-width:900px;margin:0 auto;padding:28px 20px 80px}}
   .topbar{{border-bottom:1px solid rgba(196,169,107,.18);padding-bottom:16px;margin-bottom:34px;
           display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}}
   .brand{{font-weight:700;font-size:1.12rem;color:#d9bf8e}}
-  .nav a{{font-size:.86rem;margin-left:16px}}
+  .nav{{display:flex;align-items:center;gap:16px;flex-wrap:wrap}}
+  .nav a{{font-size:.86rem}}
+  #lang-select{{background:rgba(255,255,255,.05);color:#e8e3d8;border:1px solid rgba(196,169,107,.35);
+               border-radius:7px;padding:5px 8px;font-size:.82rem;font-family:inherit;cursor:pointer}}
+  #lang-select option{{background:#16122a;color:#e8e3d8}}
   h1{{font-size:clamp(1.7rem,4.6vw,2.5rem);font-weight:700;color:#d9bf8e;margin-bottom:6px;line-height:1.3}}
   h2{{font-size:1.1rem;color:#c4a96b;margin:34px 0 12px;font-weight:500}}
   .sub{{color:#7c8090;font-size:.92rem;margin-bottom:26px}}
@@ -285,7 +429,7 @@ def _shell(title: str, desc: str, canonical: str, body: str, og_image: str) -> s
   .tile img{{width:100%;border-radius:8px;border:1px solid rgba(196,169,107,.3);display:block;margin-bottom:7px}}
   #card-search{{width:100%;padding:13px 16px;margin-bottom:8px;border-radius:9px;
     background:rgba(255,255,255,.04);border:1px solid rgba(196,169,107,.3);
-    color:#e8e3d8;font-family:'Noto Sans KR',sans-serif;font-size:.95rem}}
+    color:#e8e3d8;font-family:inherit;font-size:.95rem}}
   #card-search:focus{{outline:none;border-color:#c4a96b}}
   #card-search::placeholder{{color:#7c8090}}
   .tile span{{font-size:.84rem;color:#e8e3d8}}
@@ -297,45 +441,68 @@ def _shell(title: str, desc: str, canonical: str, body: str, og_image: str) -> s
 <body>
 <div class="wrap">
   <div class="topbar">
-    <a class="brand" href="/">✨ 울트라타로</a>
-    <div class="nav"><a href="/cards">카드 도감</a><a href="/">타로 보기</a></div>
+    <a class="brand" href="{_e(home_path(lang))}">✨ {_e(brand_of(lang))}</a>
+    <div class="nav">
+      <a href="{_e(cards_path(lang))}">{_e(ui['nav_cards'])}</a>
+      <a href="{_e(home_path(lang))}">{_e(ui['nav_home'])}</a>
+      <select id="lang-select" aria-label="{_e(ui['lang_label'])}" onchange="switchLang(this)">{options}</select>
+    </div>
   </div>
   {body}
   <footer>
-    <a href="/">울트라타로</a> · AI가 읽어주는 타로 카드 ·
-    <a href="/legal.html#terms">이용약관</a> ·
-    <a href="/legal.html#privacy">개인정보처리방침</a>
+    <a href="{_e(home_path(lang))}">{_e(brand_of(lang))}</a> · {_e(ui['footer_tagline'])} ·
+    <a href="/legal.html#terms">{_e(ui['footer_terms'])}</a> ·
+    <a href="/legal.html#privacy">{_e(ui['footer_privacy'])}</a>
   </footer>
 </div>
+<script>
+function switchLang(sel){{
+  var o=sel.options[sel.selectedIndex];
+  try{{localStorage.setItem('tarot-lang',o.dataset.code)}}catch(e){{}}
+  location.href=o.value;
+}}
+</script>
 </body>
 </html>"""
 
 
-@app.get("/cards", response_class=HTMLResponse)
-async def cards_index():
+def _alt_paths_index() -> dict:
+    return {code: cards_path(code) for code in SITE_LANGS if lang_ready(code)}
+
+
+def _alt_paths_card(slug: str) -> dict:
+    return {code: card_path(code, slug) for code in SITE_LANGS if card_ready(code, slug)}
+
+
+def render_cards_index(lang: str) -> str:
+    ui = get_ui(lang)
     deck = load_deck()
-    groups = [("MAJOR", "메이저 아르카나")] + _SUITS
+    n = len(deck)
+    groups = [("MAJOR", _fmt(ui["major_heading"], n=sum(1 for c in deck if c["suit"] == "MAJOR")))]
+    for key in _SUIT_ORDER:
+        cnt = sum(1 for c in deck if c["suit"] == key)
+        groups.append((key, _fmt(ui["suit_heading"], suit=ui[_SUIT_KEYS[key]], n=cnt)))
+
     sections = []
-    for key, label in groups:
+    for key, heading in groups:
         items = [c for c in deck if c["suit"] == key]
         if not items:
             continue
-        tiles = "".join(
-            f'<a class="tile" href="/card/{_e(c["slug"])}">'
-            f'<img src="/images/{_e(c["image_file"])}" alt="{_e(c["name_ko"])} 타로카드" loading="lazy">'
-            f'<span>{_e(c["name_ko"])}</span><small>{_e(c["name_en"])}</small></a>'
-            for c in items
-        )
-        suffix = "" if key == "MAJOR" else " 수트"
-        sections.append(
-            f'<section class="suit-sec"><h2>{_e(label)}{suffix} ({len(items)}장)</h2>'
-            f'<div class="grid">{tiles}</div></section>'
-        )
+        tiles = ""
+        for c in items:
+            L = localize(c, lang)
+            sub = "" if L["name"].strip().lower() == c["name_en"].strip().lower() else f'<small>{_e(c["name_en"])}</small>'
+            tiles += (
+                f'<a class="tile" href="{_e(card_path(lang, c["slug"]))}">'
+                f'<img src="/images/{_e(c["image_file"])}" alt="{_e(_fmt(ui["alt_tile"], name=L["name"]))}" loading="lazy">'
+                f'<span>{_e(L["name"])}</span>{sub}</a>'
+            )
+        sections.append(f'<section class="suit-sec"><h2>{_e(heading)}</h2><div class="grid">{tiles}</div></section>')
 
     search = (
-        '<input id="card-search" type="search" placeholder="카드 이름으로 검색..." '
+        f'<input id="card-search" type="search" placeholder="{_e(ui["search_ph"])}" '
         'oninput="filterCards(this.value)" autocomplete="off">'
-        '<p id="no-result" style="display:none;color:#7c8090">검색 결과가 없습니다.</p>'
+        f'<p id="no-result" style="display:none;color:#7c8090">{_e(ui["no_result"])}</p>'
         "<script>\n"
         "function filterCards(q){\n"
         "  q=(q||'').trim().toLowerCase();\n"
@@ -353,67 +520,62 @@ async def cards_index():
         "</script>"
     )
     body = (
-        "<h1>타로 카드 도감</h1>"
-        f'<p class="sub">타로 카드 {len(deck)}장의 의미와 상징을 정리했습니다. '
-        "카드를 눌러 자세한 해설을 확인하세요.</p>"
-        + search
-        + "".join(sections)
-        + '<p style="text-align:center"><a class="cta" href="/">내 타로 보러 가기 →</a></p>'
+        f"<h1>{_e(ui['index_title'])}</h1>"
+        f'<p class="sub">{_e(_fmt(ui["index_sub"], n=n))}</p>'
+        + search + "".join(sections)
+        + f'<p style="text-align:center"><a class="cta" href="{_e(home_path(lang))}">{_e(ui["cta_index"])}</a></p>'
     )
-    return _shell(
-        f"타로 카드 의미 총정리 — 타로카드 {len(deck)}장 도감 | 울트라타로",
-        f"타로 카드 {len(deck)}장의 의미와 상징을 한눈에. 메이저 아르카나부터 컵·완드·소드·펜타클까지 카드별 해설을 확인하세요.",
-        f"{SITE_URL}/cards",
-        body,
-        f"{SITE_URL}/static/og-image.jpg",
+    return _page(
+        lang,
+        _fmt(ui["title_index"], n=n, brand=brand_of(lang)),
+        _fmt(ui["desc_index"], n=n),
+        cards_path(lang), body, f"{SITE_URL}/static/og-image.jpg", _alt_paths_index(),
     )
 
 
-@app.get("/card/{slug}", response_class=HTMLResponse)
-async def card_detail(slug: str):
+def render_card_detail(lang: str, slug: str) -> str:
     deck = load_deck()
     idx = next((i for i, c in enumerate(deck) if c["slug"] == slug), None)
     if idx is None:
-        raise HTTPException(status_code=404, detail="카드를 찾을 수 없습니다.")
+        raise HTTPException(status_code=404, detail="Card not found")
+    ui = get_ui(lang)
     c = deck[idx]
+    L = localize(c, lang)
     prev_c = deck[idx - 1] if idx > 0 else None
     next_c = deck[idx + 1] if idx < len(deck) - 1 else None
 
-    syms = c.get("symbols") or {}
-    sym_html = "".join(f"<div><b>{_e(k)}</b>{_e(v)}</div>" for k, v in syms.items())
-    sym_block = f'<h2>카드 속 상징</h2><div class="sym">{sym_html}</div>' if sym_html else ""
+    sym_html = "".join(f"<div><b>{_e(k)}</b>{_e(v)}</div>" for k, v in L["syms"])
+    sym_block = f'<h2>{_e(ui["h_symbols"])}</h2><div class="sym">{sym_html}</div>' if sym_html else ""
+    rev_block = f'<h2>{_e(ui["h_reversed"])}</h2><p>{_e(L["reversed"])}</p>' if L["reversed"] else ""
+    topic_block = "".join(
+        f'<h2>{_e(ui[hk])}</h2><p>{_e(L[k])}</p>'
+        for k, hk in (("love", "h_love"), ("career", "h_career"), ("money", "h_money")) if L[k]
+    )
+    advice_block = (
+        f'<h2>{_e(ui["h_advice"])}</h2><div class="sym"><p style="margin:0">{_e(L["advice"])}</p></div>'
+        if L["advice"] else ""
+    )
 
-    # 보강된 해설(seo)이 있으면 상세 섹션을 구성하고, 없으면 기존 meaning만 보여준다
-    seo = c.get("seo") or {}
-    rev_block = ""
-    topic_block = ""
-    advice_block = ""
-    if seo.get("reversed"):
-        rev_block = f"<h2>역방향으로 나왔을 때</h2><p>{_e(seo['reversed'])}</p>"
-    topics = [("love", "연애·인간관계"), ("career", "직장·진로"), ("money", "금전·재물")]
-    parts = [f"<h2>{label}</h2><p>{_e(seo[key])}</p>" for key, label in topics if seo.get(key)]
-    if parts:
-        topic_block = "".join(parts)
-    if seo.get("advice"):
-        advice_block = f'<h2>이 카드의 조언</h2><div class="sym"><p style="margin:0">{_e(seo["advice"])}</p></div>'
-
+    def pager_link(card, arrow_left):
+        name = localize(card, lang)["name"]
+        label = f"← {name}" if arrow_left else f"{name} →"
+        return f'<a href="{_e(card_path(lang, card["slug"]))}">{_e(label)}</a>'
     pager = '<div class="pager">'
-    pager += f'<a href="/card/{_e(prev_c["slug"])}">← {_e(prev_c["name_ko"])}</a>' if prev_c else "<span></span>"
-    pager += f'<a href="/card/{_e(next_c["slug"])}">{_e(next_c["name_ko"])} →</a>' if next_c else "<span></span>"
+    pager += pager_link(prev_c, True) if prev_c else "<span></span>"
+    pager += pager_link(next_c, False) if next_c else "<span></span>"
     pager += "</div>"
 
-    meaning = (c.get("meaning") or "").strip()
-    upright = (seo.get("upright") or "").strip()
-    intro = f"<p>{_e(meaning)}</p>" + (f"<p>{_e(upright)}</p>" if upright else "")
+    intro = f"<p>{_e(L['meaning'])}</p>" + (f"<p>{_e(L['upright'])}</p>" if L["upright"] else "")
+    en_sub = "" if L["name"].strip().lower() == c["name_en"].strip().lower() else f"{_e(c['name_en'])} · "
     body = f"""
   <div class="card-head">
     <div class="card-img">
-      <img src="/images/{_e(c['image_file'])}" alt="{_e(c['name_ko'])}({_e(c['name_en'])}) 타로카드 이미지">
+      <img src="/images/{_e(c['image_file'])}" alt="{_e(_fmt_name(ui['alt_card'], L['name'], c['name_en']))}">
     </div>
     <div class="card-body">
-      <h1>{_e(c['name_ko'])}</h1>
-      <p class="sub">{_e(c['name_en'])} · {_e(c['suit_label'])}</p>
-      <h2 style="margin-top:8px">카드의 의미</h2>
+      <h1>{_e(L['name'])}</h1>
+      <p class="sub">{en_sub}{_e(suit_text(ui, c['suit']))}</p>
+      <h2 style="margin-top:8px">{_e(ui['h_meaning'])}</h2>
       {intro}
     </div>
   </div>
@@ -421,25 +583,64 @@ async def card_detail(slug: str):
   {rev_block}
   {topic_block}
   {advice_block}
-  <p style="text-align:center"><a class="cta" href="/">이 카드로 내 타로 보기 →</a></p>
-  <p style="text-align:center;font-size:.85rem"><a href="/cards">← 전체 카드 도감</a></p>
+  <p style="text-align:center"><a class="cta" href="{_e(home_path(lang))}">{_e(ui['cta_card'])}</a></p>
+  <p style="text-align:center;font-size:.85rem"><a href="{_e(cards_path(lang))}">{_e(ui['back_all'])}</a></p>
   {pager}
 """
-    desc_src = upright or meaning
-    desc = (desc_src[:150] + "…") if len(desc_src) > 150 else desc_src
-    return _shell(
-        f"{c['name_ko']}({c['name_en']}) 타로카드 의미와 상징 | 울트라타로",
-        desc or f"{c['name_ko']} 타로카드의 의미와 상징을 알아보세요.",
-        f"{SITE_URL}/card/{c['slug']}",
-        body,
-        f"{SITE_URL}/images/{c['image_file']}",
+    desc_src = L["upright"] or L["meaning"]
+    limit = 100 if lang in ("ja", "zh", "th") else 150
+    desc = (desc_src[:limit] + "…") if len(desc_src) > limit else desc_src
+    return _page(
+        lang,
+        _fmt_name(ui["title_card"], L["name"], c["name_en"], brand=brand_of(lang)),
+        desc or _fmt(ui["desc_fallback"], name=L["name"]),
+        card_path(lang, slug), body, f"{SITE_URL}/images/{c['image_file']}", _alt_paths_card(slug),
+        noindex=not L["ok"],
     )
+
+
+@app.get("/cards", response_class=HTMLResponse)
+async def cards_index():
+    return render_cards_index("ko")
+
+
+@app.get("/card/{slug}", response_class=HTMLResponse)
+async def card_detail(slug: str):
+    return render_card_detail("ko", slug)
+
+
+@app.get("/{lang}/cards", response_class=HTMLResponse)
+async def cards_index_lang(lang: str):
+    if lang == "ko":
+        return RedirectResponse("/cards", status_code=301)
+    if lang not in SITE_LANGS:
+        raise HTTPException(status_code=404, detail="Not found")
+    if not lang_ready(lang):      # 번역 준비 중 → 임시(302) 이동이라 색인에 영향 없음
+        return RedirectResponse(_fallback_url(cards_path), status_code=302)
+    return render_cards_index(lang)
+
+
+@app.get("/{lang}/card/{slug}", response_class=HTMLResponse)
+async def card_detail_lang(lang: str, slug: str):
+    if lang == "ko":
+        return RedirectResponse(f"/card/{slug}", status_code=301)
+    if lang not in SITE_LANGS:
+        raise HTTPException(status_code=404, detail="Not found")
+    if not lang_ready(lang):
+        return RedirectResponse(_fallback_url(lambda l: card_path(l, slug)), status_code=302)
+    return render_card_detail(lang, slug)
 
 
 @app.get("/sitemap.xml")
 async def sitemap():
-    urls = [f"{SITE_URL}/", f"{SITE_URL}/cards", f"{SITE_URL}/legal.html"]
-    urls += [f"{SITE_URL}/card/{c['slug']}" for c in load_deck()]
+    urls = [f"{SITE_URL}/", f"{SITE_URL}/legal.html"]
+    for code in SITE_LANGS:
+        if lang_ready(code):
+            urls.append(f"{SITE_URL}{cards_path(code)}")
+    for c in load_deck():
+        for code in SITE_LANGS:
+            if card_ready(code, c["slug"]):          # 번역이 완료된 페이지만 제출
+                urls.append(f"{SITE_URL}{card_path(code, c['slug'])}")
     items = "".join(f"<url><loc>{u}</loc></url>" for u in urls)
     xml = f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{items}</urlset>'
     return Response(content=xml, media_type="application/xml")
