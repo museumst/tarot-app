@@ -578,14 +578,13 @@
       /* 모바일: 상단 고정바 정돈 (2줄 — 1행: 메뉴·언어 / 2행: 유저정보) */
       #top-bar {
         left: 0; right: 0; top: 0;
-        padding: 8px 12px 10px 56px;             /* 왼쪽은 메뉴 버튼 자리 확보 */
+        padding: 8px 12px 10px 12px;
         background: rgba(10,12,24,.96);
         -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
         border-bottom: 1px solid rgba(196,169,107,.15);
         justify-content: flex-end; align-items: center;
         flex-wrap: wrap; gap: 6px; row-gap: 8px;
       }
-      #menu-btn { top: 8px; left: 12px; }
       .user-info { gap: 7px; flex-wrap: nowrap; }  /* 유저정보는 한 줄로 */
       .user-info #user-name { display: none; }     /* 좁은 화면에선 이름 숨김 */
       .user-info img { width: 28px; height: 28px; }
@@ -593,7 +592,6 @@
       .user-info button { padding: 4px 9px; font-size: .72rem; }
       #free-badge { font-size: .72rem; padding: 4px 9px; }
       #credit-badge { font-size: .74rem; padding: 4px 11px; }
-      header { padding-top: 124px; }             /* 고정바(2줄) 아래에서 본문 시작 */
     }
 
     /* ── 구글 로그인 버튼 공통 ── */
@@ -905,32 +903,18 @@
     #charge-phone:focus { border-color: var(--gold); }
     #charge-phone::placeholder { color: var(--text-dim); }
 
-    /* ── 네비게이션 메뉴 ── */
-    #menu-btn {
-      position: fixed; top: 16px; left: 20px; z-index: 500;
-      background: rgba(14,16,30,.85);
-      border: 1px solid rgba(196,169,107,.35);
-      border-radius: 8px; color: var(--text);
-      padding: 8px 13px; cursor: pointer; font-size: 1.1rem; line-height: 1;
-      transition: border-color .2s;
-    }
-    #menu-btn:hover { border-color: var(--gold); }
-
+    /* ── 네비게이션 메뉴 (항상 표시) ── */
+    /* 데스크톱: 왼쪽 고정 사이드바 */
+    body { padding-left: 220px; }
     #nav-overlay {
-      display: none; position: fixed; inset: 0; z-index: 1000;
-      background: rgba(0,0,0,.6);
+      position: fixed; top: 0; left: 0; bottom: 0; width: 220px; z-index: 400;
     }
-    #nav-overlay.open { display: flex; }
-
     #nav-panel {
-      position: relative; width: 260px; min-height: 100%;
+      width: 100%; height: 100%; overflow-y: auto;
       background: linear-gradient(160deg, #181a26, #1e2035);
       border-right: 1px solid rgba(196,169,107,.2);
-      padding: 70px 20px 40px;
-      transform: translateX(-100%);
-      transition: transform .3s cubic-bezier(.4,0,.2,1);
+      padding: 28px 16px 40px;
     }
-    #nav-overlay.open #nav-panel { transform: translateX(0); }
 
     .nav-logo {
       font-family: 'Noto Sans KR', sans-serif; font-size: 1.05rem; font-weight: 700;
@@ -944,9 +928,40 @@
     }
     .nav-item:hover { background: rgba(196,169,107,.1); color: var(--gold); }
     .nav-item .nav-icon { font-size: 1.2rem; width: 26px; text-align: center; flex-shrink: 0; }
-    #nav-close {
-      position: absolute; top: 18px; right: 16px;
-      background: none; border: none; color: var(--text-dim); font-size: 1.3rem; cursor: pointer;
+    /* 태블릿·모바일: 사이드바 대신 상단 가로 메뉴 줄 */
+    @media (max-width: 1000px) {
+      body { padding-left: 0; }
+      #nav-overlay {
+        position: static; order: -1;     /* body가 flex column이라 맨 위로 배치 */
+        width: auto; z-index: auto;
+        padding: calc(var(--topbar-h, 40px) + 28px) 16px 0;   /* 상단바(top:16px) 아래 */
+      }
+      #nav-panel {
+        display: flex; gap: 6px; overflow-x: auto;
+        height: auto; padding: 0 0 4px;
+        background: none; border: none;
+        scrollbar-width: none;
+      }
+      #nav-panel::-webkit-scrollbar { display: none; }
+      #nav-panel .nav-logo { display: none; }
+      #nav-panel .nav-item {
+        width: auto; flex-shrink: 0; margin: 0; padding: 8px 14px;
+        white-space: nowrap; font-size: .82rem;
+        border: 1px solid rgba(196,169,107,.25); border-radius: 20px;
+      }
+      /* 넘치지 않으면 가운데, 넘치면 스크롤 */
+      #nav-panel .nav-item:first-of-type { margin-left: auto; }
+      #nav-panel .nav-item:last-of-type  { margin-right: auto; }
+      header { padding-top: 24px; }
+    }
+    @media (max-width: 600px) {
+      /* 앞쪽 모바일 블록의 top:0/전체폭 지정이 기본 #top-bar 규칙(top:16px; right:20px)에
+         덮어써지던 문제 보정 — 이 블록이 더 뒤에 있어 우선 적용됨 */
+      #top-bar { top: 0; left: 0; right: 0; }
+      #nav-overlay { padding: calc(var(--topbar-h, 104px) + 12px) 12px 0; }   /* 모바일 고정 상단바(top:0) 아래 */
+      #nav-panel { gap: 5px; }
+      #nav-panel .nav-item { padding: 7px 11px; font-size: .75rem; }
+      header { padding-top: 16px; }
     }
 
     /* ── 콘텐츠 패널 ── */
@@ -1265,13 +1280,9 @@
   </section>
 </div>
 
-<!-- ── 햄버거 메뉴 버튼 ── -->
-<button id="menu-btn" onclick="toggleNav()">☰</button>
-
-<!-- ── 네비게이션 오버레이 ── -->
-<div id="nav-overlay" onclick="handleNavOverlayClick(event)">
+<!-- ── 네비게이션 (항상 표시: 데스크톱은 왼쪽 사이드바, 좁은 화면은 상단 가로 메뉴) ── -->
+<div id="nav-overlay">
   <nav id="nav-panel">
-    <button id="nav-close" onclick="closeNav()">✕</button>
     <div class="nav-logo" id="nav-logo">✨ 울트라타로</div>
     <button class="nav-item" onclick="openContent('about')">
       <span id="nav-label-about">앱 소개</span>
@@ -3770,6 +3781,19 @@ document.getElementById('saved-readings-modal').addEventListener('click', event 
   if (event.target.id === 'saved-readings-modal') closeSavedReadings();
 });
 
+// 고정 상단바의 실제 높이를 CSS 변수로 노출 → 좁은 화면에서 상단 메뉴가 겹치거나 빈틈이 생기지 않게
+(function () {
+  const bar = document.getElementById('top-bar');
+  if (!bar) return;
+  const set = () => document.documentElement.style.setProperty('--topbar-h', bar.offsetHeight + 'px');
+  // 로그인 상태 변경 시 직접 호출 (offsetHeight가 즉시 레이아웃을 계산하므로 동기 실행으로 충분)
+  window.syncTopbarH = () => { set(); setTimeout(set, 300); };
+  if (window.ResizeObserver) new ResizeObserver(set).observe(bar);
+  window.addEventListener('resize', set);
+  window.addEventListener('load', set);
+  set();
+})();
+
 // 부트스트랩: 모든 const(CONTENT_TEXT 등) 선언 이후에 실행해야 TDZ 에러를 피함
 buildLangDropdown();
 applyLang();
@@ -3961,6 +3985,8 @@ init();
       document.getElementById('credit-badge').style.display = 'none';
       window.userCredits = 0;
     }
+    // 상단바 구성이 바뀌었으므로(1줄↔2줄) 메뉴 위치 재계산
+    window.syncTopbarH && window.syncTopbarH();
   });
 
   // ── 헤더 로그인 버튼 ──
