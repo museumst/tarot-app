@@ -34,6 +34,9 @@ OUT = os.path.join(BASE, "output", "i18n")
 SHOW_FIELDS = ["name", "meaning", "sym_person", "sym_symbol", "sym_bg",
                "upright", "reversed", "love", "career", "money", "advice"]
 SYM_FIELDS = ["sym_person", "sym_symbol", "sym_bg"]
+# 영어 본문 길이 대비 최소 비율 — 번역 누락(잘림) 탐지용. 중국어·일본어는 글자 밀도가 높아 훨씬 낮게 잡는다.
+MIN_RATIO = {"zh": 0.10, "ja": 0.10}
+DEFAULT_MIN_RATIO = 0.45
 
 
 def load(path, default):
@@ -81,7 +84,21 @@ def show(lang, n):
                 print("%s: %s" % (k, t[k]))
 
 
+INBOX = os.path.join(OUT, "_inbox")
+
+
+def keep_input(lang, text):
+    """받은 번역문 원본을 보관한다(거부된 카드를 다시 보낼 필요가 없게). git 에는 올리지 않는다."""
+    os.makedirs(INBOX, exist_ok=True)
+    import time
+    path = os.path.join(INBOX, "%s_%s.txt" % (lang, time.strftime("%H%M%S")))
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(text)
+    return path
+
+
 def merge(lang, text):
+    keep_input(lang, text)
     en = load(os.path.join(OUT, "cards_en.json"), {})
     path = os.path.join(OUT, "cards_%s.json" % lang)
     mine = load(path, {})
@@ -105,9 +122,10 @@ def merge(lang, text):
                 if not src.get(f):
                     res[f] = ""
             tc.check_scripts(lang, res.values())
-            # 지나치게 짧으면(번역 누락 의심) 거부: 영어 길이의 25% 미만
+            # 지나치게 짧으면(번역 누락 의심) 거부
+            ratio = MIN_RATIO.get(lang, DEFAULT_MIN_RATIO)
             for k in ("meaning", "upright", "reversed", "love", "career", "money", "advice"):
-                if src.get(k) and len(res[k]) < 0.25 * len(src[k]):
+                if src.get(k) and len(res[k]) < ratio * len(src[k]):
                     raise ValueError("%s 가 너무 짧음(%d/%d자)" % (k, len(res[k]), len(src[k])))
             mine[slug] = res
             ok.append(slug)

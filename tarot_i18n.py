@@ -130,6 +130,38 @@ MINOR_NAMES = {
     "ja": {"fmt": "{suit}の{rank}",
            "ranks": ["エース", "2", "3", "4", "5", "6", "7", "8", "9", "10",
                      "ペイジ", "ナイト", "クイーン", "キング"]},
+    "zh": {"fmt": "{suit}{rank}",
+           "ranks": ["王牌", "二", "三", "四", "五", "六", "七", "八", "九", "十", "侍从", "骑士", "王后", "国王"]},
+    "de": {"fmt": "{rank} der {suit}",
+           "ranks": ["Ass", "Zwei", "Drei", "Vier", "Fünf", "Sechs", "Sieben", "Acht", "Neun", "Zehn",
+                     "Bube", "Ritter", "Königin", "König"]},
+    "pt": {"fmt": "{rank} de {suit}",
+           "ranks": ["Ás", "Dois", "Três", "Quatro", "Cinco", "Seis", "Sete", "Oito", "Nove", "Dez",
+                     "Valete", "Cavaleiro", "Rainha", "Rei"]},
+    "ru": {"fmt": "{rank} {suit}",
+           "suits": ("Кубков", "Жезлов", "Мечей", "Пентаклей"),     # 속격 복수
+           "ranks": ["Туз", "Двойка", "Тройка", "Четвёрка", "Пятёрка", "Шестёрка", "Семёрка", "Восьмёрка",
+                     "Девятка", "Десятка", "Паж", "Рыцарь", "Королева", "Король"]},
+    "th": {"fmt": "{rank}{suit}",
+           "ranks": ["เอซ", "สอง", "สาม", "สี่", "ห้า", "หก", "เจ็ด", "แปด", "เก้า", "สิบ",
+                     "เพจ", "อัศวิน", "ราชินี", "ราชา"]},
+    "it": {"fmt": "{rank} di {suit}",
+           "ranks": ["Asso", "Due", "Tre", "Quattro", "Cinque", "Sei", "Sette", "Otto", "Nove", "Dieci",
+                     "Fante", "Cavaliere", "Regina", "Re"]},
+    "vi": {"fmt": "{rank} {suit}",
+           "ranks": ["Át", "Hai", "Ba", "Bốn", "Năm", "Sáu", "Bảy", "Tám", "Chín", "Mười",
+                     "Thị Đồng", "Kỵ Sĩ", "Nữ Hoàng", "Vua"]},
+    "id": {"fmt": "{rank} of {suit}",      # 인도네시아 타로 커뮤니티는 영어 명칭을 그대로 쓴다
+           "ranks": ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
+                     "Page", "Knight", "Queen", "King"]},
+    "tr": {"fmt": "{suit} {rank}",
+           "suits": ("Kupa", "Değnek", "Kılıç", "Tılsım"),           # 합성어에서는 단수형
+           "ranks": ["Ası", "İkilisi", "Üçlüsü", "Dörtlüsü", "Beşlisi", "Altılısı", "Yedilisi", "Sekizlisi",
+                     "Dokuzlusu", "Onlusu", "Uşağı", "Şövalyesi", "Kraliçesi", "Kralı"]},
+    "pl": {"fmt": "{rank} {suit}",
+           "suits": ("Pucharów", "Buław", "Mieczy", "Pentakli"),    # 속격 복수
+           "ranks": ["As", "Dwójka", "Trójka", "Czwórka", "Piątka", "Szóstka", "Siódemka", "Ósemka",
+                     "Dziewiątka", "Dziesiątka", "Paź", "Rycerz", "Królowa", "Król"]},
 }
 
 
@@ -140,7 +172,7 @@ def minor_name(lang, slug):
     if not spec or len(parts) != 2 or parts[0] not in _RANK_WORDS or parts[1] not in _SUIT_SLUG:
         return None
     rank = spec["ranks"][_RANK_WORDS.index(parts[0])]
-    suit = SUIT_TERMS[lang][_SUIT_SLUG[parts[1]]]
+    suit = spec.get("suits", SUIT_TERMS[lang])[_SUIT_SLUG[parts[1]]]
     name = spec["fmt"].format(rank=rank, suit=suit)
     if spec.get("elide"):
         import re

@@ -316,9 +316,15 @@ PayPal은 `requestPayment`가 **아니라** 버튼을 미리 렌더링하는 방
 - **언어 연동**: 메인 앱은 `localStorage['tarot-lang']`를 쓰고, 도감의 언어 선택기도 같은 키에 저장합니다.
   도감 → 메인 앱 이동은 `/?lang=xx`로 넘기며 `detectLang()`이 이 값을 우선 적용합니다.
   메인 앱 메뉴/푸터의 도감 링크는 `cardsHref()`가 현재 언어에 맞게 만듭니다.
-- **공개 기준**: 한 언어의 74장 번역이 **모두** 끝난 경우에만 그 언어를 공개합니다(`lang_ready`). 미완성 언어(`/de/...` 등)는 영어판으로
-  302 이동하고 사이트맵·hreflang·언어선택기에서 제외됩니다. **2026-10 현재 공개: ko, en, ja, es** (fr은 65/74, 나머지 미번역).
-  이어서 하려면 API 크레딧을 충전한 뒤 `python3 translate_cards.py --cards-only --workers 10` 만 다시 실행하면 됩니다(남은 것만 번역).
+- **공개 기준**: 한 언어의 74장 번역이 **모두** 끝난 경우에만 그 언어를 공개합니다(`lang_ready`). 미완성 언어는 영어판으로
+  302 이동하고 사이트맵·hreflang·언어선택기에서 제외됩니다. **2026-10 현재 공개: ko, en, ja, es, fr, de, pt, zh** (나머지 th ru it vi id tr pl 은 미번역 → 영어판으로 이동).
+- **번역 방법 두 가지**
+  1. API: `python3 translate_cards.py --cards-only --workers 10` — ANTHROPIC_API_KEY 크레딧을 소모합니다(실시간 AI 리딩과 같은 크레딧).
+  2. **구독 플랜(대화 세션)**: `python3 merge_translations.py LANG --show 6` 으로 영어 원문을 보고, 번역문을 `--merge` 에 stdin 으로 넣습니다
+     (`=== slug ===` 다음에 `###name###`, `###meaning###`, `###sym_person###`, `###sym_symbol###`, `###sym_bg###`, `###upright###`, `###reversed###`,
+     `###love###`, `###career###`, `###money###`, `###advice###`). 영어 원문에 없는 sym_* 항목은 넣지 않습니다. API 호출이 없습니다.
+     `--status` 로 언어별 진행 현황을 봅니다. 거부된 입력은 `output/i18n/_inbox/` 에 남습니다(git 제외).
+- **소수 아르카나 이름**은 번역이 아니라 `tarot_i18n.MINOR_NAMES` 규칙(숫자+수트)으로 렌더링 시점에 생성됩니다(14개 언어 모두). 번역 파일의 name 은 메이저 아르카나에만 쓰입니다.
 - **데이터 생성**: `python3 translate_cards.py` (UI 문구만: `--ui-only --force`, 일부 언어: `--langs en ja`, 파일럿: `--limit 2`).
   이미 번역된 항목은 건너뛰므로 중단 후 재실행해도 안전합니다.
 - **원문 수정 시**: `output/cards.json`의 `meaning/symbols/seo`를 고치면 `--force`로 다시 번역해야 하고,
