@@ -11,7 +11,7 @@ from fastapi.responses import FileResponse, StreamingResponse, HTMLResponse, Pla
 from pydantic import BaseModel
 from typing import List, Optional
 
-from tarot_i18n import SITE_LANGS, LANG_LABELS, OG_LOCALE, UI_KO, ui_overrides
+from tarot_i18n import SITE_LANGS, LANG_LABELS, OG_LOCALE, UI_KO, ui_overrides, minor_name
 
 app = FastAPI(title="AI Tarot Reading")
 
@@ -345,7 +345,8 @@ def localize(c: dict, lang: str) -> dict:
         syms = [(ui["sym_person"], sym.get("핵심인물")), (ui["sym_symbol"], sym.get("주요상징")), (ui["sym_bg"], sym.get("배경"))]
         ok = lang == "ko"
     else:
-        name, meaning, up = t["name"], t["meaning"], t["upright"]
+        name = minor_name(lang, c["slug"]) or t["name"]      # 소수 아르카나는 규칙 이름 우선(표기 통일)
+        meaning, up = t["meaning"], t["upright"]
         rest = {k: t.get(k, "") for k in ("reversed", "love", "career", "money", "advice")}
         syms = [(ui["sym_person"], t.get("sym_person")), (ui["sym_symbol"], t.get("sym_symbol")), (ui["sym_bg"], t.get("sym_bg"))]
         ok = True

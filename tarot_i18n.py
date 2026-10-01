@@ -110,3 +110,39 @@ def ui_overrides(lang):
     o = {"cups": c, "wands": w, "swords": s, "pentacles": p}
     o.update(UI_OVERRIDES.get(lang, {}))
     return o
+
+
+# ── 소수 아르카나 카드 이름 규칙 ──────────────────────────────────
+# 카드별로 독립 번역하면 같은 규칙의 이름이 제각각이 된다(예: "Le Deux d'Épées" / "Quatre de Coupes").
+# 소수 아르카나는 '숫자 + 수트'로 완전히 정해지므로 언어별 규칙으로 이름을 생성해 번역보다 우선 적용한다.
+# ranks 순서: 에이스, 2~10, 시종(Page), 기사(Knight), 여왕(Queen), 왕(King)
+_RANK_WORDS = ["ace", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+               "page", "knight", "queen", "king"]
+_SUIT_SLUG = {"cups": 0, "wands": 1, "swords": 2, "pentacles": 3}
+
+MINOR_NAMES = {
+    "fr": {"fmt": "{rank} de {suit}", "elide": True,
+           "ranks": ["As", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix",
+                     "Valet", "Cavalier", "Reine", "Roi"]},
+    "es": {"fmt": "{rank} de {suit}",
+           "ranks": ["As", "Dos", "Tres", "Cuatro", "Cinco", "Seis", "Siete", "Ocho", "Nueve", "Diez",
+                     "Sota", "Caballero", "Reina", "Rey"]},
+    "ja": {"fmt": "{suit}の{rank}",
+           "ranks": ["エース", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+                     "ペイジ", "ナイト", "クイーン", "キング"]},
+}
+
+
+def minor_name(lang, slug):
+    """소수 아르카나면 규칙으로 만든 이름을, 아니면(메이저 등) None 을 반환."""
+    spec = MINOR_NAMES.get(lang)
+    parts = (slug or "").split("-of-")
+    if not spec or len(parts) != 2 or parts[0] not in _RANK_WORDS or parts[1] not in _SUIT_SLUG:
+        return None
+    rank = spec["ranks"][_RANK_WORDS.index(parts[0])]
+    suit = SUIT_TERMS[lang][_SUIT_SLUG[parts[1]]]
+    name = spec["fmt"].format(rank=rank, suit=suit)
+    if spec.get("elide"):
+        import re
+        name = re.sub(r" de ([AEIOUÀÂÉÈÊÎÔÛaeiou])", r" d'\1", name)
+    return name
