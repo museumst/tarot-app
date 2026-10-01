@@ -317,7 +317,7 @@ PayPal은 `requestPayment`가 **아니라** 버튼을 미리 렌더링하는 방
   도감 → 메인 앱 이동은 `/?lang=xx`로 넘기며 `detectLang()`이 이 값을 우선 적용합니다.
   메인 앱 메뉴/푸터의 도감 링크는 `cardsHref()`가 현재 언어에 맞게 만듭니다.
 - **공개 기준**: 한 언어의 74장 번역이 **모두** 끝난 경우에만 그 언어를 공개합니다(`lang_ready`). 미완성 언어는 영어판으로
-  302 이동하고 사이트맵·hreflang·언어선택기에서 제외됩니다. **2026-10 현재 공개: ko, en, ja, es, fr, de, pt, zh, ru, th, it** (나머지 vi id tr pl 은 미번역 → 영어판으로 이동).
+  302 이동하고 사이트맵·hreflang·언어선택기에서 제외됩니다. **2026-10 현재 공개: ko, en, ja, es, fr, de, pt, zh, ru, th, it, vi** (나머지 id tr pl 은 미번역 → 영어판으로 이동).
 - **번역 방법 두 가지**
   1. API: `python3 translate_cards.py --cards-only --workers 10` — ANTHROPIC_API_KEY 크레딧을 소모합니다(실시간 AI 리딩과 같은 크레딧).
   2. **구독 플랜(대화 세션)**: `python3 merge_translations.py LANG --show 6` 으로 영어 원문을 보고, 번역문을 `--merge` 에 stdin 으로 넣습니다
