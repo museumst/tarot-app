@@ -1,4 +1,4 @@
-// 카드 도감 페이지 상단의 계정 바 (프로필·무료/무제한·충전·내역·로그아웃)
+// 모든 페이지 우측 상단에 고정되는 계정 바 (프로필·무료/무제한·충전·내역·로그아웃)
 // 메인 앱(index.html)과 같은 도메인이라 Firebase 로그인 상태가 그대로 공유된다.
 // 충전/내역 모달은 메인 앱에만 있으므로, 누르면 메인 앱으로 이동해 해당 창을 연다.
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
@@ -27,7 +27,24 @@ const COPY = {
   pl: { logout:'Wyloguj', free:n => `Pozostało ${n} bezpłatne${n===1?'':n<5?'':'ch'} czytanie${n===1?'':n<5?'a':'ń'}`, unl:'Nieograniczone', topUp:'💳 Doładuj', balance:n => `💳 ${n} kredytów`, history:'Historia', histTitle:'Historia kredytów' },
 };
 
-const bar = document.getElementById('acct-bar');
+// 마크업이 없는 페이지(legal.html 등)에서는 직접 만들어 넣는다
+function ensureBar() {
+  let el = document.getElementById('acct-bar');
+  if (el) return el;
+  let l = 'ko';
+  try { l = localStorage.getItem('tarot-lang') || ''; } catch (e) {}
+  if (!COPY[l]) l = COPY[document.documentElement.lang] ? document.documentElement.lang : 'ko';
+  el = document.createElement('div');
+  el.id = 'acct-bar';
+  el.dataset.lang = l;
+  el.innerHTML = '<button id="acct-login" type="button"></button><div id="acct-user">' +
+    '<img id="acct-avatar" src="" alt=""><span id="acct-name"></span><span id="acct-free" class="plenty"></span>' +
+    '<a id="acct-credit" href="/"></a><a id="acct-history" href="/"></a><button id="acct-logout" type="button"></button></div>';
+  document.body.prepend(el);
+  return el;
+}
+
+const bar = ensureBar();
 if (bar) {
   const lang = bar.dataset.lang || 'en';
   const c = COPY[lang] || COPY.en;
@@ -74,7 +91,7 @@ if (bar) {
   onAuthStateChanged(auth, async user => {
     if (!user) {
       $('acct-user').style.display = 'none';
-      $('acct-login').style.display = '';
+      $('acct-login').style.display = 'inline-block';
       return;
     }
     $('acct-login').style.display = 'none';

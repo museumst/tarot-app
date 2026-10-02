@@ -396,11 +396,12 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
 <meta name="twitter:image" content="{_e(og_image)}">
 <link rel="icon" href="/static/favicon.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/acct-bar.css?v=1">
 <style>
   *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
   body{{background:#0d0d1a;color:#e8e3d8;font-family:'Noto Sans KR','Noto Sans',system-ui,sans-serif;font-weight:300;line-height:1.75}}
   a{{color:#c4a96b;text-decoration:none}} a:hover{{color:#d9bf8e}}
-  .wrap{{max-width:900px;margin:0 auto;padding:28px 20px 80px}}
+  .wrap{{max-width:900px;margin:0 auto;padding:72px 20px 80px}}
   .topbar{{border-bottom:1px solid rgba(196,169,107,.18);padding-bottom:16px;margin-bottom:34px;
           display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}}
   .brand{{font-weight:700;font-size:1.12rem;color:#d9bf8e}}
@@ -409,23 +410,7 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
   #lang-select{{background:rgba(255,255,255,.05);color:#e8e3d8;border:1px solid rgba(196,169,107,.35);
                border-radius:7px;padding:5px 8px;font-size:.82rem;font-family:inherit;cursor:pointer}}
   #lang-select option{{background:#16122a;color:#e8e3d8}}
-  #acct-bar{{display:flex;align-items:center;gap:10px;flex-wrap:wrap}}
-  #acct-user{{display:none;align-items:center;gap:8px;flex-wrap:wrap}}
-  #acct-avatar{{width:30px;height:30px;border-radius:50%;border:1px solid #c4a96b}}
-  #acct-name{{color:#9a9aa8;font-size:.82rem}}
-  #acct-free{{font-size:.74rem;padding:3px 10px;border-radius:20px;border:1px solid;white-space:nowrap}}
-  #acct-free.plenty{{color:#90d490;border-color:rgba(144,212,144,.4)}}
-  #acct-free.warning{{color:#f0d060;border-color:rgba(240,208,96,.4)}}
-  #acct-free.empty{{color:#f08080;border-color:rgba(240,128,128,.4)}}
-  #acct-credit{{font-size:.76rem;padding:5px 13px;border-radius:20px;border:1px solid rgba(196,169,107,.6);
-    color:#c4a96b;white-space:nowrap;font-weight:600;background:rgba(196,169,107,.08)}}
-  #acct-credit:hover{{background:rgba(196,169,107,.18);border-color:#c4a96b}}
-  #acct-credit.low{{color:#f08080;border-color:rgba(240,128,128,.6);background:rgba(240,128,128,.07)}}
-  #acct-credit.empty{{border-color:#c4a96b;background:rgba(196,169,107,.15)}}
-  #acct-history,#acct-logout,#acct-login{{background:transparent;border:1px solid rgba(196,169,107,.35);
-    border-radius:20px;color:#9a9aa8;font-size:.72rem;padding:3px 10px;cursor:pointer;font-family:inherit;white-space:nowrap}}
-  #acct-history:hover,#acct-logout:hover,#acct-login:hover{{border-color:#c4a96b;color:#c4a96b}}
-  #acct-login{{display:none;font-size:.8rem;padding:5px 14px;color:#c4a96b;border-radius:8px}}
+  @media (max-width:600px){{ .wrap{{padding-top:92px}} }}
   h1{{font-size:clamp(1.7rem,4.6vw,2.5rem);font-weight:700;color:#d9bf8e;margin-bottom:6px;line-height:1.3}}
   h2{{font-size:1.1rem;color:#c4a96b;margin:34px 0 12px;font-weight:500}}
   .sub{{color:#7c8090;font-size:.92rem;margin-bottom:26px}}
@@ -463,10 +448,10 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
     <div class="nav">
       <a href="{_e(cards_path(lang))}">{_e(ui['nav_cards'])}</a>
       <a href="{_e(home_path(lang))}">{_e(ui['nav_home'])}</a>
-      <select id="lang-select" aria-label="{_e(ui['lang_label'])}" onchange="switchLang(this)">{options}</select>
     </div>
   </div>
-  <div id="acct-bar" data-lang="{_e(lang)}" style="justify-content:flex-end;margin:-18px 0 22px">
+  <div id="acct-bar" data-lang="{_e(lang)}">
+    <select id="lang-select" aria-label="{_e(ui['lang_label'])}" onchange="switchLang(this)">{options}</select>
     <button id="acct-login" type="button"></button>
     <div id="acct-user">
       <img id="acct-avatar" src="" alt="">
@@ -491,7 +476,7 @@ function switchLang(sel){{
   location.href=o.value;
 }}
 </script>
-<script type="module" src="/static/acct-bar.js?v=1"></script>
+<script type="module" src="/static/acct-bar.js?v=2"></script>
 </body>
 </html>"""
 

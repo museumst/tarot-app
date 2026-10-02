@@ -7,6 +7,7 @@
 <meta name="description" content="울트라타로의 이용약관, 개인정보처리방침, 환불정책, 민원처리규정, 이용요금 안내입니다.">
 <link rel="canonical" href="https://ultratarot.com/legal.html">
 <link rel="icon" href="/static/favicon.png" type="image/png">
+<link rel="stylesheet" href="/static/acct-bar.css?v=1">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -33,6 +34,7 @@
     background: var(--surface);
     border-bottom: 1px solid var(--border);
     padding: 20px 40px;
+    padding-top: 64px; /* 우측 상단 고정 계정 바 자리 */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -159,7 +161,9 @@
     color: var(--accent);
     margin-top: 12px;
   }
+  @media (max-width: 600px) { .top-bar { padding: 100px 16px 16px; flex-wrap: wrap; gap: 12px; } .tabs { flex-wrap: wrap; } }
   @media print {
+    #acct-bar { display: none; }
     .top-bar { position: static; }
     .tab { display: none; }
     .doc { display: block !important; }
@@ -618,5 +622,6 @@ function showDoc(id, btn) {
   if (['terms', 'privacy', 'refund', 'complaint', 'pricing'].includes(hash)) showDoc(hash);
 })();
 </script>
+<script type="module" src="/static/acct-bar.js?v=2"></script>
 </body>
 </html>

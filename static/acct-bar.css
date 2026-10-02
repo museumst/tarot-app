@@ -1,0 +1,24 @@
+/* 계정 바: 메인 앱과 동일하게 화면 우측 상단에 항상 고정 (모바일은 전체 폭 바). 모든 페이지 공용 */
+#acct-bar{position:fixed;top:16px;right:20px;z-index:500;display:flex;align-items:center;gap:10px}
+@media (max-width:600px){
+  #acct-bar{left:0;right:0;top:0;padding:8px 12px 10px;justify-content:flex-end;flex-wrap:wrap;gap:6px;row-gap:8px;
+    background:rgba(10,12,24,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(196,169,107,.15)}
+  #acct-name{display:none}
+}
+#acct-user{display:none;align-items:center;gap:8px;flex-wrap:nowrap}
+#acct-avatar{width:30px;height:30px;border-radius:50%;border:1px solid #c4a96b}
+#acct-name{color:#9a9aa8;font-size:.82rem}
+#acct-free{font-size:.74rem;padding:3px 10px;border-radius:20px;border:1px solid;white-space:nowrap}
+#acct-free.plenty{color:#90d490;border-color:rgba(144,212,144,.4)}
+#acct-free.warning{color:#f0d060;border-color:rgba(240,208,96,.4)}
+#acct-free.empty{color:#f08080;border-color:rgba(240,128,128,.4)}
+#acct-credit{font-size:.76rem;padding:5px 13px;border-radius:20px;border:1px solid rgba(196,169,107,.6);
+  color:#c4a96b;white-space:nowrap;font-weight:600;background:rgba(196,169,107,.08)}
+#acct-credit:hover{background:rgba(196,169,107,.18);border-color:#c4a96b}
+#acct-credit.low{color:#f08080;border-color:rgba(240,128,128,.6);background:rgba(240,128,128,.07)}
+#acct-credit.empty{border-color:#c4a96b;background:rgba(196,169,107,.15)}
+#acct-history,#acct-logout,#acct-login{background:transparent;border:1px solid rgba(196,169,107,.35);
+  border-radius:20px;color:#9a9aa8;font-size:.72rem;padding:3px 10px;cursor:pointer;font-family:inherit;white-space:nowrap}
+#acct-history:hover,#acct-logout:hover,#acct-login:hover{border-color:#c4a96b;color:#c4a96b}
+#acct-login{display:none;font-size:.8rem;padding:5px 14px;color:#c4a96b;border-radius:8px}
