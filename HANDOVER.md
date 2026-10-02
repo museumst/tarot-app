@@ -62,7 +62,7 @@ tarot-project/
 ├── enrich_cards.py        # 카드 해설 보강(seo 필드) 생성 스크립트
 ├── static/
 │   ├── index.html         # 프론트엔드 전체 (SPA, 단일 파일)
-│   ├── card-back.png      # 카드 선택 덱의 카드 뒷면 이미지
+│   ├── card-back.webp     # 카드 선택 덱의 카드 뒷면 이미지
 │   ├── saved-readings.html # 저장 리딩 목록/상세 전용 페이지
 │   ├── legal.html         # 법적 고지 5종 (탭 UI)
 │   ├── site-shell.css     # 공통 고정 사이드바/계정바, 반응형 페이지 프레임
