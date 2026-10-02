@@ -863,7 +863,7 @@
     #nav-panel {
       width: 100%; height: 100%; overflow-y: auto;
       background: linear-gradient(160deg, #181a26, #1e2035);
-      border-right: 1px solid rgba(196,169,107,.2);
+      border-right: 0;
       padding: 28px 16px 40px;
     }
 
@@ -924,22 +924,6 @@
     #content-panel.open { display: block; }
     @media (max-width: 1000px) {
       #content-panel { inset: calc(var(--topbar-h, 64px) + 48px) 0 0; }
-    }
-    #content-header {
-      position: sticky; top: 0; z-index: 10;
-      background: rgba(17,18,24,.96); backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(196,169,107,.15);
-      padding: 14px 20px; display: flex; align-items: center; gap: 14px;
-    }
-    #content-back {
-      background: none; border: none; color: var(--gold); font-size: .88rem;
-      cursor: pointer; font-family: 'Noto Sans KR', sans-serif;
-      padding: 6px 10px; border-radius: 6px; transition: background .15s; white-space: nowrap;
-    }
-    #content-back:hover { background: rgba(196,169,107,.1); }
-    #content-title {
-      font-family: 'Noto Sans KR', sans-serif; font-size: 1.05rem;
-      color: var(--gold); font-weight: 700;
     }
     #content-body { max-width: 800px; margin: 0 auto; padding: 32px 20px 80px; }
 
@@ -1229,7 +1213,7 @@
 <!-- ── 네비게이션 (항상 표시: 데스크톱은 왼쪽 사이드바, 좁은 화면은 상단 가로 메뉴) ── -->
 <div id="nav-overlay" class="site-sidebar">
   <nav id="nav-panel" class="site-sidebar-nav">
-    <div class="nav-logo site-sidebar-brand" id="nav-logo">✨ 울트라타로</div>
+    <a class="nav-logo site-sidebar-brand" id="nav-logo" href="/">✨ 울트라타로</a>
     <button class="nav-item" onclick="openContent('about')">
       <span id="nav-label-about">앱 소개</span>
     </button>
@@ -1247,10 +1231,6 @@
 
 <!-- ── 콘텐츠 패널 ── -->
 <div id="content-panel">
-  <div id="content-header">
-    <button id="content-back" onclick="closeContent()">← 뒤로</button>
-    <h2 id="content-title"></h2>
-  </div>
   <div id="content-body"></div>
 </div>
 
@@ -2892,27 +2872,34 @@ function handleNavOverlayClick(e) { if (e.target === document.getElementById('na
 function updateMenuLabels() {
   const L = NAV_LABELS[currentLang] || NAV_LABELS.en;
   const s = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
-  s('nav-logo', `✨ ${currentLang === 'ko' ? '울트라타로' : 'Ultra Tarot'}`);
+  const logo = document.getElementById('nav-logo');
+  if (logo) {
+    logo.textContent = `✨ ${currentLang === 'ko' ? '울트라타로' : 'Ultra Tarot'}`;
+    logo.href = currentLang === 'ko' ? '/' : `/?lang=${currentLang}`;
+  }
   s('nav-label-about', L.about);
   s('nav-label-tarot', L.tarot);
   s('nav-label-cards', L.cards);
-  s('content-back',    L.back);
 }
 
 // ── 콘텐츠 패널 ──
 let cardsLoaded = false;
 let allCardData  = [];
+let currentContentType = null;
 
 function openContent(type) {
   closeNav();
-  const L = NAV_LABELS[currentLang] || NAV_LABELS.en;
-  const titles = { about: L.about, tarot: L.tarot, cards: L.cards };
-  document.getElementById('content-title').textContent = titles[type];
+  const panel = document.getElementById('content-panel');
+  if (panel.classList.contains('open') && currentContentType === type) {
+    closeContent();
+    return;
+  }
+  currentContentType = type;
   document.getElementById('content-body').innerHTML =
     type === 'about' ? getAboutContent() :
     type === 'tarot' ? getTarotContent() :
     getCardDictHTML();
-  document.getElementById('content-panel').classList.add('open');
+  panel.classList.add('open');
   document.body.classList.add('content-open');
   if (type === 'cards') loadCardDict();
 }
@@ -2920,7 +2907,12 @@ function openContent(type) {
 function closeContent() {
   document.getElementById('content-panel').classList.remove('open');
   document.body.classList.remove('content-open');
+  currentContentType = null;
 }
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') closeContent();
+});
 
 const CONTENT_TEXT = {
   ko: {
