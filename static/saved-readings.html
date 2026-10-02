@@ -201,13 +201,22 @@
       const state = document.createElement('div'); state.className='state'; state.textContent=message; list.append(state);
     }
 
+    // 양자택일은 입력한 두 선택지를 제목으로 보여 준다. 옛 기록처럼 선택지가 비어 있으면 스프레드 이름으로 대신한다.
+    function recordTitle(record) {
+      const c = record.choices;
+      if (c && (c.a || c.b)) return `${c.a || ''} vs ${c.b || ''}`;
+      const q = record.question || '';
+      if (/:\s*vs\s+[^:]+:\s*$/.test(q)) return record.spreadName || t('title');
+      return q || record.spreadName || t('title');
+    }
+
     function showDetail(record) {
       const detail = document.getElementById('reading-detail');
       const state = document.getElementById('detail-state');
       const date = record.createdAt?.toDate ? record.createdAt.toDate() : null;
       detail.replaceChildren();
       const dateEl = document.createElement('div'); dateEl.className='detail-date'; dateEl.textContent=date ? date.toLocaleString() : '';
-      const title = document.createElement('h2'); title.textContent=record.question || t('title');
+      const title = document.createElement('h2'); title.textContent=recordTitle(record);
       const spread = document.createElement('div'); spread.className='spread-name'; spread.textContent=record.spreadName || '';
       detail.append(dateEl,title,spread);
       if (record.cards?.length) {
@@ -243,7 +252,7 @@
           const record={id:doc.id,...doc.data()};
           const button=document.createElement('button'); button.type='button'; button.className='reading-item';
           button.setAttribute('aria-current','false');
-          const title=document.createElement('span'); title.className='item-question'; title.textContent=record.question || record.spreadName || t('title');
+          const title=document.createElement('span'); title.className='item-question'; title.textContent=recordTitle(record);
           const meta=document.createElement('span'); meta.className='item-meta';
           const spread=document.createElement('span'); spread.textContent=record.spreadName || '';
           const date=document.createElement('time'); const value=record.createdAt?.toDate ? record.createdAt.toDate() : null; date.textContent=value ? value.toLocaleDateString() : '';

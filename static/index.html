@@ -1818,6 +1818,8 @@ let drawnCards = [];
 let readingMode = 'reading';
 let readingInProgress = false;
 let spreadRequest = null;
+let activeQuestion = '';      // 리딩을 시작할 때 고정한 질문(저장·공유에 그대로 사용)
+let activeChoices = null;     // 양자택일이면 { a, b }
 
 function readingQuestion() {
   if (readingMode === 'choice') {
@@ -2183,7 +2185,11 @@ async function startReading() {
   output.innerHTML = '';
   spinner.classList.add('active');
 
-  const question = readingQuestion();
+  activeChoices = readingMode === 'choice'
+    ? { a: document.getElementById('choice-a').value.trim(), b: document.getElementById('choice-b').value.trim() }
+    : null;
+  activeQuestion = readingQuestion();
+  const question = activeQuestion;
   const spreadName = selectedSpread ? selectedSpread.name : `${cardCount}카드 스프레드`;
 
   const payload = {
@@ -2305,7 +2311,7 @@ async function buildShareCanvas() {
   cv.width = W;
   const ctx = cv.getContext('2d');
 
-  const q = readingQuestion();
+  const q = activeQuestion || readingQuestion();
   ctx.font = '400 34px "Noto Sans KR", sans-serif';
   const questionLines = q ? wrapLines(ctx, `“${q}”`, W - 160, 2) : [];
   const cardTop = q ? 176 + questionLines.length * 46 + 14 : 186;
@@ -2509,7 +2515,7 @@ document.getElementById('share-reading-btn').addEventListener('click', async () 
 });
 
 document.getElementById('save-reading-btn').addEventListener('click', async () => {
-  const question = readingQuestion();
+  const question = activeQuestion || readingQuestion();
   const readingText = document.getElementById('reading-output').innerText.trim();
   if (!readingText) { notify(t('notify_no_content')); return; }
   if (!window.saveReadingRecord) { notify(savedReadingText('failed')); return; }
@@ -2519,6 +2525,7 @@ document.getElementById('save-reading-btn').addEventListener('click', async () =
   try {
     await window.saveReadingRecord({
       question,
+      choices: activeChoices,
       spreadName: selectedSpread ? selectedSpread.name : `${cardCount}카드 스프레드`,
       cards: drawnCards.map(({ card, positionMeaning }) => ({
         name_ko: card.name_ko || '',
@@ -2554,6 +2561,8 @@ function resetAll(restartMode = true) {
   document.getElementById('reading-output').innerHTML = '';
   document.getElementById('reading-cards').innerHTML = '';
   selectedSpread = null;
+  activeQuestion = '';
+  activeChoices = null;
   cardCount = 3;
   drawnCards = [];
   if (restartMode && readingMode === 'choice') {
@@ -3813,6 +3822,7 @@ if (requestedPanel === 'about' || requestedPanel === 'tarot') {
     const readingsRef = collection(db, 'users', user.uid, 'readings');
     await addDoc(readingsRef, {
       question: String(reading.question || '').slice(0, 2000),
+      ...(reading.choices ? { choices: { a: String(reading.choices.a || '').slice(0, 200), b: String(reading.choices.b || '').slice(0, 200) } } : {}),
       spreadName: String(reading.spreadName || '').slice(0, 200),
       cards: Array.isArray(reading.cards) ? reading.cards.slice(0, 10) : [],
       reading: String(reading.reading || '').slice(0, 30000),
