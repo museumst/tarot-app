@@ -1,6 +1,13 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { cardsFromSum, calculateBirthCards } = require('../static/birth-card.js');
+const { cardsFromSum, calculateBirthCards, daysInMonth } = require('../static/birth-card.js');
+
+test('wheel day counts follow leap-year rules', () => {
+  assert.equal(daysInMonth(2000, 2), 29);
+  assert.equal(daysInMonth(1900, 2), 28);
+  assert.equal(daysInMonth(2024, 2), 29);
+  assert.equal(daysInMonth(2025, 4), 30);
+});
 
 test('birth date sums eight digits and reduces to the major arcana range', () => {
   const result = calculateBirthCards('1988-09-29', new Date(2026, 9, 3));

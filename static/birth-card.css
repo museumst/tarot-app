@@ -2,14 +2,17 @@
   padding: 0 0 26px;
   border-bottom: 1px solid rgba(196,169,107,.25);
 }
-.birth-form label { display: block; color: #c4a96b; font-weight: 500; margin-bottom: 10px; }
-.birth-controls { display: flex; gap: 10px; align-items: stretch; }
-.birth-controls input {
-  flex: 1; min-width: 0; max-width: 280px;
-  padding: 12px 14px; border: 1px solid rgba(196,169,107,.45); border-radius: 7px;
-  background: #19192a; color: #e8e3d8; font: inherit; color-scheme: dark;
-}
-.birth-controls input:focus { outline: 2px solid #c4a96b; outline-offset: 2px; }
+.birth-date-label { color: #c4a96b; font-weight: 500; margin-bottom: 14px; }
+.birth-wheel-labels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(100%, 520px); margin-bottom: 8px; text-align: center; color: #a7a9b5; font-size: .78rem; }
+.birth-wheel-picker { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(100%, 520px); height: 132px; overflow: hidden; border: 1px solid rgba(196,169,107,.4); border-radius: 8px; background: #191b2a; }
+.birth-wheel-picker::before { content: ''; position: absolute; z-index: 1; top: 44px; left: 0; right: 0; height: 44px; border-block: 1px solid rgba(217,191,142,.65); background: rgba(196,169,107,.12); pointer-events: none; }
+.birth-wheel { position: relative; height: 132px; overflow-y: auto; overscroll-behavior: contain; scroll-snap-type: y mandatory; scrollbar-width: none; padding: 44px 0; touch-action: pan-y; }
+.birth-wheel + .birth-wheel { border-left: 1px solid rgba(196,169,107,.13); }
+.birth-wheel::-webkit-scrollbar { display: none; }
+.birth-wheel:focus-visible { outline: 2px solid #d9bf8e; outline-offset: -3px; z-index: 3; }
+.birth-wheel-option { display: flex; align-items: center; justify-content: center; width: 100%; height: 44px; scroll-snap-align: center; color: #898d9f; font: inherit; font-size: .95rem; cursor: pointer; user-select: none; }
+.birth-wheel-option[aria-selected="true"] { color: #f0d6a0; font-size: 1.12rem; font-weight: 700; }
+.birth-controls { display: flex; gap: 12px; margin-top: 16px; }
 .birth-controls button {
   padding: 12px 20px; border: 0; border-radius: 7px;
   background: #c4a96b; color: #171424; font-family: inherit; font-size: .95rem; font-weight: 700; cursor: pointer;
@@ -32,14 +35,9 @@
 .birth-card-result p, .birth-card-result li { overflow-wrap: anywhere; }
 .birth-card-result ul { padding-left: 20px; margin: 0 0 10px; }
 .birth-card-result a { display: inline-block; margin-top: 12px; }
-.birth-method { margin-top: 36px; max-width: 760px; }
-.birth-method h2 { margin-top: 0; }
-.birth-method ol { padding-left: 22px; margin-bottom: 20px; }
-.birth-method li { margin-bottom: 10px; }
-.birth-disclaimer { color: #a7a9b5; font-size: .85rem; }
+.birth-disclaimer { color: #a7a9b5; font-size: .85rem; margin: 28px 0 0; }
 @media (max-width: 600px) {
-  .birth-controls { flex-direction: column; }
-  .birth-controls input { max-width: none; }
+  .birth-controls { flex-wrap: wrap; }
   .birth-card-result { grid-template-columns: 110px minmax(0,1fr); gap: 16px; }
   .birth-card-result h2 { font-size: 1.1rem; }
 }

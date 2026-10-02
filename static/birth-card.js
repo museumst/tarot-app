@@ -26,6 +26,95 @@ const BIRTH_EXTRA = {
   vi: ['Cách tính', 'Chuỗi số'], tr: ['Hesaplama yöntemi', 'Sayı dizisi'],
   pl: ['Sposób obliczania', 'Ciąg liczb'],
 };
+const BIRTH_DATE_PARTS = {
+  ko: ['연도', '월', '일'], en: ['Year', 'Month', 'Day'], ja: ['年', '月', '日'],
+  es: ['Año', 'Mes', 'Día'], fr: ['Année', 'Mois', 'Jour'], de: ['Jahr', 'Monat', 'Tag'],
+  pt: ['Ano', 'Mês', 'Dia'], th: ['ปี', 'เดือน', 'วัน'], ru: ['Год', 'Месяц', 'День'],
+  zh: ['年', '月', '日'], it: ['Anno', 'Mese', 'Giorno'], id: ['Tahun', 'Bulan', 'Hari'],
+  vi: ['Năm', 'Tháng', 'Ngày'], tr: ['Yıl', 'Ay', 'Gün'], pl: ['Rok', 'Miesiąc', 'Dzień'],
+};
+
+function daysInMonth(year, month) {
+  const leap = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+  return [31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month - 1];
+}
+
+function initBirthWheels(dateInput, now) {
+  const wheels = Object.fromEntries(['year', 'month', 'day'].map(part =>
+    [part, document.getElementById(`birth-${part}-wheel`)]));
+  const selected = { year: Math.min(2000, now.getFullYear()), month: 1, day: 1 };
+  const rowHeight = 44;
+
+  function maxValue(part) {
+    if (part === 'year') return now.getFullYear();
+    if (part === 'month') return selected.year === now.getFullYear() ? now.getMonth() + 1 : 12;
+    const days = daysInMonth(selected.year, selected.month);
+    return selected.year === now.getFullYear() && selected.month === now.getMonth() + 1
+      ? Math.min(days, now.getDate()) : days;
+  }
+
+  function syncWheel(part, keepScroll = false) {
+    const wheel = wheels[part];
+    const max = maxValue(part);
+    const min = 1;
+    if (wheel.dataset.max !== String(max)) {
+      const options = document.createDocumentFragment();
+      for (let value = min; value <= max; value++) {
+        const option = document.createElement('div');
+        option.id = `birth-${part}-${value}`;
+        option.className = 'birth-wheel-option';
+        option.setAttribute('role', 'option');
+        option.setAttribute('aria-selected', 'false');
+        option.dataset.value = String(value);
+        option.textContent = part === 'year' ? String(value).padStart(4, '0') : String(value).padStart(2, '0');
+        options.appendChild(option);
+      }
+      wheel.replaceChildren(options);
+      wheel.dataset.min = String(min);
+      wheel.dataset.max = String(max);
+      keepScroll = false;
+    }
+    const option = wheel.children[selected[part] - min];
+    const previous = wheel.querySelector('[aria-selected="true"]');
+    if (previous && previous !== option) previous.setAttribute('aria-selected', 'false');
+    option.setAttribute('aria-selected', 'true');
+    wheel.setAttribute('aria-activedescendant', option.id);
+    if (!keepScroll) wheel.scrollTop = (selected[part] - min) * rowHeight;
+  }
+
+  function select(part, value, fromScroll = false) {
+    if (value === selected[part] && fromScroll) return;
+    selected[part] = Math.max(1, Math.min(maxValue(part), value));
+    selected.month = Math.min(selected.month, maxValue('month'));
+    selected.day = Math.min(selected.day, maxValue('day'));
+    ['year', 'month', 'day'].forEach(name => syncWheel(name, name === part && fromScroll));
+    dateInput.value = `${String(selected.year).padStart(4, '0')}-${String(selected.month).padStart(2, '0')}-${String(selected.day).padStart(2, '0')}`;
+  }
+
+  for (const [part, wheel] of Object.entries(wheels)) {
+    wheel.addEventListener('click', event => {
+      const option = event.target.closest('.birth-wheel-option');
+      if (option && wheel.contains(option)) select(part, Number(option.dataset.value));
+    });
+    let frame = 0;
+    wheel.addEventListener('scroll', () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const index = Math.max(0, Math.min(wheel.children.length - 1, Math.round(wheel.scrollTop / rowHeight)));
+        select(part, Number(wheel.children[index].dataset.value), true);
+      });
+    });
+    wheel.addEventListener('keydown', event => {
+      const steps = { ArrowUp: -1, ArrowDown: 1, PageUp: -5, PageDown: 5, Home: -Infinity, End: Infinity };
+      if (!(event.key in steps)) return;
+      event.preventDefault();
+      const step = steps[event.key];
+      select(part, Number.isFinite(step) ? selected[part] + step
+        : step < 0 ? Number(wheel.dataset.min) : Number(wheel.dataset.max));
+    });
+  }
+  select('year', selected.year);
+}
 
 function sumDigits(value) {
   return [...String(value)].reduce((total, digit) => total + Number(digit), 0);
@@ -77,11 +166,12 @@ function initBirthPage() {
   get('birth-date-label').textContent = ui.date;
   get('birth-submit').textContent = ui.submit;
   get('birth-privacy').textContent = ui.privacy;
-  get('birth-method-title').textContent = extra[0];
+  const parts = BIRTH_DATE_PARTS[lang] || BIRTH_DATE_PARTS.en;
+  ['year', 'month', 'day'].forEach((part, index) => { get(`birth-${part}-label`).textContent = parts[index]; });
 
   const dateInput = get('birth-date');
   const now = new Date();
-  dateInput.max = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+  initBirthWheels(dateInput, now);
 
   const add = (parent, tag, className, text) => {
     const element = document.createElement(tag);
@@ -162,4 +252,4 @@ function initBirthPage() {
 }
 
 if (typeof document !== 'undefined') document.addEventListener('DOMContentLoaded', initBirthPage);
-if (typeof module !== 'undefined') module.exports = { cardsFromSum, calculateBirthCards };
+if (typeof module !== 'undefined') module.exports = { cardsFromSum, calculateBirthCards, daysInMonth };

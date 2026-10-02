@@ -763,38 +763,39 @@ def render_birth_card_page(lang: str) -> str:
     desc = ("생년월일로 성격 카드와 영혼 카드를 계산하고, 나를 상징하는 타로 카드를 알아보세요."
             if korean else next(iter(meta.get("calculation", [])),
                                 "Find your personality and soul tarot cards from your birth date."))
-    method = "".join(f"<li>{_e(step)}</li>" for step in meta.get("calculation", []))
-    if not method:
-        method = "<li>Add the eight digits of your birth date, then reduce sums above 22 by adding their digits.</li>"
     disclaimer = meta.get("disclaimer") or "This symbolic reading is for self-reflection, not a scientific personality test or a substitute for important decisions."
     body = f"""
 <div id="birth-app" data-lang="{_e(lang)}">
   <h1 id="birth-title">{'나의 생일수' if korean else 'My Birth Cards'}</h1>
   <p class="sub" id="birth-intro">{_e(desc)}</p>
   <form id="birth-form" class="birth-form">
-    <label for="birth-date" id="birth-date-label">{'생년월일' if korean else 'Date of birth'}</label>
+    <div id="birth-date-label" class="birth-date-label">{'생년월일' if korean else 'Date of birth'}</div>
+    <div class="birth-wheel-labels" aria-hidden="true">
+      <span id="birth-year-label">연도</span><span id="birth-month-label">월</span><span id="birth-day-label">일</span>
+    </div>
+    <div class="birth-wheel-picker" role="group" aria-labelledby="birth-date-label">
+      <div id="birth-year-wheel" class="birth-wheel" role="listbox" tabindex="0" aria-labelledby="birth-year-label"></div>
+      <div id="birth-month-wheel" class="birth-wheel" role="listbox" tabindex="0" aria-labelledby="birth-month-label"></div>
+      <div id="birth-day-wheel" class="birth-wheel" role="listbox" tabindex="0" aria-labelledby="birth-day-label"></div>
+    </div>
+    <input id="birth-date" type="hidden">
     <div class="birth-controls">
-      <input id="birth-date" type="date" min="0001-01-01" required aria-describedby="birth-privacy">
       <button type="submit" id="birth-submit">{'내 카드 보기' if korean else 'Find my cards'}</button>
     </div>
     <p id="birth-privacy" class="birth-privacy">{'생년월일은 서버에 전송하거나 저장하지 않습니다.' if korean else 'Your birth date stays in this browser.'}</p>
     <p id="birth-error" role="alert" hidden></p>
   </form>
   <div id="birth-result" hidden aria-live="polite"></div>
-  <section class="birth-method" id="birth-method">
-    <h2 id="birth-method-title">{'계산 방법' if korean else 'How it works'}</h2>
-    <ol>{method}</ol>
-    <p class="birth-disclaimer">{_e(disclaimer)}</p>
-  </section>
+  <p class="birth-disclaimer">{_e(disclaimer)}</p>
 </div>
 <script id="birth-data" type="application/json">{data}</script>
-<script src="/static/birth-card.js?v=1" defer></script>
+<script src="/static/birth-card.js?v=3" defer></script>
 """
     return _page(lang, title, desc, birth_card_path(lang), body,
                  f"{SITE_URL}/static/og-image.jpg",
                  {code: birth_card_path(code) for code in SITE_LANGS if birth_translation(code, source)},
                  noindex=not translated,
-                 extra_head='<link rel="stylesheet" href="/static/birth-card.css?v=1">',
+                 extra_head='<link rel="stylesheet" href="/static/birth-card.css?v=3">',
                  active_nav="",
                  language_paths={code: birth_card_path(code) for code in SITE_LANGS})
 

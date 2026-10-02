@@ -2278,7 +2278,7 @@ function loadImg(src) {
 }
 
 // 한국어는 공백 기준 줄바꿈이 잘 안 되므로 글자 단위로 감싼다
-function wrapLines(ctx, text, maxW, maxLines) {
+function wrapLines(ctx, text, maxW, maxLines = Infinity) {
   const lines = [];
   let cur = '';
   for (const ch of text) {
@@ -2300,10 +2300,27 @@ function wrapLines(ctx, text, maxW, maxLines) {
 }
 
 async function buildShareCanvas() {
-  const W = 1080, H = 1350;
+  const W = 1080;
   const cv = document.createElement('canvas');
-  cv.width = W; cv.height = H;
+  cv.width = W;
   const ctx = cv.getContext('2d');
+
+  const q = readingQuestion();
+  ctx.font = '400 34px "Noto Sans KR", sans-serif';
+  const questionLines = q ? wrapLines(ctx, `“${q}”`, W - 160, 2) : [];
+  const cardTop = q ? 176 + questionLines.length * 46 + 14 : 186;
+  const cards = drawnCards.slice(0, 5);
+  const n = Math.max(cards.length, 1);
+  const cw = Math.min(190, Math.floor((W - 120) / n) - 16);
+  const ch = Math.round(cw * 1.72);
+  const gap = 16;
+  const totalW = n * cw + (n - 1) * gap;
+  const bodyTop = cardTop + ch + 84;
+  const body = (document.getElementById('reading-output').innerText || '').replace(/\r\n?/g, '\n').trim();
+  ctx.font = '300 30px "Noto Sans KR", sans-serif';
+  const bodyLines = wrapLines(ctx, body, W - 160);
+  const H = Math.max(1350, bodyTop + bodyLines.length * 46 + 170);
+  cv.height = H;
 
   // 배경
   ctx.fillStyle = '#0d0d1a';
@@ -2329,27 +2346,19 @@ async function buildShareCanvas() {
   ctx.fillText('✨ 울트라타로', W / 2, 108);
 
   // 질문
-  const q = readingQuestion();
   let y = 176;
   if (q) {
     ctx.fillStyle = 'rgba(232,227,216,.92)';
     ctx.font = '400 34px "Noto Sans KR", sans-serif';
-    wrapLines(ctx, `“${q}”`, W - 160, 2).forEach((ln) => { ctx.fillText(ln, W / 2, y); y += 46; });
+    questionLines.forEach((ln) => { ctx.fillText(ln, W / 2, y); y += 46; });
     y += 14;
   } else {
     y = 186;
   }
 
   // 카드 (최대 5장)
-  const cards = drawnCards.slice(0, 5);
   const imgs = await Promise.all(cards.map(({ card }) => loadImg(`/images/${card.image_file}`)));
-  const n = Math.max(cards.length, 1);
-  const cw = Math.min(190, Math.floor((W - 120) / n) - 16);
-  const ch = Math.round(cw * 1.72);
-  const gap = 16;
-  const totalW = n * cw + (n - 1) * gap;
   let cxp = (W - totalW) / 2;
-  const cardTop = y;
 
   imgs.forEach((im, i) => {
     const x = cxp + i * (cw + gap);
@@ -2367,25 +2376,18 @@ async function buildShareCanvas() {
     ctx.fillText(short, x + cw / 2, cardTop + ch + 30);
   });
 
-  // 해석 발췌
-  let body = (document.getElementById('reading-output').innerText || '').trim();
-  body = body.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-  const bodyTop = cardTop + ch + 84;
+  // 해설 전체
   ctx.fillStyle = 'rgba(232,227,216,.88)';
   ctx.font = '300 30px "Noto Sans KR", sans-serif';
   ctx.textAlign = 'left';
-  const bodyMaxLines = Math.max(4, Math.floor((H - 150 - bodyTop) / 46));
-  wrapLines(ctx, body, W - 160, bodyMaxLines).forEach((ln, i) => ctx.fillText(ln, 80, bodyTop + i * 46));
+  bodyLines.forEach((ln, i) => ctx.fillText(ln, 80, bodyTop + i * 46));
 
   // 푸터
   ctx.textAlign = 'center';
   ctx.fillStyle = '#c4a96b';
-  ctx.fillRect(W / 2 - 60, H - 132, 120, 2);
+  ctx.fillRect(W / 2 - 60, H - 105, 120, 2);
   ctx.font = '500 30px "Noto Sans KR", sans-serif';
-  ctx.fillText('ultratarot.com', W / 2, H - 82);
-  ctx.fillStyle = 'rgba(150,145,160,.9)';
-  ctx.font = '300 24px "Noto Sans KR", sans-serif';
-  ctx.fillText('AI가 읽어주는 타로 카드 · 무료 3회', W / 2, H - 44);
+  ctx.fillText('ultratarot.com', W / 2, H - 50);
 
   return cv;
 }
