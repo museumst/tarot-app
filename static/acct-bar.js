@@ -1,7 +1,7 @@
 // 모든 페이지 상단에 표시되는 계정 바 (프로필·무료/무제한·충전·내역·로그아웃)
 // 메인 앱(index.html)과 같은 도메인이라 Firebase 로그인 상태가 그대로 공유된다.
 // 충전/내역 모달은 메인 앱에만 있으므로, 누르면 메인 앱으로 이동해 해당 창을 연다.
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
   from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
 import { getFirestore, doc, getDoc }
@@ -40,13 +40,16 @@ function ensureBar() {
   el.innerHTML = '<button id="acct-login" type="button"></button><div id="acct-user">' +
     '<img id="acct-avatar" src="" alt=""><span id="acct-name"></span><span id="acct-free" class="plenty"></span>' +
     '<a id="acct-credit" href="/"></a><a id="acct-history" href="/"></a><button id="acct-logout" type="button"></button></div>';
+  el.className = 'site-topbar';
   document.body.prepend(el);
   return el;
 }
 
 const bar = ensureBar();
 if (bar) {
-  const lang = bar.dataset.lang || 'en';
+  let savedLang = '';
+  try { savedLang = localStorage.getItem('tarot-lang') || ''; } catch (e) {}
+  const lang = bar.dataset.lang || savedLang || document.documentElement.lang || 'en';
   const c = COPY[lang] || COPY.en;
   const home = lang === 'ko' ? '/' : '/?lang=' + lang;
   const go = open => home + (home.includes('?') ? '&' : '?') + 'open=' + open;
@@ -59,7 +62,7 @@ if (bar) {
   $('acct-credit').href = go('charge');
   $('acct-logout').textContent = c.logout;
 
-  const app = initializeApp({
+  const app = getApps()[0] || initializeApp({
     apiKey: "AIzaSyDJ8KP4yPw_VcblGMtO-tTTkukhdwP6Ifg",
     authDomain: "tarot-7bad9.firebaseapp.com",
     projectId: "tarot-7bad9",

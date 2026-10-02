@@ -1,6 +1,6 @@
 # 울트라타로(ultratarot.com) 기술 인수인계 문서
 
-> 최종 갱신: 2026-09-25
+> 최종 갱신: 2026-10-02
 > 이 문서는 프로젝트를 이어받는 개발자/AI가 **코드를 읽기 전에 먼저 읽어야 할 안내서**입니다.
 > ⚠️ **이 저장소는 GitHub Public입니다.** 비밀번호·API 시크릿을 이 문서나 코드에 절대 적지 마세요.
 
@@ -62,8 +62,12 @@ tarot-project/
 ├── enrich_cards.py        # 카드 해설 보강(seo 필드) 생성 스크립트
 ├── static/
 │   ├── index.html         # 프론트엔드 전체 (SPA, 단일 파일)
+│   ├── card-back.png      # 카드 선택 덱의 카드 뒷면 이미지
 │   ├── saved-readings.html # 저장 리딩 목록/상세 전용 페이지
-│   └── legal.html         # 법적 고지 5종 (탭 UI)
+│   ├── legal.html         # 법적 고지 5종 (탭 UI)
+│   ├── site-shell.css     # 공통 고정 사이드바/계정바, 반응형 페이지 프레임
+│   ├── acct-bar.css       # 공통 계정바 스타일
+│   └── acct-bar.js        # 공통 인증/크레딧 계정바 동작
 ├── output/
 │   ├── cards.json         # 타로 카드 75장 데이터 (meaning/symbols + 보강된 seo 필드)
 │   ├── spreads.json       # 스프레드 28종 데이터

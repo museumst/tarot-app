@@ -319,6 +319,42 @@ def brand_of(lang: str) -> str:
     return "울트라타로" if lang == "ko" else "Ultra Tarot"
 
 
+SITE_NAV = {
+    "ko": ("앱 소개", "타로카드란?", "카드 도감", "저장한 리딩"),
+    "en": ("About", "What is Tarot?", "Card Guide", "Saved Readings"),
+    "ja": ("アプリについて", "タロットとは？", "カード図鑑", "保存したリーディング"),
+    "es": ("Sobre la app", "¿Qué es el tarot?", "Guía de cartas", "Lecturas guardadas"),
+    "fr": ("À propos", "Qu'est-ce que le tarot ?", "Guide des cartes", "Lectures enregistrées"),
+    "de": ("Über die App", "Was ist Tarot?", "Kartenführer", "Gespeicherte Legungen"),
+    "pt": ("Sobre o app", "O que é Tarot?", "Guia de cartas", "Leituras salvas"),
+    "th": ("เกี่ยวกับแอป", "ไพ่ทาโรต์คืออะไร?", "คู่มือไพ่", "รายการที่บันทึกไว้"),
+    "ru": ("О приложении", "Что такое Таро?", "Справочник карт", "Сохранённые расклады"),
+    "zh": ("关于应用", "什么是塔罗？", "塔罗牌图鉴", "已保存的解读"),
+    "it": ("Informazioni", "Cos'è il Tarot?", "Guida alle carte", "Letture salvate"),
+    "id": ("Tentang aplikasi", "Apa itu Tarot?", "Panduan kartu", "Bacaan tersimpan"),
+    "vi": ("Giới thiệu", "Tarot là gì?", "Hướng dẫn lá bài", "Bài đọc đã lưu"),
+    "tr": ("Hakkında", "Tarot nedir?", "Kart rehberi", "Kaydedilen açılımlar"),
+    "pl": ("O aplikacji", "Czym jest Tarot?", "Przewodnik po kartach", "Zapisane rozkłady"),
+}
+
+
+def render_site_sidebar(lang: str, active: str = "") -> str:
+    labels = SITE_NAV.get(lang, SITE_NAV["en"])
+    home = home_path(lang)
+    about = home + ("&" if "?" in home else "?") + "open=about"
+    tarot = home + ("&" if "?" in home else "?") + "open=tarot"
+    links = [about, tarot, cards_path(lang), f"/saved-readings?lang={lang}"]
+    names = [brand_of(lang), *labels]
+    items = ""
+    for url, name, key in zip(links, labels, ("about", "tarot", "cards", "saved")):
+        current = ' aria-current="page"' if key == active else ""
+        items += f'<a href="{_e(url)}"{current}>{_e(name)}</a>'
+    return (
+        '<aside class="site-sidebar"><a class="site-sidebar-brand" href="'
+        f'{_e(home)}">✨ {_e(names[0])}</a><nav class="site-sidebar-nav">{items}</nav></aside>'
+    )
+
+
 def _fmt(text: str, **kw) -> str:
     for k, v in kw.items():
         text = text.replace("{" + k + "}", str(v))
@@ -402,21 +438,20 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
 <meta name="twitter:image" content="{_e(og_image)}">
 <link rel="icon" href="/static/favicon.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/acct-bar.css?v=2">
+<link rel="stylesheet" href="/static/site-shell.css?v=1">
+<link rel="stylesheet" href="/static/acct-bar.css?v=3">
 <style>
   *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
   body{{background:#0d0d1a;color:#e8e3d8;font-family:'Noto Sans KR','Noto Sans',system-ui,sans-serif;font-weight:300;line-height:1.75}}
+  body.site-shell{{padding:64px 0 0 220px}}
   a{{color:#c4a96b;text-decoration:none}} a:hover{{color:#d9bf8e}}
-  .wrap{{max-width:900px;margin:0 auto;padding:72px 20px 80px}}
-  .topbar{{border-bottom:1px solid rgba(196,169,107,.18);padding-bottom:16px;margin-bottom:34px;
-          display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}}
-  .brand{{font-weight:700;font-size:1.12rem;color:#d9bf8e}}
-  .nav{{display:flex;align-items:center;gap:16px;flex-wrap:wrap}}
-  .nav a{{font-size:.86rem}}
+  .wrap{{max-width:900px;margin:0 auto;padding:24px 20px 80px}}
+  .wrap footer{{margin-top:56px;border-top:1px solid rgba(196,169,107,.15);padding-top:20px;color:#7c8090;font-size:.78rem;text-align:center}}
   #lang-select{{background:rgba(255,255,255,.05);color:#e8e3d8;border:1px solid rgba(196,169,107,.35);
                border-radius:7px;padding:5px 8px;font-size:.82rem;font-family:inherit;cursor:pointer}}
   #lang-select option{{background:#16122a;color:#e8e3d8}}
-  @media (max-width:600px){{ .wrap{{padding-top:92px}} }}
+  @media (max-width:1000px){{ body.site-shell{{padding:112px 0 0}} }}
+  @media (max-width:600px){{ body.site-shell{{padding-top:132px}} .wrap{{padding-left:16px;padding-right:16px}} }}
   h1{{font-size:clamp(1.7rem,4.6vw,2.5rem);font-weight:700;color:#d9bf8e;margin-bottom:6px;line-height:1.3}}
   h2{{font-size:1.1rem;color:#c4a96b;margin:34px 0 12px;font-weight:500}}
   .sub{{color:#7c8090;font-size:.92rem;margin-bottom:26px}}
@@ -443,20 +478,11 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
   #card-search::placeholder{{color:#7c8090}}
   .tile span{{font-size:.84rem;color:#e8e3d8}}
   .tile small{{display:block;color:#7c8090;font-size:.72rem}}
-  footer{{margin-top:56px;border-top:1px solid rgba(196,169,107,.15);padding-top:20px;
-         color:#7c8090;font-size:.78rem;text-align:center}}
 </style>
 </head>
-<body>
-<div class="wrap">
-  <div class="topbar">
-    <a class="brand" href="{_e(home_path(lang))}">✨ {_e(brand_of(lang))}</a>
-    <div class="nav">
-      <a href="{_e(cards_path(lang))}">{_e(ui['nav_cards'])}</a>
-      <a href="{_e(home_path(lang))}">{_e(ui['nav_home'])}</a>
-    </div>
-  </div>
-  <div id="acct-bar" data-lang="{_e(lang)}">
+<body class="site-shell">
+{render_site_sidebar(lang, "cards")}
+<div id="acct-bar" class="site-topbar" data-lang="{_e(lang)}">
     <select id="lang-select" aria-label="{_e(ui['lang_label'])}" onchange="switchLang(this)">{options}</select>
     <button id="acct-login" type="button"></button>
     <div id="acct-user">
@@ -468,13 +494,14 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
       <button id="acct-logout" type="button"></button>
     </div>
   </div>
+<main class="wrap">
   {body}
   <footer>
     <a href="{_e(home_path(lang))}">{_e(brand_of(lang))}</a> · {_e(ui['footer_tagline'])} ·
     <a href="/legal.html#terms">{_e(ui['footer_terms'])}</a> ·
     <a href="/legal.html#privacy">{_e(ui['footer_privacy'])}</a>
   </footer>
-</div>
+</main>
 <script>
 function switchLang(sel){{
   var o=sel.options[sel.selectedIndex];
@@ -482,7 +509,7 @@ function switchLang(sel){{
   location.href=o.value;
 }}
 </script>
-<script type="module" src="/static/acct-bar.js?v=2"></script>
+<script type="module" src="/static/acct-bar.js?v=3"></script>
 </body>
 </html>"""
 

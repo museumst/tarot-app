@@ -32,6 +32,7 @@
 
   <link rel="icon" href="/static/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="/static/favicon.png" />
+  <link rel="stylesheet" href="/static/site-shell.css?v=1" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -120,7 +121,7 @@
 
     header {
       text-align: center;
-      padding: 50px 20px 30px;
+      padding: 32px 20px 30px;
     }
     header h1 {
       font-family: 'Noto Sans KR', sans-serif;
@@ -413,33 +414,7 @@
       overflow: hidden;
     }
     .card-back {
-      background: linear-gradient(160deg, #181b2e, #1e2240, #141620);
-      border: 2px solid rgba(196,169,107,.45);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .card-back::before {
-      content: '';
-      position: absolute;
-      inset: 6px;
-      border: 1px solid rgba(196,169,107,.25);
-      border-radius: 4px;
-    }
-    .card-back::after {
-      content: '✦';
-      color: rgba(196,169,107,.55);
-      font-size: 2rem;
-    }
-    .card-back .card-pattern {
-      position: absolute;
-      inset: 0;
-      background-image:
-        repeating-linear-gradient(
-          45deg,
-          transparent,
-          transparent 8px,
-          rgba(196,169,107,.06) 8px,
-          rgba(196,169,107,.06) 9px
-        );
+      background: #111 url('/static/card-back.png') center / 100% 100% no-repeat;
     }
     .card-front {
       transform: rotateY(180deg);
@@ -577,7 +552,7 @@
 
       /* 모바일: 상단 고정바 정돈 (2줄 — 1행: 메뉴·언어 / 2행: 유저정보) */
       #top-bar {
-        left: 0; right: 0; top: 0;
+        left: 0; right: 0; top: 0; min-height: 88px;
         padding: 8px 12px 10px 12px;
         background: rgba(10,12,24,.96);
         -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
@@ -649,7 +624,10 @@
 
     /* ── 언어 선택기 ── */
     #top-bar {
-      position: absolute; top: 16px; right: 20px; z-index: 1300;
+      position: fixed; top: 0; left: 220px; right: 0; z-index: 1300;
+      min-height: 64px; padding: 8px 20px; justify-content: flex-end;
+      background: rgba(13,13,26,.96); border-bottom: 1px solid rgba(196,169,107,.15);
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
       display: flex; align-items: center; gap: 10px;
     }
     #lang-selector { position: relative; }
@@ -878,7 +856,7 @@
 
     /* ── 네비게이션 메뉴 (항상 표시) ── */
     /* 데스크톱: 왼쪽 고정 사이드바 */
-    body { padding-left: 220px; }
+    body { padding: 64px 0 0 220px; }
     #nav-overlay {
       position: fixed; top: 0; left: 0; bottom: 0; width: 220px; z-index: 400;
     }
@@ -903,11 +881,10 @@
     .nav-item .nav-icon { font-size: 1.2rem; width: 26px; text-align: center; flex-shrink: 0; }
     /* 태블릿·모바일: 사이드바 대신 상단 가로 메뉴 줄 */
     @media (max-width: 1000px) {
-      body { padding-left: 0; }
+      body { padding: calc(var(--topbar-h, 64px) + 48px) 0 0; }
       #nav-overlay {
-        position: relative; order: -1; z-index: 1200; /* 패널 위에 메뉴 유지 */
-        width: auto;
-        padding: calc(var(--topbar-h, 40px) + 28px) 16px 0;   /* 상단바(top:16px) 아래 */
+        position: fixed; top: var(--topbar-h, 64px); left: 0; right: 0; bottom: auto;
+        width: auto; height: 48px; z-index: 1200; padding: 0 16px;
       }
       #nav-panel {
         display: flex; gap: 6px; overflow-x: auto;
@@ -925,12 +902,14 @@
       /* 넘치지 않으면 가운데, 넘치면 스크롤 */
       #nav-panel .nav-item:first-of-type { margin-left: auto; }
       #nav-panel .nav-item:last-of-type  { margin-right: auto; }
+      #top-bar { left: 0; }
       header { padding-top: 24px; }
     }
     @media (max-width: 600px) {
-      /* 모바일에서는 계정바를 페이지 상단 전체 폭으로 배치 */
-      #top-bar { top: 0; left: 0; right: 0; }
-      #nav-overlay { padding: calc(var(--topbar-h, 104px) + 12px) 12px 0; }   /* 페이지 상단 계정바 아래 */
+      /* 모바일에서도 고정 헤더와 메뉴 아래에서 본문만 스크롤 */
+      #top-bar { left: 0; right: 0; }
+      body { padding-top: calc(var(--topbar-h, 88px) + 44px); }
+      #nav-overlay { top: var(--topbar-h, 88px); height: 44px; padding: 0 12px; }
       #nav-panel { gap: 5px; }
       #nav-panel .nav-item { padding: 7px 11px; font-size: .75rem; }
       header { padding-top: 16px; }
@@ -938,12 +917,13 @@
 
     /* ── 콘텐츠 패널 ── */
     #content-panel {
-      display: none; position: fixed; inset: 0 0 0 220px; z-index: 300;
+      display: none; position: fixed; inset: var(--topbar-h, 64px) 0 0 220px; z-index: 300;
       background: var(--bg); overflow-y: auto;
     }
+    body.content-open { overflow: hidden; }
     #content-panel.open { display: block; }
     @media (max-width: 1000px) {
-      #content-panel { inset: calc(var(--topbar-h, 104px) + 68px) 0 0; }
+      #content-panel { inset: calc(var(--topbar-h, 64px) + 48px) 0 0; }
     }
     #content-header {
       position: sticky; top: 0; z-index: 10;
@@ -1054,7 +1034,7 @@
 
 <div class="container">
 
-  <div id="top-bar">
+  <div id="top-bar" class="site-topbar">
     <!-- 언어 선택기 -->
     <div id="lang-selector">
       <button id="lang-btn">🇰🇷 한국어 ▾</button>
@@ -1247,9 +1227,9 @@
 </div>
 
 <!-- ── 네비게이션 (항상 표시: 데스크톱은 왼쪽 사이드바, 좁은 화면은 상단 가로 메뉴) ── -->
-<div id="nav-overlay">
-  <nav id="nav-panel">
-    <div class="nav-logo" id="nav-logo">✨ 울트라타로</div>
+<div id="nav-overlay" class="site-sidebar">
+  <nav id="nav-panel" class="site-sidebar-nav">
+    <div class="nav-logo site-sidebar-brand" id="nav-logo">✨ 울트라타로</div>
     <button class="nav-item" onclick="openContent('about')">
       <span id="nav-label-about">앱 소개</span>
     </button>
@@ -2005,7 +1985,7 @@ function renderDeck() {
     div.dataset.deckIdx = i;
     div.innerHTML = `
       <div class="card-inner">
-        <div class="card-back"><div class="card-pattern"></div></div>
+        <div class="card-back"></div>
         <div class="card-front"></div>
       </div>`;
     div.addEventListener('click', () => selectCard(i));
@@ -2933,10 +2913,14 @@ function openContent(type) {
     type === 'tarot' ? getTarotContent() :
     getCardDictHTML();
   document.getElementById('content-panel').classList.add('open');
+  document.body.classList.add('content-open');
   if (type === 'cards') loadCardDict();
 }
 
-function closeContent() { document.getElementById('content-panel').classList.remove('open'); }
+function closeContent() {
+  document.getElementById('content-panel').classList.remove('open');
+  document.body.classList.remove('content-open');
+}
 
 const CONTENT_TEXT = {
   ko: {
@@ -3661,6 +3645,10 @@ buildLangDropdown();
 applyLang();
 window.t = t;
 init();
+const requestedPanel = new URLSearchParams(location.search).get('open');
+if (requestedPanel === 'about' || requestedPanel === 'tarot') {
+  requestAnimationFrame(() => openContent(requestedPanel));
+}
 </script>
 
 <script type="module">

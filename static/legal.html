@@ -7,7 +7,8 @@
 <meta name="description" content="울트라타로의 이용약관, 개인정보처리방침, 환불정책, 민원처리규정, 이용요금 안내입니다.">
 <link rel="canonical" href="https://ultratarot.com/legal.html">
 <link rel="icon" href="/static/favicon.png" type="image/png">
-<link rel="stylesheet" href="/static/acct-bar.css?v=1">
+<link rel="stylesheet" href="/static/site-shell.css?v=1">
+<link rel="stylesheet" href="/static/acct-bar.css?v=3">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -30,17 +31,15 @@
     line-height: 1.9;
     font-size: 14px;
   }
+  body.site-shell { padding: 64px 0 0 220px; }
   .top-bar {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
     padding: 20px 40px;
-    padding-top: 64px; /* 우측 상단 고정 계정 바 자리 */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    position: static;
   }
   .logo {
     font-family: 'Noto Serif KR', serif;
@@ -161,7 +160,8 @@
     color: var(--accent);
     margin-top: 12px;
   }
-  @media (max-width: 600px) { .top-bar { padding: 100px 16px 16px; flex-wrap: wrap; gap: 12px; } .tabs { flex-wrap: wrap; } }
+  @media (max-width: 1000px) { body.site-shell { padding: 112px 0 0; } }
+  @media (max-width: 600px) { body.site-shell { padding-top: 132px; } .top-bar { padding: 20px 16px 16px; flex-wrap: wrap; gap: 12px; } .tabs { flex-wrap: wrap; } }
   @media print {
     #acct-bar { display: none; }
     .top-bar { position: static; }
@@ -170,7 +170,17 @@
   }
 </style>
 </head>
-<body>
+<body class="site-shell">
+
+<aside class="site-sidebar">
+  <a class="site-sidebar-brand" href="/">✨ 울트라타로</a>
+  <nav class="site-sidebar-nav">
+    <a href="/?open=about">앱 소개</a>
+    <a href="/?open=tarot">타로카드란?</a>
+    <a href="/cards">카드 도감</a>
+    <a href="/saved-readings?lang=ko">저장한 리딩</a>
+  </nav>
+</aside>
 
 <div class="top-bar">
   <div class="logo">울트라타로 <span>법적 고지 문서</span></div>
@@ -622,6 +632,6 @@ function showDoc(id, btn) {
   if (['terms', 'privacy', 'refund', 'complaint', 'pricing'].includes(hash)) showDoc(hash);
 })();
 </script>
-<script type="module" src="/static/acct-bar.js?v=2"></script>
+<script type="module" src="/static/acct-bar.js?v=3"></script>
 </body>
 </html>

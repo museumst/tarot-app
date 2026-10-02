@@ -1,12 +1,12 @@
-/* 계정 바: 문서 상단에 배치되어 페이지 스크롤과 함께 이동 (모바일은 전체 폭 바). 모든 페이지 공용 */
-#acct-bar{position:absolute;top:16px;right:20px;z-index:500;display:flex;align-items:center;gap:10px}
+/* 공통 계정 바: 고정 상단 영역 안에 표시 */
+#acct-bar{position:fixed;top:0;left:220px;right:0;z-index:1100;min-height:64px;display:flex;align-items:center;justify-content:flex-end;gap:10px;padding:8px 20px;background:rgba(13,13,26,.96);border-bottom:1px solid rgba(196,169,107,.15);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 @media (max-width:600px){
-  #acct-bar{left:0;right:0;top:0;padding:8px 12px 10px;justify-content:flex-end;flex-wrap:wrap;gap:6px;row-gap:8px;
-    background:rgba(10,12,24,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
-    border-bottom:1px solid rgba(196,169,107,.15)}
+  #acct-bar{left:0;right:0;min-height:88px;padding:6px 10px;justify-content:flex-end;flex-wrap:wrap;gap:5px}
   #acct-name{display:none}
 }
 #acct-user{display:none;align-items:center;gap:8px;flex-wrap:nowrap}
+#acct-bar select{background:rgba(255,255,255,.05);color:#e8e3d8;border:1px solid rgba(196,169,107,.35);border-radius:7px;padding:5px 8px;font-size:.82rem;font-family:inherit;cursor:pointer}
+#acct-bar option{background:#16122a;color:#e8e3d8}
 #acct-avatar{width:30px;height:30px;border-radius:50%;border:1px solid #c4a96b}
 #acct-name{color:#9a9aa8;font-size:.82rem}
 #acct-free{font-size:.74rem;padding:3px 10px;border-radius:20px;border:1px solid;white-space:nowrap}
