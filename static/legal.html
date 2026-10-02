@@ -7,7 +7,7 @@
 <meta name="description" content="울트라타로의 이용약관, 개인정보처리방침, 환불정책, 민원처리규정, 이용요금 안내입니다.">
 <link rel="canonical" href="https://ultratarot.com/legal.html">
 <link rel="icon" href="/static/favicon.png" type="image/png">
-<link rel="stylesheet" href="/static/site-shell.css?v=1">
+<link rel="stylesheet" href="/static/site-shell.css?v=2">
 <link rel="stylesheet" href="/static/acct-bar.css?v=3">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -72,7 +72,7 @@
     margin: 0 auto;
     padding: 60px 40px 100px;
   }
-  .doc.active { display: block; }
+  .doc.active { display: block; flex: 1 0 auto; }
   .doc-header {
     border-bottom: 1px solid var(--border);
     padding-bottom: 32px;
@@ -632,6 +632,23 @@ function showDoc(id, btn) {
   if (['terms', 'privacy', 'refund', 'complaint', 'pricing'].includes(hash)) showDoc(hash);
 })();
 </script>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="/legal.html#pricing" target="_blank">이용요금</a>
+      <a href="/legal.html#terms" target="_blank">이용약관</a>
+      <a href="/legal.html#privacy" target="_blank">개인정보처리방침</a>
+      <a href="/legal.html#refund" target="_blank">환불정책</a>
+    </div>
+    <div class="footer-biz">
+      상호명: 회색돌 &nbsp;|&nbsp; 대표자: 박상범 &nbsp;|&nbsp; 사업자등록번호: 247-08-03432<br/>
+      주소: 경기도 남양주시 양지로240번길 37, 115동 1801호 &nbsp;|&nbsp; 전화: 010-6786-8812<br/>
+      통신판매업 신고번호: 2026-진접오남-0322 &nbsp;|&nbsp; 문의: ashoshostudio@gmail.com<br/>
+      <span style="color:rgba(196,169,107,.7);font-size:.78rem;">모든 거래에 대한 책임과 환불, 민원 등은 <strong>회색돌</strong>에서 진행합니다. &nbsp;|&nbsp; 민원담당자: 박상범 (010-6786-8812)</span>
+    </div>
+    <div class="footer-copy">© 2025 울트라타로. All rights reserved.</div>
+  </div>
+</footer>
 <script type="module" src="/static/acct-bar.js?v=3"></script>
 </body>
 </html>

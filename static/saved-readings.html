@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/site-shell.css?v=1">
+  <link rel="stylesheet" href="/static/site-shell.css?v=2">
   <link rel="stylesheet" href="/static/acct-bar.css?v=3">
   <style>
     :root { color-scheme: dark; --bg:#0d0d1a; --panel:#151725; --panel2:#1c2030; --line:rgba(196,169,107,.2); --gold:#d9bf8e; --text:#f0eee8; --muted:#a4a8b5; }
@@ -108,6 +108,23 @@
       <div class="detail-inner" id="reading-detail" hidden></div>
     </article>
   </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="/legal.html#pricing" target="_blank">이용요금</a>
+        <a href="/legal.html#terms" target="_blank">이용약관</a>
+        <a href="/legal.html#privacy" target="_blank">개인정보처리방침</a>
+        <a href="/legal.html#refund" target="_blank">환불정책</a>
+      </div>
+      <div class="footer-biz">
+        상호명: 회색돌 &nbsp;|&nbsp; 대표자: 박상범 &nbsp;|&nbsp; 사업자등록번호: 247-08-03432<br/>
+        주소: 경기도 남양주시 양지로240번길 37, 115동 1801호 &nbsp;|&nbsp; 전화: 010-6786-8812<br/>
+        통신판매업 신고번호: 2026-진접오남-0322 &nbsp;|&nbsp; 문의: ashoshostudio@gmail.com<br/>
+        <span style="color:rgba(196,169,107,.7);font-size:.78rem;">모든 거래에 대한 책임과 환불, 민원 등은 <strong>회색돌</strong>에서 진행합니다. &nbsp;|&nbsp; 민원담당자: 박상범 (010-6786-8812)</span>
+      </div>
+      <div class="footer-copy">© 2025 울트라타로. All rights reserved.</div>
+    </div>
+  </footer>
   <script type="module">
     import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
     import { getAuth, GoogleAuthProvider, linkWithPopup, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';

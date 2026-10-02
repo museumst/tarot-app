@@ -32,36 +32,13 @@
 
   <link rel="icon" href="/static/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="/static/favicon.png" />
-  <link rel="stylesheet" href="/static/site-shell.css?v=1" />
+  <link rel="stylesheet" href="/static/site-shell.css?v=2" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    #site-footer {
-      border-top: 1px solid rgba(196,169,107,.15);
-      margin-top: 60px;
-      padding: 32px 20px;
-      text-align: center;
-    }
-    .footer-inner { max-width: 960px; margin: 0 auto; }
-    .footer-links {
-      display: flex; justify-content: center; gap: 24px;
-      margin-bottom: 16px; flex-wrap: wrap;
-    }
-    .footer-links a {
-      color: var(--text-dim); font-size: .82rem;
-      text-decoration: none; letter-spacing: .5px;
-      transition: color .2s;
-    }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-biz {
-      color: var(--text-dim); font-size: .75rem;
-      line-height: 1.8; margin-bottom: 12px;
-    }
-    .footer-copy { color: var(--text-dim); font-size: .72rem; opacity: .6; }
 
     :root {
       --bg: #111218;
@@ -921,11 +898,11 @@
       background: var(--bg); overflow-y: auto;
     }
     body.content-open { overflow: hidden; }
-    #content-panel.open { display: block; }
+    #content-panel.open { display: flex; flex-direction: column; }
     @media (max-width: 1000px) {
       #content-panel { inset: calc(var(--topbar-h, 64px) + 48px) 0 0; }
     }
-    #content-body { max-width: 800px; margin: 0 auto; padding: 32px 20px 80px; }
+    #content-body { flex: 1 0 auto; max-width: 800px; margin: 0 auto; padding: 32px 20px 80px; }
 
     .info-section { margin-bottom: 36px; }
     .info-section h3 {
@@ -1232,6 +1209,23 @@
 <!-- ── 콘텐츠 패널 ── -->
 <div id="content-panel">
   <div id="content-body"></div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="/legal.html#pricing" target="_blank">이용요금</a>
+        <a href="/legal.html#terms" target="_blank">이용약관</a>
+        <a href="/legal.html#privacy" target="_blank">개인정보처리방침</a>
+        <a href="/legal.html#refund" target="_blank">환불정책</a>
+      </div>
+      <div class="footer-biz">
+        상호명: 회색돌 &nbsp;|&nbsp; 대표자: 박상범 &nbsp;|&nbsp; 사업자등록번호: 247-08-03432<br/>
+        주소: 경기도 남양주시 양지로240번길 37, 115동 1801호 &nbsp;|&nbsp; 전화: 010-6786-8812<br/>
+        통신판매업 신고번호: 2026-진접오남-0322 &nbsp;|&nbsp; 문의: ashoshostudio@gmail.com<br/>
+        <span style="color:rgba(196,169,107,.7);font-size:.78rem;">모든 거래에 대한 책임과 환불, 민원 등은 <strong>회색돌</strong>에서 진행합니다. &nbsp;|&nbsp; 민원담당자: 박상범 (010-6786-8812)</span>
+      </div>
+      <div class="footer-copy">© 2025 울트라타로. All rights reserved.</div>
+    </div>
+  </footer>
 </div>
 
 <!-- ── 카드 상세 모달 ── -->
@@ -3869,7 +3863,7 @@ if (requestedPanel === 'about' || requestedPanel === 'tarot') {
 </script>
 <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
 
-<footer id="site-footer">
+<footer id="site-footer" class="site-footer">
   <div class="footer-inner">
     <div class="footer-links">
       <a href="/legal.html#pricing" target="_blank">이용요금</a>

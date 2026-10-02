@@ -355,6 +355,26 @@ def render_site_sidebar(lang: str, active: str = "") -> str:
     )
 
 
+def render_site_footer() -> str:
+    return """<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="/legal.html#pricing" target="_blank">이용요금</a>
+      <a href="/legal.html#terms" target="_blank">이용약관</a>
+      <a href="/legal.html#privacy" target="_blank">개인정보처리방침</a>
+      <a href="/legal.html#refund" target="_blank">환불정책</a>
+    </div>
+    <div class="footer-biz">
+      상호명: 회색돌 &nbsp;|&nbsp; 대표자: 박상범 &nbsp;|&nbsp; 사업자등록번호: 247-08-03432<br/>
+      주소: 경기도 남양주시 양지로240번길 37, 115동 1801호 &nbsp;|&nbsp; 전화: 010-6786-8812<br/>
+      통신판매업 신고번호: 2026-진접오남-0322 &nbsp;|&nbsp; 문의: ashoshostudio@gmail.com<br/>
+      <span style="color:rgba(196,169,107,.7);font-size:.78rem;">모든 거래에 대한 책임과 환불, 민원 등은 <strong>회색돌</strong>에서 진행합니다. &nbsp;|&nbsp; 민원담당자: 박상범 (010-6786-8812)</span>
+    </div>
+    <div class="footer-copy">© 2025 울트라타로. All rights reserved.</div>
+  </div>
+</footer>"""
+
+
 def _fmt(text: str, **kw) -> str:
     for k, v in kw.items():
         text = text.replace("{" + k + "}", str(v))
@@ -438,15 +458,14 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
 <meta name="twitter:image" content="{_e(og_image)}">
 <link rel="icon" href="/static/favicon.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/site-shell.css?v=1">
+<link rel="stylesheet" href="/static/site-shell.css?v=2">
 <link rel="stylesheet" href="/static/acct-bar.css?v=3">
 <style>
   *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
   body{{background:#0d0d1a;color:#e8e3d8;font-family:'Noto Sans KR','Noto Sans',system-ui,sans-serif;font-weight:300;line-height:1.75}}
   body.site-shell{{padding:64px 0 0 220px}}
   a{{color:#c4a96b;text-decoration:none}} a:hover{{color:#d9bf8e}}
-  .wrap{{max-width:900px;margin:0 auto;padding:24px 20px 80px}}
-  .wrap footer{{margin-top:56px;border-top:1px solid rgba(196,169,107,.15);padding-top:20px;color:#7c8090;font-size:.78rem;text-align:center}}
+  .wrap{{flex:1 0 auto;width:100%;max-width:900px;margin:0 auto;padding:24px 20px 80px}}
   #lang-select{{background:rgba(255,255,255,.05);color:#e8e3d8;border:1px solid rgba(196,169,107,.35);
                border-radius:7px;padding:5px 8px;font-size:.82rem;font-family:inherit;cursor:pointer}}
   #lang-select option{{background:#16122a;color:#e8e3d8}}
@@ -496,12 +515,8 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
   </div>
 <main class="wrap">
   {body}
-  <footer>
-    <a href="{_e(home_path(lang))}">{_e(brand_of(lang))}</a> · {_e(ui['footer_tagline'])} ·
-    <a href="/legal.html#terms">{_e(ui['footer_terms'])}</a> ·
-    <a href="/legal.html#privacy">{_e(ui['footer_privacy'])}</a>
-  </footer>
 </main>
+{render_site_footer()}
 <script>
 function switchLang(sel){{
   var o=sel.options[sel.selectedIndex];
