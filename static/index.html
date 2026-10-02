@@ -366,6 +366,7 @@
       appearance: none;
       background: none;
       border: 0;
+      border-radius: 8px;
       padding: 0;
       width: 92px;
       height: 160px;
@@ -375,7 +376,7 @@
       top: var(--fan-y);
       transform: rotate(var(--fan-angle));
       transform-origin: center bottom;
-      outline: 4px solid transparent;
+      outline: 8px solid transparent;
       outline-offset: -4px;
       transition: outline-color .15s, opacity .3s;
     }
@@ -786,19 +787,20 @@
     }
     #history-modal.open { display: flex; }
     #history-box {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 16px; padding: 28px 24px; width: min(94vw, 480px);
+      background: linear-gradient(135deg, #16122a, #1e1836);
+      border: 1px solid rgba(196,169,107,.4);
+      border-radius: 18px; padding: 36px 32px; width: min(90vw, 480px);
       max-height: 80vh; display: flex; flex-direction: column;
-      position: relative;
+      position: relative; text-align: center;
     }
     #history-box h3 { font-family: 'Noto Sans KR',sans-serif; color: var(--gold); margin-bottom: 6px; }
     #history-balance {
       font-size: .85rem; color: var(--text-dim);
       margin-bottom: 16px; padding-bottom: 14px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(196,169,107,.25);
     }
     #history-balance strong { color: var(--gold); font-size: 1.1rem; }
-    #history-list { overflow-y: auto; flex: 1; }
+    #history-list { overflow-y: auto; flex: 1; text-align: left; }
     .history-row {
       display: grid; grid-template-columns: 64px 1fr auto auto auto;
       gap: 6px 9px; align-items: center;

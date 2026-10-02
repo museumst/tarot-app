@@ -665,7 +665,6 @@ def render_card_detail(lang: str, slug: str) -> str:
   {rev_block}
   {topic_block}
   {advice_block}
-  <p style="text-align:center"><a class="cta" href="{_e(home_path(lang))}">{_e(ui['cta_card'])}</a></p>
   <p style="text-align:center;font-size:.85rem"><a href="{_e(cards_path(lang))}">{_e(ui['back_all'])}</a></p>
   {pager}
 """
