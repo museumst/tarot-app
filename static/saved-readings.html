@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d0d1a">
+  <meta name="robots" content="noindex, nofollow">
+  <title>저장한 리딩 | 울트라타로</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: dark; --bg:#0d0d1a; --panel:#151725; --panel2:#1c2030; --line:rgba(196,169,107,.2); --gold:#d9bf8e; --text:#f0eee8; --muted:#a4a8b5; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:var(--bg); color:var(--text); font:400 15px/1.65 'Noto Sans KR',system-ui,sans-serif; }
+    button,select,a { font:inherit; }
+    .topbar { min-height:68px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 24px; border-bottom:1px solid var(--line); background:#10121e; }
+    .brand { color:var(--gold); font-weight:700; font-size:1.05rem; text-decoration:none; white-space:nowrap; }
+    .top-actions { display:flex; align-items:center; gap:10px; }
+    .top-actions a,.top-actions button,.top-actions select { border:1px solid var(--line); border-radius:7px; background:#171a28; color:var(--text); padding:7px 11px; text-decoration:none; cursor:pointer; }
+    .top-actions a:hover,.top-actions button:hover { border-color:var(--gold); color:var(--gold); }
+    .account { color:var(--muted); font-size:.85rem; }
+    .layout { height:calc(100dvh - 68px); min-height:480px; display:grid; grid-template-columns:minmax(270px,340px) minmax(0,1fr); gap:16px; padding:18px 22px 22px; }
+    .list-pane,.detail-pane { min-height:0; border:1px solid var(--line); border-radius:10px; background:var(--panel); }
+    .list-pane { display:flex; flex-direction:column; overflow:hidden; }
+    .list-heading { padding:17px 18px 14px; border-bottom:1px solid var(--line); }
+    h1 { margin:0; color:var(--gold); font-size:1.12rem; font-weight:600; }
+    .list-caption { margin:4px 0 0; color:var(--muted); font-size:.82rem; }
+    #reading-list { overflow:auto; padding:6px 10px 12px; }
+    .reading-item { display:block; width:100%; margin:4px 0; padding:12px; text-align:left; color:var(--text); border:1px solid transparent; border-radius:7px; background:transparent; cursor:pointer; }
+    .reading-item:hover { background:rgba(255,255,255,.035); }
+    .reading-item[aria-current="true"] { border-color:rgba(196,169,107,.48); background:var(--panel2); }
+    .item-question { display:block; overflow:hidden; font-weight:500; text-overflow:ellipsis; white-space:nowrap; }
+    .item-meta { display:flex; justify-content:space-between; gap:10px; margin-top:5px; color:var(--muted); font-size:.76rem; }
+    .detail-pane { overflow:auto; padding:clamp(20px,4vw,42px); }
+    .detail-inner { max-width:900px; margin:0 auto; }
+    .detail-date { color:var(--muted); font-size:.82rem; }
+    h2 { margin:5px 0 4px; font-size:1.5rem; line-height:1.4; font-weight:600; overflow-wrap:anywhere; }
+    .spread-name { color:var(--gold); margin-bottom:24px; }
+    .section { margin-top:26px; }
+    h3 { margin:0 0 12px; color:var(--gold); font-size:1rem; font-weight:600; }
+    .cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:13px; }
+    .card { min-width:0; padding:10px; border:1px solid rgba(255,255,255,.08); border-radius:8px; background:rgba(255,255,255,.025); }
+    .card img { display:block; width:100%; max-height:220px; aspect-ratio:2/3; object-fit:cover; border-radius:5px; margin-bottom:9px; }
+    .card-position { color:var(--gold); font-size:.76rem; }
+    .card-name { font-weight:500; overflow-wrap:anywhere; }
+    .card-en { color:var(--muted); font-size:.77rem; }
+    .reading-text { max-width:780px; color:#eeedf0; font-size:1rem; line-height:1.95; white-space:pre-wrap; overflow-wrap:anywhere; }
+    .state { margin:auto; padding:30px 18px; text-align:center; color:var(--muted); }
+    .state button { margin-top:12px; padding:9px 14px; border:1px solid var(--line); border-radius:7px; color:var(--text); background:var(--panel2); cursor:pointer; }
+    #mobile-list-back { display:none; }
+    @media (max-width:760px) {
+      .topbar { min-height:60px; padding:10px 14px; }
+      .top-actions { gap:6px; }
+      .account { display:none; }
+      .top-actions a,.top-actions button,.top-actions select { padding:6px 8px; font-size:.8rem; }
+      .layout { display:block; height:calc(100dvh - 60px); min-height:0; padding:10px; }
+      .list-pane,.detail-pane { height:100%; }
+      .detail-pane { display:none; padding:18px 16px 32px; }
+      .layout.show-detail .list-pane { display:none; }
+      .layout.show-detail .detail-pane { display:block; }
+      #mobile-list-back { display:inline-flex; margin:0 0 18px; padding:6px 10px; color:var(--text); border:1px solid var(--line); border-radius:6px; background:transparent; cursor:pointer; }
+      h2 { font-size:1.25rem; }
+      .cards { grid-template-columns:repeat(auto-fill,minmax(105px,1fr)); }
+    }
+    @media (max-width:390px) { .brand { font-size:.92rem; } .top-actions select { max-width:94px; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" id="brand" href="/">✨ 울트라타로</a>
+    <div class="top-actions">
+      <span class="account" id="account-name"></span>
+      <select id="language-select" aria-label="Language"></select>
+      <button id="login-button" type="button" hidden></button>
+      <button id="link-button" type="button" hidden></button>
+      <a id="home-link" href="/"></a>
+    </div>
+  </header>
+  <main class="layout" id="layout">
+    <aside class="list-pane" aria-label="Saved readings">
+      <div class="list-heading"><h1 id="page-title"></h1><p class="list-caption" id="list-caption"></p></div>
+      <div id="reading-list"><div class="state" id="list-state"></div></div>
+    </aside>
+    <article class="detail-pane" id="detail-pane" aria-live="polite">
+      <button id="mobile-list-back" type="button"></button>
+      <div class="state" id="detail-state"></div>
+      <div class="detail-inner" id="reading-detail" hidden></div>
+    </article>
+  </main>
+  <script type="module">
+    import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+    import { getAuth, GoogleAuthProvider, signInWithPopup, linkWithPopup, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+    import { getFirestore, collection, getDocs, query, orderBy, limit } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+    const COPY = {
+      ko:{brand:'울트라타로',title:'저장한 리딩',caption:'저장된 리딩을 선택해 다시 읽어보세요.',home:'타로 리딩으로',login:'Google 로그인',link:'Google 계정 연결',back:'← 목록으로',loading:'저장한 리딩을 불러오는 중입니다.',empty:'저장한 리딩이 없습니다.',choose:'왼쪽 목록에서 리딩을 선택하세요.',loginNeeded:'저장한 리딩을 보려면 로그인해 주세요.',linkHint:'Google 계정을 연결하면 다른 기기에서도 볼 수 있습니다.',failed:'저장한 리딩을 불러오지 못했습니다.',question:'질문',spread:'스프레드',cards:'뽑은 카드',reading:'리딩 해설'},
+      en:{brand:'Ultra Tarot',title:'Saved Readings',caption:'Choose a reading to revisit it.',home:'New reading',login:'Sign in with Google',link:'Link Google account',back:'← All readings',loading:'Loading your saved readings.',empty:'No saved readings yet.',choose:'Choose a reading from the list.',loginNeeded:'Sign in to view your saved readings.',linkHint:'Link Google to access these readings on other devices.',failed:'Could not load saved readings.',question:'Question',spread:'Spread',cards:'Cards drawn',reading:'Reading'},
+      ja:{brand:'Ultra Tarot',title:'保存したリーディング',caption:'読み返したいリーディングを選択してください。',home:'新しいリーディング',login:'Googleでログイン',link:'Googleアカウントを連携',back:'← 一覧',loading:'保存したリーディングを読み込み中です。',empty:'保存したリーディングはありません。',choose:'一覧からリーディングを選択してください。',loginNeeded:'保存したリーディングを見るにはログインしてください。',linkHint:'Googleアカウントを連携すると他の端末でも確認できます。',failed:'読み込みに失敗しました。',question:'質問',spread:'スプレッド',cards:'引いたカード',reading:'リーディング'},
+      es:{brand:'Ultra Tarot',title:'Lecturas guardadas',caption:'Elige una lectura para volver a verla.',home:'Nueva lectura',login:'Iniciar sesión con Google',link:'Vincular Google',back:'← Lista',loading:'Cargando tus lecturas guardadas.',empty:'Aún no hay lecturas guardadas.',choose:'Elige una lectura de la lista.',loginNeeded:'Inicia sesión para ver tus lecturas.',linkHint:'Vincula Google para acceder desde otros dispositivos.',failed:'No se pudieron cargar las lecturas.',question:'Pregunta',spread:'Tirada',cards:'Cartas',reading:'Lectura'},
+      fr:{brand:'Ultra Tarot',title:'Lectures enregistrées',caption:'Choisissez une lecture pour la relire.',home:'Nouvelle lecture',login:'Connexion Google',link:'Associer Google',back:'← Liste',loading:'Chargement de vos lectures.',empty:'Aucune lecture enregistrée.',choose:'Choisissez une lecture dans la liste.',loginNeeded:'Connectez-vous pour voir vos lectures.',linkHint:'Associez Google pour les retrouver sur vos autres appareils.',failed:'Impossible de charger les lectures.',question:'Question',spread:'Tirage',cards:'Cartes tirées',reading:'Interprétation'},
+      de:{brand:'Ultra Tarot',title:'Gespeicherte Legungen',caption:'Wähle eine Legung zum erneuten Lesen.',home:'Neue Legung',login:'Mit Google anmelden',link:'Google-Konto verknüpfen',back:'← Liste',loading:'Legungen werden geladen.',empty:'Keine gespeicherten Legungen.',choose:'Wähle eine Legung aus der Liste.',loginNeeded:'Melde dich an, um gespeicherte Legungen zu sehen.',linkHint:'Verknüpfe Google für den Zugriff auf anderen Geräten.',failed:'Legungen konnten nicht geladen werden.',question:'Frage',spread:'Legung',cards:'Gezogene Karten',reading:'Deutung'},
+      pt:{brand:'Ultra Tarot',title:'Leituras salvas',caption:'Escolha uma leitura para rever.',home:'Nova leitura',login:'Entrar com Google',link:'Vincular Google',back:'← Lista',loading:'Carregando suas leituras.',empty:'Nenhuma leitura salva.',choose:'Escolha uma leitura na lista.',loginNeeded:'Entre para ver suas leituras salvas.',linkHint:'Vincule o Google para acessar em outros dispositivos.',failed:'Não foi possível carregar as leituras.',question:'Pergunta',spread:'Tirada',cards:'Cartas',reading:'Leitura'},
+      th:{brand:'Ultra Tarot',title:'รายการอ่านที่บันทึกไว้',caption:'เลือกรายการเพื่อกลับมาอ่านอีกครั้ง',home:'เริ่มอ่านใหม่',login:'เข้าสู่ระบบด้วย Google',link:'เชื่อมต่อ Google',back:'← รายการ',loading:'กำลังโหลดรายการที่บันทึกไว้',empty:'ยังไม่มีรายการที่บันทึกไว้',choose:'เลือกรายการจากทางซ้าย',loginNeeded:'เข้าสู่ระบบเพื่อดูรายการที่บันทึกไว้',linkHint:'เชื่อมต่อ Google เพื่อเปิดดูจากอุปกรณ์อื่น',failed:'โหลดรายการไม่สำเร็จ',question:'คำถาม',spread:'รูปแบบไพ่',cards:'ไพ่ที่เลือก',reading:'คำทำนาย'},
+      ru:{brand:'Ultra Tarot',title:'Сохранённые расклады',caption:'Выберите расклад, чтобы перечитать его.',home:'Новый расклад',login:'Войти через Google',link:'Связать с Google',back:'← Список',loading:'Загрузка раскладов.',empty:'Сохранённых раскладов пока нет.',choose:'Выберите расклад в списке.',loginNeeded:'Войдите, чтобы увидеть сохранённые расклады.',linkHint:'Свяжите Google для доступа с других устройств.',failed:'Не удалось загрузить расклады.',question:'Вопрос',spread:'Расклад',cards:'Вытянутые карты',reading:'Толкование'},
+      zh:{brand:'Ultra Tarot',title:'已保存的解读',caption:'选择一条解读以再次查看。',home:'开始新解读',login:'使用 Google 登录',link:'关联 Google 账号',back:'← 列表',loading:'正在加载已保存的解读。',empty:'暂无已保存的解读。',choose:'请从列表中选择一条解读。',loginNeeded:'登录后查看已保存的解读。',linkHint:'关联 Google 账号即可在其他设备查看。',failed:'无法加载已保存的解读。',question:'问题',spread:'牌阵',cards:'抽到的牌',reading:'解读'},
+      it:{brand:'Ultra Tarot',title:'Letture salvate',caption:'Scegli una lettura da rileggere.',home:'Nuova lettura',login:'Accedi con Google',link:'Collega Google',back:'← Elenco',loading:'Caricamento delle letture.',empty:'Nessuna lettura salvata.',choose:'Scegli una lettura dall’elenco.',loginNeeded:'Accedi per vedere le letture salvate.',linkHint:'Collega Google per accedere da altri dispositivi.',failed:'Impossibile caricare le letture.',question:'Domanda',spread:'Schema',cards:'Carte estratte',reading:'Lettura'},
+      id:{brand:'Ultra Tarot',title:'Bacaan tersimpan',caption:'Pilih bacaan untuk dibaca kembali.',home:'Bacaan baru',login:'Masuk dengan Google',link:'Hubungkan Google',back:'← Daftar',loading:'Memuat bacaan tersimpan.',empty:'Belum ada bacaan tersimpan.',choose:'Pilih bacaan dari daftar.',loginNeeded:'Masuk untuk melihat bacaan tersimpan.',linkHint:'Hubungkan Google agar dapat diakses di perangkat lain.',failed:'Bacaan gagal dimuat.',question:'Pertanyaan',spread:'Sebaran',cards:'Kartu terpilih',reading:'Bacaan'},
+      vi:{brand:'Ultra Tarot',title:'Bài đọc đã lưu',caption:'Chọn bài đọc để xem lại.',home:'Bài đọc mới',login:'Đăng nhập Google',link:'Liên kết Google',back:'← Danh sách',loading:'Đang tải bài đọc đã lưu.',empty:'Chưa có bài đọc nào.',choose:'Chọn một bài đọc trong danh sách.',loginNeeded:'Đăng nhập để xem bài đọc đã lưu.',linkHint:'Liên kết Google để xem trên thiết bị khác.',failed:'Không thể tải bài đọc.',question:'Câu hỏi',spread:'Trải bài',cards:'Lá bài đã rút',reading:'Diễn giải'},
+      tr:{brand:'Ultra Tarot',title:'Kaydedilen açılımlar',caption:'Yeniden okumak için bir açılım seçin.',home:'Yeni açılım',login:'Google ile giriş yap',link:'Google hesabını bağla',back:'← Liste',loading:'Kaydedilen açılımlar yükleniyor.',empty:'Henüz kaydedilmiş açılım yok.',choose:'Listeden bir açılım seçin.',loginNeeded:'Kayıtlı açılımları görmek için giriş yapın.',linkHint:'Diğer cihazlardan erişmek için Google hesabını bağlayın.',failed:'Açılımlar yüklenemedi.',question:'Soru',spread:'Açılım',cards:'Çekilen kartlar',reading:'Yorum'},
+      pl:{brand:'Ultra Tarot',title:'Zapisane rozkłady',caption:'Wybierz rozkład, aby do niego wrócić.',home:'Nowy rozkład',login:'Zaloguj przez Google',link:'Połącz konto Google',back:'← Lista',loading:'Wczytywanie zapisanych rozkładów.',empty:'Brak zapisanych rozkładów.',choose:'Wybierz rozkład z listy.',loginNeeded:'Zaloguj się, aby zobaczyć zapisane rozkłady.',linkHint:'Połącz Google, aby korzystać z innych urządzeń.',failed:'Nie udało się wczytać rozkładów.',question:'Pytanie',spread:'Rozkład',cards:'Wylosowane karty',reading:'Interpretacja'}
+    };
+    const LANGS = [['ko','한국어'],['en','English'],['ja','日本語'],['es','Español'],['fr','Français'],['de','Deutsch'],['pt','Português'],['th','ไทย'],['ru','Русский'],['zh','中文'],['it','Italiano'],['id','Bahasa Indonesia'],['vi','Tiếng Việt'],['tr','Türkçe'],['pl','Polski']];
+    let lang = localStorage.getItem('tarot-lang') || (navigator.language || 'en').slice(0,2).toLowerCase();
+    if (!COPY[lang]) lang = 'en';
+    const t = key => COPY[lang][key] || COPY.en[key];
+    document.documentElement.lang = lang;
+    document.title = `${t('title')} | ${t('brand')}`;
+    document.getElementById('brand').textContent = `✨ ${t('brand')}`;
+    document.getElementById('page-title').textContent = t('title');
+    document.getElementById('list-caption').textContent = t('caption');
+    document.getElementById('home-link').textContent = t('home');
+    document.getElementById('mobile-list-back').textContent = t('back');
+    document.getElementById('list-state').textContent = t('loading');
+    document.getElementById('detail-state').textContent = t('choose');
+    const select = document.getElementById('language-select');
+    LANGS.forEach(([code,label]) => { const opt = document.createElement('option'); opt.value=code; opt.textContent=label; opt.selected=code===lang; select.append(opt); });
+    select.addEventListener('change', () => { localStorage.setItem('tarot-lang', select.value); location.reload(); });
+    document.getElementById('mobile-list-back').addEventListener('click', () => document.getElementById('layout').classList.remove('show-detail'));
+
+    const firebaseConfig = {
+      apiKey: 'AIzaSyDJ8KP4yPw_VcblGMtO-tTTkukhdwP6Ifg',
+      authDomain: 'tarot-7bad9.firebaseapp.com',
+      projectId: 'tarot-7bad9',
+      storageBucket: 'tarot-7bad9.firebasestorage.app',
+      messagingSenderId: '1067477977686',
+      appId: '1:1067477977686:web:c3a49c8e36748186f849f7'
+    };
+    const app = getApps()[0] || initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    let currentUser = null;
+
+    function showListState(message) {
+      const list = document.getElementById('reading-list');
+      list.replaceChildren();
+      const state = document.createElement('div'); state.className='state'; state.textContent=message; list.append(state);
+    }
+
+    function showDetail(record) {
+      const detail = document.getElementById('reading-detail');
+      const state = document.getElementById('detail-state');
+      const date = record.createdAt?.toDate ? record.createdAt.toDate() : null;
+      detail.replaceChildren();
+      const dateEl = document.createElement('div'); dateEl.className='detail-date'; dateEl.textContent=date ? date.toLocaleString() : '';
+      const title = document.createElement('h2'); title.textContent=record.question || t('title');
+      const spread = document.createElement('div'); spread.className='spread-name'; spread.textContent=record.spreadName || '';
+      detail.append(dateEl,title,spread);
+      if (record.cards?.length) {
+        const section=document.createElement('section'); section.className='section';
+        const heading=document.createElement('h3'); heading.textContent=t('cards');
+        const cards=document.createElement('div'); cards.className='cards';
+        record.cards.forEach(card => {
+          const item=document.createElement('div'); item.className='card';
+          if (card.image_file) { const img=document.createElement('img'); img.src=`/images/${encodeURIComponent(card.image_file)}`; img.alt=card.name_ko || card.name_en || ''; img.loading='lazy'; item.append(img); }
+          if (card.positionMeaning) { const pos=document.createElement('div'); pos.className='card-position'; pos.textContent=card.positionMeaning; item.append(pos); }
+          const name=document.createElement('div'); name.className='card-name'; name.textContent=card.name_ko || card.name_en || ''; item.append(name);
+          if (card.name_ko && card.name_en) { const en=document.createElement('div'); en.className='card-en'; en.textContent=card.name_en; item.append(en); }
+          cards.append(item);
+        });
+        section.append(heading,cards); detail.append(section);
+      }
+      const readingSection=document.createElement('section'); readingSection.className='section';
+      const readingHeading=document.createElement('h3'); readingHeading.textContent=t('reading');
+      const reading=document.createElement('div'); reading.className='reading-text'; reading.textContent=record.reading || '';
+      readingSection.append(readingHeading,reading); detail.append(readingSection);
+      state.hidden=true; detail.hidden=false;
+      document.getElementById('layout').classList.add('show-detail');
+      document.getElementById('detail-pane').scrollTop=0;
+    }
+
+    async function loadReadings(user) {
+      try {
+        const q=query(collection(db,'users',user.uid,'readings'),orderBy('createdAt','desc'),limit(100));
+        const snap=await getDocs(q);
+        if (!snap.size) { showListState(t('empty')); return; }
+        const list=document.getElementById('reading-list'); list.replaceChildren();
+        snap.docs.forEach((doc,index) => {
+          const record={id:doc.id,...doc.data()};
+          const button=document.createElement('button'); button.type='button'; button.className='reading-item';
+          button.setAttribute('aria-current','false');
+          const title=document.createElement('span'); title.className='item-question'; title.textContent=record.question || record.spreadName || t('title');
+          const meta=document.createElement('span'); meta.className='item-meta';
+          const spread=document.createElement('span'); spread.textContent=record.spreadName || '';
+          const date=document.createElement('time'); const value=record.createdAt?.toDate ? record.createdAt.toDate() : null; date.textContent=value ? value.toLocaleDateString() : '';
+          meta.append(spread,date); button.append(title,meta);
+          button.addEventListener('click',() => { document.querySelectorAll('.reading-item').forEach(item=>item.setAttribute('aria-current','false')); button.setAttribute('aria-current','true'); showDetail(record); });
+          list.append(button);
+          if (index===0 && window.matchMedia('(min-width: 761px)').matches) { button.setAttribute('aria-current','true'); showDetail(record); }
+        });
+      } catch (error) {
+        console.error('Saved readings load failed',error);
+        showListState(`${t('failed')} (${error.code || 'unknown'})`);
+      }
+    }
+
+    const loginButton=document.getElementById('login-button');
+    const linkButton=document.getElementById('link-button');
+    loginButton.textContent=t('login'); linkButton.textContent=t('link');
+    loginButton.addEventListener('click',async()=>{ try { await signInWithPopup(auth,new GoogleAuthProvider()); } catch(error) { console.error(error); } });
+    linkButton.addEventListener('click',async()=>{ try { if(currentUser?.isAnonymous) await linkWithPopup(currentUser,new GoogleAuthProvider()); } catch(error) { console.error(error); linkButton.textContent=`${t('link')} (${error.code || 'error'})`; } });
+    onAuthStateChanged(auth,async user=>{
+      currentUser=user;
+      document.getElementById('account-name').textContent=user && !user.isAnonymous ? (user.displayName || user.email || '') : '';
+      loginButton.hidden=!!user;
+      linkButton.hidden=!user?.isAnonymous;
+      if (!user) { showListState(t('loginNeeded')); document.getElementById('detail-state').textContent=t('loginNeeded'); return; }
+      if (user.isAnonymous) document.getElementById('list-caption').textContent=t('linkHint');
+      await loadReadings(user);
+    });
+  </script>
+</body>
+</html>

@@ -62,6 +62,7 @@ tarot-project/
 ├── enrich_cards.py        # 카드 해설 보강(seo 필드) 생성 스크립트
 ├── static/
 │   ├── index.html         # 프론트엔드 전체 (SPA, 단일 파일)
+│   ├── saved-readings.html # 저장 리딩 목록/상세 전용 페이지
 │   └── legal.html         # 법적 고지 5종 (탭 UI)
 ├── output/
 │   ├── cards.json         # 타로 카드 75장 데이터 (meaning/symbols + 보강된 seo 필드)
@@ -85,6 +86,7 @@ tarot-project/
 | 메서드 | 경로 | 설명 |
 |---|---|---|
 | GET | `/` | `static/index.html` 반환 |
+| GET | `/saved-readings` | 저장 리딩 전용 페이지 (`static/saved-readings.html`) |
 | GET | `/legal.html` | 법적 고지 페이지 |
 | GET | `/cards`, `/card/{slug}` | **카드 도감**(한국어, 서버 렌더링 HTML — SEO용) |
 | GET | `/{lang}/cards`, `/{lang}/card/{slug}` | 카드 도감 14개 언어판 (`/en/cards` 등). `/ko/...`는 301로 `/cards` |

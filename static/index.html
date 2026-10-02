@@ -844,33 +844,6 @@
       font-size: 1.3rem; cursor: pointer;
     }
     #history-close:hover { color: var(--text); }
-    #saved-readings-modal {
-      display: none; position: fixed; inset: 0; z-index: 9001;
-      background: rgba(0,0,0,.7); align-items: center; justify-content: center;
-    }
-    #saved-readings-modal.open { display: flex; }
-    #saved-readings-box {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
-      padding: 26px 22px; width: min(94vw, 560px); max-height: 82vh;
-      display: flex; flex-direction: column; position: relative;
-    }
-    #saved-readings-box h3 { color: var(--gold); margin: 0 30px 14px 0; }
-    #saved-readings-close {
-      position: absolute; top: 12px; right: 16px; background: none; border: 0;
-      color: var(--text-dim); font-size: 1.3rem; cursor: pointer;
-    }
-    #saved-readings-list { overflow-y: auto; }
-    .saved-reading-item {
-      display: flex; justify-content: space-between; align-items: center; gap: 12px;
-      width: 100%; padding: 12px 2px; border: 0; border-bottom: 1px solid var(--border);
-      background: transparent; color: var(--text); text-align: left; cursor: pointer;
-    }
-    .saved-reading-item:hover { color: var(--gold); }
-    .saved-reading-date { color: var(--text-dim); font-size: .75rem; white-space: nowrap; }
-    #saved-reading-detail { overflow-y: auto; white-space: pre-wrap; line-height: 1.75; }
-    #saved-reading-detail h4 { color: var(--gold); margin: 14px 0 6px; }
-    #saved-reading-back { align-self: flex-start; margin-bottom: 10px; }
-    #saved-readings-empty { padding: 24px 0; text-align: center; color: var(--text-dim); }
     .pay-method-tabs {
       display: flex; gap: 8px; margin-bottom: 20px;
     }
@@ -1271,15 +1244,6 @@
   </div>
 </div>
 
-<div id="saved-readings-modal">
-  <section id="saved-readings-box" aria-labelledby="saved-readings-title">
-    <button id="saved-readings-close" onclick="closeSavedReadings()" aria-label="Close">✕</button>
-    <h3 id="saved-readings-title">저장한 리딩</h3>
-    <div id="saved-readings-list"><div id="saved-readings-empty">불러오는 중...</div></div>
-    <div id="saved-reading-detail" hidden></div>
-  </section>
-</div>
-
 <!-- ── 네비게이션 (항상 표시: 데스크톱은 왼쪽 사이드바, 좁은 화면은 상단 가로 메뉴) ── -->
 <div id="nav-overlay">
   <nav id="nav-panel">
@@ -1293,7 +1257,7 @@
     <button class="nav-item" onclick="location.href = cardsHref();">
       <span id="nav-label-cards">카드 도감</span>
     </button>
-    <button class="nav-item" onclick="closeNav(); openSavedReadings();">
+    <button class="nav-item" onclick="location.href = '/saved-readings';">
       <span id="nav-label-saved">저장한 리딩</span>
     </button>
   </nav>
@@ -1830,7 +1794,6 @@ function applyLang() {
   el('share-reading-btn').textContent = t('btn_share');
   el('save-reading-btn').textContent = t('btn_save');
   el('nav-label-saved').textContent = savedReadingText('saved');
-  el('saved-readings-title').textContent = savedReadingText('saved');
   el('new-reading-btn').textContent = t('btn_new');
   el('logout-btn').textContent     = t('logout');
   updateMenuLabels();
@@ -3687,115 +3650,6 @@ function closeCardDetail(e) {
     document.getElementById('card-detail-modal').classList.remove('open');
   }
 }
-
-async function openSavedReadings() {
-  const modal = document.getElementById('saved-readings-modal');
-  const list = document.getElementById('saved-readings-list');
-  const detail = document.getElementById('saved-reading-detail');
-  modal.classList.add('open');
-  detail.hidden = true;
-  list.hidden = false;
-  list.replaceChildren();
-  const status = document.createElement('div');
-  status.id = 'saved-readings-empty';
-  status.textContent = savedReadingText('loading');
-  list.append(status);
-
-  if (!window.currentUser) {
-    status.textContent = savedReadingText('login');
-    return;
-  }
-  if (!window.fetchSavedReadings) {
-    status.textContent = savedReadingText('failed');
-    return;
-  }
-  try {
-    const readings = await window.fetchSavedReadings();
-    list.replaceChildren();
-    if (!readings.length) {
-      status.textContent = savedReadingText('empty');
-      list.append(status);
-      return;
-    }
-    readings.forEach(reading => {
-      const button = document.createElement('button');
-      button.className = 'saved-reading-item';
-      const title = document.createElement('span');
-      title.textContent = reading.question || reading.spreadName || savedReadingText('saved');
-      const date = document.createElement('span');
-      date.className = 'saved-reading-date';
-      const value = reading.createdAt?.toDate ? reading.createdAt.toDate() : new Date(reading.createdAt || 0);
-      date.textContent = Number.isNaN(value.getTime()) ? '' : value.toLocaleDateString();
-      button.append(title, date);
-      button.addEventListener('click', () => showSavedReadingDetail(reading));
-      list.append(button);
-    });
-    if (window.currentUser.isAnonymous) {
-      const note = document.createElement('p');
-      note.id = 'saved-readings-empty';
-      note.textContent = savedReadingText('device');
-      list.append(note);
-      const linkButton = document.createElement('button');
-      linkButton.type = 'button';
-      linkButton.className = 'btn';
-      linkButton.textContent = savedReadingText('link');
-      linkButton.addEventListener('click', async () => {
-        linkButton.disabled = true;
-        try {
-          await window.linkAnonymousAccount();
-          await openSavedReadings();
-        } catch (err) {
-          console.error('Google 계정 연결 실패', err);
-          notify(`${savedReadingText('failed')} ${err.message || ''}`);
-          linkButton.disabled = false;
-        }
-      });
-      list.append(linkButton);
-    }
-  } catch (err) {
-    console.error('저장 리딩 조회 실패', err);
-    status.textContent = `${savedReadingText('failed')} ${err.message || ''}`;
-    list.append(status);
-  }
-}
-
-function showSavedReadingDetail(reading) {
-  const list = document.getElementById('saved-readings-list');
-  const detail = document.getElementById('saved-reading-detail');
-  const back = document.createElement('button');
-  back.type = 'button';
-  back.id = 'saved-reading-back';
-  back.className = 'btn btn-secondary';
-  back.textContent = savedReadingText('back');
-  back.addEventListener('click', () => {
-    detail.hidden = true;
-    list.hidden = false;
-  });
-  const title = document.createElement('h4');
-  title.textContent = `${reading.question || ''}`;
-  const spread = document.createElement('p');
-  spread.textContent = `${savedReadingText('spread')}: ${reading.spreadName || ''}`;
-  const cardsHeading = document.createElement('h4');
-  cardsHeading.textContent = savedReadingText('cards');
-  const cards = document.createElement('p');
-  cards.textContent = (reading.cards || []).map(card => [card.positionMeaning, card.name_ko, card.name_en].filter(Boolean).join(' · ')).join('\n');
-  const readingHeading = document.createElement('h4');
-  readingHeading.textContent = savedReadingText('reading');
-  const body = document.createElement('div');
-  body.textContent = reading.reading || '';
-  detail.replaceChildren(back, title, spread, cardsHeading, cards, readingHeading, body);
-  list.hidden = true;
-  detail.hidden = false;
-  detail.scrollTop = 0;
-}
-
-function closeSavedReadings() {
-  document.getElementById('saved-readings-modal').classList.remove('open');
-}
-
-document.getElementById('saved-readings-modal').addEventListener('click', event => {
-  if (event.target.id === 'saved-readings-modal') closeSavedReadings();
-});
 
 // 고정 상단바의 실제 높이를 CSS 변수로 노출 → 좁은 화면에서 상단 메뉴가 겹치거나 빈틈이 생기지 않게
 (function () {

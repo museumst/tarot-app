@@ -153,6 +153,12 @@ app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), na
 async def index():
     return FileResponse(os.path.join(BASE_DIR, "static", "index.html"))
 
+
+@app.get("/saved-readings")
+async def saved_readings_page():
+    return FileResponse(os.path.join(BASE_DIR, "static", "saved-readings.html"))
+
+
 # ── 검색엔진 소유권 확인 파일 (루트 경로에서 그대로 서빙되어야 함) ──
 @app.get("/googlefa1b26a823641718.html")
 async def google_site_verification():
