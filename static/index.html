@@ -3994,6 +3994,16 @@ init();
       }
       // 게이트가 열려있으면 해제
       if (document.getElementById('reading-gate').classList.contains('visible')) removeGate();
+      // 카드 도감 등 다른 페이지에서 ?open=charge|history 로 넘어온 경우 해당 창을 연다
+      if (!window._openParamDone) {
+        window._openParamDone = true;
+        const want = new URLSearchParams(location.search).get('open');
+        try {
+          if (want === 'charge') openChargeModal();
+          else if (want === 'history') openHistoryModal();
+        } catch (e) { console.warn('open 파라미터 처리 실패', e); }
+        if (want) history.replaceState(null, '', location.pathname + location.search.replace(/[?&]open=[^&]*/, '').replace(/^&/, '?'));
+      }
     } else {
       loginBtn.style.display = 'block';
       if (guestBtn) guestBtn.style.display = 'block';

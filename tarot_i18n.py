@@ -30,8 +30,8 @@ OG_LOCALE = {
 }
 
 UI_KO = {
-    "nav_cards": "카드 도감",
-    "nav_home": "타로 보기",
+    "nav_cards": "전체 보기",
+    "nav_home": "나가기↩︎",
     "index_title": "타로 카드 도감",
     "index_sub": "타로 카드 {n}장의 의미와 상징을 정리했습니다. 카드를 눌러 자세한 해설을 확인하세요.",
     "search_ph": "카드 이름으로 검색...",

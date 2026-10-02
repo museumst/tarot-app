@@ -205,7 +205,7 @@ _SUIT_ORDER = ["CUPS", "WANDS", "SWORDS", "PENTACLES"]
 
 # 메인 앱 네비게이션 라벨과 동일하게 맞춘다 (모델 번역보다 우선)
 NAV_CARDS = {
-    "ko": "카드 도감", "en": "Card Guide", "ja": "カード図鑑", "zh": "塔罗牌图鉴",
+    "ko": "전체 보기", "en": "Card Guide", "ja": "カード図鑑", "zh": "塔罗牌图鉴",
     "es": "Guía de Cartas", "fr": "Guide des Cartes", "de": "Kartenführer", "pt": "Guia de Cartas",
     "it": "Guida alle Carte", "ru": "Справочник карт", "th": "สารานุกรมไพ่", "id": "Panduan Kartu",
     "vi": "Từ điển bài", "tr": "Kart Rehberi", "pl": "Przewodnik po kartach",
@@ -409,6 +409,23 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
   #lang-select{{background:rgba(255,255,255,.05);color:#e8e3d8;border:1px solid rgba(196,169,107,.35);
                border-radius:7px;padding:5px 8px;font-size:.82rem;font-family:inherit;cursor:pointer}}
   #lang-select option{{background:#16122a;color:#e8e3d8}}
+  #acct-bar{{display:flex;align-items:center;gap:10px;flex-wrap:wrap}}
+  #acct-user{{display:none;align-items:center;gap:8px;flex-wrap:wrap}}
+  #acct-avatar{{width:30px;height:30px;border-radius:50%;border:1px solid #c4a96b}}
+  #acct-name{{color:#9a9aa8;font-size:.82rem}}
+  #acct-free{{font-size:.74rem;padding:3px 10px;border-radius:20px;border:1px solid;white-space:nowrap}}
+  #acct-free.plenty{{color:#90d490;border-color:rgba(144,212,144,.4)}}
+  #acct-free.warning{{color:#f0d060;border-color:rgba(240,208,96,.4)}}
+  #acct-free.empty{{color:#f08080;border-color:rgba(240,128,128,.4)}}
+  #acct-credit{{font-size:.76rem;padding:5px 13px;border-radius:20px;border:1px solid rgba(196,169,107,.6);
+    color:#c4a96b;white-space:nowrap;font-weight:600;background:rgba(196,169,107,.08)}}
+  #acct-credit:hover{{background:rgba(196,169,107,.18);border-color:#c4a96b}}
+  #acct-credit.low{{color:#f08080;border-color:rgba(240,128,128,.6);background:rgba(240,128,128,.07)}}
+  #acct-credit.empty{{border-color:#c4a96b;background:rgba(196,169,107,.15)}}
+  #acct-history,#acct-logout,#acct-login{{background:transparent;border:1px solid rgba(196,169,107,.35);
+    border-radius:20px;color:#9a9aa8;font-size:.72rem;padding:3px 10px;cursor:pointer;font-family:inherit;white-space:nowrap}}
+  #acct-history:hover,#acct-logout:hover,#acct-login:hover{{border-color:#c4a96b;color:#c4a96b}}
+  #acct-login{{display:none;font-size:.8rem;padding:5px 14px;color:#c4a96b;border-radius:8px}}
   h1{{font-size:clamp(1.7rem,4.6vw,2.5rem);font-weight:700;color:#d9bf8e;margin-bottom:6px;line-height:1.3}}
   h2{{font-size:1.1rem;color:#c4a96b;margin:34px 0 12px;font-weight:500}}
   .sub{{color:#7c8090;font-size:.92rem;margin-bottom:26px}}
@@ -449,6 +466,17 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
       <select id="lang-select" aria-label="{_e(ui['lang_label'])}" onchange="switchLang(this)">{options}</select>
     </div>
   </div>
+  <div id="acct-bar" data-lang="{_e(lang)}" style="justify-content:flex-end;margin:-18px 0 22px">
+    <button id="acct-login" type="button"></button>
+    <div id="acct-user">
+      <img id="acct-avatar" src="" alt="">
+      <span id="acct-name"></span>
+      <span id="acct-free" class="plenty"></span>
+      <a id="acct-credit" href="/"></a>
+      <a id="acct-history" href="/"></a>
+      <button id="acct-logout" type="button"></button>
+    </div>
+  </div>
   {body}
   <footer>
     <a href="{_e(home_path(lang))}">{_e(brand_of(lang))}</a> · {_e(ui['footer_tagline'])} ·
@@ -463,6 +491,7 @@ function switchLang(sel){{
   location.href=o.value;
 }}
 </script>
+<script type="module" src="/static/acct-bar.js?v=1"></script>
 </body>
 </html>"""
 
