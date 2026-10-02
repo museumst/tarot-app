@@ -133,6 +133,10 @@
       transition: border-color .3s;
     }
     .step.active { border-color: rgba(196,169,107,.5); }
+    #step2 { scroll-margin-top: calc(var(--topbar-h, 64px) + 12px); }
+    @media (max-width: 1000px) {
+      #step2 { scroll-margin-top: calc(var(--topbar-h, 64px) + 60px); }
+    }
     .step-title {
       font-family: 'Noto Sans KR', sans-serif;
       font-size: 1.3rem;
@@ -347,32 +351,51 @@
 
     .deck-fan {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 6px;
+      flex-direction: column;
+      gap: 8px;
       width: 100%;
-      padding: 10px 0;
+      padding: 10px 18px;
+    }
+    .deck-row {
+      position: relative;
+      width: 100%;
+      height: 218px;
+      flex: none;
     }
     .deck-card {
-      width: 46px;
-      height: 80px;
+      appearance: none;
+      background: none;
+      border: 0;
+      border-radius: 8px;
+      padding: 0;
+      width: 92px;
+      height: 160px;
       cursor: pointer;
-      flex-shrink: 0;
-      position: relative;
-      transition: filter .15s, transform .15s, opacity .3s;
+      position: absolute;
+      left: var(--fan-x);
+      top: var(--fan-y);
+      transform: rotate(var(--fan-angle));
+      transform-origin: center bottom;
+      outline: 8px solid transparent;
+      outline-offset: -4px;
+      transition: outline-color .15s, opacity .3s;
     }
-    .deck-card:hover {
-      filter: brightness(1.4) drop-shadow(0 0 10px rgba(196,169,107,.8));
-      transform: translateY(-6px) scale(1.1);
-      z-index: 10;
+    .deck-card:hover, .deck-card:focus-visible {
+      outline-color: var(--gold-light);
     }
     .deck-card.selected-card {
       opacity: 0.2;
       pointer-events: none;
-      transform: none !important;
-      filter: none !important;
+    }
+    @media (max-width: 1000px) {
+      .deck-fan {
+        overflow-x: auto;
+        padding: 20px 18px 10px;
+      }
+      .deck-row { min-width: 1210px; }
     }
     .deck-card .card-inner {
+      display: block;
       width: 100%;
       height: 100%;
       position: relative;
@@ -381,8 +404,6 @@
       border-radius: 8px;
     }
     .deck-card.flipped .card-inner { transform: rotateY(180deg); }
-    .deck-card.selected-card { pointer-events: none; }
-
     .card-back, .card-front {
       position: absolute;
       inset: 0;
@@ -766,19 +787,20 @@
     }
     #history-modal.open { display: flex; }
     #history-box {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 16px; padding: 28px 24px; width: min(94vw, 480px);
+      background: linear-gradient(135deg, #16122a, #1e1836);
+      border: 1px solid rgba(196,169,107,.4);
+      border-radius: 18px; padding: 36px 32px; width: min(90vw, 480px);
       max-height: 80vh; display: flex; flex-direction: column;
-      position: relative;
+      position: relative; text-align: center;
     }
     #history-box h3 { font-family: 'Noto Sans KR',sans-serif; color: var(--gold); margin-bottom: 6px; }
     #history-balance {
       font-size: .85rem; color: var(--text-dim);
       margin-bottom: 16px; padding-bottom: 14px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(196,169,107,.25);
     }
     #history-balance strong { color: var(--gold); font-size: 1.1rem; }
-    #history-list { overflow-y: auto; flex: 1; }
+    #history-list { overflow-y: auto; flex: 1; text-align: left; }
     .history-row {
       display: grid; grid-template-columns: 64px 1fr auto auto auto;
       gap: 6px 9px; align-items: center;
@@ -1916,6 +1938,7 @@ const SPREAD_LAYOUTS = {
 function initDrawnRow() {
   const row = document.getElementById('drawn-row');
   row.innerHTML = '';
+  row.classList.add('hidden');
   const layout = SPREAD_LAYOUTS[cardCount];
   const cardW = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-w')) || 110;
   const cardH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-h')) || 190;
@@ -1953,17 +1976,32 @@ function renderDeck() {
   const fan = document.getElementById('deck-fan');
   fan.innerHTML = '';
 
-  for (let i = 0; i < deckCards.length; i++) {
-    const div = document.createElement('div');
-    div.className = 'deck-card';
-    div.dataset.deckIdx = i;
-    div.innerHTML = `
-      <div class="card-inner">
-        <div class="card-back"></div>
-        <div class="card-front"></div>
-      </div>`;
-    div.addEventListener('click', () => selectCard(i));
-    fan.appendChild(div);
+  for (let start = 0; start < deckCards.length; start += 26) {
+    const row = document.createElement('div');
+    row.className = 'deck-row';
+    const count = Math.min(26, deckCards.length - start);
+
+    for (let index = 0; index < count; index++) {
+      const deckIdx = start + index;
+      const position = count > 1 ? index / (count - 1) : 0.5;
+      const arc = position * 2 - 1;
+      const card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'deck-card';
+      card.dataset.deckIdx = deckIdx;
+      card.setAttribute('aria-label', t('card_label', deckIdx));
+      card.style.setProperty('--fan-x', `calc(${position * 100}% - ${position * 92}px)`);
+      card.style.setProperty('--fan-y', `${12 + 28 * arc * arc}px`);
+      card.style.setProperty('--fan-angle', `${arc * 13}deg`);
+      card.innerHTML = `
+        <span class="card-inner">
+          <span class="card-back"></span>
+          <span class="card-front"></span>
+        </span>`;
+      card.addEventListener('click', () => selectCard(deckIdx));
+      row.appendChild(card);
+    }
+    fan.appendChild(row);
   }
 }
 
@@ -1987,12 +2025,14 @@ function selectCard(deckIdx) {
     const front = deckCardEl.querySelector('.card-front');
     front.innerHTML = `<img src="/images/${card.image_file}" alt="${card.name_en}" loading="lazy" />`;
     deckCardEl.classList.add('flipped', 'selected-card');
+    deckCardEl.disabled = true;
   }
 
   const cardIndex = drawnCards.length; // push 전 인덱스
   drawnCards.push({ card, positionMeaning, deckIdx });
 
   const row = document.getElementById('drawn-row');
+  row.classList.remove('hidden');
   const el = document.createElement('div');
   el.className = 'drawn-card';
 
