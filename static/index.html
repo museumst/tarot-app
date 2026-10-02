@@ -375,22 +375,16 @@
       top: var(--fan-y);
       transform: rotate(var(--fan-angle));
       transform-origin: center bottom;
-      transition: filter .15s, transform .15s, opacity .3s;
+      outline: 4px solid transparent;
+      outline-offset: -4px;
+      transition: outline-color .15s, opacity .3s;
     }
     .deck-card:hover, .deck-card:focus-visible {
-      filter: brightness(1.15) drop-shadow(0 0 12px rgba(196,169,107,.7));
-      transform: translateY(-38px) rotate(0deg) scale(1.08);
-      z-index: 100;
-    }
-    .deck-card:focus-visible {
-      outline: 2px solid var(--gold-light);
-      outline-offset: 3px;
+      outline-color: var(--gold-light);
     }
     .deck-card.selected-card {
       opacity: 0.2;
       pointer-events: none;
-      transform: rotate(var(--fan-angle)) !important;
-      filter: none !important;
     }
     @media (max-width: 1000px) {
       .deck-fan {
@@ -409,8 +403,6 @@
       border-radius: 8px;
     }
     .deck-card.flipped .card-inner { transform: rotateY(180deg); }
-    .deck-card.selected-card { pointer-events: none; }
-
     .card-back, .card-front {
       position: absolute;
       inset: 0;
