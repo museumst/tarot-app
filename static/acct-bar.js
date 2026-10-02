@@ -1,4 +1,4 @@
-// 모든 페이지 우측 상단에 고정되는 계정 바 (프로필·무료/무제한·충전·내역·로그아웃)
+// 모든 페이지 상단에 표시되는 계정 바 (프로필·무료/무제한·충전·내역·로그아웃)
 // 메인 앱(index.html)과 같은 도메인이라 Firebase 로그인 상태가 그대로 공유된다.
 // 충전/내역 모달은 메인 앱에만 있으므로, 누르면 메인 앱으로 이동해 해당 창을 연다.
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';

@@ -1,5 +1,5 @@
-/* 계정 바: 메인 앱과 동일하게 화면 우측 상단에 항상 고정 (모바일은 전체 폭 바). 모든 페이지 공용 */
-#acct-bar{position:fixed;top:16px;right:20px;z-index:500;display:flex;align-items:center;gap:10px}
+/* 계정 바: 문서 상단에 배치되어 페이지 스크롤과 함께 이동 (모바일은 전체 폭 바). 모든 페이지 공용 */
+#acct-bar{position:absolute;top:16px;right:20px;z-index:500;display:flex;align-items:center;gap:10px}
 @media (max-width:600px){
   #acct-bar{left:0;right:0;top:0;padding:8px 12px 10px;justify-content:flex-end;flex-wrap:wrap;gap:6px;row-gap:8px;
     background:rgba(10,12,24,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
