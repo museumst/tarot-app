@@ -145,7 +145,15 @@ app.add_middleware(
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Mount static files
-app.mount("/images", StaticFiles(directory=os.path.join(BASE_DIR, "tarot_images")), name="images")
+class CachedImageStaticFiles(StaticFiles):
+    async def get_response(self, path, scope):
+        response = await super().get_response(path, scope)
+        if response.status_code in (200, 304):
+            response.headers["Cache-Control"] = "public, max-age=604800"
+        return response
+
+
+app.mount("/images", CachedImageStaticFiles(directory=os.path.join(BASE_DIR, "tarot_images")), name="images")
 app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
 
 
@@ -458,7 +466,7 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
 <meta name="twitter:image" content="{_e(og_image)}">
 <link rel="icon" href="/static/favicon.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/site-shell.css?v=2">
+<link rel="stylesheet" href="/static/site-shell.css?v=3">
 <link rel="stylesheet" href="/static/acct-bar.css?v=3">
 <style>
   *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
@@ -489,7 +497,7 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
          border-top:1px solid rgba(196,169,107,.18);padding-top:18px;font-size:.9rem}}
   .grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:16px}}
   .tile{{display:block;text-align:center}}
-  .tile img{{width:100%;border-radius:8px;border:1px solid rgba(196,169,107,.3);display:block;margin-bottom:7px}}
+  .tile img{{width:100%;height:auto;aspect-ratio:auto 3 / 5;border-radius:8px;border:1px solid rgba(196,169,107,.3);display:block;margin-bottom:7px}}
   #card-search{{width:100%;padding:13px 16px;margin-bottom:8px;border-radius:9px;
     background:rgba(255,255,255,.04);border:1px solid rgba(196,169,107,.3);
     color:#e8e3d8;font-family:inherit;font-size:.95rem}}
@@ -501,6 +509,15 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
 </head>
 <body class="site-shell">
 {render_site_sidebar(lang, "cards")}
+<script>
+document.querySelector('.site-sidebar').addEventListener('click', function(event){{
+  var link = event.target.closest('a[href]');
+  if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  event.preventDefault();
+  window.stop();
+  window.location.assign(link.href);
+}});
+</script>
 <div id="acct-bar" class="site-topbar" data-lang="{_e(lang)}">
     <select id="lang-select" aria-label="{_e(ui['lang_label'])}" onchange="switchLang(this)">{options}</select>
     <button id="acct-login" type="button"></button>
@@ -555,9 +572,10 @@ def render_cards_index(lang: str) -> str:
         for c in items:
             L = localize(c, lang)
             sub = "" if L["name"].strip().lower() == c["name_en"].strip().lower() else f'<small>{_e(c["name_en"])}</small>'
+            thumbnail = os.path.splitext(c["image_file"])[0] + ".webp"
             tiles += (
                 f'<a class="tile" href="{_e(card_path(lang, c["slug"]))}">'
-                f'<img src="/images/{_e(c["image_file"])}" alt="{_e(_fmt(ui["alt_tile"], name=L["name"]))}" loading="lazy">'
+                f'<img src="/images/thumbs/{_e(thumbnail)}" alt="{_e(_fmt(ui["alt_tile"], name=L["name"]))}" width="600" height="1000" loading="lazy" decoding="async">'
                 f'<span>{_e(L["name"])}</span>{sub}</a>'
             )
         sections.append(f'<section class="suit-sec"><h2>{_e(heading)}</h2><div class="grid">{tiles}</div></section>')
@@ -630,10 +648,11 @@ def render_card_detail(lang: str, slug: str) -> str:
 
     intro = f"<p>{_e(L['meaning'])}</p>" + (f"<p>{_e(L['upright'])}</p>" if L["upright"] else "")
     en_sub = "" if L["name"].strip().lower() == c["name_en"].strip().lower() else f"{_e(c['name_en'])} · "
+    medium_image = os.path.splitext(c["image_file"])[0] + ".webp"
     body = f"""
   <div class="card-head">
     <div class="card-img">
-      <img src="/images/{_e(c['image_file'])}" alt="{_e(_fmt_name(ui['alt_card'], L['name'], c['name_en']))}">
+      <img src="/images/medium/{_e(medium_image)}" alt="{_e(_fmt_name(ui['alt_card'], L['name'], c['name_en']))}">
     </div>
     <div class="card-body">
       <h1>{_e(L['name'])}</h1>
