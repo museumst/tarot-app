@@ -1,0 +1,843 @@
+{
+  "_meta": {
+    "title": "Przewodnik po karcie urodzenia",
+    "disclaimer": "To odczytanie opiera się na symbolice kart i nie jest naukowym testem osobowości. Służy jako punkt odniesienia do lepszego poznania siebie i nie zastępuje decyzji zawodowych ani innych ważnych decyzji życiowych.",
+    "deck_note": "Według numeracji Waite'a (Rider-Waite): Siła to 8, a Sprawiedliwość to 11. Suma 22 jest odczytywana jako Głupiec (0).",
+    "calculation": [
+      "Dodaj wszystkie cyfry swojej daty urodzenia zapisanej w ośmiu cyfrach (RRRRMMDD).",
+      "Jeśli suma przekracza 22, dodaj jej cyfry ponownie, aż otrzymasz 22 lub mniej.",
+      "Wynik od 1 do 9 daje jedną kartę (osobowość i dusza są takie same). Wynik od 10 do 22 daje twoją kartę osobowości, a suma jej cyfr daje twoją kartę duszy (wewnętrzną).",
+      "19 odczytuje się jako trzy karty: Słońce (osobowość), Koło Fortuny (środkowa) i Mag (dusza). 22 odczytuje się jako Głupiec (osobowość) i Cesarz (dusza)."
+    ],
+    "labels": {
+      "keywords": "Słowa kluczowe",
+      "personality": "Osobowość i temperament",
+      "strengths": "Mocne strony",
+      "shadow": "Strona cienia",
+      "life_lesson": "Lekcja życiowa",
+      "relationships": "Styl w relacjach",
+      "career": "Skłonności zawodowe",
+      "career_fields": "Dziedziny, które mogą ci odpowiadać",
+      "career_caution": "Warto pamiętać",
+      "soul_note": "Jako twoja karta duszy",
+      "year_theme": "Jako twoja karta roku"
+    }
+  },
+  "cards": {
+    "the-fool": {
+      "name": "Głupiec",
+      "tagline": "Wieczny poszukiwacz przygód, który stawia pierwszy krok bez granic",
+      "personality": "Masz skłonność do ciekawości i optymizmu i nie lubisz być zamknięty w sztywnych ramach. Niezależnie od wieku zachowujesz czystą stronę i bez wahania zbliżasz się do obcych miejsc i ludzi. Wolisz zaufać instynktowi i biegowi rzeczy niż planom, dlatego otoczenie widzi w tobie wolną i świeżą osobę.",
+      "life_lesson": "Twoje życie polega na uczeniu się równowagi między wolnością a odpowiedzialnością. Zachowaj dreszcz niewiedzy, dokąd zmierzasz, ale ćwicz sprawdzanie gruntu pod nogami i przygotowywanie się na rzeczywistość.",
+      "relationships": "Czujesz się swobodnie w lekkich, wolnych związkach, które nie krępują ani ciebie, ani drugiej osoby. Możesz się wahać przed głębokim zobowiązaniem, ale gdy rośnie zaufanie, stajesz się szczerym i ciepłym towarzyszem, jakich mało.",
+      "keywords": [
+        "Wolność",
+        "Ciekawość",
+        "Niewinność",
+        "Przygoda",
+        "Nowy początek"
+      ],
+      "strengths": [
+        "Odwaga, by zaczynać bez lęku",
+        "Elastyczność, która szybko dostosowuje się do każdego otoczenia",
+        "Niewinność i humor, które sprawiają, że ludzie czują się swobodnie"
+      ],
+      "shadow": [
+        "Możesz rzucać się bez przygotowania i powtarzać podobne błędy",
+        "Możesz być błędnie odbierany jako ktoś, kto lekceważy obietnice lub odpowiedzialność",
+        "Gdy pierwszy entuzjazm gaśnie, możesz stracić zainteresowanie, zanim skończysz"
+      ],
+      "career": {
+        "style": "Błyszczysz w środowiskach z nowymi próbami i dużą zmiennością, a nie w stałych procedurach.",
+        "fields": [
+          "Podróże i turystyka",
+          "Startupy i przedsięwzięcia we wczesnej fazie",
+          "Sztuka i praca twórcza",
+          "Praca na własny rachunek",
+          "Edukacja dzieci i zabawa"
+        ],
+        "caution": "Sztywna hierarchia i powtarzalne zadania mogą cię szybko wyczerpać."
+      },
+      "soul_note": null,
+      "year_theme": "To rok, w którym stoisz na nieznanej linii startu. Zamiast czekać na idealne przygotowanie, zrób pierwszy krok lekko, ale jeszcze raz sprawdź decyzje, które naprawdę są ważne."
+    },
+    "the-magician": {
+      "name": "Mag",
+      "tagline": "Ktoś, kto wolą zamienia możliwość w rzeczywistość",
+      "personality": "Jesteś bystry, zręczny w rękach lub w słowach, a gdy masz cel, znajdujesz środki, by go osiągnąć. Masz skłonność do pewności siebie i chcesz sam kierować sytuacjami. Twój umysł działa szybko, więc z łatwością radzisz sobie z kilkoma sprawami naraz.",
+      "life_lesson": "Twoje życie polega na wyjaśnieniu swojej intencji: do czego użyjesz wrodzonego talentu? Im większa zdolność, tym ważniejsze, by używać jej odpowiedzialnie.",
+      "relationships": "Zdobywasz serca rozmową i pomysłami. Jeśli twój pęd do utrzymania inicjatywy jest silny, druga osoba może czuć presję, więc znajdź też czas, by słuchać.",
+      "keywords": [
+        "Wola",
+        "Talent",
+        "Realizacja",
+        "Komunikacja",
+        "Inicjatywa"
+      ],
+      "strengths": [
+        "Siła realizacji, która zamienia pomysły w rzeczywistość",
+        "Umiejętności komunikacyjne, które pomagają innym zrozumieć i dać się przekonać",
+        "Wszechstronność przekraczająca wiele dziedzin"
+      ],
+      "shadow": [
+        "Ufając talentowi, możesz próbować wykręcić się sztuczkami",
+        "Twoje zainteresowania mogą się rozpraszać i osłabiać koncentrację",
+        "Słowa wyprzedzające czyny mogą kosztować cię zaufanie"
+      ],
+      "career": {
+        "style": "Twoje mocne strony ujawniają się w pracy, w której wymyślasz pomysły, sam je realizujesz i pokazujesz wyniki.",
+        "fields": [
+          "Planowanie i marketing",
+          "Sprzedaż i negocjacje",
+          "IT i programowanie",
+          "Wystąpienia i tworzenie treści",
+          "Zakładanie firmy"
+        ],
+        "caution": "Gdy gromadzi się zbyt wiele projektów, ich kończenie może stać się twoim słabym punktem."
+      },
+      "soul_note": "Jak wyglądasz na zewnątrz, nie ma znaczenia; w głębi żyje w tobie wola, która mówi „dam radę”, i ciekawość nowych możliwości. W sercu zawsze chcesz spróbować czegoś nowego.",
+      "year_theme": "Dobry rok, by wynieść talenty i pomysły w świat. Mogą pojawić się okazje, by zacząć coś nowego lub naprawdę wykorzystać to, czego się nauczyłeś."
+    },
+    "the-high-priestess": {
+      "name": "Najwyższa Kapłanka",
+      "tagline": "Ktoś, czyja intuicja wie głęboko bez jednego słowa",
+      "personality": "Masz spokojną, tajemniczą aurę i nie ujawniasz łatwo tego, co masz w sercu. Twoja spostrzegawczość jest ostra, więc z łatwością wyczuwasz nastroje i prawdziwe uczucia ludzi. Nawet bez wielu słów myślisz głęboko i zwykle czerpiesz siły z czasu spędzonego w samotności.",
+      "life_lesson": "Twoje życie polega na zaufaniu wewnętrznemu głosowi i nauce wyrażania go słowami. Zadaniem jest odróżnianie ciszy od izolacji i otwieranie drzwi serca, gdy trzeba.",
+      "relationships": "Otwierasz się powoli, ale gdy już to zrobisz, pragniesz głębokiej więzi emocjonalnej. Możesz liczyć, że druga osoba zauważy uczucia, których nigdy nie wyraziłeś; ćwiczenie wyrażania czyni relacje wygodniejszymi.",
+      "keywords": [
+        "Intuicja",
+        "Tajemnica",
+        "Wgląd",
+        "Milczenie",
+        "Wewnętrzny świat"
+      ],
+      "strengths": [
+        "Intuicja, która odczytuje ukryte intencje",
+        "Dyskrecja w dochowywaniu tajemnic",
+        "Głęboki wgląd, który widzi istotę, a nie powierzchnię"
+      ],
+      "shadow": [
+        "Możesz zamknąć serce i trzymać dystans, wydając się chłodny",
+        "Milczenie może rodzić nieporozumienia",
+        "Nie ufając intuicji, możesz odkładać decyzje"
+      ],
+      "career": {
+        "style": "Twoja umiejętność ujawnia się w pracy, w której samotnie drążysz i porządkujesz spostrzeżenia.",
+        "fields": [
+          "Badania i analiza",
+          "Psychologia i poradnictwo",
+          "Pisanie i tłumaczenie",
+          "Biblioteki i archiwa",
+          "Dziedziny symboliczne, takie jak tarot i astrologia"
+        ],
+        "caution": "Jeśli nigdy nie wyrażasz swoich poglądów, twoje wyniki mogą pozostać niezauważone, więc wyrób nawyk dzielenia się tym, co odkrywasz."
+      },
+      "soul_note": "Choć na zewnątrz wydajesz się aktywny, w tobie mieszka cicha mądrość i tajemny pejzaż. Jesteś kimś, kto spotyka swoje prawdziwe ja w czasie spędzonym w samotności.",
+      "year_theme": "Rok, by słuchać wewnętrznych sygnałów zamiast zewnętrznego hałasu. Twoja intuicja się wyostrza, więc się nie spiesz; zapisuj swoje wrażenia, podejmując decyzje."
+    },
+    "the-empress": {
+      "name": "Cesarzowa",
+      "tagline": "Ktoś, kto żywi i opiekuje się, niosąc obfitość",
+      "personality": "Jesteś ciepły i życzliwy i potrafisz cieszyć się życiem wszystkimi pięcioma zmysłami. Masz urok, który obejmuje bliskich i sprawia, że czują się swobodnie, oraz wyrafinowane wyczucie piękna, dobrego jedzenia i wygodnych przestrzeni. Twoja serdeczność zwykle przyciąga ludzi.",
+      "life_lesson": "Twoje życie polega na uczeniu się równowagi między dawaniem a braniem. Zadaniem jest dbanie o siebie tak samo jak o innych i ćwiczenie przyjmowania z naturalnością.",
+      "relationships": "Jesteś czuły i oddany i chcesz objąć swojego partnera. Gdy rosną oczekiwania, może gromadzić się żal, więc mów szczerze, czego chcesz.",
+      "keywords": [
+        "Obfitość",
+        "Troska",
+        "Wrażliwość",
+        "Tworzenie",
+        "Zmysły"
+      ],
+      "strengths": [
+        "Empatia, która troszczy się o innych i opiekuje się nimi",
+        "Twórcza siła tworzenia i pielęgnowania rzeczy",
+        "Wyczucie, które wzbogaca atmosferę i przestrzenie"
+      ],
+      "shadow": [
+        "Nadmierna troska może być odczuwana jako wtrącanie się",
+        "Możesz osiąść w wygodzie i odkładać wyzwania",
+        "Może prowadzić do wahań nastroju lub nadmiernych wydatków"
+      ],
+      "career": {
+        "style": "Znajdujesz satysfakcję w pracy, w której z troską pielęgnujesz ludzi i wyniki.",
+        "fields": [
+          "Gastronomia i gotowanie",
+          "Projektowanie i sztuka",
+          "Edukacja i opieka nad dziećmi",
+          "Pielęgniarstwo i pomoc społeczna",
+          "Uroda i florystyka"
+        ],
+        "caution": "Jeśli czujesz, że nie jesteś doceniany, możesz szybko się wyczerpać, więc prowadź widoczny zapis swoich wyników."
+      },
+      "soul_note": "W tobie żyje ciepłe pragnienie objęcia i wykarmienia kogoś oraz tęsknota za obfitością. Choć na zewnątrz wydajesz się obojętny, w głębi jesteś osobą z wielkim sercem.",
+      "year_theme": "Rok obfitości i troski. To, w co wkładasz wysiłek wśród ludzi, pracy i hobby, może widocznie rosnąć, więc dbaj też o swoje ciało i umysł."
+    },
+    "the-emperor": {
+      "name": "Cesarz",
+      "tagline": "Ktoś, kto buduje fundament porządkiem i odpowiedzialnością",
+      "personality": "Jesteś realistyczny i zdecydowany i sprawnie budujesz struktury. Starasz się wziąć odpowiedzialność za powierzone ci sprawy aż do końca i masz skłonność do naturalnego lądowania w rolach liderskich. Działasz bardziej według zasad i planu niż uczuć, co sprawia wrażenie niezawodności.",
+      "life_lesson": "Twoje życie polega na uczeniu się równowagi między kontrolą a zaufaniem. Zadaniem jest zaufać i delegować zamiast trzymać wszystko w garści oraz przyznać się do własnej wrażliwości.",
+      "relationships": "Przyjmujesz rolę niezawodnego opiekuna i cenisz stabilność oraz zaufanie. Możesz zostawiać innym wrażenie, że o uczuciach mówi się za mało; pomaga ćwiczenie wyrażania serca.",
+      "keywords": [
+        "Porządek",
+        "Odpowiedzialność",
+        "Przywództwo",
+        "Stabilność",
+        "Zdecydowanie"
+      ],
+      "strengths": [
+        "Umiejętność budowania i utrzymywania systemu",
+        "Szybki i zdecydowany osąd",
+        "Niezawodność, która bierze odpowiedzialność do końca"
+      ],
+      "shadow": [
+        "Możesz być uparty i mieć silną potrzebę kontroli",
+        "Trudność w wyrażaniu uczuć może sprawiać, że wydajesz się sztywny",
+        "Możesz sprawiać wrażenie autorytarnego"
+      ],
+      "career": {
+        "style": "Twoje zdolności ujawniają się w rolach, w których projektujesz organizacje i harmonogramy i za nie odpowiadasz.",
+        "fields": [
+          "Zarządzanie i administracja",
+          "Służba publiczna, wojsko i policja",
+          "Budownictwo i nieruchomości",
+          "Finanse",
+          "Prawo i administracja publiczna"
+        ],
+        "caution": "Jeśli nie potrafisz zaakceptować osób myślących inaczej, energia twojego zespołu może spaść."
+      },
+      "soul_note": "W tobie jest silne pragnienie zbudowania stabilnego fundamentu i poczucie odpowiedzialności. Choć na zewnątrz wydajesz się łagodny, w sercu cenisz porządek i zasady.",
+      "year_theme": "Rok kładzenia fundamentów. Robienie planów i ustalanie zasad, by umocnić ramy życia i pracy, pomoże twojej stabilności w przyszłości."
+    },
+    "the-hierophant": {
+      "name": "Najwyższy Kapłan",
+      "tagline": "Ktoś, kto przekazuje tradycję i naukę",
+      "personality": "Masz jasne przekonania i wartości i szanujesz normy oraz tradycję. Masz naturalne zainteresowanie uczeniem się i nauczaniem, więc ludzie często przychodzą do ciebie po radę. Wyzwalasz stabilną, godną zaufania atmosferę.",
+      "life_lesson": "Twoje życie polega na przetrawieniu tego, czego się nauczyłeś, własnymi słowami. Zadaniem jest samodzielne wybranie, co kontynuować, a co zmienić między tradycją a byciem sobą.",
+      "relationships": "Jesteś szczery, cenisz obietnice i trwałe relacje z rodziną. Surowe standardy mogą dusić innych, więc potrzebujesz przestrzeni, by akceptować różnice.",
+      "keywords": [
+        "Tradycja",
+        "Wiara",
+        "Nauka",
+        "Zaufanie",
+        "Wspólnota"
+      ],
+      "strengths": [
+        "Niezawodność, na której inni mogą się oprzeć",
+        "Umiejętność jasnego wyjaśniania tego, czego się nauczyłeś",
+        "Poczucie odpowiedzialności wobec wspólnoty i relacji"
+      ],
+      "shadow": [
+        "Możesz trzymać się ram i być nieprzychylny nowym drogom",
+        "Możesz zbytnio przejmować się opinią innych i konwenansami",
+        "Możesz próbować dopasować się do standardów zamiast wyrażać własne zdanie"
+      ],
+      "career": {
+        "style": "Pasuje ci praca, która przekazuje wiedzę i prowadzi ludzi na fundamencie struktury i zaufania.",
+        "fields": [
+          "Edukacja i nauczanie",
+          "Religia i filozofia",
+          "Poradnictwo i mentoring",
+          "Instytucje publiczne i administracja",
+          "Prawo"
+        ],
+        "caution": "W szybko zmieniających się środowiskach potrzebujesz elastyczności, by akceptować nowe sposoby."
+      },
+      "soul_note": "W tobie jest serce, które szuka godnej zaufania nauki i poczucia przynależności. W twoim sercu żyją pytania o dobro i zło oraz o życie z sensem.",
+      "year_theme": "Rok nauki i przynależności. Mogą pojawić się więzi z nauczycielami, mentorami i grupami, więc skup się na dotrzymywaniu zasad i obietnic oraz budowaniu zaufania."
+    },
+    "the-lovers": {
+      "name": "Kochankowie",
+      "tagline": "Ktoś, kto poznaje siebie przez wybór i relację",
+      "personality": "Bardzo zależy ci na ludziach i relacjach i oddajesz całe serce temu, co cię przyciąga. Twoja empatia jest silna i cenisz harmonię stawania się jednością z drugą osobą. W ważnych momentach życia masz skłonność stawać przed wyborami zależnymi od twoich wartości.",
+      "life_lesson": "Twoje życie polega na wybieraniu tego, czego chce serce, i brania odpowiedzialności za skutki tego wyboru. Zadaniem jest pytanie w miłości, który wybór zgadza się z twoimi własnymi wartościami.",
+      "relationships": "Relacje są w centrum twojego życia i pragniesz głębokiej jedności. Łatwo możesz idealizować, a potem się rozczarować, więc ćwicz widzenie drugiej osoby takiej, jaka jest.",
+      "keywords": [
+        "Miłość",
+        "Wybór",
+        "Harmonia",
+        "Wartości",
+        "Relacja"
+      ],
+      "strengths": [
+        "Empatia, która rozumie serce drugiej osoby",
+        "Umiejętność prowadzenia relacji ku harmonii",
+        "Szczerość płynąca z serca"
+      ],
+      "shadow": [
+        "Możesz być niezdecydowany i odkładać decyzje",
+        "Możesz zbytnio zależeć od relacji",
+        "Twoje serce może się chwiać wobec pokusy lub atmosfery"
+      ],
+      "career": {
+        "style": "Twoje mocne strony ujawniają się w pracy, która łączy ludzi i wspólnie coś buduje.",
+        "fields": [
+          "Poradnictwo i coaching",
+          "Usługi i obsługa gości",
+          "Mediacje i kadry",
+          "Wesela i wydarzenia",
+          "Działalność oparta na partnerstwie"
+        ],
+        "caution": "Gdy musisz decydować sam, serce może się chwiać, więc ustal swoje kryteria z góry."
+      },
+      "soul_note": "W tobie jest tęsknota za prawdziwą miłością i głęboką więzią. W sercu stale pytasz: „Jaki wybór jest naprawdę mój?”",
+      "year_theme": "Rok wyborów i relacji. Na rozdrożu lub przed ważną osobą podążaj za głosem serca, ale myśl też o odpowiedzialności, jaką niesie wybór."
+    },
+    "the-chariot": {
+      "name": "Rydwan",
+      "tagline": "Ktoś, kto wolą wyznacza kierunek i pędzi ku niemu",
+      "personality": "Masz silny napęd i idziesz do końca, gdy cel zostanie wyznaczony. Jesteś rywalizujący i znajdujesz spełnienie w poruszaniu się w wybranym kierunku. Potrafisz zebrać przeciwstawne impulsy w jednym kierunku, więc wydajesz się silny duchem.",
+      "life_lesson": "Twoje życie polega na harmonizowaniu przeciwstawnych sił (rozumu i emocji, pragnienia i odpowiedzialności) w trakcie posuwania się naprzód. Kierunek jest tak samo ważny jak tempo, a zadaniem jest wybranie właściwego celu zamiast samego wygrywania.",
+      "relationships": "Masz skłonność do prowadzenia także w relacjach, ale możesz unikać rozmów o uczuciach. Czujesz się swobodnie obok kogoś, kto może biec z tobą w tym samym kierunku.",
+      "keywords": [
+        "Napęd",
+        "Duch rywalizacji",
+        "Samokontrola",
+        "Cele",
+        "Zwycięstwo"
+      ],
+      "strengths": [
+        "Siła przebicia, która koncentruje się na jednej rzeczy i doprowadza ją do końca",
+        "Samokontrola, która rządzi sobą",
+        "Wytrwałość w osiąganiu wyników w rywalizacji"
+      ],
+      "shadow": [
+        "Nadmierna rywalizacja może wyczerpywać otoczenie",
+        "Możesz tłumić uczucia, a potem wybuchnąć naraz",
+        "Nie umiejąc odpoczywać, możesz się wypalić"
+      ],
+      "career": {
+        "style": "Twoje zdolności rosną w środowiskach z jasnymi celami, rywalizacją i widocznymi wynikami.",
+        "fields": [
+          "Sprzedaż",
+          "Sport i lekkoatletyka",
+          "Transport i logistyka",
+          "Wojsko i policja",
+          "Zarządzanie projektami"
+        ],
+        "caution": "W długim wyścigu może przyjść wypalenie, więc wpisz odpoczynek do swojego harmonogramu."
+      },
+      "soul_note": "W tobie jest silna wola doprowadzenia spraw do końca i pragnienie bycia uznanym. W sercu stale biegniesz dokądś.",
+      "year_theme": "Rok nabierania prędkości ku celowi. Jeśli najpierw mocno ustalisz kierunek, twój napęd może prowadzić do wielkich wyników, ale strzeż się nadmiernej prędkości i przeciążenia."
+    },
+    "strength": {
+      "name": "Siła",
+      "tagline": "Wewnętrzna siła, która rządzi łagodnością",
+      "personality": "Jesteś łagodny na zewnątrz, ale mocny w środku. Masz siłę, by zachować spokój i wytrwać w obliczu wielkich kryzysów i fal emocji. Masz skłonność radzić sobie z sytuacjami i ludźmi, rozumiejąc i uspokajając, a nie przytłaczając.",
+      "life_lesson": "Twoje życie polega na budowaniu siły, która oswaja, a nie tłumi. Zadaniem jest widzieć lęk i impuls nie jako wrogów, lecz je rozumieć, i ćwiczyć zaufanie do siebie.",
+      "relationships": "Jesteś tolerancyjny i łagodnie rozwiązujesz konflikty. Możesz łatwo się wyczerpać, poświęcając się komuś, więc szczerze mów o własnych granicach i potrzebach.",
+      "keywords": [
+        "Odwaga",
+        "Cierpliwość",
+        "Łagodność",
+        "Zaufanie do siebie",
+        "Spokój"
+      ],
+      "strengths": [
+        "Cierpliwość i wytrwałość, by wytrwać długo",
+        "Łagodne przywództwo, które prowadzi przez empatię",
+        "Spokój, który nie chwieje się nawet w kryzysie"
+      ],
+      "shadow": [
+        "Możesz wytrzymywać, aż nagle zabraknie ci energii",
+        "Gdy spada pewność siebie, możesz się skulić",
+        "Możesz tłumić uczucia i cierpieć w środku"
+      ],
+      "career": {
+        "style": "Twoje mocne strony ujawniają się w pracy, w której z wytrwałością i troską zajmujesz się ludźmi lub trudnymi sytuacjami.",
+        "fields": [
+          "Poradnictwo i uzdrawianie",
+          "Pielęgniarstwo, opieka i rehabilitacja",
+          "Edukacja i coaching",
+          "Praca ze zwierzętami",
+          "Reagowanie kryzysowe i bezpieczeństwo"
+        ],
+        "caution": "Możesz się zużyć, dźwigając więcej niż swoją część, więc wyznacz granice swojej roli."
+      },
+      "soul_note": "W tobie kryje się odwaga i ciepło silniejsze niż u kogokolwiek. W sercu uspokajasz lęk i impuls i rządzisz sobą.",
+      "year_theme": "Rok cierpliwości i zaufania do siebie. Nawet gdy jest trudno, łagodne podejście bez pośpiechu może zaprowadzić cię dalej."
+    },
+    "the-hermit": {
+      "name": "Pustelnik",
+      "tagline": "Poszukiwacz, który zagłębia się w samotności",
+      "personality": "Jesteś ostrożny i niezależny i cenisz czas na myślenie w samotności. Zamiast się wyróżniać, zagłębiasz się w jedną dziedzinę i budujesz własne kryteria. Mówisz mało, ale każde słowo ma wagę.",
+      "life_lesson": "Twoje życie polega na dzieleniu się zdobytą mądrością zamiast zachowywaniem jej dla siebie. Zadaniem jest odróżnianie samotności od odcięcia i robienie kroku ku światu, gdy trzeba.",
+      "relationships": "Tworzysz głębokie, trwałe relacje z nielicznymi osobami. Jeśli wyjaśnisz z góry, że potrzebujesz czasu w samotności, możesz zmniejszyć nieporozumienia.",
+      "keywords": [
+        "Namysł",
+        "Niezależność",
+        "Dociekanie",
+        "Mądrość",
+        "Samotność"
+      ],
+      "strengths": [
+        "Fachowość, która zgłębia temat do dna",
+        "Twoje własne niezachwiane kryteria",
+        "Wgląd, który widzi sytuację z dystansu"
+      ],
+      "shadow": [
+        "Możesz się izolować, pozostając sam",
+        "Możesz trzymać wszystko w sobie zamiast prosić o pomoc",
+        "Możesz skłaniać się ku nadmiernemu perfekcjonizmowi lub pesymizmowi"
+      ],
+      "career": {
+        "style": "Błyszczysz w pracy, w której głęboko badasz i samodzielnie budujesz fachowość.",
+        "fields": [
+          "Badania i nauka",
+          "Pisarstwo i autorstwo",
+          "Programowanie i inżynieria",
+          "Rzemiosło i mistrzostwo",
+          "Analiza i doradztwo"
+        ],
+        "caution": "Jeśli nie upowszechniasz wyników, ich wartość może pozostać niedostrzeżona, więc twórz okazje do dzielenia się."
+      },
+      "soul_note": "W tobie jest cichy duch dociekania, który szuka prawdy i sensu. Nawet wśród ludzi w sercu idziesz sam, oświetlając drogę.",
+      "year_theme": "Rok porządkowania i namysłu w samotności. Zwolnienie i poświęcenie czasu nauce lub wewnętrznym pytaniom wyjaśni kierunek twojego następnego kroku."
+    },
+    "wheel-of-fortune": {
+      "name": "Koło Fortuny",
+      "tagline": "Ktoś, kto jedzie na fali zmian",
+      "personality": "Jesteś wrażliwy na bieg życia i zmianę i dobrze chwytasz okazje, gdy nadchodzą. Jesteś optymistą, więc nawet wśród wzlotów i upadków wytrwasz z przekonaniem, że wszystko znów się obróci. Masz szeroki ogląd całości, a dość często niosą cię szczęście i dobry moment.",
+      "life_lesson": "Twoje życie polega na utrzymaniu środka wśród wzlotów i upadków. Zadaniem jest odróżnianie tego, co możesz zmienić, od tego, czego nie możesz, i rozwijanie umiejętności z wyprzedzeniem na chwilę, gdy nadejdzie fala.",
+      "relationships": "Cenisz moment spotkań i możesz przeżywać dramatyczne spotkania i rozstania. Częste zmiany mogą budzić obawy o stabilność, więc ćwicz dawanie partnerowi spójnych sygnałów.",
+      "keywords": [
+        "Zmiana",
+        "Dobry moment",
+        "Okazja",
+        "Cykle",
+        "Szczęście"
+      ],
+      "strengths": [
+        "Elastyczność, która dostosowuje się do zmian",
+        "Wyczucie, które rozpoznaje okazję",
+        "Optymizm, który nie ginie wśród wzlotów i upadków"
+      ],
+      "shadow": [
+        "Możesz polegać na szczęściu i zaniedbywać przygotowanie",
+        "Twój nastrój może mocno się wahać wraz ze wzlotami i upadkami",
+        "Możesz odczuwać niepokój z powodu tego, czego nie kontrolujesz"
+      ],
+      "career": {
+        "style": "Twoje mocne strony ujawniają się w pracy z wieloma zmianami, która odczytuje bieg rzeczy.",
+        "fields": [
+          "Handel i dystrybucja",
+          "Inwestycje i finanse",
+          "Wydarzenia i podróże",
+          "Analiza trendów",
+          "Nowe przedsięwzięcia z wieloma zmianami"
+        ],
+        "caution": "Stawianie zbyt wiele na jedną okazję jest ryzykowne, więc rozłóż stawki."
+      },
+      "soul_note": "W tobie jest ciekawość, dokąd popłynie życie, i serce, które przyjmuje zmianę. Gdy pojawia się jako karta środkowa, mówi ci, że szczęście i dobry moment to wielki temat twojego życia.",
+      "year_theme": "Rok, w którym zmienia się bieg rzeczy. Mogą nadejść niespodziewane okazje lub zwroty, więc przyjmij je z otwartym umysłem i pamiętaj, że chwycisz tylko tyle, ile przygotujesz."
+    },
+    "justice": {
+      "name": "Sprawiedliwość",
+      "tagline": "Ktoś, kto ceni sprawiedliwość i równowagę",
+      "personality": "Jesteś logiczny i uczciwy oraz wrażliwy na dobro i zło. Starasz się sądzić według faktów i zasad, a nie dawać się ponieść uczuciom. Cenisz obietnice i reguły i masz skłonność brać odpowiedzialność za swoje czyny.",
+      "life_lesson": "Twoje życie polega na uczeniu się równowagi między sprawiedliwością a miłosierdziem. Zadaniem jest stosowanie wobec siebie tej samej sprawiedliwej i hojnej miary, jaką dajesz innym.",
+      "relationships": "Cenisz sprawiedliwe i uczciwe relacje i dotrzymujesz obietnic. Możesz wyrażać żal, prowadząc rachunki, i sprawiać, że druga osoba się kuli, więc ćwicz łagodne przekazywanie uczuć.",
+      "keywords": [
+        "Sprawiedliwość",
+        "Logika",
+        "Uczciwość",
+        "Odpowiedzialność",
+        "Równowaga"
+      ],
+      "strengths": [
+        "Poczucie równowagi, które sądzi obiektywnie",
+        "Stała uczciwość i zasadniczość",
+        "Sumienność w braniu odpowiedzialności za swoje czyny"
+      ],
+      "shadow": [
+        "Możesz wydawać się mało elastyczny",
+        "Możesz wydawać się chłodny lub sprawiać wrażenie osądzania innych",
+        "Możesz być zbyt surowy dla siebie"
+      ],
+      "career": {
+        "style": "Pasuje ci praca, w której sądzisz i wyważasz na podstawie kryteriów i dowodów.",
+        "fields": [
+          "Prawo",
+          "Księgowość i audyt",
+          "Administracja i służba publiczna",
+          "Recenzowanie i ocena",
+          "Mediacje i zgodność"
+        ],
+        "caution": "Aby nie przeoczyć okoliczności ludzi, potrzebujesz elastyczności w poruszaniu się między regułami a rzeczywistością."
+      },
+      "soul_note": null,
+      "year_theme": "Rok rozliczeń i przywracania równowagi. Dawne wybory mogą wrócić, więc starannie sprawdzaj umowy i obietnice i postępuj uczciwie."
+    },
+    "the-hanged-man": {
+      "name": "Wisielec",
+      "tagline": "Ktoś, kto odwraca perspektywę",
+      "personality": "Widzisz świat z własnego punktu widzenia, odmiennego od innych. Umiesz czekać bez pośpiechu i masz spokój, by cofnąć się o krok i spojrzeć na sytuację. Czasem dokonujesz trudnych do zrozumienia wyborów, które dziwią otoczenie.",
+      "life_lesson": "Twoje życie polega na poznaniu paradoksu, że trzeba puścić, by zyskać. Zadaniem jest odróżnianie czekania od unikania i wykorzystywanie czasu zatrzymania jako okazji do zdobycia nowego spojrzenia.",
+      "relationships": "Masz skłonność ustępować i czekać na drugą osobę. Jeśli nie wyrażasz własnych pragnień, może gromadzić się uraza, więc spróbuj wyrazić to, czego potrzebujesz.",
+      "keywords": [
+        "Oczekiwanie",
+        "Puszczanie",
+        "Nowe spojrzenie",
+        "Poświęcenie",
+        "Zatrzymanie"
+      ],
+      "strengths": [
+        "Elastyczny punkt widzenia, który odwraca rzeczy",
+        "Cierpliwość, by czekać długo",
+        "Odwaga puszczania przywiązania"
+      ],
+      "shadow": [
+        "Nawyk odkładania decyzji może sprawić, że przegapisz okazje",
+        "Możesz wpaść w mentalność ofiary",
+        "Możesz stać w miejscu, by uniknąć rzeczywistości"
+      ],
+      "career": {
+        "style": "Twoje mocne strony ujawniają się w pracy wymagającej oryginalnego spojrzenia lub cenienia głębi ponad szybkość.",
+        "fields": [
+          "Sztuka i praca twórcza",
+          "Badania",
+          "Poradnictwo i alternatywne uzdrawianie",
+          "Organizacje non profit i wolontariat",
+          "Dziedziny wymagające oryginalności"
+        ],
+        "caution": "Gdy wyniki przychodzą wolno, możesz obwiniać siebie, więc wyznacz etapy pośrednie."
+      },
+      "soul_note": null,
+      "year_theme": "Rok zatrzymania i zmiany perspektywy. Nawet jeśli wszystko wydaje się wolne, nie niecierpliw się; pomyśl, że obecne czekanie może przynieść ci nowe spojrzenie."
+    },
+    "death": {
+      "name": "Śmierć",
+      "tagline": "Ktoś, kto kończy i rodzi się na nowo",
+      "personality": "Masz skłonność przechodzić przez wielkie zmiany i przejścia w życiu więcej niż raz. Gdy uznasz to za konieczne, odważnie porządkujesz i wybierasz nowy początek. Bardziej niż powierzchnia zależy ci na istocie i szukasz głębokiej zmiany.",
+      "life_lesson": "Twoje życie polega na uczeniu się puszczania. Zadaniem jest przyjęcie, że koniec to inna nazwa nowego początku, i puszczanie z wdzięcznością tego, co minęło.",
+      "relationships": "Możesz kilkakrotnie przeżywać porządkowanie i kształtowanie na nowo relacji i szukać więzi niosących głęboką zmianę. Załatwianie spraw rozmową zamiast nagłego zerwania pozostawia mniej żalu.",
+      "keywords": [
+        "Zmiana",
+        "Porządkowanie",
+        "Przejście",
+        "Odrodzenie",
+        "Koniec"
+      ],
+      "strengths": [
+        "Odwaga przyjmowania zmiany",
+        "Stanowczość w usuwaniu tego, co zużyte",
+        "Odporność, by wstać ponownie po przeciwnościach"
+      ],
+      "shadow": [
+        "Możesz zbyt długo tkwić w żalu lub przywiązaniu",
+        "Przeciwnie, możesz zbyt pochopnie zrywać relacje lub porzucać pracę",
+        "Możesz być wrażliwy na stratę i czuć przygnębienie"
+      ],
+      "career": {
+        "style": "Twoje zdolności ujawniają się w pracy, w której usuwasz stare i zmieniasz strukturę.",
+        "fields": [
+          "Restrukturyzacja i doradztwo",
+          "Medycyna, poradnictwo i opieka paliatywna",
+          "Remonty i recykling",
+          "Zarządzanie kryzysowe",
+          "Coaching w okresie przejściowym"
+        ],
+        "caution": "Przyspieszanie zmiany może przeoczyć czas, którego inni potrzebują na przygotowanie, więc dopasuj tempo."
+      },
+      "soul_note": null,
+      "year_theme": "Rok porządkowania i przejścia. To może być czas zamknięcia starych nawyków, relacji lub pracy i otwarcia nowego rozdziału, więc nie bój się końców."
+    },
+    "temperance": {
+      "name": "Umiarkowanie",
+      "tagline": "Ktoś, kto łączy harmonię i równowagę",
+      "personality": "Jesteś spokojny i zrównoważoną postawą łączysz różne rzeczy. Zamiast pędzić ku skrajnościom, szukasz właściwego poziomu i budujesz wyniki powoli, z czasem. Bycie blisko ciebie zwykle uspokaja ludzi.",
+      "life_lesson": "Twoje życie polega na integrowaniu we własnym tempie bez pośpiechu. Zadaniem jest tworzenie harmonii, a jednocześnie wyraźne wybieranie i wyrażanie się, gdy trzeba.",
+      "relationships": "Spokojnie pośredniczysz w konfliktach i budujesz wygodne, trwałe relacje. Możesz wydawać się pozbawiony pasji, więc spróbuj okazywać uczucie w widoczny sposób.",
+      "keywords": [
+        "Harmonia",
+        "Umiar",
+        "Uzdrowienie",
+        "Cierpliwość",
+        "Integracja"
+      ],
+      "strengths": [
+        "Poczucie równowagi, które koordynuje różne elementy",
+        "Umiejętność pośredniczenia między ludźmi",
+        "Siła, która uspokaja i odnawia serce"
+      ],
+      "shadow": [
+        "Zbyt duża powściągliwość może sprawiać, że wydajesz się pozbawiony pasji",
+        "Możesz odkładać decyzje i pozostawać letni",
+        "Możesz mieć trudność w rozumieniu skrajnych opinii"
+      ],
+      "career": {
+        "style": "Pasuje ci praca, w której mieszasz i dostrajasz materiały i ludzi, by uzyskać dobre wyniki.",
+        "fields": [
+          "Terapia i rehabilitacja",
+          "Poradnictwo i coaching",
+          "Gotowanie, perfumiarstwo i komponowanie mieszanek",
+          "Dyplomacja i mediacje",
+          "Środowisko i dobrostan"
+        ],
+        "caution": "Jeśli nie wyrażasz wyraźnie swojego zdania, możesz stracić inicjatywę."
+      },
+      "soul_note": null,
+      "year_theme": "Rok przywracania równowagi. Sprawdź proporcje między pracą a odpoczynkiem oraz między relacjami a sobą i dostrajaj stopniowo w tempie, które cię nie zmusza."
+    },
+    "the-devil": {
+      "name": "Diabeł",
+      "tagline": "Ktoś, kto przejrzał pragnienie i uwikłanie",
+      "personality": "Masz silny urok i charyzmę i jesteś szczery wobec swoich pragnień. Łatwo dostrzegasz praktyczne korzyści i przyjemności i masz siłę przyciągania ludzi. Gdy serce skłania się ku czemuś, masz skłonność zanurzyć się głęboko.",
+      "life_lesson": "Twoje życie polega na dostrzeganiu tego, co cię wiąże, i przemianie tego w wybór. Zadaniem jest zrozumienie swoich pragnień i zdrowe radzenie sobie z nimi zamiast ich tłumienia.",
+      "relationships": "Odczuwasz silny pociąg i namiętność, ale mogą one zsunąć się w zaborczość lub zależność. Relacje stają się zdrowe, gdy szanuje się wzajemną wolność.",
+      "keywords": [
+        "Urok",
+        "Pragnienie",
+        "Przywiązanie",
+        "Realizm",
+        "Pokusa"
+      ],
+      "strengths": [
+        "Charyzma, która przyciąga ludzi",
+        "Szczerość, która nie ukrywa pragnień",
+        "Wyczucie, które odczytuje praktyczną korzyść"
+      ],
+      "shadow": [
+        "Możesz łatwo wpaść w przywiązanie lub uzależnienie",
+        "Możesz zostać związany z rzeczami materialnymi lub relacjami",
+        "Twoja potrzeba kontroli może rosnąć"
+      ],
+      "career": {
+        "style": "Twoje mocne strony ujawniają się w pracy, w której odczytujesz potrzeby ludzi, negocjujesz i przekonujesz.",
+        "fields": [
+          "Sprzedaż i marketing",
+          "Finanse i inwestycje",
+          "Media i rozrywka",
+          "Negocjacje i rozwój biznesu",
+          "Branża urodowa"
+        ],
+        "caution": "Jeśli zbytnio wiążesz się z wynikami i nagrodami, twój osąd może się zamglić, więc ustal kryteria z góry."
+      },
+      "soul_note": null,
+      "year_theme": "Rok badania pragnienia i uwikłania. Zauważ, co cię wiąże w wydatkach, nawykach i relacjach, i przemień to w wybór."
+    },
+    "the-tower": {
+      "name": "Wieża",
+      "tagline": "Ktoś, kto burzy i budzi się",
+      "personality": "Nie potrafisz ukrywać prawdy i mówisz wprost, a nie okrężnie. Masz skłonność przeżywać nagłe zmiany lub wstrząsy w życiu i bardzo rosnąć po nich. Ostro reagujesz na iluzję i pozory.",
+      "life_lesson": "Twoje życie polega na puszczeniu iluzji i zbudowaniu solidnego fundamentu. Zadaniem jest nauczyć się samemu porządkować, zanim uderzy zmiana, i odbudowywać na zawalonym gruncie.",
+      "relationships": "Możesz przeżywać szczere i dramatyczne relacje, a gdy coś wybuchnie, możesz zderzyć się mocno. Danie sobie trochę czasu przed mówieniem, gdy emocje rosną, może zmniejszyć zranienie.",
+      "keywords": [
+        "Wstrząs",
+        "Przebudzenie",
+        "Szczerość",
+        "Wyzwolenie",
+        "Punkt zwrotny"
+      ],
+      "strengths": [
+        "Odwaga stawienia czoła prawdzie",
+        "Odporność, by wstać ponownie po kryzysie",
+        "Innowacyjna energia, która łamie stare ramy"
+      ],
+      "shadow": [
+        "Możesz wybuchać impulsywnie i niszczyć relacje",
+        "Możesz powodować nagłe starcia",
+        "Utrzymanie stabilności przez długi czas może być trudne"
+      ],
+      "career": {
+        "style": "Twoje zdolności ujawniają się w szybko zmieniających się sytuacjach i w kryzysach.",
+        "fields": [
+          "Zarządzanie kryzysowe i reagowanie awaryjne",
+          "Innowacje i reformy",
+          "Architektura i remonty",
+          "Dziennikarstwo śledcze",
+          "Zarządzanie zmianą"
+        ],
+        "caution": "Gdy uczucia wyprzedzają, konflikt może rosnąć, więc przespij się z ważnymi decyzjami."
+      },
+      "soul_note": null,
+      "year_theme": "Rok, w którym stare się chwieje. Może przyjść niespodziewana zmiana, ale to także szansa na odbudowę, więc skup się na tym, co zachować, a nie na tym, co upada."
+    },
+    "the-star": {
+      "name": "Gwiazda",
+      "tagline": "Ktoś, kto niesie nadzieję i uzdrowienie",
+      "personality": "Jesteś czysty i optymistyczny, a przebywanie blisko ciebie rozjaśnia umysły ludzi. Twoje ideały i marzenia są wyraźne i nie wypuszczasz nadziei nawet w trudnych sytuacjach. Jesteś bogaty w inspirację i masz skłonność ciągnąć ku dziedzinom emocjonalnym.",
+      "life_lesson": "Twoje życie polega na przemienianiu wiary w działanie. Zadaniem jest realizowanie marzenia serca krok po kroku i pokazywanie światu swojego talentu.",
+      "relationships": "Traktujesz ludzi szczerze i budujesz ciepłe relacje, które koją rany. Możesz się rozczarować, oczekując ideału, więc patrz na prawdziwego człowieka takim, jaki jest.",
+      "keywords": [
+        "Nadzieja",
+        "Inspiracja",
+        "Uzdrowienie",
+        "Niewinność",
+        "Ideały"
+      ],
+      "strengths": [
+        "Nadzieja, która daje innym siłę",
+        "Inspiracja i wyobraźnia",
+        "Uzdrawiająca energia, która koi rany"
+      ],
+      "shadow": [
+        "Przepaść między ideałem a rzeczywistością może pozbawić cię chęci",
+        "Gdy oczekiwania legną w gruzach, możesz zamknąć serce",
+        "Możesz tylko biernie czekać"
+      ],
+      "career": {
+        "style": "Twoje mocne strony ujawniają się w pracy, która inspiruje i leczy serce.",
+        "fields": [
+          "Sztuka i muzyka",
+          "Uzdrawianie i poradnictwo",
+          "Astronomia i nauka",
+          "Treści i influencing",
+          "Środowisko i non profit"
+        ],
+        "caution": "Nie pozwól, by czas uciekał w mglistym oczekiwaniu; wyznacz małe cele do działania."
+      },
+      "soul_note": null,
+      "year_theme": "Rok powrotu do sił i nadziei. Trudne czasy mogą minąć, a serce się rozjaśnić, więc wyjmij jeszcze raz marzenie, które nosisz tak długo."
+    },
+    "the-moon": {
+      "name": "Księżyc",
+      "tagline": "Ktoś bogaty w uczucia i intuicję",
+      "personality": "Jesteś wrażliwy i masz żywą wyobraźnię. Czujnie odbierasz zmiany nastroju i uczuć i dostrzegasz doznania, które trudno ująć w słowa. Masz w sobie głęboki świat wyobraźni, więc możesz ciągnąć ku pracy twórczej i dziedzinom związanym ze snami.",
+      "life_lesson": "Twoje życie polega na stawieniu czoła lękowi i odróżnianiu uczucia od faktu. Zadaniem jest zaufanie intuicji w niepewności przy jednoczesnym weryfikowaniu tego, co można zweryfikować.",
+      "relationships": "Wrażliwie odczytujesz atmosferę i dobrze rozumiesz serce drugiej osoby, ale masz skłonność ukrywać własne. Relacje stają się łatwiejsze, gdy szczerze dzielisz się lękliwymi uczuciami zamiast pielęgnować je w samotności.",
+      "keywords": [
+        "Wrażliwość",
+        "Wyobraźnia",
+        "Intuicja",
+        "Lęk",
+        "Nieświadomość"
+      ],
+      "strengths": [
+        "Intuicja, która odczytuje subtelne emocje",
+        "Bogata wyobraźnia i kreatywność",
+        "Zdolność empatii wobec serc innych"
+      ],
+      "shadow": [
+        "Możesz cierpieć z powodu lęku lub zmiennych nastrojów",
+        "Unikając niepewności, możesz odkładać decyzje",
+        "Gdy wyobraźnia zajdzie za daleko, możesz mylić rzeczywistość z fantazją"
+      ],
+      "career": {
+        "style": "Twoje zdolności ujawniają się w pracy twórczej i empatycznej, w której liczą się wrażliwość i wyobraźnia.",
+        "fields": [
+          "Praca twórcza i pisanie",
+          "Film, fotografia i wideo",
+          "Psychologia i poradnictwo",
+          "Muzyka i projektowanie",
+          "Dziedziny związane ze snami i symbolami"
+        ],
+        "caution": "Gdy lęk jest duży, osąd może się zamglić, więc przed ważnymi decyzjami potwierdź fakty."
+      },
+      "soul_note": null,
+      "year_theme": "Rok pogłębiania się uczuć i intuicji. Gdy wzbiera lęk, odróżniaj wyobraźnię od faktu i porządkuj historie serca, zapisując je."
+    },
+    "the-sun": {
+      "name": "Słońce",
+      "tagline": "Ktoś, kto jasno świeci i daje życie otoczeniu",
+      "personality": "Jesteś jasny i szczery i niesiesz energię, która oświetla otoczenie. Jesteś optymistą i masz skłonność przyjmować trudności pozytywnie, a twoja bogata ekspresja sprawia, że łatwo cię polubić. Zachowujesz dziecięcą czystość i entuzjazm.",
+      "life_lesson": "Twoje życie polega na przyjmowaniu zarówno światła, jak i cienia. Gdy uznajesz nie tylko jasność, lecz także mroczne uczucia i słabości, możesz cieszyć się trwalszą radością.",
+      "relationships": "Tworzysz relacje szczerze, z ciepłym i otwartym sercem. Ćwiczenie słuchania drugiej osoby także w jej ciemne dni pogłębia relację.",
+      "keywords": [
+        "Witalność",
+        "Pozytywność",
+        "Szczerość",
+        "Sukces",
+        "Radość"
+      ],
+      "strengths": [
+        "Pozytywność, która daje witalność otoczeniu",
+        "Szczera i bogata ekspresja",
+        "Obecność, która zdobywa uznanie za wyniki"
+      ],
+      "shadow": [
+        "Nadmierny optymizm może skłaniać do lekceważenia ryzyka",
+        "Możesz próbować odwracać wzrok od mrocznych uczuć",
+        "Twoja potrzeba uznania może rosnąć"
+      ],
+      "career": {
+        "style": "Błyszczysz w pracy, w której przekazujesz energię przed ludźmi, a wyniki są widoczne.",
+        "fields": [
+          "Edukacja i dziedziny dziecięce",
+          "Media i rozrywka",
+          "Sport",
+          "Usługi i sprzedaż",
+          "Zdrowie i dobre samopoczucie"
+        ],
+        "caution": "Jeśli pewność siebie jest zbyt wysoka, możesz przeoczyć szczegóły, więc dodaj etap sprawdzania."
+      },
+      "soul_note": null,
+      "year_theme": "Rok witalności i wyników. Wysiłek, który włożyłeś, może pojawić się jako widoczne rezultaty, więc dziel się radością z otoczeniem i idź naprzód z ufnością."
+    },
+    "judgement": {
+      "name": "Sąd Ostateczny",
+      "tagline": "Ktoś, kto odpowiada na wezwanie i podnosi się ponownie",
+      "personality": "Jesteś refleksyjny i spoglądasz wstecz na swoje życie, by odnaleźć jego sens. W pewnym momencie życia masz skłonność odczuwać wezwanie, które mówi „to jest to, co mam robić”. Masz silną wolę, by uporządkować przeszłość i podnieść się na nowo.",
+      "life_lesson": "Twoje życie polega na uporządkowaniu przeszłości i odpowiedzi na wezwanie. Zadaniem jest przebaczenie sobie i innym oraz zrobienie kroku ku temu, co naprawdę chcesz robić.",
+      "relationships": "Pojednanie i przebaczenie stają się ważnym tematem relacji. Relacje odnawiają się, gdy załatwiasz dawne rany i mówisz szczerze z serca.",
+      "keywords": [
+        "Namysł",
+        "Powołanie",
+        "Przebaczenie",
+        "Przebudzenie",
+        "Nowy początek"
+      ],
+      "strengths": [
+        "Namysł, by spojrzeć wstecz na siebie",
+        "Serce, które przebacza i godzi się",
+        "Przebudzenie, które rozpoznaje twoje wezwanie i rusza w drogę"
+      ],
+      "shadow": [
+        "Nadmierna samokrytyka może zbyt mocno cię popychać",
+        "Możesz tkwić w przeszłości i nie iść naprzód",
+        "Możesz odkładać moment decyzji"
+      ],
+      "career": {
+        "style": "Pasuje ci praca, która ceni sens i powołanie i pomaga ludziom rosnąć.",
+        "fields": [
+          "Poradnictwo i uzdrawianie",
+          "Edukacja i coaching",
+          "Ruchy publiczne i społeczne",
+          "Prawo i mediacje",
+          "Media i public relations"
+        ],
+        "caution": "Czekanie na idealny moment może opóźnić twój początek, więc zacznij od małego działania."
+      },
+      "soul_note": null,
+      "year_theme": "Rok ponownej oceny i nowych początków. Dobry czas, by spojrzeć wstecz na minione dni, je uporządkować i wybrać nowe powołanie lub kierunek."
+    },
+    "the-world": {
+      "name": "Świat",
+      "tagline": "Ktoś, kto dopełnia i scala",
+      "personality": "Kończysz to, co zaczynasz, i dojrzale to scalasz. Twoje spojrzenie jest szerokie i otwarte na wielu ludzi i kultury, a gdy dopełniasz jeden etap, naturalnie przechodzisz do następnego świata. Sprawiasz wrażenie równowagi i stabilności.",
+      "life_lesson": "Twoje życie polega na łączeniu dopełnienia z nowymi początkami. Zadaniem jest pełne cieszenie się tym, co osiągnąłeś, i jednoczesne ponowne otwarcie serca na następną podróż.",
+      "relationships": "Budujesz dojrzałe, stabilne relacje i cieszysz się szerokim kręgiem więzi. Gdy relacja osiągnie pewien etap, pomaga wspólne wyznaczanie nowych celów.",
+      "keywords": [
+        "Dopełnienie",
+        "Osiągnięcie",
+        "Integracja",
+        "Dojrzałość",
+        "Rozszerzenie"
+      ],
+      "strengths": [
+        "Umiejętność doprowadzania rzeczy do końca",
+        "Umiejętność scalania różnych rzeczy",
+        "Szerokie i otwarte spojrzenie"
+      ],
+      "shadow": [
+        "Goniąc za doskonałością, możesz odkładać zamknięcie",
+        "Możesz czuć pustkę po osiągnięciu",
+        "Możesz osiąść w obecnym dopełnieniu"
+      ],
+      "career": {
+        "style": "Twoje mocne strony ujawniają się w pracy, w której scalasz wiele elementów i kończysz projekty.",
+        "fields": [
+          "Sprawy międzynarodowe i handel",
+          "Edukacja i badania",
+          "Zarządzanie i nadzór",
+          "Podróże i kultura",
+          "Sztuki zintegrowane i kierowanie projektami"
+        ],
+        "caution": "Aby nie stracić kierunku po osiągnięciu, wyobraź sobie z góry następne wyzwanie."
+      },
+      "soul_note": null,
+      "year_theme": "Rok dopełnienia i owoców. Możesz zamknąć długotrwałą pracę lub zakończyć etap, a wkrótce przygotowywać nowy początek."
+    }
+  },
+  "lang": "pl"
+}

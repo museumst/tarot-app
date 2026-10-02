@@ -1,0 +1,843 @@
+{
+  "_meta": {
+    "title": "Hướng dẫn lá bài sinh nhật",
+    "disclaimer": "Lời giải này dựa trên biểu tượng của các lá bài và không phải là bài kiểm tra tính cách khoa học. Nó chỉ là tham khảo để hiểu bản thân và không thay thế các quyết định nghề nghiệp hay những quyết định quan trọng khác.",
+    "deck_note": "Theo cách đánh số Waite (Rider-Waite): Sức Mạnh là 8 và Công Lý là 11. Tổng bằng 22 được đọc là Chàng Ngốc (0).",
+    "calculation": [
+      "Cộng tất cả các chữ số của ngày sinh viết thành tám chữ số (YYYYMMDD).",
+      "Nếu tổng lớn hơn 22, hãy cộng các chữ số của nó lần nữa cho đến khi được 22 hoặc nhỏ hơn.",
+      "Kết quả từ 1 đến 9 cho một lá bài duy nhất (tính cách và tâm hồn giống nhau). Kết quả từ 10 đến 22 cho lá bài tính cách của bạn, và tổng các chữ số của nó cho lá bài tâm hồn (nội tâm) của bạn.",
+      "Số 19 được đọc là ba lá bài: Mặt Trời (tính cách), Bánh Xe Vận Mệnh (ở giữa) và Nhà Ảo Thuật (tâm hồn). Số 22 được đọc là Chàng Ngốc (tính cách) và Hoàng Đế (tâm hồn)."
+    ],
+    "labels": {
+      "keywords": "Từ khóa",
+      "personality": "Tính cách và khí chất",
+      "strengths": "Điểm mạnh",
+      "shadow": "Mặt tối",
+      "life_lesson": "Bài học cuộc đời",
+      "relationships": "Phong cách trong các mối quan hệ",
+      "career": "Xu hướng nghề nghiệp",
+      "career_fields": "Lĩnh vực có thể hợp với bạn",
+      "career_caution": "Cần lưu ý",
+      "soul_note": "Khi là lá bài tâm hồn của bạn",
+      "year_theme": "Khi là lá bài của năm của bạn"
+    }
+  },
+  "cards": {
+    "the-fool": {
+      "name": "Chàng Ngốc",
+      "tagline": "Nhà thám hiểm muôn đời bước những bước đầu tiên không biên giới",
+      "personality": "Bạn có xu hướng tò mò và lạc quan, và không thích bị nhốt trong những khuôn khổ cố định. Bất kể tuổi tác, bạn giữ một phần trong sáng và tiến lại gần những nơi chốn và người lạ mà không ngần ngại. Bạn nghiêng về tin vào bản năng và dòng chảy hơn là kế hoạch, nên người xung quanh thấy bạn là người tự do và tươi mới.",
+      "life_lesson": "Cuộc đời bạn là học sự cân bằng giữa tự do và trách nhiệm. Hãy giữ nguyên sự háo hức của việc không biết mình đi đâu, nhưng hãy tập kiểm tra mặt đất dưới chân và chuẩn bị cho thực tế.",
+      "relationships": "Bạn thấy thoải mái trong những mối quan hệ nhẹ nhàng và tự do, không trói buộc bạn cũng không trói buộc đối phương. Bạn có thể ngần ngại trước cam kết sâu đậm, nhưng khi lòng tin lớn dần, bạn trở thành người đồng hành thẳng thắn và ấm áp hiếm có.",
+      "keywords": [
+        "Tự do",
+        "Tò mò",
+        "Ngây thơ",
+        "Phiêu lưu",
+        "Khởi đầu mới"
+      ],
+      "strengths": [
+        "Lòng can đảm bắt đầu mà không sợ hãi",
+        "Sự linh hoạt thích nghi nhanh với mọi môi trường",
+        "Sự hồn nhiên và hài hước khiến mọi người thoải mái"
+      ],
+      "shadow": [
+        "Bạn có thể lao vào mà không chuẩn bị và lặp lại những sai lầm tương tự",
+        "Bạn có thể bị hiểu lầm là xem nhẹ lời hứa hay trách nhiệm",
+        "Khi sự hào hứng ban đầu phai đi, bạn có thể mất hứng thú trước khi hoàn thành"
+      ],
+      "career": {
+        "style": "Bạn tỏa sáng trong môi trường có nhiều thử nghiệm mới và thay đổi, hơn là những quy trình cố định.",
+        "fields": [
+          "Du lịch và lữ hành",
+          "Khởi nghiệp và dự án giai đoạn đầu",
+          "Nghệ thuật và công việc sáng tạo",
+          "Làm tự do",
+          "Giáo dục trẻ em và trò chơi"
+        ],
+        "caution": "Thứ bậc nghiêm ngặt và công việc lặp đi lặp lại có thể nhanh chóng làm bạn kiệt sức."
+      },
+      "soul_note": null,
+      "year_theme": "Đây là năm bạn đứng trên một vạch xuất phát xa lạ. Thay vì chờ chuẩn bị hoàn hảo, hãy nhẹ nhàng bước bước đầu tiên, nhưng kiểm tra lại những quyết định thật sự quan trọng."
+    },
+    "the-magician": {
+      "name": "Nhà Ảo Thuật",
+      "tagline": "Người biến khả năng thành hiện thực bằng ý chí",
+      "personality": "Bạn nhanh trí, khéo tay hoặc khéo ăn nói, và khi đã có mục tiêu, bạn tìm ra cách để đạt được. Bạn có xu hướng tự tin và muốn tự mình dẫn dắt tình huống. Đầu óc bạn chạy nhanh nên bạn xử lý nhiều việc cùng lúc một cách dễ dàng.",
+      "life_lesson": "Cuộc đời bạn là làm rõ ý định: bạn sẽ dùng tài năng bẩm sinh của mình để làm gì? Khả năng càng lớn, càng quan trọng là sử dụng nó một cách có trách nhiệm.",
+      "relationships": "Bạn chinh phục trái tim bằng trò chuyện và ý tưởng. Nếu thôi thúc nắm quyền chủ động của bạn mạnh, đối phương có thể cảm thấy áp lực, nên hãy dành thời gian để lắng nghe nữa.",
+      "keywords": [
+        "Ý chí",
+        "Tài năng",
+        "Thực thi",
+        "Giao tiếp",
+        "Chủ động"
+      ],
+      "strengths": [
+        "Sức thực thi biến ý tưởng thành hiện thực",
+        "Kỹ năng giao tiếp giúp người khác hiểu và bị thuyết phục",
+        "Sự đa tài vượt qua nhiều lĩnh vực"
+      ],
+      "shadow": [
+        "Dựa vào tài năng, bạn có thể cố gắng qua mặt bằng mánh khóe",
+        "Sở thích của bạn có thể phân tán và làm yếu sự tập trung",
+        "Lời nói chạy trước hành động có thể khiến bạn mất lòng tin"
+      ],
+      "career": {
+        "style": "Điểm mạnh của bạn lộ ra trong công việc nơi bạn nghĩ ra ý tưởng, tự mình thực hiện và cho thấy kết quả.",
+        "fields": [
+          "Hoạch định và tiếp thị",
+          "Bán hàng và đàm phán",
+          "CNTT và phát triển",
+          "Diễn thuyết và sáng tạo nội dung",
+          "Khởi nghiệp"
+        ],
+        "caution": "Khi dồn quá nhiều dự án, việc hoàn tất chúng có thể trở thành điểm yếu của bạn."
+      },
+      "soul_note": "Dù bên ngoài trông thế nào, bên trong bạn có ý chí nói rằng \"mình làm được\" và sự tò mò về những khả năng mới. Trong lòng, bạn luôn muốn thử một điều gì đó mới.",
+      "year_theme": "Một năm tốt để mang tài năng và ý tưởng ra với thế giới. Có thể xuất hiện cơ hội bắt đầu điều mới hoặc thực sự áp dụng những gì bạn đã học."
+    },
+    "the-high-priestess": {
+      "name": "Nữ Tư Tế",
+      "tagline": "Người có trực giác biết sâu sắc mà không cần nói một lời",
+      "personality": "Bạn mang vẻ điềm tĩnh và bí ẩn, và không dễ để lộ điều trong lòng. Khả năng quan sát của bạn sắc bén, nên bạn dễ nắm bắt không khí và cảm xúc thật của mọi người. Dù không nói nhiều, bạn suy nghĩ sâu sắc, và có xu hướng lấy lại sức từ thời gian ở một mình.",
+      "life_lesson": "Cuộc đời bạn là tin vào tiếng nói bên trong và học cách nói nó thành lời. Nhiệm vụ là phân biệt sự yên tĩnh với sự cô lập, và mở cánh cửa lòng khi cần thiết.",
+      "relationships": "Bạn mở lòng chậm, nhưng một khi đã mở, bạn muốn có sự gắn kết cảm xúc sâu sắc. Bạn có thể mong đối phương nhận ra những cảm xúc bạn chưa từng nói ra; luyện tập bày tỏ làm các mối quan hệ dễ chịu hơn.",
+      "keywords": [
+        "Trực giác",
+        "Bí ẩn",
+        "Thấu hiểu",
+        "Im lặng",
+        "Thế giới nội tâm"
+      ],
+      "strengths": [
+        "Trực giác đọc được ý định ẩn giấu",
+        "Sự kín đáo trong việc giữ bí mật",
+        "Sự thấu hiểu sâu sắc nhìn thấy bản chất thay vì bề ngoài"
+      ],
+      "shadow": [
+        "Bạn có thể đóng lòng lại và giữ khoảng cách, trông lạnh lùng",
+        "Im lặng có thể gây ra hiểu lầm",
+        "Không tin vào trực giác của mình, bạn có thể trì hoãn quyết định"
+      ],
+      "career": {
+        "style": "Tài năng của bạn lộ ra trong công việc nơi bạn tự mình đào sâu và sắp xếp những thấu hiểu.",
+        "fields": [
+          "Nghiên cứu và phân tích",
+          "Tâm lý và tư vấn",
+          "Viết lách và dịch thuật",
+          "Thư viện và lưu trữ",
+          "Các lĩnh vực biểu tượng như tarot và chiêm tinh"
+        ],
+        "caution": "Nếu bạn không bao giờ nêu quan điểm, kết quả của bạn có thể không được chú ý, nên hãy tập thói quen chia sẻ những gì bạn tìm thấy."
+      },
+      "soul_note": "Dù bên ngoài trông hoạt bát, bên trong bạn có sự khôn ngoan lặng lẽ và một khung cảnh bí mật. Bạn là người gặp được con người thật của mình trong thời gian ở một mình.",
+      "year_theme": "Một năm để lắng nghe những tín hiệu bên trong hơn là tiếng ồn bên ngoài. Trực giác của bạn sắc bén hơn, nên đừng vội vàng; hãy ghi lại cảm nhận của bạn trong khi quyết định."
+    },
+    "the-empress": {
+      "name": "Hoàng Hậu",
+      "tagline": "Người nuôi dưỡng và chăm sóc, mang lại sự dồi dào",
+      "personality": "Bạn ấm áp và tốt bụng, và biết tận hưởng cuộc sống bằng cả năm giác quan. Bạn có sức hút ôm lấy những người ở gần và khiến họ thoải mái, cùng một cảm quan tinh tế với những điều đẹp, món ăn ngon và không gian dễ chịu. Tình cảm của bạn thường thu hút mọi người.",
+      "life_lesson": "Cuộc đời bạn là học sự cân bằng giữa cho đi và nhận lại. Nhiệm vụ là chăm sóc bản thân nhiều như chăm sóc người khác và tập nhận một cách tự nhiên.",
+      "relationships": "Bạn tình cảm và tận tụy, muốn ôm lấy bạn đời của mình. Khi kỳ vọng lớn dần, nỗi tủi thân có thể tích tụ, nên hãy nói thật lòng điều bạn muốn.",
+      "keywords": [
+        "Dồi dào",
+        "Chăm sóc",
+        "Nhạy cảm",
+        "Sáng tạo",
+        "Giác quan"
+      ],
+      "strengths": [
+        "Sự đồng cảm quan tâm và chăm sóc người khác",
+        "Sức sáng tạo tạo nên và nuôi lớn mọi thứ",
+        "Cảm quan làm phong phú không khí và không gian"
+      ],
+      "shadow": [
+        "Sự chăm sóc quá mức có thể bị cảm nhận như xen vào",
+        "Bạn có thể an phận trong sự thoải mái và trì hoãn thử thách",
+        "Có thể dẫn đến tâm trạng thất thường hoặc chi tiêu quá tay"
+      ],
+      "career": {
+        "style": "Bạn tìm thấy sự thỏa mãn trong công việc nơi bạn chăm chút nuôi lớn con người và thành quả.",
+        "fields": [
+          "Ẩm thực và nấu ăn",
+          "Thiết kế và nghệ thuật",
+          "Giáo dục và chăm sóc trẻ",
+          "Điều dưỡng và phúc lợi",
+          "Làm đẹp và cắm hoa"
+        ],
+        "caution": "Nếu cảm thấy không được công nhận, bạn có thể nhanh kiệt sức, nên hãy lưu lại thành quả của mình một cách dễ thấy."
+      },
+      "soul_note": "Bên trong bạn có mong muốn ấm áp được ôm lấy và nuôi dưỡng ai đó và khát khao sự dồi dào. Dù bên ngoài trông thờ ơ, sâu bên trong bạn là người rất giàu tình cảm.",
+      "year_theme": "Một năm của sự dồi dào và chăm sóc. Điều bạn dồn công sức vào giữa con người, công việc và sở thích có thể lớn lên thấy rõ, nên hãy chăm sóc cả cơ thể và tâm trí của mình."
+    },
+    "the-emperor": {
+      "name": "Hoàng Đế",
+      "tagline": "Người xây nền tảng bằng trật tự và trách nhiệm",
+      "personality": "Bạn thực tế và quyết đoán, giỏi dựng nên cấu trúc. Bạn cố gắng chịu trách nhiệm đến cùng với những gì được giao, và có xu hướng được đặt vào vai trò lãnh đạo một cách tự nhiên. Bạn hành động theo nguyên tắc và kế hoạch hơn là cảm xúc, tạo ấn tượng đáng tin cậy.",
+      "life_lesson": "Cuộc đời bạn là học sự cân bằng giữa kiểm soát và tin tưởng. Nhiệm vụ là tin tưởng và giao phó thay vì nắm chặt mọi thứ, và thừa nhận sự mong manh của chính mình.",
+      "relationships": "Bạn nhận vai người bảo vệ đáng tin cậy và coi trọng sự ổn định và lòng tin. Bạn có thể để lại cho người khác cảm giác rằng ít khi nói chuyện về cảm xúc; luyện tập bày tỏ tấm lòng sẽ giúp ích.",
+      "keywords": [
+        "Trật tự",
+        "Trách nhiệm",
+        "Lãnh đạo",
+        "Ổn định",
+        "Quyết đoán"
+      ],
+      "strengths": [
+        "Khả năng xây dựng và duy trì một hệ thống",
+        "Phán đoán nhanh và quyết đoán",
+        "Sự đáng tin cậy chịu trách nhiệm đến cùng"
+      ],
+      "shadow": [
+        "Bạn có thể cứng đầu và có nhu cầu kiểm soát mạnh",
+        "Khó bày tỏ cảm xúc có thể khiến bạn trông cứng nhắc",
+        "Bạn có thể tạo ấn tượng độc đoán"
+      ],
+      "career": {
+        "style": "Năng lực của bạn lộ ra trong những vai trò nơi bạn thiết kế tổ chức và lịch trình và chịu trách nhiệm về chúng.",
+        "fields": [
+          "Quản lý và hành chính",
+          "Công chức, quân đội và công an",
+          "Xây dựng và bất động sản",
+          "Tài chính",
+          "Luật và hành chính công"
+        ],
+        "caution": "Nếu bạn không thể chấp nhận người có quan điểm khác, năng lượng của nhóm bạn có thể giảm."
+      },
+      "soul_note": "Bên trong bạn có khát vọng mạnh mẽ xây dựng một nền tảng vững chắc và ý thức trách nhiệm. Dù bên ngoài trông hiền hòa, trong lòng bạn coi trọng trật tự và nguyên tắc.",
+      "year_theme": "Một năm đặt nền móng. Lập kế hoạch và đặt ra quy tắc để củng cố khung sườn cuộc sống và công việc sẽ giúp ích cho sự ổn định của bạn về sau."
+    },
+    "the-hierophant": {
+      "name": "Giáo Hoàng",
+      "tagline": "Người truyền lại truyền thống và giáo huấn",
+      "personality": "Bạn có niềm tin và giá trị rõ ràng và tôn trọng chuẩn mực và truyền thống. Bạn có mối quan tâm tự nhiên đến việc học và dạy, nên mọi người thường đến xin lời khuyên của bạn. Bạn toát ra bầu không khí ổn định và đáng tin cậy.",
+      "life_lesson": "Cuộc đời bạn là tiêu hóa những gì đã học thành lời của chính mình. Nhiệm vụ là tự chọn điều gì tiếp nối và điều gì thay đổi giữa truyền thống và là chính mình.",
+      "relationships": "Bạn chân thành, coi trọng lời hứa và các mối quan hệ lâu bền với gia đình. Chuẩn mực nghiêm ngặt có thể khiến người khác thấy ngột ngạt, nên bạn cần chỗ trống để chấp nhận những khác biệt.",
+      "keywords": [
+        "Truyền thống",
+        "Niềm tin",
+        "Giáo huấn",
+        "Tin cậy",
+        "Cộng đồng"
+      ],
+      "strengths": [
+        "Sự đáng tin cậy mà người khác có thể dựa vào",
+        "Khả năng giải thích rõ ràng những điều đã học",
+        "Ý thức trách nhiệm với cộng đồng và các mối quan hệ"
+      ],
+      "shadow": [
+        "Bạn có thể bám vào khuôn khổ và khó đón nhận cách làm mới",
+        "Bạn có thể quá bận tâm đến cái nhìn của người khác và lề thói",
+        "Bạn có thể cố gắng khớp với chuẩn mực thay vì nêu ý kiến của riêng mình"
+      ],
+      "career": {
+        "style": "Bạn hợp với công việc truyền đạt kiến thức và dẫn dắt con người trên nền tảng cấu trúc và lòng tin.",
+        "fields": [
+          "Giáo dục và giảng dạy",
+          "Tôn giáo và triết học",
+          "Tư vấn và cố vấn",
+          "Cơ quan công và hành chính",
+          "Luật"
+        ],
+        "caution": "Trong môi trường thay đổi nhanh, bạn cần sự linh hoạt để chấp nhận cách làm mới."
+      },
+      "soul_note": "Bên trong bạn có một trái tim tìm kiếm giáo huấn đáng tin và cảm giác thuộc về. Trong lòng bạn có những câu hỏi về đúng sai và về một cuộc đời có ý nghĩa.",
+      "year_theme": "Một năm của học hỏi và thuộc về. Có thể có duyên với thầy cô, người cố vấn và nhóm, nên hãy tập trung giữ quy tắc và lời hứa và xây dựng lòng tin."
+    },
+    "the-lovers": {
+      "name": "Đôi Tình Nhân",
+      "tagline": "Người hiểu bản thân qua lựa chọn và các mối quan hệ",
+      "personality": "Bạn rất quan tâm đến con người và các mối quan hệ, và dồn cả tấm lòng vào điều thu hút bạn. Sự đồng cảm của bạn mạnh, và bạn trân trọng sự hòa hợp khi hòa làm một với người khác. Vào những thời điểm quan trọng của cuộc đời, bạn có xu hướng đối mặt với những lựa chọn tùy thuộc vào giá trị của mình.",
+      "life_lesson": "Cuộc đời bạn là chọn điều trái tim muốn và chịu trách nhiệm về kết quả của lựa chọn ấy. Nhiệm vụ là tự hỏi, trong tình yêu, lựa chọn nào phù hợp với giá trị riêng của bạn.",
+      "relationships": "Các mối quan hệ nằm ở trung tâm cuộc sống của bạn, và bạn muốn sự gắn kết sâu sắc. Bạn dễ lý tưởng hóa rồi thất vọng, nên hãy tập nhìn đối phương như họ vốn có.",
+      "keywords": [
+        "Tình yêu",
+        "Lựa chọn",
+        "Hòa hợp",
+        "Giá trị",
+        "Quan hệ"
+      ],
+      "strengths": [
+        "Sự đồng cảm thấu hiểu trái tim người khác",
+        "Khả năng dẫn dắt các mối quan hệ đến hòa hợp",
+        "Sự chân thành đến từ trái tim"
+      ],
+      "shadow": [
+        "Bạn có thể do dự và trì hoãn quyết định",
+        "Bạn có thể phụ thuộc quá nhiều vào các mối quan hệ",
+        "Trái tim bạn có thể lung lay trước cám dỗ hay không khí"
+      ],
+      "career": {
+        "style": "Điểm mạnh của bạn lộ ra trong công việc kết nối con người và cùng nhau xây dựng điều gì đó.",
+        "fields": [
+          "Tư vấn và huấn luyện",
+          "Dịch vụ và tiếp đón",
+          "Hòa giải và nhân sự",
+          "Đám cưới và sự kiện",
+          "Kinh doanh dựa trên hợp tác"
+        ],
+        "caution": "Khi phải quyết định một mình, trái tim bạn có thể lung lay, nên hãy xác định trước tiêu chí của mình."
+      },
+      "soul_note": "Bên trong bạn có khát khao tình yêu đích thực và sự gắn kết sâu sắc. Trong lòng, bạn luôn tự hỏi: \"Đâu là lựa chọn thật sự của mình?\"",
+      "year_theme": "Một năm của lựa chọn và các mối quan hệ. Ở ngã rẽ hay trước một người quan trọng, hãy theo tiếng nói của trái tim, nhưng cũng hãy nghĩ đến trách nhiệm đi kèm với lựa chọn."
+    },
+    "the-chariot": {
+      "name": "Cỗ Xe",
+      "tagline": "Người đặt hướng đi bằng ý chí và lao tới",
+      "personality": "Bạn có quyết tâm mạnh mẽ và tiến lên đến cùng khi đã đặt mục tiêu. Bạn thích cạnh tranh và tìm thấy sự trọn vẹn khi tiến về hướng mình đã chọn. Bạn gom được những xung động trái ngược về một hướng, nên trông có ý chí mạnh mẽ.",
+      "life_lesson": "Cuộc đời bạn là điều hòa những lực đối nghịch (lý trí và cảm xúc, ham muốn và trách nhiệm) trong khi tiến lên. Hướng đi quan trọng ngang tốc độ, và nhiệm vụ là chọn đúng đích đến thay vì chỉ giành chiến thắng.",
+      "relationships": "Bạn có xu hướng dẫn dắt cả trong các mối quan hệ, nhưng có thể tránh nói về cảm xúc. Bạn thấy yên tâm bên cạnh người có thể cùng chạy với bạn về một hướng.",
+      "keywords": [
+        "Quyết tâm",
+        "Tinh thần cạnh tranh",
+        "Tự kiềm chế",
+        "Mục tiêu",
+        "Chiến thắng"
+      ],
+      "strengths": [
+        "Sức bứt phá tập trung vào một việc và đẩy nó đến cùng",
+        "Sự tự kiềm chế điều khiển được chính mình",
+        "Sự bền bỉ tạo ra kết quả trong cạnh tranh"
+      ],
+      "shadow": [
+        "Cạnh tranh quá mức có thể làm người xung quanh kiệt sức",
+        "Bạn có thể nén cảm xúc rồi bùng nổ một lúc",
+        "Không biết nghỉ ngơi, bạn có thể kiệt sức"
+      ],
+      "career": {
+        "style": "Năng lực của bạn lớn lên trong môi trường có mục tiêu rõ ràng, có cạnh tranh và kết quả thấy được.",
+        "fields": [
+          "Bán hàng",
+          "Thể thao và điền kinh",
+          "Vận tải và hậu cần",
+          "Quân đội và công an",
+          "Quản lý dự án"
+        ],
+        "caution": "Trong cuộc đua dài, sự kiệt sức có thể đến, nên hãy đưa việc nghỉ ngơi vào lịch của bạn."
+      },
+      "soul_note": "Bên trong bạn có ý chí mạnh mẽ muốn làm cho được và mong muốn được công nhận. Trong lòng, bạn luôn chạy về một nơi nào đó.",
+      "year_theme": "Một năm tăng tốc hướng tới mục tiêu. Nếu trước hết bạn xác định vững hướng đi, quyết tâm của bạn có thể dẫn tới kết quả lớn, nhưng hãy cẩn thận với việc quá tốc độ và quá sức."
+    },
+    "strength": {
+      "name": "Sức Mạnh",
+      "tagline": "Sức mạnh nội tâm điều khiển bằng sự dịu dàng",
+      "personality": "Bạn dịu dàng bên ngoài nhưng vững vàng bên trong. Bạn có sức mạnh giữ bình tĩnh và chịu đựng trước những cuộc khủng hoảng lớn và làn sóng cảm xúc. Bạn có xu hướng xử lý tình huống và con người bằng cách thấu hiểu và xoa dịu thay vì áp đảo.",
+      "life_lesson": "Cuộc đời bạn là xây dựng một sức mạnh thuần hóa thay vì đàn áp. Nhiệm vụ là xem nỗi sợ và xung động không phải kẻ thù mà thấu hiểu chúng, và tập tin vào bản thân.",
+      "relationships": "Bạn khoan dung và hóa giải xung đột một cách dịu dàng. Bạn có thể dễ kiệt sức khi tận tụy vì ai đó, nên hãy nói thật những giới hạn và nhu cầu của chính mình.",
+      "keywords": [
+        "Can đảm",
+        "Kiên nhẫn",
+        "Dịu dàng",
+        "Tin vào bản thân",
+        "Điềm tĩnh"
+      ],
+      "strengths": [
+        "Sự kiên nhẫn và bền bỉ để chịu đựng lâu dài",
+        "Sự lãnh đạo dịu dàng dẫn dắt bằng đồng cảm",
+        "Sự điềm tĩnh không lay chuyển ngay cả trong khủng hoảng"
+      ],
+      "shadow": [
+        "Bạn có thể chịu đựng cho đến khi đột ngột cạn sức",
+        "Khi sự tự tin giảm, bạn có thể co mình lại",
+        "Bạn có thể nén cảm xúc và đau khổ trong lòng"
+      ],
+      "career": {
+        "style": "Điểm mạnh của bạn lộ ra trong công việc nơi bạn xử lý con người hoặc những tình huống khó khăn bằng sự kiên trì và chăm chút.",
+        "fields": [
+          "Tư vấn và chữa lành",
+          "Điều dưỡng, chăm sóc và phục hồi chức năng",
+          "Giáo dục và huấn luyện",
+          "Công việc liên quan đến động vật",
+          "Ứng phó khủng hoảng và an toàn"
+        ],
+        "caution": "Bạn có thể bị hao mòn khi gánh nhiều hơn phần của mình, nên hãy xác định ranh giới vai trò của bạn."
+      },
+      "soul_note": "Bên trong bạn ẩn chứa lòng can đảm và sự ấm áp mạnh hơn bất cứ ai. Trong lòng, bạn đang xoa dịu nỗi sợ và xung động và điều khiển bản thân.",
+      "year_theme": "Một năm của kiên nhẫn và tin vào bản thân. Ngay cả khi mọi chuyện khó khăn, xử lý chúng một cách dịu dàng và không vội vàng có thể đưa bạn đi xa hơn."
+    },
+    "the-hermit": {
+      "name": "Ẩn Sĩ",
+      "tagline": "Người tìm kiếm đào sâu một mình",
+      "personality": "Bạn thận trọng và độc lập, và coi trọng thời gian suy nghĩ một mình. Thay vì nổi bật, bạn đào sâu vào một lĩnh vực và xây dựng tiêu chuẩn riêng. Bạn ít nói, nhưng mỗi lời đều có trọng lượng.",
+      "life_lesson": "Cuộc đời bạn là chia sẻ trí tuệ đã có thay vì giữ cho riêng mình. Nhiệm vụ là phân biệt cô độc với đứt kết nối, và bước một bước về phía thế giới khi cần.",
+      "relationships": "Bạn xây dựng những mối quan hệ sâu sắc và lâu bền với một vài người. Nếu bạn giải thích trước rằng mình cần thời gian một mình, bạn có thể giảm bớt hiểu lầm.",
+      "keywords": [
+        "Suy ngẫm",
+        "Độc lập",
+        "Tìm tòi",
+        "Trí tuệ",
+        "Cô độc"
+      ],
+      "strengths": [
+        "Chuyên môn đào sâu vào một vấn đề",
+        "Những tiêu chuẩn riêng không lay chuyển của bạn",
+        "Sự thấu hiểu nhìn tình huống từ xa"
+      ],
+      "shadow": [
+        "Bạn có thể bị cô lập vì ở một mình",
+        "Bạn có thể giữ mọi thứ trong lòng thay vì nhờ giúp đỡ",
+        "Bạn có thể nghiêng về chủ nghĩa hoàn hảo hay bi quan quá mức"
+      ],
+      "career": {
+        "style": "Bạn tỏa sáng trong công việc nơi bạn nghiên cứu sâu và xây dựng chuyên môn một cách độc lập.",
+        "fields": [
+          "Nghiên cứu và học thuật",
+          "Viết lách và trước tác",
+          "Phát triển và kỹ thuật",
+          "Thủ công và nghề thủ công",
+          "Phân tích và tư vấn"
+        ],
+        "caution": "Nếu bạn không cho mọi người biết kết quả, giá trị của chúng có thể không được thấy, nên hãy tạo cơ hội để chia sẻ."
+      },
+      "soul_note": "Bên trong bạn có tinh thần tìm tòi lặng lẽ đi tìm chân lý và ý nghĩa. Ngay cả giữa mọi người, trong lòng bạn bước đi một mình, soi sáng con đường.",
+      "year_theme": "Một năm sắp xếp và suy ngẫm một mình. Chậm lại và dành thời gian cho việc học hoặc những câu hỏi nội tâm sẽ làm rõ hướng đi của bước tiếp theo."
+    },
+    "wheel-of-fortune": {
+      "name": "Bánh Xe Vận Mệnh",
+      "tagline": "Người cưỡi trên dòng chảy của thay đổi",
+      "personality": "Bạn nhạy cảm với dòng chảy của cuộc sống và sự thay đổi, và nắm bắt cơ hội tốt khi chúng đến. Bạn lạc quan, nên ngay cả giữa thăng trầm, bạn vẫn chịu đựng với niềm tin rằng mọi thứ sẽ quay trở lại. Bạn có tầm nhìn rộng về bức tranh lớn, và khá thường xuyên được may mắn và thời điểm cuốn đi.",
+      "life_lesson": "Cuộc đời bạn là giữ vững trung tâm giữa lên xuống. Nhiệm vụ là phân biệt điều bạn có thể thay đổi với điều không thể, và phát triển năng lực từ trước cho lúc dòng chảy đến.",
+      "relationships": "Bạn coi trọng thời điểm của những cuộc gặp và có thể trải qua những lần gặp gỡ và chia tay đầy kịch tính. Thay đổi thường xuyên có thể gây lo lắng về sự ổn định, nên hãy tập đưa ra tín hiệu nhất quán cho người bạn đời.",
+      "keywords": [
+        "Thay đổi",
+        "Thời điểm",
+        "Cơ hội",
+        "Chu kỳ",
+        "May mắn"
+      ],
+      "strengths": [
+        "Sự linh hoạt thích nghi với thay đổi",
+        "Cảm quan nhận ra cơ hội",
+        "Sự lạc quan không mất đi giữa thăng trầm"
+      ],
+      "shadow": [
+        "Bạn có thể dựa vào may mắn và xao nhãng chuẩn bị",
+        "Tâm trạng bạn có thể dao động mạnh theo thăng trầm",
+        "Bạn có thể thấy lo lắng về những điều không kiểm soát được"
+      ],
+      "career": {
+        "style": "Điểm mạnh của bạn lộ ra trong công việc nhiều thay đổi, nơi đọc được dòng chảy.",
+        "fields": [
+          "Thương mại và phân phối",
+          "Đầu tư và tài chính",
+          "Sự kiện và du lịch",
+          "Phân tích xu hướng",
+          "Hoạt động kinh doanh mới nhiều thay đổi"
+        ],
+        "caution": "Đặt cược quá nhiều vào một cơ hội duy nhất là rủi ro, nên hãy phân tán."
+      },
+      "soul_note": "Bên trong bạn có sự tò mò về nơi cuộc sống sẽ chảy tới và một trái tim chấp nhận thay đổi. Khi xuất hiện như lá bài ở giữa, nó cho bạn biết rằng may mắn và thời điểm là một chủ đề lớn trong cuộc đời bạn.",
+      "year_theme": "Một năm dòng chảy đổi hướng. Có thể có cơ hội hay bước ngoặt bất ngờ đến, nên hãy đón nhận với tâm trí cởi mở và nhớ rằng bạn chỉ nắm được bấy nhiêu điều mình đã chuẩn bị."
+    },
+    "justice": {
+      "name": "Công Lý",
+      "tagline": "Người coi trọng sự công bằng và cân bằng",
+      "personality": "Bạn logic và trung thực và nhạy cảm với đúng và sai. Bạn cố gắng phán đoán theo sự thật và nguyên tắc thay vì để cảm xúc cuốn đi. Bạn coi trọng lời hứa và quy tắc và có xu hướng chịu trách nhiệm về hành động của mình.",
+      "life_lesson": "Cuộc đời bạn là học sự cân bằng giữa công bằng và lòng thương xót. Nhiệm vụ là áp dụng cho bản thân cùng tiêu chuẩn công bằng và rộng lượng mà bạn dành cho người khác.",
+      "relationships": "Bạn coi trọng các mối quan hệ công bằng và trung thực và giữ lời hứa. Bạn có thể bày tỏ nỗi buồn bằng cách tính toán từng chút và khiến đối phương co lại, nên hãy tập truyền đạt cảm xúc một cách nhẹ nhàng.",
+      "keywords": [
+        "Công bằng",
+        "Logic",
+        "Trung thực",
+        "Trách nhiệm",
+        "Cân bằng"
+      ],
+      "strengths": [
+        "Cảm quan cân bằng phán đoán một cách khách quan",
+        "Sự trung thực và nguyên tắc nhất quán",
+        "Sự cần mẫn chịu trách nhiệm về hành động của mình"
+      ],
+      "shadow": [
+        "Bạn có thể trông thiếu linh hoạt",
+        "Bạn có thể trông lạnh lùng hoặc tạo ấn tượng phán xét người khác",
+        "Bạn có thể quá khắt khe với bản thân"
+      ],
+      "career": {
+        "style": "Bạn hợp với công việc nơi bạn phán đoán và điều chỉnh dựa trên tiêu chuẩn và bằng chứng.",
+        "fields": [
+          "Luật",
+          "Kế toán và kiểm toán",
+          "Hành chính và công vụ",
+          "Thẩm định và đánh giá",
+          "Hòa giải và tuân thủ"
+        ],
+        "caution": "Để không bỏ sót hoàn cảnh của con người, bạn cần sự linh hoạt để đi lại giữa quy tắc và thực tế."
+      },
+      "soul_note": null,
+      "year_theme": "Một năm thanh toán và khôi phục cân bằng. Những lựa chọn trong quá khứ có thể quay lại, nên hãy kiểm tra cẩn thận hợp đồng và lời hứa và hành xử trung thực."
+    },
+    "the-hanged-man": {
+      "name": "Người Treo Ngược",
+      "tagline": "Người đảo ngược góc nhìn",
+      "personality": "Bạn nhìn thế giới từ một góc nhìn riêng, khác với người khác. Bạn biết chờ đợi mà không vội, và có sự bình thản để lùi một bước và quan sát tình huống. Đôi khi bạn đưa ra những lựa chọn khó hiểu khiến người xung quanh bối rối.",
+      "life_lesson": "Cuộc đời bạn là học nghịch lý rằng phải buông mới được. Nhiệm vụ là phân biệt chờ đợi với né tránh và dùng những lúc tạm dừng như cơ hội để có cái nhìn mới.",
+      "relationships": "Bạn có xu hướng nhường nhịn và chờ đối phương. Nếu bạn không nói ra mong muốn của mình, sự bực bội có thể tích tụ, nên hãy thử bày tỏ điều bạn cần.",
+      "keywords": [
+        "Chờ đợi",
+        "Buông bỏ",
+        "Góc nhìn mới",
+        "Hy sinh",
+        "Tạm dừng"
+      ],
+      "strengths": [
+        "Góc nhìn linh hoạt đảo ngược mọi thứ",
+        "Sự kiên nhẫn chờ đợi lâu",
+        "Lòng can đảm buông bỏ sự bám víu"
+      ],
+      "shadow": [
+        "Thói quen trì hoãn quyết định có thể khiến bạn lỡ cơ hội",
+        "Bạn có thể rơi vào tâm lý nạn nhân",
+        "Bạn có thể đứng yên để né tránh thực tế"
+      ],
+      "career": {
+        "style": "Điểm mạnh của bạn lộ ra trong công việc cần góc nhìn độc đáo hoặc coi trọng chiều sâu hơn tốc độ.",
+        "fields": [
+          "Nghệ thuật và công việc sáng tạo",
+          "Nghiên cứu",
+          "Tư vấn và chữa lành thay thế",
+          "Phi lợi nhuận và tình nguyện",
+          "Các lĩnh vực đòi hỏi tính độc đáo"
+        ],
+        "caution": "Khi kết quả đến chậm, bạn có thể tự trách, nên hãy đặt các cột mốc trung gian."
+      },
+      "soul_note": null,
+      "year_theme": "Một năm tạm dừng và chuyển góc nhìn. Dù mọi thứ có vẻ chậm, đừng sốt ruột; hãy nghĩ rằng sự chờ đợi hiện tại có thể mang lại cho bạn một góc nhìn mới."
+    },
+    "death": {
+      "name": "Thần Chết",
+      "tagline": "Người kết thúc và tái sinh",
+      "personality": "Bạn có xu hướng trải qua những thay đổi và chuyển tiếp lớn trong đời hơn một lần. Khi thấy cần thiết, bạn dọn dẹp một cách táo bạo và chọn khởi đầu mới. Bạn quan tâm đến bản chất hơn bề mặt và tìm kiếm sự thay đổi sâu sắc.",
+      "life_lesson": "Cuộc đời bạn là học cách buông bỏ. Nhiệm vụ là chấp nhận rằng kết thúc là tên gọi khác của một khởi đầu mới và buông bỏ những gì đã qua bằng lòng biết ơn.",
+      "relationships": "Bạn có thể nhiều lần trải qua việc dọn dẹp và định hình lại các mối quan hệ và tìm kiếm những gắn kết mang lại thay đổi sâu sắc. Giải quyết mọi chuyện bằng trò chuyện thay vì cắt đứt đột ngột sẽ để lại ít tiếc nuối hơn.",
+      "keywords": [
+        "Thay đổi",
+        "Dọn dẹp",
+        "Chuyển tiếp",
+        "Tái sinh",
+        "Kết thúc"
+      ],
+      "strengths": [
+        "Lòng can đảm chấp nhận thay đổi",
+        "Sự quyết đoán dọn bỏ những gì đã cũ mòn",
+        "Khả năng hồi phục đứng dậy trở lại sau nghịch cảnh"
+      ],
+      "shadow": [
+        "Bạn có thể ở lại quá lâu trong nuối tiếc hay bám víu",
+        "Ngược lại, bạn có thể cắt đứt các mối quan hệ hay công việc quá vội vàng",
+        "Bạn có thể nhạy cảm với mất mát và cảm thấy chán nản"
+      ],
+      "career": {
+        "style": "Năng lực của bạn lộ ra trong công việc nơi bạn dọn bỏ cái cũ và thay đổi cấu trúc.",
+        "fields": [
+          "Tái cấu trúc và tư vấn",
+          "Y học, tư vấn và chăm sóc cuối đời",
+          "Cải tạo và tái chế",
+          "Quản lý khủng hoảng",
+          "Huấn luyện giai đoạn chuyển tiếp"
+        ],
+        "caution": "Vội vã thay đổi có thể bỏ qua thời gian người khác cần để chuẩn bị, nên hãy điều chỉnh nhịp độ."
+      },
+      "soul_note": null,
+      "year_theme": "Một năm dọn dẹp và chuyển tiếp. Có thể là lúc khép lại những thói quen, mối quan hệ hay công việc cũ và mở ra một chương mới, nên đừng sợ những điều kết thúc."
+    },
+    "temperance": {
+      "name": "Sự Điều Độ",
+      "tagline": "Người hòa quyện sự hài hòa và cân bằng",
+      "personality": "Bạn điềm tĩnh, và bằng thái độ cân bằng bạn gắn kết những điều khác nhau. Thay vì lao vào cực đoan, bạn tìm mức độ vừa phải và xây dựng kết quả từ từ theo thời gian. Ở gần bạn thường làm lòng người yên ổn.",
+      "life_lesson": "Cuộc đời bạn là hội nhập theo nhịp độ riêng mà không vội. Nhiệm vụ là tạo hài hòa đồng thời lựa chọn và bày tỏ rõ ràng khi cần.",
+      "relationships": "Bạn hòa giải xung đột một cách điềm tĩnh và xây dựng những mối quan hệ dễ chịu và lâu bền. Bạn có thể trông thiếu đam mê, nên hãy thử thể hiện tình cảm theo những cách thấy được.",
+      "keywords": [
+        "Hài hòa",
+        "Điều độ",
+        "Chữa lành",
+        "Kiên nhẫn",
+        "Hội nhập"
+      ],
+      "strengths": [
+        "Cảm quan cân bằng phối hợp những yếu tố khác nhau",
+        "Khả năng làm trung gian giữa mọi người",
+        "Sức mạnh xoa dịu và phục hồi trái tim"
+      ],
+      "shadow": [
+        "Quá kiềm chế có thể khiến bạn trông thiếu đam mê",
+        "Bạn có thể trì hoãn quyết định và cứ ậm ừ",
+        "Bạn có thể khó hiểu những ý kiến cực đoan"
+      ],
+      "career": {
+        "style": "Bạn hợp với công việc nơi bạn pha trộn và điều chỉnh vật liệu và con người để tạo ra kết quả tốt.",
+        "fields": [
+          "Trị liệu và phục hồi chức năng",
+          "Tư vấn và huấn luyện",
+          "Nấu ăn, nước hoa và pha chế",
+          "Ngoại giao và hòa giải",
+          "Môi trường và sức khỏe tinh thần"
+        ],
+        "caution": "Nếu bạn không nêu rõ quan điểm của mình, bạn có thể mất quyền chủ động."
+      },
+      "soul_note": null,
+      "year_theme": "Một năm khôi phục cân bằng. Hãy kiểm tra tỷ lệ giữa công việc và nghỉ ngơi, giữa các mối quan hệ và bản thân, rồi điều chỉnh từng chút một với nhịp độ không gượng ép."
+    },
+    "the-devil": {
+      "name": "Ác Quỷ",
+      "tagline": "Người nhìn thấu ham muốn và sự vướng mắc",
+      "personality": "Bạn có sức hút và sức cuốn hút mạnh và thành thật với ham muốn của mình. Bạn dễ nhận ra lợi ích và niềm vui thiết thực, và có sức kéo mọi người lại. Khi trái tim hướng về điều gì, bạn có xu hướng lao vào sâu.",
+      "life_lesson": "Cuộc đời bạn là nhận ra điều đang trói buộc mình và biến nó thành lựa chọn. Nhiệm vụ là thấu hiểu ham muốn của mình và xử lý chúng một cách lành mạnh thay vì đè nén.",
+      "relationships": "Bạn cảm thấy sức hút và đam mê mạnh mẽ, nhưng chúng có thể trượt sang tính chiếm hữu hay phụ thuộc. Các mối quan hệ trở nên lành mạnh khi tôn trọng tự do của nhau.",
+      "keywords": [
+        "Sức hút",
+        "Ham muốn",
+        "Bám víu",
+        "Thực tế",
+        "Cám dỗ"
+      ],
+      "strengths": [
+        "Sức cuốn hút kéo mọi người lại",
+        "Sự thành thật không che giấu ham muốn",
+        "Cảm quan đọc được lợi ích thiết thực"
+      ],
+      "shadow": [
+        "Bạn có thể dễ sa vào bám víu hay nghiện ngập",
+        "Bạn có thể bị trói buộc vào vật chất hay các mối quan hệ",
+        "Nhu cầu kiểm soát của bạn có thể lớn lên"
+      ],
+      "career": {
+        "style": "Điểm mạnh của bạn lộ ra trong công việc nơi bạn đọc nhu cầu của con người, đàm phán và thuyết phục.",
+        "fields": [
+          "Bán hàng và tiếp thị",
+          "Tài chính và đầu tư",
+          "Truyền thông và giải trí",
+          "Đàm phán và phát triển kinh doanh",
+          "Ngành làm đẹp"
+        ],
+        "caution": "Nếu bạn quá gắn với kết quả và phần thưởng, phán đoán của bạn có thể mờ đi, nên hãy xác định trước tiêu chí."
+      },
+      "soul_note": null,
+      "year_theme": "Một năm xem xét ham muốn và sự vướng mắc. Hãy nhận ra điều đang trói buộc bạn trong chi tiêu, thói quen và các mối quan hệ, rồi biến nó thành lựa chọn."
+    },
+    "the-tower": {
+      "name": "Tòa Tháp",
+      "tagline": "Người phá đổ và thức tỉnh",
+      "personality": "Bạn không thể giấu sự thật và nói thẳng thay vì vòng vo. Bạn có xu hướng trải qua những thay đổi đột ngột hay cú sốc trong đời rồi trưởng thành nhiều sau đó. Bạn phản ứng nhạy bén với ảo tưởng và sự giả tạo.",
+      "life_lesson": "Cuộc đời bạn là buông bỏ ảo tưởng và xây dựng nền tảng vững chắc. Nhiệm vụ là học cách tự dọn dẹp trước khi thay đổi ập đến, và xây lại trên nền đất đã sụp.",
+      "relationships": "Bạn có thể trải qua những mối quan hệ thẳng thắn và kịch tính, và khi đã bùng nổ, bạn có thể va chạm mạnh. Dành một chút thời gian trước khi nói khi cảm xúc dâng lên có thể giảm tổn thương.",
+      "keywords": [
+        "Biến động",
+        "Thức tỉnh",
+        "Thẳng thắn",
+        "Giải phóng",
+        "Bước ngoặt"
+      ],
+      "strengths": [
+        "Lòng can đảm đối diện sự thật",
+        "Khả năng hồi phục đứng dậy trở lại sau khủng hoảng",
+        "Năng lượng đổi mới phá vỡ khuôn khổ cũ"
+      ],
+      "shadow": [
+        "Bạn có thể bùng nổ bốc đồng và làm tổn hại các mối quan hệ",
+        "Bạn có thể gây ra những va chạm đột ngột",
+        "Có thể khó giữ sự ổn định lâu dài"
+      ],
+      "career": {
+        "style": "Năng lực của bạn lộ ra trong những tình huống thay đổi nhanh và trong khủng hoảng.",
+        "fields": [
+          "Quản lý khủng hoảng và ứng phó khẩn cấp",
+          "Đổi mới và cải cách",
+          "Kiến trúc và cải tạo",
+          "Báo chí điều tra",
+          "Quản lý thay đổi"
+        ],
+        "caution": "Khi cảm xúc đi trước, xung đột có thể lớn lên, nên hãy ngủ một đêm trước những quyết định quan trọng."
+      },
+      "soul_note": null,
+      "year_theme": "Một năm cái cũ lung lay. Có thể có thay đổi bất ngờ, nhưng đó cũng là cơ hội để xây dựng lại, nên hãy tập trung vào điều cần giữ hơn là điều đang đổ."
+    },
+    "the-star": {
+      "name": "Ngôi Sao",
+      "tagline": "Người mang đến hy vọng và chữa lành",
+      "personality": "Bạn trong sáng và lạc quan, và ở gần bạn làm tâm trí mọi người trở nên trong trẻo. Lý tưởng và ước mơ của bạn rõ ràng, và bạn không buông hy vọng ngay cả trong hoàn cảnh khó khăn. Bạn giàu cảm hứng và có xu hướng bị cuốn hút vào những lĩnh vực cảm xúc.",
+      "life_lesson": "Cuộc đời bạn là biến niềm tin thành hành động. Nhiệm vụ là hiện thực hóa ước mơ trong lòng từng bước một và cho thế giới thấy tài năng của bạn.",
+      "relationships": "Bạn đối xử với mọi người chân thành và xây dựng những mối quan hệ ấm áp xoa dịu vết thương. Bạn có thể thất vọng khi kỳ vọng một hình mẫu lý tưởng, nên hãy nhìn người thật như họ vốn có.",
+      "keywords": [
+        "Hy vọng",
+        "Cảm hứng",
+        "Chữa lành",
+        "Ngây thơ",
+        "Lý tưởng"
+      ],
+      "strengths": [
+        "Hy vọng trao sức mạnh cho người khác",
+        "Cảm hứng và trí tưởng tượng",
+        "Năng lượng chữa lành xoa dịu vết thương"
+      ],
+      "shadow": [
+        "Khoảng cách giữa lý tưởng và thực tế có thể khiến bạn mất động lực",
+        "Khi kỳ vọng tan vỡ, bạn có thể đóng lòng lại",
+        "Bạn có thể chỉ chờ đợi một cách thụ động"
+      ],
+      "career": {
+        "style": "Điểm mạnh của bạn lộ ra trong công việc truyền cảm hứng và chữa lành trái tim.",
+        "fields": [
+          "Nghệ thuật và âm nhạc",
+          "Chữa lành và tư vấn",
+          "Thiên văn và khoa học",
+          "Nội dung và người có ảnh hưởng",
+          "Môi trường và phi lợi nhuận"
+        ],
+        "caution": "Đừng để thời gian trôi qua trong sự chờ đợi mơ hồ; hãy đặt những mục tiêu hành động nhỏ."
+      },
+      "soul_note": null,
+      "year_theme": "Một năm hồi phục và hy vọng. Những thời kỳ khó khăn có thể qua đi và lòng bạn trong trẻo hơn, nên hãy lấy ra một lần nữa ước mơ bạn đã giữ bấy lâu."
+    },
+    "the-moon": {
+      "name": "Mặt Trăng",
+      "tagline": "Người giàu cảm xúc và trực giác",
+      "personality": "Bạn nhạy cảm và có trí tưởng tượng sống động. Bạn nhạy với những thay đổi của không khí và cảm xúc và nhận ra những cảm giác khó diễn đạt bằng lời. Bạn có một thế giới tưởng tượng sâu thẳm bên trong, nên có thể bị cuốn hút vào công việc sáng tạo và những lĩnh vực liên quan đến giấc mơ.",
+      "life_lesson": "Cuộc đời bạn là đối diện nỗi sợ và phân biệt cảm giác với sự thật. Nhiệm vụ là tin vào trực giác giữa sự bất định đồng thời kiểm chứng những gì có thể kiểm chứng.",
+      "relationships": "Bạn đọc không khí một cách nhạy cảm và hiểu rõ trái tim đối phương, nhưng có xu hướng giấu trái tim của mình. Các mối quan hệ trở nên dễ dàng hơn khi bạn chia sẻ thành thật những cảm xúc lo âu thay vì nuôi chúng một mình.",
+      "keywords": [
+        "Nhạy cảm",
+        "Trí tưởng tượng",
+        "Trực giác",
+        "Lo âu",
+        "Vô thức"
+      ],
+      "strengths": [
+        "Trực giác đọc được những cảm xúc tinh tế",
+        "Trí tưởng tượng và sáng tạo phong phú",
+        "Khả năng đồng cảm với trái tim người khác"
+      ],
+      "shadow": [
+        "Bạn có thể khổ sở vì lo âu hay tâm trạng thất thường",
+        "Né tránh sự bất định, bạn có thể trì hoãn quyết định",
+        "Khi trí tưởng tượng đi quá xa, bạn có thể lẫn lộn thực tế và ảo mộng"
+      ],
+      "career": {
+        "style": "Năng lực của bạn lộ ra trong công việc sáng tạo và đồng cảm, nơi sự nhạy cảm và trí tưởng tượng quan trọng.",
+        "fields": [
+          "Sáng tác và viết lách",
+          "Điện ảnh, nhiếp ảnh và video",
+          "Tâm lý và tư vấn",
+          "Âm nhạc và thiết kế",
+          "Các lĩnh vực liên quan đến giấc mơ và biểu tượng"
+        ],
+        "caution": "Khi lo âu cao, phán đoán có thể mờ đi, nên hãy xác nhận sự việc trước những quyết định quan trọng."
+      },
+      "soul_note": null,
+      "year_theme": "Một năm cảm xúc và trực giác sâu sắc hơn. Khi lo âu dâng lên, hãy phân biệt tưởng tượng với sự thật và sắp xếp những câu chuyện trong lòng bằng cách viết chúng ra."
+    },
+    "the-sun": {
+      "name": "Mặt Trời",
+      "tagline": "Người tỏa sáng rực rỡ và đem sức sống đến xung quanh",
+      "personality": "Bạn tươi sáng và thẳng thắn, mang năng lượng soi sáng môi trường xung quanh. Bạn lạc quan và có xu hướng đón nhận khó khăn một cách tích cực, và sự biểu đạt phong phú của bạn khiến bạn dễ được yêu mến. Bạn giữ sự trong sáng và nhiệt huyết như trẻ thơ.",
+      "life_lesson": "Cuộc đời bạn là chấp nhận cả ánh sáng lẫn bóng tối. Khi bạn thừa nhận không chỉ sự tươi sáng mà cả những cảm xúc tối và điểm yếu, bạn có thể tận hưởng niềm vui vững chắc hơn.",
+      "relationships": "Bạn xây dựng các mối quan hệ một cách thẳng thắn, với trái tim ấm áp và cởi mở. Tập lắng nghe đối phương cả trong những ngày u ám của họ làm mối quan hệ sâu sắc hơn.",
+      "keywords": [
+        "Sức sống",
+        "Tích cực",
+        "Thẳng thắn",
+        "Thành công",
+        "Niềm vui"
+      ],
+      "strengths": [
+        "Sự tích cực truyền sức sống cho người xung quanh",
+        "Cách biểu đạt thẳng thắn và phong phú",
+        "Sự hiện diện nhận được sự công nhận nhờ kết quả"
+      ],
+      "shadow": [
+        "Sự lạc quan quá mức có thể khiến bạn xem nhẹ rủi ro",
+        "Bạn có thể cố ngoảnh mặt khỏi những cảm xúc tối tăm",
+        "Nhu cầu được công nhận của bạn có thể lớn lên"
+      ],
+      "career": {
+        "style": "Bạn tỏa sáng trong công việc nơi bạn truyền năng lượng trước mọi người và kết quả thấy được.",
+        "fields": [
+          "Giáo dục và các lĩnh vực trẻ em",
+          "Phát thanh truyền hình và giải trí",
+          "Thể thao",
+          "Dịch vụ và bán hàng",
+          "Sức khỏe và thể chất"
+        ],
+        "caution": "Nếu sự tự tin quá cao, bạn có thể bỏ sót chi tiết, nên hãy thêm một bước kiểm tra."
+      },
+      "soul_note": null,
+      "year_theme": "Một năm của sức sống và kết quả. Nỗ lực bạn đã bỏ ra có thể hiện ra thành kết quả thấy được, nên hãy chia sẻ niềm vui với những người xung quanh và tiến lên với sự tự tin."
+    },
+    "judgement": {
+      "name": "Phán Xét",
+      "tagline": "Người đáp lại tiếng gọi và đứng dậy một lần nữa",
+      "personality": "Bạn thích suy xét và nhìn lại cuộc đời mình để tìm ý nghĩa của nó. Ở một thời điểm nào đó trong đời, bạn có xu hướng cảm thấy một tiếng gọi nói rằng \"đây là điều mình phải làm\". Bạn có ý chí mạnh mẽ sắp xếp lại quá khứ và đứng dậy làm lại.",
+      "life_lesson": "Cuộc đời bạn là sắp xếp quá khứ và đáp lại tiếng gọi. Nhiệm vụ là tha thứ cho bản thân và người khác và bước một bước về phía điều bạn thật sự muốn làm.",
+      "relationships": "Hòa giải và tha thứ trở thành chủ đề quan trọng trong các mối quan hệ. Các mối quan hệ được làm mới khi bạn giải quyết những vết thương cũ và nói thật lòng từ trái tim.",
+      "keywords": [
+        "Suy xét",
+        "Tiếng gọi",
+        "Tha thứ",
+        "Thức tỉnh",
+        "Khởi đầu lại"
+      ],
+      "strengths": [
+        "Sự suy xét nhìn lại bản thân",
+        "Một trái tim tha thứ và hòa giải",
+        "Sự thức tỉnh nhận ra tiếng gọi của bạn và hành động"
+      ],
+      "shadow": [
+        "Sự tự phê bình quá mức có thể thúc ép bạn quá nặng",
+        "Bạn có thể bị buộc vào quá khứ và không tiến lên",
+        "Bạn có thể trì hoãn thời điểm quyết định"
+      ],
+      "career": {
+        "style": "Bạn hợp với công việc coi trọng ý nghĩa và sứ mệnh và giúp con người trưởng thành.",
+        "fields": [
+          "Tư vấn và chữa lành",
+          "Giáo dục và huấn luyện",
+          "Phong trào công và xã hội",
+          "Luật và hòa giải",
+          "Phát thanh truyền hình và quan hệ công chúng"
+        ],
+        "caution": "Chờ đợi thời điểm hoàn hảo có thể làm chậm khởi đầu của bạn, nên hãy bắt đầu bằng một hành động nhỏ."
+      },
+      "soul_note": null,
+      "year_theme": "Một năm đánh giá lại và khởi đầu mới. Thời điểm tốt để nhìn lại khoảng thời gian đã qua, sắp xếp nó và chọn một sứ mệnh hay hướng đi mới."
+    },
+    "the-world": {
+      "name": "Thế Giới",
+      "tagline": "Người hoàn thành và hợp nhất",
+      "personality": "Bạn hoàn thành những gì mình bắt đầu và hợp nhất chúng một cách trưởng thành. Tầm nhìn của bạn rộng và cởi mở với nhiều người và nền văn hóa, và khi hoàn thành một giai đoạn, bạn chuyển sang thế giới tiếp theo một cách tự nhiên. Bạn tạo ấn tượng cân bằng và ổn định.",
+      "life_lesson": "Cuộc đời bạn là nối sự viên mãn với những khởi đầu mới. Nhiệm vụ là tận hưởng trọn vẹn những gì đã đạt được đồng thời mở lòng trở lại cho hành trình tiếp theo.",
+      "relationships": "Bạn xây dựng những mối quan hệ trưởng thành và ổn định và thích một vòng kết nối rộng. Khi một mối quan hệ đến giai đoạn nhất định, cùng nhau đặt mục tiêu mới sẽ có ích.",
+      "keywords": [
+        "Viên mãn",
+        "Thành tựu",
+        "Hợp nhất",
+        "Trưởng thành",
+        "Mở rộng"
+      ],
+      "strengths": [
+        "Khả năng đưa mọi việc đến chỗ hoàn tất",
+        "Khả năng hợp nhất những điều khác nhau",
+        "Tầm nhìn rộng và cởi mở"
+      ],
+      "shadow": [
+        "Theo đuổi sự hoàn hảo, bạn có thể trì hoãn việc kết thúc",
+        "Bạn có thể cảm thấy trống rỗng sau một thành tựu",
+        "Bạn có thể an phận trong sự viên mãn hiện tại"
+      ],
+      "career": {
+        "style": "Điểm mạnh của bạn lộ ra trong công việc nơi bạn hợp nhất nhiều yếu tố và hoàn thành dự án.",
+        "fields": [
+          "Quốc tế và thương mại",
+          "Giáo dục và nghiên cứu",
+          "Quản lý và giám sát",
+          "Du lịch và văn hóa",
+          "Nghệ thuật tổng hợp và điều phối dự án"
+        ],
+        "caution": "Để không mất phương hướng sau một thành tựu, hãy hình dung trước thử thách tiếp theo của bạn."
+      },
+      "soul_note": null,
+      "year_theme": "Một năm viên mãn và kết quả. Bạn có thể khép lại một công việc dài hơi hoặc hoàn thành một giai đoạn, và chẳng bao lâu sẽ chuẩn bị cho một khởi đầu mới."
+    }
+  },
+  "lang": "vi"
+}

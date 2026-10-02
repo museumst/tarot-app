@@ -1,0 +1,49 @@
+.birth-form {
+  padding: 0 0 26px;
+  border-bottom: 1px solid rgba(196,169,107,.25);
+}
+.birth-form label { display: block; color: #c4a96b; font-weight: 500; margin-bottom: 10px; }
+.birth-controls { display: flex; gap: 10px; align-items: stretch; }
+.birth-controls input {
+  flex: 1; min-width: 0; max-width: 280px;
+  padding: 12px 14px; border: 1px solid rgba(196,169,107,.45); border-radius: 7px;
+  background: #19192a; color: #e8e3d8; font: inherit; color-scheme: dark;
+}
+.birth-controls input:focus { outline: 2px solid #c4a96b; outline-offset: 2px; }
+.birth-controls button {
+  padding: 12px 20px; border: 0; border-radius: 7px;
+  background: #c4a96b; color: #171424; font-family: inherit; font-size: .95rem; font-weight: 700; cursor: pointer;
+}
+.birth-controls button:hover { background: #d9bf8e; }
+.birth-controls button:focus-visible { outline: 2px solid #e8e3d8; outline-offset: 2px; }
+.birth-privacy { color: #9a9da8; font-size: .82rem; margin: 10px 0 0; }
+#birth-error { color: #f0a49c; margin: 10px 0 0; }
+.birth-summary { color: #d9bf8e; font-size: .95rem; margin: 26px 0 8px; }
+.birth-card-result {
+  display: grid; grid-template-columns: 170px minmax(0,1fr);
+  gap: 26px; padding: 32px 0; border-bottom: 1px solid rgba(196,169,107,.22);
+}
+.birth-card-result img { display: block; width: 100%; height: auto; border-radius: 7px; }
+.birth-card-result h2 { font-size: 1.35rem; margin: 0 0 2px; color: #d9bf8e; }
+.birth-role { color: #a7a9b5; font-size: .85rem; margin: 0 0 10px; }
+.birth-tagline { font-size: 1.05rem; color: #e8e3d8; font-weight: 500; }
+.birth-keywords { color: #c4a96b; font-size: .85rem; }
+.birth-card-result h3 { font-size: .95rem; color: #c4a96b; margin: 20px 0 6px; font-weight: 600; }
+.birth-card-result p, .birth-card-result li { overflow-wrap: anywhere; }
+.birth-card-result ul { padding-left: 20px; margin: 0 0 10px; }
+.birth-card-result a { display: inline-block; margin-top: 12px; }
+.birth-method { margin-top: 36px; max-width: 760px; }
+.birth-method h2 { margin-top: 0; }
+.birth-method ol { padding-left: 22px; margin-bottom: 20px; }
+.birth-method li { margin-bottom: 10px; }
+.birth-disclaimer { color: #a7a9b5; font-size: .85rem; }
+@media (max-width: 600px) {
+  .birth-controls { flex-direction: column; }
+  .birth-controls input { max-width: none; }
+  .birth-card-result { grid-template-columns: 110px minmax(0,1fr); gap: 16px; }
+  .birth-card-result h2 { font-size: 1.1rem; }
+}
+@media (max-width: 370px) {
+  .birth-card-result { grid-template-columns: 1fr; }
+  .birth-card-result img { width: 150px; }
+}

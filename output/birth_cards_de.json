@@ -1,0 +1,843 @@
+{
+  "_meta": {
+    "title": "Leitfaden zur Geburtskarte",
+    "disclaimer": "Diese Deutung beruht auf der Symbolik der Karten und ist kein wissenschaftlicher Persönlichkeitstest. Sie dient als Anregung zum Selbstverständnis und ersetzt weder Berufsentscheidungen noch andere wichtige Lebensentscheidungen.",
+    "deck_note": "Nach der Waite-Nummerierung (Rider-Waite): Die Kraft ist die 8 und die Gerechtigkeit die 11. Eine Summe von 22 wird als Der Narr (0) gelesen.",
+    "calculation": [
+      "Addieren Sie alle Ziffern Ihres Geburtsdatums in achtstelliger Schreibweise (JJJJMMTT).",
+      "Liegt die Summe über 22, addieren Sie deren Ziffern erneut, bis sie 22 oder weniger beträgt.",
+      "Ein Ergebnis von 1 bis 9 ergibt eine einzelne Karte (Persönlichkeit und Seele sind gleich). Ein Ergebnis von 10 bis 22 ergibt Ihre Persönlichkeitskarte, und die Quersumme daraus ergibt Ihre Seelenkarte (innere Karte).",
+      "Die 19 wird als drei Karten gelesen: Die Sonne (Persönlichkeit), Das Rad des Schicksals (Mitte) und Der Magier (Seele). Die 22 wird als Der Narr (Persönlichkeit) und Der Herrscher (Seele) gelesen."
+    ],
+    "labels": {
+      "keywords": "Schlüsselwörter",
+      "personality": "Persönlichkeit und Wesen",
+      "strengths": "Stärken",
+      "shadow": "Schattenseite",
+      "life_lesson": "Lebensaufgabe",
+      "relationships": "Beziehungsstil",
+      "career": "Berufliche Neigungen",
+      "career_fields": "Bereiche, die zu Ihnen passen können",
+      "career_caution": "Zu beachten",
+      "soul_note": "Als Ihre Seelenkarte",
+      "year_theme": "Als Ihre Jahreskarte"
+    }
+  },
+  "cards": {
+    "the-fool": {
+      "name": "Der Narr",
+      "tagline": "Der ewige Abenteurer, der den ersten Schritt ohne Grenzen tut",
+      "personality": "Sie sind tendenziell neugierig und optimistisch und mögen es nicht, in feste Rahmen gesperrt zu werden. Unabhängig von Ihrem Alter bewahren Sie eine reine Seite und gehen ohne Zögern auf fremde Orte und Menschen zu. Sie vertrauen eher auf Instinkt und Fluss als auf Pläne, weshalb Ihr Umfeld Sie als freie und frische Erscheinung erlebt.",
+      "life_lesson": "In Ihrem Leben geht es darum, das Gleichgewicht zwischen Freiheit und Verantwortung zu lernen. Bewahren Sie den Reiz, nicht zu wissen, wohin es geht, doch üben Sie, den Boden unter Ihren Füßen zu prüfen und die Wirklichkeit vorzubereiten.",
+      "relationships": "Sie fühlen sich in leichten, freien Beziehungen wohl, die weder Sie noch den anderen binden. Vor tiefer Verbindlichkeit zögern Sie vielleicht, doch wenn Vertrauen gewachsen ist, werden Sie zu einem offenen und warmherzigen Begleiter wie kaum ein anderer.",
+      "keywords": [
+        "Freiheit",
+        "Neugier",
+        "Unschuld",
+        "Abenteuer",
+        "Neuanfang"
+      ],
+      "strengths": [
+        "Der Mut, ohne Furcht zu beginnen",
+        "Eine Flexibilität, die sich schnell an jede Umgebung anpasst",
+        "Eine Unbefangenheit und ein Humor, die Menschen entspannen"
+      ],
+      "shadow": [
+        "Sie springen vielleicht unvorbereitet hinein und wiederholen ähnliche Fehler",
+        "Man könnte Sie fälschlich so deuten, als nähmen Sie Versprechen oder Verantwortung auf die leichte Schulter",
+        "Wenn die erste Begeisterung nachlässt, verlieren Sie womöglich das Interesse, bevor Sie fertig sind"
+      ],
+      "career": {
+        "style": "Sie glänzen in Umgebungen mit neuen Versuchen und viel Wandel statt in festen Abläufen.",
+        "fields": [
+          "Reisen und Tourismus",
+          "Start-ups und frühe Gründungsphasen",
+          "Kunst und kreative Arbeit",
+          "Freiberufliche Tätigkeit",
+          "Kindererziehung und Spiel"
+        ],
+        "caution": "Strenge Hierarchien und wiederkehrende Aufgaben können Sie schnell erschöpfen."
+      },
+      "soul_note": null,
+      "year_theme": "Es ist ein Jahr, in dem Sie an einer unbekannten Startlinie stehen. Statt auf perfekte Vorbereitung zu warten, tun Sie den ersten Schritt leichtfüßig, prüfen Sie aber die wirklich wichtigen Entscheidungen noch einmal."
+    },
+    "the-magician": {
+      "name": "Der Magier",
+      "tagline": "Jemand, der Möglichkeit durch Willen in Wirklichkeit verwandelt",
+      "personality": "Sie sind schlagfertig, geschickt mit Händen oder Worten, und sobald Sie ein Ziel haben, finden Sie die Mittel dazu. Sie sind tendenziell selbstsicher und wollen Situationen selbst lenken. Ihr Geist arbeitet schnell, daher bewältigen Sie mehrere Dinge zugleich mit Leichtigkeit.",
+      "life_lesson": "In Ihrem Leben geht es darum, Ihre Absicht klar zu machen: Wofür setzen Sie Ihr angeborenes Talent ein? Je größer die Fähigkeit, desto wichtiger ist es, sie verantwortungsvoll zu nutzen.",
+      "relationships": "Sie gewinnen Herzen durch Gespräche und Ideen. Wenn Ihr Drang, die Initiative zu halten, stark ist, kann sich der andere unter Druck gesetzt fühlen, nehmen Sie sich also auch Zeit zum Zuhören.",
+      "keywords": [
+        "Wille",
+        "Talent",
+        "Umsetzung",
+        "Kommunikation",
+        "Initiative"
+      ],
+      "strengths": [
+        "Die Umsetzungskraft, Ideen in Wirklichkeit zu verwandeln",
+        "Kommunikationsfähigkeit, die andere verstehen und überzeugen lässt",
+        "Vielseitigkeit, die viele Bereiche überspannt"
+      ],
+      "shadow": [
+        "Im Vertrauen auf Ihr Talent versuchen Sie vielleicht, mit Tricks durchzukommen",
+        "Ihre Interessen können sich zerstreuen und Ihre Konzentration schwächen",
+        "Worte, die dem Handeln vorauseilen, können Sie Vertrauen kosten"
+      ],
+      "career": {
+        "style": "Ihre Stärken treten in Arbeit hervor, bei der Sie Ideen entwickeln, sie selbst umsetzen und Ergebnisse zeigen.",
+        "fields": [
+          "Planung und Marketing",
+          "Vertrieb und Verhandlung",
+          "IT und Entwicklung",
+          "Vorträge und Content-Erstellung",
+          "Unternehmensgründung"
+        ],
+        "caution": "Wenn sich zu viele Projekte anhäufen, kann das Abschließen zu Ihrer Schwachstelle werden."
+      },
+      "soul_note": "Wie Sie nach außen auch wirken, in Ihnen lebt der Wille, der sagt „Ich kann das“, und eine Neugier auf neue Möglichkeiten. In Ihrem Herzen wollen Sie stets etwas Neues ausprobieren.",
+      "year_theme": "Ein gutes Jahr, um Ihre Talente und Ideen in die Welt zu tragen. Gelegenheiten, etwas Neues zu beginnen oder Gelerntes wirklich anzuwenden, können sich ergeben."
+    },
+    "the-high-priestess": {
+      "name": "Die Hohepriesterin",
+      "tagline": "Jemand, dessen Intuition ohne ein Wort tief weiß",
+      "personality": "Sie strahlen eine ruhige, geheimnisvolle Aura aus und zeigen nicht leicht, was in Ihrem Herzen ist. Ihre Beobachtungsgabe ist scharf, sodass Sie Stimmungen und die wahren Gefühle der Menschen leicht erfassen. Auch ohne viele Worte denken Sie tief nach und schöpfen tendenziell Kraft aus der Zeit allein.",
+      "life_lesson": "In Ihrem Leben geht es darum, Ihrer inneren Stimme zu vertrauen und zu lernen, sie in Worte zu fassen. Die Aufgabe ist, Stille von Isolation zu unterscheiden und die Tür Ihres Herzens zu öffnen, wenn es nötig ist.",
+      "relationships": "Sie öffnen sich langsam, doch wenn Sie es tun, wünschen Sie sich eine tiefe emotionale Verbindung. Sie hoffen vielleicht, dass der andere Gefühle bemerkt, die Sie nie ausgesprochen haben; Ausdruck zu üben macht Beziehungen angenehmer.",
+      "keywords": [
+        "Intuition",
+        "Geheimnis",
+        "Einsicht",
+        "Schweigen",
+        "Innenwelt"
+      ],
+      "strengths": [
+        "Eine Intuition, die verborgene Absichten liest",
+        "Die Verschwiegenheit, Geheimnisse zu bewahren",
+        "Eine tiefe Einsicht, die das Wesen statt der Oberfläche sieht"
+      ],
+      "shadow": [
+        "Sie verschließen vielleicht Ihr Herz und halten Abstand, wirken dadurch kühl",
+        "Schweigen kann Missverständnisse schaffen",
+        "Aus Mangel an Vertrauen in Ihre Intuition schieben Sie Entscheidungen vielleicht auf"
+      ],
+      "career": {
+        "style": "Ihr Können zeigt sich in Arbeit, bei der Sie allein in die Tiefe gehen und Einsichten ordnen.",
+        "fields": [
+          "Forschung und Analyse",
+          "Psychologie und Beratung",
+          "Schreiben und Übersetzen",
+          "Bibliotheken und Archive",
+          "Symbolische Felder wie Tarot und Astrologie"
+        ],
+        "caution": "Wenn Sie Ihre Ansichten nie äußern, können Ihre Ergebnisse unbemerkt bleiben; machen Sie es sich zur Gewohnheit, Ihre Erkenntnisse zu teilen."
+      },
+      "soul_note": "Auch wenn Sie äußerlich aktiv wirken, liegen in Ihnen stille Weisheit und eine geheime Landschaft. Sie sind jemand, der in der Zeit allein sein wahres Selbst trifft.",
+      "year_theme": "Ein Jahr, um auf innere Signale statt auf äußeren Lärm zu hören. Ihre Intuition wird schärfer, also hetzen Sie nicht; halten Sie Ihre Eindrücke fest, während Sie entscheiden."
+    },
+    "the-empress": {
+      "name": "Die Herrscherin",
+      "tagline": "Jemand, der nährt und umsorgt und Fülle bringt",
+      "personality": "Sie sind warm und freundlich und wissen, das Leben mit allen fünf Sinnen zu genießen. Sie haben einen Charme, der die Menschen in Ihrer Nähe umfängt und entspannt, sowie einen feinen Sinn für Schönes, gutes Essen und angenehme Räume. Ihre Zuneigung zieht tendenziell Menschen an.",
+      "life_lesson": "In Ihrem Leben geht es darum, das Gleichgewicht zwischen Geben und Nehmen zu lernen. Die Aufgabe ist, sich ebenso um sich selbst zu kümmern wie um andere und das Annehmen mit Leichtigkeit zu üben.",
+      "relationships": "Sie sind liebevoll und hingebungsvoll und wollen Ihren Partner umfangen. Wenn die Erwartungen wachsen, kann sich Verletztheit aufstauen; sagen Sie also ehrlich, was Sie wollen.",
+      "keywords": [
+        "Fülle",
+        "Fürsorge",
+        "Sinnlichkeit",
+        "Schöpfung",
+        "Die Sinne"
+      ],
+      "strengths": [
+        "Eine Empathie, die auf andere achtet und sie umsorgt",
+        "Die schöpferische Kraft, Dinge zu machen und wachsen zu lassen",
+        "Ein Gespür dafür, Atmosphäre und Räume zu bereichern"
+      ],
+      "shadow": [
+        "Übermäßige Fürsorge kann sich wie Einmischung anfühlen",
+        "Sie richten sich vielleicht im Komfort ein und schieben Herausforderungen auf",
+        "Es kann zu Stimmungsschwankungen oder übermäßigen Ausgaben führen"
+      ],
+      "career": {
+        "style": "Sie finden Erfüllung in Arbeit, bei der Sie Menschen und Ergebnisse mit Sorgfalt wachsen lassen.",
+        "fields": [
+          "Gastronomie und Kochen",
+          "Design und Kunst",
+          "Bildung und Kinderbetreuung",
+          "Pflege und Sozialwesen",
+          "Schönheit und Floristik"
+        ],
+        "caution": "Wenn Sie sich nicht anerkannt fühlen, können Sie schnell ausbrennen; führen Sie eine sichtbare Aufstellung Ihrer Ergebnisse."
+      },
+      "soul_note": "In Ihnen leben ein warmer Wunsch, jemanden zu umfangen und zu nähren, und eine Sehnsucht nach Fülle. Auch wenn Sie nach außen gleichgültig wirken, sind Sie tief innen ein Mensch mit viel Herz.",
+      "year_theme": "Ein Jahr der Fülle und Fürsorge. Das, in das Sie unter Menschen, Arbeit und Hobbys Mühe stecken, kann sichtbar wachsen; sorgen Sie auch für Ihren Körper und Ihren Geist."
+    },
+    "the-emperor": {
+      "name": "Der Herrscher",
+      "tagline": "Jemand, der durch Ordnung und Verantwortung ein Fundament baut",
+      "personality": "Sie sind realistisch und entschlossen und geschickt darin, Strukturen aufzubauen. Sie versuchen, das Anvertraute bis zum Ende zu verantworten, und werden tendenziell selbstverständlich in Führungsrollen gesetzt. Sie handeln mehr nach Prinzip und Plan als nach Gefühl, was einen verlässlichen Eindruck vermittelt.",
+      "life_lesson": "In Ihrem Leben geht es darum, das Gleichgewicht zwischen Kontrolle und Vertrauen zu lernen. Die Aufgabe ist, zu vertrauen und abzugeben, statt alles festzuhalten, und die eigene Verletzlichkeit einzugestehen.",
+      "relationships": "Sie übernehmen die Rolle des verlässlichen Beschützers und schätzen Stabilität und Vertrauen. Sie lassen andere vielleicht das Gefühl haben, es werde zu wenig über Gefühle gesprochen; es hilft, den Ausdruck des Herzens zu üben.",
+      "keywords": [
+        "Ordnung",
+        "Verantwortung",
+        "Führung",
+        "Stabilität",
+        "Entschlossenheit"
+      ],
+      "strengths": [
+        "Die Fähigkeit, ein System aufzubauen und aufrechtzuerhalten",
+        "Ein schnelles, entschiedenes Urteil",
+        "Eine Verlässlichkeit, die Verantwortung bis zum Ende trägt"
+      ],
+      "shadow": [
+        "Sie können starrsinnig sein und ein starkes Bedürfnis nach Kontrolle haben",
+        "Schwierigkeiten beim Ausdruck von Gefühlen können Sie steif wirken lassen",
+        "Sie können autoritär wirken"
+      ],
+      "career": {
+        "style": "Ihr Können zeigt sich in Rollen, in denen Sie Organisationen und Zeitpläne gestalten und dafür geradestehen.",
+        "fields": [
+          "Management und Verwaltung",
+          "Öffentlicher Dienst, Militär und Polizei",
+          "Bauwesen und Immobilien",
+          "Finanzwesen",
+          "Recht und öffentliche Verwaltung"
+        ],
+        "caution": "Wenn Sie Menschen mit anderen Ansichten nicht akzeptieren können, kann die Energie Ihres Teams sinken."
+      },
+      "soul_note": "In Ihnen steckt ein starkes Verlangen, ein stabiles Fundament zu bauen, und ein Verantwortungsgefühl. Auch wenn Sie nach außen sanft wirken, schätzen Sie in Ihrem Herzen Ordnung und Prinzipien.",
+      "year_theme": "Ein Jahr, in dem Fundamente gelegt werden. Pläne zu machen und Regeln festzulegen, um den Rahmen Ihres Lebens und Ihrer Arbeit zu festigen, hilft Ihrer späteren Stabilität."
+    },
+    "the-hierophant": {
+      "name": "Der Hierophant",
+      "tagline": "Jemand, der Tradition und Lehre weiterträgt",
+      "personality": "Sie haben klare Überzeugungen und Werte und achten Normen und Tradition. Sie haben ein natürliches Interesse am Lernen und Lehren, sodass Menschen oft bei Ihnen Rat suchen. Sie strahlen eine stabile, vertrauenswürdige Atmosphäre aus.",
+      "life_lesson": "In Ihrem Leben geht es darum, Gelerntes in eigene Worte zu verdauen. Die Aufgabe ist, zwischen Tradition und Selbstsein selbst zu wählen, was Sie weiterführen und was Sie ändern.",
+      "relationships": "Sie sind aufrichtig, schätzen Versprechen und dauerhafte Beziehungen zur Familie. Strenge Maßstäbe können andere beengen, daher brauchen Sie Raum, um Unterschiede anzunehmen.",
+      "keywords": [
+        "Tradition",
+        "Glaube",
+        "Lehre",
+        "Vertrauen",
+        "Gemeinschaft"
+      ],
+      "strengths": [
+        "Eine Vertrauenswürdigkeit, auf die man sich verlassen kann",
+        "Die Fähigkeit, Gelerntes klar zu erklären",
+        "Ein Verantwortungsgefühl gegenüber Gemeinschaft und Beziehungen"
+      ],
+      "shadow": [
+        "Sie klammern sich vielleicht an Rahmen und sind neuen Wegen gegenüber unzugänglich",
+        "Sie können sich zu sehr um die Meinung anderer und Konventionen sorgen",
+        "Sie versuchen vielleicht, Maßstäben zu entsprechen, statt Ihre eigene Meinung zu äußern"
+      ],
+      "career": {
+        "style": "Sie eignen sich für Arbeit, die auf der Grundlage von Struktur und Vertrauen Wissen vermittelt und Menschen führt.",
+        "fields": [
+          "Bildung und Lehre",
+          "Religion und Philosophie",
+          "Beratung und Mentoring",
+          "Öffentliche Einrichtungen und Verwaltung",
+          "Recht"
+        ],
+        "caution": "In sich schnell wandelnden Umfeldern brauchen Sie die Flexibilität, neue Wege anzunehmen."
+      },
+      "soul_note": "In Ihnen ist ein Herz, das nach vertrauenswürdiger Lehre und Zugehörigkeit sucht. In Ihrem Herzen leben Fragen nach Recht und Unrecht und nach einem sinnvollen Leben.",
+      "year_theme": "Ein Jahr des Lernens und der Zugehörigkeit. Verbindungen zu Lehrern, Mentoren und Gruppen können sich ergeben; konzentrieren Sie sich darauf, Regeln und Versprechen zu halten und Vertrauen aufzubauen."
+    },
+    "the-lovers": {
+      "name": "Die Liebenden",
+      "tagline": "Jemand, der sich durch Wahl und Beziehung kennenlernt",
+      "personality": "Ihnen liegen Menschen und Beziehungen sehr am Herzen, und Sie geben sich dem, was Sie anzieht, mit ganzem Herzen hin. Ihre Empathie ist stark, und Sie schätzen die Harmonie, mit einem anderen eins zu werden. In wichtigen Momenten des Lebens stehen Sie tendenziell vor Entscheidungen, die von Ihren Werten abhängen.",
+      "life_lesson": "In Ihrem Leben geht es darum, zu wählen, was Ihr Herz will, und für die Folgen dieser Wahl einzustehen. Die Aufgabe ist, in der Liebe zu fragen, welche Entscheidung zu Ihren eigenen Werten passt.",
+      "relationships": "Beziehungen stehen im Zentrum Ihres Lebens, und Sie wünschen sich tiefe Verbundenheit. Sie idealisieren leicht und werden dann enttäuscht; üben Sie daher, den anderen so zu sehen, wie er ist.",
+      "keywords": [
+        "Liebe",
+        "Wahl",
+        "Harmonie",
+        "Werte",
+        "Beziehung"
+      ],
+      "strengths": [
+        "Eine Empathie, die das Herz des anderen versteht",
+        "Die Fähigkeit, Beziehungen zur Harmonie zu führen",
+        "Eine Aufrichtigkeit, die aus dem Herzen kommt"
+      ],
+      "shadow": [
+        "Sie sind vielleicht unentschlossen und schieben Entscheidungen auf",
+        "Sie können sich zu sehr von Beziehungen abhängig machen",
+        "Ihr Herz kann unter Versuchung oder Stimmung schwanken"
+      ],
+      "career": {
+        "style": "Ihre Stärken zeigen sich in Arbeit, die Menschen verbindet und gemeinsam etwas aufbaut.",
+        "fields": [
+          "Beratung und Coaching",
+          "Dienstleistung und Gästebetreuung",
+          "Mediation und Personalwesen",
+          "Hochzeiten und Events",
+          "Partnerschaftsbasierte Unternehmungen"
+        ],
+        "caution": "Wenn Sie allein entscheiden müssen, kann Ihr Herz schwanken; legen Sie Ihre Kriterien daher im Voraus fest."
+      },
+      "soul_note": "In Ihnen ist eine Sehnsucht nach wahrer Liebe und tiefer Verbindung. In Ihrem Herzen fragen Sie sich immer: „Was ist die Entscheidung, die wirklich meine ist?“",
+      "year_theme": "Ein Jahr der Entscheidungen und Beziehungen. An einer Weggabelung oder vor einem wichtigen Menschen folgen Sie der Stimme Ihres Herzens, bedenken Sie aber auch die Verantwortung, die die Wahl mit sich bringt."
+    },
+    "the-chariot": {
+      "name": "Der Wagen",
+      "tagline": "Jemand, der durch Willen eine Richtung setzt und darauf zufährt",
+      "personality": "Sie haben einen starken Antrieb und ziehen durch, sobald ein Ziel gesetzt ist. Sie sind kämpferisch und finden Erfüllung darin, in die gewählte Richtung voranzugehen. Sie können gegensätzliche Impulse in eine Richtung bündeln, wodurch Sie willensstark wirken.",
+      "life_lesson": "In Ihrem Leben geht es darum, gegensätzliche Kräfte (Vernunft und Gefühl, Verlangen und Verantwortung) beim Vorangehen in Einklang zu bringen. Richtung ist ebenso wichtig wie Tempo, und die Aufgabe ist, das richtige Ziel zu wählen, statt nur zu gewinnen.",
+      "relationships": "Sie neigen dazu, auch in Beziehungen zu führen, meiden aber vielleicht Gespräche über Gefühle. Sie fühlen sich wohl neben jemandem, der mit Ihnen in dieselbe Richtung laufen kann.",
+      "keywords": [
+        "Antrieb",
+        "Wettbewerbsgeist",
+        "Selbstbeherrschung",
+        "Ziele",
+        "Sieg"
+      ],
+      "strengths": [
+        "Eine Durchbruchskraft, die sich auf eine Sache konzentriert und sie durchzieht",
+        "Eine Selbstbeherrschung, die sich selbst lenkt",
+        "Die Ausdauer, im Wettbewerb Ergebnisse zu erzielen"
+      ],
+      "shadow": [
+        "Zu viel Wettbewerbsgeist kann Ihr Umfeld auslaugen",
+        "Sie unterdrücken vielleicht Gefühle und entladen sich dann auf einmal",
+        "Weil Sie nicht wissen, wie man ruht, können Sie ausbrennen"
+      ],
+      "career": {
+        "style": "Ihre Fähigkeit wächst in Umfeldern mit klaren Zielen, Wettbewerb und sichtbaren Ergebnissen.",
+        "fields": [
+          "Vertrieb",
+          "Sport und Leichtathletik",
+          "Transport und Logistik",
+          "Militär und Polizei",
+          "Projektmanagement"
+        ],
+        "caution": "In einem langen Rennen kann Erschöpfung kommen; planen Sie daher Ruhe in Ihren Zeitplan ein."
+      },
+      "soul_note": "In Ihnen steckt ein starker Wille, Dinge zu schaffen, und der Wunsch, anerkannt zu werden. In Ihrem Herzen laufen Sie immer irgendwohin.",
+      "year_theme": "Ein Jahr, in dem Sie auf ein Ziel hin Fahrt aufnehmen. Wenn Sie zuerst die Richtung fest bestimmen, kann Ihr Antrieb zu großen Ergebnissen führen, doch hüten Sie sich vor Übertempo und Überforderung."
+    },
+    "strength": {
+      "name": "Die Kraft",
+      "tagline": "Die innere Kraft, die durch Sanftheit lenkt",
+      "personality": "Sie sind außen sanft, aber innen fest. Sie haben die Kraft, in großen Krisen und Gefühlswellen ruhig zu bleiben und durchzuhalten. Sie neigen dazu, Situationen und Menschen durch Verstehen und Beruhigen statt durch Überwältigen zu handhaben.",
+      "life_lesson": "In Ihrem Leben geht es darum, eine Kraft aufzubauen, die zähmt statt unterdrückt. Die Aufgabe ist, Angst und Impuls nicht als Feinde zu sehen, sondern zu verstehen, und zu üben, sich selbst zu vertrauen.",
+      "relationships": "Sie sind großzügig und lösen Konflikte sanft. Sie können sich leicht erschöpfen, wenn Sie sich jemandem hingeben; sagen Sie ihm daher ehrlich Ihre eigenen Grenzen und Bedürfnisse.",
+      "keywords": [
+        "Mut",
+        "Geduld",
+        "Sanftmut",
+        "Selbstvertrauen",
+        "Gelassenheit"
+      ],
+      "strengths": [
+        "Die Geduld und Beharrlichkeit, lange durchzuhalten",
+        "Eine sanfte Führung, die durch Empathie leitet",
+        "Eine Gelassenheit, die auch in der Krise nicht wankt"
+      ],
+      "shadow": [
+        "Sie halten vielleicht aus, bis Ihnen plötzlich die Energie ausgeht",
+        "Wenn das Selbstvertrauen sinkt, ziehen Sie sich vielleicht zurück",
+        "Sie unterdrücken vielleicht Ihre Gefühle und leiden innerlich"
+      ],
+      "career": {
+        "style": "Ihre Stärken treten in Arbeit hervor, bei der Sie Menschen oder schwierige Situationen mit Beharrlichkeit und Sorgfalt handhaben.",
+        "fields": [
+          "Beratung und Heilung",
+          "Pflege, Betreuung und Rehabilitation",
+          "Bildung und Coaching",
+          "Arbeit mit Tieren",
+          "Krisenreaktion und Sicherheit"
+        ],
+        "caution": "Sie können sich aufreiben, wenn Sie mehr tragen als Ihren Anteil; legen Sie daher die Grenzen Ihrer Rolle fest."
+      },
+      "soul_note": "In Ihnen verbergen sich ein Mut und eine Wärme, die stärker sind als bei jedem anderen. In Ihrem Herzen beruhigen Sie Angst und Impuls und lenken sich selbst.",
+      "year_theme": "Ein Jahr der Geduld und des Selbstvertrauens. Auch wenn es schwer ist, kann Sie ein sanfter Umgang ohne Eile weiterbringen."
+    },
+    "the-hermit": {
+      "name": "Der Eremit",
+      "tagline": "Ein Suchender, der allein in die Tiefe geht",
+      "personality": "Sie sind bedächtig und unabhängig und schätzen Zeit, allein nachzudenken. Statt aufzufallen, gehen Sie in einem Gebiet tief und bilden Ihre eigenen Maßstäbe. Sie sagen wenig, doch jedes Wort hat Gewicht.",
+      "life_lesson": "In Ihrem Leben geht es darum, die gewonnene Weisheit zu teilen, statt sie für sich zu behalten. Die Aufgabe ist, Einsamkeit von Abgeschnittensein zu unterscheiden und bei Bedarf einen Schritt auf die Welt zuzugehen.",
+      "relationships": "Sie knüpfen tiefe, dauerhafte Beziehungen mit wenigen Menschen. Wenn Sie vorher erklären, dass Sie Zeit allein brauchen, können Sie Missverständnisse verringern.",
+      "keywords": [
+        "Besinnung",
+        "Unabhängigkeit",
+        "Forschung",
+        "Weisheit",
+        "Einsamkeit"
+      ],
+      "strengths": [
+        "Fachwissen, das in ein Thema tief eindringt",
+        "Ihre eigenen, unerschütterlichen Maßstäbe",
+        "Eine Einsicht, die Situationen aus der Distanz betrachtet"
+      ],
+      "shadow": [
+        "Sie können durch das Alleinsein isoliert werden",
+        "Sie behalten vielleicht alles für sich, statt um Hilfe zu bitten",
+        "Sie können zu übermäßigem Perfektionismus oder Pessimismus neigen"
+      ],
+      "career": {
+        "style": "Sie glänzen in Arbeit, bei der Sie tief forschen und selbstständig Fachwissen aufbauen.",
+        "fields": [
+          "Forschung und Wissenschaft",
+          "Schreiben und Autorenschaft",
+          "Entwicklung und Ingenieurwesen",
+          "Handwerk und Kunsthandwerk",
+          "Analyse und Beratung"
+        ],
+        "caution": "Wenn Sie Ihre Ergebnisse nicht bekannt machen, kann ihr Wert unbemerkt bleiben; schaffen Sie daher Gelegenheiten zum Teilen."
+      },
+      "soul_note": "In Ihnen ist ein stiller Forschergeist, der nach Wahrheit und Sinn sucht. Auch unter Menschen gehen Sie in Ihrem Herzen allein und leuchten den Weg aus.",
+      "year_theme": "Ein Jahr, um allein zu ordnen und nachzudenken. Langsamer zu werden und Zeit für Lernen oder innere Fragen aufzuwenden, macht die Richtung Ihres nächsten Schritts klar."
+    },
+    "wheel-of-fortune": {
+      "name": "Das Rad des Schicksals",
+      "tagline": "Jemand, der auf dem Fluss des Wandels reitet",
+      "personality": "Sie sind empfindsam für den Fluss des Lebens und für Veränderung und ergreifen Gelegenheiten gut, wenn sie kommen. Sie sind optimistisch, sodass Sie auch durch Höhen und Tiefen im Glauben durchhalten, dass es sich wieder dreht. Sie haben einen weiten Blick für das große Ganze, und recht oft tragen Glück und Zeitpunkt Sie.",
+      "life_lesson": "In Ihrem Leben geht es darum, in Auf und Ab die Mitte zu halten. Die Aufgabe ist, zu unterscheiden, was Sie ändern können und was nicht, und vorab Fähigkeiten aufzubauen, für den Fall, dass der Fluss kommt.",
+      "relationships": "Sie legen Wert auf den Zeitpunkt von Begegnungen und erleben vielleicht dramatische Begegnungen und Trennungen. Häufiger Wandel kann Sorgen um die Stabilität wecken; üben Sie daher, Ihrem Partner beständige Signale zu geben.",
+      "keywords": [
+        "Wandel",
+        "Zeitpunkt",
+        "Gelegenheit",
+        "Kreisläufe",
+        "Glück"
+      ],
+      "strengths": [
+        "Eine Flexibilität, die sich dem Wandel anpasst",
+        "Ein Gespür, Gelegenheiten zu erkennen",
+        "Ein Optimismus, der in Höhen und Tiefen nicht verloren geht"
+      ],
+      "shadow": [
+        "Sie verlassen sich vielleicht aufs Glück und vernachlässigen die Vorbereitung",
+        "Ihre Stimmung kann mit den Höhen und Tiefen stark schwanken",
+        "Sie können sich wegen dessen, was Sie nicht kontrollieren können, ängstlich fühlen"
+      ],
+      "career": {
+        "style": "Ihre Stärken treten in Arbeit mit viel Wandel hervor, die den Fluss liest.",
+        "fields": [
+          "Handel und Vertrieb",
+          "Investition und Finanzwesen",
+          "Events und Reisen",
+          "Trendanalyse",
+          "Neue Vorhaben mit viel Wandel"
+        ],
+        "caution": "Zu viel auf eine einzige Gelegenheit zu setzen ist riskant; streuen Sie daher."
+      },
+      "soul_note": "In Ihnen sind die Neugier, wohin das Leben fließen wird, und ein Herz, das Wandel annimmt. Erscheint sie als mittlere Karte, sagt sie Ihnen, dass Glück und Zeitpunkt ein großes Thema Ihres Lebens sind.",
+      "year_theme": "Ein Jahr, in dem sich der Fluss wendet. Unerwartete Gelegenheiten oder Wendepunkte können kommen; nehmen Sie sie mit offenem Geist an und denken Sie daran, dass Sie nur so viel ergreifen können, wie Sie vorbereitet haben."
+    },
+    "justice": {
+      "name": "Die Gerechtigkeit",
+      "tagline": "Jemand, der Fairness und Gleichgewicht schätzt",
+      "personality": "Sie sind logisch und ehrlich und empfindsam für Recht und Unrecht. Sie versuchen, nach Tatsachen und Prinzipien zu urteilen, statt sich von Gefühlen mitreißen zu lassen. Sie schätzen Versprechen und Regeln und neigen dazu, für Ihr Handeln einzustehen.",
+      "life_lesson": "In Ihrem Leben geht es darum, das Gleichgewicht zwischen Gerechtigkeit und Gnade zu lernen. Die Aufgabe ist, denselben fairen und großzügigen Maßstab, den Sie anderen geben, auch an sich selbst anzulegen.",
+      "relationships": "Sie schätzen faire und ehrliche Beziehungen und halten Ihre Versprechen. Sie drücken Verletztheit vielleicht aus, indem Sie aufrechnen, und lassen den anderen schrumpfen; üben Sie daher, Gefühle sanft zu vermitteln.",
+      "keywords": [
+        "Fairness",
+        "Logik",
+        "Ehrlichkeit",
+        "Verantwortung",
+        "Ausgewogenheit"
+      ],
+      "strengths": [
+        "Ein Sinn für Ausgewogenheit, der objektiv urteilt",
+        "Beständige Ehrlichkeit und Prinzipientreue",
+        "Die Gewissenhaftigkeit, für Ihr Handeln einzustehen"
+      ],
+      "shadow": [
+        "Sie können unflexibel wirken",
+        "Sie können kühl wirken oder den Eindruck erwecken, andere zu verurteilen",
+        "Sie können zu streng mit sich selbst sein"
+      ],
+      "career": {
+        "style": "Sie eignen sich für Arbeit, bei der Sie auf der Grundlage von Maßstäben und Belegen urteilen und ausgleichen.",
+        "fields": [
+          "Recht",
+          "Rechnungswesen und Prüfung",
+          "Verwaltung und öffentlicher Dienst",
+          "Begutachtung und Bewertung",
+          "Mediation und Compliance"
+        ],
+        "caution": "Um die Umstände von Menschen nicht zu übersehen, brauchen Sie die Flexibilität, zwischen Regeln und Wirklichkeit zu wechseln."
+      },
+      "soul_note": null,
+      "year_theme": "Ein Jahr, in dem Rechnungen beglichen und das Gleichgewicht wiederhergestellt wird. Frühere Entscheidungen können zurückkommen; prüfen Sie daher Verträge und Versprechen sorgfältig und handeln Sie ehrlich."
+    },
+    "the-hanged-man": {
+      "name": "Der Gehängte",
+      "tagline": "Jemand, der die Perspektive auf den Kopf stellt",
+      "personality": "Sie sehen die Welt aus einem eigenen Blickwinkel, der sich von anderen unterscheidet. Sie können warten, ohne zu hetzen, und haben die Ruhe, einen Schritt zurückzutreten und eine Situation zu betrachten. Manchmal treffen Sie Entscheidungen, die schwer zu verstehen sind und Ihr Umfeld verwundern.",
+      "life_lesson": "In Ihrem Leben geht es darum, das Paradox zu lernen, dass man loslassen muss, um zu gewinnen. Die Aufgabe ist, Warten von Ausweichen zu unterscheiden und Zeiten des Innehaltens als Chance für eine neue Sicht zu nutzen.",
+      "relationships": "Sie neigen dazu, nachzugeben und auf den anderen zu warten. Wenn Sie Ihre eigenen Wünsche nicht aussprechen, kann sich Groll aufstauen; versuchen Sie daher, auszudrücken, was Sie brauchen.",
+      "keywords": [
+        "Warten",
+        "Loslassen",
+        "Neue Sichtweise",
+        "Opfer",
+        "Innehalten"
+      ],
+      "strengths": [
+        "Ein flexibler Blickwinkel, der die Dinge auf den Kopf stellt",
+        "Die Geduld, lange zu warten",
+        "Der Mut, Anhaftung loszulassen"
+      ],
+      "shadow": [
+        "Die Gewohnheit, Entscheidungen aufzuschieben, kann Sie Chancen verpassen lassen",
+        "Sie können in eine Opferhaltung verfallen",
+        "Sie stehen vielleicht still, um der Wirklichkeit auszuweichen"
+      ],
+      "career": {
+        "style": "Ihre Stärken treten in Arbeit hervor, die einen eigenständigen Blickwinkel braucht oder Tiefe über Tempo stellt.",
+        "fields": [
+          "Kunst und kreative Arbeit",
+          "Forschung",
+          "Beratung und alternative Heilverfahren",
+          "Gemeinnütziges und Ehrenamt",
+          "Bereiche, die Originalität verlangen"
+        ],
+        "caution": "Wenn Ergebnisse langsam kommen, machen Sie sich vielleicht Vorwürfe; setzen Sie daher Etappenziele."
+      },
+      "soul_note": null,
+      "year_theme": "Ein Jahr des Innehaltens und des Perspektivwechsels. Auch wenn sich alles langsam anfühlt, seien Sie nicht ungeduldig; bedenken Sie, dass das jetzige Warten Ihnen eine neue Sicht bringen kann."
+    },
+    "death": {
+      "name": "Der Tod",
+      "tagline": "Jemand, der beendet und neu geboren wird",
+      "personality": "Sie neigen dazu, größere Veränderungen und Übergänge im Leben mehr als einmal zu durchlaufen. Wenn Sie es für nötig halten, räumen Sie kühn auf und wählen einen Neuanfang. Ihnen ist das Wesentliche wichtiger als die Oberfläche, und Sie suchen tiefen Wandel.",
+      "life_lesson": "In Ihrem Leben geht es darum, das Loslassen zu lernen. Die Aufgabe ist, anzunehmen, dass ein Ende ein anderer Name für einen Neuanfang ist, und das Vergangene mit Dankbarkeit zu entlassen.",
+      "relationships": "Sie erleben vielleicht mehrfach das Aufräumen und Neuordnen von Beziehungen und suchen Verbindungen, die tiefen Wandel mit sich bringen. Dinge im Gespräch zu klären statt abrupt abzubrechen, lässt weniger Reue zurück.",
+      "keywords": [
+        "Wandel",
+        "Aufräumen",
+        "Übergang",
+        "Wiedergeburt",
+        "Ende"
+      ],
+      "strengths": [
+        "Der Mut, Veränderung anzunehmen",
+        "Die Entschlossenheit, Verbrauchtes auszusortieren",
+        "Die Widerstandskraft, nach Rückschlägen wieder aufzustehen"
+      ],
+      "shadow": [
+        "Sie bleiben vielleicht zu lange in Bedauern oder Anhaftung",
+        "Umgekehrt trennen Sie sich vielleicht zu hastig von Beziehungen oder Arbeit",
+        "Sie können empfindlich auf Verlust reagieren und niedergeschlagen sein"
+      ],
+      "career": {
+        "style": "Ihr Können zeigt sich in Arbeit, bei der Sie Altes ausräumen und die Struktur ändern.",
+        "fields": [
+          "Restrukturierung und Beratung",
+          "Medizin, Beratung und Hospiz",
+          "Umbau und Wiederverwertung",
+          "Krisenmanagement",
+          "Coaching in Übergangsphasen"
+        ],
+        "caution": "Den Wandel zu überstürzen, kann die Zeit übersehen, die andere zur Vorbereitung brauchen; passen Sie daher das Tempo an."
+      },
+      "soul_note": null,
+      "year_theme": "Ein Jahr des Aufräumens und des Übergangs. Es kann eine Zeit sein, alte Gewohnheiten, Beziehungen oder Arbeit abzuschließen und ein neues Kapitel aufzuschlagen; fürchten Sie daher Enden nicht."
+    },
+    "temperance": {
+      "name": "Mäßigkeit",
+      "tagline": "Jemand, der Harmonie und Gleichgewicht mischt",
+      "personality": "Sie sind ruhig und führen mit einer ausgeglichenen Haltung Verschiedenes zusammen. Statt in Extreme zu eilen, suchen Sie das rechte Maß und bauen Ergebnisse langsam mit der Zeit auf. In Ihrer Nähe fühlen sich Menschen tendenziell entspannt.",
+      "life_lesson": "In Ihrem Leben geht es darum, in Ihrem eigenen Tempo ohne Eile zu integrieren. Die Aufgabe ist, Harmonie zu schaffen und zugleich klar zu wählen und sich auszudrücken, wenn es nötig ist.",
+      "relationships": "Sie vermitteln ruhig bei Konflikten und bauen angenehme, dauerhafte Beziehungen auf. Sie wirken vielleicht leidenschaftslos; versuchen Sie daher, Zuneigung sichtbar zu zeigen.",
+      "keywords": [
+        "Harmonie",
+        "Mäßigung",
+        "Heilung",
+        "Geduld",
+        "Integration"
+      ],
+      "strengths": [
+        "Ein Sinn für Ausgewogenheit, der unterschiedliche Elemente aufeinander abstimmt",
+        "Die Fähigkeit, zwischen Menschen zu vermitteln",
+        "Die Kraft, das Herz zu beruhigen und wiederherzustellen"
+      ],
+      "shadow": [
+        "Zu viel Zurückhaltung kann Sie leidenschaftslos wirken lassen",
+        "Sie schieben vielleicht Entscheidungen auf und bleiben lauwarm",
+        "Sie tun sich vielleicht schwer, extreme Meinungen zu verstehen"
+      ],
+      "career": {
+        "style": "Sie eignen sich für Arbeit, bei der Sie Materialien und Menschen mischen und abstimmen, um gute Ergebnisse zu erzielen.",
+        "fields": [
+          "Therapie und Rehabilitation",
+          "Beratung und Coaching",
+          "Kochen, Parfümerie und Mischen",
+          "Diplomatie und Vermittlung",
+          "Umwelt und Wohlbefinden"
+        ],
+        "caution": "Wenn Sie Ihre Ansichten nicht klar äußern, können Sie die Initiative verlieren."
+      },
+      "soul_note": null,
+      "year_theme": "Ein Jahr, in dem das Gleichgewicht wiederhergestellt wird. Prüfen Sie die Verhältnisse zwischen Arbeit und Ruhe sowie zwischen Beziehungen und sich selbst und justieren Sie nach und nach in einem Tempo, das Sie nicht überfordert."
+    },
+    "the-devil": {
+      "name": "Der Teufel",
+      "tagline": "Jemand, der Verlangen und Verstrickung durchschaut",
+      "personality": "Sie haben starke Anziehungskraft und Charisma und sind ehrlich zu Ihren Wünschen. Sie bemerken praktische Vorteile und Freuden leicht und haben die Kraft, Menschen anzuziehen. Wenn Ihr Herz sich einer Sache zuwendet, werfen Sie sich tendenziell tief hinein.",
+      "life_lesson": "In Ihrem Leben geht es darum, zu bemerken, was Sie bindet, und es in eine Wahl zu verwandeln. Die Aufgabe ist, Ihre Wünsche zu verstehen und gesund mit ihnen umzugehen, statt sie zu unterdrücken.",
+      "relationships": "Sie spüren starke Anziehung und Leidenschaft, die aber in Besitzdenken oder Abhängigkeit abgleiten können. Beziehungen werden gesund, wenn man die Freiheit des anderen achtet.",
+      "keywords": [
+        "Anziehung",
+        "Verlangen",
+        "Anhaftung",
+        "Realitätssinn",
+        "Versuchung"
+      ],
+      "strengths": [
+        "Ein Charisma, das Menschen anzieht",
+        "Eine Ehrlichkeit, die Verlangen nicht verbirgt",
+        "Ein Gespür dafür, praktischen Gewinn zu lesen"
+      ],
+      "shadow": [
+        "Sie verfallen leicht in Anhaftung oder Sucht",
+        "Sie können an Materielles oder Beziehungen gebunden werden",
+        "Ihr Kontrollbedürfnis kann wachsen"
+      ],
+      "career": {
+        "style": "Ihre Stärken treten in Arbeit hervor, bei der Sie die Bedürfnisse der Menschen lesen, verhandeln und überzeugen.",
+        "fields": [
+          "Vertrieb und Marketing",
+          "Finanzwesen und Investition",
+          "Medien und Unterhaltung",
+          "Verhandlung und Geschäftsentwicklung",
+          "Die Schönheitsbranche"
+        ],
+        "caution": "Wenn Sie zu sehr an Ergebnisse und Belohnungen gebunden sind, kann Ihr Urteil trüb werden; legen Sie daher Ihre Maßstäbe im Voraus fest."
+      },
+      "soul_note": null,
+      "year_theme": "Ein Jahr, um Verlangen und Verstrickung zu prüfen. Bemerken Sie, was Sie bei Ausgaben, Gewohnheiten und Beziehungen bindet, und verwandeln Sie es in eine Wahl."
+    },
+    "the-tower": {
+      "name": "Der Turm",
+      "tagline": "Jemand, der niederreißt und erwacht",
+      "personality": "Sie können die Wahrheit nicht verbergen und sprechen direkt statt auf Umwegen. Sie neigen dazu, plötzlichen Wandel oder Schocks im Leben zu erleben und danach stark zu wachsen. Auf Illusion und Schein reagieren Sie scharf.",
+      "life_lesson": "In Ihrem Leben geht es darum, Illusionen loszulassen und ein festes Fundament zu bauen. Die Aufgabe ist, zu lernen, selbst aufzuräumen, bevor der Wandel zuschlägt, und auf dem eingestürzten Boden neu zu bauen.",
+      "relationships": "Sie erleben vielleicht offene, dramatische Beziehungen, und wenn es einmal ausbricht, können Sie heftig zusammenstoßen. Sich etwas Zeit zu nehmen, bevor Sie sprechen, wenn Gefühle aufsteigen, kann Verletzungen verringern.",
+      "keywords": [
+        "Umbruch",
+        "Erwachen",
+        "Offenheit",
+        "Befreiung",
+        "Wendepunkt"
+      ],
+      "strengths": [
+        "Der Mut, der Wahrheit ins Auge zu sehen",
+        "Die Widerstandskraft, nach einer Krise wieder aufzustehen",
+        "Eine erneuernde Energie, die alte Rahmen sprengt"
+      ],
+      "shadow": [
+        "Sie brechen vielleicht impulsiv aus und beschädigen Beziehungen",
+        "Sie können plötzliche Zusammenstöße verursachen",
+        "Es kann schwerfallen, Stabilität lange zu halten"
+      ],
+      "career": {
+        "style": "Ihr Können zeigt sich in sich schnell wandelnden Situationen und in Krisen.",
+        "fields": [
+          "Krisenmanagement und Notfallreaktion",
+          "Innovation und Reform",
+          "Architektur und Umbau",
+          "Investigativer Journalismus",
+          "Veränderungsmanagement"
+        ],
+        "caution": "Wenn Gefühle vorauseilen, kann der Konflikt wachsen; schlafen Sie daher wichtige Entscheidungen noch einmal drüber."
+      },
+      "soul_note": null,
+      "year_theme": "Ein Jahr, in dem das Alte wankt. Unerwarteter Wandel kann kommen, ist aber auch eine Chance zum Neuaufbau; konzentrieren Sie sich daher darauf, was Sie bewahren, statt auf das, was fällt."
+    },
+    "the-star": {
+      "name": "Der Stern",
+      "tagline": "Jemand, der Hoffnung und Heilung bringt",
+      "personality": "Sie sind rein und optimistisch, und in Ihrer Nähe wird der Geist der Menschen klar. Ihre Ideale und Träume sind deutlich, und Sie lassen auch in schwierigen Lagen die Hoffnung nicht los. Sie sind reich an Inspiration und fühlen sich tendenziell von emotionalen Bereichen angezogen.",
+      "life_lesson": "In Ihrem Leben geht es darum, Glauben in Handeln zu verwandeln. Die Aufgabe ist, den Traum Ihres Herzens Schritt für Schritt zu verwirklichen und Ihr Talent der Welt zu zeigen.",
+      "relationships": "Sie begegnen Menschen aufrichtig und bauen warme Beziehungen auf, die Wunden beruhigen. Sie können enttäuscht werden, wenn Sie ein Ideal erwarten; sehen Sie daher den wirklichen Menschen so, wie er ist.",
+      "keywords": [
+        "Hoffnung",
+        "Inspiration",
+        "Heilung",
+        "Unschuld",
+        "Ideale"
+      ],
+      "strengths": [
+        "Eine Hoffnung, die anderen Kraft gibt",
+        "Inspiration und Vorstellungskraft",
+        "Eine heilende Energie, die Wunden beruhigt"
+      ],
+      "shadow": [
+        "Die Kluft zwischen Ideal und Wirklichkeit kann Sie antriebslos machen",
+        "Wenn Erwartungen enttäuscht werden, verschließen Sie vielleicht Ihr Herz",
+        "Sie warten vielleicht nur passiv"
+      ],
+      "career": {
+        "style": "Ihre Stärken treten in Arbeit hervor, die inspiriert und das Herz heilt.",
+        "fields": [
+          "Kunst und Musik",
+          "Heilung und Beratung",
+          "Astronomie und Wissenschaft",
+          "Content und Influencing",
+          "Umwelt und Gemeinnütziges"
+        ],
+        "caution": "Lassen Sie die Zeit nicht in vagem Warten verstreichen; setzen Sie sich kleine Handlungsziele."
+      },
+      "soul_note": null,
+      "year_theme": "Ein Jahr der Erholung und Hoffnung. Die schweren Zeiten können vergehen und Ihr Herz kann sich klären; holen Sie daher den Traum, den Sie so lange hegen, noch einmal hervor."
+    },
+    "the-moon": {
+      "name": "Der Mond",
+      "tagline": "Jemand, reich an Gefühl und Intuition",
+      "personality": "Sie sind empfindsam und haben eine lebhafte Vorstellungskraft. Sie sind feinfühlig für Stimmungs- und Gefühlsänderungen und bemerken Empfindungen, die sich schwer in Worte fassen lassen. Sie haben eine tiefe Fantasiewelt in sich, weshalb Sie sich von kreativer Arbeit und traumnahen Bereichen angezogen fühlen können.",
+      "life_lesson": "In Ihrem Leben geht es darum, der Angst ins Auge zu sehen und Gefühl von Tatsache zu unterscheiden. Die Aufgabe ist, in der Ungewissheit der Intuition zu vertrauen und zugleich zu prüfen, was sich prüfen lässt.",
+      "relationships": "Sie lesen die Stimmung feinfühlig und verstehen das Herz des anderen gut, neigen aber dazu, Ihr eigenes zu verbergen. Beziehungen werden leichter, wenn Sie ängstliche Gefühle ehrlich teilen, statt sie allein zu nähren.",
+      "keywords": [
+        "Empfindsamkeit",
+        "Vorstellungskraft",
+        "Intuition",
+        "Angst",
+        "Das Unbewusste"
+      ],
+      "strengths": [
+        "Eine Intuition, die feine Gefühle liest",
+        "Reiche Vorstellungskraft und Kreativität",
+        "Die Fähigkeit, mit dem Herzen anderer mitzufühlen"
+      ],
+      "shadow": [
+        "Sie können unter Angst oder Stimmungsschwankungen leiden",
+        "Aus Vermeidung von Ungewissheit schieben Sie vielleicht Entscheidungen auf",
+        "Geht die Vorstellungskraft zu weit, verwechseln Sie vielleicht Wirklichkeit und Fantasie"
+      ],
+      "career": {
+        "style": "Ihr Können zeigt sich in kreativer und einfühlsamer Arbeit, in der Empfindsamkeit und Vorstellungskraft zählen.",
+        "fields": [
+          "Kreative Arbeit und Schreiben",
+          "Film, Fotografie und Video",
+          "Psychologie und Beratung",
+          "Musik und Design",
+          "Bereiche rund um Träume und Symbole"
+        ],
+        "caution": "Bei starker Angst kann das Urteil trüb werden; bestätigen Sie daher vor wichtigen Entscheidungen die Fakten."
+      },
+      "soul_note": null,
+      "year_theme": "Ein Jahr, in dem sich Gefühl und Intuition vertiefen. Wenn Angst aufsteigt, unterscheiden Sie Vorstellung von Tatsache und ordnen Sie die Geschichten Ihres Herzens, indem Sie sie aufschreiben."
+    },
+    "the-sun": {
+      "name": "Die Sonne",
+      "tagline": "Jemand, der hell leuchtet und seinem Umfeld Leben schenkt",
+      "personality": "Sie sind hell und offen und tragen eine Energie, die Ihre Umgebung erleuchtet. Sie sind optimistisch und nehmen Schwierigkeiten tendenziell positiv auf, und Ihr reicher Ausdruck macht es leicht, Sie zu lieben. Sie bewahren eine kindliche Reinheit und Begeisterung.",
+      "life_lesson": "In Ihrem Leben geht es darum, sowohl Licht als auch Schatten anzunehmen. Wenn Sie nicht nur Helligkeit, sondern auch dunkle Gefühle und Schwächen anerkennen, können Sie eine festere Freude genießen.",
+      "relationships": "Sie knüpfen Beziehungen offen, mit warmem und offenem Herzen. Zu üben, dem anderen auch an dessen dunklen Tagen zuzuhören, vertieft die Beziehung.",
+      "keywords": [
+        "Lebenskraft",
+        "Zuversicht",
+        "Offenheit",
+        "Erfolg",
+        "Freude"
+      ],
+      "strengths": [
+        "Eine Zuversicht, die Ihrem Umfeld Lebenskraft gibt",
+        "Ein offener und reicher Ausdruck",
+        "Eine Präsenz, die für Ergebnisse Anerkennung findet"
+      ],
+      "shadow": [
+        "Übermäßiger Optimismus kann dazu führen, Risiken auf die leichte Schulter zu nehmen",
+        "Sie versuchen vielleicht, dunklen Gefühlen auszuweichen",
+        "Ihr Bedürfnis nach Anerkennung kann wachsen"
+      ],
+      "career": {
+        "style": "Sie glänzen in Arbeit, bei der Sie vor Menschen Energie weitergeben und Ergebnisse sichtbar sind.",
+        "fields": [
+          "Bildung und Kinderbereiche",
+          "Rundfunk und Unterhaltung",
+          "Sport",
+          "Dienstleistung und Vertrieb",
+          "Gesundheit und Wohlbefinden"
+        ],
+        "caution": "Wenn das Selbstvertrauen zu hoch ist, können Sie Details übersehen; bauen Sie daher einen Prüfschritt ein."
+      },
+      "soul_note": null,
+      "year_theme": "Ein Jahr der Lebenskraft und der Ergebnisse. Die Mühe, die Sie sich gemacht haben, kann als sichtbares Ergebnis erscheinen; teilen Sie daher Ihre Freude mit Ihrem Umfeld und gehen Sie zuversichtlich voran."
+    },
+    "judgement": {
+      "name": "Das Gericht",
+      "tagline": "Jemand, der dem Ruf folgt und wieder aufsteht",
+      "personality": "Sie sind nachdenklich und blicken auf Ihr Leben zurück, um dessen Sinn zu finden. An irgendeinem Punkt im Leben spüren Sie tendenziell einen Ruf, der sagt: „Das ist es, was ich tun soll.“ Sie haben einen starken Willen, die Vergangenheit zu ordnen und neu aufzustehen.",
+      "life_lesson": "In Ihrem Leben geht es darum, die Vergangenheit zu ordnen und dem Ruf zu folgen. Die Aufgabe ist, sich selbst und anderen zu vergeben und einen Schritt auf das zu tun, was Sie wirklich tun wollen.",
+      "relationships": "Versöhnung und Vergebung werden zu einem wichtigen Thema in Beziehungen. Beziehungen erneuern sich, wenn Sie alte Wunden klären und ehrlich aus dem Herzen sprechen.",
+      "keywords": [
+        "Besinnung",
+        "Berufung",
+        "Vergebung",
+        "Erwachen",
+        "Neuanfang"
+      ],
+      "strengths": [
+        "Die Besinnung, auf sich selbst zurückzublicken",
+        "Ein Herz, das vergibt und sich versöhnt",
+        "Ein Erwachen, das Ihre Berufung erkennt und sich bewegt"
+      ],
+      "shadow": [
+        "Übermäßige Selbstkritik kann Sie zu stark antreiben",
+        "Sie bleiben vielleicht an der Vergangenheit hängen und kommen nicht voran",
+        "Sie schieben den Moment der Entscheidung vielleicht auf"
+      ],
+      "career": {
+        "style": "Sie eignen sich für Arbeit, die Sinn und Berufung schätzt und Menschen beim Wachsen hilft.",
+        "fields": [
+          "Beratung und Heilung",
+          "Bildung und Coaching",
+          "Öffentliche und gesellschaftliche Bewegungen",
+          "Recht und Vermittlung",
+          "Rundfunk und Öffentlichkeitsarbeit"
+        ],
+        "caution": "Auf den perfekten Zeitpunkt zu warten, kann Ihren Start verzögern; beginnen Sie daher mit einer kleinen Handlung."
+      },
+      "soul_note": null,
+      "year_theme": "Ein Jahr der Neubewertung und des Neuanfangs. Eine gute Zeit, auf die vergangene Zeit zurückzublicken, sie zu ordnen und eine neue Berufung oder Richtung zu wählen."
+    },
+    "the-world": {
+      "name": "Die Welt",
+      "tagline": "Jemand, der vollendet und integriert",
+      "personality": "Sie bringen zu Ende, was Sie beginnen, und integrieren es reif. Ihr Blick ist weit und offen für viele Menschen und Kulturen, und wenn Sie eine Stufe vollenden, gehen Sie natürlich in die nächste Welt über. Sie vermitteln einen Eindruck von Ausgewogenheit und Stabilität.",
+      "life_lesson": "In Ihrem Leben geht es darum, Vollendung mit neuen Anfängen zu verbinden. Die Aufgabe ist, das Erreichte voll zu genießen und zugleich das Herz wieder für die nächste Reise zu öffnen.",
+      "relationships": "Sie bauen reife, stabile Beziehungen auf und genießen einen weiten Kreis von Verbindungen. Wenn eine Beziehung eine gewisse Stufe erreicht, hilft es, gemeinsam neue Ziele zu setzen.",
+      "keywords": [
+        "Vollendung",
+        "Erfolg",
+        "Integration",
+        "Reife",
+        "Erweiterung"
+      ],
+      "strengths": [
+        "Die Fähigkeit, Dinge bis zur Vollendung zu führen",
+        "Die Fähigkeit, Verschiedenes zu integrieren",
+        "Ein weiter und offener Blick"
+      ],
+      "shadow": [
+        "Im Streben nach Perfektion schieben Sie den Abschluss vielleicht auf",
+        "Nach einem Erfolg können Sie Leere empfinden",
+        "Sie richten sich vielleicht in der gegenwärtigen Vollendung ein"
+      ],
+      "career": {
+        "style": "Ihre Stärken treten in Arbeit hervor, bei der Sie viele Elemente integrieren und Projekte vollenden.",
+        "fields": [
+          "Internationales und Handel",
+          "Bildung und Forschung",
+          "Management und Leitung",
+          "Reisen und Kultur",
+          "Integrierte Künste und Projektleitung"
+        ],
+        "caution": "Damit Sie nach einem Erfolg die Richtung nicht verlieren, malen Sie sich im Voraus Ihre nächste Herausforderung aus."
+      },
+      "soul_note": null,
+      "year_theme": "Ein Jahr der Vollendung und der Früchte. Sie schließen vielleicht langwierige Arbeit ab oder beenden eine Stufe und bereiten bald einen neuen Anfang vor."
+    }
+  },
+  "lang": "de"
+}

@@ -38,8 +38,9 @@ function ensureBar() {
   el.id = 'acct-bar';
   el.dataset.lang = l;
   el.innerHTML = '<button id="acct-login" type="button"></button><div id="acct-user">' +
-    '<img id="acct-avatar" src="" alt=""><span id="acct-name"></span><span id="acct-free" class="plenty"></span>' +
-    '<a id="acct-credit" href="/"></a><a id="acct-history" href="/"></a><button id="acct-logout" type="button"></button></div>';
+    '<span id="acct-free" class="plenty"></span><a id="acct-credit" href="/"></a>' +
+    '<a id="acct-history" href="/"></a><img id="acct-avatar" src="" alt="">' +
+    '<span id="acct-name"></span><button id="acct-logout" type="button"></button></div>';
   el.className = 'site-topbar';
   document.body.prepend(el);
   return el;

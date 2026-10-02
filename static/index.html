@@ -32,7 +32,7 @@
 
   <link rel="icon" href="/static/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="/static/favicon.png" />
-  <link rel="stylesheet" href="/static/site-shell.css?v=3" />
+  <link rel="stylesheet" href="/static/site-shell.css?v=4" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -121,6 +121,42 @@
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--gold), transparent);
       margin: 20px auto;
+    }
+    .reading-modes {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      overflow-x: auto;
+      margin: -8px 0 24px;
+      border-bottom: 1px solid rgba(196,169,107,.22);
+    }
+    .reading-modes button {
+      flex: 0 0 auto;
+      padding: 12px 16px;
+      border: 0;
+      border-bottom: 3px solid transparent;
+      background: transparent;
+      color: var(--text-dim);
+      font: 600 .95rem 'Noto Sans KR', sans-serif;
+      cursor: pointer;
+    }
+    .reading-modes button[aria-selected="true"] { color: var(--gold-light); border-bottom-color: var(--gold); }
+    .reading-modes button:disabled { opacity: .45; cursor: not-allowed; }
+    .reading-modes button:focus-visible { outline: 2px solid var(--gold); outline-offset: -3px; }
+    .choice-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .choice-fields label { display: grid; gap: 8px; color: var(--gold); font-weight: 600; }
+    .choice-fields input {
+      width: 100%; min-width: 0; padding: 14px 16px;
+      border: 1px solid rgba(196,169,107,.3); border-radius: 8px;
+      background: rgba(14,16,30,.7); color: var(--text);
+      font: 1rem 'Noto Sans KR', sans-serif;
+    }
+    .choice-fields input:focus { outline: 2px solid var(--gold); }
+    @media (max-width: 560px) {
+      .reading-modes { justify-content: flex-start; gap: 0; scrollbar-width: none; }
+      .reading-modes::-webkit-scrollbar { display: none; }
+      .reading-modes button { flex: 1 0 auto; padding: 11px 3px; font-size: .8rem; white-space: nowrap; }
+      .choice-fields { grid-template-columns: 1fr; }
     }
 
     /* ── Step containers ── */
@@ -853,77 +889,13 @@
     #charge-phone:focus { border-color: var(--gold); }
     #charge-phone::placeholder { color: var(--text-dim); }
 
-    /* ── 네비게이션 메뉴 (항상 표시) ── */
-    /* 데스크톱: 왼쪽 고정 사이드바 */
-    body { padding: 64px 0 0 220px; }
-    #nav-overlay {
-      position: fixed; top: 0; left: 0; bottom: 0; width: 220px; z-index: 400;
-    }
-    #nav-panel {
-      width: 100%; height: 100%; overflow-y: auto;
-      background: linear-gradient(160deg, #181a26, #1e2035);
-      border-right: 0;
-      padding: 28px 16px 40px;
-    }
-
-    .nav-logo {
-      font-family: 'Noto Sans KR', sans-serif; font-size: 1.05rem; font-weight: 700;
-      color: var(--gold); margin-bottom: 28px; letter-spacing: 1px;
-    }
-    .nav-item {
-      display: flex; align-items: center; gap: 14px; width: 100%;
-      padding: 13px 14px; background: none; border: none; border-radius: 10px;
-      cursor: pointer; color: var(--text); font-family: 'Noto Sans KR', sans-serif;
-      font-size: .93rem; line-height: 24px; text-align: left; transition: background .15s;
-    }
-    .nav-item:hover { background: rgba(196,169,107,.1); color: var(--gold); }
-    .nav-item .nav-icon { font-size: 1.2rem; width: 26px; text-align: center; flex-shrink: 0; }
-    /* 태블릿·모바일: 사이드바 대신 상단 가로 메뉴 줄 */
-    @media (max-width: 1000px) {
-      body { padding: calc(var(--topbar-h, 64px) + 48px) 0 0; }
-      #nav-overlay {
-        position: fixed; top: var(--topbar-h, 64px); left: 0; right: 0; bottom: auto;
-        width: auto; height: 48px; z-index: 1200; padding: 0 16px;
-      }
-      #nav-panel {
-        display: flex; gap: 6px; overflow-x: auto;
-        height: auto; padding: 0 0 4px;
-        background: none; border: none;
-        scrollbar-width: none;
-      }
-      #nav-panel::-webkit-scrollbar { display: none; }
-      #nav-panel .nav-logo { display: none; }
-      #nav-panel .nav-item {
-        width: auto; flex-shrink: 0; margin: 0; padding: 8px 14px;
-        white-space: nowrap; font-size: .82rem;
-        border: 1px solid rgba(196,169,107,.25); border-radius: 20px;
-      }
-      /* 넘치지 않으면 가운데, 넘치면 스크롤 */
-      #nav-panel .nav-item:first-of-type { margin-left: auto; }
-      #nav-panel .nav-item:last-of-type  { margin-right: auto; }
-      #top-bar { left: 0; }
-      header { padding-top: 24px; }
-    }
-    @media (max-width: 600px) {
-      /* 모바일에서도 고정 헤더와 메뉴 아래에서 본문만 스크롤 */
-      #top-bar { left: 0; right: 0; }
-      body { padding-top: calc(var(--topbar-h, 88px) + 44px); }
-      #nav-overlay { top: var(--topbar-h, 88px); height: 44px; padding: 0 12px; }
-      #nav-panel { gap: 5px; }
-      #nav-panel .nav-item { padding: 7px 11px; font-size: .75rem; }
-      header { padding-top: 16px; }
-    }
-
     /* ── 콘텐츠 패널 ── */
     #content-panel {
-      display: none; position: fixed; inset: var(--topbar-h, 64px) 0 0 220px; z-index: 300;
+      display: none; position: fixed; inset: 0; z-index: 1400;
       background: var(--bg); overflow-y: auto;
     }
     body.content-open { overflow: hidden; }
     #content-panel.open { display: flex; flex-direction: column; }
-    @media (max-width: 1000px) {
-      #content-panel { inset: calc(var(--topbar-h, 64px) + 48px) 0 0; }
-    }
     #content-body { flex: 1 0 auto; max-width: 800px; margin: 0 auto; padding: 32px 20px 80px; }
 
     .info-section { margin-bottom: 36px; }
@@ -1008,6 +980,13 @@
       margin-top: 16px; text-align: center;
     }
     #no-credit-box.visible { display: flex; }
+    body { padding: 0; }
+    #top-bar { position: relative; inset: auto; width: 100%; }
+    #content-panel { inset: 0; z-index: 1400; }
+    #content-body { width: 100%; }
+    #content-close { display: block; margin: 0 0 24px auto; padding: 7px 12px; border: 1px solid rgba(196,169,107,.3); border-radius: 6px; color: var(--text); background: transparent; cursor: pointer; }
+    @media (max-width: 1000px) { body { padding: 0; } #content-panel { inset: 0; } }
+    @media (max-width: 600px) { body { padding: 0; } #top-bar { position: relative; inset: auto; } }
     #no-credit-box .nc-title { font-family: 'Noto Sans KR', sans-serif; color: var(--gold); font-size: 1.1rem; }
     #no-credit-box .nc-desc { color: var(--text-dim); font-size: .85rem; }
   </style>
@@ -1015,9 +994,12 @@
 <body>
 
 
-<div class="container">
-
   <div id="top-bar" class="site-topbar">
+    <nav class="site-primary-nav" aria-label="Site">
+      <a class="site-brand" id="nav-logo" href="/">✨ 울트라타로</a>
+      <a id="nav-label-cards" href="/cards">카드 도감</a>
+      <a id="nav-label-saved" href="/saved-readings">저장한 리딩</a>
+    </nav>
     <!-- 언어 선택기 -->
     <div id="lang-selector">
       <button id="lang-btn">🇰🇷 한국어 ▾</button>
@@ -1028,19 +1010,26 @@
     <button id="guest-checkout-btn" class="header-login-btn">🛒 비회원 결제</button>
     <!-- 유저 정보 -->
     <div class="user-info" id="user-info">
-      <img id="user-avatar" src="" alt="프로필" />
-      <span id="user-name"></span>
       <span id="free-badge" class="plenty"></span>
       <span id="credit-badge" data-charge-trigger role="button" tabindex="0" title="클릭하여 충전"></span>
       <button id="history-btn" onclick="openHistoryModal()" title="크레딧 이용내역">내역</button>
+      <img id="user-avatar" src="" alt="프로필" />
+      <span id="user-name"></span>
       <button id="logout-btn">로그아웃</button>
     </div>
   </div>
+<div class="container">
   <header style="position:relative">
     <h1 id="hdr-title">✨ 타로 리딩</h1>
     <div class="divider"></div>
     <p id="hdr-sub">당신의 운명을 읽어드립니다</p>
   </header>
+  <nav class="reading-modes" role="tablist" aria-label="Reading modes">
+    <button type="button" role="tab" data-reading-mode="reading" aria-selected="true" aria-controls="step1">타로 리딩</button>
+    <button type="button" role="tab" data-reading-mode="today" aria-selected="false" aria-controls="step2">오늘의 타로</button>
+    <button type="button" role="tab" data-reading-mode="choice" aria-selected="false" aria-controls="step1">양자택일</button>
+    <button type="button" role="tab" data-reading-mode="birthday" aria-selected="false">나의 생일수</button>
+  </nav>
 
   <!-- ── Step 1: 질문 입력 + AI 스프레드 선택 ── -->
   <section class="step active" id="step1">
@@ -1053,6 +1042,13 @@
       <div class="mt-16">
         <button class="btn" id="step1-next">카드선택 →</button>
       </div>
+    </div>
+    <div id="choice-area" class="hidden">
+      <div class="choice-fields">
+        <label for="choice-a"><span id="choice-a-label">선택지 A</span><input id="choice-a" type="text" maxlength="200" autocomplete="off"></label>
+        <label for="choice-b"><span id="choice-b-label">선택지 B</span><input id="choice-b" type="text" maxlength="200" autocomplete="off"></label>
+      </div>
+      <div class="mt-16"><button class="btn" id="choice-next">카드선택 →</button></div>
     </div>
 
     <!-- AI 분석 중 -->
@@ -1209,31 +1205,14 @@
   </div>
 </div>
 
-<!-- ── 네비게이션 (항상 표시: 데스크톱은 왼쪽 사이드바, 좁은 화면은 상단 가로 메뉴) ── -->
-<div id="nav-overlay" class="site-sidebar">
-  <nav id="nav-panel" class="site-sidebar-nav">
-    <a class="nav-logo site-sidebar-brand" id="nav-logo" href="/">✨ 울트라타로</a>
-    <button class="nav-item" onclick="openContent('about')">
-      <span id="nav-label-about">앱 소개</span>
-    </button>
-    <button class="nav-item" onclick="openContent('tarot')">
-      <span id="nav-label-tarot">타로카드란?</span>
-    </button>
-    <button class="nav-item" onclick="location.href = cardsHref();">
-      <span id="nav-label-cards">카드 도감</span>
-    </button>
-    <button class="nav-item" onclick="location.href = '/saved-readings';">
-      <span id="nav-label-saved">저장한 리딩</span>
-    </button>
-  </nav>
-</div>
-
 <!-- ── 콘텐츠 패널 ── -->
 <div id="content-panel">
   <div id="content-body"></div>
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-links">
+        <a class="footer-about" href="/?open=about">앱 소개</a>
+        <a class="footer-tarot" href="/?open=tarot">타로카드란?</a>
         <a href="/legal.html#pricing" target="_blank">이용요금</a>
         <a href="/legal.html#terms" target="_blank">이용약관</a>
         <a href="/legal.html#privacy" target="_blank">개인정보처리방침</a>
@@ -1732,6 +1711,25 @@ function t(key, ...args) {
   return typeof val === 'function' ? val(...args) : (val ?? key);
 }
 
+const MODE_COPY = {
+  ko: ['타로 리딩', '오늘의 타로', '양자택일', '나의 생일수', '오늘의 타로카드를 한 장 고르세요', '선택지 A', '선택지 B', '두 선택지를 모두 입력하세요', '준비 중'],
+  en: ['Tarot Reading', "Today's Tarot", 'Either or', 'Birthday Number', 'Choose one tarot card for today', 'Option A', 'Option B', 'Enter both options', 'Coming soon'],
+  ja: ['タロット占い', '今日のタロット', '二者択一', '誕生数', '今日のタロットカードを1枚選んでください', '選択肢 A', '選択肢 B', '両方の選択肢を入力してください', '準備中'],
+  es: ['Lectura de tarot', 'Tarot de hoy', 'A o B', 'Número de nacimiento', 'Elige una carta de tarot para hoy', 'Opción A', 'Opción B', 'Escribe ambas opciones', 'Próximamente'],
+  fr: ['Tirage de tarot', "Tarot du jour", 'A ou B', 'Nombre de naissance', "Choisissez une carte de tarot pour aujourd'hui", 'Option A', 'Option B', 'Saisissez les deux options', 'Bientôt disponible'],
+  de: ['Tarot-Lesung', 'Tarot des Tages', 'A oder B', 'Geburtszahl', 'Wähle eine Tarotkarte für heute', 'Option A', 'Option B', 'Gib beide Optionen ein', 'Demnächst'],
+  pt: ['Leitura de tarot', 'Tarot de hoje', 'A ou B', 'Número de nascimento', 'Escolha uma carta de tarot para hoje', 'Opção A', 'Opção B', 'Preencha as duas opções', 'Em breve'],
+  th: ['อ่านไพ่ทาโรต์', 'ไพ่ทาโรต์วันนี้', 'เลือก A หรือ B', 'เลขวันเกิด', 'เลือกไพ่ทาโรต์หนึ่งใบสำหรับวันนี้', 'ตัวเลือก A', 'ตัวเลือก B', 'กรอกทั้งสองตัวเลือก', 'เร็ว ๆ นี้'],
+  ru: ['Гадание на Таро', 'Таро на сегодня', 'А или Б', 'Число рождения', 'Выберите одну карту Таро на сегодня', 'Вариант А', 'Вариант Б', 'Введите оба варианта', 'Скоро'],
+  zh: ['塔罗占卜', '今日塔罗', '二选一', '生日数字', '请选择一张今日塔罗牌', '选项 A', '选项 B', '请填写两个选项', '即将推出'],
+  it: ['Lettura dei tarocchi', 'Tarocchi di oggi', 'A o B', 'Numero di nascita', 'Scegli una carta dei tarocchi per oggi', 'Opzione A', 'Opzione B', 'Inserisci entrambe le opzioni', 'Prossimamente'],
+  id: ['Pembacaan tarot', 'Tarot hari ini', 'A atau B', 'Angka kelahiran', 'Pilih satu kartu tarot untuk hari ini', 'Pilihan A', 'Pilihan B', 'Isi kedua pilihan', 'Segera hadir'],
+  vi: ['Xem bài tarot', 'Tarot hôm nay', 'A hay B', 'Con số ngày sinh', 'Chọn một lá bài tarot cho hôm nay', 'Lựa chọn A', 'Lựa chọn B', 'Nhập cả hai lựa chọn', 'Sắp ra mắt'],
+  tr: ['Tarot falı', 'Günün tarotu', 'A mı B mi', 'Doğum sayısı', 'Bugün için bir tarot kartı seçin', 'Seçenek A', 'Seçenek B', 'İki seçeneği de girin', 'Yakında'],
+  pl: ['Wróżba z tarota', 'Tarot na dziś', 'A czy B', 'Liczba urodzenia', 'Wybierz jedną kartę tarota na dziś', 'Opcja A', 'Opcja B', 'Wpisz obie opcje', 'Wkrótce']
+};
+function modeText(index) { return (MODE_COPY[currentLang] || MODE_COPY.en)[index]; }
+
 // 카드 도감 주소: 한국어는 /cards, 그 외는 /{언어코드}/cards
 function cardsHref() { return currentLang === 'ko' ? '/cards' : '/' + currentLang + '/cards'; }
 
@@ -1740,7 +1738,7 @@ function applyLang() {
 
   el('hdr-title').textContent = t('title');
   el('hdr-sub').textContent   = t('subtitle');
-  el('s1-title').textContent  = t('s1_title');
+  el('s1-title').textContent  = readingMode === 'choice' ? modeText(2) : t('s1_title');
   el('question-input').placeholder = t('q_placeholder');
   el('question-hint').textContent  = t('q_hint');
   el('step1-next').textContent     = t('btn_select');
@@ -1748,7 +1746,14 @@ function applyLang() {
   el('reselect-btn').textContent   = t('btn_reselect');
   el('go-draw-btn').textContent    = t('btn_go_draw');
   el('s2-title').textContent       = t('s2_title');
-  el('draw-instr-text').textContent = t('draw_instr');
+  el('draw-instr-text').textContent = readingMode === 'today' ? modeText(4) : t('draw_instr');
+  document.querySelectorAll('[data-reading-mode]').forEach((button, index) => {
+    button.textContent = modeText(index);
+    button.title = button.disabled ? modeText(8) : '';
+  });
+  el('choice-a-label').textContent = modeText(5);
+  el('choice-b-label').textContent = modeText(6);
+  el('choice-next').textContent = t('btn_select');
   el('draw-suffix').textContent    = t('draw_suffix');
   el('step2-back').textContent     = t('btn_back');
   el('step2-next').textContent     = t('btn_start');
@@ -1810,6 +1815,56 @@ let selectedSpread = null;
 let cardCount = 3;
 let deckCards = [];
 let drawnCards = [];
+let readingMode = 'reading';
+let readingInProgress = false;
+let spreadRequest = null;
+
+function readingQuestion() {
+  if (readingMode === 'choice') {
+    const a = document.getElementById('choice-a').value.trim();
+    const b = document.getElementById('choice-b').value.trim();
+    return `${modeText(5)}: ${a} vs ${modeText(6)}: ${b}`;
+  }
+  return document.getElementById('question-input').value.trim();
+}
+
+function enterToday() {
+  document.getElementById('question-input').value = t('daily');
+  cardCount = 1;
+  selectedSpread = {
+    name: t('daily'), card_count: 1,
+    positions: [{ position: 1, meanings: [t('daily_pos')] }],
+    reason: t('daily_reason')
+  };
+  hide('step1');
+  show('step2');
+  buildDeck();
+  document.getElementById('step2').scrollIntoView({ behavior: 'smooth' });
+}
+
+document.querySelectorAll('[data-reading-mode]:not(:disabled)').forEach(button => {
+  button.addEventListener('click', () => {
+    if (readingInProgress) return;
+    const mode = button.dataset.readingMode;
+    if (mode === 'birthday') {
+      location.href = currentLang === 'ko' ? '/birth-card' : `/birth-card?lang=${currentLang}`;
+      return;
+    }
+    if (mode === readingMode && mode !== 'today') return;
+    spreadRequest?.abort();
+    spreadRequest = null;
+    resetAll(false);
+    readingMode = mode;
+    document.querySelectorAll('[data-reading-mode]').forEach(tab => {
+      tab.setAttribute('aria-selected', String(tab === button));
+    });
+    document.getElementById('s1-title').textContent = mode === 'choice' ? modeText(2) : t('s1_title');
+    document.getElementById('draw-instr-text').textContent = mode === 'today' ? modeText(4) : t('draw_instr');
+    document.getElementById('choice-area').classList.toggle('hidden', mode !== 'choice');
+    document.getElementById('question-area').classList.toggle('hidden', mode === 'choice');
+    if (mode === 'today') enterToday();
+  });
+});
 
 function notify(msg, dur = 2000) {
   const el = document.getElementById('notif');
@@ -1833,43 +1888,43 @@ async function init() {
   try {
     const res = await fetch('/api/cards');
     allCards = await res.json();
+    if (readingMode === 'today' && !deckCards.length) buildDeck();
   } catch (e) {
     notify(t('notify_server'), 4000);
   }
 }
 
 // ── Step 1: 질문 → AI 스프레드 선택 ──
-document.getElementById('step1-next').addEventListener('click', async () => {
-  const q = document.getElementById('question-input').value.trim();
+async function selectSpread() {
+  if (readingMode === 'choice' && (!document.getElementById('choice-a').value.trim() || !document.getElementById('choice-b').value.trim())) {
+    notify(modeText(7));
+    return;
+  }
+  const q = readingQuestion();
 
   // 질문 없으면 → 오늘의 운세 (1장)
   if (!q) {
-    document.getElementById('question-input').value = t('daily');
-    cardCount = 1;
-    selectedSpread = {
-      name: t('daily'),
-      card_count: 1,
-      positions: [{ position: 1, meanings: [t('daily_pos')] }],
-      reason: t('daily_reason')
-    };
-    hide('step1');
-    show('step2');
-    buildDeck();
+    enterToday();
     document.getElementById('step2').scrollIntoView({ behavior: 'smooth' });
     return;
   }
 
   hide('question-area');
+  hide('choice-area');
   show('analyzing-area');
 
+  const controller = new AbortController();
+  spreadRequest = controller;
   try {
     const res = await fetch('/api/select-spread', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question: q, language: currentLang })
+      body: JSON.stringify({ question: q, language: currentLang, mode: readingMode }),
+      signal: controller.signal
     });
     if (!res.ok) throw new Error('서버 오류');
     const spread = await res.json();
+    if (controller.signal.aborted) return;
 
     selectedSpread = spread;
     cardCount = spread.card_count || 3;
@@ -1898,16 +1953,21 @@ document.getElementById('step1-next').addEventListener('click', async () => {
     show('spread-result-area');
 
   } catch (e) {
+    if (e.name === 'AbortError') return;
     hide('analyzing-area');
-    show('question-area');
+    show(readingMode === 'choice' ? 'choice-area' : 'question-area');
     notify(t('notify_spread_err'));
+  } finally {
+    if (spreadRequest === controller) spreadRequest = null;
   }
-});
+}
+document.getElementById('step1-next').addEventListener('click', selectSpread);
+document.getElementById('choice-next').addEventListener('click', selectSpread);
 
 // 질문 다시 쓰기
 document.getElementById('reselect-btn').addEventListener('click', () => {
   hide('spread-result-area');
-  show('question-area');
+  show(readingMode === 'choice' ? 'choice-area' : 'question-area');
   selectedSpread = null;
 });
 
@@ -2066,9 +2126,18 @@ function selectCard(deckIdx) {
 
 document.getElementById('step2-back').addEventListener('click', () => {
   hide('step2');
-  // step1으로 돌아가되 spread 결과 보여주기
+  if (readingMode === 'today') {
+    document.querySelector('[data-reading-mode="reading"]').click();
+    return;
+  }
   show('step1');
+  if (cardCount === 1) {
+    show('question-area');
+    hide('spread-result-area');
+    return;
+  }
   hide('question-area');
+  hide('choice-area');
   hide('analyzing-area');
   show('spread-result-area');
   document.getElementById('step1').scrollIntoView({ behavior: 'smooth' });
@@ -2107,13 +2176,14 @@ function renderReadingCards() {
 }
 
 async function startReading() {
+  readingInProgress = true;
   renderReadingCards();
   const output = document.getElementById('reading-output');
   const spinner = document.getElementById('loading-spinner');
   output.innerHTML = '';
   spinner.classList.add('active');
 
-  const question = document.getElementById('question-input').value.trim();
+  const question = readingQuestion();
   const spreadName = selectedSpread ? selectedSpread.name : `${cardCount}카드 스프레드`;
 
   const payload = {
@@ -2181,6 +2251,8 @@ async function startReading() {
   } catch (e) {
     spinner.classList.remove('active');
     output.textContent = '리딩 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.\n\n' + e.message;
+  } finally {
+    readingInProgress = false;
   }
 }
 
@@ -2257,7 +2329,7 @@ async function buildShareCanvas() {
   ctx.fillText('✨ 울트라타로', W / 2, 108);
 
   // 질문
-  const q = (document.getElementById('question-input').value || '').trim();
+  const q = readingQuestion();
   let y = 176;
   if (q) {
     ctx.fillStyle = 'rgba(232,227,216,.92)';
@@ -2435,7 +2507,7 @@ document.getElementById('share-reading-btn').addEventListener('click', async () 
 });
 
 document.getElementById('save-reading-btn').addEventListener('click', async () => {
-  const question = document.getElementById('question-input').value.trim();
+  const question = readingQuestion();
   const readingText = document.getElementById('reading-output').innerText.trim();
   if (!readingText) { notify(t('notify_no_content')); return; }
   if (!window.saveReadingRecord) { notify(savedReadingText('failed')); return; }
@@ -2464,21 +2536,31 @@ document.getElementById('save-reading-btn').addEventListener('click', async () =
   }
 });
 
-document.getElementById('new-reading-btn').addEventListener('click', resetAll);
+document.getElementById('new-reading-btn').addEventListener('click', () => resetAll());
 
-function resetAll() {
+function resetAll(restartMode = true) {
   hide('reading-section');
   hide('step2');
   show('step1');
   show('question-area');
+  hide('choice-area');
   hide('analyzing-area');
   hide('spread-result-area');
   document.getElementById('question-input').value = '';
+  document.getElementById('choice-a').value = '';
+  document.getElementById('choice-b').value = '';
   document.getElementById('reading-output').innerHTML = '';
   document.getElementById('reading-cards').innerHTML = '';
   selectedSpread = null;
   cardCount = 3;
   drawnCards = [];
+  if (restartMode && readingMode === 'choice') {
+    hide('question-area');
+    show('choice-area');
+  } else if (restartMode && readingMode === 'today') {
+    enterToday();
+    return;
+  }
   document.getElementById('step1').scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -2898,11 +2980,6 @@ async function handlePaypalSuccess(response) {
 }
 
 // ── 네비게이션 메뉴 ──
-function toggleNav() { document.getElementById('nav-overlay').classList.toggle('open'); }
-function closeNav()  { document.getElementById('nav-overlay').classList.remove('open'); }
-function handleNavOverlayClick(e) { if (e.target === document.getElementById('nav-overlay')) closeNav(); }
-
-
 function updateMenuLabels() {
   const L = NAV_LABELS[currentLang] || NAV_LABELS.en;
   const s = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
@@ -2911,9 +2988,11 @@ function updateMenuLabels() {
     logo.textContent = `✨ ${currentLang === 'ko' ? '울트라타로' : 'Ultra Tarot'}`;
     logo.href = currentLang === 'ko' ? '/' : `/?lang=${currentLang}`;
   }
-  s('nav-label-about', L.about);
-  s('nav-label-tarot', L.tarot);
   s('nav-label-cards', L.cards);
+  document.getElementById('nav-label-cards').href = cardsHref();
+  document.getElementById('nav-label-saved').href = `/saved-readings?lang=${currentLang}`;
+  document.querySelectorAll('.footer-about').forEach(el => { el.textContent = L.about; el.href = `${logo.href}${logo.href.includes('?') ? '&' : '?'}open=about`; });
+  document.querySelectorAll('.footer-tarot').forEach(el => { el.textContent = L.tarot; el.href = `${logo.href}${logo.href.includes('?') ? '&' : '?'}open=tarot`; });
 }
 
 // ── 콘텐츠 패널 ──
@@ -2922,17 +3001,16 @@ let allCardData  = [];
 let currentContentType = null;
 
 function openContent(type) {
-  closeNav();
   const panel = document.getElementById('content-panel');
   if (panel.classList.contains('open') && currentContentType === type) {
     closeContent();
     return;
   }
   currentContentType = type;
-  document.getElementById('content-body').innerHTML =
+  document.getElementById('content-body').innerHTML = '<button id="content-close" type="button" onclick="closeContent()" aria-label="Close">✕</button>' + (
     type === 'about' ? getAboutContent() :
     type === 'tarot' ? getTarotContent() :
-    getCardDictHTML();
+    getCardDictHTML());
   panel.classList.add('open');
   document.body.classList.add('content-open');
   if (type === 'cards') loadCardDict();
@@ -3669,6 +3747,7 @@ function closeCardDetail(e) {
 // 부트스트랩: 모든 const(CONTENT_TEXT 등) 선언 이후에 실행해야 TDZ 에러를 피함
 buildLangDropdown();
 applyLang();
+document.addEventListener('DOMContentLoaded', updateMenuLabels);
 window.t = t;
 init();
 const requestedPanel = new URLSearchParams(location.search).get('open');
@@ -3906,6 +3985,8 @@ if (requestedPanel === 'about' || requestedPanel === 'tarot') {
 <footer id="site-footer" class="site-footer">
   <div class="footer-inner">
     <div class="footer-links">
+      <a class="footer-about" href="/?open=about">앱 소개</a>
+      <a class="footer-tarot" href="/?open=tarot">타로카드란?</a>
       <a href="/legal.html#pricing" target="_blank">이용요금</a>
       <a href="/legal.html#terms" target="_blank">이용약관</a>
       <a href="/legal.html#privacy" target="_blank">개인정보처리방침</a>

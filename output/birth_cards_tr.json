@@ -1,0 +1,843 @@
+{
+  "_meta": {
+    "title": "Doğum Kartı Rehberi",
+    "disclaimer": "Bu yorum kartların sembolizmine dayanır ve bilimsel bir kişilik testi değildir. Kendini anlamaya yönelik bir referanstır ve kariyer kararlarının ya da diğer önemli kararların yerini tutmaz.",
+    "deck_note": "Waite (Rider-Waite) numaralandırmasına göre: Güç 8, Adalet 11'dir. Toplam 22 çıkarsa Deli (0) olarak okunur.",
+    "calculation": [
+      "Sekiz haneli yazılmış doğum tarihinizin (YYYYAAGG) tüm rakamlarını toplayın.",
+      "Toplam 22'yi aşarsa, 22 veya daha az olana kadar rakamlarını tekrar toplayın.",
+      "1–9 arası sonuç tek bir kart verir (kişilik ve ruh aynıdır). 10–22 arası sonuç kişilik kartınızı verir, rakamlarının toplamı ise ruh (iç) kartınızı verir.",
+      "19 üç kart olarak okunur: Güneş (kişilik), Kader Çarkı (ara kart) ve Büyücü (ruh). 22 ise Deli (kişilik) ve İmparator (ruh) olarak okunur."
+    ],
+    "labels": {
+      "keywords": "Anahtar sözcükler",
+      "personality": "Kişilik ve mizaç",
+      "strengths": "Güçlü yönler",
+      "shadow": "Gölge yön",
+      "life_lesson": "Yaşam dersi",
+      "relationships": "İlişki tarzı",
+      "career": "Kariyer eğilimleri",
+      "career_fields": "Size uyabilecek alanlar",
+      "career_caution": "Akılda tutulacaklar",
+      "soul_note": "Ruh kartınız olarak",
+      "year_theme": "Yıl kartınız olarak"
+    }
+  },
+  "cards": {
+    "the-fool": {
+      "name": "Deli",
+      "tagline": "Sınırsız ilk adımı atan ebedi maceracı",
+      "personality": "Meraklı ve iyimser olmaya eğilimlisiniz ve sabit kalıplara hapsolmaktan hoşlanmazsınız. Yaşınız ne olursa olsun saf bir yanınızı korursunuz ve yabancı yerlere ve insanlara tereddüt etmeden yaklaşırsınız. Planlardan çok sezgiye ve akışa güvenmeye yatkınsınız, bu yüzden çevrenizdekiler sizi özgür ve taze biri olarak görür.",
+      "life_lesson": "Hayatınız özgürlük ile sorumluluk arasındaki dengeyi öğrenmekle ilgilidir. Nereye gittiğinizi bilmemenin heyecanını koruyun, ama ayağınızın altındaki zemini kontrol etmeyi ve gerçekliğe hazırlanmayı da çalışın.",
+      "relationships": "Ne sizi ne de karşı tarafı bağlayan, hafif ve özgür ilişkilerde rahat edersiniz. Derin bir taahhüt karşısında tereddüt edebilirsiniz, ama güven büyüdüğünde az bulunur bir açık sözlü ve sıcak eş olursunuz.",
+      "keywords": [
+        "Özgürlük",
+        "Merak",
+        "Saflık",
+        "Macera",
+        "Yeni başlangıç"
+      ],
+      "strengths": [
+        "Korkmadan başlama cesareti",
+        "Her ortama hızla uyum sağlayan esneklik",
+        "İnsanları rahatlatan saflık ve mizah"
+      ],
+      "shadow": [
+        "Hazırlıksız atılıp benzer hataları tekrarlayabilirsiniz",
+        "Sözlere ya da sorumluluklara hafif baktığınız şeklinde yanlış anlaşılabilirsiniz",
+        "İlk heyecan sönünce, bitirmeden ilginizi kaybedebilirsiniz"
+      ],
+      "career": {
+        "style": "Sabit prosedürlerden çok yeni denemelerin ve çok değişimin olduğu ortamlarda parlarsınız.",
+        "fields": [
+          "Seyahat ve turizm",
+          "Girişimler ve erken aşama işler",
+          "Sanat ve yaratıcı çalışma",
+          "Serbest çalışma",
+          "Çocuk eğitimi ve oyun"
+        ],
+        "caution": "Katı hiyerarşi ve tekrarlayan görevler sizi çabucak tüketebilir."
+      },
+      "soul_note": null,
+      "year_theme": "Bu, yabancı bir başlangıç çizgisinde durduğunuz bir yıldır. Kusursuz hazırlığı beklemek yerine ilk adımı hafifçe atın, ama gerçekten önemli kararları bir kez daha kontrol edin."
+    },
+    "the-magician": {
+      "name": "Büyücü",
+      "tagline": "Olasılığı irade ile gerçeğe çeviren kişi",
+      "personality": "Hazırcevap, el ya da dil becerisi güçlüsünüz ve bir hedefiniz olunca ona ulaşmanın yolunu bulursunuz. Kendine güvenmeye ve durumları kendiniz yönlendirmek istemeye eğilimlisiniz. Zihniniz hızlı çalışır, bu yüzden birkaç şeyi aynı anda kolayca yürütürsünüz.",
+      "life_lesson": "Hayatınız niyetinizi netleştirmekle ilgilidir: doğuştan gelen yeteneğinizi ne için kullanacaksınız? Yetenek ne kadar büyükse, onu sorumlulukla kullanmak o kadar önemlidir.",
+      "relationships": "Sohbet ve fikirlerle gönülleri kazanırsınız. İnisiyatifi elde tutma dürtünüz güçlüyse karşı taraf baskı hissedebilir, bu yüzden dinlemeye de zaman ayırın.",
+      "keywords": [
+        "İrade",
+        "Yetenek",
+        "Uygulama",
+        "İletişim",
+        "Girişkenlik"
+      ],
+      "strengths": [
+        "Fikirleri gerçeğe dönüştüren uygulama gücü",
+        "Başkalarının anlamasına ve ikna olmasına yardım eden iletişim becerisi",
+        "Birçok alanı kat eden çok yönlülük"
+      ],
+      "shadow": [
+        "Yeteneğinize güvenip hileyle sıyrılmaya çalışabilirsiniz",
+        "İlgi alanlarınız dağılıp odaklanmanızı zayıflatabilir",
+        "Eylemden önce giden sözler güveninizi kaybettirebilir"
+      ],
+      "career": {
+        "style": "Güçlü yönleriniz fikir üretip kendiniz uyguladığınız ve sonuç gösterdiğiniz işlerde ortaya çıkar.",
+        "fields": [
+          "Planlama ve pazarlama",
+          "Satış ve pazarlık",
+          "BT ve yazılım geliştirme",
+          "Konuşmacılık ve içerik üretimi",
+          "İş kurma"
+        ],
+        "caution": "Çok fazla proje birikince, onları bitirmek zayıf noktanız olabilir."
+      },
+      "soul_note": "Dışarıdan nasıl görünürseniz görünün, içinizde \"yapabilirim\" diyen bir irade ve yeni olasılıklara karşı bir merak yaşar. Yüreğinizde her zaman yeni bir şey denemek istersiniz.",
+      "year_theme": "Yeteneklerinizi ve fikirlerinizi dünyaya taşımak için iyi bir yıl. Yeni bir şeye başlama ya da öğrendiklerinizi gerçekten kullanma fırsatları çıkabilir."
+    },
+    "the-high-priestess": {
+      "name": "Başrahibe",
+      "tagline": "Sezgisi tek söz etmeden derinden bilen kişi",
+      "personality": "Sakin ve gizemli bir havanız var ve kalbinizdekileri kolay kolay açığa vurmazsınız. Gözlem gücünüz keskindir, bu yüzden havayı ve insanların gerçek duygularını kolayca sezersiniz. Çok konuşmasanız da derin düşünürsünüz ve genellikle yalnız kalınan zamandan güç alırsınız.",
+      "life_lesson": "Hayatınız iç sesinize güvenmek ve onu söze dökmeyi öğrenmekle ilgilidir. Görev, sessizliği yalnızlaşmadan ayırmak ve gerektiğinde kalbinizin kapısını açmaktır.",
+      "relationships": "Yavaş açılırsınız, ama bir kez açıldığınızda derin bir duygusal bağ istersiniz. Hiç dile getirmediğiniz duyguları karşı tarafın fark etmesini umabilirsiniz; ifade etmeyi denemek ilişkileri rahatlatır.",
+      "keywords": [
+        "Sezgi",
+        "Gizem",
+        "Kavrayış",
+        "Sessizlik",
+        "İç dünya"
+      ],
+      "strengths": [
+        "Gizli niyetleri okuyan sezgi",
+        "Sır tutma ketumluğu",
+        "Yüzeyi değil özü gören derin kavrayış"
+      ],
+      "shadow": [
+        "Kalbinizi kapatıp mesafe koyabilir, soğuk görünebilirsiniz",
+        "Sessiz kalmak yanlış anlaşılmalara yol açabilir",
+        "Sezginize güvenmeyerek kararları erteleyebilirsiniz"
+      ],
+      "career": {
+        "style": "Becerileriniz yalnız başına derinlemesine kazıp kavrayışları düzenlediğiniz işlerde görünür.",
+        "fields": [
+          "Araştırma ve analiz",
+          "Psikoloji ve danışmanlık",
+          "Yazarlık ve çeviri",
+          "Kütüphane ve arşiv",
+          "Tarot ve astroloji gibi sembolik alanlar"
+        ],
+        "caution": "Görüşlerinizi hiç söylemezseniz sonuçlarınız fark edilmeden kalabilir, bu yüzden bulduklarınızı paylaşma alışkanlığı edinin."
+      },
+      "soul_note": "Dışarıdan hareketli görünseniz de içinizde sessiz bir bilgelik ve gizli bir manzara vardır. Yalnız geçen zamanda gerçek benliğiyle buluşan birisiniz.",
+      "year_theme": "Dış gürültüden çok iç işaretleri dinleme yılı. Sezginiz keskinleşir, bu yüzden acele etmeyin; karar verirken izlenimlerinizi not edin."
+    },
+    "the-empress": {
+      "name": "İmparatoriçe",
+      "tagline": "Besleyip özen gösteren ve bolluk getiren kişi",
+      "personality": "Sıcak ve nazik birisiniz ve hayatın tadını beş duyuyla çıkarmayı bilirsiniz. Yakınınızdakileri kucaklayıp rahatlatan bir çekiciliğiniz, güzel şeylere, lezzetli yemeğe ve rahat mekânlara karşı ince bir duyarlılığınız var. Sevginiz insanları kendinize çekme eğilimindedir.",
+      "life_lesson": "Hayatınız vermek ile almak arasındaki dengeyi öğrenmekle ilgilidir. Görev, başkalarına baktığınız kadar kendinize de bakmak ve almayı doğal biçimde çalışmaktır.",
+      "relationships": "Sevecen ve kendini adayan birisiniz, partnerinizi kucaklamak istersiniz. Beklentiler büyüdüğünde kırgınlık birikebilir, bu yüzden ne istediğinizi dürüstçe söyleyin.",
+      "keywords": [
+        "Bolluk",
+        "Özen",
+        "Duyarlılık",
+        "Yaratma",
+        "Duyular"
+      ],
+      "strengths": [
+        "Başkalarıyla ilgilenen ve onlara özen gösteren empati",
+        "Bir şeyler yapıp büyütme yaratıcı gücü",
+        "Atmosferi ve mekânları zenginleştiren duyarlılık"
+      ],
+      "shadow": [
+        "Aşırı özen müdahale gibi hissedilebilir",
+        "Konfora yerleşip meydan okumaları erteleyebilirsiniz",
+        "Duygu dalgalanmalarına ya da aşırı harcamaya yol açabilir"
+      ],
+      "career": {
+        "style": "İnsanları ve sonuçları özenle büyüttüğünüz işlerde doyum bulursunuz.",
+        "fields": [
+          "Yeme-içme ve aşçılık",
+          "Tasarım ve sanat",
+          "Eğitim ve çocuk bakımı",
+          "Hemşirelik ve sosyal hizmet",
+          "Güzellik ve çiçekçilik"
+        ],
+        "caution": "Takdir edilmediğinizi hissederseniz çabucak tükenebilirsiniz, bu yüzden sonuçlarınızı görünür biçimde kaydedin."
+      },
+      "soul_note": "İçinizde birini kucaklayıp beslemek isteyen sıcak bir arzu ve bolluğa duyulan bir özlem yaşar. Dışarıdan ilgisiz görünseniz de derinde çok yüreği olan birisiniz.",
+      "year_theme": "Bolluk ve özen yılı. İnsanlar, iş ve hobiler arasında emek verdiğiniz şeyler gözle görülür biçimde büyüyebilir, bu yüzden bedeninize ve zihninize de bakın."
+    },
+    "the-emperor": {
+      "name": "İmparator",
+      "tagline": "Düzen ve sorumlulukla temel kuran kişi",
+      "personality": "Gerçekçi ve kararlısınız, yapı kurmakta ustasınız. Size emanet edileni sonuna kadar sorumlulukla taşımaya çalışırsınız ve doğal olarak liderlik rollerine yerleştirilmeye eğilimlisiniz. Duygudan çok ilke ve plana göre hareket edersiniz, bu da güvenilir bir izlenim verir.",
+      "life_lesson": "Hayatınız kontrol ile güven arasındaki dengeyi öğrenmekle ilgilidir. Görev, her şeyi sıkı tutmak yerine güvenmek ve devretmek, kendi kırılganlığınızı kabul etmektir.",
+      "relationships": "Güvenilir bir koruyucu rolünü üstlenir, istikrara ve güvene değer verirsiniz. Başkalarında duygular hakkında çok az konuşulduğu hissini bırakabilirsiniz; gönlünüzü ifade etmeyi çalışmak yardımcı olur.",
+      "keywords": [
+        "Düzen",
+        "Sorumluluk",
+        "Liderlik",
+        "İstikrar",
+        "Kararlılık"
+      ],
+      "strengths": [
+        "Bir sistemi kurup sürdürme yeteneği",
+        "Hızlı ve kararlı yargı",
+        "Sorumluluğu sonuna kadar taşıyan güvenilirlik"
+      ],
+      "shadow": [
+        "İnatçı olabilir ve güçlü bir kontrol ihtiyacı duyabilirsiniz",
+        "Duyguları ifade etmekte zorlanmak sizi katı gösterebilir",
+        "Otoriter bir izlenim verebilirsiniz"
+      ],
+      "career": {
+        "style": "Yeteneğiniz kuruluşları ve takvimleri tasarlayıp onların sorumluluğunu üstlendiğiniz rollerde görünür.",
+        "fields": [
+          "Yönetim ve idare",
+          "Kamu hizmeti, ordu ve polis",
+          "İnşaat ve gayrimenkul",
+          "Finans",
+          "Hukuk ve kamu yönetimi"
+        ],
+        "caution": "Farklı düşünenleri kabul edemezseniz takımınızın enerjisi düşebilir."
+      },
+      "soul_note": "İçinizde sağlam bir temel kurma yönünde güçlü bir arzu ve bir sorumluluk duygusu var. Dışarıdan yumuşak görünseniz de yüreğinizde düzene ve ilkeye değer verirsiniz.",
+      "year_theme": "Temel atma yılı. Yaşamınızın ve işinizin çerçevesini sağlamlaştırmak için plan yapmak ve kurallar koymak, ileride istikrarınıza yardımcı olur."
+    },
+    "the-hierophant": {
+      "name": "Başrahip",
+      "tagline": "Gelenek ve öğretiyi aktaran kişi",
+      "personality": "Net inançlarınız ve değerleriniz var, normlara ve geleneğe saygı duyarsınız. Öğrenmeye ve öğretmeye doğal bir ilginiz vardır, bu yüzden insanlar sık sık sizden tavsiye ister. Kararlı ve güvenilir bir hava yayarsınız.",
+      "life_lesson": "Hayatınız öğrendiklerinizi kendi sözlerinizle sindirmekle ilgilidir. Görev, gelenek ile kendin olmak arasında neyi sürdüreceğinizi ve neyi değiştireceğinizi kendiniz seçmektir.",
+      "relationships": "Samimisiniz, sözlere ve aileyle kalıcı ilişkilere değer verirsiniz. Katı ölçütler başkalarını boğabilir, bu yüzden farklılıkları kabul etmek için alana ihtiyacınız var.",
+      "keywords": [
+        "Gelenek",
+        "İnanç",
+        "Öğreti",
+        "Güven",
+        "Topluluk"
+      ],
+      "strengths": [
+        "Başkalarının dayanabileceği güvenilirlik",
+        "Öğrendiklerinizi açıkça anlatma yeteneği",
+        "Topluluğa ve ilişkilere karşı sorumluluk duygusu"
+      ],
+      "shadow": [
+        "Kalıplara tutunup yeni yollara kapalı kalabilirsiniz",
+        "Başkalarının bakışını ve geleneği fazla dert edebilirsiniz",
+        "Kendi görüşünüzü dile getirmek yerine ölçütlere uymaya çalışabilirsiniz"
+      ],
+      "career": {
+        "style": "Yapı ve güven temeli üzerinde bilgi aktaran ve insanlara önderlik eden işlere uyarsınız.",
+        "fields": [
+          "Eğitim ve öğretmenlik",
+          "Din ve felsefe",
+          "Danışmanlık ve mentorluk",
+          "Kamu kurumları ve idare",
+          "Hukuk"
+        ],
+        "caution": "Hızlı değişen ortamlarda yeni yolları kabul etme esnekliğine ihtiyacınız var."
+      },
+      "soul_note": "İçinizde güvenilir bir öğreti ve aidiyet arayan bir yürek var. Yüreğinizde doğru ile yanlış ve anlamlı bir yaşam hakkında sorular yaşar.",
+      "year_theme": "Öğrenme ve aidiyet yılı. Öğretmenlerle, mentorlarla ve gruplarla bağlar gelebilir, bu yüzden kurallara ve sözlere uymaya, güven inşa etmeye odaklanın."
+    },
+    "the-lovers": {
+      "name": "Âşıklar",
+      "tagline": "Seçim ve ilişki aracılığıyla kendini tanıyan kişi",
+      "personality": "İnsanlara ve ilişkilere çok önem verirsiniz ve sizi çeken şeye bütün yüreğinizle verirsiniz. Empatiniz güçlüdür ve bir başkasıyla bir olmanın uyumuna değer verirsiniz. Hayatın önemli anlarında değerlerinize bağlı seçimlerle yüzleşmeye eğilimlisiniz.",
+      "life_lesson": "Hayatınız yüreğinizin istediğini seçmek ve bu seçimin sonucunun sorumluluğunu almakla ilgilidir. Görev, aşkta hangi seçimin kendi değerlerinizle uyuştuğunu sormaktır.",
+      "relationships": "İlişkiler hayatınızın merkezindedir ve derin bir birlik istersiniz. Kolayca ideal sayıp sonra hayal kırıklığına uğrayabilirsiniz, bu yüzden karşı tarafı olduğu gibi görmeyi çalışın.",
+      "keywords": [
+        "Aşk",
+        "Seçim",
+        "Uyum",
+        "Değerler",
+        "İlişki"
+      ],
+      "strengths": [
+        "Karşı tarafın yüreğini anlayan empati",
+        "İlişkileri uyuma yönlendirme yeteneği",
+        "Yürekten gelen samimiyet"
+      ],
+      "shadow": [
+        "Kararsız olup kararları erteleyebilirsiniz",
+        "İlişkilere fazla bağımlı olabilirsiniz",
+        "Yüreğiniz ayartı ya da havaya karşı sallanabilir"
+      ],
+      "career": {
+        "style": "Güçlü yönleriniz insanları birleştiren ve birlikte bir şeyler inşa eden işlerde görünür.",
+        "fields": [
+          "Danışmanlık ve koçluk",
+          "Hizmet ve misafir ağırlama",
+          "Arabuluculuk ve insan kaynakları",
+          "Düğün ve etkinlik",
+          "Ortaklığa dayalı işler"
+        ],
+        "caution": "Yalnız karar vermeniz gerektiğinde yüreğiniz sallanabilir, bu yüzden ölçütlerinizi önceden belirleyin."
+      },
+      "soul_note": "İçinizde gerçek aşka ve derin bağa duyulan bir özlem var. Yüreğinizde her zaman şunu sorarsınız: \"Gerçekten benim olan seçim hangisi?\"",
+      "year_theme": "Seçim ve ilişki yılı. Bir yol ayrımında ya da önemli biri karşısında yüreğinizin sesini izleyin, ama seçimin getirdiği sorumluluğu da düşünün."
+    },
+    "the-chariot": {
+      "name": "Savaş Arabası",
+      "tagline": "İradeyle yön belirleyip ona doğru koşan kişi",
+      "personality": "Güçlü bir atılımınız vardır ve hedef konunca sonuna kadar gidersiniz. Rekabetçisiniz ve seçtiğiniz yönde ilerlemekte tatmin bulursunuz. Karşıt dürtüleri tek bir yönde toplayabilirsiniz, bu yüzden güçlü iradeli görünürsünüz.",
+      "life_lesson": "Hayatınız ilerlerken karşıt güçleri (akıl ile duygu, arzu ile sorumluluk) uyumlaştırmakla ilgilidir. Yön, hız kadar önemlidir ve görev, yalnızca kazanmak yerine doğru varış noktasını seçmektir.",
+      "relationships": "İlişkilerde de öncülük etmeye eğilimlisiniz, ama duygulardan söz etmekten kaçınabilirsiniz. Sizinle aynı yönde koşabilen birinin yanında rahat edersiniz.",
+      "keywords": [
+        "Dürtü",
+        "Rekabet ruhu",
+        "Öz denetim",
+        "Hedef",
+        "Zafer"
+      ],
+      "strengths": [
+        "Tek bir şeye odaklanıp sonuna kadar götüren atılım gücü",
+        "Kendini yöneten öz denetim",
+        "Rekabette sonuç üretme azmi"
+      ],
+      "shadow": [
+        "Aşırı rekabetçilik çevrenizdekileri yorabilir",
+        "Duyguları bastırıp bir anda patlayabilirsiniz",
+        "Dinlenmeyi bilmeyip tükenebilirsiniz"
+      ],
+      "career": {
+        "style": "Yeteneğiniz hedeflerin net, rekabetin ve sonuçların görünür olduğu ortamlarda büyür.",
+        "fields": [
+          "Satış",
+          "Spor ve atletizm",
+          "Taşımacılık ve lojistik",
+          "Ordu ve polis",
+          "Proje yönetimi"
+        ],
+        "caution": "Uzun bir yarışta tükenme gelebilir, bu yüzden dinlenmeyi takviminize koyun."
+      },
+      "soul_note": "İçinizde başarmak için güçlü bir irade ve kabul görme isteği var. Yüreğinizde her zaman bir yere doğru koşarsınız.",
+      "year_theme": "Hedefe doğru hız kazanma yılı. Önce yönü sağlamca belirlerseniz atılımınız büyük sonuçlara yol açabilir, ama aşırı hızdan ve zorlamadan kaçının."
+    },
+    "strength": {
+      "name": "Güç",
+      "tagline": "Yumuşaklıkla yöneten iç güç",
+      "personality": "Dışarıdan yumuşak ama içeriden sağlamsınız. Büyük krizler ve duygu dalgaları karşısında sakin kalıp dayanma gücünüz vardır. Durumları ve insanları ezmek yerine anlayıp yatıştırarak ele almaya eğilimlisiniz.",
+      "life_lesson": "Hayatınız bastırmak yerine evcilleştiren bir güç geliştirmekle ilgilidir. Görev, korkuyu ve dürtüyü düşman olarak değil, anlayarak görmek ve kendinize güvenmeyi çalışmaktır.",
+      "relationships": "Hoşgörülüsünüz ve çatışmaları yumuşakça çözersiniz. Birine kendinizi adayarak kolayca tükenebilirsiniz, bu yüzden kendi sınırlarınızı ve ihtiyaçlarınızı dürüstçe söyleyin.",
+      "keywords": [
+        "Cesaret",
+        "Sabır",
+        "Yumuşaklık",
+        "Kendine güven",
+        "Soğukkanlılık"
+      ],
+      "strengths": [
+        "Uzun süre dayanacak sabır ve azim",
+        "Empatiyle yol gösteren yumuşak liderlik",
+        "Krizde bile sarsılmayan soğukkanlılık"
+      ],
+      "shadow": [
+        "Dayanıp dayanıp bir anda enerjisiz kalabilirsiniz",
+        "Özgüven düşünce içinize kapanabilirsiniz",
+        "Duygularınızı bastırıp içinizde acı çekebilirsiniz"
+      ],
+      "career": {
+        "style": "Güçlü yönleriniz insanlarla ya da zor durumlarla azim ve özenle ilgilendiğiniz işlerde görünür.",
+        "fields": [
+          "Danışmanlık ve şifa",
+          "Hemşirelik, bakım ve rehabilitasyon",
+          "Eğitim ve koçluk",
+          "Hayvanlarla ilgili işler",
+          "Kriz müdahalesi ve güvenlik"
+        ],
+        "caution": "Kendi payınızdan fazlasını taşıyarak yıpranabilirsiniz, bu yüzden rolünüzün sınırlarını belirleyin."
+      },
+      "soul_note": "İçinizde herkesinkinden güçlü bir cesaret ve sıcaklık saklıdır. Yüreğinizde korkuyu ve dürtüyü yatıştırır, kendinizi yönetirsiniz.",
+      "year_theme": "Sabır ve kendine güven yılı. İşler zor olsa bile acele etmeden yumuşakça ele almak sizi daha uzağa götürebilir."
+    },
+    "the-hermit": {
+      "name": "Ermiş",
+      "tagline": "Yalnız başına derine inen arayış sahibi",
+      "personality": "Temkinli ve bağımsızsınız, yalnız düşünme zamanına değer verirsiniz. Öne çıkmak yerine bir alana derinlemesine dalar ve kendi ölçütlerinizi kurarsınız. Az konuşursunuz, ama her sözün ağırlığı vardır.",
+      "life_lesson": "Hayatınız kazandığınız bilgeliği kendinize saklamak yerine paylaşmakla ilgilidir. Görev, yalnızlığı kopukluktan ayırmak ve gerektiğinde dünyaya doğru bir adım atmaktır.",
+      "relationships": "Birkaç kişiyle derin ve kalıcı ilişkiler kurarsınız. Yalnız zamana ihtiyacınız olduğunu önceden açıklarsanız yanlış anlamaları azaltabilirsiniz.",
+      "keywords": [
+        "Düşünce",
+        "Bağımsızlık",
+        "Araştırma",
+        "Bilgelik",
+        "Yalnızlık"
+      ],
+      "strengths": [
+        "Bir konuya derinlemesine inen uzmanlık",
+        "Sarsılmaz kendi ölçütleriniz",
+        "Durumu uzaktan gören kavrayış"
+      ],
+      "shadow": [
+        "Yalnız kalarak soyutlanabilirsiniz",
+        "Yardım istemek yerine her şeyi içinize atabilirsiniz",
+        "Aşırı mükemmeliyetçiliğe ya da kötümserliğe kayabilirsiniz"
+      ],
+      "career": {
+        "style": "Derinlemesine araştırıp bağımsız biçimde uzmanlık biriktirdiğiniz işlerde parlarsınız.",
+        "fields": [
+          "Araştırma ve akademi",
+          "Yazarlık ve telif",
+          "Yazılım geliştirme ve mühendislik",
+          "El sanatları ve ustalık",
+          "Analiz ve danışmanlık"
+        ],
+        "caution": "Sonuçlarınızı duyurmazsanız değerleri görülmeyebilir, bu yüzden paylaşma fırsatları yaratın."
+      },
+      "soul_note": "İçinizde hakikati ve anlamı arayan sessiz bir araştırma ruhu var. İnsanlar arasında bile yüreğinizde yalnız yürür, yolu aydınlatırsınız.",
+      "year_theme": "Yalnız başına düzenleme ve düşünme yılı. Yavaşlayıp öğrenmeye ya da iç sorulara zaman ayırmak bir sonraki adımınızın yönünü netleştirir."
+    },
+    "wheel-of-fortune": {
+      "name": "Kader Çarkı",
+      "tagline": "Değişimin akışına binen kişi",
+      "personality": "Hayatın akışına ve değişime duyarlısınız ve fırsatlar geldiğinde iyi yakalarsınız. İyimsersiniz, bu yüzden inişli çıkışlı dönemlerde bile \"yine dönecek\" inancıyla dayanırsınız. Büyük resme geniş bir bakışınız var ve oldukça sık şansın ve zamanlamanın sürüklediği biri olursunuz.",
+      "life_lesson": "Hayatınız inişler ve çıkışlar arasında merkezinizi korumakla ilgilidir. Görev, değiştirebileceğiniz ile değiştiremeyeceğinizi ayırmak ve akış geldiğinde diye yeteneklerinizi önceden geliştirmektir.",
+      "relationships": "Karşılaşmaların zamanlamasına değer verirsiniz ve dramatik buluşmalar ve ayrılıklar yaşayabilirsiniz. Sık değişim istikrar kaygısı doğurabilir, bu yüzden partnerinize tutarlı işaretler vermeyi çalışın.",
+      "keywords": [
+        "Değişim",
+        "Zamanlama",
+        "Fırsat",
+        "Döngü",
+        "Şans"
+      ],
+      "strengths": [
+        "Değişime uyum sağlayan esneklik",
+        "Fırsatı tanıma duyarlılığı",
+        "İniş çıkışlarda kaybolmayan iyimserlik"
+      ],
+      "shadow": [
+        "Şansa güvenip hazırlığı ihmal edebilirsiniz",
+        "Ruh haliniz iniş çıkışlarla geniş salınabilir",
+        "Kontrol edemediğiniz şeyler yüzünden kaygılanabilirsiniz"
+      ],
+      "career": {
+        "style": "Güçlü yönleriniz çok değişimin olduğu, akışı okuyan işlerde görünür.",
+        "fields": [
+          "Ticaret ve dağıtım",
+          "Yatırım ve finans",
+          "Etkinlik ve seyahat",
+          "Trend analizi",
+          "Çok değişimli yeni girişimler"
+        ],
+        "caution": "Tek bir fırsata çok fazla bahis yapmak risklidir, bu yüzden dağıtın."
+      },
+      "soul_note": "İçinizde hayatın nereye akacağına dair bir merak ve değişimi kabul eden bir yürek var. Ara kart olarak göründüğünde, şans ve zamanlamanın hayatınızın büyük bir teması olduğunu söyler.",
+      "year_theme": "Akışın değiştiği bir yıl. Beklenmedik fırsatlar ya da dönüm noktaları gelebilir, bu yüzden onları açık zihinle karşılayın ve yalnızca hazırladığınız kadarını yakalayabileceğinizi unutmayın."
+    },
+    "justice": {
+      "name": "Adalet",
+      "tagline": "Adalete ve dengeye değer veren kişi",
+      "personality": "Mantıklı ve dürüstsünüz ve doğru ile yanlışa duyarlısınız. Duygularla sürüklenmek yerine gerçeklere ve ilkelere göre yargılamaya çalışırsınız. Sözlere ve kurallara değer verir, eylemlerinizin sorumluluğunu almaya eğilimlisiniz.",
+      "life_lesson": "Hayatınız adalet ile merhamet arasındaki dengeyi öğrenmekle ilgilidir. Görev, başkalarına verdiğiniz adil ve cömert ölçütü kendinize de uygulamaktır.",
+      "relationships": "Adil ve dürüst ilişkilere değer verir, sözlerinizi tutarsınız. Kırgınlığı hesap tutarak ifade edip karşı tarafı küçültebilirsiniz, bu yüzden duyguları yumuşakça iletmeyi çalışın.",
+      "keywords": [
+        "Adalet",
+        "Mantık",
+        "Dürüstlük",
+        "Sorumluluk",
+        "Denge"
+      ],
+      "strengths": [
+        "Nesnel yargılayan denge duygusu",
+        "Tutarlı dürüstlük ve ilke",
+        "Eylemlerinizin sorumluluğunu alan titizlik"
+      ],
+      "shadow": [
+        "Esneklikten yoksun görünebilirsiniz",
+        "Soğuk görünebilir ya da başkalarını yargılıyormuş izlenimi verebilirsiniz",
+        "Kendinize fazla sert olabilirsiniz"
+      ],
+      "career": {
+        "style": "Ölçütlere ve kanıtlara dayanarak yargılayıp ayarladığınız işlere uyarsınız.",
+        "fields": [
+          "Hukuk",
+          "Muhasebe ve denetim",
+          "İdare ve kamu hizmeti",
+          "İnceleme ve değerlendirme",
+          "Arabuluculuk ve uyum"
+        ],
+        "caution": "İnsanların koşullarını gözden kaçırmamak için kurallarla gerçeklik arasında gidip gelme esnekliğine ihtiyacınız var."
+      },
+      "soul_note": null,
+      "year_theme": "Hesapların görüldüğü ve dengenin yeniden kurulduğu bir yıl. Geçmiş seçimler geri dönebilir, bu yüzden sözleşmeleri ve sözleri dikkatle kontrol edin ve dürüstçe davranın."
+    },
+    "the-hanged-man": {
+      "name": "Asılan Adam",
+      "tagline": "Bakış açısını tersine çeviren kişi",
+      "personality": "Dünyaya başkalarından farklı, kendine özgü bir bakışla bakarsınız. Acele etmeden beklemeyi bilir, bir adım geri çekilip duruma bakacak sükûnete sahip olursunuz. Bazen anlaşılması zor seçimler yapıp çevrenizdekileri şaşırtırsınız.",
+      "life_lesson": "Hayatınız bırakmadan kazanılmaz paradoksunu öğrenmekle ilgilidir. Görev, beklemeyi kaçıştan ayırmak ve duraklama zamanlarını yeni bir bakış kazanma fırsatı olarak kullanmaktır.",
+      "relationships": "Taviz verip karşı tarafı beklemeye eğilimlisiniz. Kendi isteklerinizi söylemezseniz kırgınlık birikebilir, bu yüzden ihtiyacınız olanı ifade etmeyi deneyin.",
+      "keywords": [
+        "Bekleme",
+        "Bırakma",
+        "Yeni bakış",
+        "Fedakârlık",
+        "Duraklama"
+      ],
+      "strengths": [
+        "Her şeyi tersine çeviren esnek bakış",
+        "Uzun süre bekleyebilen sabır",
+        "Bağlılığı bırakma cesareti"
+      ],
+      "shadow": [
+        "Kararları erteleme alışkanlığı fırsat kaçırmanıza yol açabilir",
+        "Mağdur zihniyetine düşebilirsiniz",
+        "Gerçeklikten kaçmak için durup kalabilirsiniz"
+      ],
+      "career": {
+        "style": "Güçlü yönleriniz özgün bir bakış gerektiren ya da derinliğe hızdan çok değer veren işlerde görünür.",
+        "fields": [
+          "Sanat ve yaratıcı çalışma",
+          "Araştırma",
+          "Danışmanlık ve alternatif şifa",
+          "Kâr amacı gütmeyen kuruluşlar ve gönüllülük",
+          "Özgünlük gerektiren alanlar"
+        ],
+        "caution": "Sonuçlar geç gelince kendinizi suçlayabilirsiniz, bu yüzden ara hedefler koyun."
+      },
+      "soul_note": null,
+      "year_theme": "Duraklama ve bakış açısı değiştirme yılı. Her şey yavaş gelse de sabırsızlanmayın; şu anki beklemenin size yeni bir bakış getirebileceğini düşünün."
+    },
+    "death": {
+      "name": "Ölüm",
+      "tagline": "Sona erdirip yeniden doğan kişi",
+      "personality": "Hayatta büyük değişimleri ve geçişleri birden fazla kez yaşamaya eğilimlisiniz. Gerekli gördüğünüzde cesurca temizler ve yeni bir başlangıç seçersiniz. Yüzeyden çok öze önem verir, derin bir değişim ararsınız.",
+      "life_lesson": "Hayatınız bırakmayı öğrenmekle ilgilidir. Görev, sonun yeni bir başlangıcın başka adı olduğunu kabul etmek ve geçmiş olanı minnetle bırakmaktır.",
+      "relationships": "İlişkilerin temizlenmesini ve yeniden biçimlenmesini birkaç kez yaşayabilir, derin değişim getiren bağlar arayabilirsiniz. Ani kopuş yerine konuşarak çözmek daha az pişmanlık bırakır.",
+      "keywords": [
+        "Değişim",
+        "Temizlik",
+        "Geçiş",
+        "Yeniden doğuş",
+        "Son"
+      ],
+      "strengths": [
+        "Değişimi kabul etme cesareti",
+        "Yıpranmış olanı ayıklama kararlılığı",
+        "Zorluktan sonra yeniden ayağa kalkma dayanıklılığı"
+      ],
+      "shadow": [
+        "Pişmanlıkta ya da bağlılıkta fazla uzun kalabilirsiniz",
+        "Tersine, ilişkileri ya da işi çok aceleyle kesebilirsiniz",
+        "Kayba duyarlı olup moraliniz bozulabilir"
+      ],
+      "career": {
+        "style": "Yeteneğiniz eskiyi temizleyip yapıyı değiştirdiğiniz işlerde görünür.",
+        "fields": [
+          "Yeniden yapılanma ve danışmanlık",
+          "Tıp, danışmanlık ve palyatif bakım",
+          "Tadilat ve geri dönüşüm",
+          "Kriz yönetimi",
+          "Geçiş dönemi koçluğu"
+        ],
+        "caution": "Değişimi aceleye getirmek başkalarının hazırlanması için gereken zamanı gözden kaçırabilir, bu yüzden hızı uyumlayın."
+      },
+      "soul_note": null,
+      "year_theme": "Temizlik ve geçiş yılı. Eski alışkanlıkları, ilişkileri ya da işleri kapatıp yeni bir bölüm açma zamanı olabilir, bu yüzden sonlardan korkmayın."
+    },
+    "temperance": {
+      "name": "Denge",
+      "tagline": "Uyumu ve dengeyi harmanlayan kişi",
+      "personality": "Sakinsiniz ve dengeli bir tavırla farklı şeyleri bir araya getirirsiniz. Uçlara koşmak yerine uygun düzeyi arar, sonuçları zamanla yavaş yavaş kurarsınız. Yanınızda bulunmak genellikle insanların içini rahatlatır.",
+      "life_lesson": "Hayatınız acele etmeden kendi hızınızda bütünleştirmekle ilgilidir. Görev, uyum yaratırken gerektiğinde net biçimde seçmek ve ifade etmektir.",
+      "relationships": "Çatışmalarda sakince arabuluculuk eder, rahat ve kalıcı ilişkiler kurarsınız. Tutkusuz görünebilirsiniz, bu yüzden sevgiyi gözle görünür biçimlerde göstermeyi deneyin.",
+      "keywords": [
+        "Uyum",
+        "Ölçülülük",
+        "Şifa",
+        "Sabır",
+        "Bütünleşme"
+      ],
+      "strengths": [
+        "Farklı unsurları eşgüdümleyen denge duygusu",
+        "İnsanlar arasında arabuluculuk yeteneği",
+        "Yüreği yatıştırıp onaran güç"
+      ],
+      "shadow": [
+        "Aşırı tutumluluk sizi tutkusuz gösterebilir",
+        "Kararları erteleyip ılık kalabilirsiniz",
+        "Aşırı görüşleri anlamakta zorlanabilirsiniz"
+      ],
+      "career": {
+        "style": "Malzemeleri ve insanları karıştırıp ayarlayarak iyi sonuçlar ürettiğiniz işlere uyarsınız.",
+        "fields": [
+          "Terapi ve rehabilitasyon",
+          "Danışmanlık ve koçluk",
+          "Yemek, parfümeri ve harmanlama",
+          "Diplomasi ve arabuluculuk",
+          "Çevre ve sağlıklı yaşam"
+        ],
+        "caution": "Görüşünüzü net söylemezseniz inisiyatifi kaybedebilirsiniz."
+      },
+      "soul_note": null,
+      "year_theme": "Dengeyi yeniden kurma yılı. İş ile dinlenme, ilişkiler ile kendiniz arasındaki oranları kontrol edin ve sizi zorlamayan bir hızla azar azar ayarlayın."
+    },
+    "the-devil": {
+      "name": "Şeytan",
+      "tagline": "Arzuyu ve dolaşıklığı gören kişi",
+      "personality": "Güçlü bir çekiciliğiniz ve karizmanız var ve arzularınıza karşı dürüstsünüz. Pratik kazançları ve zevkleri kolayca fark eder, insanları çekme gücüne sahip olursunuz. Yüreğiniz bir şeye yöneldiğinde derinlemesine dalmaya eğilimlisiniz.",
+      "life_lesson": "Hayatınız sizi bağlayanı fark edip seçime dönüştürmekle ilgilidir. Görev, arzularınızı bastırmak yerine anlamak ve sağlıklı biçimde ele almaktır.",
+      "relationships": "Güçlü bir çekim ve tutku hissedersiniz, ama bunlar sahiplenmeye ya da bağımlılığa kayabilir. İlişkiler, birbirinin özgürlüğüne saygı duyulduğunda sağlıklı olur.",
+      "keywords": [
+        "Çekicilik",
+        "Arzu",
+        "Bağlılık",
+        "Gerçekçilik",
+        "Ayartı"
+      ],
+      "strengths": [
+        "İnsanları çeken karizma",
+        "Arzuyu gizlemeyen dürüstlük",
+        "Pratik kazancı okuma duyarlılığı"
+      ],
+      "shadow": [
+        "Bağlılığa ya da bağımlılığa kolayca düşebilirsiniz",
+        "Maddi şeylere ya da ilişkilere bağlanabilirsiniz",
+        "Kontrol ihtiyacınız büyüyebilir"
+      ],
+      "career": {
+        "style": "Güçlü yönleriniz insanların ihtiyaçlarını okuyup pazarlık ettiğiniz ve ikna ettiğiniz işlerde görünür.",
+        "fields": [
+          "Satış ve pazarlama",
+          "Finans ve yatırım",
+          "Medya ve eğlence",
+          "Pazarlık ve iş geliştirme",
+          "Güzellik sektörü"
+        ],
+        "caution": "Sonuçlara ve ödüllere fazla bağlanırsanız muhakemeniz bulanabilir, bu yüzden ölçütlerinizi önceden belirleyin."
+      },
+      "soul_note": null,
+      "year_theme": "Arzuyu ve dolaşıklığı gözden geçirme yılı. Harcamalarda, alışkanlıklarda ve ilişkilerde sizi neyin bağladığını fark edin ve onu seçime dönüştürün."
+    },
+    "the-tower": {
+      "name": "Kule",
+      "tagline": "Yıkıp uyanan kişi",
+      "personality": "Gerçeği saklayamaz, dolambaçlı değil doğrudan konuşursunuz. Hayatta ani değişimler ya da sarsıntılar yaşamaya ve sonrasında çok büyümeye eğilimlisiniz. Yanılsamaya ve sahteliğe keskin tepki verirsiniz.",
+      "life_lesson": "Hayatınız yanılsamayı bırakıp sağlam bir temel kurmakla ilgilidir. Görev, değişim vurmadan önce kendiniz temizlemeyi öğrenmek ve çökmüş zeminde yeniden inşa etmektir.",
+      "relationships": "Açık sözlü ve dramatik ilişkiler yaşayabilirsiniz ve bir kez patlayınca şiddetle çarpışabilirsiniz. Duygular yükseldiğinde konuşmadan önce biraz zaman tanımak yarayı azaltabilir.",
+      "keywords": [
+        "Sarsıntı",
+        "Uyanış",
+        "Açık sözlülük",
+        "Özgürleşme",
+        "Dönüm noktası"
+      ],
+      "strengths": [
+        "Gerçekle yüzleşme cesareti",
+        "Krizden sonra yeniden ayağa kalkma dayanıklılığı",
+        "Eski kalıpları kıran yenilikçi enerji"
+      ],
+      "shadow": [
+        "Ani bir dürtüyle patlayıp ilişkilere zarar verebilirsiniz",
+        "Ani çatışmalara yol açabilirsiniz",
+        "İstikrarı uzun süre korumak zor olabilir"
+      ],
+      "career": {
+        "style": "Yeteneğiniz hızla değişen durumlarda ve krizlerde görünür.",
+        "fields": [
+          "Kriz yönetimi ve acil müdahale",
+          "Yenilik ve reform",
+          "Mimarlık ve tadilat",
+          "Araştırmacı gazetecilik",
+          "Değişim yönetimi"
+        ],
+        "caution": "Duygular önden gittiğinde çatışma büyüyebilir, bu yüzden önemli kararları bir gece bekletin."
+      },
+      "soul_note": null,
+      "year_theme": "Eskinin sallandığı bir yıl. Beklenmedik bir değişim gelebilir, ama bu aynı zamanda yeniden inşa fırsatıdır, bu yüzden düşenden çok korunacak olana odaklanın."
+    },
+    "the-star": {
+      "name": "Yıldız",
+      "tagline": "Umut ve şifa getiren kişi",
+      "personality": "Saf ve iyimsersiniz ve yanınızda olmak insanların zihnini berraklaştırır. İdealleriniz ve hayalleriniz nettir ve zor durumlarda bile umudu bırakmazsınız. İlhamınız boldur ve duygusal alanlara çekilmeye eğilimlisiniz.",
+      "life_lesson": "Hayatınız inancı eyleme dökmekle ilgilidir. Görev, yüreğinizdeki hayali adım adım gerçekleştirmek ve yeteneğinizi dünyaya göstermektir.",
+      "relationships": "İnsanlara samimiyetle yaklaşır, yaraları yatıştıran sıcak ilişkiler kurarsınız. Bir ideal beklemekle hayal kırıklığına uğrayabilirsiniz, bu yüzden gerçek insana olduğu gibi bakın.",
+      "keywords": [
+        "Umut",
+        "İlham",
+        "Şifa",
+        "Saflık",
+        "İdeal"
+      ],
+      "strengths": [
+        "Başkalarına güç veren umut",
+        "İlham ve hayal gücü",
+        "Yaraları yatıştıran şifa enerjisi"
+      ],
+      "shadow": [
+        "İdeal ile gerçek arasındaki uçurum sizi isteksiz bırakabilir",
+        "Beklentiler suya düşünce kalbinizi kapatabilirsiniz",
+        "Yalnızca pasif biçimde bekleyebilirsiniz"
+      ],
+      "career": {
+        "style": "Güçlü yönleriniz ilham veren ve yüreği iyileştiren işlerde görünür.",
+        "fields": [
+          "Sanat ve müzik",
+          "Şifa ve danışmanlık",
+          "Astronomi ve bilim",
+          "İçerik ve fenomenlik",
+          "Çevre ve kâr amacı gütmeyen kuruluşlar"
+        ],
+        "caution": "Zamanın belirsiz bir beklemeyle akıp gitmesine izin vermeyin; küçük eylem hedefleri koyun."
+      },
+      "soul_note": null,
+      "year_theme": "İyileşme ve umut yılı. Zor zamanlar geçebilir ve yüreğiniz berraklaşabilir, bu yüzden uzun zamandır taşıdığınız hayali bir kez daha çıkarın."
+    },
+    "the-moon": {
+      "name": "Ay",
+      "tagline": "Duygu ve sezgi bakımından zengin kişi",
+      "personality": "Duyarlı ve canlı bir hayal gücüne sahipsiniz. Havadaki ve duygudaki değişimlere karşı duyarlısınız ve sözle anlatması zor hisleri fark edersiniz. İçinizde derin bir hayal dünyası var, bu yüzden yaratıcı işlere ve rüyalarla bağlantılı alanlara çekilebilirsiniz.",
+      "life_lesson": "Hayatınız korkuyla yüzleşmek ve hissi gerçekten ayırmakla ilgilidir. Görev, belirsizlik içinde sezgiye güvenirken doğrulanabilecek olanı doğrulamaktır.",
+      "relationships": "Havayı duyarlılıkla okur, karşı tarafın yüreğini iyi anlarsınız, ama kendi yüreğinizi gizlemeye eğilimlisiniz. Kaygılı duyguları tek başınıza beslemek yerine dürüstçe paylaşınca ilişkiler kolaylaşır.",
+      "keywords": [
+        "Duyarlılık",
+        "Hayal gücü",
+        "Sezgi",
+        "Kaygı",
+        "Bilinçdışı"
+      ],
+      "strengths": [
+        "İnce duyguları okuyan sezgi",
+        "Zengin hayal gücü ve yaratıcılık",
+        "Başkalarının yüreğiyle empati kurma yeteneği"
+      ],
+      "shadow": [
+        "Kaygıdan ya da duygu dalgalanmalarından muzdarip olabilirsiniz",
+        "Belirsizlikten kaçarak kararları erteleyebilirsiniz",
+        "Hayal gücü fazla ileri gidince gerçekle hayali karıştırabilirsiniz"
+      ],
+      "career": {
+        "style": "Yeteneğiniz duyarlılığın ve hayal gücünün önemli olduğu yaratıcı ve empatik işlerde görünür.",
+        "fields": [
+          "Yaratıcı çalışma ve yazarlık",
+          "Sinema, fotoğraf ve video",
+          "Psikoloji ve danışmanlık",
+          "Müzik ve tasarım",
+          "Rüyalar ve sembollerle ilgili alanlar"
+        ],
+        "caution": "Kaygı yüksekken muhakeme bulanabilir, bu yüzden önemli kararlardan önce gerçekleri doğrulayın."
+      },
+      "soul_note": null,
+      "year_theme": "Duygu ve sezginin derinleştiği bir yıl. Kaygı yükseldiğinde hayal gücünü gerçekten ayırın ve yüreğinizdeki hikâyeleri yazarak düzene sokun."
+    },
+    "the-sun": {
+      "name": "Güneş",
+      "tagline": "Parlak biçimde ışıldayıp çevresine can veren kişi",
+      "personality": "Aydınlık ve açık sözlüsünüz ve çevreyi aydınlatan bir enerji taşırsınız. İyimsersiniz ve zorlukları olumlu karşılamaya eğilimlisiniz, zengin ifadeniz sizi kolayca sevilir kılar. Çocuksu bir saflığı ve coşkuyu korursunuz.",
+      "life_lesson": "Hayatınız hem ışığı hem gölgeyi kabul etmekle ilgilidir. Yalnızca aydınlığı değil, karanlık duyguları ve zayıflıkları da kabul ettiğinizde daha sağlam bir neşe yaşayabilirsiniz.",
+      "relationships": "İlişkileri sıcak ve açık bir yürekle açık sözlülükle kurarsınız. Karşı tarafı karanlık günlerinde de dinlemeyi çalışmak ilişkiyi derinleştirir.",
+      "keywords": [
+        "Canlılık",
+        "Olumluluk",
+        "Açık sözlülük",
+        "Başarı",
+        "Neşe"
+      ],
+      "strengths": [
+        "Çevresindekilere canlılık veren olumluluk",
+        "Açık ve zengin ifade",
+        "Sonuçlarla takdir kazanan bir varlık"
+      ],
+      "shadow": [
+        "Aşırı iyimserlik riskleri hafife almanıza yol açabilir",
+        "Karanlık duygulardan gözünüzü kaçırmaya çalışabilirsiniz",
+        "Takdir görme ihtiyacınız büyüyebilir"
+      ],
+      "career": {
+        "style": "İnsanların önünde enerji aktardığınız ve sonuçların görünür olduğu işlerde parlarsınız.",
+        "fields": [
+          "Eğitim ve çocuk alanları",
+          "Yayıncılık ve eğlence",
+          "Spor",
+          "Hizmet ve satış",
+          "Sağlık ve zindelik"
+        ],
+        "caution": "Özgüven fazla yükselirse ayrıntıları kaçırabilirsiniz, bu yüzden bir kontrol adımı ekleyin."
+      },
+      "soul_note": null,
+      "year_theme": "Canlılık ve sonuç yılı. Gösterdiğiniz çaba gözle görülür sonuçlar olarak ortaya çıkabilir, bu yüzden sevincinizi çevrenizdekilerle paylaşın ve güvenle ilerleyin."
+    },
+    "judgement": {
+      "name": "Mahkeme",
+      "tagline": "Çağrıya karşılık verip yeniden ayağa kalkan kişi",
+      "personality": "Düşünceli birisiniz ve anlamı bulmak için hayatınıza geriye dönüp bakarsınız. Hayatın bir noktasında \"yapmam gereken bu\" diyen bir çağrı hissetmeye eğilimlisiniz. Geçmişi düzene sokup yeniden ayağa kalkma iradeniz güçlüdür.",
+      "life_lesson": "Hayatınız geçmişi düzene sokup çağrıya karşılık vermekle ilgilidir. Görev, kendinizi ve başkalarını bağışlamak ve gerçekten yapmak istediğinize doğru bir adım atmaktır.",
+      "relationships": "Barışma ve bağışlama ilişkilerde önemli bir tema olur. Eski yaraları halledip yürekten dürüstçe konuştuğunuzda ilişkiler yenilenir.",
+      "keywords": [
+        "Düşünme",
+        "Çağrı",
+        "Bağışlama",
+        "Uyanış",
+        "Yeniden başlama"
+      ],
+      "strengths": [
+        "Kendine geriye bakma düşünceliliği",
+        "Bağışlayan ve barışan bir yürek",
+        "Çağrınızı tanıyıp harekete geçen uyanış"
+      ],
+      "shadow": [
+        "Aşırı kendini eleştirme sizi çok zorlayabilir",
+        "Geçmişe bağlı kalıp ilerleyemeyebilirsiniz",
+        "Karar anını erteleyebilirsiniz"
+      ],
+      "career": {
+        "style": "Anlama ve çağrıya değer veren, insanların büyümesine yardım eden işlere uyarsınız.",
+        "fields": [
+          "Danışmanlık ve şifa",
+          "Eğitim ve koçluk",
+          "Kamusal ve toplumsal hareketler",
+          "Hukuk ve arabuluculuk",
+          "Yayıncılık ve halkla ilişkiler"
+        ],
+        "caution": "Mükemmel zamanı beklemek başlangıcınızı geciktirebilir, bu yüzden küçük bir eylemle başlayın."
+      },
+      "soul_note": null,
+      "year_theme": "Yeniden değerlendirme ve yeniden başlama yılı. Geçen zamana geriye bakıp onu düzenlemek ve yeni bir çağrı ya da yön seçmek için iyi bir an."
+    },
+    "the-world": {
+      "name": "Dünya",
+      "tagline": "Tamamlayıp bütünleştiren kişi",
+      "personality": "Başladığınızı bitirir ve olgunlukla bütünleştirirsiniz. Bakışınız geniştir ve birçok insana ve kültüre açıktır, bir aşamayı tamamlayınca doğal olarak bir sonraki dünyaya geçersiniz. Denge ve istikrar izlenimi verirsiniz.",
+      "life_lesson": "Hayatınız tamamlanmayı yeni başlangıçlarla bağlamakla ilgilidir. Görev, elde ettiklerinizin tadını tam çıkarırken yüreğinizi bir sonraki yolculuğa yeniden açmaktır.",
+      "relationships": "Olgun ve istikrarlı ilişkiler kurar, geniş bir bağ çevresinden hoşlanırsınız. Bir ilişki belli bir aşamaya geldiğinde birlikte yeni hedefler koymak yardımcı olur.",
+      "keywords": [
+        "Tamamlanma",
+        "Başarı",
+        "Bütünleşme",
+        "Olgunluk",
+        "Genişleme"
+      ],
+      "strengths": [
+        "İşleri tamamlanmaya kadar götürme yeteneği",
+        "Farklı şeyleri bütünleştirme yeteneği",
+        "Geniş ve açık bir bakış"
+      ],
+      "shadow": [
+        "Mükemmelliği kovalayıp bitirmeyi erteleyebilirsiniz",
+        "Bir başarıdan sonra boşluk hissedebilirsiniz",
+        "Şimdiki tamamlanmışlığa yerleşebilirsiniz"
+      ],
+      "career": {
+        "style": "Güçlü yönleriniz birçok unsuru bütünleştirdiğiniz ve projeleri tamamladığınız işlerde görünür.",
+        "fields": [
+          "Uluslararası işler ve ticaret",
+          "Eğitim ve araştırma",
+          "Yönetim ve gözetim",
+          "Seyahat ve kültür",
+          "Bütünleşik sanatlar ve proje liderliği"
+        ],
+        "caution": "Bir başarıdan sonra yönünüzü kaybetmemek için bir sonraki meydan okumanızı önceden gözünüzde canlandırın."
+      },
+      "soul_note": null,
+      "year_theme": "Tamamlanma ve meyve yılı. Uzun süren bir işi bitirebilir ya da bir aşamayı sonlandırabilir ve çok geçmeden yeni bir başlangıca hazırlanırken bulabilirsiniz kendinizi."
+    }
+  },
+  "lang": "tr"
+}

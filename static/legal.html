@@ -7,7 +7,7 @@
 <meta name="description" content="울트라타로의 이용약관, 개인정보처리방침, 환불정책, 민원처리규정, 이용요금 안내입니다.">
 <link rel="canonical" href="https://ultratarot.com/legal.html">
 <link rel="icon" href="/static/favicon.png" type="image/png">
-<link rel="stylesheet" href="/static/site-shell.css?v=3">
+<link rel="stylesheet" href="/static/site-shell.css?v=4">
 <link rel="stylesheet" href="/static/acct-bar.css?v=3">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -31,7 +31,7 @@
     line-height: 1.9;
     font-size: 14px;
   }
-  body.site-shell { padding: 64px 0 0 220px; }
+  body.site-shell { padding: 0; }
   .top-bar {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
@@ -160,8 +160,8 @@
     color: var(--accent);
     margin-top: 12px;
   }
-  @media (max-width: 1000px) { body.site-shell { padding: 112px 0 0; } }
-  @media (max-width: 600px) { body.site-shell { padding-top: 132px; } .top-bar { padding: 20px 16px 16px; flex-wrap: wrap; gap: 12px; } .tabs { flex-wrap: wrap; } }
+  @media (max-width: 1000px) { body.site-shell { padding: 0; } }
+  @media (max-width: 600px) { body.site-shell { padding: 0; } .top-bar { padding: 20px 16px 16px; flex-wrap: wrap; gap: 12px; } .tabs { flex-wrap: wrap; } }
   @media print {
     #acct-bar { display: none; }
     .top-bar { position: static; }
@@ -172,15 +172,15 @@
 </head>
 <body class="site-shell">
 
-<aside class="site-sidebar">
-  <a class="site-sidebar-brand" href="/">✨ 울트라타로</a>
-  <nav class="site-sidebar-nav">
-    <a href="/?open=about">앱 소개</a>
-    <a href="/?open=tarot">타로카드란?</a>
+<div id="acct-bar" class="site-topbar" data-lang="ko">
+  <nav class="site-primary-nav" aria-label="Site">
+    <a class="site-brand" href="/">✨ 울트라타로</a>
     <a href="/cards">카드 도감</a>
     <a href="/saved-readings?lang=ko">저장한 리딩</a>
   </nav>
-</aside>
+  <button id="acct-login" type="button"></button>
+  <div id="acct-user"><span id="acct-free" class="plenty"></span><a id="acct-credit" href="/"></a><a id="acct-history" href="/"></a><img id="acct-avatar" src="" alt=""><span id="acct-name"></span><button id="acct-logout" type="button"></button></div>
+</div>
 
 <div class="top-bar">
   <div class="logo">울트라타로 <span>법적 고지 문서</span></div>
@@ -635,6 +635,8 @@ function showDoc(id, btn) {
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-links">
+      <a href="/?open=about">앱 소개</a>
+      <a href="/?open=tarot">타로카드란?</a>
       <a href="/legal.html#pricing" target="_blank">이용요금</a>
       <a href="/legal.html#terms" target="_blank">이용약관</a>
       <a href="/legal.html#privacy" target="_blank">개인정보처리방침</a>
@@ -649,6 +651,6 @@ function showDoc(id, btn) {
     <div class="footer-copy">© 2025 울트라타로. All rights reserved.</div>
   </div>
 </footer>
-<script type="module" src="/static/acct-bar.js?v=3"></script>
+<script type="module" src="/static/acct-bar.js?v=4"></script>
 </body>
 </html>

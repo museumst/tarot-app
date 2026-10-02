@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/site-shell.css?v=3">
+  <link rel="stylesheet" href="/static/site-shell.css?v=4">
   <link rel="stylesheet" href="/static/acct-bar.css?v=3">
   <style>
     :root { color-scheme: dark; --bg:#0d0d1a; --panel:#151725; --panel2:#1c2030; --line:rgba(196,169,107,.2); --gold:#d9bf8e; --text:#f0eee8; --muted:#a4a8b5; }
@@ -50,14 +50,14 @@
     .state { margin:auto; padding:30px 18px; text-align:center; color:var(--muted); }
     .state button { margin-top:12px; padding:9px 14px; border:1px solid var(--line); border-radius:7px; color:var(--text); background:var(--panel2); cursor:pointer; }
     #mobile-list-back { display:none; }
-    .site-shell { padding-left:220px; padding-top:64px; }
+    .site-shell { padding:0; }
     .list-pane { height:calc(100dvh - 108px); }
     @media (max-width:1000px) {
-      .site-shell { padding:112px 0 0; }
+      .site-shell { padding:0; }
       .topbar { left:0; }
     }
     @media (max-width:760px) {
-      .site-shell { padding:calc(var(--site-topbar-height) + var(--site-mobile-nav-height)) 0 0; }
+      .site-shell { padding:0; }
       .topbar { left:0; }
       .top-actions { gap:6px; flex-wrap:wrap; }
       .account { display:none; }
@@ -76,24 +76,20 @@
   </style>
 </head>
   <body class="site-shell">
-  <aside class="site-sidebar">
-    <a class="site-sidebar-brand" id="brand" href="/">✨ 울트라타로</a>
-    <nav class="site-sidebar-nav">
-      <a href="/?open=about" id="nav-about"></a>
-      <a href="/?open=tarot" id="nav-tarot"></a>
+  <header class="topbar site-topbar" id="acct-bar">
+    <nav class="site-primary-nav" aria-label="Site">
+      <a class="site-brand" id="brand" href="/">✨ 울트라타로</a>
       <a href="/cards" id="nav-cards"></a>
       <a href="/saved-readings" id="nav-saved" aria-current="page"></a>
     </nav>
-  </aside>
-  <header class="topbar site-topbar" id="acct-bar">
     <select id="language-select" aria-label="Language"></select>
     <button id="acct-login" type="button"></button>
     <div id="acct-user">
-      <img id="acct-avatar" src="" alt="">
-      <span id="acct-name"></span>
       <span id="acct-free" class="plenty"></span>
       <a id="acct-credit" href="/"></a>
       <a id="acct-history" href="/"></a>
+      <img id="acct-avatar" src="" alt="">
+      <span id="acct-name"></span>
       <button id="acct-logout" type="button"></button>
     </div>
   </header>
@@ -111,6 +107,8 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-links">
+        <a id="nav-about" href="/?open=about">앱 소개</a>
+        <a id="nav-tarot" href="/?open=tarot">타로카드란?</a>
         <a href="/legal.html#pricing" target="_blank">이용요금</a>
         <a href="/legal.html#terms" target="_blank">이용약관</a>
         <a href="/legal.html#privacy" target="_blank">개인정보처리방침</a>
@@ -271,6 +269,6 @@
       await loadReadings(user);
     });
   </script>
-  <script type="module" src="/static/acct-bar.js?v=3"></script>
+  <script type="module" src="/static/acct-bar.js?v=4"></script>
 </body>
 </html>

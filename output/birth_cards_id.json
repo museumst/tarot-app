@@ -1,0 +1,843 @@
+{
+  "_meta": {
+    "title": "Panduan Kartu Kelahiran",
+    "disclaimer": "Pembacaan ini didasarkan pada simbolisme kartu dan bukan tes kepribadian ilmiah. Ini hanya referensi untuk memahami diri dan tidak menggantikan keputusan karier atau keputusan penting lainnya.",
+    "deck_note": "Berdasarkan penomoran Waite (Rider-Waite): Strength adalah 8 dan Justice adalah 11. Total 22 dibaca sebagai The Fool (0).",
+    "calculation": [
+      "Jumlahkan semua angka tanggal lahir Anda yang ditulis delapan digit (TTTTBBHH).",
+      "Jika totalnya lebih dari 22, jumlahkan lagi digitnya sampai menjadi 22 atau kurang.",
+      "Hasil 1–9 menghasilkan satu kartu (kepribadian dan jiwa sama). Hasil 10–22 menghasilkan kartu kepribadian Anda, dan jumlah digitnya menghasilkan kartu jiwa (batin) Anda.",
+      "19 dibaca sebagai tiga kartu: The Sun (kepribadian), Wheel of Fortune (tengah), dan The Magician (jiwa). 22 dibaca sebagai The Fool (kepribadian) dan The Emperor (jiwa)."
+    ],
+    "labels": {
+      "keywords": "Kata kunci",
+      "personality": "Kepribadian dan watak",
+      "strengths": "Kekuatan",
+      "shadow": "Sisi bayangan",
+      "life_lesson": "Pelajaran hidup",
+      "relationships": "Gaya dalam hubungan",
+      "career": "Kecenderungan karier",
+      "career_fields": "Bidang yang mungkin cocok untuk Anda",
+      "career_caution": "Perlu diingat",
+      "soul_note": "Sebagai kartu jiwa Anda",
+      "year_theme": "Sebagai kartu tahun Anda"
+    }
+  },
+  "cards": {
+    "the-fool": {
+      "name": "The Fool",
+      "tagline": "Petualang abadi yang melangkah pertama tanpa batas",
+      "personality": "Anda cenderung penasaran dan optimis, dan tidak suka terkurung dalam kerangka yang kaku. Berapa pun usia Anda, Anda menyimpan sisi yang polos dan mendekati tempat serta orang asing tanpa ragu. Anda lebih condong memercayai naluri dan arus daripada rencana, sehingga orang di sekitar melihat Anda sebagai sosok yang bebas dan segar.",
+      "life_lesson": "Hidup Anda adalah belajar keseimbangan antara kebebasan dan tanggung jawab. Pertahankan debar tidak tahu ke mana Anda menuju, tetapi berlatihlah memeriksa tanah di bawah kaki dan menyiapkan kenyataan.",
+      "relationships": "Anda merasa nyaman dalam hubungan yang ringan dan bebas, yang tidak mengikat Anda maupun pihak lain. Anda bisa ragu di hadapan komitmen yang dalam, tetapi ketika kepercayaan tumbuh, Anda menjadi pendamping yang terus terang dan hangat seperti jarang ada.",
+      "keywords": [
+        "Kebebasan",
+        "Rasa ingin tahu",
+        "Kepolosan",
+        "Petualangan",
+        "Awal baru"
+      ],
+      "strengths": [
+        "Keberanian untuk memulai tanpa takut",
+        "Kelenturan yang cepat menyesuaikan diri dengan lingkungan apa pun",
+        "Kepolosan dan humor yang membuat orang nyaman"
+      ],
+      "shadow": [
+        "Anda bisa melompat tanpa persiapan dan mengulang kesalahan serupa",
+        "Anda bisa disalahpahami sebagai orang yang menganggap enteng janji atau tanggung jawab",
+        "Ketika kegembiraan awal memudar, Anda bisa kehilangan minat sebelum selesai"
+      ],
+      "career": {
+        "style": "Anda bersinar di lingkungan dengan percobaan baru dan banyak perubahan, bukan prosedur yang baku.",
+        "fields": [
+          "Perjalanan dan pariwisata",
+          "Startup dan usaha tahap awal",
+          "Seni dan pekerjaan kreatif",
+          "Pekerjaan lepas",
+          "Pendidikan anak dan permainan"
+        ],
+        "caution": "Hierarki yang ketat dan tugas yang berulang bisa cepat menguras Anda."
+      },
+      "soul_note": null,
+      "year_theme": "Ini tahun ketika Anda berdiri di garis awal yang asing. Daripada menunggu persiapan sempurna, ambil langkah pertama dengan ringan, tetapi periksa kembali keputusan yang benar-benar penting."
+    },
+    "the-magician": {
+      "name": "The Magician",
+      "tagline": "Seseorang yang mengubah kemungkinan menjadi kenyataan lewat kehendak",
+      "personality": "Anda cerdik, mahir dengan tangan atau kata-kata, dan begitu punya tujuan, Anda menemukan cara untuk mencapainya. Anda cenderung percaya diri dan ingin memimpin situasi sendiri. Pikiran Anda bergerak cepat, jadi Anda menangani beberapa hal sekaligus dengan mudah.",
+      "life_lesson": "Hidup Anda adalah memperjelas niat: untuk apa Anda menggunakan bakat bawaan Anda? Semakin besar kemampuan, semakin penting menggunakannya dengan tanggung jawab.",
+      "relationships": "Anda memenangkan hati lewat percakapan dan ide. Jika dorongan Anda untuk memegang inisiatif kuat, pihak lain bisa merasa tertekan, jadi sediakan juga waktu untuk mendengarkan.",
+      "keywords": [
+        "Kehendak",
+        "Bakat",
+        "Eksekusi",
+        "Komunikasi",
+        "Inisiatif"
+      ],
+      "strengths": [
+        "Daya eksekusi yang mengubah ide menjadi kenyataan",
+        "Kemampuan komunikasi yang membantu orang lain memahami dan yakin",
+        "Kemampuan serbabisa yang melintasi banyak bidang"
+      ],
+      "shadow": [
+        "Mengandalkan bakat, Anda bisa mencoba lolos dengan trik",
+        "Minat Anda bisa menyebar dan melemahkan fokus",
+        "Kata-kata yang mendahului tindakan bisa membuat Anda kehilangan kepercayaan"
+      ],
+      "career": {
+        "style": "Kekuatan Anda muncul dalam pekerjaan ketika Anda menemukan ide, menjalankannya sendiri, dan menunjukkan hasil.",
+        "fields": [
+          "Perencanaan dan pemasaran",
+          "Penjualan dan negosiasi",
+          "TI dan pengembangan",
+          "Ceramah dan pembuatan konten",
+          "Memulai bisnis"
+        ],
+        "caution": "Ketika terlalu banyak proyek menumpuk, menyelesaikannya bisa menjadi titik lemah Anda."
+      },
+      "soul_note": "Bagaimanapun penampilan Anda di luar, di dalam diri Anda hidup kehendak yang berkata \"aku bisa\" dan rasa ingin tahu pada kemungkinan baru. Di hati Anda selalu ingin mencoba sesuatu yang baru.",
+      "year_theme": "Tahun yang baik untuk membawa bakat dan ide Anda ke dunia. Mungkin muncul kesempatan untuk memulai sesuatu yang baru atau benar-benar menerapkan apa yang telah Anda pelajari."
+    },
+    "the-high-priestess": {
+      "name": "The High Priestess",
+      "tagline": "Seseorang yang intuisinya tahu mendalam tanpa sepatah kata",
+      "personality": "Anda memiliki aura tenang dan misterius, dan tidak mudah mengungkapkan isi hati. Daya pengamatan Anda tajam, sehingga Anda mudah menangkap suasana dan perasaan sejati orang. Meski tidak banyak bicara, Anda berpikir mendalam, dan cenderung mendapat tenaga dari waktu sendirian.",
+      "life_lesson": "Hidup Anda adalah memercayai suara batin dan belajar mengungkapkannya dengan kata-kata. Tugasnya adalah membedakan keheningan dari keterasingan dan membuka pintu hati ketika diperlukan.",
+      "relationships": "Anda membuka diri perlahan, tetapi begitu terbuka, Anda menginginkan ikatan emosional yang dalam. Anda mungkin berharap pihak lain menyadari perasaan yang tidak pernah Anda ungkapkan; berlatih mengungkapkan membuat hubungan lebih nyaman.",
+      "keywords": [
+        "Intuisi",
+        "Misteri",
+        "Ketajaman batin",
+        "Keheningan",
+        "Dunia batin"
+      ],
+      "strengths": [
+        "Intuisi yang membaca niat tersembunyi",
+        "Kehati-hatian dalam menjaga rahasia",
+        "Ketajaman batin yang melihat hakikat, bukan permukaan"
+      ],
+      "shadow": [
+        "Anda bisa menutup hati dan menjaga jarak, tampak dingin",
+        "Diam saja bisa menimbulkan kesalahpahaman",
+        "Tidak memercayai intuisi sendiri, Anda bisa menunda keputusan"
+      ],
+      "career": {
+        "style": "Keahlian Anda tampak dalam pekerjaan ketika Anda menyelami sendirian dan menata pemahaman.",
+        "fields": [
+          "Penelitian dan analisis",
+          "Psikologi dan konseling",
+          "Menulis dan penerjemahan",
+          "Perpustakaan dan arsip",
+          "Bidang simbolik seperti tarot dan astrologi"
+        ],
+        "caution": "Jika Anda tidak pernah menyatakan pandangan, hasil Anda bisa tidak terlihat, jadi biasakan membagikan temuan Anda."
+      },
+      "soul_note": "Meski tampak aktif di luar, di dalam diri Anda ada kebijaksanaan yang tenang dan lanskap rahasia. Anda adalah orang yang bertemu dengan diri sejati dalam waktu sendirian.",
+      "year_theme": "Tahun untuk mendengarkan sinyal batin ketimbang kebisingan luar. Intuisi Anda menajam, jadi jangan terburu-buru; catat kesan Anda sambil memutuskan."
+    },
+    "the-empress": {
+      "name": "The Empress",
+      "tagline": "Seseorang yang menopang dan merawat, membawa kelimpahan",
+      "personality": "Anda hangat dan baik hati, dan tahu cara menikmati hidup lewat kelima indra. Anda memiliki pesona yang merangkul orang di dekat Anda dan membuat mereka nyaman, serta rasa halus terhadap hal indah, makanan lezat, dan ruang yang nyaman. Kasih sayang Anda cenderung menarik orang.",
+      "life_lesson": "Hidup Anda adalah belajar keseimbangan antara memberi dan menerima. Tugasnya adalah merawat diri sendiri sebanyak merawat orang lain dan berlatih menerima dengan wajar.",
+      "relationships": "Anda penuh kasih dan setia, ingin merangkul pasangan. Ketika harapan membesar, rasa kecewa bisa menumpuk, jadi katakan dengan jujur apa yang Anda inginkan.",
+      "keywords": [
+        "Kelimpahan",
+        "Perawatan",
+        "Kepekaan",
+        "Penciptaan",
+        "Panca indra"
+      ],
+      "strengths": [
+        "Empati yang memperhatikan dan merawat orang lain",
+        "Daya cipta untuk membuat dan menumbuhkan sesuatu",
+        "Kepekaan untuk memperkaya suasana dan ruang"
+      ],
+      "shadow": [
+        "Perawatan berlebihan bisa terasa seperti campur tangan",
+        "Anda bisa terbuai dalam kenyamanan dan menunda tantangan",
+        "Bisa berujung pada suasana hati yang naik turun atau pengeluaran berlebihan"
+      ],
+      "career": {
+        "style": "Anda menemukan kepuasan dalam pekerjaan yang menumbuhkan orang dan hasil dengan penuh perhatian.",
+        "fields": [
+          "Kuliner dan memasak",
+          "Desain dan seni",
+          "Pendidikan dan pengasuhan anak",
+          "Keperawatan dan kesejahteraan",
+          "Kecantikan dan merangkai bunga"
+        ],
+        "caution": "Jika merasa tidak diakui, Anda bisa cepat kehabisan tenaga, jadi simpan catatan hasil Anda yang terlihat jelas."
+      },
+      "soul_note": "Di dalam diri Anda hidup keinginan hangat untuk merangkul dan menopang seseorang serta kerinduan akan kelimpahan. Meski tampak acuh di luar, jauh di dalam Anda adalah orang yang berhati besar.",
+      "year_theme": "Tahun kelimpahan dan perawatan. Apa yang Anda curahkan tenaga untuknya di antara orang, pekerjaan, dan hobi bisa tumbuh terlihat, jadi rawat juga tubuh dan pikiran Anda."
+    },
+    "the-emperor": {
+      "name": "The Emperor",
+      "tagline": "Seseorang yang membangun fondasi lewat keteraturan dan tanggung jawab",
+      "personality": "Anda realistis dan tegas, dan terampil membangun struktur. Anda berusaha menanggung apa yang dipercayakan hingga akhir, dan cenderung secara alami ditempatkan dalam peran pemimpin. Anda bergerak lebih berdasarkan prinsip dan rencana daripada perasaan, yang memberi kesan dapat diandalkan.",
+      "life_lesson": "Hidup Anda adalah belajar keseimbangan antara kendali dan kepercayaan. Tugasnya adalah memercayai dan mendelegasikan alih-alih menggenggam segalanya, dan mengakui kerentanan Anda sendiri.",
+      "relationships": "Anda mengambil peran pelindung yang dapat diandalkan dan menghargai stabilitas serta kepercayaan. Anda bisa meninggalkan kesan bahwa percakapan tentang perasaan terlalu sedikit; berlatih mengungkapkan isi hati membantu.",
+      "keywords": [
+        "Keteraturan",
+        "Tanggung jawab",
+        "Kepemimpinan",
+        "Stabilitas",
+        "Ketegasan"
+      ],
+      "strengths": [
+        "Kemampuan membangun dan mempertahankan sebuah sistem",
+        "Penilaian yang cepat dan tegas",
+        "Keandalan yang menanggung tanggung jawab hingga akhir"
+      ],
+      "shadow": [
+        "Anda bisa keras kepala dan punya kebutuhan kuat untuk mengendalikan",
+        "Kesulitan mengungkapkan perasaan bisa membuat Anda tampak kaku",
+        "Anda bisa memberi kesan otoriter"
+      ],
+      "career": {
+        "style": "Kemampuan Anda tampak dalam peran ketika Anda merancang organisasi dan jadwal serta bertanggung jawab atasnya.",
+        "fields": [
+          "Manajemen dan administrasi",
+          "Pelayanan publik, militer, dan kepolisian",
+          "Konstruksi dan properti",
+          "Keuangan",
+          "Hukum dan administrasi publik"
+        ],
+        "caution": "Jika Anda tidak bisa menerima orang yang berpandangan lain, energi tim Anda bisa menurun."
+      },
+      "soul_note": "Di dalam diri Anda ada keinginan kuat untuk membangun fondasi yang stabil dan rasa tanggung jawab. Meski tampak lembut di luar, di hati Anda menghargai keteraturan dan prinsip.",
+      "year_theme": "Tahun meletakkan fondasi. Membuat rencana dan menetapkan aturan untuk memperkuat kerangka hidup dan pekerjaan Anda akan membantu stabilitas Anda kelak."
+    },
+    "the-hierophant": {
+      "name": "The Hierophant",
+      "tagline": "Seseorang yang meneruskan tradisi dan ajaran",
+      "personality": "Anda memiliki keyakinan dan nilai yang jelas dan menghormati norma serta tradisi. Anda punya minat alami pada belajar dan mengajar, sehingga orang sering datang meminta nasihat. Anda memancarkan suasana yang stabil dan layak dipercaya.",
+      "life_lesson": "Hidup Anda adalah mencerna apa yang telah dipelajari dengan kata-kata Anda sendiri. Tugasnya adalah memilih sendiri apa yang diteruskan dan apa yang diubah antara tradisi dan menjadi diri sendiri.",
+      "relationships": "Anda tulus, menghargai janji dan hubungan yang langgeng dengan keluarga. Standar yang ketat bisa membuat orang lain merasa sesak, jadi Anda perlu ruang untuk menerima perbedaan.",
+      "keywords": [
+        "Tradisi",
+        "Keyakinan",
+        "Ajaran",
+        "Kepercayaan",
+        "Komunitas"
+      ],
+      "strengths": [
+        "Keandalan yang dapat disandari orang lain",
+        "Kemampuan menjelaskan dengan jelas apa yang telah dipelajari",
+        "Rasa tanggung jawab terhadap komunitas dan hubungan"
+      ],
+      "shadow": [
+        "Anda bisa berpegang pada kerangka dan kurang menerima cara baru",
+        "Anda bisa terlalu memikirkan pandangan orang lain dan konvensi",
+        "Anda bisa mencoba menyesuaikan diri dengan standar alih-alih menyatakan pendapat sendiri"
+      ],
+      "career": {
+        "style": "Anda cocok dengan pekerjaan yang menyampaikan pengetahuan dan memimpin orang di atas fondasi struktur dan kepercayaan.",
+        "fields": [
+          "Pendidikan dan pengajaran",
+          "Agama dan filsafat",
+          "Konseling dan mentoring",
+          "Lembaga publik dan administrasi",
+          "Hukum"
+        ],
+        "caution": "Di lingkungan yang cepat berubah, Anda memerlukan kelenturan untuk menerima cara baru."
+      },
+      "soul_note": "Di dalam diri Anda ada hati yang mencari ajaran yang dapat dipercaya dan rasa memiliki. Di hati Anda hidup pertanyaan tentang benar dan salah serta hidup yang bermakna.",
+      "year_theme": "Tahun belajar dan rasa memiliki. Ikatan dengan guru, mentor, dan kelompok mungkin datang, jadi fokuslah menaati aturan dan janji serta membangun kepercayaan."
+    },
+    "the-lovers": {
+      "name": "The Lovers",
+      "tagline": "Seseorang yang mengenal dirinya lewat pilihan dan hubungan",
+      "personality": "Anda sangat peduli pada orang dan hubungan, dan mencurahkan seluruh hati pada apa yang menarik Anda. Empati Anda kuat, dan Anda menghargai harmoni menjadi satu dengan orang lain. Pada momen penting dalam hidup, Anda cenderung menghadapi pilihan yang bergantung pada nilai-nilai Anda.",
+      "life_lesson": "Hidup Anda adalah memilih apa yang diinginkan hati dan bertanggung jawab atas hasil pilihan itu. Tugasnya adalah bertanya dalam cinta, pilihan mana yang sesuai dengan nilai Anda sendiri.",
+      "relationships": "Hubungan berada di pusat hidup Anda, dan Anda menginginkan kebersamaan yang dalam. Anda mudah mengidealkan lalu kecewa, jadi berlatihlah melihat pihak lain apa adanya.",
+      "keywords": [
+        "Cinta",
+        "Pilihan",
+        "Harmoni",
+        "Nilai",
+        "Hubungan"
+      ],
+      "strengths": [
+        "Empati yang memahami hati orang lain",
+        "Kemampuan membawa hubungan menuju harmoni",
+        "Ketulusan yang datang dari hati"
+      ],
+      "shadow": [
+        "Anda bisa ragu-ragu dan menunda keputusan",
+        "Anda bisa terlalu bergantung pada hubungan",
+        "Hati Anda bisa goyah di hadapan godaan atau suasana"
+      ],
+      "career": {
+        "style": "Kekuatan Anda tampak dalam pekerjaan yang menghubungkan orang dan membangun sesuatu bersama.",
+        "fields": [
+          "Konseling dan pembinaan",
+          "Layanan dan penyambutan",
+          "Mediasi dan SDM",
+          "Pernikahan dan acara",
+          "Usaha berbasis kemitraan"
+        ],
+        "caution": "Ketika harus memutuskan sendiri, hati Anda bisa goyah, jadi tentukan kriteria Anda terlebih dahulu."
+      },
+      "soul_note": "Di dalam diri Anda ada kerinduan akan cinta sejati dan hubungan yang dalam. Di hati Anda selalu bertanya: \"Apa pilihan yang benar-benar milikku?\"",
+      "year_theme": "Tahun pilihan dan hubungan. Di persimpangan atau di hadapan orang penting, ikuti suara hati Anda, tetapi pikirkan juga tanggung jawab yang menyertai pilihan itu."
+    },
+    "the-chariot": {
+      "name": "The Chariot",
+      "tagline": "Seseorang yang menetapkan arah dengan kehendak dan melaju menujunya",
+      "personality": "Anda memiliki dorongan kuat dan melaju sampai akhir begitu tujuan ditetapkan. Anda kompetitif dan menemukan kepuasan dalam bergerak ke arah yang Anda pilih. Anda dapat menyatukan dorongan yang berlawanan ke satu arah, sehingga tampak berkemauan kuat.",
+      "life_lesson": "Hidup Anda adalah menyelaraskan kekuatan yang berlawanan (nalar dan emosi, keinginan dan tanggung jawab) sambil maju. Arah sama pentingnya dengan kecepatan, dan tugasnya adalah memilih tujuan yang benar, bukan sekadar menang.",
+      "relationships": "Anda cenderung memimpin dalam hubungan juga, tetapi bisa menghindari pembicaraan tentang perasaan. Anda merasa nyaman di samping seseorang yang bisa berlari bersama Anda ke arah yang sama.",
+      "keywords": [
+        "Dorongan",
+        "Semangat bersaing",
+        "Kendali diri",
+        "Tujuan",
+        "Kemenangan"
+      ],
+      "strengths": [
+        "Daya terobos yang fokus pada satu hal dan menuntaskannya",
+        "Kendali diri yang mengatur diri sendiri",
+        "Ketekunan menghasilkan hasil dalam persaingan"
+      ],
+      "shadow": [
+        "Persaingan yang berlebihan bisa melelahkan orang di sekitar",
+        "Anda bisa menekan perasaan lalu meledak sekaligus",
+        "Karena tidak tahu cara beristirahat, Anda bisa kehabisan tenaga"
+      ],
+      "career": {
+        "style": "Kemampuan Anda tumbuh di lingkungan dengan tujuan jelas, persaingan, dan hasil yang terlihat.",
+        "fields": [
+          "Penjualan",
+          "Olahraga dan atletik",
+          "Transportasi dan logistik",
+          "Militer dan kepolisian",
+          "Manajemen proyek"
+        ],
+        "caution": "Dalam perlombaan panjang, kelelahan bisa datang, jadi masukkan istirahat ke dalam jadwal Anda."
+      },
+      "soul_note": "Di dalam diri Anda ada kehendak kuat untuk berhasil dan keinginan untuk diakui. Di hati Anda selalu berlari menuju suatu tempat.",
+      "year_theme": "Tahun menambah kecepatan menuju tujuan. Jika Anda lebih dulu menetapkan arah dengan teguh, dorongan Anda bisa membawa hasil besar, tetapi waspadai kecepatan berlebihan dan memaksakan diri."
+    },
+    "strength": {
+      "name": "Strength",
+      "tagline": "Kekuatan batin yang memerintah lewat kelembutan",
+      "personality": "Anda lembut di luar tetapi teguh di dalam. Anda memiliki kekuatan untuk tetap tenang dan bertahan menghadapi krisis besar dan gelombang emosi. Anda cenderung menangani situasi dan orang dengan memahami dan menenangkan, bukan menaklukkan.",
+      "life_lesson": "Hidup Anda adalah membangun kekuatan yang menjinakkan, bukan menekan. Tugasnya adalah melihat rasa takut dan dorongan bukan sebagai musuh tetapi memahaminya, dan berlatih memercayai diri sendiri.",
+      "relationships": "Anda toleran dan menyelesaikan konflik dengan lembut. Anda bisa mudah kelelahan karena mengabdi pada seseorang, jadi sampaikan dengan jujur batas dan kebutuhan Anda sendiri.",
+      "keywords": [
+        "Keberanian",
+        "Kesabaran",
+        "Kelembutan",
+        "Percaya diri",
+        "Ketenangan"
+      ],
+      "strengths": [
+        "Kesabaran dan ketekunan untuk bertahan lama",
+        "Kepemimpinan lembut yang membimbing lewat empati",
+        "Ketenangan yang tidak goyah bahkan dalam krisis"
+      ],
+      "shadow": [
+        "Anda bisa bertahan sampai tiba-tiba kehabisan tenaga",
+        "Ketika kepercayaan diri turun, Anda bisa mengkerut",
+        "Anda bisa menekan perasaan dan menderita di dalam"
+      ],
+      "career": {
+        "style": "Kekuatan Anda tampak dalam pekerjaan ketika Anda menangani orang atau situasi sulit dengan ketekunan dan perhatian.",
+        "fields": [
+          "Konseling dan penyembuhan",
+          "Keperawatan, pengasuhan, dan rehabilitasi",
+          "Pendidikan dan pembinaan",
+          "Pekerjaan dengan hewan",
+          "Penanganan krisis dan keselamatan"
+        ],
+        "caution": "Anda bisa aus karena memikul lebih dari bagian Anda, jadi tetapkan batas peran Anda."
+      },
+      "soul_note": "Di dalam diri Anda tersembunyi keberanian dan kehangatan yang lebih kuat daripada siapa pun. Di hati Anda menenangkan rasa takut dan dorongan serta mengatur diri sendiri.",
+      "year_theme": "Tahun kesabaran dan percaya diri. Bahkan ketika segalanya sulit, menghadapinya dengan lembut dan tanpa tergesa-gesa bisa membawa Anda lebih jauh."
+    },
+    "the-hermit": {
+      "name": "The Hermit",
+      "tagline": "Pencari yang menyelam mendalam seorang diri",
+      "personality": "Anda berhati-hati dan mandiri, dan menghargai waktu untuk berpikir sendirian. Alih-alih menonjol, Anda menyelami satu bidang dan membangun standar Anda sendiri. Anda sedikit bicara, tetapi setiap kata memiliki bobot.",
+      "life_lesson": "Hidup Anda adalah membagikan kebijaksanaan yang telah Anda peroleh, bukan menyimpannya untuk diri sendiri. Tugasnya adalah membedakan kesendirian dari keterputusan dan melangkah satu langkah menuju dunia ketika diperlukan.",
+      "relationships": "Anda membentuk hubungan yang dalam dan langgeng dengan beberapa orang. Jika Anda menjelaskan sebelumnya bahwa Anda membutuhkan waktu sendirian, Anda dapat mengurangi kesalahpahaman.",
+      "keywords": [
+        "Perenungan",
+        "Kemandirian",
+        "Penelusuran",
+        "Kebijaksanaan",
+        "Kesendirian"
+      ],
+      "strengths": [
+        "Keahlian yang menyelami satu hal secara mendalam",
+        "Standar Anda sendiri yang tak tergoyahkan",
+        "Ketajaman batin yang melihat situasi dari kejauhan"
+      ],
+      "shadow": [
+        "Anda bisa terisolasi karena terus sendirian",
+        "Anda bisa memendam semuanya alih-alih meminta bantuan",
+        "Anda bisa condong ke perfeksionisme atau pesimisme yang berlebihan"
+      ],
+      "career": {
+        "style": "Anda bersinar dalam pekerjaan ketika Anda meneliti secara mendalam dan membangun keahlian secara mandiri.",
+        "fields": [
+          "Penelitian dan akademik",
+          "Menulis dan kepenulisan",
+          "Pengembangan dan rekayasa",
+          "Kerajinan dan keahlian tangan",
+          "Analisis dan konsultasi"
+        ],
+        "caution": "Jika Anda tidak memperkenalkan hasil Anda, nilainya bisa tidak terlihat, jadi ciptakan kesempatan untuk berbagi."
+      },
+      "soul_note": "Di dalam diri Anda ada semangat penelusuran yang tenang yang mencari kebenaran dan makna. Bahkan di antara orang, di hati Anda berjalan sendirian, menerangi jalan.",
+      "year_theme": "Tahun menata dan merenung sendirian. Memperlambat langkah dan menghabiskan waktu untuk belajar atau pertanyaan batin membuat arah langkah Anda berikutnya menjadi jelas."
+    },
+    "wheel-of-fortune": {
+      "name": "Wheel of Fortune",
+      "tagline": "Seseorang yang menunggangi arus perubahan",
+      "personality": "Anda peka terhadap arus kehidupan dan perubahan, dan menangkap peluang dengan baik ketika datang. Anda optimis, sehingga bahkan di tengah naik turun Anda bertahan dengan keyakinan bahwa semuanya akan berputar kembali. Anda memiliki pandangan luas atas gambaran besar, dan cukup sering dibawa oleh keberuntungan dan waktu yang tepat.",
+      "life_lesson": "Hidup Anda adalah menjaga pusat Anda di tengah naik dan turun. Tugasnya adalah membedakan apa yang bisa Anda ubah dari yang tidak, dan mengembangkan kemampuan Anda sebelumnya untuk saat arus tiba.",
+      "relationships": "Anda menghargai waktu yang tepat dari pertemuan dan bisa mengalami pertemuan dan perpisahan yang dramatis. Perubahan yang sering bisa menimbulkan kekhawatiran akan stabilitas, jadi berlatihlah memberi pasangan sinyal yang konsisten.",
+      "keywords": [
+        "Perubahan",
+        "Waktu yang tepat",
+        "Peluang",
+        "Siklus",
+        "Keberuntungan"
+      ],
+      "strengths": [
+        "Kelenturan yang menyesuaikan diri dengan perubahan",
+        "Kepekaan untuk mengenali peluang",
+        "Optimisme yang tidak hilang di tengah naik turun"
+      ],
+      "shadow": [
+        "Anda bisa bergantung pada keberuntungan dan mengabaikan persiapan",
+        "Suasana hati Anda bisa berayun lebar bersama naik turun",
+        "Anda bisa merasa cemas pada hal yang tidak dapat Anda kendalikan"
+      ],
+      "career": {
+        "style": "Kekuatan Anda tampak dalam pekerjaan dengan banyak perubahan yang membaca arus.",
+        "fields": [
+          "Perdagangan dan distribusi",
+          "Investasi dan keuangan",
+          "Acara dan perjalanan",
+          "Analisis tren",
+          "Usaha baru dengan banyak perubahan"
+        ],
+        "caution": "Bertaruh terlalu banyak pada satu peluang itu berisiko, jadi sebarkan."
+      },
+      "soul_note": "Di dalam diri Anda ada rasa ingin tahu ke mana hidup akan mengalir dan hati yang menerima perubahan. Ketika muncul sebagai kartu tengah, kartu ini memberi tahu Anda bahwa keberuntungan dan waktu yang tepat adalah tema besar dalam hidup Anda.",
+      "year_theme": "Tahun ketika arus berubah. Peluang atau titik balik tak terduga mungkin datang, jadi sambutlah dengan pikiran terbuka dan ingat bahwa Anda hanya dapat meraih sebanyak yang telah Anda persiapkan."
+    },
+    "justice": {
+      "name": "Justice",
+      "tagline": "Seseorang yang menghargai keadilan dan keseimbangan",
+      "personality": "Anda logis dan jujur serta peka terhadap benar dan salah. Anda berusaha menilai berdasarkan fakta dan prinsip, bukan terbawa perasaan. Anda menghargai janji dan aturan dan cenderung bertanggung jawab atas tindakan Anda.",
+      "life_lesson": "Hidup Anda adalah belajar keseimbangan antara keadilan dan belas kasih. Tugasnya adalah menerapkan pada diri sendiri standar yang adil dan murah hati yang Anda berikan kepada orang lain.",
+      "relationships": "Anda menghargai hubungan yang adil dan jujur serta menepati janji. Anda bisa mengungkapkan kekecewaan dengan menghitung-hitung dan membuat pihak lain mengkerut, jadi berlatihlah menyampaikan perasaan dengan lembut.",
+      "keywords": [
+        "Keadilan",
+        "Logika",
+        "Kejujuran",
+        "Tanggung jawab",
+        "Keseimbangan"
+      ],
+      "strengths": [
+        "Rasa keseimbangan yang menilai secara objektif",
+        "Kejujuran dan prinsip yang konsisten",
+        "Ketekunan untuk bertanggung jawab atas tindakan Anda"
+      ],
+      "shadow": [
+        "Anda bisa tampak kurang luwes",
+        "Anda bisa tampak dingin atau memberi kesan menghakimi orang lain",
+        "Anda bisa terlalu keras pada diri sendiri"
+      ],
+      "career": {
+        "style": "Anda cocok dengan pekerjaan ketika Anda menilai dan menyesuaikan berdasarkan standar dan bukti.",
+        "fields": [
+          "Hukum",
+          "Akuntansi dan audit",
+          "Administrasi dan pelayanan publik",
+          "Penilaian dan evaluasi",
+          "Mediasi dan kepatuhan"
+        ],
+        "caution": "Agar tidak melewatkan keadaan orang, Anda memerlukan kelenturan untuk berpindah antara aturan dan kenyataan."
+      },
+      "soul_note": null,
+      "year_theme": "Tahun menyelesaikan perhitungan dan memulihkan keseimbangan. Pilihan masa lalu bisa kembali, jadi periksa kontrak dan janji dengan teliti dan bertindaklah dengan jujur."
+    },
+    "the-hanged-man": {
+      "name": "The Hanged Man",
+      "tagline": "Seseorang yang membalik sudut pandang",
+      "personality": "Anda memandang dunia dari sudut pandang yang khas, berbeda dari orang lain. Anda tahu cara menunggu tanpa tergesa, dan memiliki ketenangan untuk mundur selangkah dan memandang situasi. Terkadang Anda membuat pilihan yang sulit dipahami dan membingungkan orang di sekitar.",
+      "life_lesson": "Hidup Anda adalah mempelajari paradoks bahwa kita harus melepaskan untuk mendapatkan. Tugasnya adalah membedakan menunggu dari menghindar dan menggunakan masa jeda sebagai kesempatan memperoleh pandangan baru.",
+      "relationships": "Anda cenderung mengalah dan menunggu pihak lain. Jika Anda tidak menyatakan keinginan sendiri, dendam bisa menumpuk, jadi cobalah mengungkapkan apa yang Anda butuhkan.",
+      "keywords": [
+        "Menunggu",
+        "Melepaskan",
+        "Perspektif baru",
+        "Pengorbanan",
+        "Jeda"
+      ],
+      "strengths": [
+        "Sudut pandang lentur yang membalik segala sesuatu",
+        "Kesabaran untuk menunggu lama",
+        "Keberanian untuk melepaskan keterikatan"
+      ],
+      "shadow": [
+        "Kebiasaan menunda keputusan bisa membuat Anda kehilangan peluang",
+        "Anda bisa jatuh ke dalam pola pikir korban",
+        "Anda bisa diam di tempat untuk menghindari kenyataan"
+      ],
+      "career": {
+        "style": "Kekuatan Anda tampak dalam pekerjaan yang membutuhkan sudut pandang orisinal atau menghargai kedalaman di atas kecepatan.",
+        "fields": [
+          "Seni dan pekerjaan kreatif",
+          "Penelitian",
+          "Konseling dan penyembuhan alternatif",
+          "Nirlaba dan kerja sukarela",
+          "Bidang yang menuntut orisinalitas"
+        ],
+        "caution": "Ketika hasil datang lambat, Anda bisa menyalahkan diri, jadi tetapkan tonggak sementara."
+      },
+      "soul_note": null,
+      "year_theme": "Tahun jeda dan pergantian perspektif. Meski segalanya terasa lambat, jangan tidak sabar; pikirkan bahwa penantian saat ini bisa membawa pandangan baru bagi Anda."
+    },
+    "death": {
+      "name": "Death",
+      "tagline": "Seseorang yang mengakhiri dan terlahir kembali",
+      "personality": "Anda cenderung melewati perubahan dan transisi besar dalam hidup lebih dari sekali. Ketika menilainya perlu, Anda membersihkan dengan berani dan memilih awal baru. Anda lebih peduli pada hakikat daripada permukaan dan mencari perubahan yang dalam.",
+      "life_lesson": "Hidup Anda adalah belajar melepaskan. Tugasnya adalah menerima bahwa akhir adalah nama lain dari awal yang baru dan melepaskan dengan rasa syukur apa yang telah berlalu.",
+      "relationships": "Anda bisa beberapa kali mengalami pembersihan dan pembentukan ulang hubungan dan mencari ikatan yang membawa perubahan dalam. Menyelesaikan segalanya lewat percakapan alih-alih pemutusan mendadak meninggalkan lebih sedikit penyesalan.",
+      "keywords": [
+        "Perubahan",
+        "Pembersihan",
+        "Transisi",
+        "Kelahiran kembali",
+        "Akhir"
+      ],
+      "strengths": [
+        "Keberanian untuk menerima perubahan",
+        "Ketegasan untuk menyingkirkan yang telah usang",
+        "Daya pulih untuk bangkit kembali setelah kesulitan"
+      ],
+      "shadow": [
+        "Anda bisa terlalu lama tinggal dalam penyesalan atau keterikatan",
+        "Sebaliknya, Anda bisa memutus hubungan atau pekerjaan terlalu tergesa",
+        "Anda bisa peka terhadap kehilangan dan merasa murung"
+      ],
+      "career": {
+        "style": "Kemampuan Anda tampak dalam pekerjaan ketika Anda menyingkirkan yang lama dan mengubah struktur.",
+        "fields": [
+          "Restrukturisasi dan konsultasi",
+          "Kedokteran, konseling, dan perawatan paliatif",
+          "Renovasi dan daur ulang",
+          "Manajemen krisis",
+          "Pembinaan masa transisi"
+        ],
+        "caution": "Memaksakan perubahan terlalu cepat bisa mengabaikan waktu yang dibutuhkan orang lain untuk bersiap, jadi sesuaikan tempo."
+      },
+      "soul_note": null,
+      "year_theme": "Tahun pembersihan dan transisi. Ini bisa menjadi waktu untuk menutup kebiasaan, hubungan, atau pekerjaan lama dan membuka bab baru, jadi jangan takut pada akhir."
+    },
+    "temperance": {
+      "name": "Temperance",
+      "tagline": "Seseorang yang memadukan harmoni dan keseimbangan",
+      "personality": "Anda tenang, dan dengan sikap seimbang Anda menyatukan hal-hal yang berbeda. Alih-alih bergegas ke ekstrem, Anda mencari tingkat yang tepat dan membangun hasil perlahan seiring waktu. Berada di dekat Anda cenderung menenangkan hati orang.",
+      "life_lesson": "Hidup Anda adalah mengintegrasikan dengan tempo Anda sendiri tanpa tergesa. Tugasnya adalah menciptakan harmoni sambil juga memilih dan mengungkapkan dengan jelas ketika diperlukan.",
+      "relationships": "Anda menengahi konflik dengan tenang dan membangun hubungan yang nyaman dan langgeng. Anda bisa tampak kurang bergairah, jadi cobalah menunjukkan kasih sayang dengan cara yang terlihat.",
+      "keywords": [
+        "Harmoni",
+        "Moderasi",
+        "Penyembuhan",
+        "Kesabaran",
+        "Integrasi"
+      ],
+      "strengths": [
+        "Rasa keseimbangan yang mengoordinasikan unsur-unsur berbeda",
+        "Kemampuan menengahi di antara orang",
+        "Daya untuk menenangkan dan memulihkan hati"
+      ],
+      "shadow": [
+        "Terlalu menahan diri bisa membuat Anda tampak kurang bergairah",
+        "Anda bisa menunda keputusan dan tetap suam-suam kuku",
+        "Anda bisa kesulitan memahami pendapat yang ekstrem"
+      ],
+      "career": {
+        "style": "Anda cocok dengan pekerjaan ketika Anda memadukan dan menyesuaikan bahan dan orang untuk menghasilkan hasil yang baik.",
+        "fields": [
+          "Terapi dan rehabilitasi",
+          "Konseling dan pembinaan",
+          "Memasak, parfum, dan meramu",
+          "Diplomasi dan mediasi",
+          "Lingkungan dan kebugaran"
+        ],
+        "caution": "Jika Anda tidak menyatakan pandangan dengan jelas, Anda bisa kehilangan inisiatif."
+      },
+      "soul_note": null,
+      "year_theme": "Tahun memulihkan keseimbangan. Periksa proporsi antara pekerjaan dan istirahat, serta antara hubungan dan diri sendiri, lalu sesuaikan sedikit demi sedikit dengan tempo yang tidak memaksa Anda."
+    },
+    "the-devil": {
+      "name": "The Devil",
+      "tagline": "Seseorang yang menembus keinginan dan keterjeratan",
+      "personality": "Anda memiliki daya tarik dan karisma yang kuat dan jujur terhadap keinginan Anda. Anda mudah memperhatikan keuntungan dan kesenangan praktis, dan memiliki daya untuk menarik orang. Begitu hati Anda tertuju pada sesuatu, Anda cenderung menceburkan diri dalam-dalam.",
+      "life_lesson": "Hidup Anda adalah menyadari apa yang mengikat Anda dan mengubahnya menjadi pilihan. Tugasnya adalah memahami keinginan Anda dan menanganinya secara sehat, bukan menekannya.",
+      "relationships": "Anda merasakan tarikan dan gairah yang kuat, tetapi bisa tergelincir menjadi sifat posesif atau ketergantungan. Hubungan menjadi sehat ketika kebebasan satu sama lain dihormati.",
+      "keywords": [
+        "Daya tarik",
+        "Keinginan",
+        "Keterikatan",
+        "Realisme",
+        "Godaan"
+      ],
+      "strengths": [
+        "Karisma yang menarik orang",
+        "Kejujuran yang tidak menyembunyikan keinginan",
+        "Kepekaan membaca keuntungan praktis"
+      ],
+      "shadow": [
+        "Anda mudah jatuh dalam keterikatan atau kecanduan",
+        "Anda bisa terikat pada benda atau hubungan",
+        "Kebutuhan Anda untuk mengendalikan bisa membesar"
+      ],
+      "career": {
+        "style": "Kekuatan Anda tampak dalam pekerjaan ketika Anda membaca kebutuhan orang, bernegosiasi, dan membujuk.",
+        "fields": [
+          "Penjualan dan pemasaran",
+          "Keuangan dan investasi",
+          "Media dan hiburan",
+          "Negosiasi dan pengembangan bisnis",
+          "Industri kecantikan"
+        ],
+        "caution": "Jika Anda terlalu terikat pada hasil dan imbalan, penilaian Anda bisa kabur, jadi tentukan kriteria Anda terlebih dahulu."
+      },
+      "soul_note": null,
+      "year_theme": "Tahun memeriksa keinginan dan keterjeratan. Sadari apa yang mengikat Anda dalam pengeluaran, kebiasaan, dan hubungan, lalu ubahlah menjadi pilihan."
+    },
+    "the-tower": {
+      "name": "The Tower",
+      "tagline": "Seseorang yang meruntuhkan dan terbangun",
+      "personality": "Anda tidak bisa menyembunyikan kebenaran dan berbicara langsung, bukan berputar-putar. Anda cenderung mengalami perubahan mendadak atau guncangan dalam hidup dan bertumbuh besar sesudahnya. Anda bereaksi tajam terhadap ilusi dan kepura-puraan.",
+      "life_lesson": "Hidup Anda adalah melepaskan ilusi dan membangun fondasi yang kokoh. Tugasnya adalah belajar membersihkan sendiri sebelum perubahan menghantam, dan membangun kembali di atas tanah yang runtuh.",
+      "relationships": "Anda bisa mengalami hubungan yang terus terang dan dramatis, dan begitu meledak, Anda bisa berbenturan keras. Meluangkan sedikit waktu sebelum berbicara ketika perasaan memuncak bisa mengurangi luka.",
+      "keywords": [
+        "Guncangan",
+        "Kebangkitan",
+        "Keterusterangan",
+        "Pembebasan",
+        "Titik balik"
+      ],
+      "strengths": [
+        "Keberanian menghadapi kebenaran",
+        "Daya pulih untuk bangkit kembali setelah krisis",
+        "Energi inovatif yang menghancurkan kerangka lama"
+      ],
+      "shadow": [
+        "Anda bisa meledak secara impulsif dan merusak hubungan",
+        "Anda bisa memicu benturan mendadak",
+        "Mungkin sulit mempertahankan stabilitas dalam waktu lama"
+      ],
+      "career": {
+        "style": "Kemampuan Anda tampak dalam situasi yang berubah cepat dan dalam krisis.",
+        "fields": [
+          "Manajemen krisis dan tanggap darurat",
+          "Inovasi dan reformasi",
+          "Arsitektur dan renovasi",
+          "Jurnalisme investigasi",
+          "Manajemen perubahan"
+        ],
+        "caution": "Ketika perasaan mendahului, konflik bisa membesar, jadi tidurkan dulu keputusan penting."
+      },
+      "soul_note": null,
+      "year_theme": "Tahun ketika yang lama bergoyang. Perubahan tak terduga mungkin datang, tetapi ini juga kesempatan untuk membangun kembali, jadi fokuslah pada apa yang dipertahankan ketimbang yang runtuh."
+    },
+    "the-star": {
+      "name": "The Star",
+      "tagline": "Seseorang yang membawa harapan dan penyembuhan",
+      "personality": "Anda murni dan optimis, dan berada di dekat Anda membuat pikiran orang menjadi jernih. Cita-cita dan impian Anda jelas, dan Anda tidak melepaskan harapan bahkan dalam situasi sulit. Anda kaya inspirasi dan cenderung tertarik pada bidang yang emosional.",
+      "life_lesson": "Hidup Anda adalah mengubah keyakinan menjadi tindakan. Tugasnya adalah mewujudkan impian hati Anda selangkah demi selangkah dan menunjukkan bakat Anda kepada dunia.",
+      "relationships": "Anda memperlakukan orang dengan tulus dan membangun hubungan hangat yang menenangkan luka. Anda bisa kecewa karena mengharapkan sosok ideal, jadi lihatlah orang yang nyata apa adanya.",
+      "keywords": [
+        "Harapan",
+        "Inspirasi",
+        "Penyembuhan",
+        "Kepolosan",
+        "Cita-cita"
+      ],
+      "strengths": [
+        "Harapan yang memberi kekuatan kepada orang lain",
+        "Inspirasi dan imajinasi",
+        "Energi penyembuh yang menenangkan luka"
+      ],
+      "shadow": [
+        "Kesenjangan antara cita-cita dan kenyataan bisa membuat Anda lesu",
+        "Ketika harapan pupus, Anda bisa menutup hati",
+        "Anda bisa hanya menunggu secara pasif"
+      ],
+      "career": {
+        "style": "Kekuatan Anda tampak dalam pekerjaan yang menginspirasi dan menyembuhkan hati.",
+        "fields": [
+          "Seni dan musik",
+          "Penyembuhan dan konseling",
+          "Astronomi dan sains",
+          "Konten dan pengaruh",
+          "Lingkungan dan nirlaba"
+        ],
+        "caution": "Jangan biarkan waktu berlalu dalam penantian yang samar; tetapkan tujuan tindakan yang kecil."
+      },
+      "soul_note": null,
+      "year_theme": "Tahun pemulihan dan harapan. Masa sulit bisa berlalu dan hati Anda menjernih, jadi keluarkan sekali lagi impian yang telah lama Anda simpan."
+    },
+    "the-moon": {
+      "name": "The Moon",
+      "tagline": "Seseorang yang kaya akan perasaan dan intuisi",
+      "personality": "Anda peka dan memiliki imajinasi yang hidup. Anda tanggap terhadap perubahan suasana dan perasaan dan menyadari sensasi yang sulit diungkapkan dengan kata-kata. Anda memiliki dunia khayal yang dalam di dalam diri, sehingga bisa tertarik pada pekerjaan kreatif dan bidang yang terkait dengan mimpi.",
+      "life_lesson": "Hidup Anda adalah menghadapi rasa takut dan membedakan perasaan dari fakta. Tugasnya adalah memercayai intuisi di tengah ketidakpastian sambil memverifikasi apa yang dapat diverifikasi.",
+      "relationships": "Anda membaca suasana dengan peka dan memahami hati pihak lain dengan baik, tetapi cenderung menyembunyikan hati sendiri. Hubungan menjadi lebih mudah ketika Anda membagikan perasaan cemas dengan jujur alih-alih memeliharanya sendirian.",
+      "keywords": [
+        "Kepekaan",
+        "Imajinasi",
+        "Intuisi",
+        "Kecemasan",
+        "Alam bawah sadar"
+      ],
+      "strengths": [
+        "Intuisi yang membaca perasaan yang halus",
+        "Imajinasi dan kreativitas yang kaya",
+        "Kemampuan berempati dengan hati orang lain"
+      ],
+      "shadow": [
+        "Anda bisa menderita kecemasan atau suasana hati yang berubah-ubah",
+        "Menghindari ketidakpastian, Anda bisa menunda keputusan",
+        "Ketika imajinasi terlalu jauh, Anda bisa mencampuradukkan kenyataan dan khayalan"
+      ],
+      "career": {
+        "style": "Kemampuan Anda tampak dalam pekerjaan kreatif dan empatik ketika kepekaan dan imajinasi penting.",
+        "fields": [
+          "Pekerjaan kreatif dan menulis",
+          "Film, fotografi, dan video",
+          "Psikologi dan konseling",
+          "Musik dan desain",
+          "Bidang yang terkait dengan mimpi dan simbol"
+        ],
+        "caution": "Ketika kecemasan tinggi, penilaian bisa kabur, jadi pastikan fakta sebelum keputusan penting."
+      },
+      "soul_note": null,
+      "year_theme": "Tahun ketika perasaan dan intuisi mendalam. Ketika kecemasan naik, bedakan imajinasi dari fakta dan tata cerita di hati Anda dengan menuliskannya."
+    },
+    "the-sun": {
+      "name": "The Sun",
+      "tagline": "Seseorang yang bersinar terang dan memberi kehidupan kepada sekitarnya",
+      "personality": "Anda cerah dan terus terang dan membawa energi yang menerangi lingkungan. Anda optimis dan cenderung menerima kesulitan secara positif, dan ekspresi Anda yang kaya membuat Anda mudah disukai. Anda menyimpan kemurnian dan antusiasme seperti anak-anak.",
+      "life_lesson": "Hidup Anda adalah menerima baik cahaya maupun bayangan. Ketika Anda mengakui bukan hanya keterangan tetapi juga perasaan gelap dan kelemahan, Anda dapat menikmati sukacita yang lebih kokoh.",
+      "relationships": "Anda membangun hubungan dengan terus terang, dengan hati yang hangat dan terbuka. Berlatih mendengarkan pihak lain bahkan di hari-hari gelap mereka memperdalam hubungan.",
+      "keywords": [
+        "Vitalitas",
+        "Positivitas",
+        "Keterusterangan",
+        "Keberhasilan",
+        "Sukacita"
+      ],
+      "strengths": [
+        "Positivitas yang memberi vitalitas pada orang di sekitar",
+        "Ekspresi yang terus terang dan kaya",
+        "Kehadiran yang memperoleh pengakuan atas hasil"
+      ],
+      "shadow": [
+        "Optimisme berlebihan bisa membuat Anda menganggap enteng risiko",
+        "Anda bisa mencoba memalingkan pandangan dari perasaan gelap",
+        "Kebutuhan Anda akan pengakuan bisa membesar"
+      ],
+      "career": {
+        "style": "Anda bersinar dalam pekerjaan ketika Anda menyalurkan energi di depan orang dan hasilnya terlihat.",
+        "fields": [
+          "Pendidikan dan bidang anak",
+          "Penyiaran dan hiburan",
+          "Olahraga",
+          "Layanan dan penjualan",
+          "Kesehatan dan kebugaran"
+        ],
+        "caution": "Jika kepercayaan diri terlalu tinggi, Anda bisa melewatkan detail, jadi sertakan langkah pemeriksaan."
+      },
+      "soul_note": null,
+      "year_theme": "Tahun vitalitas dan hasil. Usaha yang telah Anda lakukan bisa tampak sebagai hasil yang terlihat, jadi bagikan sukacita Anda dengan orang di sekitar dan majulah dengan percaya diri."
+    },
+    "judgement": {
+      "name": "Judgement",
+      "tagline": "Seseorang yang menjawab panggilan dan bangkit kembali",
+      "personality": "Anda reflektif dan menengok kembali hidup Anda untuk menemukan maknanya. Pada suatu titik dalam hidup, Anda cenderung merasakan panggilan yang berkata \"inilah yang harus kulakukan\". Anda memiliki kehendak kuat untuk menata masa lalu dan bangkit kembali.",
+      "life_lesson": "Hidup Anda adalah menata masa lalu dan menjawab panggilan. Tugasnya adalah mengampuni diri sendiri dan orang lain serta melangkah menuju apa yang benar-benar ingin Anda lakukan.",
+      "relationships": "Rekonsiliasi dan pengampunan menjadi tema penting dalam hubungan. Hubungan diperbarui ketika Anda menyelesaikan luka lama dan berbicara dengan jujur dari hati.",
+      "keywords": [
+        "Perenungan",
+        "Panggilan",
+        "Pengampunan",
+        "Kebangkitan",
+        "Awal baru"
+      ],
+      "strengths": [
+        "Perenungan untuk menengok kembali diri sendiri",
+        "Hati yang mengampuni dan berdamai",
+        "Kebangkitan yang mengenali panggilan Anda dan bergerak"
+      ],
+      "shadow": [
+        "Kritik diri yang berlebihan bisa mendorong Anda terlalu keras",
+        "Anda bisa terikat pada masa lalu dan tidak maju",
+        "Anda bisa menunda saat pengambilan keputusan"
+      ],
+      "career": {
+        "style": "Anda cocok dengan pekerjaan yang menghargai makna dan panggilan serta membantu orang bertumbuh.",
+        "fields": [
+          "Konseling dan penyembuhan",
+          "Pendidikan dan pembinaan",
+          "Gerakan publik dan sosial",
+          "Hukum dan mediasi",
+          "Penyiaran dan hubungan masyarakat"
+        ],
+        "caution": "Menunggu saat yang sempurna bisa menunda awal Anda, jadi mulailah dengan tindakan kecil."
+      },
+      "soul_note": null,
+      "year_theme": "Tahun penilaian ulang dan awal baru. Waktu yang baik untuk menengok kembali waktu yang telah berlalu, menatanya, dan memilih panggilan atau arah baru."
+    },
+    "the-world": {
+      "name": "The World",
+      "tagline": "Seseorang yang menuntaskan dan menyatukan",
+      "personality": "Anda menyelesaikan apa yang Anda mulai dan mengintegrasikannya dengan dewasa. Pandangan Anda luas dan terbuka pada banyak orang dan budaya, dan ketika menuntaskan satu tahap, Anda secara alami beralih ke dunia berikutnya. Anda memberi kesan seimbang dan stabil.",
+      "life_lesson": "Hidup Anda adalah menghubungkan penyelesaian dengan awal yang baru. Tugasnya adalah menikmati sepenuhnya apa yang telah dicapai sambil membuka kembali hati untuk perjalanan berikutnya.",
+      "relationships": "Anda membangun hubungan yang dewasa dan stabil dan menikmati lingkaran hubungan yang luas. Ketika hubungan mencapai tahap tertentu, menetapkan tujuan baru bersama membantu.",
+      "keywords": [
+        "Penyelesaian",
+        "Pencapaian",
+        "Integrasi",
+        "Kedewasaan",
+        "Perluasan"
+      ],
+      "strengths": [
+        "Kemampuan membawa sesuatu hingga tuntas",
+        "Kemampuan menyatukan hal-hal yang berbeda",
+        "Pandangan yang luas dan terbuka"
+      ],
+      "shadow": [
+        "Mengejar kesempurnaan, Anda bisa menunda penutupan",
+        "Anda bisa merasa hampa setelah suatu pencapaian",
+        "Anda bisa terbuai dalam penyelesaian saat ini"
+      ],
+      "career": {
+        "style": "Kekuatan Anda tampak dalam pekerjaan ketika Anda mengintegrasikan banyak unsur dan menuntaskan proyek.",
+        "fields": [
+          "Urusan internasional dan perdagangan",
+          "Pendidikan dan penelitian",
+          "Manajemen dan pengawasan",
+          "Perjalanan dan budaya",
+          "Seni terpadu dan pimpinan proyek"
+        ],
+        "caution": "Agar tidak kehilangan arah setelah suatu pencapaian, bayangkan tantangan Anda berikutnya sebelumnya."
+      },
+      "soul_note": null,
+      "year_theme": "Tahun penyelesaian dan buah. Anda bisa menutup pekerjaan jangka panjang atau menyelesaikan satu tahap, dan tak lama kemudian bersiap untuk awal yang baru."
+    }
+  },
+  "lang": "id"
+}

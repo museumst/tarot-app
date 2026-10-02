@@ -346,27 +346,26 @@ SITE_NAV = {
 }
 
 
-def render_site_sidebar(lang: str, active: str = "") -> str:
+def render_site_nav(lang: str, active: str = "") -> str:
+    labels = SITE_NAV.get(lang, SITE_NAV["en"])
+    home = home_path(lang)
+    items = f'<a class="site-brand" href="{_e(home)}">✨ {_e(brand_of(lang))}</a>'
+    for url, name, key in ((cards_path(lang), labels[2], "cards"), (f"/saved-readings?lang={lang}", labels[3], "saved")):
+        current = ' aria-current="page"' if key == active else ""
+        items += f'<a href="{_e(url)}"{current}>{_e(name)}</a>'
+    return f'<nav class="site-primary-nav" aria-label="Site">{items}</nav>'
+
+
+def render_site_footer(lang: str) -> str:
     labels = SITE_NAV.get(lang, SITE_NAV["en"])
     home = home_path(lang)
     about = home + ("&" if "?" in home else "?") + "open=about"
     tarot = home + ("&" if "?" in home else "?") + "open=tarot"
-    links = [about, tarot, cards_path(lang), f"/saved-readings?lang={lang}"]
-    names = [brand_of(lang), *labels]
-    items = ""
-    for url, name, key in zip(links, labels, ("about", "tarot", "cards", "saved")):
-        current = ' aria-current="page"' if key == active else ""
-        items += f'<a href="{_e(url)}"{current}>{_e(name)}</a>'
-    return (
-        '<aside class="site-sidebar"><a class="site-sidebar-brand" href="'
-        f'{_e(home)}">✨ {_e(names[0])}</a><nav class="site-sidebar-nav">{items}</nav></aside>'
-    )
-
-
-def render_site_footer() -> str:
-    return """<footer class="site-footer">
+    return f"""<footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-links">
+      <a href="{_e(about)}">{_e(labels[0])}</a>
+      <a href="{_e(tarot)}">{_e(labels[1])}</a>
       <a href="/legal.html#pricing" target="_blank">이용요금</a>
       <a href="/legal.html#terms" target="_blank">이용약관</a>
       <a href="/legal.html#privacy" target="_blank">개인정보처리방침</a>
@@ -428,7 +427,8 @@ def _e(s) -> str:
 
 
 def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
-          alt_paths: dict, noindex: bool = False) -> str:
+          alt_paths: dict, noindex: bool = False, extra_head: str = "", active_nav: str = "cards",
+          language_paths: dict | None = None) -> str:
     """도감 페이지 공통 HTML 껍데기 (본 사이트와 동일한 다크/골드 테마)."""
     ui = get_ui(lang)
     canonical = f"{SITE_URL}{path}"
@@ -439,7 +439,7 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
         hreflangs += f'<link rel="alternate" hreflang="x-default" href="{SITE_URL}{alt_paths["en"]}">'
     options = "".join(
         f'<option value="{_e(p)}" data-code="{code}"{" selected" if code == lang else ""}>{_e(LANG_LABELS[code])}</option>'
-        for code, p in alt_paths.items()
+        for code, p in (language_paths or alt_paths).items()
     )
     robots = "noindex, follow" if noindex else "index, follow"
     return f"""<!DOCTYPE html>
@@ -466,19 +466,17 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
 <meta name="twitter:image" content="{_e(og_image)}">
 <link rel="icon" href="/static/favicon.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/site-shell.css?v=3">
+<link rel="stylesheet" href="/static/site-shell.css?v=4">
 <link rel="stylesheet" href="/static/acct-bar.css?v=3">
 <style>
   *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
   body{{background:#0d0d1a;color:#e8e3d8;font-family:'Noto Sans KR','Noto Sans',system-ui,sans-serif;font-weight:300;line-height:1.75}}
-  body.site-shell{{padding:64px 0 0 220px}}
   a{{color:#c4a96b;text-decoration:none}} a:hover{{color:#d9bf8e}}
   .wrap{{flex:1 0 auto;width:100%;max-width:900px;margin:0 auto;padding:24px 20px 80px}}
   #lang-select{{background:rgba(255,255,255,.05);color:#e8e3d8;border:1px solid rgba(196,169,107,.35);
                border-radius:7px;padding:5px 8px;font-size:.82rem;font-family:inherit;cursor:pointer}}
   #lang-select option{{background:#16122a;color:#e8e3d8}}
-  @media (max-width:1000px){{ body.site-shell{{padding:112px 0 0}} }}
-  @media (max-width:600px){{ body.site-shell{{padding-top:132px}} .wrap{{padding-left:16px;padding-right:16px}} }}
+  @media (max-width:600px){{ .wrap{{padding-left:16px;padding-right:16px}} }}
   h1{{font-size:clamp(1.7rem,4.6vw,2.5rem);font-weight:700;color:#d9bf8e;margin-bottom:6px;line-height:1.3}}
   h2{{font-size:1.1rem;color:#c4a96b;margin:34px 0 12px;font-weight:500}}
   .sub{{color:#7c8090;font-size:.92rem;margin-bottom:26px}}
@@ -506,34 +504,26 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
   .tile span{{font-size:.84rem;color:#e8e3d8}}
   .tile small{{display:block;color:#7c8090;font-size:.72rem}}
 </style>
+{extra_head}
 </head>
 <body class="site-shell">
-{render_site_sidebar(lang, "cards")}
-<script>
-document.querySelector('.site-sidebar').addEventListener('click', function(event){{
-  var link = event.target.closest('a[href]');
-  if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-  event.preventDefault();
-  window.stop();
-  window.location.assign(link.href);
-}});
-</script>
 <div id="acct-bar" class="site-topbar" data-lang="{_e(lang)}">
+    {render_site_nav(lang, active_nav)}
     <select id="lang-select" aria-label="{_e(ui['lang_label'])}" onchange="switchLang(this)">{options}</select>
     <button id="acct-login" type="button"></button>
     <div id="acct-user">
-      <img id="acct-avatar" src="" alt="">
-      <span id="acct-name"></span>
       <span id="acct-free" class="plenty"></span>
       <a id="acct-credit" href="/"></a>
       <a id="acct-history" href="/"></a>
+      <img id="acct-avatar" src="" alt="">
+      <span id="acct-name"></span>
       <button id="acct-logout" type="button"></button>
     </div>
   </div>
 <main class="wrap">
   {body}
 </main>
-{render_site_footer()}
+{render_site_footer(lang)}
 <script>
 function switchLang(sel){{
   var o=sel.options[sel.selectedIndex];
@@ -541,7 +531,7 @@ function switchLang(sel){{
   location.href=o.value;
 }}
 </script>
-<script type="module" src="/static/acct-bar.js?v=3"></script>
+<script type="module" src="/static/acct-bar.js?v=4"></script>
 </body>
 </html>"""
 
@@ -712,9 +702,117 @@ async def card_detail_lang(lang: str, slug: str):
     return render_card_detail(lang, slug)
 
 
+def birth_card_path(lang: str) -> str:
+    return "/birth-card" if lang == "ko" else f"/birth-card?lang={lang}"
+
+
+def birth_translation(lang: str, source: dict) -> tuple[dict, dict] | None:
+    if lang == "ko":
+        return {card["slug"]: card for card in source.get("cards", [])}, source.get("_meta", {})
+    translated = _read_json(os.path.join(BASE_DIR, "output", f"birth_cards_{lang}.json"), {})
+    cards = translated.get("cards")
+    meta = translated.get("_meta")
+    required = {"tagline", "keywords", "personality", "strengths", "shadow", "life_lesson", "relationships", "career", "soul_note"}
+    required_labels = {"personality", "strengths", "shadow", "life_lesson", "relationships", "career", "soul_note"}
+    slugs = {card["slug"] for card in source.get("cards", [])}
+    if (not isinstance(cards, dict) or set(cards) != slugs or not isinstance(meta, dict)
+            or not isinstance(meta.get("labels"), dict)
+            or not required_labels.issubset(meta["labels"])
+            or not meta.get("disclaimer") or not meta.get("calculation")
+            or any(not isinstance(card, dict) or not required.issubset(card) for card in cards.values())):
+        return None
+    return cards, meta
+
+
+def render_birth_card_page(lang: str) -> str:
+    source = _read_json(os.path.join(BASE_DIR, "output", "birth_cards_ko.json"), {})
+    birth_cards = source.get("cards", [])
+    deck = {card["slug"]: card for card in load_deck()}
+    if (len(birth_cards) != 22 or {card.get("id") for card in birth_cards} != set(range(22))
+            or any(card.get("slug") not in deck for card in birth_cards)):
+        raise HTTPException(status_code=500, detail="Birth card data is incomplete")
+
+    translated = birth_translation(lang, source)
+    details, meta = translated if translated else ({}, {})
+    guide_lang = lang if lang_ready(lang) else ("en" if lang_ready("en") else "ko")
+    cards = []
+    for card in birth_cards:
+        deck_card = deck[card["slug"]]
+        item = {
+            "id": card["id"],
+            "slug": card["slug"],
+            "name": localize(deck_card, lang)["name"],
+            "image": os.path.splitext(deck_card["image_file"])[0] + ".webp",
+            "guide": card_path(guide_lang, card["slug"]),
+        }
+        if translated:
+            item.update({key: details[card["slug"]].get(key) for key in (
+                "tagline", "keywords", "personality", "strengths", "shadow",
+                "life_lesson", "relationships", "career", "soul_note",
+            )})
+        cards.append(item)
+
+    labels = ({"personality": "성격·성향", "strengths": "강점", "shadow": "약점·그림자",
+               "life_lesson": "인생 과제", "relationships": "관계 스타일", "career": "직업 성향",
+               "soul_note": "내면의 의미"} if lang == "ko" else meta.get("labels", {}))
+    data = json.dumps({"cards": cards, "lang": lang, "detailed": bool(translated), "labels": labels},
+                      ensure_ascii=False).replace("<", "\\u003c")
+    korean = lang == "ko"
+    title = ("나의 생일수 | 울트라타로" if korean else
+             f"{meta.get('title', 'Birth Cards')} | Ultra Tarot")
+    desc = ("생년월일로 성격 카드와 영혼 카드를 계산하고, 나를 상징하는 타로 카드를 알아보세요."
+            if korean else next(iter(meta.get("calculation", [])),
+                                "Find your personality and soul tarot cards from your birth date."))
+    method = "".join(f"<li>{_e(step)}</li>" for step in meta.get("calculation", []))
+    if not method:
+        method = "<li>Add the eight digits of your birth date, then reduce sums above 22 by adding their digits.</li>"
+    disclaimer = meta.get("disclaimer") or "This symbolic reading is for self-reflection, not a scientific personality test or a substitute for important decisions."
+    body = f"""
+<div id="birth-app" data-lang="{_e(lang)}">
+  <h1 id="birth-title">{'나의 생일수' if korean else 'My Birth Cards'}</h1>
+  <p class="sub" id="birth-intro">{_e(desc)}</p>
+  <form id="birth-form" class="birth-form">
+    <label for="birth-date" id="birth-date-label">{'생년월일' if korean else 'Date of birth'}</label>
+    <div class="birth-controls">
+      <input id="birth-date" type="date" min="0001-01-01" required aria-describedby="birth-privacy">
+      <button type="submit" id="birth-submit">{'내 카드 보기' if korean else 'Find my cards'}</button>
+    </div>
+    <p id="birth-privacy" class="birth-privacy">{'생년월일은 서버에 전송하거나 저장하지 않습니다.' if korean else 'Your birth date stays in this browser.'}</p>
+    <p id="birth-error" role="alert" hidden></p>
+  </form>
+  <div id="birth-result" hidden aria-live="polite"></div>
+  <section class="birth-method" id="birth-method">
+    <h2 id="birth-method-title">{'계산 방법' if korean else 'How it works'}</h2>
+    <ol>{method}</ol>
+    <p class="birth-disclaimer">{_e(disclaimer)}</p>
+  </section>
+</div>
+<script id="birth-data" type="application/json">{data}</script>
+<script src="/static/birth-card.js?v=1" defer></script>
+"""
+    return _page(lang, title, desc, birth_card_path(lang), body,
+                 f"{SITE_URL}/static/og-image.jpg",
+                 {code: birth_card_path(code) for code in SITE_LANGS if birth_translation(code, source)},
+                 noindex=not translated,
+                 extra_head='<link rel="stylesheet" href="/static/birth-card.css?v=1">',
+                 active_nav="",
+                 language_paths={code: birth_card_path(code) for code in SITE_LANGS})
+
+
+@app.get("/birth-card", response_class=HTMLResponse)
+async def birth_card_page(lang: str = "ko"):
+    if lang not in SITE_LANGS:
+        raise HTTPException(status_code=404, detail="Not found")
+    return render_birth_card_page(lang)
+
+
 @app.get("/sitemap.xml")
 async def sitemap():
     urls = [f"{SITE_URL}/", f"{SITE_URL}/legal.html"]
+    birth_source = _read_json(os.path.join(BASE_DIR, "output", "birth_cards_ko.json"), {})
+    for code in SITE_LANGS:
+        if birth_translation(code, birth_source):
+            urls.append(f"{SITE_URL}{birth_card_path(code)}")
     for code in SITE_LANGS:
         if lang_ready(code):
             urls.append(f"{SITE_URL}{cards_path(code)}")
@@ -786,10 +884,13 @@ async def verify_payment(request: PaymentVerifyRequest):
 class SpreadSelectRequest(BaseModel):
     question: str
     language: str = 'ko'
+    mode: str = 'reading'
 
 
 @app.post("/api/select-spread")
 async def select_spread(request: SpreadSelectRequest):
+    if request.mode == 'choice':
+        return build_comparison_spread(2, request.language, anthropic.Anthropic())
     with open(os.path.join(BASE_DIR, "output", "spreads.json"), encoding="utf-8") as f:
         spreads = json.load(f)
     valid_spreads = [
