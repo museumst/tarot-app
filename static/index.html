@@ -1757,18 +1757,8 @@ function t(key, ...args) {
 // 카드 도감 주소: 한국어는 /cards, 그 외는 /{언어코드}/cards
 function cardsHref() { return currentLang === 'ko' ? '/cards' : '/' + currentLang + '/cards'; }
 
-// 푸터는 이 스크립트보다 문서 뒤쪽에 있어, 최초 실행 시에는 없을 수 있다 → DOMContentLoaded 에서도 호출
-function updateFooterCardsLink() {
-  const fcl = document.getElementById('footer-cards-link');
-  if (!fcl) return;
-  fcl.href = cardsHref();
-  fcl.textContent = (NAV_LABELS[currentLang] || NAV_LABELS.en).cards;   // 메뉴와 같은 명칭
-}
-document.addEventListener('DOMContentLoaded', updateFooterCardsLink);
-
 function applyLang() {
   const el = id => document.getElementById(id);
-  updateFooterCardsLink();
 
   el('hdr-title').textContent = t('title');
   el('hdr-sub').textContent   = t('subtitle');
@@ -3900,7 +3890,6 @@ init();
 <footer id="site-footer">
   <div class="footer-inner">
     <div class="footer-links">
-      <a href="/cards" id="footer-cards-link">카드 도감</a>
       <a href="/legal.html#pricing" target="_blank">이용요금</a>
       <a href="/legal.html#terms" target="_blank">이용약관</a>
       <a href="/legal.html#privacy" target="_blank">개인정보처리방침</a>
