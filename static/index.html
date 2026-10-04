@@ -274,6 +274,8 @@
       color: var(--text);
       font-size: .78rem;
       padding: 4px 10px;
+      max-width: 100%;
+      overflow-wrap: anywhere;
     }
     .spread-result-box .pos-tag span {
       color: var(--gold-light);
@@ -505,8 +507,12 @@
     .drawn-card-label {
       text-align: center;
       font-size: .75rem;
-      color: var(--text-dim);
+      color: var(--gold-light);
       max-width: var(--card-w);
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
     }
     .drawn-card-name {
       color: var(--text);
@@ -522,6 +528,10 @@
       justify-content: center;
       margin-bottom: 28px;
     }
+    .reading-positions:not(:empty) { margin: 0 0 24px; }
+    .reading-positions h3 { color: var(--gold-light); font-size: .95rem; margin: 0 0 10px; }
+    .reading-positions ol { margin: 0; padding-left: 22px; line-height: 1.7; }
+    .reading-positions li { margin: 5px 0; overflow-wrap: anywhere; }
     .reading-output {
       background: rgba(14,16,30,.6);
       border: 1px solid rgba(196,169,107,.2);
@@ -1042,7 +1052,7 @@
     <!-- 질문 입력 -->
     <div id="question-area">
       <textarea id="question-input" placeholder="오늘의 고민을 적어주세요...&#10;예: 새로운 직장으로 이직해야 할까요? / 이 관계가 나에게 좋은 건가요?"></textarea>
-      <p id="question-hint" style="color:var(--text-dim);font-size:.8rem;margin-top:8px;letter-spacing:.5px">질문을 입력하지 않고 카드 선택을 누르면 오늘의 운세를 봐드립니다.</p>
+      <p id="question-hint" role="status" aria-live="polite" style="color:var(--gold-light);font-size:.8rem;margin-top:8px;min-height:1.3em"></p>
       <div class="mt-16">
         <button class="btn" id="step1-next">카드선택 →</button>
       </div>
@@ -1099,6 +1109,7 @@
   <section class="step hidden" id="reading-section">
     <div class="step-title"><div class="step-num">3</div> <span id="s3-title">AI 타로 리딩</span></div>
     <div class="reading-cards" id="reading-cards"></div>
+    <div class="reading-positions" id="reading-positions"></div>
     <div class="spinner" id="loading-spinner">
       <div class="spinner-ring"></div>
       <span id="spinner-text">카드를 읽는 중...</span>
@@ -1284,7 +1295,7 @@ const TRANSLATIONS = {
     title:'✨ 타로 리딩', subtitle:'당신의 운명을 읽어드립니다',
     s1_title:'질문을 입력하세요',
     q_placeholder:'오늘의 고민을 적어주세요...\n예: 새로운 직장으로 이직해야 할까요? / 이 관계가 나에게 좋은 건가요?',
-    q_hint:'질문을 입력하지 않고 카드 선택을 누르면 오늘의 운세를 봐드립니다.',
+    q_hint:'질문을 입력해주세요.',
     btn_select:'카드선택 →', analyzing:'질문을 분석하여 최적의 스프레드를 선택하고 있습니다...',
     btn_reselect:'← 질문 다시 쓰기', btn_go_draw:'카드 뽑기 →',
     s2_title:'카드를 뽑으세요', draw_instr:'마음을 집중하고 끌리는 카드를 클릭하세요',
@@ -1309,7 +1320,7 @@ const TRANSLATIONS = {
     title:'✨ Tarot Reading', subtitle:'Let the cards reveal your path',
     s1_title:'Enter your question',
     q_placeholder:"What's on your mind?\ne.g. Should I change jobs? / Is this relationship good for me?",
-    q_hint:'Leave blank and click "Select Cards" for your daily fortune.',
+    q_hint:'Please enter a question.',
     btn_select:'Select Cards →', analyzing:'Finding the best spread for your question...',
     btn_reselect:'← Rewrite Question', btn_go_draw:'Draw Cards →',
     s2_title:'Draw your cards', draw_instr:'Focus your mind and click the card that calls to you',
@@ -1334,7 +1345,7 @@ const TRANSLATIONS = {
     title:'✨ タロット占い', subtitle:'あなたの運命をお伝えします',
     s1_title:'質問を入力してください',
     q_placeholder:'今日のお悩みをどうぞ...\n例：転職すべきでしょうか？/ この関係は私に良いものですか？',
-    q_hint:'空白のままカード選択を押すと、今日の運勢をお伝えします。',
+    q_hint:'質問を入力してください。',
     btn_select:'カードを選ぶ →', analyzing:'最適なスプレッドを選択中...',
     btn_reselect:'← 質問を書き直す', btn_go_draw:'カードを引く →',
     s2_title:'カードを引いてください', draw_instr:'心を集中させ、引かれるカードをクリックしてください',
@@ -1359,7 +1370,7 @@ const TRANSLATIONS = {
     title:'✨ Lectura de Tarot', subtitle:'Las cartas revelarán tu camino',
     s1_title:'Escribe tu pregunta',
     q_placeholder:'¿Qué te preocupa hoy?\nEj: ¿Debería cambiar de trabajo? / ¿Esta relación me conviene?',
-    q_hint:'Deja en blanco y pulsa "Seleccionar" para tu fortuna del día.',
+    q_hint:'Introduce una pregunta.',
     btn_select:'Seleccionar →', analyzing:'Buscando la mejor tirada para tu pregunta...',
     btn_reselect:'← Reescribir', btn_go_draw:'Sacar Cartas →',
     s2_title:'Saca tus cartas', draw_instr:'Concéntrate y haz clic en la carta que te llame',
@@ -1384,7 +1395,7 @@ const TRANSLATIONS = {
     title:'✨ Lecture de Tarot', subtitle:'Les cartes révéleront votre chemin',
     s1_title:'Entrez votre question',
     q_placeholder:"Qu'est-ce qui vous préoccupe ?\nEx: Devrais-je changer d'emploi ? / Cette relation est-elle bonne pour moi ?",
-    q_hint:'Laissez vide et cliquez "Sélectionner" pour votre fortune du jour.',
+    q_hint:'Veuillez saisir une question.',
     btn_select:'Sélectionner →', analyzing:'Recherche du meilleur tirage pour votre question...',
     btn_reselect:'← Réécrire', btn_go_draw:'Tirer les Cartes →',
     s2_title:'Tirez vos cartes', draw_instr:'Concentrez-vous et cliquez sur la carte qui vous attire',
@@ -1409,7 +1420,7 @@ const TRANSLATIONS = {
     title:'✨ Tarot-Legung', subtitle:'Die Karten enthüllen Ihren Weg',
     s1_title:'Geben Sie Ihre Frage ein',
     q_placeholder:'Was beschäftigt Sie heute?\nZ.B.: Soll ich den Job wechseln? / Ist diese Beziehung gut für mich?',
-    q_hint:'Leer lassen und "Karten wählen" klicken für Ihr Tageshoroskop.',
+    q_hint:'Bitte geben Sie eine Frage ein.',
     btn_select:'Karten wählen →', analyzing:'Suche nach dem besten Legesystem...',
     btn_reselect:'← Neu schreiben', btn_go_draw:'Karten ziehen →',
     s2_title:'Ziehen Sie Ihre Karten', draw_instr:'Konzentrieren Sie sich und klicken Sie auf die Karte, die Sie anzieht',
@@ -1434,7 +1445,7 @@ const TRANSLATIONS = {
     title:'✨ Leitura de Tarot', subtitle:'As cartas revelarão o seu caminho',
     s1_title:'Digite a sua pergunta',
     q_placeholder:'O que o preocupa hoje?\nEx: Devo mudar de emprego? / Este relacionamento é bom para mim?',
-    q_hint:'Deixe em branco e clique "Selecionar" para sua fortuna do dia.',
+    q_hint:'Digite uma pergunta.',
     btn_select:'Selecionar →', analyzing:'Encontrando a melhor tiragem para sua pergunta...',
     btn_reselect:'← Reescrever', btn_go_draw:'Tirar Cartas →',
     s2_title:'Tire suas cartas', draw_instr:'Concentre-se e clique na carta que te chamar',
@@ -1459,7 +1470,7 @@ const TRANSLATIONS = {
     title:'✨ การอ่านไพ่ทาโรต์', subtitle:'ไพ่จะเปิดเผยเส้นทางของคุณ',
     s1_title:'ป้อนคำถามของคุณ',
     q_placeholder:'อะไรที่คุณกังวลวันนี้?\nเช่น ควรเปลี่ยนงานไหม? / ความสัมพันธ์นี้ดีสำหรับฉันไหม?',
-    q_hint:'ปล่อยว่างและคลิก "เลือกไพ่" เพื่อดูดวงประจำวัน',
+    q_hint:'กรุณาใส่คำถาม',
     btn_select:'เลือกไพ่ →', analyzing:'กำลังหาการวางไพ่ที่เหมาะสมที่สุด...',
     btn_reselect:'← เขียนใหม่', btn_go_draw:'จั่วไพ่ →',
     s2_title:'จั่วไพ่ของคุณ', draw_instr:'ตั้งสมาธิและคลิกไพ่ที่ดึงดูดคุณ',
@@ -1484,7 +1495,7 @@ const TRANSLATIONS = {
     title:'✨ Расклад Таро', subtitle:'Карты откроют ваш путь',
     s1_title:'Введите ваш вопрос',
     q_placeholder:'Что вас беспокоит сегодня?\nНапр.: Стоит ли мне сменить работу? / Эти отношения хороши для меня?',
-    q_hint:'Оставьте поле пустым и нажмите "Выбрать карты" для гороскопа на день.',
+    q_hint:'Пожалуйста, введите вопрос.',
     btn_select:'Выбрать карты →', analyzing:'Поиск лучшего расклада для вашего вопроса...',
     btn_reselect:'← Переписать', btn_go_draw:'Вытянуть карты →',
     s2_title:'Вытяните ваши карты', draw_instr:'Сосредоточьтесь и нажмите на карту, которая вас привлекает',
@@ -1509,7 +1520,7 @@ const TRANSLATIONS = {
     title:'✨ 塔罗占卜', subtitle:'牌将为您揭示命运',
     s1_title:'请输入您的问题',
     q_placeholder:'您今天有什么烦恼？\n例如：我应该换工作吗？/ 这段关系对我好吗？',
-    q_hint:'不输入问题直接点击"选牌"，即可查看今日运势。',
+    q_hint:'请输入问题。',
     btn_select:'选择牌 →', analyzing:'正在分析您的问题，选择最佳牌阵...',
     btn_reselect:'← 重新输入', btn_go_draw:'抽牌 →',
     s2_title:'请抽取您的牌', draw_instr:'集中心神，点击您感应到的牌',
@@ -1534,7 +1545,7 @@ const TRANSLATIONS = {
     title:'✨ Lettura dei Tarocchi', subtitle:'Le carte riveleranno il tuo cammino',
     s1_title:'Inserisci la tua domanda',
     q_placeholder:'Cosa ti preoccupa oggi?\nEs: Dovrei cambiare lavoro? / Questa relazione fa bene per me?',
-    q_hint:'Lascia vuoto e clicca "Seleziona" per la tua fortuna del giorno.',
+    q_hint:'Inserisci una domanda.',
     btn_select:'Seleziona →', analyzing:'Ricerca dello stendimento migliore per la tua domanda...',
     btn_reselect:'← Riscrivi', btn_go_draw:'Pescare le Carte →',
     s2_title:'Pesca le tue carte', draw_instr:'Concentrati e clicca sulla carta che ti chiama',
@@ -1559,7 +1570,7 @@ const TRANSLATIONS = {
     title:'✨ Pembacaan Tarot', subtitle:'Kartu akan mengungkap jalanmu',
     s1_title:'Masukkan pertanyaanmu',
     q_placeholder:'Apa yang kamu pikirkan hari ini?\nContoh: Haruskah saya ganti pekerjaan? / Apakah hubungan ini baik untukku?',
-    q_hint:'Kosongkan dan klik "Pilih Kartu" untuk melihat ramalan harianmu.',
+    q_hint:'Silakan masukkan pertanyaan.',
     btn_select:'Pilih Kartu →', analyzing:'Mencari susunan terbaik untuk pertanyaanmu...',
     btn_reselect:'← Tulis Ulang', btn_go_draw:'Ambil Kartu →',
     s2_title:'Ambil kartumu', draw_instr:'Fokuskan pikiranmu dan klik kartu yang kamu rasakan',
@@ -1584,7 +1595,7 @@ const TRANSLATIONS = {
     title:'✨ Đọc Bài Tarot', subtitle:'Bài sẽ tiết lộ con đường của bạn',
     s1_title:'Nhập câu hỏi của bạn',
     q_placeholder:'Bạn đang băn khoăn về điều gì hôm nay?\nVí dụ: Tôi có nên đổi việc không? / Mối quan hệ này có tốt cho tôi không?',
-    q_hint:'Để trống và nhấn "Chọn Bài" để xem vận may hôm nay.',
+    q_hint:'Vui lòng nhập câu hỏi.',
     btn_select:'Chọn Bài →', analyzing:'Đang tìm trải bài phù hợp nhất...',
     btn_reselect:'← Viết Lại', btn_go_draw:'Rút Bài →',
     s2_title:'Rút bài của bạn', draw_instr:'Tập trung tâm trí và nhấp vào lá bài thu hút bạn',
@@ -1609,7 +1620,7 @@ const TRANSLATIONS = {
     title:'✨ Tarot Okuması', subtitle:'Kartlar yolunuzu aydınlatacak',
     s1_title:'Sorunuzu girin',
     q_placeholder:'Bugün ne düşünüyorsunuz?\nÖrn: İş değiştirmeli miyim? / Bu ilişki benim için iyi mi?',
-    q_hint:'Boş bırakıp "Kart Seç" düğmesine basarsanız günlük falınıza bakılır.',
+    q_hint:'Lütfen bir soru girin.',
     btn_select:'Kart Seç →', analyzing:'Sorunuz için en iyi açılım aranıyor...',
     btn_reselect:'← Yeniden Yaz', btn_go_draw:'Kart Çek →',
     s2_title:'Kartlarınızı çekin', draw_instr:'Zihninizi odaklayın ve sizi çeken karta tıklayın',
@@ -1634,7 +1645,7 @@ const TRANSLATIONS = {
     title:'✨ Czytanie Tarota', subtitle:'Karty ujawnią Twoją drogę',
     s1_title:'Wpisz swoje pytanie',
     q_placeholder:'Co Cię dziś nurtuje?\nNp.: Czy powinienem zmienić pracę? / Czy ta relacja jest dla mnie dobra?',
-    q_hint:'Zostaw puste i kliknij "Wybierz karty", aby zobaczyć swoją dzienną fortunę.',
+    q_hint:'Wpisz pytanie.',
     btn_select:'Wybierz karty →', analyzing:'Szukam najlepszego układu dla Twojego pytania...',
     btn_reselect:'← Przepisz pytanie', btn_go_draw:'Dobierz karty →',
     s2_title:'Dobierz swoje karty', draw_instr:'Skup się i kliknij kartę, która Cię przyciąga',
@@ -1744,7 +1755,7 @@ function applyLang() {
   el('hdr-sub').textContent   = t('subtitle');
   el('s1-title').textContent  = readingMode === 'choice' ? modeText(2) : t('s1_title');
   el('question-input').placeholder = t('q_placeholder');
-  el('question-hint').textContent  = t('q_hint');
+  el('question-hint').textContent  = '';
   el('step1-next').textContent     = t('btn_select');
   el('analyzing-text').textContent = t('analyzing');
   el('reselect-btn').textContent   = t('btn_reselect');
@@ -1834,6 +1845,14 @@ function readingQuestion() {
   return document.getElementById('question-input').value.trim();
 }
 
+function spreadPositionMeaning(index) {
+  const position = selectedSpread?.positions?.[index];
+  if (currentLang === 'ko' && position) {
+    return position.meanings?.[0] || position.meaning || t('card_label', index);
+  }
+  return t('card_label', index);
+}
+
 function enterToday() {
   document.getElementById('question-input').value = t('daily');
   cardCount = 1;
@@ -1907,13 +1926,12 @@ async function selectSpread() {
     return;
   }
   const q = readingQuestion();
-
-  // 질문 없으면 → 오늘의 운세 (1장)
   if (!q) {
-    enterToday();
-    document.getElementById('step2').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('question-hint').textContent = t('q_hint');
+    document.getElementById('question-input').focus();
     return;
   }
+  document.getElementById('question-hint').textContent = '';
 
   hide('question-area');
   hide('choice-area');
@@ -1940,17 +1958,17 @@ async function selectSpread() {
     document.getElementById('result-card-count').textContent = t('card_unit', cardCount);
     document.getElementById('result-reason').textContent = spread.reason || '';
 
-    // 포지션 태그 (한국어만 JSON 원본 의미 사용, 그 외 언어는 번역된 레이블)
+    // 포지션 태그
     const posEl = document.getElementById('result-positions');
     posEl.innerHTML = '';
     if (spread.positions && spread.positions.length > 0) {
       spread.positions.forEach((p, i) => {
-        const meaning = (currentLang === 'ko' && p.meanings && p.meanings[0])
-          ? p.meanings[0]
-          : t('card_label', i);
+        const meaning = spreadPositionMeaning(i);
         const tag = document.createElement('div');
         tag.className = 'pos-tag';
-        tag.innerHTML = `<span>${i + 1}.</span>${meaning}`;
+        const number = document.createElement('span');
+        number.textContent = `${i + 1}.`;
+        tag.append(number, document.createTextNode(meaning));
         posEl.appendChild(tag);
       });
     }
@@ -1969,6 +1987,9 @@ async function selectSpread() {
 }
 document.getElementById('step1-next').addEventListener('click', selectSpread);
 document.getElementById('choice-next').addEventListener('click', selectSpread);
+document.getElementById('question-input').addEventListener('input', () => {
+  document.getElementById('question-hint').textContent = '';
+});
 
 // 질문 다시 쓰기
 document.getElementById('reselect-btn').addEventListener('click', () => {
@@ -2076,15 +2097,8 @@ function selectCard(deckIdx) {
 
   const card = allCards[deckCards[deckIdx]];
 
-  // 포지션 의미: 한국어는 JSON 원본, 그 외 언어는 번역 레이블
   const cardIdx = drawnCards.length;
-  let positionMeaning = t('card_label', cardIdx); // 기본값: "Card 1" 등
-  if (selectedSpread && selectedSpread.positions) {
-    const posData = selectedSpread.positions[cardIdx];
-    if (currentLang === 'ko' && posData && posData.meanings && posData.meanings[0]) {
-      positionMeaning = posData.meanings[0];
-    }
-  }
+  const positionMeaning = spreadPositionMeaning(cardIdx);
 
   const deckCardEl = document.querySelector(`.deck-card[data-deck-idx="${deckIdx}"]`);
   if (deckCardEl) {
@@ -2117,9 +2131,9 @@ function selectCard(deckIdx) {
       <img src="/images/${card.image_file}" alt="${card.name_en}" loading="lazy" />
     </div>
     <div class="drawn-card-name">${currentLang === 'ko' ? card.name_ko : card.name_en}</div>
-    <div class="drawn-card-label">
-      ${positionMeaning ? `<span style="color:var(--gold-light)">${positionMeaning}</span>` : ''}
-    </div>`;
+    <div class="drawn-card-label"></div>`;
+  el.querySelector('.drawn-card-label').textContent = positionMeaning;
+  el.querySelector('.drawn-card-label').title = positionMeaning;
   row.appendChild(el);
 
   document.getElementById('draw-counter').textContent = drawnCards.length;
@@ -2178,11 +2192,27 @@ function renderReadingCards() {
         <img src="/images/${card.image_file}" alt="${card.name_en}" loading="lazy" />
       </div>
       <div class="drawn-card-name">${currentLang === 'ko' ? card.name_ko : card.name_en}</div>
-      <div class="drawn-card-label">
-        ${positionMeaning ? `<span style="color:var(--gold-light)">${positionMeaning}</span>` : ''}
-      </div>`;
+      <div class="drawn-card-label"></div>`;
+    el.querySelector('.drawn-card-label').textContent = positionMeaning;
+    el.querySelector('.drawn-card-label').title = positionMeaning;
     container.appendChild(el);
   });
+  const positions = document.getElementById('reading-positions');
+  positions.replaceChildren();
+  if (drawnCards.some(({ positionMeaning }, i) => positionMeaning !== t('card_label', i))) {
+    const list = document.createElement('ol');
+    drawnCards.forEach(({ positionMeaning }) => {
+      const item = document.createElement('li');
+      item.textContent = positionMeaning;
+      list.append(item);
+    });
+    if (currentLang === 'ko') {
+      const heading = document.createElement('h3');
+      heading.textContent = '카드 자리의 의미';
+      positions.append(heading);
+    }
+    positions.append(list);
+  }
 }
 
 async function startReading() {
@@ -2564,6 +2594,7 @@ function resetAll(restartMode = true) {
   hide('analyzing-area');
   hide('spread-result-area');
   document.getElementById('question-input').value = '';
+  document.getElementById('question-hint').textContent = '';
   document.getElementById('choice-a').value = '';
   document.getElementById('choice-b').value = '';
   document.getElementById('reading-output').innerHTML = '';
