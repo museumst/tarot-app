@@ -32,7 +32,7 @@
 
   <link rel="icon" href="/static/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="/static/favicon.png" />
-  <link rel="stylesheet" href="/static/site-shell.css?v=4" />
+  <link rel="stylesheet" href="/static/site-shell.css?v=5" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -261,27 +261,6 @@
       font-size: .9rem;
       line-height: 1.7;
     }
-    .spread-result-box .spread-positions {
-      margin-top: 12px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .spread-result-box .pos-tag {
-      background: rgba(14,16,30,.5);
-      border: 1px solid rgba(196,169,107,.2);
-      border-radius: 6px;
-      color: var(--text);
-      font-size: .78rem;
-      padding: 4px 10px;
-      max-width: 100%;
-      overflow-wrap: anywhere;
-    }
-    .spread-result-box .pos-tag span {
-      color: var(--gold-light);
-      margin-right: 4px;
-    }
-
     /* ── Buttons ── */
     .btn {
       background: linear-gradient(135deg, var(--gold), #b8941f);
@@ -504,16 +483,6 @@
       width: 100%; height: 100%;
       object-fit: cover; display: block;
     }
-    .drawn-card-label {
-      text-align: center;
-      font-size: .75rem;
-      color: var(--gold-light);
-      max-width: var(--card-w);
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      overflow: hidden;
-    }
     .drawn-card-name {
       color: var(--text);
       font-size: .85rem;
@@ -528,10 +497,6 @@
       justify-content: center;
       margin-bottom: 28px;
     }
-    .reading-positions:not(:empty) { margin: 0 0 24px; }
-    .reading-positions h3 { color: var(--gold-light); font-size: .95rem; margin: 0 0 10px; }
-    .reading-positions ol { margin: 0; padding-left: 22px; line-height: 1.7; }
-    .reading-positions li { margin: 5px 0; overflow-wrap: anywhere; }
     .reading-output {
       background: rgba(14,16,30,.6);
       border: 1px solid rgba(196,169,107,.2);
@@ -575,6 +540,8 @@
     .hidden { display: none !important; }
     .mt-16 { margin-top: 16px; }
     .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .spread-result-actions { flex-wrap: nowrap; align-items: stretch; }
+    .spread-result-actions .btn { min-width: 0; overflow-wrap: anywhere; }
 
     .notif {
       position: fixed;
@@ -597,6 +564,8 @@
     @media (max-width: 600px) {
       :root { --card-w: 80px; --card-h: 138px; }
       .step { padding: 20px; }
+      .spread-result-actions { gap: 8px; }
+      .spread-result-actions .btn { flex: 1 1 0; padding: 10px 6px; font-size: .82rem; }
 
       /* 모바일: 상단 고정바 정돈 (2줄 — 1행: 메뉴·언어 / 2행: 유저정보) */
       #top-bar {
@@ -1079,10 +1048,9 @@
         <div class="spread-name" id="result-spread-name"></div>
         <div class="spread-card-count" id="result-card-count"></div>
         <div class="spread-reason" id="result-reason"></div>
-        <div class="spread-positions" id="result-positions"></div>
       </div>
-      <div class="mt-16 row">
-        <button class="btn btn-secondary" id="reselect-btn">← 질문 다시 쓰기</button>
+      <div class="mt-16 row spread-result-actions">
+        <button class="btn" id="reselect-btn">← 질문 다시 쓰기</button>
         <button class="btn" id="go-draw-btn">카드 뽑기 →</button>
       </div>
     </div>
@@ -1109,7 +1077,6 @@
   <section class="step hidden" id="reading-section">
     <div class="step-title"><div class="step-num">3</div> <span id="s3-title">AI 타로 리딩</span></div>
     <div class="reading-cards" id="reading-cards"></div>
-    <div class="reading-positions" id="reading-positions"></div>
     <div class="spinner" id="loading-spinner">
       <div class="spinner-ring"></div>
       <span id="spinner-text">카드를 읽는 중...</span>
@@ -1958,21 +1925,6 @@ async function selectSpread() {
     document.getElementById('result-card-count').textContent = t('card_unit', cardCount);
     document.getElementById('result-reason').textContent = spread.reason || '';
 
-    // 포지션 태그
-    const posEl = document.getElementById('result-positions');
-    posEl.innerHTML = '';
-    if (spread.positions && spread.positions.length > 0) {
-      spread.positions.forEach((p, i) => {
-        const meaning = spreadPositionMeaning(i);
-        const tag = document.createElement('div');
-        tag.className = 'pos-tag';
-        const number = document.createElement('span');
-        number.textContent = `${i + 1}.`;
-        tag.append(number, document.createTextNode(meaning));
-        posEl.appendChild(tag);
-      });
-    }
-
     hide('analyzing-area');
     show('spread-result-area');
 
@@ -2030,7 +1982,7 @@ function initDrawnRow() {
   const cardW = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-w')) || 110;
   const cardH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-h')) || 190;
   const unitX = cardW + 12;
-  const unitY = cardH + 58; // 카드 + 라벨 영역
+  const unitY = cardH + 38; // 카드 이름과 줄 사이 간격
 
   if (layout) {
     const maxCol = Math.max(...layout.map(([c]) => c));
@@ -2130,10 +2082,7 @@ function selectCard(deckIdx) {
     <div class="drawn-card-img">
       <img src="/images/${card.image_file}" alt="${card.name_en}" loading="lazy" />
     </div>
-    <div class="drawn-card-name">${currentLang === 'ko' ? card.name_ko : card.name_en}</div>
-    <div class="drawn-card-label"></div>`;
-  el.querySelector('.drawn-card-label').textContent = positionMeaning;
-  el.querySelector('.drawn-card-label').title = positionMeaning;
+    <div class="drawn-card-name">${currentLang === 'ko' ? card.name_ko : card.name_en}</div>`;
   row.appendChild(el);
 
   document.getElementById('draw-counter').textContent = drawnCards.length;
@@ -2180,7 +2129,7 @@ document.getElementById('step2-next').addEventListener('click', () => {
 function renderReadingCards() {
   const container = document.getElementById('reading-cards');
   container.innerHTML = '';
-  drawnCards.forEach(({ card, positionMeaning }) => {
+  drawnCards.forEach(({ card }) => {
     const el = document.createElement('a');
     el.className = 'drawn-card';
     const slug = card.name_en.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -2191,28 +2140,15 @@ function renderReadingCards() {
       <div class="drawn-card-img">
         <img src="/images/${card.image_file}" alt="${card.name_en}" loading="lazy" />
       </div>
-      <div class="drawn-card-name">${currentLang === 'ko' ? card.name_ko : card.name_en}</div>
-      <div class="drawn-card-label"></div>`;
-    el.querySelector('.drawn-card-label').textContent = positionMeaning;
-    el.querySelector('.drawn-card-label').title = positionMeaning;
+      <div class="drawn-card-name">${currentLang === 'ko' ? card.name_ko : card.name_en}</div>`;
     container.appendChild(el);
   });
-  const positions = document.getElementById('reading-positions');
-  positions.replaceChildren();
-  if (drawnCards.some(({ positionMeaning }, i) => positionMeaning !== t('card_label', i))) {
-    const list = document.createElement('ol');
-    drawnCards.forEach(({ positionMeaning }) => {
-      const item = document.createElement('li');
-      item.textContent = positionMeaning;
-      list.append(item);
-    });
-    if (currentLang === 'ko') {
-      const heading = document.createElement('h3');
-      heading.textContent = '카드 자리의 의미';
-      positions.append(heading);
-    }
-    positions.append(list);
-  }
+}
+
+function normalizeKoreanCardCounts(text) {
+  const counts = { 일: '한', 이: '두', 삼: '세', 사: '네', 오: '다섯', 육: '여섯', 칠: '일곱', 팔: '여덟', 구: '아홉', 십: '열' };
+  return text.replace(/(^|[^가-힣])(십|[일이삼사오육칠팔구])\s*개(?:의)?\s*(컵|잔|검|소드|지팡이|완드|동전|펜타클)/gm,
+    (_, prefix, count, suit) => `${prefix}${counts[count]} 개의 ${suit}`);
 }
 
 async function startReading() {
@@ -2273,6 +2209,7 @@ async function startReading() {
         const data = line.slice(6);
         if (data === '[DONE]') {
           cursor.remove();
+          if (currentLang === 'ko') output.textContent = normalizeKoreanCardCounts(output.textContent);
           if (!window.currentUser) {
             window.applyReadingGate();
           } else if (window.isAdmin && window.isAdmin()) {
@@ -2292,6 +2229,7 @@ async function startReading() {
       }
     }
     cursor.remove();
+    if (currentLang === 'ko') output.textContent = normalizeKoreanCardCounts(output.textContent);
   } catch (e) {
     spinner.classList.remove('active');
     output.textContent = '리딩 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.\n\n' + e.message;

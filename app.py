@@ -466,7 +466,7 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
 <meta name="twitter:image" content="{_e(og_image)}">
 <link rel="icon" href="/static/favicon.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/site-shell.css?v=4">
+<link rel="stylesheet" href="/static/site-shell.css?v=5">
 <link rel="stylesheet" href="/static/acct-bar.css?v=3">
 <style>
   *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
@@ -1036,6 +1036,9 @@ Formatting rules (strictly follow):
 - Express emphasis naturally through sentences, not symbols
 
 REMINDER: Your entire response must be written in {lang_name}."""
+
+        if request.language == 'ko':
+            system_prompt += "\nWhen naming numbered tarot cards in Korean, use the exact Korean card names supplied above. Use native Korean counters such as '다섯 개의 컵', '여섯 개의 검', and '일곱 개의 지팡이'; never write '오개의', '육개의', or '칠개의'."
 
         # 선택 질문이거나 비교 스프레드가 선택된 경우 비교/종합판단 지시를 추가
         if is_binary_question(request.question) or "비교 스프레드" in (request.spread_name or ""):
