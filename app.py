@@ -967,6 +967,7 @@ class DrawnCard(BaseModel):
     symbols: Optional[dict] = None
     reversed: bool
     position_meaning: Optional[str] = None
+    position_label: Optional[str] = None
     image_file: Optional[str] = None
 
 
@@ -986,6 +987,8 @@ async def tarot_reading(request: ReadingRequest):
         cards_text = ""
         for i, card in enumerate(request.cards, 1):
             position_text = f"\n  - 위치 의미: {card.position_meaning}" if card.position_meaning else ""
+            position_label = card.position_label or card.position_meaning
+            label_text = f"\n  - 고정 자리 제목: {position_label}" if position_label else ""
 
             # Extract key symbols
             symbols_text = ""
@@ -998,7 +1001,7 @@ async def tarot_reading(request: ReadingRequest):
             meaning_preview = card.meaning[:200] + "..." if len(card.meaning) > 200 else card.meaning
 
             cards_text += f"""
-카드 {i}: {card.name_ko} ({card.name_en}){position_text}{symbols_text}
+카드 {i}: {card.name_ko} ({card.name_en}){position_text}{label_text}{symbols_text}
   - 핵심 의미: {meaning_preview}
 """
 
@@ -1019,7 +1022,8 @@ async def tarot_reading(request: ReadingRequest):
 You are a professional tarot reader with 20 years of experience. You have deep insight and a balanced perspective, helping clients face their situations clearly and see the bigger picture.
 
 Reading approach:
-- Clearly mention each card's position meaning
+- Keep each card's position meaning fixed; adapt the interpretation, not the position, to the user's question
+- Title each card section with its supplied fixed position label. In Korean, copy that label exactly. In other languages, translate that label faithfully into the response language. Never invent a poetic or question-specific subtitle for a card position
 - Analyze the energy flow and connections between cards
 - Interpret what the cards show without exaggeration or minimization
 - For difficult cards: honestly address the challenge, but also mention lessons or growth potential within the situation
@@ -1032,13 +1036,14 @@ Reading approach:
 Formatting rules (strictly follow):
 - Do NOT use markdown symbols (**, *, #, ##, ### are forbidden)
 - Use angle brackets for section titles. Example: <Card Reading>, <Overall Message>
+- For each card section, use <card number: card name - fixed position label> in the response language. The heading must contain only these three elements; discuss the question-specific meaning in the paragraph below it
 - Use numbers for sub-items. Example: 1) Current situation, 2) Advice
 - Express emphasis naturally through sentences, not symbols
 
 REMINDER: Your entire response must be written in {lang_name}."""
 
         if request.language == 'ko':
-            system_prompt += "\nWhen naming numbered tarot cards in Korean, use the exact Korean card names supplied above. Use native Korean counters such as '다섯 개의 컵', '여섯 개의 검', and '일곱 개의 지팡이'; never write '오개의', '육개의', or '칠개의'."
+            system_prompt += "\nFor Korean card sections, use the exact heading format <1번 카드: 카드 이름 - 고정 자리 제목>, changing only the number, supplied card name, and supplied fixed label. Use native Korean counters such as '다섯 개의 컵', '여섯 개의 검', and '일곱 개의 지팡이'; never write '오개의', '육개의', or '칠개의'."
 
         # 선택 질문이거나 비교 스프레드가 선택된 경우 비교/종합판단 지시를 추가
         if is_binary_question(request.question) or "비교 스프레드" in (request.spread_name or ""):

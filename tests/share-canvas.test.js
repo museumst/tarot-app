@@ -24,6 +24,7 @@ test('shared image grows to include the full reading without a promo tagline', a
       getElementById: () => ({ innerText: reading }),
     },
     readingQuestion: () => 'Which option should I choose?',
+    activeQuestion: null,
     drawnCards: [],
     currentLang: 'en',
   };

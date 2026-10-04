@@ -1067,8 +1067,8 @@
       <div class="deck-fan" id="deck-fan"></div>
       <div id="drawn-row"></div>
     </div>
-    <div class="mt-16 row">
-      <button class="btn btn-secondary" id="step2-back">← 이전</button>
+    <div class="mt-16 row spread-result-actions">
+      <button class="btn" id="step2-back">← 이전</button>
       <button class="btn" id="step2-next" disabled>리딩 시작 ✨</button>
     </div>
   </section>
@@ -1814,10 +1814,11 @@ function readingQuestion() {
 
 function spreadPositionMeaning(index) {
   const position = selectedSpread?.positions?.[index];
-  if (currentLang === 'ko' && position) {
-    return position.meanings?.[0] || position.meaning || t('card_label', index);
-  }
-  return t('card_label', index);
+  return position?.meanings?.[0] || position?.meaning || t('card_label', index);
+}
+
+function spreadPositionLabel(index) {
+  return selectedSpread?.positions?.[index]?.label || spreadPositionMeaning(index);
 }
 
 function enterToday() {
@@ -2051,6 +2052,7 @@ function selectCard(deckIdx) {
 
   const cardIdx = drawnCards.length;
   const positionMeaning = spreadPositionMeaning(cardIdx);
+  const positionLabel = spreadPositionLabel(cardIdx);
 
   const deckCardEl = document.querySelector(`.deck-card[data-deck-idx="${deckIdx}"]`);
   if (deckCardEl) {
@@ -2061,7 +2063,7 @@ function selectCard(deckIdx) {
   }
 
   const cardIndex = drawnCards.length; // push 전 인덱스
-  drawnCards.push({ card, positionMeaning, deckIdx });
+  drawnCards.push({ card, positionMeaning, positionLabel, deckIdx });
 
   const row = document.getElementById('drawn-row');
   row.classList.remove('hidden');
@@ -2151,6 +2153,20 @@ function normalizeKoreanCardCounts(text) {
     (_, prefix, count, suit) => `${prefix}${counts[count]} 개의 ${suit}`);
 }
 
+function normalizeKoreanPositionHeadings(text, cards) {
+  return text.replace(/^<\s*(?:(\d+)\s*번?\s*카드|카드\s*(\d+)\s*번?)\s*[:：-][^>]*>$/gm, (heading, first, second) => {
+    const number = first || second;
+    const item = cards[Number(number) - 1];
+    return item?.positionLabel
+      ? `<${number}번 카드: ${item.card.name_ko} - ${item.positionLabel}>`
+      : heading;
+  });
+}
+
+function normalizeKoreanReading(text) {
+  return normalizeKoreanCardCounts(normalizeKoreanPositionHeadings(text, drawnCards));
+}
+
 async function startReading() {
   readingInProgress = true;
   renderReadingCards();
@@ -2170,13 +2186,14 @@ async function startReading() {
     question,
     spread_name: spreadName,
     language: currentLang,
-    cards: drawnCards.map(({ card, positionMeaning }) => ({
+    cards: drawnCards.map(({ card, positionMeaning, positionLabel }) => ({
       name_ko: card.name_ko,
       name_en: card.name_en,
       meaning: card.meaning || '',
       symbols: card.symbols || {},
       reversed: false,
       position_meaning: positionMeaning || '',
+      position_label: positionLabel || '',
       image_file: card.image_file
     }))
   };
@@ -2209,7 +2226,7 @@ async function startReading() {
         const data = line.slice(6);
         if (data === '[DONE]') {
           cursor.remove();
-          if (currentLang === 'ko') output.textContent = normalizeKoreanCardCounts(output.textContent);
+          if (currentLang === 'ko') output.textContent = normalizeKoreanReading(output.textContent);
           if (!window.currentUser) {
             window.applyReadingGate();
           } else if (window.isAdmin && window.isAdmin()) {
@@ -2229,7 +2246,7 @@ async function startReading() {
       }
     }
     cursor.remove();
-    if (currentLang === 'ko') output.textContent = normalizeKoreanCardCounts(output.textContent);
+    if (currentLang === 'ko') output.textContent = normalizeKoreanReading(output.textContent);
   } catch (e) {
     spinner.classList.remove('active');
     output.textContent = '리딩 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.\n\n' + e.message;
