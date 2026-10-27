@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/site-shell.css?v=5">
+  <link rel="stylesheet" href="/static/site-shell.css?v=6">
   <link rel="stylesheet" href="/static/acct-bar.css?v=3">
   <style>
     :root { color-scheme: dark; --bg:#0d0d1a; --panel:#151725; --panel2:#1c2030; --line:rgba(196,169,107,.2); --gold:#d9bf8e; --text:#f0eee8; --muted:#a4a8b5; }
@@ -28,6 +28,11 @@
     h1 { margin:0; color:var(--gold); font-size:1.12rem; font-weight:600; }
     .list-caption { margin:4px 0 0; color:var(--muted); font-size:.82rem; }
     #reading-list { overflow:auto; padding:6px 10px 12px; }
+    .reading-row { position:relative; }
+    .reading-row .item-question { padding-right:24px; }
+    .reading-delete { position:absolute; top:9px; right:8px; width:26px; height:26px; padding:0; border:0; border-radius:50%; background:transparent; color:var(--muted); font-size:1.1rem; line-height:1; cursor:pointer; }
+    .reading-delete:hover,.reading-delete:focus-visible { color:#f08080; background:rgba(240,128,128,.12); }
+    .reading-delete:disabled { opacity:.4; cursor:default; }
     .reading-item { display:block; width:100%; margin:4px 0; padding:12px; text-align:left; color:var(--text); border:1px solid transparent; border-radius:7px; background:transparent; cursor:pointer; }
     .reading-item:hover { background:rgba(255,255,255,.035); }
     .reading-item[aria-current="true"] { border-color:rgba(196,169,107,.48); background:var(--panel2); }
@@ -82,6 +87,10 @@
   <header class="topbar site-topbar" id="acct-bar">
     <nav class="site-primary-nav" aria-label="Site">
       <a class="site-brand" id="brand" href="/">✨ 울트라타로</a>
+      <a class="site-mode" id="mode-reading" href="/?mode=reading"></a>
+      <a class="site-mode" id="mode-today" href="/?mode=today"></a>
+      <a class="site-mode" id="mode-choice" href="/?mode=choice"></a>
+      <a class="site-mode" id="mode-birth" href="/birth-card"></a>
       <a href="/cards" id="nav-cards"></a>
       <a href="/saved-readings" id="nav-saved" aria-current="page"></a>
     </nav>
@@ -129,24 +138,24 @@
   <script type="module">
     import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
     import { getAuth, GoogleAuthProvider, linkWithPopup, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
-    import { getFirestore, collection, getDocs, query, orderBy, limit } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+    import { getFirestore, collection, getDocs, query, orderBy, limit, deleteDoc, doc as docRef } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
     const COPY = {
-      ko:{brand:'울트라타로',title:'저장한 리딩',caption:'저장된 리딩을 선택해 다시 읽어보세요.',home:'타로 리딩으로',login:'Google 로그인',link:'Google 계정 연결',back:'← 목록으로',loading:'저장한 리딩을 불러오는 중입니다.',empty:'저장한 리딩이 없습니다.',choose:'왼쪽 목록에서 리딩을 선택하세요.',loginNeeded:'저장한 리딩을 보려면 로그인해 주세요.',linkHint:'Google 계정을 연결하면 다른 기기에서도 볼 수 있습니다.',failed:'저장한 리딩을 불러오지 못했습니다.',question:'질문',spread:'스프레드',cards:'뽑은 카드',reading:'리딩 해설'},
-      en:{brand:'Ultra Tarot',title:'Saved Readings',caption:'Choose a reading to revisit it.',home:'New reading',login:'Sign in with Google',link:'Link Google account',back:'← All readings',loading:'Loading your saved readings.',empty:'No saved readings yet.',choose:'Choose a reading from the list.',loginNeeded:'Sign in to view your saved readings.',linkHint:'Link Google to access these readings on other devices.',failed:'Could not load saved readings.',question:'Question',spread:'Spread',cards:'Cards drawn',reading:'Reading'},
-      ja:{brand:'Ultra Tarot',title:'保存したリーディング',caption:'読み返したいリーディングを選択してください。',home:'新しいリーディング',login:'Googleでログイン',link:'Googleアカウントを連携',back:'← 一覧',loading:'保存したリーディングを読み込み中です。',empty:'保存したリーディングはありません。',choose:'一覧からリーディングを選択してください。',loginNeeded:'保存したリーディングを見るにはログインしてください。',linkHint:'Googleアカウントを連携すると他の端末でも確認できます。',failed:'読み込みに失敗しました。',question:'質問',spread:'スプレッド',cards:'引いたカード',reading:'リーディング'},
-      es:{brand:'Ultra Tarot',title:'Lecturas guardadas',caption:'Elige una lectura para volver a verla.',home:'Nueva lectura',login:'Iniciar sesión con Google',link:'Vincular Google',back:'← Lista',loading:'Cargando tus lecturas guardadas.',empty:'Aún no hay lecturas guardadas.',choose:'Elige una lectura de la lista.',loginNeeded:'Inicia sesión para ver tus lecturas.',linkHint:'Vincula Google para acceder desde otros dispositivos.',failed:'No se pudieron cargar las lecturas.',question:'Pregunta',spread:'Tirada',cards:'Cartas',reading:'Lectura'},
-      fr:{brand:'Ultra Tarot',title:'Lectures enregistrées',caption:'Choisissez une lecture pour la relire.',home:'Nouvelle lecture',login:'Connexion Google',link:'Associer Google',back:'← Liste',loading:'Chargement de vos lectures.',empty:'Aucune lecture enregistrée.',choose:'Choisissez une lecture dans la liste.',loginNeeded:'Connectez-vous pour voir vos lectures.',linkHint:'Associez Google pour les retrouver sur vos autres appareils.',failed:'Impossible de charger les lectures.',question:'Question',spread:'Tirage',cards:'Cartes tirées',reading:'Interprétation'},
-      de:{brand:'Ultra Tarot',title:'Gespeicherte Legungen',caption:'Wähle eine Legung zum erneuten Lesen.',home:'Neue Legung',login:'Mit Google anmelden',link:'Google-Konto verknüpfen',back:'← Liste',loading:'Legungen werden geladen.',empty:'Keine gespeicherten Legungen.',choose:'Wähle eine Legung aus der Liste.',loginNeeded:'Melde dich an, um gespeicherte Legungen zu sehen.',linkHint:'Verknüpfe Google für den Zugriff auf anderen Geräten.',failed:'Legungen konnten nicht geladen werden.',question:'Frage',spread:'Legung',cards:'Gezogene Karten',reading:'Deutung'},
-      pt:{brand:'Ultra Tarot',title:'Leituras salvas',caption:'Escolha uma leitura para rever.',home:'Nova leitura',login:'Entrar com Google',link:'Vincular Google',back:'← Lista',loading:'Carregando suas leituras.',empty:'Nenhuma leitura salva.',choose:'Escolha uma leitura na lista.',loginNeeded:'Entre para ver suas leituras salvas.',linkHint:'Vincule o Google para acessar em outros dispositivos.',failed:'Não foi possível carregar as leituras.',question:'Pergunta',spread:'Tirada',cards:'Cartas',reading:'Leitura'},
-      th:{brand:'Ultra Tarot',title:'รายการอ่านที่บันทึกไว้',caption:'เลือกรายการเพื่อกลับมาอ่านอีกครั้ง',home:'เริ่มอ่านใหม่',login:'เข้าสู่ระบบด้วย Google',link:'เชื่อมต่อ Google',back:'← รายการ',loading:'กำลังโหลดรายการที่บันทึกไว้',empty:'ยังไม่มีรายการที่บันทึกไว้',choose:'เลือกรายการจากทางซ้าย',loginNeeded:'เข้าสู่ระบบเพื่อดูรายการที่บันทึกไว้',linkHint:'เชื่อมต่อ Google เพื่อเปิดดูจากอุปกรณ์อื่น',failed:'โหลดรายการไม่สำเร็จ',question:'คำถาม',spread:'รูปแบบไพ่',cards:'ไพ่ที่เลือก',reading:'คำทำนาย'},
-      ru:{brand:'Ultra Tarot',title:'Сохранённые расклады',caption:'Выберите расклад, чтобы перечитать его.',home:'Новый расклад',login:'Войти через Google',link:'Связать с Google',back:'← Список',loading:'Загрузка раскладов.',empty:'Сохранённых раскладов пока нет.',choose:'Выберите расклад в списке.',loginNeeded:'Войдите, чтобы увидеть сохранённые расклады.',linkHint:'Свяжите Google для доступа с других устройств.',failed:'Не удалось загрузить расклады.',question:'Вопрос',spread:'Расклад',cards:'Вытянутые карты',reading:'Толкование'},
-      zh:{brand:'Ultra Tarot',title:'已保存的解读',caption:'选择一条解读以再次查看。',home:'开始新解读',login:'使用 Google 登录',link:'关联 Google 账号',back:'← 列表',loading:'正在加载已保存的解读。',empty:'暂无已保存的解读。',choose:'请从列表中选择一条解读。',loginNeeded:'登录后查看已保存的解读。',linkHint:'关联 Google 账号即可在其他设备查看。',failed:'无法加载已保存的解读。',question:'问题',spread:'牌阵',cards:'抽到的牌',reading:'解读'},
-      it:{brand:'Ultra Tarot',title:'Letture salvate',caption:'Scegli una lettura da rileggere.',home:'Nuova lettura',login:'Accedi con Google',link:'Collega Google',back:'← Elenco',loading:'Caricamento delle letture.',empty:'Nessuna lettura salvata.',choose:'Scegli una lettura dall’elenco.',loginNeeded:'Accedi per vedere le letture salvate.',linkHint:'Collega Google per accedere da altri dispositivi.',failed:'Impossibile caricare le letture.',question:'Domanda',spread:'Schema',cards:'Carte estratte',reading:'Lettura'},
-      id:{brand:'Ultra Tarot',title:'Bacaan tersimpan',caption:'Pilih bacaan untuk dibaca kembali.',home:'Bacaan baru',login:'Masuk dengan Google',link:'Hubungkan Google',back:'← Daftar',loading:'Memuat bacaan tersimpan.',empty:'Belum ada bacaan tersimpan.',choose:'Pilih bacaan dari daftar.',loginNeeded:'Masuk untuk melihat bacaan tersimpan.',linkHint:'Hubungkan Google agar dapat diakses di perangkat lain.',failed:'Bacaan gagal dimuat.',question:'Pertanyaan',spread:'Sebaran',cards:'Kartu terpilih',reading:'Bacaan'},
-      vi:{brand:'Ultra Tarot',title:'Bài đọc đã lưu',caption:'Chọn bài đọc để xem lại.',home:'Bài đọc mới',login:'Đăng nhập Google',link:'Liên kết Google',back:'← Danh sách',loading:'Đang tải bài đọc đã lưu.',empty:'Chưa có bài đọc nào.',choose:'Chọn một bài đọc trong danh sách.',loginNeeded:'Đăng nhập để xem bài đọc đã lưu.',linkHint:'Liên kết Google để xem trên thiết bị khác.',failed:'Không thể tải bài đọc.',question:'Câu hỏi',spread:'Trải bài',cards:'Lá bài đã rút',reading:'Diễn giải'},
-      tr:{brand:'Ultra Tarot',title:'Kaydedilen açılımlar',caption:'Yeniden okumak için bir açılım seçin.',home:'Yeni açılım',login:'Google ile giriş yap',link:'Google hesabını bağla',back:'← Liste',loading:'Kaydedilen açılımlar yükleniyor.',empty:'Henüz kaydedilmiş açılım yok.',choose:'Listeden bir açılım seçin.',loginNeeded:'Kayıtlı açılımları görmek için giriş yapın.',linkHint:'Diğer cihazlardan erişmek için Google hesabını bağlayın.',failed:'Açılımlar yüklenemedi.',question:'Soru',spread:'Açılım',cards:'Çekilen kartlar',reading:'Yorum'},
-      pl:{brand:'Ultra Tarot',title:'Zapisane rozkłady',caption:'Wybierz rozkład, aby do niego wrócić.',home:'Nowy rozkład',login:'Zaloguj przez Google',link:'Połącz konto Google',back:'← Lista',loading:'Wczytywanie zapisanych rozkładów.',empty:'Brak zapisanych rozkładów.',choose:'Wybierz rozkład z listy.',loginNeeded:'Zaloguj się, aby zobaczyć zapisane rozkłady.',linkHint:'Połącz Google, aby korzystać z innych urządzeń.',failed:'Nie udało się wczytać rozkładów.',question:'Pytanie',spread:'Rozkład',cards:'Wylosowane karty',reading:'Interpretacja'}
+      ko:{brand:'울트라타로',title:'저장한 리딩',caption:'저장된 리딩을 선택해 다시 읽어보세요.',home:'타로 리딩으로',login:'Google 로그인',link:'Google 계정 연결',back:'← 목록으로',loading:'저장한 리딩을 불러오는 중입니다.',empty:'저장한 리딩이 없습니다.',choose:'왼쪽 목록에서 리딩을 선택하세요.',loginNeeded:'저장한 리딩을 보려면 로그인해 주세요.',linkHint:'Google 계정을 연결하면 다른 기기에서도 볼 수 있습니다.',failed:'저장한 리딩을 불러오지 못했습니다.',question:'질문',spread:'스프레드',cards:'뽑은 카드',reading:'리딩 해설',delete:'삭제',deleteConfirm:'이 리딩을 삭제할까요? 삭제하면 되돌릴 수 없습니다.',deleteFailed:'삭제하지 못했습니다.'},
+      en:{brand:'Ultra Tarot',title:'Saved Readings',caption:'Choose a reading to revisit it.',home:'New reading',login:'Sign in with Google',link:'Link Google account',back:'← All readings',loading:'Loading your saved readings.',empty:'No saved readings yet.',choose:'Choose a reading from the list.',loginNeeded:'Sign in to view your saved readings.',linkHint:'Link Google to access these readings on other devices.',failed:'Could not load saved readings.',question:'Question',spread:'Spread',cards:'Cards drawn',reading:'Reading',delete:'Delete',deleteConfirm:'Delete this reading? This cannot be undone.',deleteFailed:'Could not delete.'},
+      ja:{brand:'Ultra Tarot',title:'保存したリーディング',caption:'読み返したいリーディングを選択してください。',home:'新しいリーディング',login:'Googleでログイン',link:'Googleアカウントを連携',back:'← 一覧',loading:'保存したリーディングを読み込み中です。',empty:'保存したリーディングはありません。',choose:'一覧からリーディングを選択してください。',loginNeeded:'保存したリーディングを見るにはログインしてください。',linkHint:'Googleアカウントを連携すると他の端末でも確認できます。',failed:'読み込みに失敗しました。',question:'質問',spread:'スプレッド',cards:'引いたカード',reading:'リーディング',delete:'削除',deleteConfirm:'このリーディングを削除しますか？元に戻せません。',deleteFailed:'削除できませんでした。'},
+      es:{brand:'Ultra Tarot',title:'Lecturas guardadas',caption:'Elige una lectura para volver a verla.',home:'Nueva lectura',login:'Iniciar sesión con Google',link:'Vincular Google',back:'← Lista',loading:'Cargando tus lecturas guardadas.',empty:'Aún no hay lecturas guardadas.',choose:'Elige una lectura de la lista.',loginNeeded:'Inicia sesión para ver tus lecturas.',linkHint:'Vincula Google para acceder desde otros dispositivos.',failed:'No se pudieron cargar las lecturas.',question:'Pregunta',spread:'Tirada',cards:'Cartas',reading:'Lectura',delete:'Eliminar',deleteConfirm:'¿Eliminar esta lectura? No se puede deshacer.',deleteFailed:'No se pudo eliminar.'},
+      fr:{brand:'Ultra Tarot',title:'Lectures enregistrées',caption:'Choisissez une lecture pour la relire.',home:'Nouvelle lecture',login:'Connexion Google',link:'Associer Google',back:'← Liste',loading:'Chargement de vos lectures.',empty:'Aucune lecture enregistrée.',choose:'Choisissez une lecture dans la liste.',loginNeeded:'Connectez-vous pour voir vos lectures.',linkHint:'Associez Google pour les retrouver sur vos autres appareils.',failed:'Impossible de charger les lectures.',question:'Question',spread:'Tirage',cards:'Cartes tirées',reading:'Interprétation',delete:'Supprimer',deleteConfirm:'Supprimer cette lecture ? Cette action est irréversible.',deleteFailed:'Suppression impossible.'},
+      de:{brand:'Ultra Tarot',title:'Gespeicherte Legungen',caption:'Wähle eine Legung zum erneuten Lesen.',home:'Neue Legung',login:'Mit Google anmelden',link:'Google-Konto verknüpfen',back:'← Liste',loading:'Legungen werden geladen.',empty:'Keine gespeicherten Legungen.',choose:'Wähle eine Legung aus der Liste.',loginNeeded:'Melde dich an, um gespeicherte Legungen zu sehen.',linkHint:'Verknüpfe Google für den Zugriff auf anderen Geräten.',failed:'Legungen konnten nicht geladen werden.',question:'Frage',spread:'Legung',cards:'Gezogene Karten',reading:'Deutung',delete:'Löschen',deleteConfirm:'Diese Legung löschen? Das kann nicht rückgängig gemacht werden.',deleteFailed:'Löschen fehlgeschlagen.'},
+      pt:{brand:'Ultra Tarot',title:'Leituras salvas',caption:'Escolha uma leitura para rever.',home:'Nova leitura',login:'Entrar com Google',link:'Vincular Google',back:'← Lista',loading:'Carregando suas leituras.',empty:'Nenhuma leitura salva.',choose:'Escolha uma leitura na lista.',loginNeeded:'Entre para ver suas leituras salvas.',linkHint:'Vincule o Google para acessar em outros dispositivos.',failed:'Não foi possível carregar as leituras.',question:'Pergunta',spread:'Tirada',cards:'Cartas',reading:'Leitura',delete:'Excluir',deleteConfirm:'Excluir esta leitura? Não é possível desfazer.',deleteFailed:'Não foi possível excluir.'},
+      th:{brand:'Ultra Tarot',title:'รายการอ่านที่บันทึกไว้',caption:'เลือกรายการเพื่อกลับมาอ่านอีกครั้ง',home:'เริ่มอ่านใหม่',login:'เข้าสู่ระบบด้วย Google',link:'เชื่อมต่อ Google',back:'← รายการ',loading:'กำลังโหลดรายการที่บันทึกไว้',empty:'ยังไม่มีรายการที่บันทึกไว้',choose:'เลือกรายการจากทางซ้าย',loginNeeded:'เข้าสู่ระบบเพื่อดูรายการที่บันทึกไว้',linkHint:'เชื่อมต่อ Google เพื่อเปิดดูจากอุปกรณ์อื่น',failed:'โหลดรายการไม่สำเร็จ',question:'คำถาม',spread:'รูปแบบไพ่',cards:'ไพ่ที่เลือก',reading:'คำทำนาย',delete:'ลบ',deleteConfirm:'ลบรายการนี้หรือไม่ การลบไม่สามารถย้อนกลับได้',deleteFailed:'ลบไม่สำเร็จ'},
+      ru:{brand:'Ultra Tarot',title:'Сохранённые расклады',caption:'Выберите расклад, чтобы перечитать его.',home:'Новый расклад',login:'Войти через Google',link:'Связать с Google',back:'← Список',loading:'Загрузка раскладов.',empty:'Сохранённых раскладов пока нет.',choose:'Выберите расклад в списке.',loginNeeded:'Войдите, чтобы увидеть сохранённые расклады.',linkHint:'Свяжите Google для доступа с других устройств.',failed:'Не удалось загрузить расклады.',question:'Вопрос',spread:'Расклад',cards:'Вытянутые карты',reading:'Толкование',delete:'Удалить',deleteConfirm:'Удалить этот расклад? Это действие нельзя отменить.',deleteFailed:'Не удалось удалить.'},
+      zh:{brand:'Ultra Tarot',title:'已保存的解读',caption:'选择一条解读以再次查看。',home:'开始新解读',login:'使用 Google 登录',link:'关联 Google 账号',back:'← 列表',loading:'正在加载已保存的解读。',empty:'暂无已保存的解读。',choose:'请从列表中选择一条解读。',loginNeeded:'登录后查看已保存的解读。',linkHint:'关联 Google 账号即可在其他设备查看。',failed:'无法加载已保存的解读。',question:'问题',spread:'牌阵',cards:'抽到的牌',reading:'解读',delete:'删除',deleteConfirm:'要删除这条解读吗？删除后无法恢复。',deleteFailed:'删除失败。'},
+      it:{brand:'Ultra Tarot',title:'Letture salvate',caption:'Scegli una lettura da rileggere.',home:'Nuova lettura',login:'Accedi con Google',link:'Collega Google',back:'← Elenco',loading:'Caricamento delle letture.',empty:'Nessuna lettura salvata.',choose:'Scegli una lettura dall’elenco.',loginNeeded:'Accedi per vedere le letture salvate.',linkHint:'Collega Google per accedere da altri dispositivi.',failed:'Impossibile caricare le letture.',question:'Domanda',spread:'Schema',cards:'Carte estratte',reading:'Lettura',delete:'Elimina',deleteConfirm:'Eliminare questa lettura? L’azione è irreversibile.',deleteFailed:'Impossibile eliminare.'},
+      id:{brand:'Ultra Tarot',title:'Bacaan tersimpan',caption:'Pilih bacaan untuk dibaca kembali.',home:'Bacaan baru',login:'Masuk dengan Google',link:'Hubungkan Google',back:'← Daftar',loading:'Memuat bacaan tersimpan.',empty:'Belum ada bacaan tersimpan.',choose:'Pilih bacaan dari daftar.',loginNeeded:'Masuk untuk melihat bacaan tersimpan.',linkHint:'Hubungkan Google agar dapat diakses di perangkat lain.',failed:'Bacaan gagal dimuat.',question:'Pertanyaan',spread:'Sebaran',cards:'Kartu terpilih',reading:'Bacaan',delete:'Hapus',deleteConfirm:'Hapus bacaan ini? Tindakan ini tidak dapat dibatalkan.',deleteFailed:'Gagal menghapus.'},
+      vi:{brand:'Ultra Tarot',title:'Bài đọc đã lưu',caption:'Chọn bài đọc để xem lại.',home:'Bài đọc mới',login:'Đăng nhập Google',link:'Liên kết Google',back:'← Danh sách',loading:'Đang tải bài đọc đã lưu.',empty:'Chưa có bài đọc nào.',choose:'Chọn một bài đọc trong danh sách.',loginNeeded:'Đăng nhập để xem bài đọc đã lưu.',linkHint:'Liên kết Google để xem trên thiết bị khác.',failed:'Không thể tải bài đọc.',question:'Câu hỏi',spread:'Trải bài',cards:'Lá bài đã rút',reading:'Diễn giải',delete:'Xóa',deleteConfirm:'Xóa bài đọc này? Không thể hoàn tác.',deleteFailed:'Không thể xóa.'},
+      tr:{brand:'Ultra Tarot',title:'Kaydedilen açılımlar',caption:'Yeniden okumak için bir açılım seçin.',home:'Yeni açılım',login:'Google ile giriş yap',link:'Google hesabını bağla',back:'← Liste',loading:'Kaydedilen açılımlar yükleniyor.',empty:'Henüz kaydedilmiş açılım yok.',choose:'Listeden bir açılım seçin.',loginNeeded:'Kayıtlı açılımları görmek için giriş yapın.',linkHint:'Diğer cihazlardan erişmek için Google hesabını bağlayın.',failed:'Açılımlar yüklenemedi.',question:'Soru',spread:'Açılım',cards:'Çekilen kartlar',reading:'Yorum',delete:'Sil',deleteConfirm:'Bu açılım silinsin mi? Bu işlem geri alınamaz.',deleteFailed:'Silinemedi.'},
+      pl:{brand:'Ultra Tarot',title:'Zapisane rozkłady',caption:'Wybierz rozkład, aby do niego wrócić.',home:'Nowy rozkład',login:'Zaloguj przez Google',link:'Połącz konto Google',back:'← Lista',loading:'Wczytywanie zapisanych rozkładów.',empty:'Brak zapisanych rozkładów.',choose:'Wybierz rozkład z listy.',loginNeeded:'Zaloguj się, aby zobaczyć zapisane rozkłady.',linkHint:'Połącz Google, aby korzystać z innych urządzeń.',failed:'Nie udało się wczytać rozkładów.',question:'Pytanie',spread:'Rozkład',cards:'Wylosowane karty',reading:'Interpretacja',delete:'Usuń',deleteConfirm:'Usunąć ten rozkład? Tej operacji nie można cofnąć.',deleteFailed:'Nie udało się usunąć.'}
     };
     const NAV = {
       ko:['앱 소개','타로카드란?','카드 도감','저장한 리딩'], en:['About','What is Tarot?','Card Guide','Saved Readings'],
@@ -157,6 +166,16 @@
       it:['Informazioni','Cos’è il Tarot?','Guida alle carte','Letture salvate'], id:['Tentang aplikasi','Apa itu Tarot?','Panduan kartu','Bacaan tersimpan'],
       vi:['Giới thiệu','Tarot là gì?','Hướng dẫn lá bài','Bài đọc đã lưu'], tr:['Hakkında','Tarot nedir?','Kart rehberi','Kaydedilen açılımlar'],
       pl:['O aplikacji','Czym jest Tarot?','Przewodnik po kartach','Zapisane rozkłady']
+    };
+    const MODES = {
+      ko:['질문하기','오늘의 타로','양자택일','나의 생일수'], en:['Ask a Question',"Today's Tarot",'Either or','Birthday Number'],
+      ja:['質問する','今日のタロット','二者択一','誕生数'], es:['Hacer una pregunta','Tarot de hoy','A o B','Número de nacimiento'],
+      fr:['Poser une question','Tarot du jour','A ou B','Nombre de naissance'], de:['Frage stellen','Tarot des Tages','A oder B','Geburtszahl'],
+      pt:['Fazer uma pergunta','Tarot de hoje','A ou B','Número de nascimento'], th:['ถามคำถาม','ไพ่ทาโรต์วันนี้','เลือก A หรือ B','เลขวันเกิด'],
+      ru:['Задать вопрос','Таро на сегодня','А или Б','Число рождения'], zh:['提问','今日塔罗','二选一','生日数字'],
+      it:['Fai una domanda','Tarocchi di oggi','A o B','Numero di nascita'], id:['Ajukan pertanyaan','Tarot hari ini','A atau B','Angka kelahiran'],
+      vi:['Đặt câu hỏi','Tarot hôm nay','A hay B','Con số ngày sinh'], tr:['Soru sor','Günün tarotu','A mı B mi','Doğum sayısı'],
+      pl:['Zadaj pytanie','Tarot na dziś','A czy B','Liczba urodzenia']
     };
     const LANGS = [['ko','한국어'],['en','English'],['ja','日本語'],['es','Español'],['fr','Français'],['de','Deutsch'],['pt','Português'],['th','ไทย'],['ru','Русский'],['zh','中文'],['it','Italiano'],['id','Bahasa Indonesia'],['vi','Tiếng Việt'],['tr','Türkçe'],['pl','Polski']];
     let lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('tarot-lang') || (navigator.language || 'en').slice(0,2).toLowerCase();
@@ -171,6 +190,8 @@
     ['nav-about','nav-tarot','nav-cards','nav-saved'].forEach((id,i)=>{document.getElementById(id).textContent=navLabels[i];});
     const home=lang==='ko'?'/' : `/?lang=${lang}`;
     document.getElementById('brand').href=home;
+    const modeLabels=MODES[lang] || MODES.en, modeSep=home.includes('?')?'&':'?';
+    [['mode-reading',`${home}${modeSep}mode=reading`],['mode-today',`${home}${modeSep}mode=today`],['mode-choice',`${home}${modeSep}mode=choice`],['mode-birth',lang==='ko'?'/birth-card':`/birth-card?lang=${lang}`]].forEach(([id,href],i)=>{const a=document.getElementById(id); a.textContent=modeLabels[i]; a.href=href;});
     document.getElementById('nav-about').href=`${home}${home.includes('?')?'&':'?'}open=about`;
     document.getElementById('nav-tarot').href=`${home}${home.includes('?')?'&':'?'}open=tarot`;
     document.getElementById('nav-cards').href=lang==='ko'?'/cards':`/${lang}/cards`;
@@ -251,6 +272,34 @@
       document.getElementById('detail-pane').scrollTop=0;
     }
 
+    function clearDetail() {
+      document.getElementById('reading-detail').hidden=true;
+      document.getElementById('reading-detail').replaceChildren();
+      document.getElementById('detail-state').hidden=false;
+      document.getElementById('layout').classList.remove('show-detail');
+    }
+
+    async function deleteReading(record,row,button) {
+      if (!currentUser || !confirm(t('delete')+': '+recordTitle(record)+'\n\n'+t('deleteConfirm'))) return;
+      button.disabled=true;
+      try {
+        await deleteDoc(docRef(db,'users',currentUser.uid,'readings',record.id));
+      } catch (error) {
+        console.error('Saved reading delete failed',error);
+        button.disabled=false;
+        alert(`${t('deleteFailed')} (${error.code || 'unknown'})`);
+        return;
+      }
+      const wasSelected=row.querySelector('.reading-item')?.getAttribute('aria-current')==='true';
+      row.remove();
+      const remaining=document.querySelector('.reading-item');
+      if (!remaining) { showListState(t('empty')); clearDetail(); return; }
+      if (wasSelected) {
+        clearDetail();
+        if (window.matchMedia('(min-width: 761px)').matches) remaining.click();
+      }
+    }
+
     async function loadReadings(user) {
       try {
         const q=query(collection(db,'users',user.uid,'readings'),orderBy('createdAt','desc'),limit(100));
@@ -267,7 +316,12 @@
           const date=document.createElement('time'); const value=record.createdAt?.toDate ? record.createdAt.toDate() : null; date.textContent=value ? value.toLocaleDateString() : '';
           meta.append(spread,date); button.append(title,meta);
           button.addEventListener('click',() => { document.querySelectorAll('.reading-item').forEach(item=>item.setAttribute('aria-current','false')); button.setAttribute('aria-current','true'); showDetail(record); });
-          list.append(button);
+          const row=document.createElement('div'); row.className='reading-row';
+          const del=document.createElement('button'); del.type='button'; del.className='reading-delete'; del.textContent='×';
+          del.title=t('delete'); del.setAttribute('aria-label',t('delete'));
+          del.addEventListener('click',event => { event.stopPropagation(); deleteReading(record,row,del); });
+          row.append(button,del);
+          list.append(row);
           if (index===0 && window.matchMedia('(min-width: 761px)').matches) { button.setAttribute('aria-current','true'); showDetail(record); }
         });
       } catch (error) {

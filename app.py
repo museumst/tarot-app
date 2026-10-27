@@ -346,10 +346,41 @@ SITE_NAV = {
 }
 
 
+# 상단 메뉴의 리딩 모드 4개 (질문하기 · 오늘의 타로 · 양자택일 · 나의 생일수). index.html 의 MODE_COPY 와 같은 문구.
+MODE_NAV = {
+    "ko": ("질문하기", "오늘의 타로", "양자택일", "나의 생일수"),
+    "en": ("Ask a Question", "Today's Tarot", "Either or", "Birthday Number"),
+    "ja": ("質問する", "今日のタロット", "二者択一", "誕生数"),
+    "es": ("Hacer una pregunta", "Tarot de hoy", "A o B", "Número de nacimiento"),
+    "fr": ("Poser une question", "Tarot du jour", "A ou B", "Nombre de naissance"),
+    "de": ("Frage stellen", "Tarot des Tages", "A oder B", "Geburtszahl"),
+    "pt": ("Fazer uma pergunta", "Tarot de hoje", "A ou B", "Número de nascimento"),
+    "th": ("ถามคำถาม", "ไพ่ทาโรต์วันนี้", "เลือก A หรือ B", "เลขวันเกิด"),
+    "ru": ("Задать вопрос", "Таро на сегодня", "А или Б", "Число рождения"),
+    "zh": ("提问", "今日塔罗", "二选一", "生日数字"),
+    "it": ("Fai una domanda", "Tarocchi di oggi", "A o B", "Numero di nascita"),
+    "id": ("Ajukan pertanyaan", "Tarot hari ini", "A atau B", "Angka kelahiran"),
+    "vi": ("Đặt câu hỏi", "Tarot hôm nay", "A hay B", "Con số ngày sinh"),
+    "tr": ("Soru sor", "Günün tarotu", "A mı B mi", "Doğum sayısı"),
+    "pl": ("Zadaj pytanie", "Tarot na dziś", "A czy B", "Liczba urodzenia"),
+}
+
+
 def render_site_nav(lang: str, active: str = "") -> str:
     labels = SITE_NAV.get(lang, SITE_NAV["en"])
+    modes = MODE_NAV.get(lang, MODE_NAV["en"])
     home = home_path(lang)
+    sep = "&" if "?" in home else "?"
     items = f'<a class="site-brand" href="{_e(home)}">✨ {_e(brand_of(lang))}</a>'
+    mode_links = (
+        (f"{home}{sep}mode=reading", modes[0], "reading"),
+        (f"{home}{sep}mode=today", modes[1], "today"),
+        (f"{home}{sep}mode=choice", modes[2], "choice"),
+        (birth_card_path(lang), modes[3], "birth"),
+    )
+    for url, name, key in mode_links:
+        current = ' aria-current="page"' if key == active else ""
+        items += f'<a class="site-mode" href="{_e(url)}"{current}>{_e(name)}</a>'
     for url, name, key in ((cards_path(lang), labels[2], "cards"), (f"/saved-readings?lang={lang}", labels[3], "saved")):
         current = ' aria-current="page"' if key == active else ""
         items += f'<a href="{_e(url)}"{current}>{_e(name)}</a>'
@@ -410,13 +441,13 @@ def localize(c: dict, lang: str) -> dict:
     if lang == "ko" or not t:
         name = c["name_ko"] if lang == "ko" else c["name_en"]
         meaning, up = (c.get("meaning") or "").strip(), (seo.get("upright") or "").strip()
-        rest = {k: (seo.get(k) or "").strip() for k in ("reversed", "love", "career", "money", "advice")}
+        rest = {k: (seo.get(k) or "").strip() for k in ("love", "career", "money", "advice")}
         syms = [(ui["sym_person"], sym.get("핵심인물")), (ui["sym_symbol"], sym.get("주요상징")), (ui["sym_bg"], sym.get("배경"))]
         ok = lang == "ko"
     else:
         name = minor_name(lang, c["slug"]) or t["name"]      # 소수 아르카나는 규칙 이름 우선(표기 통일)
         meaning, up = t["meaning"], t["upright"]
-        rest = {k: t.get(k, "") for k in ("reversed", "love", "career", "money", "advice")}
+        rest = {k: t.get(k, "") for k in ("love", "career", "money", "advice")}
         syms = [(ui["sym_person"], t.get("sym_person")), (ui["sym_symbol"], t.get("sym_symbol")), (ui["sym_bg"], t.get("sym_bg"))]
         ok = True
     return {"name": name, "meaning": meaning, "upright": up, "syms": [(l, v) for l, v in syms if v], "ok": ok, **rest}
@@ -466,7 +497,7 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
 <meta name="twitter:image" content="{_e(og_image)}">
 <link rel="icon" href="/static/favicon.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/site-shell.css?v=5">
+<link rel="stylesheet" href="/static/site-shell.css?v=6">
 <link rel="stylesheet" href="/static/acct-bar.css?v=3">
 <style>
   *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
@@ -617,7 +648,6 @@ def render_card_detail(lang: str, slug: str) -> str:
 
     sym_html = "".join(f"<div><b>{_e(k)}</b>{_e(v)}</div>" for k, v in L["syms"])
     sym_block = f'<h2>{_e(ui["h_symbols"])}</h2><div class="sym">{sym_html}</div>' if sym_html else ""
-    rev_block = f'<h2>{_e(ui["h_reversed"])}</h2><p>{_e(L["reversed"])}</p>' if L["reversed"] else ""
     topic_block = "".join(
         f'<h2>{_e(ui[hk])}</h2><p>{_e(L[k])}</p>'
         for k, hk in (("love", "h_love"), ("career", "h_career"), ("money", "h_money")) if L[k]
@@ -652,7 +682,6 @@ def render_card_detail(lang: str, slug: str) -> str:
     </div>
   </div>
   {sym_block}
-  {rev_block}
   {topic_block}
   {advice_block}
   <p style="text-align:center;font-size:.85rem"><a href="{_e(cards_path(lang))}">{_e(ui['back_all'])}</a></p>
@@ -796,7 +825,7 @@ def render_birth_card_page(lang: str) -> str:
                  {code: birth_card_path(code) for code in SITE_LANGS if birth_translation(code, source)},
                  noindex=not translated,
                  extra_head='<link rel="stylesheet" href="/static/birth-card.css?v=3">',
-                 active_nav="",
+                 active_nav="birth",
                  language_paths={code: birth_card_path(code) for code in SITE_LANGS})
 
 
