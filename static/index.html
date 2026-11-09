@@ -949,6 +949,7 @@
     #no-credit-box .nc-title { font-family: 'Noto Sans KR', sans-serif; color: var(--gold); font-size: 1.1rem; }
     #no-credit-box .nc-desc { color: var(--text-dim); font-size: .85rem; }
   </style>
+<script src="/static/analytics.js?v=1"></script>
 </head>
 <body>
 
@@ -1819,6 +1820,7 @@ document.querySelectorAll('[data-reading-mode]:not(:disabled)').forEach(button =
       return;
     }
     if (mode === readingMode && mode !== 'today') return;
+    window.track?.('select_mode', { mode, language: currentLang });
     spreadRequest?.abort();
     spreadRequest = null;
     resetAll(false);
@@ -2098,6 +2100,7 @@ document.getElementById('step2-back').addEventListener('click', () => {
 document.getElementById('step2-next').addEventListener('click', () => {
   // 크레딧 부족 체크
   if (!canStartReading()) {
+    window.track?.('no_credit_shown');
     document.getElementById('no-credit-box').classList.add('visible');
     return;
   }
@@ -2150,6 +2153,7 @@ function normalizeKoreanReading(text) {
 
 async function startReading() {
   readingInProgress = true;
+  window.track?.('reading_start', { mode: readingMode, card_count: cardCount, language: currentLang });
   renderReadingCards();
   const output = document.getElementById('reading-output');
   const spinner = document.getElementById('loading-spinner');
@@ -2207,6 +2211,7 @@ async function startReading() {
         const data = line.slice(6);
         if (data === '[DONE]') {
           cursor.remove();
+          window.track?.('reading_complete', { mode: readingMode, card_count: cardCount, language: currentLang });
           if (currentLang === 'ko') output.textContent = normalizeKoreanReading(output.textContent);
           if (!window.currentUser) {
             window.applyReadingGate();
@@ -2461,6 +2466,7 @@ document.querySelectorAll('.share-sns-btn').forEach((b) => {
 });
 
 document.getElementById('share-reading-btn').addEventListener('click', async () => {
+  window.track?.('share', { content_type: 'reading', language: currentLang });
   const btn = document.getElementById('share-reading-btn');
   const readingText = (document.getElementById('reading-output').innerText || '').trim();
   if (!readingText) { notify(t('notify_no_content')); return; }
@@ -2489,6 +2495,7 @@ document.getElementById('share-reading-btn').addEventListener('click', async () 
 });
 
 document.getElementById('save-reading-btn').addEventListener('click', async () => {
+  window.track?.('save_reading', { mode: readingMode, language: currentLang });
   const question = activeQuestion || readingQuestion();
   const readingText = document.getElementById('reading-output').innerText.trim();
   if (!readingText) { notify(t('notify_no_content')); return; }
@@ -2636,6 +2643,7 @@ function updateHeaderCreditUI() {
 function openChargeModal() {
   const modal = document.getElementById('charge-modal');
   if (!modal) return;
+  window.track?.('open_charge', { language: currentLang });
   modal.classList.add('open');
   const status = document.getElementById('charge-status');
   if (status) status.textContent = '';
@@ -2835,6 +2843,7 @@ async function startPayment(amount) {
     }
 
     const response = await PortOne.requestPayment(paymentParams);
+    window.track?.('begin_checkout', { method: selectedPayMethod, currency: 'KRW', value: amount });
 
     if (response.code != null) {
       statusEl.textContent = t.pay_failed(response.message);
@@ -2865,6 +2874,7 @@ async function startPayment(amount) {
     }
 
     closeChargeModal();
+    window.track?.('purchase', { transaction_id: response.paymentId, method: selectedPayMethod, currency: 'KRW', value: amount, credits: result.credits });
     notify(t.pay_success(result.credits));
     document.getElementById('no-credit-box').classList.remove('visible');
 
@@ -2955,6 +2965,7 @@ async function handlePaypalSuccess(response) {
       await window.addCredits(result.credits, cents / 100, 'USD');
     }
     closeChargeModal();
+    window.track?.('purchase', { transaction_id: response.paymentId, method: 'paypal', currency: 'USD', value: cents / 100, credits: result.credits });
     notify(getCT().pay_success(result.credits));
     document.getElementById('no-credit-box').classList.remove('visible');
     // 다음 결제를 위해 새 paymentId 발급
@@ -3887,6 +3898,7 @@ if (requestedPanel === 'about' || requestedPanel === 'tarot') {
     document.getElementById('reading-wrapper').classList.add('gated');
     document.getElementById('reading-gate').classList.add('visible');
     document.getElementById('reading-gate').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    window.track?.('login_gate_shown');
   };
 
   const removeGate = () => {
@@ -3951,7 +3963,7 @@ if (requestedPanel === 'about' || requestedPanel === 'tarot') {
 
   // ── 헤더 로그인 버튼 ──
   const signIn = async () => {
-    try { await signInWithPopup(auth, new GoogleAuthProvider()); }
+    try { await signInWithPopup(auth, new GoogleAuthProvider()); window.track?.('login', { method: 'google' }); }
     catch (e) { console.error('로그인 실패', e); }
   };
   document.getElementById('header-login-btn').addEventListener('click', signIn);

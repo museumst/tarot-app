@@ -247,6 +247,7 @@ function initBirthPage() {
     if (result.bridge !== null) renderCard(output, result.bridge, 'bridge');
     if (result.soul !== null) renderCard(output, result.soul, 'soul');
     output.hidden = false;
+    if (typeof window !== 'undefined' && window.track) window.track('birth_card_calc');   // 생년월일·결과 카드는 보내지 않는다
     output.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 }

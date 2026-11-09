@@ -536,6 +536,7 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
   .tile small{{display:block;color:#7c8090;font-size:.72rem}}
 </style>
 {extra_head}
+<script src="/static/analytics.js?v=1"></script>
 </head>
 <body class="site-shell">
 <div id="acct-bar" class="site-topbar" data-lang="{_e(lang)}">
