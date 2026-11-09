@@ -895,9 +895,9 @@ async def verify_payment(request: PaymentVerifyRequest):
     if currency.startswith("CURRENCY_"):
         currency = currency[len("CURRENCY_"):]
 
-    # 통화별 상품표 (USD는 최소 단위=센트 기준: $0.99 -> 99)
-    CREDIT_TABLE_KRW = {1000: 10, 3000: 35, 5000: 60}
-    CREDIT_TABLE_USD = {99: 10, 299: 35, 499: 60}
+    # 통화별 상품표 (USD는 최소 단위=센트 기준: $2.99 -> 299)
+    CREDIT_TABLE_KRW = {3000: 15, 5000: 28, 10000: 60}
+    CREDIT_TABLE_USD = {299: 15, 499: 28, 999: 60}
 
     if currency == "USD":
         credits = CREDIT_TABLE_USD.get(paid)
