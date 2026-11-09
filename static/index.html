@@ -3766,6 +3766,7 @@ if (requestedPanel === 'about' || requestedPanel === 'tarot') {
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
   import { getAuth, GoogleAuthProvider, signInWithPopup, linkWithPopup, signInAnonymously, signOut, onAuthStateChanged }
     from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+const googleProvider = () => { const p = new GoogleAuthProvider(); p.setCustomParameters({ prompt: 'select_account' }); return p; };  // 항상 계정 선택 창을 띄움
   import { getFirestore, doc, getDoc, setDoc, updateDoc, increment,
            addDoc, collection, serverTimestamp, query, orderBy, limit, getDocs }
     from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
@@ -3840,7 +3841,7 @@ if (requestedPanel === 'about' || requestedPanel === 'tarot') {
   window.linkAnonymousAccount = async () => {
     const user = auth.currentUser;
     if (!user || !user.isAnonymous) throw new Error('익명 계정이 아닙니다.');
-    await linkWithPopup(user, new GoogleAuthProvider());
+    await linkWithPopup(user, googleProvider());
   };
 
   // ── Firestore: 리딩 1회 기록 ──
@@ -3964,7 +3965,7 @@ if (requestedPanel === 'about' || requestedPanel === 'tarot') {
 
   // ── 헤더 로그인 버튼 ──
   const signIn = async () => {
-    try { await signInWithPopup(auth, new GoogleAuthProvider()); window.track?.('login', { method: 'google' }); }
+    try { await signInWithPopup(auth, googleProvider()); window.track?.('login', { method: 'google' }); }
     catch (e) { console.error('로그인 실패', e); }
   };
   document.getElementById('header-login-btn').addEventListener('click', signIn);

@@ -4,6 +4,7 @@
 import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
   from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+const googleProvider = () => { const p = new GoogleAuthProvider(); p.setCustomParameters({ prompt: 'select_account' }); return p; };  // 항상 계정 선택 창을 띄움
 import { getFirestore, doc, getDoc }
   from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
@@ -88,7 +89,7 @@ if (bar) {
   }
 
   $('acct-login').addEventListener('click', async () => {
-    try { await signInWithPopup(auth, new GoogleAuthProvider()); } catch (e) { console.error('로그인 실패', e); }
+    try { await signInWithPopup(auth, googleProvider()); } catch (e) { console.error('로그인 실패', e); }
   });
   $('acct-logout').addEventListener('click', () => signOut(auth));
 

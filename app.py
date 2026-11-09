@@ -563,7 +563,7 @@ function switchLang(sel){{
   location.href=o.value;
 }}
 </script>
-<script type="module" src="/static/acct-bar.js?v=4"></script>
+<script type="module" src="/static/acct-bar.js?v=5"></script>
 </body>
 </html>"""
 

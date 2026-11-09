@@ -139,6 +139,7 @@
   <script type="module">
     import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
     import { getAuth, GoogleAuthProvider, linkWithPopup, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+const googleProvider = () => { const p = new GoogleAuthProvider(); p.setCustomParameters({ prompt: 'select_account' }); return p; };  // 항상 계정 선택 창을 띄움
     import { getFirestore, collection, getDocs, query, orderBy, limit, deleteDoc, doc as docRef } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
     const COPY = {
@@ -333,7 +334,7 @@
 
     const linkButton=document.getElementById('link-button');
     linkButton.textContent=t('link');
-    linkButton.addEventListener('click',async()=>{ try { if(currentUser?.isAnonymous) await linkWithPopup(currentUser,new GoogleAuthProvider()); } catch(error) { console.error(error); linkButton.textContent=`${t('link')} (${error.code || 'error'})`; } });
+    linkButton.addEventListener('click',async()=>{ try { if(currentUser?.isAnonymous) await linkWithPopup(currentUser,googleProvider()); } catch(error) { console.error(error); linkButton.textContent=`${t('link')} (${error.code || 'error'})`; } });
     onAuthStateChanged(auth,async user=>{
       currentUser=user;
       linkButton.hidden=!user?.isAnonymous;
@@ -342,6 +343,6 @@
       await loadReadings(user);
     });
   </script>
-  <script type="module" src="/static/acct-bar.js?v=4"></script>
+  <script type="module" src="/static/acct-bar.js?v=5"></script>
 </body>
 </html>
