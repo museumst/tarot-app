@@ -7,7 +7,7 @@ import httpx
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, StreamingResponse, HTMLResponse, PlainTextResponse, Response, RedirectResponse
+from fastapi.responses import FileResponse, StreamingResponse, HTMLResponse, PlainTextResponse, Response, RedirectResponse, JSONResponse
 from pydantic import BaseModel
 from typing import List, Optional
 
@@ -190,6 +190,42 @@ async def get_cards():
     # Filter out non-card entries (MINOR ARCANA header)
     valid_cards = [c for c in cards if c.get("image_file") is not None]
     return valid_cards
+
+
+_DAILY_FIELDS = ("headline", "message", "action", "watch")
+_DAILY_CACHE: dict = {}
+
+
+def load_daily_cards(lang: str):
+    """오늘의 타로 저장 해설(output/daily_cards_{lang}.json).
+    78장이 모두 있고 제목·항목 이름이 갖춰진 언어만 돌려준다(없으면 None → 화면이 기존 AI 리딩으로 대체)."""
+    if lang not in LANG_NAMES:
+        return None
+    if lang not in _DAILY_CACHE:
+        data = _read_json(os.path.join(BASE_DIR, "output", f"daily_cards_{lang}.json"), {})
+        meta = data.get("_meta") or {}
+        labels = meta.get("labels") or {}
+        cards = data.get("cards") or {}
+        slugs = [c["slug"] for c in load_deck()]
+        ok = (
+            bool(meta.get("title"))
+            and all(labels.get(k) for k in _DAILY_FIELDS)
+            and all(all((cards.get(s) or {}).get(k) for k in _DAILY_FIELDS) for s in slugs)
+        )
+        _DAILY_CACHE[lang] = (
+            {"lang": lang, "title": meta["title"], "labels": {k: labels[k] for k in _DAILY_FIELDS},
+             "cards": {s: {k: cards[s][k] for k in _DAILY_FIELDS} for s in slugs}}
+            if ok else None
+        )
+    return _DAILY_CACHE[lang]
+
+
+@app.get("/api/daily-cards")
+async def get_daily_cards(lang: str = "ko"):
+    data = load_daily_cards(lang)
+    if data is None:
+        raise HTTPException(status_code=404, detail="daily cards not available")
+    return JSONResponse(data, headers={"Cache-Control": "public, max-age=3600"})
 
 
 @app.get("/api/spreads")

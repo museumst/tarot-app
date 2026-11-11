@@ -1,0 +1,482 @@
+{
+  "lang": "tr",
+  "_meta": {
+    "title": "Günlük Fal",
+    "labels": {
+      "headline": "Bugün tek cümleyle",
+      "message": "Günün mesajı",
+      "action": "Bugün deneyebileceğiniz şey",
+      "watch": "Bugün dikkat edilecek nokta"
+    }
+  },
+  "cards": {
+    "the-fool": {
+      "headline": "Cevabı bilmeseniz de ilk adımı atabilirsiniz.",
+      "message": "Deli kartı, henüz hiçbir şeyin belirlenmediği boş bir sayfayı simgeler. Tam hazır hissetmediğiniz için ertelediğiniz bir iş varsa, bugün hafif bir kalple başlamak için güzel bir gün. Herkes başlangıçta beceriksiz adımlarla yola çıkar.",
+      "action": "Uzun süredir tereddüt ettiğiniz bir iş için çok küçük bir ilk adım seçin ve gün bitmeden atın.",
+      "watch": "Heyecanın ayağınızın altına bakmayı unutturup unutturmadığını kontrol edin. İyimserlik ile pervasızlık aynı şey değildir."
+    },
+    "the-magician": {
+      "headline": "İhtiyacınız olan araçlar zaten elinizde.",
+      "message": "Büyücü'nün önündeki masada değnek, kupa, kılıç ve tılsım duruyor. Yeni bir şey aramak yerine, elinizdeki yetenekleri, ilişkileri ve zamanı nasıl kullanacağınıza karar verin. Aklınızda dönüp duran bir iş varsa, bugünün akışı onu ilk eyleme dönüştürmeye elverişli.",
+      "action": "Ertelediğiniz bir işi seçin, \"ne yapacağınızı\" tek cümleyle yazın ve yalnızca on dakika başlayın.",
+      "watch": "Hevesin sizi yaptığınızdan fazla konuşturup konuşturmadığına bakın. Bu kartın gücü gösteriş değil, gerçekten yapmaktadır."
+    },
+    "the-high-priestess": {
+      "headline": "Bugün konuşmaktan çok dinlemek size daha çok şey öğretir.",
+      "message": "Başrahibe, görünmeyenleri, yani sezgiyi ve iç sesi simgeler. Bugün aceleyle sonuca varmak yerine durumu sakince gözlemlemek daha iyi. Görünen bilgilerin ötesinde, kalbinizin zaten bildiği şey yüzeye çıkabilir.",
+      "action": "Kısa bir sessizlik anı yaratın ve şu an aklınıza gelen ilk hissi yazın.",
+      "watch": "Her şeyi tek başınıza tahmin edip yargılamayın. Sezgi, doğrulamayla birlikte kullanıldığında daha isabetli olur."
+    },
+    "the-empress": {
+      "headline": "Bakım ve emek, bugünün meyvesini büyütür.",
+      "message": "İmparatoriçe bolluğu, yaratıcılığı ve sıcak bir ilgiyi simgeler. Enerjinizi kendinize ve çevrenize özen göstermeye harcadığınızda hem gönlünüz hem günlük hayatınız zenginleşir. Duyularınızı açmak ve güzel şeylerin tadını çıkarmak da bugünün önemli bir parçası.",
+      "action": "Duyularınızı sevindiren bir şey seçin, örneğin sevdiğiniz bir yemek, çiçek ya da müzik, ve yavaş yavaş tadını çıkarın.",
+      "watch": "Vermeyi öyle abartmayın ki kendiniz boşalmayın. Kendinize bakmak da özenin bir parçasıdır."
+    },
+    "the-emperor": {
+      "headline": "Ölçüler ve düzen, bugün merkezinizi sağlam tutar.",
+      "message": "İmparator yapıyı, sorumluluğu ve istikrarlı liderliği simgeler. Dağınık işlere öncelik sırası verip sınırları netleştirmek bugün içinizi çok rahatlatır. Duyguların sürüklemesi yerine ilkelere göre karar vermek sonucu sağlamlaştırır.",
+      "action": "Bugünün işlerine sıra verin ve en önemlisini önce bitirin.",
+      "watch": "İlkelerin inada dönüşmemesine dikkat edin. Karşı tarafın durumunu bir kez dinleyecek esneklik gerekli."
+    },
+    "the-hierophant": {
+      "headline": "Denenmiş yöntemlerden ve iyi öğütlerden öğrenilecek şeyler var.",
+      "message": "Başrahip gelenek, öğreti ve topluluğun taahhütlerini simgeler. Bugün yeni bir yol aramak yerine denenmiş bir yöntemi ya da deneyimli birinin tavsiyesini izlemek daha güvenli. Kurallar ve usuller yolu hatta kısaltabilir.",
+      "action": "Saygı duyduğunuz birinden ya da güvenilir bir kaynaktan bir tavsiye isteyin ve aynen uygulayın.",
+      "watch": "Bir yolu yalnızca başkaları öyle yaptığı için izleyip izlemediğinize ve değerlerinize uyup uymadığına bakın."
+    },
+    "the-lovers": {
+      "headline": "Gönlünüzün eğildiği yön, bugünün seçimini gösterir.",
+      "message": "Âşıklar yalnızca duyguları değil, değerlerinize uygun seçimleri anlatır. Bugün bir ilişkide ya da kararda sizin için gerçekten neyin önemli olduğu belirginleşebilir. Kalbinize dürüstçe danışırsanız seçmek çok kolaylaşır.",
+      "action": "Düşündüğünüz bir seçimde \"gerçekten korumak istediğim değerlere\" hangi tarafın daha yakın olduğunu yazın.",
+      "watch": "Başkalarının beklentilerini karşılamak için seçiminizi bulanıklaştırmayın. Çekim ile size uygun seçim farklı olabilir."
+    },
+    "the-chariot": {
+      "headline": "Yön belirlendiğinde güç tek noktada toplanır.",
+      "message": "Savaş Arabası, farklı güçleri tek yönde toplayıp ilerleme iradesini simgeler. Sizi iki yöne çeken iş de bugün hedef netleşince ivme kazanır. Odaklanırsanız her zamankinden daha uzağa gidebilirsiniz.",
+      "action": "Bugün için yalnızca bir hedef belirleyin ve diğer programı onun arkasına itin.",
+      "watch": "Hıza kapılıp çevrenizi gözden kaçırmayın. Hızı ayarlamak, ilerlemek kadar bir beceridir."
+    },
+    "strength": {
+      "headline": "Yumuşaklık, en sağlam güçtür.",
+      "message": "Güç kartı bastıran bir sertliği değil, korkuyu yatıştırıp yönlendirme cesaretini anlatır. Öfke ya da kaygı yükseldiğinde onları kabaca itmeniz gerekmez; sakin biçimde yanınızda tutmak bir yol açabilir. Bugün sabır en büyük silahınız.",
+      "action": "Sinir ya da kaygı yükselince üç kez derin nefes alın ve o duyguya bir ad verin.",
+      "watch": "Dayanmak ile bastırmak aynı şey değildir. Biriken duyguları güvenli bir yerde boşaltın."
+    },
+    "the-hermit": {
+      "headline": "Durduğunuz yerde yol görünür.",
+      "message": "Ermiş, gürültüden uzaklaşıp kendi ışığını bulma zamanını simgeler. Bugün insanlar arasında cevap aramaktan çok, yalnız düşünecek zamana ihtiyacınız var. Sessizce toparlarsanız karmaşık olan sadeleşir.",
+      "action": "Yaklaşık yarım saat telefondan uzak durun ve şu an gerçekten neyin önemli olduğunu düşünün.",
+      "watch": "Dinlenmenin yalnızlaşmaya dönüşmemesine dikkat edin. Güvendiğiniz biriyle konuşmak yardımcı olur."
+    },
+    "wheel-of-fortune": {
+      "headline": "Akışın değiştiği an hep habersiz gelir.",
+      "message": "Kader Çarkı dönüp duran döngüleri ve yeni evreleri simgeler. Şimdiki durum iyi de olsa zor da olsa kalıcı değildir; bu bugünün hem tesellisi hem uyarısı. Değişim geldiğinde karşı koymak yerine ona binmenin yolunu arayın.",
+      "action": "Bugün çıkan beklenmedik değişikliğe \"bir fırsat olabilir\" varsayımıyla bir kez bakın.",
+      "watch": "İyi dönemde gardınızı indirmeyin, kötü dönemde umudunuzu kaybetmeyin. İkisi de geçer."
+    },
+    "justice": {
+      "headline": "Gerçeklere göre karar vermek içinizi hafifletir.",
+      "message": "Adalet neden ve sonucu, hakkaniyeti ve dengeyi simgeler. Duyguları bir an kenara bırakıp olanı olduğu gibi görürseniz yapılacak şey netleşir. Bugün sözleşme, söz ve hesap işlerini düzene sokmak için de iyi bir gün.",
+      "action": "Bekleyen bir sözü ya da hesabı kontrol edin ve gerçekler üzerinden düzenleyin.",
+      "watch": "Her şeyi yalnızca kendi lehinize yorumlayıp yorumlamadığınıza bakın. Hakkaniyet sizin için de geçerlidir."
+    },
+    "the-hanged-man": {
+      "headline": "Durduğunuzda başka bir manzara görünür.",
+      "message": "Asılan Adam, bilerek durup başka bir bakış açısı kazanma zamanını simgeler. Ne kadar zorlasanız da çözülmeyen işi bugün bir süre bırakıp başka açıdan bakmak iyi olur. Kayıp gibi görünen bekleyiş sonradan büyük bir anlayış getirir.",
+      "action": "Tıkanmış bir sorunu \"tam tersi bir konumdan\" düşünün ve aklınıza gelenleri yazın.",
+      "watch": "Beklemenin kaçınmaya dönüşmemesine dikkat edin. Ne zamana kadar dinleneceğinize kendiniz karar vermeniz yardımcı olur."
+    },
+    "death": {
+      "headline": "Biten şey, sonraki bölümü açan bir toparlanmadır.",
+      "message": "Ölüm kartı gerçek bir ölümü değil, bir dönemin kapanışını anlatır. Ufuktaki şafak gibi, bırakmanız gerektiğini bildiğiniz hâlde tuttuğunuz bir şey varsa, bugün o duyguyla yüzleşmek için uygun. Hüzün doğaldır ve ancak içinden geçerek bir sonrakine ilerlenir.",
+      "action": "Artık size uymayan bir alışkanlığı, eşyayı ya da taahhüdü toparlayın. Büyük olması gerekmez.",
+      "watch": "Değişimden kaçmak için şimdiki durumu zorla sürdürüp sürdürmediğinize bakın. Her şeyi aceleyle kesip atın demek değildir."
+    },
+    "temperance": {
+      "headline": "Acelesiz denge, en hızlı yoldur.",
+      "message": "Denge kartı, farklı şeyleri yerinde ölçüyle karıştırmanın uyumunu ve sabrını simgeler. Bugün uç noktalara gitmek yerine orta yolu bulup hızı ayarlamak ana nokta. İş ile dinlenme, söz ile sessizlik oranını dengelerseniz gönlünüz durulur.",
+      "action": "Bugünün programına önce bir dinlenme molası koyun, kalan işleri onun çevresine yerleştirin.",
+      "watch": "Uyumu korumak için söylenmesi gereken şeyleri yutup yutmadığınıza bakın."
+    },
+    "the-devil": {
+      "headline": "Sizi bağlayan şey sandığınızdan daha gevşek.",
+      "message": "Şeytan, bağlılığa, alışkanlığa ve arzuya sürüklenme hâlini simgeler; fakat resimdeki zincirler gevşekçe asılı. Kurtulamayacağınıza dair inanç belki de en sağlam zincirdir. Bugün sizi neyin tuttuğuna dürüstçe bakmak için iyi bir gün.",
+      "action": "Tekrarlayan bir alışkanlık düşünün ve size ne verdiğini, neyi aldığını ayrı ayrı yazın.",
+      "watch": "Gücünüzü kendinizi suçlamaya harcamayın. Fark etmek bile ilk adımdır."
+    },
+    "the-tower": {
+      "headline": "Sarsıntı rahatsız eder ama sahte temeli ortaya çıkarır.",
+      "message": "Kule ani değişimi ve beklenmedik olayları simgeler. Bugün bir plan bozulsa ya da rahatsız edici bir gerçekle karşılaşsanız bile, bu sağlam olmayan yerin ortaya çıktığı bir süreç olabilir. Şaşkınlık geçince gerçekten neye ihtiyacınız olduğu daha net görünür.",
+      "action": "Beklenmedik bir şey olursa hemen yargılamayın; nefes alın ve yalnızca \"şimdi değiştirebileceğim bir şeyi\" arayın.",
+      "watch": "Duyguların en yoğun olduğu anda büyük karar vermeyin. Bir iki gün sonra yeniden bakınca yargı değişebilir."
+    },
+    "the-star": {
+      "headline": "Yorgun bir kalbe umut yavaşça geri döner.",
+      "message": "Yıldız, zor bir dönemden sonra gelen iyileşmeyi ve umudu simgeler. Her şey henüz çözülmemiş olsa da bugün gönlünüz azar azar hafifler. Acele etmeden de adım adım ilerleyebilirsiniz.",
+      "action": "Son zamanlarda iyi yaptığınız ya da minnettar olduğunuz üç şeyi yazın.",
+      "watch": "Umudu yalnızca beklemeyin; küçük eylemlerle birleştirin. İyileşme hareket ettiğinizde sağlamlaşır."
+    },
+    "the-moon": {
+      "headline": "Belirsiz kaygı, doğrulandığında küçülür.",
+      "message": "Ay belirsizliği, muğlak korkuyu ve bilinçdışının gölgelerini simgeler. Bugün görünen her şey değil, bu yüzden yargınız sallanabilir. Kesin olmayan şeyi kesinmiş gibi söylemek yerine gerçekleri tek tek doğrulamak daha iyi.",
+      "action": "Aklınızı kurcalayan şeyi \"gerçekler\" ve \"benim hayalim\" diye ikiye ayırıp yazın.",
+      "watch": "Gece kaygıları gerçekte olduğundan büyük görünür. Önemli kararları sabaha bırakın."
+    },
+    "the-sun": {
+      "headline": "Bugün kendinizi saklamayın, parlayın.",
+      "message": "Güneş sevinci, başarıyı ve berraklığı simgeler. Bugün ruh hâliniz aydınlanır ve işler açık seçik ilerler. Söylemek ya da göstermek istediğiniz bir şey varsa dürüstçe ifade edin.",
+      "action": "Güzel bir haberi ya da minnet duygunuzu bir kişiye yüz yüze iletin.",
+      "watch": "İşler yolunda gidiyor diye dikkat edilmesi gereken ayrıntıları kaçırmayın. Aydınlık günlerde de temel gerekli."
+    },
+    "judgement": {
+      "headline": "İçinizdeki çağrıya yanıt verme zamanı.",
+      "message": "Mahkeme, geçmişi toparlayıp daha yüksek bir aşamaya geçmek için içten gelen çağrıyı simgeler. Geçmişi tekrar tekrar düşünmek yerine bugün zaten öğrendiklerinizi kabul edip ilerlemek gerek. Uzun süre ertelediğiniz bir karar yeniden aklınıza geliyorsa bu bir işaret olabilir.",
+      "action": "Geçmişten affedeceğiniz ya da kapatacağınız bir şeyi seçin ve ona \"buraya kadar\" deyin.",
+      "watch": "Kendinizi ya da başkalarını yeniden yargılamaya zaman harcamayın. Önünüzdeki seçimlere odaklanın."
+    },
+    "the-world": {
+      "headline": "Bir aşamayı tamamlayan kendinizi takdir edin.",
+      "message": "Dünya, bir sürecin tamamlanıp her şeyin uyumla bütünleştiği hâli simgeler. Şimdiye kadarki çabanızın meyve verdiği ya da sona erdiği bir an olabilir. Tamamlanmanın tadını çıkarırsanız bir sonraki başlangıç da hafif olur.",
+      "action": "Yakın zamanda bitirdiğiniz ya da başardığınız bir şeye bakın ve kendinize kısa bir övgüde bulunun.",
+      "watch": "Bir şey bitti diye hemen bir sonrakine geçmeyin. Dinlenme de tamamlanmanın bir parçasıdır."
+    },
+    "ace-of-swords": {
+      "headline": "Net bir düşünce, tıkanmış sorunu keser.",
+      "message": "Kılıç Ası net düşünceyi, gerçeği ve atılımları simgeler. Karışık bir durumun özünün bir anda görünebileceği bir gün. Yeni bir fikir ya da karar belirirse hemen düzene sokun.",
+      "action": "Şu an sizi düşündüren şeyin özünü tek cümleyle yazın.",
+      "watch": "Doğru bir söz bile sert söylenirse incitebilir. Söyleyiş biçimini de seçin."
+    },
+    "two-of-swords": {
+      "headline": "Kararı ertelemek gönlünüzü ağırlaştırır.",
+      "message": "Kılıç İkilisi, gözleri kapalı seçimden kaçınmanın verdiği tıkanıklığı simgeler. İki seçenek de içinizi tırmalayıp bir adım atamıyorsanız, eksik olan bilgi de olabilir, cesaret de. Bugün hangisi olduğunu ayırt etme günü.",
+      "action": "Her seçeneğin üçer artısını ve eksisini yazın, kendinize bir son tarih koyun.",
+      "watch": "Karar vermemek de bir karardır. Ertelemeye devam ederseniz fırsat geçebilir."
+    },
+    "three-of-swords": {
+      "headline": "Acıyı kabul etmek iyileşmenin başlangıcıdır.",
+      "message": "Kılıç Üçlüsü hüznü, yarayı ve ayrılığın acısını simgeler. Canınızı yakan bir şey varsa bugün iyiymiş gibi davranmanız gerekmez. Yeterince acı çekip kabul etme sürecinden geçtikten sonra gönül iyileşmeye başlar.",
+      "action": "Hissettiğinizi olduğu gibi yazın ya da güvendiğiniz birine anlatın.",
+      "watch": "Acıyı tekrar tekrar kafanızda döndürmeyin. Duygu çok ağırsa bir uzmandan yardım almak da bir seçenektir."
+    },
+    "four-of-swords": {
+      "headline": "Dinlenmek de bugünün önemli işlerinden biri.",
+      "message": "Kılıç Dörtlüsü savaştan sonra dinlenmeyi ve toparlanmayı simgeler. Yorgun beden ve zihnin toparlanmaya zamana ihtiyaç duyduğu bir gün. Kısa bir süre durursanız sonraki adım çok daha hafif olur.",
+      "action": "Bugünkü programdan bir maddeyi çıkarın ve yeterince uyuyun ya da sessizce dinlenin.",
+      "watch": "Dinlenirken suçluluk duymayın. Toparlanmak da sonuçlar için bir hazırlıktır."
+    },
+    "five-of-swords": {
+      "headline": "Yalnızca kazanmaya değil, neyi korumak istediğinize bakın.",
+      "message": "Kılıç Beşlisi, çatışmayı kazansanız bile geriye kalan boşluğu simgeler. Bugün bir tartışmayı kazanmaya çalışırken önemli bir ilişkiyi ya da güveni kaybetmemeye dikkat edin. Önce gerçekten nasıl bir sonuç istediğinizi düşünün.",
+      "action": "Fikirler çatıştığında bir kez taviz verebileceğiniz bir nokta arayın.",
+      "watch": "Karşı tarafı alt etmeye yönelik bir tonla konuşup konuşmadığınıza bakın."
+    },
+    "six-of-swords": {
+      "headline": "Yavaş da olsa daha iyi bir yere gidiyorsunuz.",
+      "message": "Kılıç Altılısı, zor bir durumdan sessizce çıkışın geçiş dönemini simgeler. Henüz her şey toparlanmadı ama yön kesinlikle iyileşiyor. Gerçekten gerekeni yanınıza alın, gereksiz yükleri bırakabilirsiniz.",
+      "action": "Mevcut durumdan çıkmak için yalnızca bir sonraki adımı belirleyin ve uygulayın.",
+      "watch": "Yolculuk uzun hissettirebilir. Sabırsızlanmayın, akışa güvenin."
+    },
+    "seven-of-swords": {
+      "headline": "Seçim ne kadar kurnazsa, dürüstlük o kadar denge sağlar.",
+      "message": "Kılıç Yedilisi stratejik kaçınmayı ve gizlice hareket etmeyi simgeler. Bazen dolambaçlı yol karşı karşıya gelmekten akıllıcadır ama saklamak sonradan yük olur. Bugün planınızı yapın, fakat açıkça sahip çıkabileceğiniz sınırlar içinde hareket edin.",
+      "action": "Söylemeden ya da kontrol etmeden bıraktığınız bir şeyi dürüstçe düzene sokun.",
+      "watch": "Küçük bir hile sonunda en çok kendi gönlünüzü rahatsız eder. Sakladığınız bir şey varsa yeniden düşünün."
+    },
+    "eight-of-swords": {
+      "headline": "Duvar sandığınızdan alçak, bağlar ise gevşek.",
+      "message": "Kılıç Sekizlisi, kendi yarattığınız korkular içinde mahsur kalma hissini simgeler. Çıkış yokmuş gibi hissetseniz de gözlerinizdeki bağ ve gevşek iplikleri kendiniz çözebilirsiniz. Bugün \"yapamam\" düşüncesini bir kez sorgulayın.",
+      "action": "Yapamayacağınıza inandığınız bir işi seçin ve şu an yapabileceğiniz en küçük eylemi bulun.",
+      "watch": "Yardım istemeyi zayıflık saymayın. Dışarıdan bakınca çıkış görünebilir."
+    },
+    "nine-of-swords": {
+      "headline": "Gecenin endişeleri sabaha boyut değiştirir.",
+      "message": "Kılıç Dokuzlusu, kaygı ve aşırı endişeden uyuyamayan zihni simgeler. Gerçekte olandan çok kafanızda büyümüş bir endişe olabilir. Bugün endişeyi azaltan somut bir eylem işe yarar.",
+      "action": "Endişelendiğiniz her şeyi yazın ve yalnızca bugün yapabileceklerinizi işaretleyin.",
+      "watch": "Hepsini tek başınıza taşımayın. İçinizdekini söylemek bile yükü hafifletir."
+    },
+    "ten-of-swords": {
+      "headline": "En karanlık saatten sonra şafak gelir.",
+      "message": "Kılıç Onlusu bir durumun sonunu ve dibini simgeler ama aynı zamanda ufuktaki şafağı da gösterir. Şu an her şey bitmiş gibi görünse de yeni bir başlangıca hazırlanacak yer var. Bugün bitmiş olanı bırakmak için iyi bir gün.",
+      "action": "Bittiğini kabul ettiğiniz şeyden öğrendiğiniz bir noktayı yazın.",
+      "watch": "Biteni geri almaya uğraşmak yerine bundan sonra neye ihtiyacınız olacağını düşünün."
+    },
+    "page-of-swords": {
+      "headline": "Merak, bugünün rehberi.",
+      "message": "Bu kart yeni bilgi arayan ve keskin gözlem yapan araştırma ruhunu simgeler. Merak ettiğinizi sorup araştırırsanız bugün beklenmedik bir ipucu bulabilirsiniz. Dürüstçe soru sorma tavrı yardımcı olur.",
+      "action": "Merak ettiğiniz bir konuyu seçin, yalnızca yirmi dakika araştırın ve ana noktaları özetleyin.",
+      "watch": "Öğrendiklerinizi aceleyle yaymayın ya da kesin diye ileri sürmeyin. Önce doğrulayın, sonra konuşun."
+    },
+    "knight-of-swords": {
+      "headline": "Hızlı bir karar bir kez daha kontrol ister.",
+      "message": "Kılıç Şövalyesi hızlı eylemi ve zihinsel hırsı simgeler. Bugün tereddüt ettiğiniz işi tek hamlede ilerletme isteği kolayca doğabilir. Ancak hız kazandıkça önce yönü kontrol etmek gerekir.",
+      "action": "Harekete geçmeden önce \"kimlerin etkileneceğini\" bir kez düşünün, sonra hareket edin.",
+      "watch": "Sözlerin önünüze geçip karşı tarafı kaybetmesine izin vermeyin. Acelede gözden kaçan ayrıntı olup olmadığına bakın."
+    },
+    "queen-of-swords": {
+      "headline": "Açık sözlülük bugünün en büyük güvenidir.",
+      "message": "Kılıç Kraliçesi duygulara kapılmayan net yargıyı ve bağımsızlığı simgeler. Deneyimle kazandığınız ölçütlerle açıkça konuşup sınırlarınızı koruduğunuz bir gün. Gereken şeyi dolandırmadan söylemek ilişkiyi daha rahat da kılabilir.",
+      "action": "Ertelediğiniz rahatsız edici bir konuşmayı düzenleyin ve sakin, somut cümlelerle iletin.",
+      "watch": "Soğukkanlılığınızın soğukluk gibi algılanmamasına dikkat edin. Bir nezaket sözü, sözün ağırlığını hafifletir."
+    },
+    "king-of-swords": {
+      "headline": "Adil bir ölçüt bugün merkezinizi sağlam tutar.",
+      "message": "Kılıç Kralı mantığı, zihinsel otoriteyi ve adil yargıyı simgeler. Duygu ile gerçeği ayırıp ilkelere göre düzenlediğinizde sonucun netleştiği bir gün. Önemli sözleşme ya da kararlar öncesinde özellikle yardımcı olur.",
+      "action": "Karar vermeniz gereken bir iş için üç ölçüt belirleyin ve yalnızca bunlara göre değerlendirin.",
+      "watch": "Doğru cevabı öne sürerek başkalarını köşeye sıkıştırmayın. İnsanların durumu da gerçeğin bir parçasıdır."
+    },
+    "ace-of-wands": {
+      "headline": "Tek bir kıvılcım yeni bir işi başlatır.",
+      "message": "Değnek Ası yeni başlangıçları, yaratıcı ilhamı ve tutku kıvılcımını simgeler. Aniden bir şey yapmak isterseniz bu enerjiyi kaçırmayın. Bugün bir fikri eyleme dökmek için iyi bir gün.",
+      "action": "Aklınıza gelen fikri not edin ve gün bitmeden ilk adımı atın.",
+      "watch": "Kıvılcım büyük olsa da aynı anda çok iş başlatmayın. Tek bir şeye odaklanırsanız uzun sürer."
+    },
+    "two-of-wands": {
+      "headline": "Bulunduğunuz yerden bir sonraki sahneyi hayal edin.",
+      "message": "Değnek İkilisi, elde edilenin üzerine daha büyük bir plan kurma dönemini simgeler. Bugünle yetinirken daha geniş bir dünyayı merak ettiğiniz bir gün. Somut bir vizyon çizmek yönü netleştirir.",
+      "action": "Bir yıl sonra olmak istediğiniz hâli üç satırla yazın ve ilk adımı belirleyin.",
+      "watch": "Zamanı yalnızca plan yapmakla geçirmemek için bugün uygulayacağınız bir şeyi belirleyin."
+    },
+    "three-of-wands": {
+      "headline": "Gönderdiğiniz emeğin geri döneceğine güvenin.",
+      "message": "Değnek Üçlüsü, uzağa gönderdiğiniz işin sonucunu umutla izleme, yani genişleme dönemini simgeler. Başlattığınız iş yavaş yavaş meyve veriyor olabilir. Sabırsızlanmak yerine bir sonraki genişlemeye hazırlanmak daha iyi.",
+      "action": "Devam eden bir işin durumunu kontrol edin ve sonraki adım için gereken bir hazırlığı yapın.",
+      "watch": "Sonuç geç geliyor diye kaygılanmayın. Doğrulanacak bir şey varsa önce siz iletişime geçin."
+    },
+    "four-of-wands": {
+      "headline": "Birlikte sevinebileceğiniz anı kaçırmayın.",
+      "message": "Değnek Dörtlüsü önemli bir aşamayı geçmekten doğan başarı duygusunu ve istikrarlı topluluğun sevincini simgeler. Yakınlarınızla güzel şeyleri paylaşmak için iyi bir gün. Başardığınızı kabul edip tadını çıkarmak bir sonraki adımın enerjisi olur.",
+      "action": "Son zamanlardaki küçük bir başarıyı yakın birisiyle birlikte kutlayın.",
+      "watch": "İstikrara yaslanıp sonrası için hazırlığı unutmayın. Tadını çıkardıktan sonra bir adım daha planlayın."
+    },
+    "five-of-wands": {
+      "headline": "Fikirler çarpışsa da sahne büyüyor olabilir.",
+      "message": "Değnek Beşlisi, birçok fikrin iç içe geçtiği rekabeti ve karmaşık enerjiyi simgeler. Gerçek bir kavgadan çok, birbirinin düşüncesini ölçme alıştırması gibi ilerleyebilir. Sesinizi duyurun ama bütünü bozmayacak şekilde uyumlayın.",
+      "action": "Toplantıda ya da konuşmada önce karşı tarafın fikrinin özünü tek cümleyle özetleyin.",
+      "watch": "Kazanma isteğinin duygusal bir kavgaya dönüşmemesine dikkat edin. Enerjinizi küçük şeylere harcamayın."
+    },
+    "six-of-wands": {
+      "headline": "Emeğinizin takdir edildiği anı güvenle karşılayın.",
+      "message": "Değnek Altılısı emeğin meyvesini ve çevrenin takdirini simgeler. Bugün sonuçlarınız görünür olabilir ya da övgü alabilirsiniz. Alçakgönüllü olun ama kendinizi küçültmeyin, sevinci kabul edin.",
+      "action": "Yakın zamanda başardıklarınızı gözden geçirin ve uygun görürseniz çevrenizle paylaşın.",
+      "watch": "Takdir edilmeye fazla bağlanmayın. Alkış olmasa da yaptığınız iş yok olmaz."
+    },
+    "seven-of-wands": {
+      "headline": "Korumak istediğiniz bir şey varsa geri çekilmeyin.",
+      "message": "Değnek Yedilisi, yüksek bir yerde çeşitli yönlerden gelen meydan okumalara ve baskıya karşı duran bir figürü simgeler. Bugün tutumunuzu net biçimde korumanız gereken bir durum çıkabilir. Her şeyi savuşturmaya çalışmak yerine en önemli olanı korumaya odaklanın.",
+      "action": "Koruyacağınız tek bir temel ilkeyi belirleyin ve yalnızca onun konusunda kararlı konuşun.",
+      "watch": "Her eleştiriyi saldırı sayarsanız yorulursunuz. Gerekli tavsiyeleri seçerek dinleyin."
+    },
+    "eight-of-wands": {
+      "headline": "Tıkanmış iş hızla hareketlenir.",
+      "message": "Değnek Sekizlisi gecikmelerin bittiği ve işlerin hızlı ilerlediği akışı simgeler. Haber gelebilen, iletişimin, yolculuğun ve ilerlemenin canlandığı bir gün. Akış geldiğinde zamanlamayı kaçırmamak önemli.",
+      "action": "Ertelediğiniz mesaj ya da yanıtları düzenleyip bugün içinde gönderin.",
+      "watch": "Hız arttıkça hatalar da artabilir. Göndermeden önce bir kez daha kontrol edin."
+    },
+    "nine-of-wands": {
+      "headline": "Yorgun olsanız da son engel için gücünüz var.",
+      "message": "Değnek Dokuzlusu, birçok zorluktan sonra pes etmeyen direnci simgeler. Beden ve zihin yorgun olsa da bu, zaten çok şey başardığınızın kanıtı. Bugün hem dikkati hem toparlanmayı birlikte gözetme günü.",
+      "action": "Şu an sizi en çok yoran kısmı kabul edin ve bugünün programını enerji tasarrufu sağlayacak şekilde düzenleyin.",
+      "watch": "Geçmiş yaralar yüzünden herkesten şüphelenmeyin. Güvenilir olana yardım isteyebilirsiniz."
+    },
+    "ten-of-wands": {
+      "headline": "Tek başınıza taşıdığınız yükü paylaşmanın yolunu arayın.",
+      "message": "Değnek Onlusu, çok fazla sorumluluğu tek başına üstlenmenin getirdiği aşırı yüklenmeyi simgeler. Hedef yakın görünse de beden ve zihin yorgun olabilir. Bugün neyi bırakıp neyi paylaşabileceğinize bakma günü.",
+      "action": "Yapılacaklar listesinden başkasına devredebileceğiniz ya da erteleyebileceğiniz bir işi seçip halledin.",
+      "watch": "Her şeyin sizin işiniz olduğu düşüncesi yükü büyütür. Yardım istemek de bir sorumluluktur."
+    },
+    "page-of-wands": {
+      "headline": "Merak, yeni denemelerin ateşini yakar.",
+      "message": "Bu kart tutku ve merakla yeniyi keşfe çıkan genç enerjiyi simgeler. Deneyim az olabilir ama heyecan ve fikir dolu bir gün. Küçük bir şey denerseniz beklenmedik eğlence ve ipuçları bulabilirsiniz.",
+      "action": "Yapmak isteyip ertelediğiniz yeni bir şeyi yalnızca on beş dakika deneyin.",
+      "watch": "İlgi çabuk sönebilir, o yüzden sonuna kadar gitmeyi değil bir kez denemeyi hedefleyin."
+    },
+    "knight-of-wands": {
+      "headline": "Cesur bir hareket havayı değiştirir.",
+      "message": "Değnek Şövalyesi macera ruhunu, ateşli tutkuyu ve hızlı atılımı simgeler. Bugün enerjiniz her zamankinden yüksek, cesur bir hareket iyi bir sonuca götürebilir. Yalnızca tutkunun dürtüye dönüşmemesi için bir yön belirleyin.",
+      "action": "Yapmak istediklerinizden sizi en çok heyecanlandıranına bir saat odaklanın.",
+      "watch": "Başlayıp bitişi kaçırmayın. Yalnızca tutabileceğiniz sözü verin."
+    },
+    "queen-of-wands": {
+      "headline": "Özgüven çevrenizi de aydınlatır.",
+      "message": "Değnek Kraliçesi özgüveni, sıcak karizmayı ve canlı bağımsızlığı simgeler. Bugün kendinizi saklamadan gösterdikçe iyi bir akış peşinizden gelir. Özgüveniniz çevrenizdekilere de cesaret verir.",
+      "action": "Bugün söylemek ya da önermek istediğiniz şeyi tereddüt etmeden doğrudan söyleyin.",
+      "watch": "Özgüveninizin çevrenizi bunaltmaması için karşınızdakilerin tepkisine de bakın."
+    },
+    "king-of-wands": {
+      "headline": "Vizyonunuzu söyleyin ve sizinle yürüyenlere önderlik edin.",
+      "message": "Değnek Kralı deneyimle olgunlaşmış karizmayı ve vizyonlu liderliği simgeler. Bugün büyük resmi gösterip insanları harekete geçirmek için iyi bir gün. Tutkuyu gerçeğe çeviren somut bir plan gücünü gösterir.",
+      "action": "Şu an yaptığınız işin hedefini tek cümleyle söyleyin ve birlikte çalıştığınız kişilerle paylaşın.",
+      "watch": "Tek başınıza öne atılmayın. Sizinle gidenlerin hızını kontrol edin."
+    },
+    "ace-of-cups": {
+      "headline": "Kalbin açıldığı anı kaçırmayın.",
+      "message": "Kupa Ası yeni bir duygunun, sevginin ve kaynayıp taşan ilhamın başlangıcını simgeler. Bugün gönlünüzü ısıtan bir şeyle ya da biriyle karşılaşabilirsiniz. Duygularınızı bastırmayın, oldukları gibi hissedin.",
+      "action": "Şu an sizi etkileyen bir duyguyu ya da minnet duyduğunuz bir şeyi tek satırla yazın.",
+      "watch": "Duygular taştı diye aceleyle sonuca varmayın. Hissetmek ile karar vermeyi yavaşça birbirine bağlayın."
+    },
+    "two-of-cups": {
+      "headline": "Kalpler karşılıklı verildiğinde ilişki derinleşir.",
+      "message": "Kupa İkilisi karşılıklı sevgiyi ve uyumlu ortaklığı simgeler. Bugün ilişkilerde birbirini anlamak ve denge bulmak için iyi bir gün. Güven yalnızca sevgiliyle değil, iş arkadaşları ve dostlarla da sağlamlaşabilir.",
+      "action": "Yakın birine minnettarlığınızı somut bir cümleyle iletin.",
+      "watch": "İlişkinin yalnızca tek tarafın uyum sağladığı bir hâle gelmemesine dikkat edin. Kendi kalbinizi de ifade edin."
+    },
+    "three-of-cups": {
+      "headline": "Birlikte geçirilen zaman bugünün enerjisidir.",
+      "message": "Kupa Üçlüsü dostluğu, topluluğu ve birlikte olmanın sevincini simgeler. Değer verdiğiniz insanlarla gülüp konuşmak gönlünüzü hafifletir. İş birliği gereken işler de birbirine yardım edilen bir havada rahatça ilerler.",
+      "action": "Uzun süredir görüşemediğiniz bir arkadaşa ya da iş arkadaşına kısa bir selam gönderin.",
+      "watch": "Eğlenceye kapılıp işleri ya da sorumlulukları ertelemeyin. Sosyalleşmenin de dengeye ihtiyacı var."
+    },
+    "four-of-cups": {
+      "headline": "Gözünüzün önündeki fırsatın kaçıp kaçmadığına bakın.",
+      "message": "Kupa Dörtlüsü, bıkkınlık ve ilgisizlik içinde çevredeki olasılıkları görememe hâlini simgeler. Elinizdekiler sönük göründüğünde yeni bir teklif sessizce yaklaşabilir. Bugün kalbinizi biraz açıp çevrenize yeniden bakın.",
+      "action": "Son zamanlarda gelen teklifler ya da haberler arasında fark etmeden geçtiğiniz bir şey olup olmadığını yeniden kontrol edin.",
+      "watch": "Şu anki memnuniyetsizliğinizin nereden geldiğini ayırt etmeye çalışın. Belki her şey o kadar kötü değildir."
+    },
+    "five-of-cups": {
+      "headline": "Kaybettiğinizin yanında hâlâ kalan bir şey var.",
+      "message": "Kupa Beşlisi, kayıp ve pişmanlığa odaklanıp kalanı görememe hâlini simgeler. Hüzün doğaldır ama bakışınızı biraz çevirirseniz iki kupa hâlâ ayakta duruyor. Bugün üzüntüyü kabul edin, kalana da bakın.",
+      "action": "Kaybettiğiniz bir şeyi ve hâlâ elinizde olan bir şeyi yan yana yazın.",
+      "watch": "Pişmanlıkta uzun kalmak önünüzü görmeyi engeller. Üzüntüyü yeterince kabul edin, ama yavaş yavaş bakışınızı günlük hayata da çevirin."
+    },
+    "six-of-cups": {
+      "headline": "Sıcak anılar bugünün gücüdür.",
+      "message": "Kupa Altılısı özlemi, saf sevinci ve anılardan gelen sıcaklığı simgeler. Eski bir insan, mekân ya da anı bugün gönlünüzü yatıştırabilir. O sıcaklığı şimdiki ilişkilerinize ve günlük hayatınıza taşımayı deneyin.",
+      "action": "Güzel bir anıyı hatırlatan bir fotoğraf ya da şarkı bulun.",
+      "watch": "Geçmiş daha iyiydi düşüncesinde kalıp şu anı kaçırmayın."
+    },
+    "seven-of-cups": {
+      "headline": "Seçenek arttıkça bir ölçüte ihtiyaç artar.",
+      "message": "Kupa Yedilisi, çok sayıda olasılık karşısında hayalle gerçeğin karıştığı hâli simgeler. Sizi çeken çok şey var ama hangisinin gerçekten başarılabilir olduğunu ayırt etmek gerek. Bugün hayalleri azaltıp gerçekçiliği kontrol edin.",
+      "action": "Aklınıza gelen seçenekleri yazın ve her birinde \"bugün yapabileceğim gerçek bir eylem\" olup olmadığını işaretleyin.",
+      "watch": "Bütün seçenekleri tutmaya çalışırsanız hiçbirini gerçekleştirmek zorlaşır. Öncelik sırası belirleyin."
+    },
+    "eight-of-cups": {
+      "headline": "Ayrılmak pes etmek değil, daha derin bir yere gitmektir.",
+      "message": "Kupa Sekizlisi, dışarıdan yeterli görünse de içi dolmayan gönlün yeni bir anlam aramak için yola çıkma kararını simgeler. Bugün bulunduğunuz yerin size uyup uymadığını gözden geçirme günü. Neyin eksik olduğunu bilince yön de belirir.",
+      "action": "Şu anki işinizde ya da ilişkinizde \"doldurulamayan\" bir şeyi yazın.",
+      "watch": "Duygular yükselmişken dürtüyle ayrılmayın. Gönlünüzü iyice düzenledikten sonra hareket edin."
+    },
+    "nine-of-cups": {
+      "headline": "Gerçekleşen bir dileğin memnuniyet verebileceği bir gün.",
+      "message": "Kupa Dokuzlusu, \"dilek kartı\" olarak anılır ve gerçekleşen bir isteğin tatminini ile duygusal bolluğu simgeler. Bugün sahip olduklarınızın tadını doyasıya çıkarıp sevinç hissetmek için iyi bir gün. Gerçekleşeni kabul ettiğinizde bir sonraki dilek de netleşir.",
+      "action": "Yakın zamanda gerçekleşen bir şey için kendinize teşekkür sözü söyleyin.",
+      "watch": "Memnuniyette takılıp sonraki hedefi kaçırmayın. Tadını çıkarmak ile durmak aynı şey değildir."
+    },
+    "ten-of-cups": {
+      "headline": "Sevdiklerinizle huzur bugünün hazinesidir.",
+      "message": "Kupa Onlusu aile ve sevdiklerle birlikte yaşanan duygusal tamamlanmayı simgeler. Bugün yanınızdakilerle geçen günlük hayatın en büyük mutluluk olduğunu hissetmek için iyi bir gün. Mükemmel olmasa da yeterince sıcak anlar vardır.",
+      "action": "Bugün yakın biriyle yüz yüze oturup on dakika bile olsa konuşun.",
+      "watch": "Şu anı ideal bir resimle kıyaslamayın. Sıcaklığı olduğu gibi görün."
+    },
+    "page-of-cups": {
+      "headline": "Kalbinizde beliren küçük mesaja kulak verin.",
+      "message": "Bu kart duyarlılık ve yaratıcılıkla dolu genç enerjiyi ve sezgisel mesajları simgeler. Beklenmedik bir yerden gönlünüze dokunan bir haber ya da fikir gelebilir. Duyguları hafifçe ifade ederseniz yol açılır.",
+      "action": "Aniden aklınıza gelen fikirleri ya da rüya gibi görüntüleri not edin.",
+      "watch": "Duygular kolayca dalgalanabilir, bu yüzden yalnızca ruh hâline dayanarak büyük sözler vermeyin."
+    },
+    "knight-of-cups": {
+      "headline": "İçten bir teklif gönülleri harekete geçirir.",
+      "message": "Kupa Şövalyesi romantizmi, duyarlı bir daveti ve sanatsal ifadeyi simgeler. Bugün güzel haberler gelebilecek ya da duyguları iletmek için elverişli bir akış var. İdeale doğru yavaşça ilerleyen yumuşak bir tutum yardımcı olur.",
+      "action": "İletmek istediğiniz içten duyguyu bir mektup ya da mesaj olarak yazmayı deneyin.",
+      "watch": "Havaya kapılıp gerçekçi kontrolleri atlamayın. Sözlerinizi ve eylemlerinizi uyumlu tutun."
+    },
+    "queen-of-cups": {
+      "headline": "Derin empati bugünün gücüdür.",
+      "message": "Kupa Kraliçesi duygusal olgunluğu, derin empatiyi ve sezgisel bilgeliği simgeler. Başkalarının duygularını iyi anlayıp kendi kalbinize de özen gösterebileceğiniz bir gün. Birini dinlemek bile başlı başına iyileştirici olabilir.",
+      "action": "Zorlanıyor gibi görünen birine çözüm sunmak yerine anlattıklarını dikkatle dinleyin.",
+      "watch": "Başkalarının duygularını üzerinize almayın. Kalbinizin sınırlarını da koruduğunuzda uzun süre empati kurabilirsiniz."
+    },
+    "king-of-cups": {
+      "headline": "Duygu dalgalarının üstünde de merkezinizi koruyun.",
+      "message": "Kupa Kralı, sıcaklığı yitirmeden duyguları yönetebilen olgun dengeyi simgeler. Bugün heyecanlı ya da sarsıcı durumlarda bile sakin ve merkezde kalmak için iyi bir gün. Duyguları bastırmayın, ama akılla birlikte ele alın.",
+      "action": "Duygular yükselince tepki vermeden önce durun, nefesinizi toparlayın, sonra konuşun.",
+      "watch": "Duyguyu saklamak ile yönetmek farklı şeylerdir. İfade edilmesi gereken duyguları ifade edin."
+    },
+    "ace-of-pentacles": {
+      "headline": "Elinizdeki fırsatı gerçeğe dönüştürme zamanı.",
+      "message": "Tılsım Ası somut sonuçlara giden yeni bir fırsatı ve istikrarın başlangıcını simgeler. Bugün para, iş ya da sağlıkta pratik bir tohum verilebilir. Küçük de olsa gerçekçi bir plan yapın.",
+      "action": "Şimdi büyütmek istediğiniz bir fırsatı seçin ve gereken kaynakları ile ilk adımı yazın.",
+      "watch": "Fırsat geldi diye heyecanlanıp kontrol etmeden büyük para ya da zaman harcamayın."
+    },
+    "two-of-pentacles": {
+      "headline": "Esnekçe dengeyi korursanız sallanmanız sorun olmaz.",
+      "message": "Tılsım İkilisi birden fazla iş ve sorumluluk arasında dengeyi koruma uyum yeteneğini simgeler. Bugün işler üst üste binse de ritmi bulursanız zorlanmadan geçersiniz. Öncelik sırası belirleyin ve esnekçe ayarlayın.",
+      "action": "Bugünün listesinden ertelenebilecek bir şeyi seçin ve programı hafifletin.",
+      "watch": "Her şeyi aynı anda hokkabazlık gibi çevirmeye çalışmayın. Denge bozulma işaretleri görürseniz azaltın."
+    },
+    "three-of-pentacles": {
+      "headline": "Herkesin becerisi bir araya gelince iyi sonuç çıkar.",
+      "message": "Tılsım Üçlüsü beceriyi, iş birliğini ve birlikte üreten usta ruhunu simgeler. Bugün tek başınıza çalışmak yerine uzmanlığı olan kişilerle rol paylaşırsanız sonuç iyileşir. Takdir ve geri bildirim gelişimin besini olur.",
+      "action": "Üstlendiğiniz işte yardıma ihtiyaç duyduğunuz kısım için bir kişiden açıkça destek isteyin.",
+      "watch": "Yalnızca kendi yönteminizde ısrar etmeyin. Başkalarının görüşlerini de yansıtmayı deneyin."
+    },
+    "four-of-pentacles": {
+      "headline": "Sıkı tuttuğunuz elinizi biraz açın, akış başlar.",
+      "message": "Tılsım Dörtlüsü, istikrarı koruma isteğinin bağlanmaya dönüştüğü hâli simgeler. Bugün elinizdekini kaybetme korkusunun değişimi engelleyip engellemediğine bakma günü. Yönetmek önemlidir ama fazlası büyümeyi durdurur.",
+      "action": "Sıkı tuttuğunuz ama bırakmanın sorun olmayacağı bir şeyi seçin ve düzene sokun.",
+      "watch": "Tutumlu olmak ile cimri olmak farklıdır. Gereken yerde ölçülü harcayın."
+    },
+    "five-of-pentacles": {
+      "headline": "Yardım sandığınızdan daha yakın.",
+      "message": "Tılsım Beşlisi yoksunluğu, zorluğu ve yalnızlığı simgeler, ama resimde ışığı yanan bir pencere var. Ağır bir kalp gözünüzü örtüp yakındaki yardımı kaçırmanıza yol açabilir. Bugün önce siz elinizi uzatma günü.",
+      "action": "Güvendiğiniz bir kişiye şu anki durumunuzu dürüstçe anlatın.",
+      "watch": "Her şeyi tek başınıza taşımanız gerektiği düşüncesi durumu zorlaştırır. Yardım istemek zayıflık değildir."
+    },
+    "six-of-pentacles": {
+      "headline": "Vermek ile almak arasındaki denge bugünün anahtarı.",
+      "message": "Tılsım Altılısı cömertliği ve adil paylaşımı simgeler. Bugün verebileceğinizi paylaşma ya da ihtiyacınız olanı kabul etme akışı doğal biçimde oluşur. Veren de olsanız alan da olsanız, gönül dengesi önemli.",
+      "action": "Zaman, bilgi ya da ilgi gibi paylaşabileceğiniz bir şeyi bir kişiye sunun.",
+      "watch": "Vermenizin şartlara bağlanmamasına dikkat edin. Alırken de minnetle alın."
+    },
+    "seven-of-pentacles": {
+      "headline": "Beklerken şimdiye kadarki emeği gözden geçirin.",
+      "message": "Tılsım Yedilisi uzun emekten sonra sonucu değerlendirme sabrı dönemini simgeler. Sonuçlar hemen görünmese de istikrarla büyüttüğünüz şey filizleniyor. Bugün şimdiye kadarki yönün doğru olup olmadığını kontrol etmek için uygun.",
+      "action": "Biriktirdiğiniz emeğin izlerini toplayın ve bundan sonra ayarlayacağınız bir noktayı belirleyin.",
+      "watch": "Sonuç geç diye kolayca pes etmeyin. Ancak yön yanlışsa düzeltme gerekir."
+    },
+    "eight-of-pentacles": {
+      "headline": "Düzenli tekrar ustalık yaratır.",
+      "message": "Tılsım Sekizlisi düzenli çalışmayı ve becerisini parlatan ustanın odaklanmasını simgeler. Bugün göze çarpmasa da dürüstçe biriktirilen işin büyük değeri var. Tek bir şeye derinlemesine dalmayı deneyin.",
+      "action": "Öğrenmek istediğiniz bir beceri için otuz dakika ayırın ve kesintisiz odaklanın.",
+      "watch": "Mükemmelliğe takılıp başlamayı ertelemeyin. Tekrar kaliteyi artırır."
+    },
+    "nine-of-pentacles": {
+      "headline": "Kendi kurduğunuz bolluğun tadını doyasıya çıkarabilirsiniz.",
+      "message": "Tılsım Dokuzlusu emekle kazanılan bağımsızlığı ve maddi istikrarı simgeler. Bugün yalnız geçen zaman bile keyifli ve rahat. Yarattığınız şeyi gururla kabul edin.",
+      "action": "Kendinize küçük bir ödül ya da rahat bir zaman hediye edin.",
+      "watch": "Tek başıma da iyiyim hissinin ilişkilerinizi kapatmak için bir gerekçe olmasına izin vermeyin."
+    },
+    "ten-of-pentacles": {
+      "headline": "Kalıcı istikrarın temeline bakın.",
+      "message": "Tılsım Onlusu aileyi, mirası ve uzun süren bolluk ile istikrarı simgeler. Bugün uzun vadeli maliye, aile ya da ev konularını gözden geçirmek için iyi bir gün. Göz önündekinden çok, kalıcı bir temel önemli.",
+      "action": "Ailenizle ya da uzun süre birlikte olacağınız biriyle uzun vadeli bir planı konuşun.",
+      "watch": "İstikrarı korumaya o kadar odaklanmayın ki şimdinin keyfini kaçırın."
+    },
+    "page-of-pentacles": {
+      "headline": "Küçük bir öğrenme sağlam bir başlangıca dönüşür.",
+      "message": "Bu kart yeni beceriler öğrenme ve gerçekçi hedefleri adım adım kurma tutumunu simgeler. Bugün planı somut parçalara bölerek başlarsanız iyi gider. Acele etmeden öğrenme tavrı gücünüz olur.",
+      "action": "Öğrenmek istediğiniz şey için bir kaynak ya da kurs bulun ve ilk sayfasını okuyun.",
+      "watch": "Yalnızca kuram biriktirmeyin; küçük de olsa kendiniz deneyin. Deneyim öğrenmeyi tamamlar."
+    },
+    "knight-of-pentacles": {
+      "headline": "İstikrar en güvenilir hızdır.",
+      "message": "Tılsım Şövalyesi yavaş ama kesin başaran güvenilirliği ve titizliği simgeler. Bugün göz alıcı bir hamleden çok, üstlendiğiniz işi adım adım bitirmek daha iyi sonuç verir. Sorumluluğun takdir edildiği bir gün.",
+      "action": "Bugünkü işleri tek tek bitirin ve tamamlandı diye işaretleyin.",
+      "watch": "Temkinin değişimi reddetmeye dönüşmemesine dikkat edin. Gerekirse yöntemi değiştirmeyi deneyin."
+    },
+    "queen-of-pentacles": {
+      "headline": "Gerçeği sıcakça gözetme gücü bugünün bilgeliğidir.",
+      "message": "Tılsım Kraliçesi pratik bilgeliği, sıcak ilgiyi ve bolluk dolu bir ortam yaratma yeteneğini simgeler. Bugün ev, iş, sağlık gibi günlük hayatın temelini düzene sokarsanız gönlünüz de dinginleşir. Tutumlu ve nazik bir tavır yardımcı olur.",
+      "action": "Günlük yaşam alanınızda rahatsız eden bir köşeyi toplayın ya da özen gösterin.",
+      "watch": "İlgilendiğiniz her şeyin yalnızca sizin sorumluluğunuz olmasına izin vermeyin. Siz de ilgiyi hak ediyorsunuz."
+    },
+    "king-of-pentacles": {
+      "headline": "Uzun vadeli bakışla inşa ettiğiniz şey güvene dönüşür.",
+      "message": "Tılsım Kralı istikrarlı liderliği, üstün pratik duyuyu ve maddi başarıyı simgeler. Bugün maliye, iş ya da çalışmada uzun vadeli bakışla karar verirseniz güvenilir sonuçlar gelir. Rahat bir tavırla yönetmek önemli.",
+      "action": "Maliye ya da iş durumunuzu rakamlarla özetleyin ve önümüzdeki üç ay için bir plan yapın.",
+      "watch": "Değeri yalnızca başarı ve mülkte aramayın. İnsanların ve zamanın değerini de görün."
+    }
+  }
+}

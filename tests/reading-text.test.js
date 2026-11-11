@@ -6,7 +6,7 @@ const vm = require('node:vm');
 
 const html = fs.readFileSync(path.join(__dirname, '../static/index.html'), 'utf8');
 const start = html.indexOf('function normalizeKoreanCardCounts(');
-const end = html.indexOf('async function startReading()', start);
+const end = html.indexOf('async function startReading(', start);
 assert.ok(start > 0 && end > start);
 const scope = {};
 vm.runInNewContext(`${html.slice(start, end)}\nthis.normalize = normalizeKoreanCardCounts;`, scope);

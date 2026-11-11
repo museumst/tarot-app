@@ -1,0 +1,482 @@
+{
+  "lang": "de",
+  "_meta": {
+    "title": "Tageshoroskop",
+    "labels": {
+      "headline": "Heute in einem Satz",
+      "message": "Die Botschaft des Tages",
+      "action": "Das können Sie heute ausprobieren",
+      "watch": "Worauf Sie heute achten sollten"
+    }
+  },
+  "cards": {
+    "the-fool": {
+      "headline": "Auch ohne die Antwort zu kennen, können Sie den ersten Schritt tun.",
+      "message": "Der Narr steht für ein leeres Blatt, einen Zustand, in dem noch nichts entschieden ist. Wenn Sie etwas aufgeschoben haben, weil Sie sich nicht perfekt vorbereitet fühlen, ist heute ein guter Tag, um leichten Herzens anzufangen. Jeder beginnt zunächst mit unsicheren Schritten.",
+      "action": "Legen Sie für etwas, bei dem Sie lange gezögert haben, einen ganz kleinen ersten Schritt fest und gehen Sie ihn noch heute.",
+      "watch": "Prüfen Sie, ob die Vorfreude Sie vergessen lässt, auf den Boden unter Ihren Füßen zu achten. Optimismus und Leichtsinn sind nicht dasselbe."
+    },
+    "the-magician": {
+      "headline": "Das Werkzeug, das Sie brauchen, liegt schon in Ihrer Hand.",
+      "message": "Auf dem Tisch vor dem Magier liegen Stab, Kelch, Schwert und Münze. Statt etwas Neues zu suchen, überlegen Sie, wie Sie Ihre vorhandenen Talente, Kontakte und Ihre Zeit einsetzen. Wenn Sie etwas im Kopf hin- und herwälzen, trägt der Tag heute dazu bei, es in eine erste Handlung zu verwandeln.",
+      "action": "Wählen Sie eine aufgeschobene Aufgabe, schreiben Sie in einem Satz auf, was Sie tun werden, und beginnen Sie nur zehn Minuten lang.",
+      "watch": "Achten Sie darauf, ob der Eifer Sie mehr reden als handeln lässt. Die Stärke dieser Karte liegt im Tun, nicht im Vorzeigen."
+    },
+    "the-high-priestess": {
+      "headline": "Heute verrät Ihnen das Zuhören mehr als das Reden.",
+      "message": "Die Hohepriesterin steht für das Verborgene, für Intuition und die innere Stimme. Heute ist es besser, die Lage ruhig zu beobachten, als vorschnell ein Urteil zu fällen. Hinter den sichtbaren Informationen kann auftauchen, was Ihr Herz längst weiß.",
+      "action": "Schaffen Sie sich einen kurzen stillen Moment und schreiben Sie auf, was Ihnen jetzt als Erstes in den Sinn kommt.",
+      "watch": "Vermuten und urteilen Sie nicht alles allein. Intuition wird genauer, wenn man sie mit einer Überprüfung verbindet."
+    },
+    "the-empress": {
+      "headline": "Fürsorge und Pflege lassen die Früchte des Tages reifen.",
+      "message": "Die Herrscherin steht für Fülle, Schaffenskraft und warme Fürsorge. Wenn Sie Ihre Energie darauf verwenden, sich selbst und Ihr Umfeld zu hegen, wird Ihr Herz ebenso reich wie Ihr Alltag. Die Sinne zu öffnen und Schönes ausgiebig zu genießen, gehört heute auch dazu.",
+      "action": "Gönnen Sie sich etwas, das die Sinne erfreut, etwa Ihr Lieblingsessen, Blumen oder Musik, und genießen Sie es in Ruhe.",
+      "watch": "Geben Sie nicht so viel, dass Sie selbst leer werden. Sich um sich selbst zu kümmern, gehört zur Fürsorge dazu."
+    },
+    "the-emperor": {
+      "headline": "Maßstäbe und Ordnung halten den Tag im Gleichgewicht.",
+      "message": "Der Herrscher steht für Struktur, Verantwortung und stabile Führung. Wenn Sie Verstreutes nach Prioritäten ordnen und Grenzen klar ziehen, wird Ihnen heute leichter ums Herz. Wer nach Prinzipien urteilt, statt sich von Gefühlen mitreißen zu lassen, erzielt ein solides Ergebnis.",
+      "action": "Bringen Sie die heutigen Aufgaben in eine Reihenfolge und erledigen Sie zuerst die wichtigste.",
+      "watch": "Lassen Sie Prinzipien nicht zur Sturheit werden. Sie brauchen den Spielraum, sich die Umstände des anderen einmal anzuhören."
+    },
+    "the-hierophant": {
+      "headline": "Von bewährten Wegen und gutem Rat gibt es etwas zu lernen.",
+      "message": "Der Hierophant steht für Tradition, Lehre und gemeinsame Vereinbarungen. Heute ist es sicherer, einer erprobten Methode oder dem Rat erfahrener Menschen zu folgen, statt Neues zu suchen. Regeln und Abläufe können den Weg sogar verkürzen.",
+      "action": "Holen Sie sich von einem Menschen, den Sie schätzen, oder aus einer verlässlichen Quelle einen Rat und wenden Sie ihn unverändert an.",
+      "watch": "Prüfen Sie, ob Sie einer Vorgehensweise nur folgen, weil andere es so machen, und ob sie zu Ihren Werten passt."
+    },
+    "the-lovers": {
+      "headline": "Wohin Ihr Herz sich neigt, zeigt die Wahl des Tages.",
+      "message": "Die Liebenden stehen nicht nur für Gefühle, sondern für Entscheidungen, die zu Ihren Werten passen. Heute kann in einer Beziehung oder Entscheidung sichtbar werden, was Ihnen wirklich wichtig ist. Wenn Sie ehrlich in Ihr Herz hineinhorchen, fällt die Wahl deutlich leichter.",
+      "action": "Schreiben Sie bei einer Entscheidung, die Sie beschäftigt, auf, welche Seite den Werten näher kommt, die Sie wirklich bewahren wollen.",
+      "watch": "Verwässern Sie Ihre Wahl nicht, um fremden Erwartungen zu entsprechen. Anziehung und die Entscheidung, die zu Ihnen passt, können verschieden sein."
+    },
+    "the-chariot": {
+      "headline": "Mit einer festen Richtung sammelt sich die Kraft an einer Stelle.",
+      "message": "Der Wagen steht für den Willen, verschiedene Kräfte zu bündeln und in eine Richtung zu steuern. Auch was Sie innerlich zerrissen hat, gewinnt heute Schwung, sobald das Ziel klar ist. Mit Konzentration kommen Sie weiter als sonst.",
+      "action": "Bestimmen Sie nur ein Ziel für heute und schieben Sie die übrigen Termine dahinter.",
+      "watch": "Lassen Sie sich vom Tempo nicht berauschen und verlieren Sie Ihr Umfeld nicht aus dem Blick. Das Tempo zu regulieren ist ebenso eine Kunst wie voranzukommen."
+    },
+    "strength": {
+      "headline": "Sanftheit ist die festeste Kraft.",
+      "message": "Die Kraft steht nicht für unterdrückende Stärke, sondern für den Mut, die Angst zu beruhigen und zu lenken. Wenn Wut oder Unruhe aufsteigen, müssen Sie sie nicht grob wegschieben; ruhig neben sich gelassen, öffnen sie oft einen Weg. Heute ist Geduld Ihre größte Stärke.",
+      "action": "Wenn Ärger oder Unruhe aufsteigen, atmen Sie dreimal tief durch und geben Sie dem Gefühl einen Namen.",
+      "watch": "Aushalten und Verdrängen sind verschieden. Lassen Sie angestaute Gefühle an einem sicheren Ort heraus."
+    },
+    "the-hermit": {
+      "headline": "Dort, wo Sie innehalten, zeigt sich ein Weg.",
+      "message": "Der Eremit steht für die Zeit abseits des Lärms, in der man sein eigenes Licht findet. Heute brauchen Sie eher Zeit zum Nachdenken allein, als Antworten unter Menschen zu suchen. Wer in Ruhe ordnet, macht Verwickeltes einfach.",
+      "action": "Halten Sie etwa dreißig Minuten Abstand zum Smartphone und überlegen Sie, was jetzt wirklich wichtig ist.",
+      "watch": "Lassen Sie aus der Ruhe keine Isolation werden. Das Gespräch mit einem vertrauten Menschen kann helfen."
+    },
+    "wheel-of-fortune": {
+      "headline": "Wendepunkte kommen immer ohne Vorwarnung.",
+      "message": "Das Rad des Schicksals steht für Kreisläufe, die sich weiterdrehen, und für neue Phasen. Ob die Lage gerade gut oder schwer ist, sie bleibt nicht, wie sie ist. Das ist heute Trost und Warnung zugleich. Wenn Veränderung kommt, suchen Sie lieber einen Weg, ihr zu folgen, als sich ihr zu widersetzen.",
+      "action": "Betrachten Sie jede unerwartete Veränderung des Tages einmal mit der Annahme, dass sie eine Chance sein könnte.",
+      "watch": "Werden Sie in guten Zeiten nicht nachlässig und verlieren Sie in schlechten nicht den Mut. Beides geht vorüber."
+    },
+    "justice": {
+      "headline": "Wer sich an den Tatsachen orientiert, fühlt sich leichter.",
+      "message": "Die Gerechtigkeit steht für Ursache und Wirkung, für Fairness und Ausgleich. Wenn Sie die Gefühle kurz beiseitelegen und die Dinge so sehen, wie sie sind, wird klar, was zu tun ist. Auch Verträge, Absprachen und Abrechnungen lassen sich heute gut ordnen.",
+      "action": "Prüfen Sie eine aufgeschobene Absprache oder Abrechnung und ordnen Sie sie anhand der Fakten.",
+      "watch": "Prüfen Sie, ob Sie die Dinge nur zu Ihren Gunsten ausgelegt haben. Fairness gilt auch für Sie selbst."
+    },
+    "the-hanged-man": {
+      "headline": "Wer stehen bleibt, sieht eine andere Landschaft.",
+      "message": "Der Gehängte steht für das bewusste Innehalten, um eine andere Perspektive zu gewinnen. Was sich trotz Drängens nicht lösen ließ, legen Sie heute besser kurz beiseite und betrachten es anders. Ein Warten, das wie ein Verlust aussieht, bringt später großes Verständnis.",
+      "action": "Denken Sie über ein festgefahrenes Problem aus der genau entgegengesetzten Sicht nach und schreiben Sie auf, was Ihnen einfällt.",
+      "watch": "Lassen Sie aus dem Warten keine Vermeidung werden. Es hilft, selbst festzulegen, wie lange Sie pausieren."
+    },
+    "death": {
+      "headline": "Was endet, ist das Aufräumen, das das nächste Kapitel öffnet.",
+      "message": "Der Tod bedeutet nicht den wirklichen Tod, sondern den Abschluss einer Zeit. Wie das Morgenrot am Horizont: Wenn Sie etwas festhalten, von dem Sie wissen, dass Sie es loslassen sollten, ist heute ein guter Tag, sich diesem Gefühl zu stellen. Wehmut ist natürlich, und erst wenn man sie durchlebt hat, kann man weitergehen.",
+      "action": "Räumen Sie eine Gewohnheit, einen Gegenstand oder eine Verpflichtung auf, die nicht mehr zu Ihnen passt. Es muss nichts Großes sein.",
+      "watch": "Prüfen Sie, ob Sie das Gegenwärtige krampfhaft festhalten, um Veränderung zu vermeiden. Es heißt nicht, dass Sie alles hastig abbrechen sollen."
+    },
+    "temperance": {
+      "headline": "Ausgewogenheit ohne Eile ist der schnellste Weg.",
+      "message": "Die Mäßigkeit steht für Harmonie und Geduld, für das richtige Mischen verschiedener Dinge. Heute kommt es darauf an, statt Extremen die Mitte zu suchen und das Tempo zu regulieren. Wenn Sie Arbeit und Ruhe, Worte und Schweigen ins Gleichgewicht bringen, wird das Herz stabil.",
+      "action": "Planen Sie in den heutigen Tag zuerst eine Ruhepause ein und ordnen Sie die übrigen Aufgaben darum herum.",
+      "watch": "Prüfen Sie, ob Sie aus Sorge um die Harmonie auch Dinge hinuntergeschluckt haben, die gesagt werden müssten."
+    },
+    "the-devil": {
+      "headline": "Was Sie bindet, ist lockerer, als Sie denken.",
+      "message": "Der Teufel steht für den Zustand, von Anhaftung, Gewohnheit und Begierde mitgerissen zu werden, doch die Ketten im Bild hängen lose. Der Glaube, sich nicht lösen zu können, ist vielleicht die festeste Kette. Heute ist ein guter Tag, ehrlich zu betrachten, was Sie festhält.",
+      "action": "Denken Sie an eine wiederkehrende Gewohnheit und schreiben Sie getrennt auf, was sie Ihnen gibt und was sie Ihnen nimmt.",
+      "watch": "Verschwenden Sie keine Kraft darauf, sich Vorwürfe zu machen. Schon das Bemerken ist ein erster Schritt."
+    },
+    "the-tower": {
+      "headline": "Das Beben ist unangenehm, aber es legt ein falsches Fundament frei.",
+      "message": "Der Turm steht für plötzliche Veränderung und Unerwartetes. Selbst wenn heute ein Plan durchkreuzt wird oder Sie einer unbequemen Wahrheit begegnen, kann es der Prozess sein, in dem sichtbar wird, was nicht tragfähig war. Wenn der Schreck vorüber ist, wird klarer, was Sie wirklich brauchten.",
+      "action": "Wenn etwas Unerwartetes geschieht, urteilen Sie nicht sofort, sondern atmen Sie durch und suchen Sie nur nach einer Sache, die Sie jetzt ändern können.",
+      "watch": "Treffen Sie keine große Entscheidung im Moment der heftigsten Gefühle. Nach ein, zwei Tagen sieht man es oft anders."
+    },
+    "the-star": {
+      "headline": "Die Hoffnung kehrt langsam in ein müdes Herz zurück.",
+      "message": "Der Stern steht für Erholung und Hoffnung, die nach einer schweren Zeit kommen. Auch wenn noch nicht alles gelöst ist, wird das Herz heute Stück für Stück leichter. Auch ohne große Eile können Sie Schritt für Schritt vorankommen.",
+      "action": "Schreiben Sie drei Dinge auf, die Sie in letzter Zeit gut gemacht haben oder für die Sie dankbar sind.",
+      "watch": "Warten Sie nicht nur auf Hoffnung, sondern verbinden Sie sie mit kleinen Handlungen. Erholung festigt sich in Bewegung."
+    },
+    "the-moon": {
+      "headline": "Diffuse Unruhe wird kleiner, wenn man sie überprüft.",
+      "message": "Der Mond steht für Ungewissheit, vage Furcht und die Schatten des Unbewussten. Heute ist das Sichtbare nicht alles, und das Urteil kann schwanken. Statt Unsicheres zu behaupten, ist es besser, die Tatsachen eine nach der anderen zu überprüfen.",
+      "action": "Teilen Sie, was Sie beschäftigt, in „Tatsachen“ und „meine Vorstellung“ auf und schreiben Sie beides auf.",
+      "watch": "Sorgen in der Nacht wirken oft größer, als sie sind. Verschieben Sie wichtige Entscheidungen auf den Morgen."
+    },
+    "the-sun": {
+      "headline": "Verstecken Sie sich heute nicht, zeigen Sie sich strahlend.",
+      "message": "Die Sonne steht für Freude, Erfolg und Klarheit. Heute hellt sich die Stimmung auf, und Dinge klären sich leicht. Wenn Sie etwas sagen oder zeigen möchten, drücken Sie es ehrlich aus.",
+      "action": "Überbringen Sie eine gute Nachricht oder Ihren Dank einem Menschen persönlich.",
+      "watch": "Auch wenn es gut läuft, übersehen Sie die Details nicht, um die man sich kümmern muss. Auch an hellen Tagen braucht es die Grundlagen."
+    },
+    "judgement": {
+      "headline": "Es ist Zeit, dem Ruf im Inneren zu antworten.",
+      "message": "Das Gericht steht für den inneren Ruf, die Vergangenheit zu ordnen und auf eine höhere Stufe zu gehen. Statt Vergangenes wieder und wieder zu bedenken, erkennen Sie heute an, was Sie bereits gelernt haben, und gehen weiter. Wenn ein lange aufgeschobener Entschluss wieder auftaucht, kann das ein Zeichen sein.",
+      "action": "Wählen Sie aus der Vergangenheit etwas, das Sie verzeihen oder abschließen möchten, und sagen Sie dazu: „Bis hierher.“",
+      "watch": "Verwenden Sie keine Zeit darauf, sich selbst oder andere erneut zu richten. Konzentrieren Sie sich auf Ihre künftigen Entscheidungen."
+    },
+    "the-world": {
+      "headline": "Erkennen Sie an, dass Sie eine Stufe vollendet haben.",
+      "message": "Die Welt steht für einen abgeschlossenen Prozess und das harmonische Zusammenfügen von allem. Es kann der Zeitpunkt sein, an dem Ihre bisherigen Mühen Früchte tragen oder zum Abschluss kommen. Erst wenn Sie die Vollendung auskosten, wird auch der nächste Anfang leicht.",
+      "action": "Blicken Sie auf etwas zurück, das Sie kürzlich beendet oder erreicht haben, und loben Sie sich kurz selbst.",
+      "watch": "Gehen Sie nicht sofort zur nächsten Aufgabe über, nur weil etwas zu Ende ist. Auch die Ruhe gehört zur Vollendung."
+    },
+    "ace-of-swords": {
+      "headline": "Klares Denken schneidet durch das festgefahrene Problem.",
+      "message": "Das Ass der Schwerter steht für klares Denken, Wahrheit und Durchbrüche. Heute kann in einer verwickelten Lage der Kern auf einmal sichtbar werden. Wenn Ihnen eine neue Idee oder ein Entschluss kommt, halten Sie ihn gleich fest.",
+      "action": "Schreiben Sie den Kern Ihrer derzeitigen Sorge in einem Satz auf.",
+      "watch": "Auch Richtiges verletzt, wenn es scharf gesagt wird. Wählen Sie auch die Art, wie Sie es sagen."
+    },
+    "two-of-swords": {
+      "headline": "Je länger Sie die Entscheidung aufschieben, desto schwerer wird das Herz.",
+      "message": "Die Zwei der Schwerter steht für die Pattsituation, in der man mit verbundenen Augen einer Wahl ausweicht. Wenn beide Möglichkeiten Sie belasten und Sie keinen Schritt tun, fehlt vielleicht Information, vielleicht Mut. Heute geht es darum, das zu unterscheiden.",
+      "action": "Schreiben Sie zu jeder Möglichkeit drei Vor- und Nachteile auf und setzen Sie sich selbst eine Frist.",
+      "watch": "Nicht zu entscheiden ist auch eine Entscheidung. Wer weiter aufschiebt, lässt vielleicht die Gelegenheit verstreichen."
+    },
+    "three-of-swords": {
+      "headline": "Den Schmerz anzuerkennen ist der Beginn der Heilung.",
+      "message": "Die Drei der Schwerter steht für Trauer, Verletzung und den Schmerz des Abschieds. Wenn etwas im Herzen schmerzt, müssen Sie heute nicht so tun, als sei alles gut. Erst wenn man den Schmerz zulässt und anerkennt, beginnt das Herz zu heilen.",
+      "action": "Schreiben Sie das Gefühl so auf, wie es ist, oder vertrauen Sie es einem Menschen an, dem Sie trauen.",
+      "watch": "Wälzen Sie den Schmerz nicht immer wieder. Wenn das Gefühl zu schwer ist, ist auch professionelle Hilfe eine Möglichkeit."
+    },
+    "four-of-swords": {
+      "headline": "Ausruhen ist heute eine wichtige Aufgabe.",
+      "message": "Die Vier der Schwerter steht für Ruhe und Erholung nach dem Kampf. Heute brauchen Ihr müder Körper und Ihr Geist Zeit zum Sammeln. Wenn Sie kurz innehalten, wird der nächste Schritt viel leichter.",
+      "action": "Streichen Sie heute einen Termin und schlafen Sie ausreichend oder ruhen Sie still aus.",
+      "watch": "Haben Sie beim Ausruhen kein schlechtes Gewissen. Erholung ist auch Vorbereitung auf Leistung."
+    },
+    "five-of-swords": {
+      "headline": "Fragen Sie sich, was Sie bewahren möchten, statt nur zu gewinnen.",
+      "message": "Die Fünf der Schwerter steht für die Leere, die selbst nach einem gewonnenen Konflikt bleibt. Hüten Sie sich heute davor, im Streit wichtige Beziehungen oder Vertrauen zu verlieren. Überlegen Sie zuerst, welches Ergebnis Sie eigentlich wollen.",
+      "action": "Suchen Sie, wenn Meinungen aufeinanderprallen, einen Punkt, an dem Sie einmal nachgeben können.",
+      "watch": "Prüfen Sie, ob Sie in einem Ton sprechen, der den anderen niederringen soll."
+    },
+    "six-of-swords": {
+      "headline": "Langsam, aber Sie bewegen sich auf einen besseren Ort zu.",
+      "message": "Die Sechs der Schwerter steht für eine Zeit des Übergangs, in der man leise aus einer schweren Lage herausfindet. Noch ist nicht alles erholt, aber die Richtung wird zweifellos besser. Nehmen Sie mit, was nötig ist, und lassen Sie unnötige Lasten ruhig zurück.",
+      "action": "Legen Sie nur einen nächsten Schritt fest, um aus der jetzigen Lage herauszukommen, und führen Sie ihn aus.",
+      "watch": "Der Weg kann lang erscheinen. Seien Sie nicht ungeduldig und vertrauen Sie dem Fluss."
+    },
+    "seven-of-swords": {
+      "headline": "Je klüger die Wahl, desto mehr hält Ehrlichkeit sie im Gleichgewicht.",
+      "message": "Die Sieben der Schwerter steht für strategisches Ausweichen und heimliches Handeln. Manchmal ist ein Umweg klüger als die direkte Konfrontation, doch Verstecken wird später zur Last. Planen Sie heute, aber handeln Sie in dem Rahmen, den Sie offen vertreten können.",
+      "action": "Ordnen Sie ehrlich eine Sache, die Sie unausgesprochen oder ungeprüft gelassen haben.",
+      "watch": "Eine kleine List belastet am Ende das eigene Gewissen am meisten. Wenn Sie etwas verbergen, denken Sie noch einmal darüber nach."
+    },
+    "eight-of-swords": {
+      "headline": "Die Wand ist niedriger, als sie scheint, und die Fesseln sind locker.",
+      "message": "Die Acht der Schwerter steht für das Gefühl, in selbst geschaffener Angst gefangen zu sein. Auch wenn Sie keinen Ausweg sehen: Die Augenbinde und die lockeren Bänder können Sie selbst lösen. Stellen Sie heute den Gedanken „Ich kann das nicht“ einmal infrage.",
+      "action": "Wählen Sie etwas, von dem Sie glauben, es nicht zu können, und suchen Sie die kleinste Handlung, die Sie jetzt tun können.",
+      "watch": "Sehen Sie es nicht als Schwäche, um Hilfe zu bitten. Von außen ist der Ausgang vielleicht zu erkennen."
+    },
+    "nine-of-swords": {
+      "headline": "Die Sorgen der Nacht sehen am Morgen anders aus.",
+      "message": "Die Neun der Schwerter steht für ein Gemüt, das vor Angst und übermäßiger Sorge nicht schlafen kann. Es können Sorgen sein, die im Kopf größer geworden sind als in Wirklichkeit. Heute hilft eine konkrete Handlung, die Sorgen verringert.",
+      "action": "Schreiben Sie alle Sorgen auf und markieren Sie nur das, was Sie heute tun können.",
+      "watch": "Tragen Sie es nicht allein. Schon das Aussprechen verringert das Gewicht."
+    },
+    "ten-of-swords": {
+      "headline": "Nach der dunkelsten Stunde kommt die Morgenröte.",
+      "message": "Die Zehn der Schwerter steht für das Ende und den tiefsten Punkt einer Lage, zeigt aber zugleich das Morgenrot am Horizont. Auch wenn jetzt alles zu Ende scheint, bleibt Raum, einen neuen Anfang vorzubereiten. Heute ist ein guter Tag, Beendetes loszulassen.",
+      "action": "Schreiben Sie auf, was Sie aus dem gelernt haben, wovon Sie eingesehen haben, dass es vorbei ist.",
+      "watch": "Statt zu versuchen, Beendetes rückgängig zu machen, denken Sie darüber nach, was Sie künftig brauchen."
+    },
+    "page-of-swords": {
+      "headline": "Neugier ist heute Ihr Wegweiser.",
+      "message": "Diese Karte steht für Forschergeist, der neue Informationen sucht und scharf beobachtet. Wenn Sie fragen und nachforschen, was Sie interessiert, finden Sie heute überraschende Hinweise. Eine Haltung ehrlichen Fragens hilft.",
+      "action": "Wählen Sie ein Thema, das Sie schon lange interessiert, recherchieren Sie zwanzig Minuten und fassen Sie die Kernpunkte zusammen.",
+      "watch": "Verbreiten Sie Erfahrenes nicht vorschnell und behaupten Sie nichts. Prüfen Sie erst, dann sprechen Sie."
+    },
+    "knight-of-swords": {
+      "headline": "Eine schnelle Entscheidung braucht eine zusätzliche Kontrolle.",
+      "message": "Der Ritter der Schwerter steht für schnelles Handeln und geistigen Ehrgeiz. Heute kann leicht der Schwung entstehen, etwas Zögerliches in einem Zug durchzusetzen. Doch je mehr Tempo Sie aufnehmen, desto eher müssen Sie zuerst die Richtung prüfen.",
+      "action": "Denken Sie vor dem Handeln einmal daran, „wer davon betroffen ist“, und legen Sie dann los.",
+      "watch": "Lassen Sie Ihre Worte nicht vorauseilen, sodass Sie den anderen verlieren. Prüfen Sie, ob Ihnen in der Eile Details entgangen sind."
+    },
+    "queen-of-swords": {
+      "headline": "Aufrichtigkeit ist heute Ihr größtes Vertrauenskapital.",
+      "message": "Die Königin der Schwerter steht für klares Urteil ohne emotionale Schwankungen und für Unabhängigkeit. Heute sprechen Sie deutlich aus den Maßstäben, die Sie aus Erfahrung gewonnen haben, und wahren Ihre Grenzen. Wer Nötiges nicht umschreibt, macht Beziehungen oft leichter.",
+      "action": "Ordnen Sie ein aufgeschobenes unangenehmes Gespräch und sagen Sie es in ruhigen, konkreten Sätzen.",
+      "watch": "Achten Sie darauf, dass Ihre Nüchternheit nicht kalt wirkt. Ein Wort der Rücksicht nimmt Gesagtem das Gewicht."
+    },
+    "king-of-swords": {
+      "headline": "Ein fairer Maßstab hält den Tag im Gleichgewicht.",
+      "message": "Der König der Schwerter steht für Logik, geistige Autorität und gerechtes Urteil. Wenn Sie Gefühl und Tatsache trennen und nach Prinzipien ordnen, wird das Ergebnis heute klar. Besonders vor wichtigen Verträgen oder Entscheidungen hilft das.",
+      "action": "Legen Sie bei einer Sache, die Sie beurteilen müssen, drei Kriterien fest und bewerten Sie nur danach.",
+      "watch": "Drängen Sie andere nicht mit der richtigen Antwort. Auch die Umstände eines Menschen gehören zu den Tatsachen."
+    },
+    "ace-of-wands": {
+      "headline": "Ein einziger Funke setzt etwas Neues in Gang.",
+      "message": "Das Ass der Stäbe steht für neue Anfänge, kreative Eingebung und den Funken der Leidenschaft. Wenn Ihnen plötzlich etwas einfällt, was Sie tun möchten, lassen Sie diese Energie nicht verstreichen. Heute ist ein guter Tag, eine Idee in die Tat umzusetzen.",
+      "action": "Notieren Sie die Idee, die Ihnen gekommen ist, und tun Sie heute noch den ersten Schritt.",
+      "watch": "Auch wenn der Funke groß ist, fangen Sie nicht vieles auf einmal an. Nur wer sich auf eines konzentriert, hält durch."
+    },
+    "two-of-wands": {
+      "headline": "Malen Sie sich von Ihrem Standort aus die nächste Bühne aus.",
+      "message": "Die Zwei der Stäbe steht für die Zeit, auf dem Erreichten aufzubauen und einen größeren Plan zu schmieden. Es ist ein Tag, an dem Sie zufrieden sind und zugleich neugierig auf eine weitere Welt werden. Ein konkretes Bild vor Augen macht die Richtung klar.",
+      "action": "Schreiben Sie in drei Zeilen auf, wer Sie in einem Jahr sein möchten, und legen Sie den ersten Schritt fest.",
+      "watch": "Damit Sie nicht nur planen, legen Sie eine Sache fest, die Sie heute umsetzen."
+    },
+    "three-of-wands": {
+      "headline": "Vertrauen Sie darauf, dass die gesandte Mühe zurückkehrt.",
+      "message": "Die Drei der Stäbe steht für die Zeit der Ausweitung, in der man das Ergebnis des weit hinausgesandten Werks erwartungsvoll beobachtet. Was Sie begonnen haben, kann langsam Früchte tragen. Statt ungeduldig zu sein, bereiten Sie lieber die nächste Ausweitung vor.",
+      "action": "Prüfen Sie den Stand einer laufenden Sache und treffen Sie eine Vorbereitung für den nächsten Schritt.",
+      "watch": "Seien Sie nicht beunruhigt, weil das Ergebnis auf sich warten lässt. Wenn etwas zu klären ist, melden Sie sich zuerst."
+    },
+    "four-of-wands": {
+      "headline": "Verpassen Sie den Moment des gemeinsamen Freuens nicht.",
+      "message": "Die Vier der Stäbe steht für das Erfolgsgefühl nach einem wichtigen Schritt und die Freude einer stabilen Gemeinschaft. Heute ist ein guter Tag, Gutes mit Nahestehenden zu teilen. Das Erreichte anzuerkennen und zu genießen wird zur Energie für den nächsten Schritt.",
+      "action": "Feiern Sie einen kleinen Erfolg der letzten Zeit gemeinsam mit einem nahestehenden Menschen.",
+      "watch": "Ruhen Sie sich nicht so auf der Sicherheit aus, dass Sie die nächste Vorbereitung vergessen. Planen Sie nach dem Genießen einen weiteren Schritt."
+    },
+    "five-of-wands": {
+      "headline": "Auch wenn Meinungen aufeinanderprallen, kann es ein Weg zu einer größeren Bühne sein.",
+      "message": "Die Fünf der Stäbe steht für Wettstreit und chaotische Energie, in der sich viele Meinungen verflechten. Es kann weniger ein echter Streit sein als eine Übung, Gedanken aneinander zu messen. Äußern Sie sich, aber stimmen Sie sich so ab, dass das Ganze nicht zerbricht.",
+      "action": "Fassen Sie in einem Treffen oder Gespräch zuerst den Kern der Meinung des anderen in einem Satz zusammen.",
+      "watch": "Lassen Sie den Wunsch zu gewinnen nicht in einen Streit der Gefühle übergehen. Verschwenden Sie keine Energie an Kleinigkeiten."
+    },
+    "six-of-wands": {
+      "headline": "Nehmen Sie den Moment, in dem Ihre Mühe anerkannt wird, selbstbewusst an.",
+      "message": "Die Sechs der Stäbe steht für die Früchte der Mühe und die Anerkennung Ihres Umfelds. Heute können Ergebnisse sichtbar werden, oder Sie bekommen Lob. Bleiben Sie bescheiden, machen Sie sich aber nicht klein, und nehmen Sie die Freude an.",
+      "action": "Ordnen Sie, was Sie zuletzt geschafft haben, und teilen Sie es bei Bedarf mit Ihrem Umfeld.",
+      "watch": "Machen Sie sich nicht zu abhängig von Anerkennung. Auch ohne Applaus verschwindet nicht, was Sie geschafft haben."
+    },
+    "seven-of-wands": {
+      "headline": "Wenn Sie etwas bewahren möchten, weichen Sie nicht zurück.",
+      "message": "Die Sieben der Stäbe steht für das Bild, auf erhöhter Position Herausforderungen und Druck aus mehreren Richtungen zu begegnen. Heute kann eine Lage entstehen, in der Sie Ihre Position klar behaupten müssen. Statt alles abwehren zu wollen, konzentrieren Sie sich auf das Wichtigste.",
+      "action": "Legen Sie einen zentralen Grundsatz fest, den Sie wahren müssen, und äußern Sie sich nur dazu entschieden.",
+      "watch": "Wer jede Kritik als Angriff auffasst, wird müde. Hören Sie nützlichen Rat gezielt heraus."
+    },
+    "eight-of-wands": {
+      "headline": "Was blockiert war, kommt schnell in Bewegung.",
+      "message": "Die Acht der Stäbe steht für einen Verlauf, in dem Verzögerungen enden und die Dinge schnell vorankommen. Heute können Nachrichten eintreffen, und Kontakt, Bewegung und Fortschritt nehmen Fahrt auf. Wichtig ist, den richtigen Zeitpunkt nicht zu verpassen, wenn der Fluss kommt.",
+      "action": "Ordnen Sie aufgeschobene Nachrichten oder Antworten und senden Sie sie noch heute ab.",
+      "watch": "Mit dem Tempo können auch Fehler zunehmen. Prüfen Sie vor dem Absenden noch einmal."
+    },
+    "nine-of-wands": {
+      "headline": "Auch erschöpft haben Sie noch Kraft für die letzte Hürde.",
+      "message": "Die Neun der Stäbe steht für Ausdauer, die nach vielen Schwierigkeiten nicht aufgibt. Auch wenn Körper und Geist müde sind, ist das ein Beweis, dass Sie schon viel geschafft haben. Heute geht es darum, Wachsamkeit und Erholung zugleich zu pflegen.",
+      "action": "Erkennen Sie an, was gerade am meisten ermüdet, und planen Sie heute so, dass Sie Energie sparen.",
+      "watch": "Misstrauen Sie nicht allen Menschen wegen alter Verletzungen. Bei Vertrauenswürdigen dürfen Sie um Hilfe bitten."
+    },
+    "ten-of-wands": {
+      "headline": "Suchen Sie einen Weg, die allein getragene Last zu teilen.",
+      "message": "Die Zehn der Stäbe steht für Überlastung durch zu viel Verantwortung, die man allein trägt. Das Ziel scheint nah, doch Körper und Geist können erschöpft sein. Heute geht es darum zu schauen, was Sie ablegen oder teilen können.",
+      "action": "Wählen Sie auf Ihrer Aufgabenliste etwas aus, das Sie anderen übergeben oder aufschieben können, und ordnen Sie es.",
+      "watch": "Der Gedanke, alles sei Ihre Sache, vergrößert die Last. Um Hilfe zu bitten ist auch Verantwortungsbewusstsein."
+    },
+    "page-of-wands": {
+      "headline": "Neugier entzündet das Feuer für Neues.",
+      "message": "Diese Karte steht für die junge Energie, mit Leidenschaft und Neugier Neues zu erkunden. Es fehlt Erfahrung, aber der Tag ist voller Vorfreude und Ideen. Wer etwas Kleines ausprobiert, findet unerwartet Freude und Hinweise.",
+      "action": "Probieren Sie etwas Neues, das Sie schon lange wollten, aber aufgeschoben haben, nur fünfzehn Minuten lang aus.",
+      "watch": "Das Interesse kann schnell abkühlen. Setzen Sie sich daher nicht das Ziel, bis zum Ende zu gehen, sondern es einmal zu versuchen."
+    },
+    "knight-of-wands": {
+      "headline": "Eine kühne Tat verändert die Stimmung.",
+      "message": "Der Ritter der Stäbe steht für Abenteuerlust, feurige Leidenschaft und rasche Tatkraft. Heute haben Sie mehr Energie als sonst, sodass mutiges Handeln zu einem guten Ergebnis führen kann. Legen Sie nur eine Richtung fest, damit Leidenschaft nicht zu Impulsivität wird.",
+      "action": "Konzentrieren Sie sich eine Stunde lang auf das, was Sie am meisten begeistert.",
+      "watch": "Fangen Sie nicht nur an und verpassen Sie den Abschluss. Versprechen Sie nur, was Sie halten können."
+    },
+    "queen-of-wands": {
+      "headline": "Selbstbewusstsein lässt auch Ihr Umfeld strahlen.",
+      "message": "Die Königin der Stäbe steht für Selbstvertrauen, warme Ausstrahlung und lebendige Unabhängigkeit. Je mehr Sie heute Ihr wahres Wesen zeigen, desto besser entwickelt sich der Tag. Ihr Selbstvertrauen macht auch den Menschen um Sie herum Mut.",
+      "action": "Sagen Sie heute direkt und ohne Zögern, was Sie sagen oder vorschlagen möchten.",
+      "watch": "Damit Ihr Auftreten nicht überwältigend wirkt, achten Sie auch auf die Reaktion der anderen."
+    },
+    "king-of-wands": {
+      "headline": "Sprechen Sie Ihre Vision aus und führen Sie die mit, die den Weg mitgehen.",
+      "message": "Der König der Stäbe steht für Führung mit durch Erfahrung geschliffener Ausstrahlung und einer Vision. Heute ist ein guter Tag, das große Ganze zu zeigen und Menschen zu bewegen. Ein konkreter Plan, der Leidenschaft in Wirklichkeit verwandelt, entfaltet Kraft.",
+      "action": "Formulieren Sie das Ziel Ihrer jetzigen Arbeit in einem Satz und teilen Sie es mit den Beteiligten.",
+      "watch": "Laufen Sie nicht allein voraus. Prüfen Sie das Tempo der Mitgehenden."
+    },
+    "ace-of-cups": {
+      "headline": "Verpassen Sie den Moment nicht, in dem sich das Herz öffnet.",
+      "message": "Das Ass der Kelche steht für den Beginn neuer Gefühle, für Liebe und sprudelnde Inspiration. Heute können Sie etwas oder jemandem begegnen, das Ihr Herz erwärmt. Unterdrücken Sie Ihre Gefühle nicht, sondern lassen Sie sie so zu, wie sie sind.",
+      "action": "Schreiben Sie in einer Zeile ein Gefühl oder eine Dankbarkeit auf, die Sie gerade berührt.",
+      "watch": "Ziehen Sie nicht voreilig Schlüsse, nur weil die Gefühle überwältigend sind. Lassen Sie Fühlen und Entscheiden langsam ineinander übergehen."
+    },
+    "two-of-cups": {
+      "headline": "Wenn Herzen sich austauschen, vertieft sich die Beziehung.",
+      "message": "Die Zwei der Kelche steht für gegenseitige Liebe und harmonische Partnerschaft. Heute ist ein guter Tag, in Beziehungen einander zu verstehen und Ausgleich zu finden. Nicht nur in der Liebe, auch das Vertrauen zu Kollegen und Freunden kann sich festigen.",
+      "action": "Sagen Sie einem nahestehenden Menschen mit einem konkreten Satz, dass Sie dankbar sind.",
+      "watch": "Lassen Sie keine Beziehung entstehen, in der sich nur eine Seite anpasst. Äußern Sie auch Ihr eigenes Herz."
+    },
+    "three-of-cups": {
+      "headline": "Gemeinsame Zeit ist heute Ihre Energie.",
+      "message": "Die Drei der Kelche steht für Freundschaft, Gemeinschaft und die Freude des Zusammenseins. Mit lieben Menschen zu lachen und zu reden macht das Herz leicht. Auch Aufgaben, die Zusammenarbeit brauchen, gelingen in einer Atmosphäre gegenseitiger Hilfe reibungslos.",
+      "action": "Schicken Sie einem Freund oder Kollegen, bei dem Sie sich lange nicht gemeldet haben, einen kurzen Gruß.",
+      "watch": "Schieben Sie vor lauter Vergnügen Aufgaben oder Verantwortung nicht auf. Auch Geselligkeit braucht Ausgleich."
+    },
+    "four-of-cups": {
+      "headline": "Prüfen Sie, ob eine Chance vor Ihren Augen nicht schon vorbeigezogen ist.",
+      "message": "Die Vier der Kelche steht für Überdruss und Gleichgültigkeit, in der man die Möglichkeiten ringsum nicht sieht. Wenn das, was Sie haben, matt erscheint, kann sich ein neues Angebot leise nähern. Öffnen Sie heute Ihr Herz ein wenig und sehen Sie sich noch einmal um.",
+      "action": "Prüfen Sie noch einmal, ob unter den jüngsten Angeboten oder Nachrichten etwas ist, das Sie unbedacht übergangen haben.",
+      "watch": "Unterscheiden Sie, woher Ihre jetzige Unzufriedenheit kommt. Vielleicht ist nicht alles schlecht."
+    },
+    "five-of-cups": {
+      "headline": "Neben dem Verlorenen bleibt noch etwas.",
+      "message": "Die Fünf der Kelche steht für den Zustand, sich auf Verlust und Reue zu fixieren und das Übriggebliebene nicht zu sehen. Traurigkeit ist natürlich, aber wenn Sie den Blick ein wenig wenden, stehen noch zwei Kelche aufrecht. Erkennen Sie heute das Bedauern an und sehen Sie auch auf das, was bleibt.",
+      "action": "Schreiben Sie ein Verlorenes und ein Gebliebenes nebeneinander auf.",
+      "watch": "Wer lange in Reue verweilt, sieht nicht mehr nach vorn. Erkennen Sie die Trauer ausreichend an, aber wenden Sie den Blick nach und nach auch dem Alltag zu."
+    },
+    "six-of-cups": {
+      "headline": "Warme Erinnerungen werden heute zu Ihrer Kraft.",
+      "message": "Die Sechs der Kelche steht für Nostalgie, reine Freude und die Wärme der Erinnerung. Ein alter Freund, ein Ort oder eine Erinnerung kann Ihr Herz heute trösten. Bringen Sie diese Wärme in Ihre jetzigen Beziehungen und Ihren Alltag.",
+      "action": "Suchen Sie ein Foto oder ein Lied, das an eine schöne Erinnerung denken lässt.",
+      "watch": "Bleiben Sie nicht im Gedanken stecken, früher sei es besser gewesen, und verpassen Sie nicht die Gegenwart."
+    },
+    "seven-of-cups": {
+      "headline": "Je mehr Möglichkeiten, desto mehr braucht es einen Maßstab.",
+      "message": "Die Sieben der Kelche steht für den Zustand, in dem sich vor vielen Möglichkeiten Illusion und Wirklichkeit vermischen. Vieles zieht Sie an, aber Sie müssen unterscheiden, was sich wirklich erreichen lässt. Verringern Sie heute die Illusionen und prüfen Sie die Realisierbarkeit.",
+      "action": "Schreiben Sie die Möglichkeiten auf, die Ihnen einfallen, und markieren Sie bei jeder, ob es eine „tatsächliche Handlung für heute“ gibt.",
+      "watch": "Wer alle Möglichkeiten festhalten will, erreicht kaum eine. Setzen Sie Prioritäten."
+    },
+    "eight-of-cups": {
+      "headline": "Gehen ist kein Aufgeben, sondern der Weg zu einem tieferen Ort.",
+      "message": "Die Acht der Kelche steht für die Entscheidung, aufzubrechen und nach neuem Sinn zu suchen, wenn das Herz trotz äußerer Fülle leer bleibt. Heute ist ein Tag, um zu überdenken, ob der jetzige Platz zu Ihnen passt. Wenn Sie wissen, was fehlt, zeigt sich auch die Richtung.",
+      "action": "Schreiben Sie eine Sache auf, die in Ihrer jetzigen Arbeit oder Beziehung „nicht erfüllt wird“.",
+      "watch": "Gehen Sie nicht impulsiv, wenn Ihre Gefühle hochkochen. Handeln Sie, nachdem Sie Ihr Herz gut geordnet haben."
+    },
+    "nine-of-cups": {
+      "headline": "Ein Tag, an dem ein erfüllter Wunsch Zufriedenheit schenken kann.",
+      "message": "Die Neun der Kelche gilt als Wunschkarte und steht für die Zufriedenheit erfüllter Wünsche und emotionalen Reichtum. Heute ist ein guter Tag, das Vorhandene voll zu genießen und Freude zu empfinden. Wenn Sie das Erreichte anerkennen, wird auch der nächste Wunsch klar.",
+      "action": "Sagen Sie sich selbst ein Wort des Dankes für etwas, das sich kürzlich erfüllt hat.",
+      "watch": "Bleiben Sie nicht in der Zufriedenheit stehen und verpassen Sie das nächste Ziel nicht. Genießen und Stillstehen sind nicht dasselbe."
+    },
+    "ten-of-cups": {
+      "headline": "Der Frieden mit den Menschen, die Sie lieben, ist heute Ihr Schatz.",
+      "message": "Die Zehn der Kelche steht für emotionale Erfüllung mit Familie und geliebten Menschen. Heute ist ein guter Tag, zu spüren, dass der Alltag mit den Menschen an Ihrer Seite das größte Glück ist. Auch wenn nicht alles perfekt ist, gibt es genug warme Augenblicke.",
+      "action": "Setzen Sie sich heute wenigstens zehn Minuten mit einem nahestehenden Menschen zusammen und reden Sie.",
+      "watch": "Messen Sie die Gegenwart nicht an einem Idealbild. Sehen Sie die Wärme, wie sie ist."
+    },
+    "page-of-cups": {
+      "headline": "Hören Sie auf die kleine Botschaft, die in Ihrem Herzen auftaucht.",
+      "message": "Diese Karte steht für junge Energie voller Sensibilität und Kreativität und für intuitive Botschaften. Von unerwarteter Seite kann eine Nachricht oder Idee kommen, die Ihr Herz berührt. Wer Gefühle leicht ausdrückt, dem öffnet sich ein Weg.",
+      "action": "Notieren Sie Ideen oder traumartige Bilder, die Ihnen plötzlich einfallen.",
+      "watch": "Die Gefühle können leicht schwanken. Geben Sie deshalb allein aus Stimmung keine großen Versprechen."
+    },
+    "knight-of-cups": {
+      "headline": "Ein aufrichtiges Angebot bewegt Herzen.",
+      "message": "Der Ritter der Kelche steht für Romantik, gefühlvolle Einladung und künstlerischen Ausdruck. Heute kann gute Nachricht kommen, oder es ist eine günstige Zeit, seine Gefühle mitzuteilen. Eine sanfte Haltung, die langsam auf das Ideal zugeht, hilft.",
+      "action": "Schreiben Sie die aufrichtige Empfindung, die Sie mitteilen wollten, einmal als Brief oder Nachricht auf.",
+      "watch": "Lassen Sie sich von der Stimmung nicht berauschen und versäumen Sie keine nüchterne Prüfung. Bringen Sie Worte und Taten in Einklang."
+    },
+    "queen-of-cups": {
+      "headline": "Tiefes Mitgefühl ist heute Ihre Stärke.",
+      "message": "Die Königin der Kelche steht für emotionale Reife, tiefes Mitgefühl und intuitive Weisheit. Heute können Sie die Gefühle anderer gut erfassen und zugleich für Ihr eigenes Herz sorgen. Anderen zuzuhören kann selbst heilsam sein.",
+      "action": "Hören Sie jemandem, der es schwer zu haben scheint, aufmerksam zu, statt Lösungen anzubieten.",
+      "watch": "Nehmen Sie die Gefühle anderer nicht auf sich. Nur wenn Sie auch die Grenzen Ihres Herzens wahren, können Sie lange mitfühlend sein."
+    },
+    "king-of-cups": {
+      "headline": "Halten Sie Ihre Mitte auch auf den Wellen der Gefühle.",
+      "message": "Der König der Kelche steht für reife Ausgewogenheit, die Gefühle beherrscht, ohne die Wärme zu verlieren. Heute ist ein guter Tag, auch in aufgeregten oder wackeligen Situationen ruhig bei sich zu bleiben. Unterdrücken Sie die Gefühle nicht, sondern gehen Sie gemeinsam mit der Vernunft damit um.",
+      "action": "Wenn Gefühle aufsteigen, halten Sie kurz inne, atmen Sie durch, bevor Sie reagieren, und sprechen Sie dann.",
+      "watch": "Gefühle zu verbergen und sie zu beherrschen sind zweierlei. Drücken Sie die nötigen Gefühle aus."
+    },
+    "ace-of-pentacles": {
+      "headline": "Es ist Zeit, die Chance in Ihrer Hand zur Wirklichkeit wachsen zu lassen.",
+      "message": "Das Ass der Münzen steht für eine neue Chance, die zu konkreten Ergebnissen führt, und für den Beginn von Stabilität. Heute kann Ihnen in Finanzen, Arbeit oder Gesundheit ein praktischer Same gegeben werden. Machen Sie einen realistischen Plan, sei er auch klein.",
+      "action": "Wählen Sie eine Chance, die Sie jetzt wachsen lassen möchten, und schreiben Sie die nötigen Mittel und den ersten Schritt auf.",
+      "watch": "Geben Sie vor lauter Aufregung über eine Chance nicht ungeprüft viel Geld oder Zeit aus."
+    },
+    "two-of-pentacles": {
+      "headline": "Wer flexibel das Gleichgewicht hält, darf ruhig wackeln.",
+      "message": "Die Zwei der Münzen steht für die Anpassungsfähigkeit, zwischen mehreren Aufgaben und Verpflichtungen das Gleichgewicht zu halten. Auch wenn sich heute Aufgaben überlagern, kommen Sie mit dem richtigen Rhythmus ohne Mühe durch. Setzen Sie Prioritäten und passen Sie flexibel an.",
+      "action": "Bestimmen Sie von den heutigen Aufgaben eine, die warten darf, und machen Sie den Tag leichter.",
+      "watch": "Versuchen Sie nicht, alles gleichzeitig zu jonglieren. Wenn Zeichen für ein Kippen des Gleichgewichts auftauchen, reduzieren Sie."
+    },
+    "three-of-pentacles": {
+      "headline": "Wenn sich das Können aller vereint, entsteht ein gutes Ergebnis.",
+      "message": "Die Drei der Münzen steht für Können, Zusammenarbeit und den gemeinsamen Handwerksgeist. Heute wird das Ergebnis besser, wenn Sie Rollen mit fachkundigen Menschen teilen, statt allein zu arbeiten. Anerkennung und Rückmeldung werden zum Nährboden des Wachstums.",
+      "action": "Bitten Sie in Ihrer Arbeit für den Teil, in dem Sie Hilfe brauchen, einen Menschen klar um Unterstützung.",
+      "watch": "Beharren Sie nicht nur auf Ihrer Art. Beziehen Sie auch die Meinung anderer ein."
+    },
+    "four-of-pentacles": {
+      "headline": "Öffnen Sie die fest geschlossene Hand ein wenig, und es entsteht Fluss.",
+      "message": "Die Vier der Münzen steht für den Zustand, in dem der Wunsch nach Sicherheit zur Anhaftung wird. Heute ist ein Tag, zu prüfen, ob die Angst, das Vorhandene zu verlieren, Veränderung blockiert. Verwaltung ist wichtig, aber zu viel davon hält das Wachstum an.",
+      "action": "Wählen Sie etwas aus, woran Sie festhalten und das Sie ruhig loslassen dürfen, und ordnen Sie es.",
+      "watch": "Sparsam sein und knauserig sein sind zweierlei. Geben Sie dort, wo es nötig ist, angemessen aus."
+    },
+    "five-of-pentacles": {
+      "headline": "Hilfe ist näher, als Sie denken.",
+      "message": "Die Fünf der Münzen steht für Mangel, Not und Einsamkeit, doch im Bild gibt es ein erleuchtetes Fenster. Ein schweres Herz kann den Blick verstellen, sodass Sie nahe Hilfe übersehen. Heute geht es darum, als Erster die Hand auszustrecken.",
+      "action": "Erzählen Sie einem Menschen, dem Sie vertrauen, ehrlich von Ihrer jetzigen Lage.",
+      "watch": "Der Gedanke, alles allein tragen zu müssen, macht die Lage schwerer. Um Hilfe zu bitten ist keine Schwäche."
+    },
+    "six-of-pentacles": {
+      "headline": "Der Ausgleich von Geben und Nehmen ist heute der Schlüssel.",
+      "message": "Die Sechs der Münzen steht für Großzügigkeit und gerechtes Teilen. Heute ergibt sich ganz natürlich ein Fluss, in dem Sie teilen, was Sie geben können, oder annehmen, was Sie brauchen. Ob Sie geben oder empfangen: Das Gleichgewicht des Herzens ist wichtig.",
+      "action": "Geben Sie einem Menschen etwas von dem, was Sie teilen können, sei es Zeit, Wissen oder Zuwendung.",
+      "watch": "Lassen Sie Ihr Geben nicht an Bedingungen knüpfen. Nehmen Sie auch dankbar an."
+    },
+    "seven-of-pentacles": {
+      "headline": "Prüfen Sie im Warten Ihre bisherige Mühe.",
+      "message": "Die Sieben der Münzen steht für eine geduldige Zeit, in der man nach langer Mühe das Ergebnis bewertet. Auch wenn Ergebnisse nicht gleich sichtbar sind, wächst, was Sie beständig gepflegt haben. Heute ist ein guter Tag zu prüfen, ob die bisherige Richtung stimmt.",
+      "action": "Ordnen Sie die Spuren Ihrer bisherigen Mühe und legen Sie einen Punkt fest, den Sie künftig anpassen.",
+      "watch": "Geben Sie nicht leicht auf, weil das Ergebnis auf sich warten lässt. Doch wenn die Richtung falsch war, ist eine Korrektur nötig."
+    },
+    "eight-of-pentacles": {
+      "headline": "Stetige Wiederholung baut Können auf.",
+      "message": "Die Acht der Münzen steht für beständiges Üben und die Konzentration des Handwerkers, der sein Können schleift. Heute hat gewissenhaftes Aufbauen auch ohne Aufsehen großen Wert. Versuchen Sie, sich tief in eine Sache zu versenken.",
+      "action": "Planen Sie dreißig Minuten für eine Fähigkeit ein, die Sie lernen möchten, und konzentrieren Sie sich ungestört.",
+      "watch": "Schieben Sie den Anfang nicht aus Perfektionismus auf. Wiederholung steigert die Qualität."
+    },
+    "nine-of-pentacles": {
+      "headline": "Den selbst erarbeiteten Wohlstand dürfen Sie voll genießen.",
+      "message": "Die Neun der Münzen steht für Unabhängigkeit und materielle Sicherheit, die durch Mühe entstanden sind. Heute ist auch die Zeit allein angenehm und entspannt. Erkennen Sie stolz an, was Sie geschaffen haben.",
+      "action": "Schenken Sie sich eine kleine Belohnung oder freie Zeit.",
+      "watch": "Lassen Sie das Gefühl, auch allein gut zurechtzukommen, nicht zum Grund werden, Beziehungen zu verschließen."
+    },
+    "ten-of-pentacles": {
+      "headline": "Betrachten Sie das Fundament dauerhafter Sicherheit.",
+      "message": "Die Zehn der Münzen steht für Familie, Erbe sowie lang währenden Wohlstand und Stabilität. Heute ist ein guter Tag, langfristige Finanzen, Familie oder das Zuhause zu überprüfen. Wichtiger als das Naheliegende ist ein Fundament, das hält.",
+      "action": "Besprechen Sie mit der Familie oder einem Menschen, mit dem Sie lange zusammen sein werden, einen langfristigen Plan.",
+      "watch": "Konzentrieren Sie sich nicht so auf die Sicherung der Stabilität, dass Sie die Freude des Augenblicks verpassen."
+    },
+    "page-of-pentacles": {
+      "headline": "Kleines Lernen wird ein solider Anfang.",
+      "message": "Diese Karte steht für die Haltung, neue Fähigkeiten zu erlernen und realistische Ziele Schritt für Schritt aufzubauen. Heute gelingt es gut, wenn Sie den Plan in konkrete Teile zerlegen und beginnen. Eine Haltung, ohne Eile zu lernen, wird zur Stärke.",
+      "action": "Suchen Sie für etwas, das Sie lernen möchten, ein Material oder einen Kurs und lesen Sie die erste Seite.",
+      "watch": "Sammeln Sie nicht nur Theorie, probieren Sie es selbst aus, wenn auch klein. Erfahrung vollendet das Lernen."
+    },
+    "knight-of-pentacles": {
+      "headline": "Beständigkeit ist das verlässlichste Tempo.",
+      "message": "Der Ritter der Münzen steht für Verlässlichkeit und Gewissenhaftigkeit, mit der man langsam, aber sicher ans Ziel kommt. Heute führt es zu besseren Ergebnissen, das Übernommene Schritt für Schritt abzuschließen, als ein auffälliger Wurf. Es ist ein Tag, an dem Verantwortungsbewusstsein anerkannt wird.",
+      "action": "Erledigen Sie die heutigen Aufgaben eine nach der anderen und haken Sie sie ab.",
+      "watch": "Lassen Sie Vorsicht nicht zur Ablehnung von Veränderung werden. Probieren Sie, wenn nötig, eine andere Vorgehensweise."
+    },
+    "queen-of-pentacles": {
+      "headline": "Die Kraft, die Wirklichkeit warm zu pflegen, ist heute Ihre Weisheit.",
+      "message": "Die Königin der Münzen steht für praktische Weisheit, warme Fürsorge und die Fähigkeit, ein Umfeld des Wohlstands zu schaffen. Wenn Sie heute die Grundlagen des Alltags wie Zuhause, Arbeit und Gesundheit ordnen, wird auch das Herz ruhig. Eine sparsame und freundliche Haltung hilft.",
+      "action": "Räumen Sie in Ihrem Alltagsraum eine unbequeme Stelle auf oder kümmern Sie sich darum.",
+      "watch": "Lassen Sie nicht alles, was Sie versorgen, zu Ihrer Verantwortung werden. Auch Sie haben es verdient, umsorgt zu werden."
+    },
+    "king-of-pentacles": {
+      "headline": "Was Sie mit langem Atem aufgebaut haben, wird zu Vertrauen.",
+      "message": "Der König der Münzen steht für stabile Führung, hervorragenden Sinn für das Praktische und materiellen Erfolg. Wenn Sie heute bei Finanzen, Geschäft oder Arbeit mit langfristiger Sicht entscheiden, folgen verlässliche Ergebnisse. Wichtig ist eine Haltung, die mit Gelassenheit verwaltet.",
+      "action": "Fassen Sie den Stand Ihrer Finanzen oder Arbeit in Zahlen und machen Sie einen Plan für die nächsten drei Monate.",
+      "watch": "Legen Sie den Wert nicht nur auf Leistung und Besitz. Sehen Sie auch den Wert von Menschen und Zeit."
+    }
+  }
+}

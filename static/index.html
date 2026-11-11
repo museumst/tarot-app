@@ -494,6 +494,11 @@
       margin-left: 2px;
     }
     @keyframes blink { 50% { opacity: 0; } }
+    /* 오늘의 타로: 저장된 해설(문단 사이는 <p> 여백, 복사·공유 때는 줄바꿈으로 나온다) */
+    .reading-output .daily-headline { margin: 0 0 22px; font-size: 1.2rem; line-height: 1.6; color: var(--gold); }
+    .reading-output .daily-section { margin: 0 0 18px; }
+    .reading-output .daily-section:last-child { margin-bottom: 0; }
+    .reading-output .daily-label { display: block; margin-bottom: 4px; font-size: .82rem; letter-spacing: .04em; color: var(--gold); opacity: .85; }
 
     .spinner {
       display: none;
@@ -2097,9 +2102,14 @@ document.getElementById('step2-back').addEventListener('click', () => {
   document.getElementById('step1').scrollIntoView({ behavior: 'smooth' });
 });
 
-document.getElementById('step2-next').addEventListener('click', () => {
+document.getElementById('step2-next').addEventListener('click', async () => {
+  if (readingInProgress) return;
+  // 오늘의 타로는 저장된 해설을 보여 주므로 크레딧·무료 횟수를 쓰지 않는다
+  // (해설이 준비되지 않은 언어면 기존 AI 리딩으로 대체하고, 그때는 크레딧을 확인한다).
+  const stored = readingMode === 'today' ? await loadDailyCards(currentLang) : null;
+  if (readingInProgress) return;
   // 크레딧 부족 체크
-  if (!canStartReading()) {
+  if (!stored && !canStartReading()) {
     window.track?.('no_credit_shown');
     document.getElementById('no-credit-box').classList.add('visible');
     return;
@@ -2107,9 +2117,45 @@ document.getElementById('step2-next').addEventListener('click', () => {
   document.getElementById('no-credit-box').classList.remove('visible');
   hide('step2');
   show('reading-section');
-  startReading();
+  startReading(stored);
   document.getElementById('reading-section').scrollIntoView({ behavior: 'smooth' });
 });
+
+// ── 오늘의 타로: 저장된 해설 (AI 호출 없음) ──
+const dailyCache = {};
+function loadDailyCards(lang) {
+  if (!dailyCache[lang]) {
+    dailyCache[lang] = fetch(`/api/daily-cards?lang=${encodeURIComponent(lang)}`)
+      .then(r => (r.ok ? r.json() : null))
+      .catch(() => null);
+  }
+  return dailyCache[lang];
+}
+
+function cardSlug(card) {
+  return card.name_en.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function renderStoredDaily(data, output) {
+  const entry = data.cards?.[cardSlug(drawnCards[0].card)];
+  if (!entry) return false;
+  output.innerHTML = '';
+  const headline = document.createElement('p');
+  headline.className = 'daily-headline';
+  headline.textContent = entry.headline;
+  output.appendChild(headline);
+  for (const key of ['message', 'action', 'watch']) {
+    const section = document.createElement('p');
+    section.className = 'daily-section';
+    const label = document.createElement('span');
+    label.className = 'daily-label';
+    label.textContent = data.labels[key];
+    section.appendChild(label);
+    section.appendChild(document.createTextNode(entry[key]));
+    output.appendChild(section);
+  }
+  return true;
+}
 
 // ── Step 3: AI 리딩 ──
 function renderReadingCards() {
@@ -2151,13 +2197,32 @@ function normalizeKoreanReading(text) {
   return normalizeKoreanCardCounts(normalizeKoreanPositionHeadings(text, drawnCards));
 }
 
-async function startReading() {
+async function startReading(storedDaily = null) {
   readingInProgress = true;
-  window.track?.('reading_start', { mode: readingMode, card_count: cardCount, language: currentLang });
+  window.track?.('reading_start', { mode: readingMode, card_count: cardCount, language: currentLang, stored: !!storedDaily });
   renderReadingCards();
   const output = document.getElementById('reading-output');
   const spinner = document.getElementById('loading-spinner');
   output.innerHTML = '';
+
+  // 오늘의 타로: 저장된 해설이 있으면 AI를 부르지 않고, 크레딧·무료 횟수도 차감하지 않는다.
+  if (storedDaily) {
+    activeChoices = null;
+    activeQuestion = readingQuestion();
+    if (renderStoredDaily(storedDaily, output)) {
+      window.track?.('reading_complete', { mode: readingMode, card_count: cardCount, language: currentLang, stored: true });
+      readingInProgress = false;
+      return;
+    }
+    // 해설을 찾지 못한 예외 상황: 기존 AI 리딩으로 이어가되 크레딧이 없으면 막는다
+    if (!canStartReading()) {
+      readingInProgress = false;
+      hide('reading-section');
+      show('step2');
+      document.getElementById('no-credit-box').classList.add('visible');
+      return;
+    }
+  }
   spinner.classList.add('active');
 
   activeChoices = readingMode === 'choice'

@@ -1,0 +1,482 @@
+{
+  "lang": "id",
+  "_meta": {
+    "title": "Ramalan Harian",
+    "labels": {
+      "headline": "Hari ini dalam satu kalimat",
+      "message": "Pesan hari ini",
+      "action": "Hal yang bisa dicoba hari ini",
+      "watch": "Hal yang perlu diperhatikan hari ini"
+    }
+  },
+  "cards": {
+    "the-fool": {
+      "headline": "Meski belum tahu jawabannya, Anda bisa melangkah pertama.",
+      "message": "The Fool melambangkan lembaran kosong, keadaan ketika belum ada yang diputuskan. Jika ada hal yang Anda tunda karena merasa belum siap sepenuhnya, hari ini cocok untuk memulai dengan hati ringan. Semua orang memulai dengan langkah yang canggung.",
+      "action": "Pilih satu langkah pertama yang sangat kecil untuk hal yang lama Anda ragukan, lalu lakukan sebelum hari berakhir.",
+      "watch": "Periksa apakah semangat membuat Anda lupa melihat pijakan di bawah kaki. Optimisme dan sembrono tidaklah sama."
+    },
+    "the-magician": {
+      "headline": "Perangkat yang Anda butuhkan sudah ada di tangan Anda.",
+      "message": "Di meja di depan The Magician terdapat tongkat, cawan, pedang, dan pentakel. Daripada mencari sesuatu yang baru, tentukan bagaimana memakai bakat, relasi, dan waktu yang sudah Anda miliki. Jika ada hal yang lama berputar di kepala, arus hari ini mendukung untuk mengubahnya menjadi tindakan pertama.",
+      "action": "Pilih satu tugas yang tertunda, tulis dalam satu kalimat apa yang akan Anda lakukan, lalu mulai hanya sepuluh menit.",
+      "watch": "Perhatikan apakah semangat membuat Anda lebih banyak bicara daripada bertindak. Kekuatan kartu ini ada pada tindakan nyata, bukan pamer."
+    },
+    "the-high-priestess": {
+      "headline": "Hari ini, mendengarkan mengajarkan lebih banyak daripada berbicara.",
+      "message": "The High Priestess melambangkan hal yang belum tampak: intuisi dan suara hati. Hari ini lebih baik mengamati keadaan dengan tenang daripada tergesa-gesa menyimpulkan. Di balik informasi yang terlihat, apa yang sudah diketahui hati bisa muncul.",
+      "action": "Sediakan waktu hening sejenak dan catat perasaan pertama yang muncul di hati sekarang.",
+      "watch": "Jangan menebak dan menilai semuanya sendirian. Intuisi menjadi lebih tepat jika disertai pengecekan."
+    },
+    "the-empress": {
+      "headline": "Merawat dan menumbuhkan membesarkan buah hari ini.",
+      "message": "The Empress melambangkan kelimpahan, daya cipta, dan perhatian yang hangat. Ketika Anda mencurahkan tenaga untuk merawat diri dan orang di sekitar, hati dan keseharian sama-sama menjadi kaya. Membuka indra dan menikmati hal-hal baik sepenuhnya juga bagian penting hari ini.",
+      "action": "Pilih satu hal yang menyenangkan indra, seperti makanan favorit, bunga, atau musik, lalu nikmati perlahan.",
+      "watch": "Jangan memberi terlalu banyak hingga diri sendiri kosong. Merawat diri juga bagian dari merawat."
+    },
+    "the-emperor": {
+      "headline": "Aturan dan keteraturan menjaga pusat Anda hari ini.",
+      "message": "The Emperor melambangkan struktur, tanggung jawab, dan kepemimpinan yang stabil. Menentukan prioritas dari hal-hal yang berserakan dan menegaskan batas akan membuat hati jauh lebih lega hari ini. Menilai berdasarkan prinsip, bukan terbawa emosi, membuat hasilnya kokoh.",
+      "action": "Urutkan tugas hari ini dan selesaikan yang terpenting lebih dulu.",
+      "watch": "Jangan biarkan prinsip menjadi keras kepala. Anda perlu ruang untuk mendengar keadaan orang lain sekali saja."
+    },
+    "the-hierophant": {
+      "headline": "Ada yang bisa dipelajari dari cara yang teruji dan nasihat yang baik.",
+      "message": "The Hierophant melambangkan tradisi, ajaran, dan kesepakatan bersama. Hari ini lebih aman mengikuti cara yang sudah teruji atau nasihat orang berpengalaman daripada mencari yang baru. Aturan dan prosedur bahkan bisa mempersingkat jalan.",
+      "action": "Mintalah satu nasihat dari orang yang Anda hormati atau sumber tepercaya, lalu terapkan apa adanya.",
+      "watch": "Periksa apakah Anda mengikuti suatu cara hanya karena orang lain melakukannya, dan apakah itu sesuai dengan nilai Anda."
+    },
+    "the-lovers": {
+      "headline": "Ke mana hati condong, di sanalah pilihan hari ini.",
+      "message": "The Lovers bukan hanya soal perasaan, tetapi pilihan yang sesuai dengan nilai-nilai Anda. Hari ini apa yang sungguh penting bagi Anda bisa tampak dalam hubungan atau keputusan. Jika Anda jujur memeriksa isi hati, memilih menjadi jauh lebih mudah.",
+      "action": "Untuk pilihan yang sedang dipikirkan, tulis sisi mana yang lebih dekat dengan \"nilai yang benar-benar ingin saya jaga\".",
+      "watch": "Jangan mengaburkan pilihan demi memenuhi harapan orang lain. Ketertarikan dan pilihan yang cocok bagi diri bisa berbeda."
+    },
+    "the-chariot": {
+      "headline": "Begitu arah ditetapkan, tenaga berkumpul di satu titik.",
+      "message": "The Chariot melambangkan tekad menyatukan kekuatan yang berbeda dan maju ke satu arah. Bahkan hal yang menarik Anda ke dua arah akan mendapat dorongan hari ini ketika tujuannya jelas. Dengan fokus, Anda bisa melangkah lebih jauh dari biasanya.",
+      "action": "Tentukan hanya satu tujuan hari ini dan geser jadwal lain ke belakangnya.",
+      "watch": "Jangan mabuk kecepatan hingga kehilangan pandangan akan sekitar. Mengatur laju sama pentingnya dengan maju."
+    },
+    "strength": {
+      "headline": "Kelembutan adalah kekuatan yang paling kokoh.",
+      "message": "Strength bukan kekuatan yang menekan, melainkan keberanian menenangkan rasa takut dan membimbingnya. Saat amarah atau cemas muncul, tak perlu menepisnya dengan kasar; membiarkannya tenang di samping Anda justru bisa membuka jalan. Hari ini kesabaran adalah senjata terbesar Anda.",
+      "action": "Saat jengkel atau cemas muncul, tarik napas dalam tiga kali, lalu beri nama pada perasaan itu.",
+      "watch": "Bertahan dan menekan itu berbeda. Lepaskan perasaan yang menumpuk di tempat yang aman."
+    },
+    "the-hermit": {
+      "headline": "Di tempat Anda berhenti, jalan terlihat.",
+      "message": "The Hermit melambangkan waktu menjauh dari kebisingan untuk menemukan cahaya sendiri. Hari ini Anda lebih butuh waktu berpikir sendiri daripada mencari jawaban di tengah orang banyak. Jika dirapikan dengan tenang, yang rumit menjadi sederhana.",
+      "action": "Jauhkan ponsel sekitar tiga puluh menit dan pikirkan apa yang benar-benar penting saat ini.",
+      "watch": "Jangan biarkan istirahat berubah menjadi mengisolasi diri. Berbicara dengan satu orang tepercaya dapat membantu."
+    },
+    "wheel-of-fortune": {
+      "headline": "Saat arus berubah selalu datang tanpa pemberitahuan.",
+      "message": "Wheel of Fortune melambangkan siklus yang terus berputar dan fase baru. Baik atau sulit keadaan sekarang, ia tidak menetap, dan itu sekaligus penghiburan dan peringatan hari ini. Saat perubahan datang, carilah cara menungganginya daripada melawan.",
+      "action": "Lihat setiap perubahan tak terduga hari ini dengan anggapan \"mungkin ini peluang\".",
+      "watch": "Jangan lengah di masa baik dan jangan patah semangat di masa buruk. Keduanya akan berlalu."
+    },
+    "justice": {
+      "headline": "Menilai berdasarkan fakta membuat hati lebih ringan.",
+      "message": "Justice melambangkan sebab dan akibat, keadilan, dan keseimbangan. Jika Anda sejenak menyisihkan emosi dan melihat apa adanya, yang harus dilakukan menjadi jelas. Hari ini juga baik untuk merapikan kontrak, janji, dan perhitungan.",
+      "action": "Periksa satu janji atau perhitungan yang tertunda dan rapikan dengan berpegang pada fakta.",
+      "watch": "Periksa apakah Anda menafsirkan semuanya hanya demi keuntungan sendiri. Keadilan berlaku juga bagi Anda."
+    },
+    "the-hanged-man": {
+      "headline": "Saat berhenti, tampak pemandangan yang lain.",
+      "message": "The Hanged Man melambangkan waktu berhenti dengan sengaja untuk memperoleh sudut pandang lain. Hal yang tak kunjung terselesaikan sekalipun didorong, hari ini lebih baik diletakkan sejenak lalu dilihat dengan cara berbeda. Penantian yang tampak merugi akan membawa pemahaman besar kemudian.",
+      "action": "Pikirkan masalah yang macet dari posisi yang sepenuhnya berlawanan, lalu catat yang terlintas.",
+      "watch": "Jangan biarkan menunggu menjadi menghindar. Menentukan sendiri sampai kapan beristirahat akan membantu."
+    },
+    "death": {
+      "headline": "Yang berakhir adalah pembenahan untuk membuka bab berikutnya.",
+      "message": "Death bukan berarti kematian sungguhan, melainkan penutupan satu masa. Seperti fajar yang tampak di cakrawala, jika ada sesuatu yang Anda tahu perlu dilepas tetapi masih Anda genggam, hari ini baik untuk menghadapi perasaan itu. Rasa berat itu wajar, dan hanya dengan melewatinya kita bisa melangkah ke tahap berikutnya.",
+      "action": "Rapikan satu kebiasaan, benda, atau komitmen yang tak lagi cocok dengan Anda. Tidak perlu besar.",
+      "watch": "Lihat apakah Anda memaksakan keadaan sekarang demi menghindari perubahan. Ini bukan berarti memutus semuanya dengan tergesa-gesa."
+    },
+    "temperance": {
+      "headline": "Keseimbangan tanpa tergesa adalah jalan tercepat.",
+      "message": "Temperance melambangkan keselarasan dan kesabaran mencampur hal-hal berbeda dalam takaran yang pas. Hari ini kuncinya adalah mencari titik tengah dan mengatur laju, bukan menuju ekstrem. Jika Anda menyeimbangkan kerja dan istirahat, kata dan diam, hati menjadi stabil.",
+      "action": "Masukkan waktu istirahat lebih dulu dalam jadwal hari ini, lalu susun tugas lain di sekitarnya.",
+      "watch": "Periksa apakah demi menjaga keselarasan Anda menelan kata yang seharusnya diucapkan."
+    },
+    "the-devil": {
+      "headline": "Yang mengikat Anda lebih longgar daripada yang dikira.",
+      "message": "The Devil melambangkan keadaan terseret oleh keterikatan, kebiasaan, dan keinginan, tetapi rantai dalam gambar itu menggantung longgar. Keyakinan bahwa tak bisa lepas mungkin justru rantai yang paling kuat. Hari ini baik untuk melihat dengan jujur apa yang menahan Anda.",
+      "action": "Ingat satu kebiasaan yang berulang, lalu tulis terpisah apa yang diberikan dan apa yang direnggutnya dari Anda.",
+      "watch": "Jangan memakai tenaga untuk menyalahkan diri. Menyadari saja sudah langkah pertama."
+    },
+    "the-tower": {
+      "headline": "Guncangan memang tak nyaman, tetapi menyingkap fondasi yang palsu.",
+      "message": "The Tower melambangkan perubahan mendadak dan hal tak terduga. Meski hari ini rencana berantakan atau Anda menghadapi kenyataan yang tak nyaman, itu bisa jadi proses terungkapnya bagian yang tidak kokoh. Setelah keterkejutan berlalu, apa yang sebenarnya dibutuhkan menjadi lebih jelas.",
+      "action": "Saat hal tak terduga terjadi, jangan langsung menilai; tarik napas, lalu cari \"satu hal yang bisa diubah sekarang\".",
+      "watch": "Jangan mengambil keputusan besar saat emosi paling memuncak. Jika dilihat lagi satu-dua hari kemudian, penilaian bisa berubah."
+    },
+    "the-star": {
+      "headline": "Harapan perlahan kembali ke hati yang lelah.",
+      "message": "The Star melambangkan pemulihan dan harapan yang datang setelah masa sulit. Meski belum semuanya terselesaikan, hari ini hati terasa sedikit demi sedikit lebih ringan. Tanpa terburu-buru, Anda bisa maju selangkah demi selangkah.",
+      "action": "Tulis tiga hal yang belakangan Anda lakukan dengan baik atau yang Anda syukuri.",
+      "watch": "Jangan hanya menunggu harapan; sambungkan dengan tindakan kecil. Pemulihan menguat saat Anda bergerak."
+    },
+    "the-moon": {
+      "headline": "Kecemasan yang samar mengecil ketika diperiksa.",
+      "message": "The Moon melambangkan ketidakpastian, ketakutan samar, dan bayang-bayang alam bawah sadar. Hari ini yang terlihat bukanlah segalanya, sehingga penilaian bisa goyah. Daripada memastikan hal yang belum pasti, lebih baik periksa fakta satu per satu.",
+      "action": "Bagi hal yang mengganjal menjadi \"fakta\" dan \"bayangan saya\", lalu tuliskan.",
+      "watch": "Kekhawatiran di malam hari cenderung tampak lebih besar daripada kenyataan. Tunda keputusan penting sampai pagi."
+    },
+    "the-sun": {
+      "headline": "Hari ini jangan sembunyikan diri, tampillah bersinar.",
+      "message": "The Sun melambangkan kegembiraan, pencapaian, dan kejernihan. Hari ini suasana hati cerah dan urusan mudah berjalan terang. Jika ada yang ingin dikatakan atau diperlihatkan, ungkapkan dengan jujur.",
+      "action": "Sampaikan kabar baik atau rasa terima kasih kepada satu orang secara langsung.",
+      "watch": "Meski semuanya lancar, jangan lewatkan detail yang perlu diperhatikan. Di hari yang cerah pun dasar-dasarnya tetap diperlukan."
+    },
+    "judgement": {
+      "headline": "Saatnya menjawab panggilan dari dalam hati.",
+      "message": "Judgement melambangkan panggilan batin untuk merapikan masa lalu dan naik ke tahap yang lebih tinggi. Daripada mengunyah ulang yang sudah berlalu, hari ini adalah saat mengakui apa yang sudah dipelajari dan melangkah. Jika tekad yang lama tertunda muncul kembali, itu mungkin pertanda.",
+      "action": "Pilih satu hal dari masa lalu untuk dimaafkan atau diselesaikan, lalu katakan padanya, \"sampai di sini\".",
+      "watch": "Jangan menghabiskan waktu menghakimi diri sendiri atau orang lain lagi. Fokuslah pada pilihan ke depan."
+    },
+    "the-world": {
+      "headline": "Akui diri Anda yang telah menuntaskan satu tahap.",
+      "message": "The World melambangkan satu proses yang selesai dan keadaan ketika segalanya menyatu selaras. Ini mungkin saat usaha Anda selama ini berbuah atau sampai pada akhirnya. Hanya dengan menikmati keutuhan itu sepenuhnya, awal berikutnya pun terasa ringan.",
+      "action": "Tinjau kembali sesuatu yang baru Anda selesaikan atau capai, lalu beri diri Anda pujian singkat.",
+      "watch": "Jangan langsung melompat ke tugas berikutnya hanya karena sesuatu sudah selesai. Waktu istirahat juga bagian dari kelengkapan."
+    },
+    "ace-of-swords": {
+      "headline": "Pikiran yang jernih memotong masalah yang buntu.",
+      "message": "Ace of Swords melambangkan kejernihan berpikir, kebenaran, dan terobosan. Hari ini inti dari situasi yang berbelit bisa terlihat sekaligus. Jika muncul ide baru atau tekad, segera rapikan.",
+      "action": "Tulis inti dari apa yang sedang Anda risaukan dalam satu kalimat.",
+      "watch": "Meski benar, jika disampaikan dengan tajam bisa melukai. Pilih juga cara menyampaikannya."
+    },
+    "two-of-swords": {
+      "headline": "Semakin lama menunda keputusan, hati semakin berat.",
+      "message": "Two of Swords melambangkan kebuntuan, menghindari pilihan dengan mata tertutup. Jika kedua pilihan sama-sama mengganjal dan Anda tak melangkah, yang kurang bisa jadi informasi atau bisa jadi keberanian. Hari ini adalah waktu untuk membedakan yang mana.",
+      "action": "Tulis tiga untung-rugi untuk tiap pilihan dan tetapkan sendiri tenggat waktunya.",
+      "watch": "Tidak memutuskan pun adalah sebuah keputusan. Jika terus menunda, kesempatan bisa berlalu."
+    },
+    "three-of-swords": {
+      "headline": "Mengakui rasa sakit adalah awal pemulihan.",
+      "message": "Three of Swords melambangkan kesedihan, luka, dan pedihnya perpisahan. Jika ada yang menyakiti hati, hari ini Anda tak perlu berpura-pura baik-baik saja. Hanya setelah melewati proses merasakan sakit dan menerimanya, hati mulai pulih.",
+      "action": "Tulis perasaan yang ada apa adanya, atau ceritakan kepada orang yang Anda percaya.",
+      "watch": "Jangan mengulang-ulang rasa sakit itu berkali-kali. Jika perasaannya terlalu berat, meminta bantuan profesional juga pilihan."
+    },
+    "four-of-swords": {
+      "headline": "Beristirahat juga tugas penting hari ini.",
+      "message": "Four of Swords melambangkan istirahat dan pemulihan setelah pertempuran. Ini hari ketika tubuh dan pikiran yang lelah butuh waktu untuk menata diri. Jika berhenti sejenak, langkah berikutnya akan jauh lebih ringan.",
+      "action": "Kurangi satu agenda hari ini, lalu tidur cukup atau beristirahat dengan tenang.",
+      "watch": "Jangan merasa bersalah saat beristirahat. Pemulihan juga persiapan untuk hasil."
+    },
+    "five-of-swords": {
+      "headline": "Lihat apa yang ingin dijaga, bukan hanya menang.",
+      "message": "Five of Swords melambangkan kekosongan yang tersisa meski menang dalam konflik. Hari ini berhati-hatilah agar tak kehilangan hubungan atau kepercayaan penting karena ingin menang berdebat. Ingat dulu hasil apa yang sebenarnya Anda inginkan.",
+      "action": "Saat pendapat bertabrakan, cari satu titik yang bisa Anda mengalah.",
+      "watch": "Periksa kembali apakah Anda berbicara dengan nada yang bermaksud menjatuhkan lawan."
+    },
+    "six-of-swords": {
+      "headline": "Pelan-pelan, tetapi Anda menuju tempat yang lebih baik.",
+      "message": "Six of Swords melambangkan masa transisi, keluar dengan tenang dari keadaan sulit. Belum semuanya pulih, tetapi arahnya jelas membaik. Bawalah yang benar-benar perlu, dan beban yang tak perlu boleh ditinggalkan.",
+      "action": "Tentukan hanya satu langkah berikutnya untuk keluar dari keadaan sekarang, lalu jalankan.",
+      "watch": "Perjalanan bisa terasa panjang. Jangan tergesa dan percayalah pada alurnya."
+    },
+    "seven-of-swords": {
+      "headline": "Makin cerdik pilihannya, makin kejujuran menjaga keseimbangan.",
+      "message": "Seven of Swords melambangkan penghindaran strategis dan bertindak diam-diam. Terkadang memutar lebih bijak daripada berhadapan langsung, tetapi cara yang menyembunyikan akan jadi beban kemudian. Hari ini susunlah rencana, tetapi bergeraklah dalam batas yang bisa Anda pertanggungjawabkan secara terbuka.",
+      "action": "Rapikan dengan jujur satu hal yang Anda biarkan tak terucap atau tak terperiksa.",
+      "watch": "Tipuan kecil akhirnya paling mengganggu hati sendiri. Jika ada yang Anda sembunyikan, pikirkan lagi."
+    },
+    "eight-of-swords": {
+      "headline": "Dindingnya lebih rendah dari yang dikira dan ikatannya longgar.",
+      "message": "Eight of Swords melambangkan perasaan terkurung oleh ketakutan buatan sendiri. Meski merasa tak ada jalan keluar, penutup mata dan tali yang longgar bisa Anda lepas sendiri. Hari ini, ragukan sekali saja pikiran \"saya tidak bisa\".",
+      "action": "Pilih satu hal yang Anda yakini tak bisa dilakukan, lalu cari tindakan terkecil yang bisa dilakukan sekarang.",
+      "watch": "Jangan menganggap meminta bantuan sebagai kelemahan. Dari luar, jalan keluar mungkin terlihat."
+    },
+    "nine-of-swords": {
+      "headline": "Kekhawatiran malam hari berubah ukuran saat pagi.",
+      "message": "Nine of Swords melambangkan hati yang tak bisa tidur karena cemas dan terlalu khawatir. Bisa jadi kekhawatiran itu membengkak di kepala lebih besar daripada kenyataan. Hari ini tindakan konkret yang mengurangi kekhawatiran akan membantu.",
+      "action": "Tulis semua yang dikhawatirkan, lalu beri tanda hanya pada yang bisa Anda lakukan hari ini.",
+      "watch": "Jangan memendamnya sendirian. Dengan mengatakan isi hati saja, beban akan berkurang."
+    },
+    "ten-of-swords": {
+      "headline": "Setelah saat paling gelap, fajar datang.",
+      "message": "Ten of Swords melambangkan akhir dan dasar dari suatu keadaan, tetapi juga memperlihatkan fajar di cakrawala. Meski sekarang semua terasa berakhir, masih ada ruang untuk menyiapkan awal yang baru. Hari ini baik untuk melepaskan yang sudah selesai.",
+      "action": "Tulis satu hal yang Anda pelajari dari sesuatu yang telah Anda terima sebagai berakhir.",
+      "watch": "Daripada berusaha membatalkan yang sudah berakhir, pikirkan apa yang akan dibutuhkan ke depan."
+    },
+    "page-of-swords": {
+      "headline": "Rasa ingin tahu adalah penunjuk jalan hari ini.",
+      "message": "Kartu ini melambangkan semangat menyelidik, mencari informasi baru, dan mengamati dengan tajam. Jika Anda bertanya dan menelusuri apa yang membuat penasaran, hari ini bisa ada petunjuk tak terduga. Sikap bertanya dengan tulus membantu.",
+      "action": "Pilih satu topik yang membuat penasaran, telusuri hanya dua puluh menit, lalu rangkum poin pentingnya.",
+      "watch": "Jangan terlalu cepat menyebarkan atau memastikan apa yang Anda ketahui. Periksa dulu, baru bicara."
+    },
+    "knight-of-swords": {
+      "headline": "Keputusan cepat perlu satu kali pemeriksaan lagi.",
+      "message": "Knight of Swords melambangkan tindakan cepat dan ambisi intelektual. Hari ini mudah muncul dorongan untuk menyelesaikan sekaligus hal yang selama ini ragu-ragu. Namun semakin cepat laju, semakin perlu memeriksa arah terlebih dahulu.",
+      "action": "Sebelum bertindak, pikirkan sekali \"siapa yang akan terdampak\", lalu bergeraklah.",
+      "watch": "Jangan biarkan kata-kata mendahului hingga kehilangan lawan bicara. Periksa apakah ada detail yang terlewat karena tergesa."
+    },
+    "queen-of-swords": {
+      "headline": "Keterusterangan adalah kepercayaan terbesar hari ini.",
+      "message": "Queen of Swords melambangkan penilaian jernih yang tak goyah oleh emosi dan kemandirian. Hari ini baik untuk berbicara jelas dari standar yang diperoleh lewat pengalaman dan menjaga batas. Tidak berputar-putar pada hal yang perlu dikatakan justru bisa membuat hubungan lebih mudah.",
+      "action": "Rapikan percakapan tak nyaman yang Anda tunda, lalu sampaikan dengan kalimat tenang dan konkret.",
+      "watch": "Jaga agar ketenangan Anda tidak terasa dingin. Satu kata perhatian meringankan bobot ucapan."
+    },
+    "king-of-swords": {
+      "headline": "Standar yang adil menjaga pusat Anda hari ini.",
+      "message": "King of Swords melambangkan logika, otoritas intelektual, dan penilaian yang adil. Hari ini kesimpulan menjadi jelas bila Anda memisahkan emosi dari fakta dan menata berdasarkan prinsip. Terutama membantu di depan kontrak atau keputusan penting.",
+      "action": "Untuk hal yang perlu dinilai, tetapkan tiga kriteria dan nilai hanya dengan kriteria itu.",
+      "watch": "Jangan mendesak orang lain dengan jawaban yang benar. Keadaan seseorang juga bagian dari fakta."
+    },
+    "ace-of-wands": {
+      "headline": "Satu percikan memulai sesuatu yang baru.",
+      "message": "Ace of Wands melambangkan awal baru, inspirasi kreatif, dan percikan semangat. Jika tiba-tiba ingin melakukan sesuatu, jangan lewatkan energi itu. Hari ini baik untuk mengubah ide menjadi tindakan nyata.",
+      "action": "Catat ide yang muncul dan ambil langkah pertama sebelum hari berakhir.",
+      "watch": "Meski percikannya besar, jangan memulai banyak hal sekaligus. Hanya dengan fokus pada satu hal, semangat bertahan lama."
+    },
+    "two-of-wands": {
+      "headline": "Dari tempat Anda berdiri, bayangkan panggung berikutnya.",
+      "message": "Two of Wands melambangkan masa membangun rencana yang lebih besar di atas apa yang sudah diraih. Hari ini Anda puas dengan yang sekarang namun penasaran akan dunia yang lebih luas. Menggambar visi yang konkret membuat arah lebih jelas.",
+      "action": "Tulis dalam tiga baris sosok yang ingin Anda capai setahun lagi, lalu tentukan langkah pertamanya.",
+      "watch": "Agar tak habis waktu hanya untuk merencanakan, tetapkan satu hal yang akan Anda jalankan hari ini."
+    },
+    "three-of-wands": {
+      "headline": "Percayalah bahwa usaha yang dikirim akan kembali.",
+      "message": "Three of Wands melambangkan masa perluasan, menanti hasil dari hal yang dikirim jauh dengan penuh harap. Hal yang sudah Anda mulai mungkin sedang berbuah perlahan. Daripada tak sabar, lebih baik menyiapkan perluasan berikutnya.",
+      "action": "Periksa perkembangan hal yang sedang berjalan dan lakukan satu persiapan untuk tahap berikutnya.",
+      "watch": "Jangan cemas karena hasil lambat. Jika ada yang perlu dipastikan, hubungi lebih dulu."
+    },
+    "four-of-wands": {
+      "headline": "Jangan lewatkan momen bersuka cita bersama.",
+      "message": "Four of Wands melambangkan rasa pencapaian setelah melewati tahap penting dan kebahagiaan komunitas yang stabil. Hari ini cocok untuk berbagi hal baik dengan orang terdekat. Mengakui dan menikmati yang telah diraih menjadi tenaga langkah berikutnya.",
+      "action": "Rayakan pencapaian kecil terbaru bersama orang dekat.",
+      "watch": "Jangan terlena dalam kestabilan hingga lupa menyiapkan yang berikutnya. Setelah menikmati, rencanakan satu langkah lagi."
+    },
+    "five-of-wands": {
+      "headline": "Meski pendapat bertabrakan, bisa jadi panggung sedang membesar.",
+      "message": "Five of Wands melambangkan persaingan dan energi kacau tempat banyak pendapat berjalin. Mungkin bukan pertengkaran sungguhan, melainkan latihan menguji gagasan satu sama lain. Suarakan pendapat, tetapi selaraskan tanpa merusak keseluruhan.",
+      "action": "Dalam rapat atau percakapan, ringkas dulu inti pendapat lawan bicara dalam satu kalimat.",
+      "watch": "Jangan biarkan keinginan menang berubah menjadi adu emosi. Jangan buang tenaga untuk hal-hal kecil."
+    },
+    "six-of-wands": {
+      "headline": "Sambut dengan percaya diri saat usaha Anda diakui.",
+      "message": "Six of Wands melambangkan buah usaha dan pengakuan dari orang sekitar. Hari ini hasil mungkin terlihat atau Anda bisa menerima pujian. Rendah hati boleh, tetapi jangan merendahkan diri; terimalah kegembiraan itu.",
+      "action": "Tinjau apa yang baru-baru ini Anda capai dan, jika terasa tepat, bagikan kepada orang sekitar.",
+      "watch": "Jangan terlalu bergantung pada pengakuan. Tanpa tepuk tangan pun, yang telah Anda capai tidak hilang."
+    },
+    "seven-of-wands": {
+      "headline": "Jika ada yang ingin dijaga, jangan mundur.",
+      "message": "Seven of Wands melambangkan sosok yang berdiri di tempat tinggi menghadapi tantangan dan tekanan dari berbagai arah. Hari ini mungkin muncul situasi yang menuntut Anda mempertahankan posisi dengan jelas. Daripada berusaha menangkis semuanya, fokuslah menjaga yang terpenting.",
+      "action": "Tetapkan satu prinsip inti yang harus dijaga, dan bersikap tegas hanya pada hal itu.",
+      "watch": "Jika semua kritik dianggap serangan, Anda akan lelah. Dengarkan nasihat yang perlu secara selektif."
+    },
+    "eight-of-wands": {
+      "headline": "Yang tadinya macet mulai bergerak cepat.",
+      "message": "Eight of Wands melambangkan alur ketika penundaan berakhir dan segala sesuatu berkembang cepat. Hari ini kabar bisa tiba, dan kontak, perjalanan, serta kemajuan menjadi aktif. Yang penting adalah tidak melewatkan momentum saat arus datang.",
+      "action": "Rapikan pesan atau jawaban yang tertunda dan kirimkan hari ini juga.",
+      "watch": "Seiring kecepatan naik, kesalahan pun bisa bertambah. Periksa sekali lagi sebelum mengirim."
+    },
+    "nine-of-wands": {
+      "headline": "Meski lelah, Anda masih punya tenaga untuk rintangan terakhir.",
+      "message": "Nine of Wands melambangkan ketabahan yang tak menyerah setelah melewati banyak kesulitan. Meski tubuh dan hati lelah, itu bukti bahwa Anda sudah mencapai banyak hal. Hari ini adalah saat menjaga kewaspadaan dan pemulihan sekaligus.",
+      "action": "Akui bagian yang paling melelahkan sekarang dan atur jadwal hari ini agar hemat tenaga.",
+      "watch": "Jangan mencurigai semua orang karena luka masa lalu. Pada yang layak dipercaya, Anda boleh meminta bantuan."
+    },
+    "ten-of-wands": {
+      "headline": "Carilah cara membagi beban yang Anda pikul sendirian.",
+      "message": "Ten of Wands melambangkan kelebihan beban karena memikul terlalu banyak tanggung jawab sendirian. Tujuan tampak dekat, tetapi tubuh dan hati mungkin kelelahan. Hari ini adalah waktu untuk melihat apa yang bisa diletakkan atau dibagi.",
+      "action": "Pilih satu hal dari daftar tugas yang bisa diserahkan ke orang lain atau ditunda, lalu urus.",
+      "watch": "Anggapan bahwa semuanya urusan Anda memperbesar beban. Meminta bantuan juga bentuk tanggung jawab."
+    },
+    "page-of-wands": {
+      "headline": "Rasa ingin tahu menyulut api untuk hal baru.",
+      "message": "Kartu ini melambangkan energi muda yang menjelajahi hal baru dengan semangat dan rasa ingin tahu. Pengalaman mungkin kurang, tetapi hari ini penuh antusiasme dan ide. Mencoba hal kecil bisa memberi keseruan dan petunjuk tak terduga.",
+      "action": "Coba hal baru yang ingin Anda lakukan tapi tertunda, hanya lima belas menit.",
+      "watch": "Minat bisa cepat padam, jadi targetkan untuk mencoba sekali, bukan menyelesaikannya sampai akhir."
+    },
+    "knight-of-wands": {
+      "headline": "Tindakan berani mengubah suasana.",
+      "message": "Knight of Wands melambangkan jiwa petualang, semangat menyala, dan dorongan cepat. Hari ini energi Anda lebih tinggi dari biasanya sehingga tindakan berani dapat membuahkan hasil baik. Tentukan saja arahnya agar semangat tidak berubah jadi impuls.",
+      "action": "Fokuskan satu jam pada hal yang paling Anda ingin lakukan.",
+      "watch": "Jangan hanya memulai lalu lupa menyelesaikan. Berjanjilah hanya pada yang bisa ditepati."
+    },
+    "queen-of-wands": {
+      "headline": "Percaya diri menerangi sekitar Anda juga.",
+      "message": "Queen of Wands melambangkan percaya diri, karisma yang hangat, dan kemandirian yang bersemangat. Hari ini semakin Anda menunjukkan jati diri tanpa bersembunyi, semakin baik alurnya. Keyakinan Anda juga memberi keberanian bagi orang di sekitar.",
+      "action": "Katakan langsung tanpa ragu hal yang ingin Anda sampaikan atau usulkan hari ini.",
+      "watch": "Agar rasa percaya diri tidak terasa menekan, perhatikan juga reaksi orang lain."
+    },
+    "king-of-wands": {
+      "headline": "Sampaikan visi dan pimpin orang-orang yang berjalan bersama Anda.",
+      "message": "King of Wands melambangkan kepemimpinan dengan karisma yang diasah pengalaman dan memiliki visi. Hari ini baik untuk menunjukkan gambaran besar dan menggerakkan orang. Rencana konkret yang mengubah semangat menjadi kenyataan akan menunjukkan kekuatannya.",
+      "action": "Ucapkan tujuan dari hal yang sedang Anda kerjakan dalam satu kalimat dan bagikan kepada rekan kerja.",
+      "watch": "Jangan berlari sendirian di depan. Periksa kecepatan orang-orang yang berjalan bersama Anda."
+    },
+    "ace-of-cups": {
+      "headline": "Jangan lewatkan saat hati terbuka.",
+      "message": "Ace of Cups melambangkan awal perasaan baru, cinta, dan ilham yang memancar. Hari ini Anda bisa bertemu sesuatu atau seseorang yang menghangatkan hati. Jangan menahan perasaan; rasakan apa adanya.",
+      "action": "Tulis dalam satu baris perasaan yang menyentuh Anda sekarang atau hal yang Anda syukuri.",
+      "watch": "Jangan terburu-buru menyimpulkan hanya karena perasaan meluap. Biarkan merasakan dan memutuskan berjalan pelan-pelan."
+    },
+    "two-of-cups": {
+      "headline": "Ketika hati saling bertukar, hubungan makin dalam.",
+      "message": "Two of Cups melambangkan cinta timbal balik dan kemitraan yang harmonis. Hari ini baik untuk saling memahami dan menemukan keseimbangan dalam hubungan. Kepercayaan bisa menguat, bukan hanya dengan pasangan, tetapi juga dengan rekan kerja dan teman.",
+      "action": "Sampaikan rasa terima kasih kepada orang dekat dengan satu kalimat yang konkret.",
+      "watch": "Jangan sampai hubungan menjadi hanya satu pihak yang menyesuaikan. Ungkapkan juga isi hati Anda."
+    },
+    "three-of-cups": {
+      "headline": "Waktu bersama adalah energi Anda hari ini.",
+      "message": "Three of Cups melambangkan persahabatan, komunitas, dan kebahagiaan berkumpul. Tertawa dan bercakap dengan orang-orang yang berarti membuat hati ringan. Hal yang membutuhkan kerja sama pun berjalan lancar dalam suasana saling menolong.",
+      "action": "Kirim salam singkat kepada teman atau rekan yang lama tak Anda hubungi.",
+      "watch": "Jangan menunda tugas atau tanggung jawab karena larut dalam kesenangan. Bergaul pun perlu keseimbangan."
+    },
+    "four-of-cups": {
+      "headline": "Periksa apakah peluang di depan mata sudah terlewat.",
+      "message": "Four of Cups melambangkan keadaan bosan dan acuh tak acuh sehingga tidak melihat kemungkinan di sekitar. Ketika yang dimiliki terasa hambar, tawaran baru bisa mendekat diam-diam. Hari ini bukalah hati sedikit dan lihat sekeliling lagi.",
+      "action": "Periksa lagi apakah di antara tawaran atau kontak terbaru ada yang tak sengaja terlewat.",
+      "watch": "Cobalah bedakan dari mana ketidakpuasan Anda saat ini berasal. Mungkin tidak semuanya buruk."
+    },
+    "five-of-cups": {
+      "headline": "Di samping yang hilang, masih ada yang tersisa.",
+      "message": "Five of Cups melambangkan keadaan terpaku pada kehilangan dan penyesalan sehingga tak melihat yang tersisa. Sedih itu wajar, tetapi jika pandangan digeser sedikit, ada dua cawan yang masih berdiri. Hari ini akui rasa kecewa, tetapi lihat juga yang masih ada.",
+      "action": "Tulis berdampingan satu hal yang hilang dan satu hal yang masih Anda miliki.",
+      "watch": "Terlalu lama berkubang dalam penyesalan membuat pandangan ke depan tertutup. Akui kesedihan sepenuhnya, tetapi perlahan arahkan pandangan juga pada keseharian."
+    },
+    "six-of-cups": {
+      "headline": "Kenangan hangat menjadi kekuatan hari ini.",
+      "message": "Six of Cups melambangkan nostalgia, kebahagiaan murni, dan kehangatan dari kenangan. Orang, tempat, atau kenangan lama bisa menenangkan hati hari ini. Cobalah membawa kehangatan itu ke hubungan dan keseharian Anda sekarang.",
+      "action": "Cari satu foto atau lagu yang mengingatkan pada kenangan indah.",
+      "watch": "Jangan terus berada dalam pikiran bahwa masa lalu lebih baik hingga melewatkan masa kini."
+    },
+    "seven-of-cups": {
+      "headline": "Semakin banyak pilihan, semakin perlu tolok ukur.",
+      "message": "Seven of Cups melambangkan keadaan ketika ilusi dan kenyataan bercampur di hadapan banyak kemungkinan. Banyak yang menarik, tetapi perlu dibedakan mana yang benar-benar bisa dicapai. Hari ini kurangi angan-angan dan periksa realisme.",
+      "action": "Tulis pilihan yang terlintas, lalu tandai apakah masing-masing punya \"tindakan nyata yang bisa dilakukan hari ini\".",
+      "watch": "Jika mencoba menggenggam semua pilihan, satu pun sulit tercapai. Tetapkan prioritas."
+    },
+    "eight-of-cups": {
+      "headline": "Pergi bukan menyerah, melainkan menuju tempat yang lebih dalam.",
+      "message": "Eight of Cups melambangkan keputusan pergi mencari makna baru ketika hati tak terisi meski di luar tampak cukup. Hari ini adalah saat merenungkan apakah tempat Anda sekarang cocok. Begitu tahu apa yang kurang, arah pun tampak.",
+      "action": "Tulis satu hal yang \"tidak terisi\" dalam pekerjaan atau hubungan Anda saat ini.",
+      "watch": "Jangan pergi dengan impulsif saat emosi sedang tinggi. Bergeraklah setelah hati Anda tertata dengan baik."
+    },
+    "nine-of-cups": {
+      "headline": "Hari ketika harapan yang terwujud bisa mendatangkan kepuasan.",
+      "message": "Nine of Cups dijuluki kartu permintaan dan melambangkan kepuasan atas keinginan yang terkabul serta kelimpahan emosional. Hari ini baik untuk menikmati sepenuhnya apa yang dimiliki dan merasakan sukacita. Dengan mengakui yang telah terwujud, keinginan berikutnya pun menjadi jelas.",
+      "action": "Ucapkan kata terima kasih kepada diri sendiri atas sesuatu yang baru terwujud.",
+      "watch": "Jangan berhenti dalam kepuasan hingga melewatkan tujuan berikutnya. Menikmati dan berhenti itu berbeda."
+    },
+    "ten-of-cups": {
+      "headline": "Kedamaian bersama orang-orang tercinta adalah harta hari ini.",
+      "message": "Ten of Cups melambangkan kelengkapan batin bersama keluarga dan orang-orang tercinta. Hari ini baik untuk merasakan bahwa keseharian bersama orang di samping Anda adalah kebahagiaan terbesar. Meski tak sempurna, ada saat-saat yang cukup hangat.",
+      "action": "Duduklah bersama orang dekat dan berbincang hari ini, meski hanya sepuluh menit.",
+      "watch": "Jangan membandingkan masa kini dengan gambaran ideal. Lihat kehangatan sebagaimana adanya."
+    },
+    "page-of-cups": {
+      "headline": "Dengarkan pesan kecil yang muncul di hati.",
+      "message": "Kartu ini melambangkan energi muda yang penuh kepekaan dan kreativitas, serta pesan intuitif. Dari tempat tak terduga bisa datang kabar atau ide yang menyentuh hati. Jika Anda mengungkapkan perasaan dengan ringan, jalan terbuka.",
+      "action": "Catat ide atau gambaran bagai mimpi yang tiba-tiba terlintas.",
+      "watch": "Perasaan mudah berubah-ubah, jadi jangan membuat janji besar hanya karena suasana hati."
+    },
+    "knight-of-cups": {
+      "headline": "Tawaran yang tulus menggerakkan hati.",
+      "message": "Knight of Cups melambangkan romansa, undangan yang peka, dan ekspresi artistik. Hari ini alurnya cocok untuk datangnya kabar baik atau menyampaikan isi hati. Sikap lembut yang bergerak pelan menuju cita-cita akan membantu.",
+      "action": "Coba tulis perasaan tulus yang ingin Anda sampaikan dalam bentuk surat atau pesan.",
+      "watch": "Jangan terbuai suasana hingga melewatkan pemeriksaan realistis. Selaraskan kata dan tindakan."
+    },
+    "queen-of-cups": {
+      "headline": "Empati yang dalam adalah kekuatan Anda hari ini.",
+      "message": "Queen of Cups melambangkan kedewasaan emosi, empati mendalam, dan kebijaksanaan intuitif. Hari ini Anda bisa memahami perasaan orang lain dan juga merawat hati sendiri. Mendengarkan orang lain pun bisa menjadi penyembuhan.",
+      "action": "Kepada orang yang tampak kesulitan, daripada menawarkan solusi, dengarkan baik-baik ceritanya.",
+      "watch": "Jangan memikul perasaan orang lain. Dengan menjaga batas hati sendiri juga, Anda bisa berempati lebih lama."
+    },
+    "king-of-cups": {
+      "headline": "Pertahankan pusat Anda bahkan di atas ombak emosi.",
+      "message": "King of Cups melambangkan keseimbangan matang yang menguasai emosi tanpa kehilangan kehangatan. Hari ini baik untuk tetap tenang dan terpusat bahkan dalam situasi bergejolak atau goyah. Jangan menekan perasaan, tetapi tangani bersama akal sehat.",
+      "action": "Saat emosi naik, berhentilah sejenak sebelum bereaksi, atur napas, lalu bicaralah.",
+      "watch": "Menyembunyikan perasaan dan mengelolanya itu berbeda. Ungkapkan emosi yang perlu diungkapkan."
+    },
+    "ace-of-pentacles": {
+      "headline": "Saatnya menumbuhkan peluang di tangan Anda menjadi kenyataan.",
+      "message": "Ace of Pentacles melambangkan peluang baru yang mengarah pada hasil nyata dan awal kestabilan. Hari ini benih yang praktis bisa diberikan dalam keuangan, pekerjaan, atau kesehatan. Buatlah rencana realistis, sekecil apa pun.",
+      "action": "Pilih satu peluang yang ingin Anda tumbuhkan sekarang, lalu tulis sumber daya yang dibutuhkan dan langkah pertamanya.",
+      "watch": "Jangan mengeluarkan uang atau waktu dalam jumlah besar tanpa memeriksa hanya karena antusias peluang telah datang."
+    },
+    "two-of-pentacles": {
+      "headline": "Jika seimbang dengan lentur, goyang pun tak apa.",
+      "message": "Two of Pentacles melambangkan kemampuan menyesuaikan diri untuk menjaga keseimbangan di antara banyak tugas dan tanggung jawab. Meski hari ini tugas bertumpuk, jika menemukan iramanya Anda akan melaluinya tanpa beban. Tetapkan prioritas dan sesuaikan dengan lentur.",
+      "action": "Pilih satu hal dalam daftar hari ini yang boleh ditunda dan ringankan jadwal.",
+      "watch": "Jangan mencoba menangani semuanya sekaligus. Jika tampak tanda keseimbangan goyah, kurangi."
+    },
+    "three-of-pentacles": {
+      "headline": "Ketika kemampuan masing-masing berpadu, hasilnya baik.",
+      "message": "Three of Pentacles melambangkan keahlian, kerja sama, dan semangat pengrajin yang berkarya bersama. Hari ini hasil membaik jika Anda berbagi peran dengan orang yang berkeahlian, bukan bekerja sendiri. Pengakuan dan umpan balik menjadi pupuk pertumbuhan.",
+      "action": "Dalam pekerjaan Anda, mintalah dengan jelas bantuan seseorang pada bagian yang Anda butuhkan.",
+      "watch": "Jangan hanya bersikeras dengan cara sendiri. Coba masukkan juga pendapat orang lain."
+    },
+    "four-of-pentacles": {
+      "headline": "Longgarkan sedikit tangan yang menggenggam erat, dan aliran akan muncul.",
+      "message": "Four of Pentacles melambangkan keadaan ketika keinginan menjaga kestabilan berubah menjadi keterikatan. Hari ini adalah saat melihat apakah takut kehilangan yang dimiliki menghalangi perubahan. Mengelola itu penting, tetapi berlebihan menghentikan pertumbuhan.",
+      "action": "Pilih satu hal yang Anda genggam tetapi boleh dilepas, lalu rapikan.",
+      "watch": "Hemat dan pelit itu berbeda. Gunakan secukupnya di tempat yang diperlukan."
+    },
+    "five-of-pentacles": {
+      "headline": "Bantuan lebih dekat daripada yang Anda kira.",
+      "message": "Five of Pentacles melambangkan kekurangan, kesulitan, dan kesepian, tetapi dalam gambar ada jendela yang menyala. Hati yang berat bisa menutupi pandangan hingga Anda melewatkan bantuan di dekat. Hari ini adalah saat mengulurkan tangan lebih dulu.",
+      "action": "Ceritakan keadaan Anda saat ini dengan jujur kepada seseorang yang Anda percaya.",
+      "watch": "Pikiran bahwa harus menanggung semuanya sendiri membuat keadaan lebih sulit. Meminta bantuan bukanlah kelemahan."
+    },
+    "six-of-pentacles": {
+      "headline": "Keseimbangan memberi dan menerima adalah kunci hari ini.",
+      "message": "Six of Pentacles melambangkan kemurahan hati dan pembagian yang adil. Hari ini mengalir secara alami arus berbagi apa yang bisa diberikan atau menerima apa yang dibutuhkan. Baik sebagai pemberi maupun penerima, keseimbangan hati itulah yang penting.",
+      "action": "Berikan kepada satu orang sesuatu yang bisa Anda bagi, entah waktu, pengetahuan, atau perhatian.",
+      "watch": "Jangan sampai pemberian disertai syarat. Terima juga dengan rasa syukur."
+    },
+    "seven-of-pentacles": {
+      "headline": "Dalam penantian, tinjau usaha yang telah dilakukan.",
+      "message": "Seven of Pentacles melambangkan masa sabar menilai hasil setelah usaha panjang. Meski hasil belum langsung tampak, apa yang Anda pupuk dengan tekun sedang tumbuh. Hari ini baik untuk memeriksa apakah arah sejauh ini sudah benar.",
+      "action": "Kumpulkan jejak usaha yang telah menumpuk dan tentukan satu hal yang akan disesuaikan ke depan.",
+      "watch": "Jangan mudah menyerah karena hasil lambat. Namun jika arahnya keliru, koreksi diperlukan."
+    },
+    "eight-of-pentacles": {
+      "headline": "Pengulangan yang tekun membangun keahlian.",
+      "message": "Eight of Pentacles melambangkan latihan yang tekun dan fokus pengrajin yang mengasah keterampilan. Hari ini pekerjaan yang dibangun dengan setia meski tak mencolok sangat bernilai. Cobalah tenggelam dalam satu hal.",
+      "action": "Sediakan tiga puluh menit untuk satu keterampilan yang ingin dipelajari dan fokus tanpa gangguan.",
+      "watch": "Jangan menunda memulai karena terikat pada kesempurnaan. Pengulangan meningkatkan mutu."
+    },
+    "nine-of-pentacles": {
+      "headline": "Anda boleh menikmati sepenuhnya kelimpahan yang Anda bangun sendiri.",
+      "message": "Nine of Pentacles melambangkan kemandirian dan kestabilan materi hasil usaha. Hari ini waktu sendirian pun menyenangkan dan lapang. Akui dengan bangga apa yang telah Anda ciptakan.",
+      "action": "Berikan diri Anda hadiah kecil atau waktu luang.",
+      "watch": "Jangan biarkan perasaan \"sendiri pun baik-baik saja\" menjadi alasan menutup hubungan."
+    },
+    "ten-of-pentacles": {
+      "headline": "Lihatlah fondasi kestabilan yang bertahan lama.",
+      "message": "Ten of Pentacles melambangkan keluarga, warisan, serta kelimpahan dan kestabilan yang langgeng. Hari ini baik untuk meninjau urusan keuangan jangka panjang, keluarga, atau rumah. Yang lebih penting daripada yang di depan mata adalah fondasi yang awet.",
+      "action": "Bicarakan satu rencana jangka panjang dengan keluarga atau orang yang akan lama bersama Anda.",
+      "watch": "Jangan terlalu fokus menjaga kestabilan hingga melewatkan kegembiraan masa kini."
+    },
+    "page-of-pentacles": {
+      "headline": "Belajar sedikit demi sedikit menjadi awal yang kokoh.",
+      "message": "Kartu ini melambangkan sikap mempelajari keterampilan baru dan menyusun tujuan realistis selangkah demi selangkah. Hari ini berjalan baik jika rencana dipecah menjadi bagian konkret lalu dimulai. Sikap belajar tanpa tergesa menjadi kekuatan.",
+      "action": "Cari satu bahan atau kursus untuk hal yang ingin dipelajari dan baca halaman pertamanya.",
+      "watch": "Jangan hanya menumpuk teori; coba praktikkan sendiri meski kecil. Pengalaman menyempurnakan pembelajaran."
+    },
+    "knight-of-pentacles": {
+      "headline": "Ketekunan adalah kecepatan yang paling dapat diandalkan.",
+      "message": "Knight of Pentacles melambangkan keandalan dan ketulusan orang yang berhasil secara pelan tetapi pasti. Hari ini menyelesaikan yang menjadi tugas selangkah demi selangkah memberi hasil lebih baik daripada langkah mencolok. Ini hari ketika rasa tanggung jawab diakui.",
+      "action": "Selesaikan tugas hari ini satu per satu dan beri tanda selesai.",
+      "watch": "Jangan biarkan kehati-hatian menjadi penolakan terhadap perubahan. Jika perlu, coba ubah caranya."
+    },
+    "queen-of-pentacles": {
+      "headline": "Kekuatan merawat kenyataan dengan hangat adalah kebijaksanaan hari ini.",
+      "message": "Queen of Pentacles melambangkan kebijaksanaan praktis, perawatan yang hangat, dan kemampuan menciptakan lingkungan yang berlimpah. Hari ini jika Anda merapikan dasar keseharian seperti rumah, pekerjaan, dan kesehatan, hati pun ikut tenang. Sikap hemat dan ramah akan membantu.",
+      "action": "Rapikan atau rawat satu sudut yang tidak nyaman di ruang keseharian Anda.",
+      "watch": "Jangan biarkan semua yang Anda urus menjadi tanggung jawab Anda sendiri. Anda juga berhak dirawat."
+    },
+    "king-of-pentacles": {
+      "headline": "Yang Anda bangun dengan pandangan jauh menjadi kepercayaan.",
+      "message": "King of Pentacles melambangkan kepemimpinan stabil, naluri praktis yang unggul, dan keberhasilan materi. Hari ini jika memutuskan keuangan, bisnis, atau pekerjaan dengan pandangan jangka panjang, hasil yang dapat diandalkan akan menyusul. Sikap mengelola dengan longgar itu penting.",
+      "action": "Ringkas keadaan keuangan atau pekerjaan Anda dalam angka dan buat rencana tiga bulan ke depan.",
+      "watch": "Jangan menaruh nilai hanya pada prestasi dan kepemilikan. Lihat juga nilai orang dan waktu."
+    }
+  }
+}

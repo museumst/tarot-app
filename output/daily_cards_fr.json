@@ -1,0 +1,482 @@
+{
+  "lang": "fr",
+  "_meta": {
+    "title": "Fortune du Jour",
+    "labels": {
+      "headline": "Aujourd'hui en une phrase",
+      "message": "Message du jour",
+      "action": "À essayer aujourd'hui",
+      "watch": "À surveiller aujourd'hui"
+    }
+  },
+  "cards": {
+    "the-fool": {
+      "headline": "Même sans connaître la réponse, vous pouvez faire le premier pas.",
+      "message": "Le Mat représente une page blanche, un état où rien n'est encore décidé. Si vous repoussez quelque chose parce que vous ne vous sentez pas parfaitement prêt, c'est aujourd'hui un bon jour pour commencer le cœur léger. Chacun débute par des pas maladroits.",
+      "action": "Choisissez un tout petit premier pas pour ce que vous hésitez à faire depuis longtemps, et faites-le avant la fin de la journée.",
+      "watch": "Vérifiez si l'enthousiasme ne vous fait pas oublier de regarder où vous posez les pieds. Optimisme et imprudence ne sont pas la même chose."
+    },
+    "the-magician": {
+      "headline": "Les outils dont vous avez besoin sont déjà entre vos mains.",
+      "message": "Sur la table du Bateleur se trouvent le bâton, la coupe, l'épée et le pentacle. Plutôt que de chercher du nouveau, décidez comment utiliser les talents, les relations et le temps que vous avez déjà. Si une tâche vous trotte dans la tête, le courant du jour favorise un premier passage à l'acte.",
+      "action": "Choisissez une tâche repoussée, écrivez en une phrase ce que vous allez faire, et commencez seulement dix minutes.",
+      "watch": "Regardez si l'élan ne vous fait pas parler plus grand que vous n'agissez. La force de cette carte est dans le faire, pas dans le montrer."
+    },
+    "the-high-priestess": {
+      "headline": "Aujourd'hui, écouter vous apprend plus que parler.",
+      "message": "La Papesse représente ce qui ne se voit pas : l'intuition et la voix intérieure. Aujourd'hui, mieux vaut observer calmement la situation que vous presser de conclure. Au-delà des informations visibles, ce que votre cœur sait déjà peut remonter.",
+      "action": "Ménagez-vous un moment de calme et notez la première sensation qui vous vient maintenant.",
+      "watch": "Ne devinez pas et ne jugez pas tout seul. L'intuition devient plus juste quand on la vérifie."
+    },
+    "the-empress": {
+      "headline": "Prendre soin et faire grandir nourrit les fruits du jour.",
+      "message": "L'Impératrice représente l'abondance, la créativité et une attention chaleureuse. Quand vous consacrez votre énergie à prendre soin de vous et de votre entourage, votre cœur et votre quotidien s'enrichissent ensemble. Ouvrir ses sens et savourer pleinement les belles choses fait aussi partie de la journée.",
+      "action": "Choisissez une chose qui réjouit vos sens, comme un plat que vous aimez, des fleurs ou de la musique, et savourez-la lentement.",
+      "watch": "Veillez à ne pas trop donner au point de vous vider. Prendre soin de vous fait partie du soin."
+    },
+    "the-emperor": {
+      "headline": "Des repères et de l'ordre tiennent votre centre aujourd'hui.",
+      "message": "L'Empereur représente la structure, la responsabilité et un leadership stable. Établir des priorités parmi ce qui est dispersé et poser des limites claires vous soulagera aujourd'hui. Juger selon des principes plutôt que de se laisser emporter par l'émotion rend le résultat solide.",
+      "action": "Mettez vos tâches du jour en ordre et terminez d'abord la plus importante.",
+      "watch": "Veillez à ce que les principes ne deviennent pas de l'entêtement. Il vous faut la souplesse d'écouter une fois la situation de l'autre."
+    },
+    "the-hierophant": {
+      "headline": "Les méthodes éprouvées et les bons conseils ont quelque chose à vous apprendre.",
+      "message": "Le Hiérophante représente la tradition, l'enseignement et les engagements de la communauté. Aujourd'hui, il est plus sûr de suivre une méthode éprouvée ou le conseil d'une personne expérimentée que de chercher du nouveau. Les règles et les procédures peuvent même raccourcir la route.",
+      "action": "Demandez un conseil à quelqu'un que vous respectez ou à une source fiable, et appliquez-le tel quel.",
+      "watch": "Vérifiez que vous ne suivez pas une façon de faire seulement parce que les autres la suivent, et qu'elle correspond à vos valeurs."
+    },
+    "the-lovers": {
+      "headline": "Là où penche votre cœur se trouve le choix du jour.",
+      "message": "L'Amoureux ne parle pas seulement de sentiments, mais de choix conformes à vos valeurs. Aujourd'hui, ce qui compte vraiment pour vous peut apparaître dans une relation ou une décision. Si vous consultez honnêtement votre cœur, choisir devient bien plus simple.",
+      "action": "Pour un choix qui vous occupe, écrivez quel côté se rapproche le plus des « valeurs que je veux vraiment préserver ».",
+      "watch": "Ne brouillez pas votre choix pour répondre aux attentes des autres. L'attirance et le choix qui vous convient peuvent être différents."
+    },
+    "the-chariot": {
+      "headline": "Une fois la direction fixée, votre force se rassemble en un point.",
+      "message": "Le Chariot représente la volonté de réunir des forces différentes pour avancer dans une seule direction. Même ce qui vous tiraillait gagne de l'élan aujourd'hui dès que l'objectif est clair. En vous concentrant, vous pouvez aller plus loin que d'habitude.",
+      "action": "Choisissez un seul objectif pour aujourd'hui et repoussez le reste de votre programme derrière lui.",
+      "watch": "Ne vous grisez pas de vitesse au point de perdre de vue ce qui vous entoure. Régler son allure est un talent autant qu'avancer."
+    },
+    "strength": {
+      "headline": "La douceur est la force la plus solide.",
+      "message": "La Force ne représente pas une puissance qui réprime, mais le courage d'apaiser la peur et de la guider. Quand la colère ou l'inquiétude montent, inutile de les repousser brutalement ; les garder calmement près de vous peut ouvrir une voie. Aujourd'hui, la patience est votre plus grande arme.",
+      "action": "Quand l'irritation ou l'inquiétude monte, respirez profondément trois fois et donnez un nom à cette émotion.",
+      "watch": "Endurer et refouler ne sont pas la même chose. Libérez les émotions accumulées dans un endroit sûr."
+    },
+    "the-hermit": {
+      "headline": "Là où vous vous arrêtez, un chemin apparaît.",
+      "message": "L'Hermite représente le temps à l'écart du bruit pour trouver sa propre lumière. Aujourd'hui, vous avez davantage besoin de temps pour réfléchir seul que de chercher des réponses parmi les gens. En mettant calmement de l'ordre, ce qui était compliqué devient simple.",
+      "action": "Éloignez-vous de votre téléphone une trentaine de minutes et réfléchissez à ce qui compte vraiment maintenant.",
+      "watch": "Veillez à ce que le repos ne tourne pas à l'isolement. Parler avec une personne de confiance peut aider."
+    },
+    "wheel-of-fortune": {
+      "headline": "Les moments où le courant change arrivent toujours sans prévenir.",
+      "message": "La Roue de Fortune représente les cycles qui tournent et les nouvelles phases. Que la situation actuelle soit bonne ou difficile, elle ne dure pas, et c'est aujourd'hui à la fois une consolation et un avertissement. Quand le changement vient, cherchez comment le suivre plutôt que de lui résister.",
+      "action": "Regardez tout changement inattendu d'aujourd'hui en supposant qu'il « pourrait être une chance ».",
+      "watch": "Ne baissez pas la garde dans une bonne passe et ne vous découragez pas dans une mauvaise. Dans les deux cas, cela passe."
+    },
+    "justice": {
+      "headline": "Juger selon les faits allège le cœur.",
+      "message": "La Justice représente la cause et l'effet, l'équité et l'équilibre. Si vous mettez un instant l'émotion de côté et voyez les choses telles qu'elles sont, ce qu'il faut faire devient clair. C'est aussi un bon jour pour mettre en ordre contrats, promesses et comptes.",
+      "action": "Vérifiez une promesse ou un règlement en suspens et mettez-le au clair en vous appuyant sur les faits.",
+      "watch": "Vérifiez que vous n'interprétez pas tout à votre avantage. L'équité s'applique aussi à vous."
+    },
+    "the-hanged-man": {
+      "headline": "En vous arrêtant, vous voyez un autre paysage.",
+      "message": "Le Pendu représente le temps où l'on s'arrête volontairement pour gagner un autre point de vue. Ce qui ne cédait pas malgré vos efforts, mieux vaut aujourd'hui le poser un moment et le regarder autrement. Une attente qui ressemble à une perte apporte plus tard une grande compréhension.",
+      "action": "Réfléchissez à un problème bloqué depuis la position exactement opposée et notez ce qui vous vient.",
+      "watch": "Veillez à ce que l'attente ne devienne pas de l'évitement. Il est utile de décider vous-même jusqu'à quand vous vous reposez."
+    },
+    "death": {
+      "headline": "Ce qui se termine est un rangement qui ouvre le chapitre suivant.",
+      "message": "La Mort ne signifie pas une vraie mort, mais la clôture d'une période. Comme l'aube que l'on aperçoit à l'horizon, si vous retenez quelque chose que vous savez devoir lâcher, aujourd'hui est un bon jour pour regarder ce sentiment en face. Le regret est naturel, et c'est en le traversant qu'on peut aller vers la suite.",
+      "action": "Rangez une habitude, un objet ou un engagement qui ne vous convient plus. Il n'est pas nécessaire que ce soit grand.",
+      "watch": "Regardez si vous ne maintenez pas le présent de force pour éviter le changement. Cela ne veut pas dire tout couper précipitamment."
+    },
+    "temperance": {
+      "headline": "Un équilibre sans hâte est le chemin le plus rapide.",
+      "message": "La Tempérance représente l'harmonie et la patience de mêler des choses différentes dans la juste mesure. Aujourd'hui, l'essentiel est de chercher le milieu et de régler l'allure plutôt que d'aller aux extrêmes. Si vous équilibrez travail et repos, paroles et silence, votre cœur s'apaise.",
+      "action": "Placez d'abord un temps de repos dans votre journée et disposez les autres tâches autour.",
+      "watch": "Regardez si, pour préserver l'harmonie, vous n'avez pas avalé des paroles qu'il fallait dire."
+    },
+    "the-devil": {
+      "headline": "Ce qui vous retient est plus lâche que vous ne le pensez.",
+      "message": "Le Diable représente l'état où l'on est entraîné par l'attachement, l'habitude et le désir, mais les chaînes du dessin pendent mollement. La conviction de ne pas pouvoir s'en défaire est peut-être la chaîne la plus solide. Aujourd'hui est un bon jour pour regarder honnêtement ce qui vous retient.",
+      "action": "Pensez à une habitude qui se répète et notez séparément ce qu'elle vous apporte et ce qu'elle vous prend.",
+      "watch": "Ne dépensez pas votre force à vous reprocher. Le simple fait de le remarquer est déjà un premier pas."
+    },
+    "the-tower": {
+      "headline": "Être secoué est désagréable, mais cela révèle une fausse base.",
+      "message": "La Tour représente les changements soudains et l'imprévu. Même si un plan déraille aujourd'hui ou si vous faites face à une vérité dérangeante, ce peut être le processus par lequel apparaît ce qui n'était pas solide. Quand la surprise passe, ce dont vous aviez vraiment besoin devient plus net.",
+      "action": "Quand un imprévu survient, au lieu de juger tout de suite, reprenez votre souffle et cherchez seulement « une chose que je peux changer maintenant ».",
+      "watch": "Ne prenez pas de grande décision au moment où l'émotion est la plus vive. En y revenant un jour ou deux plus tard, le jugement change."
+    },
+    "the-star": {
+      "headline": "L'espoir revient lentement dans un cœur fatigué.",
+      "message": "L'Étoile représente la guérison et l'espoir qui viennent après une période difficile. Même si tout n'est pas encore résolu, c'est un jour où le cœur s'allège peu à peu. Sans vous presser, vous pouvez avancer petit à petit.",
+      "action": "Notez trois choses que vous avez bien faites ou pour lesquelles vous êtes reconnaissant ces derniers temps.",
+      "watch": "N'attendez pas seulement l'espoir ; reliez-le à de petites actions. La guérison s'affermit quand on bouge."
+    },
+    "the-moon": {
+      "headline": "Une inquiétude floue devient plus petite quand on la vérifie.",
+      "message": "La Lune représente l'incertitude, la peur vague et les ombres de l'inconscient. Aujourd'hui, ce que l'on voit n'est pas tout, et le jugement peut vaciller. Plutôt que d'affirmer ce qui est incertain, mieux vaut vérifier les faits un par un.",
+      "action": "Séparez ce qui vous préoccupe en « faits » et « mon imagination », et notez-le.",
+      "watch": "Les soucis de la nuit paraissent souvent plus grands qu'ils ne sont. Remettez les décisions importantes au matin."
+    },
+    "the-sun": {
+      "headline": "Aujourd'hui, ne vous cachez pas, montrez-vous avec éclat.",
+      "message": "Le Soleil représente la joie, la réussite et la clarté. Aujourd'hui, l'humeur s'éclaire et les choses se règlent plus facilement. Si vous avez quelque chose à dire ou à montrer, exprimez-le avec sincérité.",
+      "action": "Annoncez une bonne nouvelle ou dites votre gratitude à une personne, directement.",
+      "watch": "Même si tout va bien, n'oubliez pas les détails qui demandent de l'attention. Même par temps clair, les bases sont nécessaires."
+    },
+    "judgement": {
+      "headline": "Il est temps de répondre à l'appel intérieur.",
+      "message": "Le Jugement représente l'appel intérieur à mettre le passé en ordre et à passer à une étape supérieure. Plutôt que de ressasser ce qui est passé, aujourd'hui sert à reconnaître ce que vous avez déjà appris et à avancer. Si une résolution longtemps repoussée refait surface, ce peut être un signe.",
+      "action": "Choisissez dans le passé une chose à pardonner ou à conclure, et dites-lui : « jusqu'ici ».",
+      "watch": "Ne perdez pas de temps à vous juger ou à juger les autres de nouveau. Concentrez-vous sur vos choix à venir."
+    },
+    "the-world": {
+      "headline": "Reconnaissez-vous pour avoir achevé une étape.",
+      "message": "Le Monde représente un processus qui s'achève et un état où tout s'unifie en harmonie. Ce peut être le moment où vos efforts jusqu'ici portent leurs fruits ou arrivent à leur terme. C'est en savourant l'accomplissement que le prochain départ sera léger.",
+      "action": "Repensez à quelque chose que vous avez récemment terminé ou réussi, et adressez-vous un petit compliment.",
+      "watch": "Ne passez pas aussitôt à la suite simplement parce que quelque chose est fini. Le repos fait aussi partie de l'accomplissement."
+    },
+    "ace-of-swords": {
+      "headline": "Une pensée claire tranche le problème bloqué.",
+      "message": "L'As d'Épées représente la clarté d'esprit, la vérité et les percées. C'est un jour où le cœur d'une situation embrouillée peut apparaître d'un coup. Si une idée nouvelle ou une résolution vous vient, mettez-la aussitôt en ordre.",
+      "action": "Écrivez en une phrase le cœur de ce qui vous préoccupe.",
+      "watch": "Même une parole juste peut blesser si elle est dite avec dureté. Choisissez aussi la manière de la transmettre."
+    },
+    "two-of-swords": {
+      "headline": "Plus vous repoussez la décision, plus le cœur s'alourdit.",
+      "message": "Le Deux d'Épées représente l'impasse de celui qui évite de choisir les yeux bandés. Si les deux options vous pèsent et que vous ne faites pas un pas, ce qui manque peut être l'information ou le courage. Aujourd'hui sert à distinguer lequel des deux.",
+      "action": "Notez trois avantages et trois inconvénients de chaque option, puis fixez-vous une date limite.",
+      "watch": "Ne pas décider est aussi une décision. Si vous continuez à repousser, l'occasion peut passer."
+    },
+    "three-of-swords": {
+      "headline": "Reconnaître la douleur est le début de la guérison.",
+      "message": "Le Trois d'Épées représente la tristesse, la blessure et la douleur de la séparation. Si quelque chose vous fait mal au cœur, vous n'avez pas à faire semblant d'aller bien aujourd'hui. C'est en traversant le processus de souffrir pleinement et d'accepter que le cœur commence à guérir.",
+      "action": "Écrivez ce que vous ressentez tel quel, ou confiez-le à une personne de confiance.",
+      "watch": "Ne ressassez pas la douleur encore et encore. Si l'émotion est trop lourde, l'aide d'un professionnel est aussi une option."
+    },
+    "four-of-swords": {
+      "headline": "Se reposer est aussi une tâche importante aujourd'hui.",
+      "message": "Le Quatre d'Épées représente le repos et la récupération après la bataille. C'est un jour où votre corps et votre esprit fatigués ont besoin de temps pour se recomposer. Si vous vous arrêtez un moment, le prochain pas sera beaucoup plus léger.",
+      "action": "Retirez un élément de votre programme d'aujourd'hui et dormez suffisamment ou reposez-vous en silence.",
+      "watch": "Ne culpabilisez pas pendant que vous vous reposez. Récupérer est aussi une préparation aux résultats."
+    },
+    "five-of-swords": {
+      "headline": "Regardez ce que vous voulez préserver plutôt que seulement gagner.",
+      "message": "Le Cinq d'Épées représente le vide qui reste même après avoir gagné un conflit. Aujourd'hui, prenez garde de ne pas perdre une relation ou une confiance importante en voulant gagner une dispute. Rappelez-vous d'abord quel résultat vous voulez vraiment.",
+      "action": "Quand les avis s'opposent, cherchez un point sur lequel vous pouvez céder une fois.",
+      "watch": "Regardez si vous parlez sur un ton destiné à écraser l'autre."
+    },
+    "six-of-swords": {
+      "headline": "Lentement, mais vous allez vers un endroit meilleur.",
+      "message": "Le Six d'Épées représente une période de transition, où l'on quitte doucement une situation difficile. Tout n'est pas encore rétabli, mais la direction s'améliore sans aucun doute. Emportez ce qui est vraiment nécessaire et vous pouvez laisser les fardeaux inutiles.",
+      "action": "Choisissez une seule prochaine étape pour sortir de la situation actuelle, et menez-la à bien.",
+      "watch": "Le trajet peut paraître long. Ne vous impatientez pas et faites confiance au courant."
+    },
+    "seven-of-swords": {
+      "headline": "Plus un choix est astucieux, plus l'honnêteté l'équilibre.",
+      "message": "Le Sept d'Épées représente l'esquive stratégique et l'action en cachette. Parfois un détour est plus sage que l'affrontement direct, mais cacher devient un poids plus tard. Aujourd'hui, faites vos plans, mais agissez dans ce que vous pouvez assumer au grand jour.",
+      "action": "Mettez honnêtement en ordre une chose que vous avez laissée non dite ou non vérifiée.",
+      "watch": "Une petite ruse finit par déranger surtout votre propre cœur. Si vous cachez quelque chose, repensez-y."
+    },
+    "eight-of-swords": {
+      "headline": "Le mur est plus bas qu'on ne le pense et les liens sont lâches.",
+      "message": "Le Huit d'Épées représente le sentiment d'être enfermé dans des peurs que l'on a créées soi-même. Même si vous ne voyez pas d'issue, le bandeau et les cordes lâches sont des choses que vous pouvez défaire. Aujourd'hui, remettez en question une fois la pensée « je ne peux pas ».",
+      "action": "Choisissez une chose que vous croyez ne pas pouvoir faire et cherchez la plus petite action possible maintenant.",
+      "watch": "Ne voyez pas comme une faiblesse le fait de demander de l'aide. De l'extérieur, la sortie peut se voir."
+    },
+    "nine-of-swords": {
+      "headline": "Les soucis de la nuit changent de taille au matin.",
+      "message": "Le Neuf d'Épées représente un esprit qui ne dort pas à cause de l'angoisse et de l'inquiétude excessive. Ce peut être un souci devenu plus grand dans la tête que dans la réalité. Aujourd'hui, une action concrète qui réduit l'inquiétude vous aidera.",
+      "action": "Notez tout ce qui vous inquiète et marquez seulement ce que vous pouvez faire aujourd'hui.",
+      "watch": "Ne portez pas tout seul. Rien que dire ce que vous avez sur le cœur en allège le poids."
+    },
+    "ten-of-swords": {
+      "headline": "Après l'heure la plus sombre vient l'aube.",
+      "message": "Le Dix d'Épées représente la fin et le fond d'une situation, mais il montre aussi l'aube à l'horizon. Même si tout semble fini maintenant, il reste de la place pour préparer un nouveau départ. Aujourd'hui est un bon jour pour lâcher ce qui est terminé.",
+      "action": "Notez une chose que vous avez apprise de ce que vous avez accepté comme terminé.",
+      "watch": "Plutôt que de vous acharner à défaire ce qui est fini, pensez à ce dont vous aurez besoin ensuite."
+    },
+    "page-of-swords": {
+      "headline": "La curiosité est aujourd'hui votre guide.",
+      "message": "Cette carte représente l'esprit de recherche, qui cherche de nouvelles informations et observe avec acuité. Si vous demandez et vous renseignez sur ce qui vous intrigue, vous pouvez trouver aujourd'hui un indice inattendu. Une attitude qui pose ses questions sincèrement aide.",
+      "action": "Choisissez un sujet qui vous intriguait, recherchez-le vingt minutes seulement et résumez les points clés.",
+      "watch": "Ne répandez pas ni n'affirmez trop vite ce que vous avez appris. Vérifiez, puis parlez."
+    },
+    "knight-of-swords": {
+      "headline": "Une décision rapide demande une vérification de plus.",
+      "message": "Le Chevalier d'Épées représente l'action rapide et l'ambition intellectuelle. Aujourd'hui, l'élan de faire aboutir d'un coup ce que vous hésitiez à faire peut venir facilement. Mais plus vous prenez de la vitesse, plus il faut d'abord vérifier la direction.",
+      "action": "Avant d'agir, pensez une fois à « qui sera touché », puis passez à l'action.",
+      "watch": "Ne laissez pas vos mots aller plus vite que vous au point de perdre l'autre. Vérifiez qu'aucun détail ne vous a échappé dans la précipitation."
+    },
+    "queen-of-swords": {
+      "headline": "La franchise est aujourd'hui votre plus grande confiance.",
+      "message": "La Reine d'Épées représente le jugement clair qui ne se laisse pas emporter par l'émotion, et l'indépendance. C'est un jour pour parler nettement à partir des critères acquis par l'expérience et pour garder vos limites. Ne pas tourner autour de ce qui doit être dit rend parfois la relation plus aisée.",
+      "action": "Mettez en ordre une conversation inconfortable que vous avez repoussée et transmettez-la en phrases calmes et précises.",
+      "watch": "Veillez à ce que votre sang-froid ne paraisse pas de la froideur. Un mot d'attention allège le poids de ce qui est dit."
+    },
+    "king-of-swords": {
+      "headline": "Un critère équitable tient votre centre aujourd'hui.",
+      "message": "Le Roi d'Épées représente la logique, l'autorité intellectuelle et le jugement équitable. C'est un jour où, en séparant émotion et faits et en ordonnant selon des principes, la conclusion devient nette. Cela aide surtout devant un contrat ou une décision importante.",
+      "action": "Pour une chose à juger, fixez trois critères et évaluez seulement avec eux.",
+      "watch": "Ne poussez pas les autres dans leurs retranchements avec la bonne réponse. La situation des gens fait aussi partie des faits."
+    },
+    "ace-of-wands": {
+      "headline": "Une seule étincelle met du neuf en marche.",
+      "message": "L'As de Bâtons représente les nouveaux départs, l'inspiration créative et l'étincelle de la passion. Si l'envie de faire quelque chose vous prend soudain, ne laissez pas passer cette énergie. Aujourd'hui est un bon jour pour transformer une idée en action.",
+      "action": "Notez l'idée qui vous est venue et faites un premier pas avant la fin de la journée.",
+      "watch": "Même si l'étincelle est grande, ne commencez pas beaucoup de choses à la fois. C'est en vous concentrant sur une seule que cela durera."
+    },
+    "two-of-wands": {
+      "headline": "Depuis où vous êtes, imaginez votre prochaine scène.",
+      "message": "Le Deux de Bâtons représente la période où l'on s'appuie sur ce qui est acquis pour bâtir un plan plus grand. C'est un jour où, satisfait du présent, vous êtes curieux d'un monde plus vaste. Dessiner une vision concrète rend la direction plus nette.",
+      "action": "Écrivez en trois lignes ce que vous voulez être dans un an et décidez du premier pas.",
+      "watch": "Pour ne pas passer votre temps seulement à planifier, fixez une chose que vous réaliserez aujourd'hui."
+    },
+    "three-of-wands": {
+      "headline": "Croyez que l'effort envoyé reviendra.",
+      "message": "Le Trois de Bâtons représente la période d'expansion, où l'on observe avec espoir le résultat de ce qu'on a envoyé loin. Ce que vous avez commencé peut être en train de porter ses fruits peu à peu. Plutôt que de vous impatienter, mieux vaut préparer la prochaine expansion.",
+      "action": "Vérifiez l'état d'avancement de quelque chose en cours et faites une préparation nécessaire pour l'étape suivante.",
+      "watch": "Ne vous inquiétez pas parce que le résultat tarde. S'il y a quelque chose à confirmer, contactez d'abord."
+    },
+    "four-of-wands": {
+      "headline": "Ne manquez pas un moment pour vous réjouir ensemble.",
+      "message": "Le Quatre de Bâtons représente le sentiment d'accomplissement après une étape importante et la joie d'une communauté stable. C'est un bon jour pour partager de bonnes choses avec vos proches. Reconnaître et savourer ce qui a été accompli devient l'énergie du pas suivant.",
+      "action": "Fêtez un petit succès récent avec une personne proche.",
+      "watch": "Ne vous installez pas dans la stabilité au point d'oublier de préparer la suite. Après avoir savouré, planifiez un pas de plus."
+    },
+    "five-of-wands": {
+      "headline": "Même quand les avis s'entrechoquent, la scène peut s'agrandir.",
+      "message": "Le Cinq de Bâtons représente la compétition et l'énergie chaotique où s'emmêlent beaucoup d'avis. Ce peut être moins une vraie bataille qu'un exercice pour confronter les idées. Faites entendre votre voix, mais coordonnez-vous sans briser l'ensemble.",
+      "action": "Dans une réunion ou une conversation, résumez d'abord en une phrase l'essentiel de l'avis de l'autre.",
+      "watch": "Veillez à ce que l'envie de gagner ne tourne pas à la querelle d'émotions. Ne dépensez pas votre énergie pour des broutilles."
+    },
+    "six-of-wands": {
+      "headline": "Recevez avec assurance le moment où votre effort est reconnu.",
+      "message": "Le Six de Bâtons représente le fruit de l'effort et la reconnaissance de votre entourage. Aujourd'hui, vos résultats peuvent devenir visibles ou vous pouvez recevoir des compliments. Restez modeste, mais ne vous rabaissez pas, et accueillez la joie.",
+      "action": "Faites le point sur ce que vous avez accompli récemment et, si cela vous semble bon, partagez-le autour de vous.",
+      "watch": "Ne dépendez pas trop de la reconnaissance. Même sans applaudissements, ce que vous avez accompli ne disparaît pas."
+    },
+    "seven-of-wands": {
+      "headline": "Si vous voulez protéger quelque chose, ne reculez pas.",
+      "message": "Le Sept de Bâtons représente la figure qui, en position haute, affronte défis et pressions venus de plusieurs directions. Aujourd'hui, une situation peut surgir où vous devez défendre clairement votre position. Plutôt que de vouloir tout parer, concentrez-vous sur la protection de l'essentiel.",
+      "action": "Fixez un principe fondamental à tenir et soyez ferme sur lui seulement.",
+      "watch": "Prendre toute critique pour une attaque épuise. Faites le tri dans les conseils que vous écoutez."
+    },
+    "eight-of-wands": {
+      "headline": "Ce qui était bloqué se met à avancer vite.",
+      "message": "Le Huit de Bâtons représente un cours où les retards prennent fin et où les choses se déroulent rapidement. C'est un jour où des nouvelles peuvent arriver et où contacts, déplacements et progrès s'animent. L'important est de ne pas rater le moment quand le courant vient.",
+      "action": "Mettez en ordre les messages ou réponses que vous avez repoussés et envoyez-les aujourd'hui.",
+      "watch": "En allant plus vite, les erreurs peuvent aussi augmenter. Vérifiez encore une fois avant d'envoyer."
+    },
+    "nine-of-wands": {
+      "headline": "Même fatigué, il vous reste de la force pour le dernier obstacle.",
+      "message": "Le Neuf de Bâtons représente la persévérance de celui qui n'abandonne pas après bien des épreuves. Même si le corps et l'esprit sont las, c'est la preuve que vous avez déjà beaucoup accompli. Aujourd'hui, il s'agit de soigner à la fois la vigilance et la récupération.",
+      "action": "Reconnaissez ce qui vous fatigue le plus et organisez aujourd'hui votre programme pour économiser votre énergie.",
+      "watch": "Ne vous méfiez pas de tout le monde à cause de blessures passées. Auprès de ceux qui le méritent, vous pouvez demander de l'aide."
+    },
+    "ten-of-wands": {
+      "headline": "Cherchez comment partager le fardeau porté seul.",
+      "message": "Le Dix de Bâtons représente la surcharge de porter seul trop de responsabilités. Le but peut sembler proche, mais le corps et l'esprit peuvent être épuisés. Aujourd'hui, il s'agit de voir ce que vous pouvez déposer ou partager.",
+      "action": "Choisissez dans votre liste de tâches une chose que vous pouvez confier ou reporter, et mettez-la en ordre.",
+      "watch": "Penser que tout est votre affaire agrandit le fardeau. Demander de l'aide est aussi une forme de responsabilité."
+    },
+    "page-of-wands": {
+      "headline": "La curiosité allume le feu de la nouveauté.",
+      "message": "Cette carte représente l'énergie jeune qui explore du nouveau avec passion et curiosité. L'expérience peut manquer, mais c'est un jour plein d'enthousiasme et d'idées. En essayant quelque chose de petit, vous pouvez trouver un plaisir et des indices inattendus.",
+      "action": "Essayez seulement quinze minutes quelque chose de nouveau que vous vouliez faire et repoussiez.",
+      "watch": "L'intérêt peut vite retomber, alors visez non pas d'aller jusqu'au bout mais d'essayer une fois."
+    },
+    "knight-of-wands": {
+      "headline": "Un geste audacieux change l'atmosphère.",
+      "message": "Le Chevalier de Bâtons représente l'esprit d'aventure, la passion ardente et l'élan rapide. Aujourd'hui, votre énergie est plus forte que d'habitude, et une action audacieuse peut mener à un bon résultat. Fixez seulement une direction pour que la passion ne devienne pas impulsion.",
+      "action": "Concentrez-vous une heure sur ce que vous avez le plus envie de faire.",
+      "watch": "Ne commencez pas sans penser à terminer. Ne promettez que ce que vous pouvez tenir."
+    },
+    "queen-of-wands": {
+      "headline": "L'assurance illumine aussi votre entourage.",
+      "message": "La Reine de Bâtons représente la confiance, le charisme chaleureux et l'indépendance vive. Aujourd'hui, plus vous montrez votre vrai visage sans vous cacher, meilleur sera le courant. Votre confiance donne aussi du courage à ceux qui vous entourent.",
+      "action": "Dites directement, sans hésiter, ce que vous voulez dire ou proposer aujourd'hui.",
+      "watch": "Pour que votre assurance ne paraisse pas écrasante, observez aussi la réaction des autres."
+    },
+    "king-of-wands": {
+      "headline": "Exprimez votre vision et guidez ceux qui avancent avec vous.",
+      "message": "Le Roi de Bâtons représente le leadership au charisme affiné par l'expérience et doté d'une vision. Aujourd'hui est un bon jour pour montrer la grande image et mettre les gens en mouvement. Un plan concret qui transforme la passion en réalité montre sa force.",
+      "action": "Exprimez en une phrase l'objectif de ce que vous faites et partagez-le avec ceux qui travaillent avec vous.",
+      "watch": "Ne courez pas devant tout seul. Vérifiez le rythme de ceux qui vous accompagnent."
+    },
+    "ace-of-cups": {
+      "headline": "Ne manquez pas le moment où le cœur s'ouvre.",
+      "message": "L'As de Coupes représente le début d'un sentiment nouveau, de l'amour et d'une inspiration qui jaillit. Aujourd'hui, vous pouvez croiser quelque chose ou quelqu'un qui réchauffe votre cœur. Ne retenez pas vos émotions ; ressentez-les telles qu'elles sont.",
+      "action": "Écrivez en une ligne un sentiment qui vous touche maintenant ou quelque chose dont vous êtes reconnaissant.",
+      "watch": "Ne tirez pas de conclusion hâtive parce que l'émotion déborde. Laissez ressentir et décider se rejoindre lentement."
+    },
+    "two-of-cups": {
+      "headline": "Quand on échange les cœurs, la relation s'approfondit.",
+      "message": "Le Deux de Coupes représente l'amour réciproque et un partenariat harmonieux. Aujourd'hui est un bon jour pour se comprendre et trouver l'équilibre dans les relations. La confiance peut se renforcer non seulement avec un partenaire, mais aussi avec des collègues et des amis.",
+      "action": "Dites à une personne proche votre gratitude en une phrase précise.",
+      "watch": "Évitez une relation où un seul s'adapte. Exprimez aussi votre propre cœur."
+    },
+    "three-of-cups": {
+      "headline": "Le temps partagé est aujourd'hui votre énergie.",
+      "message": "Le Trois de Coupes représente l'amitié, la communauté et la joie d'être ensemble. Rire et parler avec des personnes chères allège le cœur. Même ce qui demande de la coopération se déroule bien dans une ambiance d'entraide.",
+      "action": "Envoyez un petit bonjour à un ami ou collègue avec qui vous n'avez pas parlé depuis longtemps.",
+      "watch": "Ne repoussez pas tâches et responsabilités par plaisir. La convivialité aussi demande de l'équilibre."
+    },
+    "four-of-cups": {
+      "headline": "Regardez si une occasion devant vos yeux n'est pas déjà passée.",
+      "message": "Le Quatre de Coupes représente la lassitude et l'indifférence où l'on ne voit pas les possibilités autour de soi. Quand ce que vous avez vous paraît terne, une proposition nouvelle peut s'approcher en silence. Aujourd'hui, ouvrez un peu votre cœur et regardez de nouveau autour de vous.",
+      "action": "Vérifiez à nouveau s'il y a, parmi les propositions ou messages récents, quelque chose que vous avez laissé passer sans y penser.",
+      "watch": "Essayez de distinguer d'où vient votre insatisfaction actuelle. Tout n'est peut-être pas mauvais."
+    },
+    "five-of-cups": {
+      "headline": "À côté de ce qui est perdu, il reste encore quelque chose.",
+      "message": "Le Cinq de Coupes représente l'état où l'on se concentre sur la perte et le regret sans voir ce qui reste. La tristesse est naturelle, mais si vous détournez un peu le regard, deux coupes sont encore debout. Aujourd'hui, reconnaissez le chagrin et regardez aussi ce qui demeure.",
+      "action": "Écrivez côte à côte une chose perdue et une chose qui vous reste.",
+      "watch": "S'attarder longtemps dans le regret empêche de voir devant soi. Reconnaissez pleinement la tristesse, mais tournez peu à peu aussi les yeux vers votre quotidien."
+    },
+    "six-of-cups": {
+      "headline": "Les souvenirs chaleureux sont aujourd'hui votre force.",
+      "message": "Le Six de Coupes représente la nostalgie, la joie pure et la chaleur des souvenirs. Une personne, un lieu ou un souvenir ancien peut aujourd'hui consoler votre cœur. Essayez d'apporter cette chaleur dans vos relations et votre quotidien actuels.",
+      "action": "Trouvez une photo ou une chanson qui rappelle un bon souvenir.",
+      "watch": "Ne restez pas dans l'idée que le passé était meilleur au point de manquer le présent."
+    },
+    "seven-of-cups": {
+      "headline": "Plus il y a de choix, plus il faut un critère.",
+      "message": "Le Sept de Coupes représente l'état où, devant de nombreuses possibilités, l'illusion et la réalité se mêlent. Beaucoup de choses vous attirent, mais il faut distinguer ce qui est réellement réalisable. Aujourd'hui, réduisez les illusions et vérifiez le réalisme.",
+      "action": "Notez les options qui vous viennent et marquez pour chacune s'il existe une « action réelle à faire aujourd'hui ».",
+      "watch": "Si vous voulez saisir toutes les options, il est difficile d'en réaliser ne serait-ce qu'une. Fixez des priorités."
+    },
+    "eight-of-cups": {
+      "headline": "Partir n'est pas abandonner, c'est aller vers un endroit plus profond.",
+      "message": "Le Huit de Coupes représente la décision de partir chercher un sens nouveau quand le cœur ne se remplit pas, bien que tout paraisse suffisant de l'extérieur. Aujourd'hui est un jour pour réfléchir à savoir si l'endroit où vous êtes vous convient. Quand vous saurez ce qui manque, la direction apparaîtra aussi.",
+      "action": "Écrivez une chose qui n'est « pas comblée » dans votre travail ou votre relation actuels.",
+      "watch": "Ne partez pas sur un coup de tête quand les émotions sont vives. Agissez après avoir bien mis votre cœur en ordre."
+    },
+    "nine-of-cups": {
+      "headline": "C'est un jour où un vœu exaucé peut apporter de la satisfaction.",
+      "message": "Le Neuf de Coupes, appelé la carte du souhait, représente la satisfaction d'un désir réalisé et la richesse émotionnelle. Aujourd'hui est un bon jour pour savourer pleinement ce que vous avez et ressentir de la joie. En reconnaissant ce qui s'est réalisé, le prochain souhait devient aussi plus net.",
+      "action": "Dites-vous un mot de remerciement pour quelque chose qui s'est réalisé récemment.",
+      "watch": "Ne restez pas dans la satisfaction au point de manquer le prochain objectif. Savourer et s'arrêter, ce n'est pas la même chose."
+    },
+    "ten-of-cups": {
+      "headline": "La paix avec ceux que vous aimez est aujourd'hui votre trésor.",
+      "message": "Le Dix de Coupes représente l'accomplissement affectif avec la famille et les êtres chers. Aujourd'hui est un bon jour pour sentir que le quotidien avec ceux qui sont à vos côtés est le plus grand bonheur. Même sans être parfait, il y a des moments assez chaleureux.",
+      "action": "Asseyez-vous avec une personne proche et parlez, ne serait-ce que dix minutes aujourd'hui.",
+      "watch": "Ne comparez pas le présent à une image idéale. Voyez la chaleur telle qu'elle est."
+    },
+    "page-of-cups": {
+      "headline": "Écoutez le petit message qui monte dans votre cœur.",
+      "message": "Cette carte représente l'énergie jeune pleine de sensibilité et de créativité, et les messages intuitifs. D'un endroit inattendu peut venir une nouvelle ou une idée qui touche votre cœur. En exprimant vos émotions avec légèreté, un chemin s'ouvre.",
+      "action": "Notez les idées ou les images oniriques qui vous viennent soudain.",
+      "watch": "Les émotions peuvent facilement varier, alors ne faites pas de grandes promesses seulement par humeur."
+    },
+    "knight-of-cups": {
+      "headline": "Une proposition sincère touche les cœurs.",
+      "message": "Le Chevalier de Coupes représente le romantisme, l'invitation sensible et l'expression artistique. Aujourd'hui, le courant est tel que de bonnes nouvelles peuvent arriver ou qu'il est propice d'exprimer ses sentiments. Une attitude douce, qui avance lentement vers l'idéal, aide.",
+      "action": "Essayez d'écrire sous forme de lettre ou de message le sentiment sincère que vous vouliez transmettre.",
+      "watch": "Ne vous laissez pas griser par l'ambiance au point d'oublier les vérifications réalistes. Accordez vos paroles et vos actes."
+    },
+    "queen-of-cups": {
+      "headline": "Une empathie profonde est aujourd'hui votre force.",
+      "message": "La Reine de Coupes représente la maturité émotionnelle, l'empathie profonde et la sagesse intuitive. C'est un jour où vous pouvez bien comprendre les sentiments des autres et aussi prendre soin de votre cœur. Écouter quelqu'un peut en soi être guérisseur.",
+      "action": "À quelqu'un qui semble en difficulté, plutôt que de proposer des solutions, écoutez attentivement ce qu'il raconte.",
+      "watch": "Ne vous chargez pas des émotions des autres. C'est en préservant aussi les limites de votre cœur que vous pourrez rester empathique longtemps."
+    },
+    "king-of-cups": {
+      "headline": "Gardez votre centre même sur les vagues des émotions.",
+      "message": "Le Roi de Coupes représente un équilibre mûr qui maîtrise les émotions sans perdre sa chaleur. Aujourd'hui est un bon jour pour rester calme et centré même dans des situations agitées ou instables. Ne réprimez pas vos sentiments, mais traitez-les avec la raison.",
+      "action": "Quand les émotions montent, faites une pause avant de réagir, reprenez votre souffle, puis parlez.",
+      "watch": "Cacher ses sentiments et les maîtriser sont deux choses différentes. Exprimez les émotions qui doivent l'être."
+    },
+    "ace-of-pentacles": {
+      "headline": "Il est temps de faire grandir en réalité l'occasion que vous avez en main.",
+      "message": "L'As de Pentacles représente une nouvelle occasion qui mène à des résultats concrets et le début de la stabilité. Aujourd'hui, une graine pratique peut vous être donnée en matière de finances, de travail ou de santé. Faites un plan réaliste, même petit.",
+      "action": "Choisissez une occasion que vous voulez faire grandir maintenant et notez les ressources nécessaires et le premier pas.",
+      "watch": "Ne dépensez pas sans vérifier beaucoup d'argent ou de temps par excitation à l'idée qu'une occasion s'est présentée."
+    },
+    "two-of-pentacles": {
+      "headline": "Si vous gardez l'équilibre avec souplesse, vous pouvez vaciller sans crainte.",
+      "message": "Le Deux de Pentacles représente la capacité d'adaptation pour garder l'équilibre entre plusieurs tâches et responsabilités. Même si vos tâches s'accumulent aujourd'hui, en trouvant votre rythme vous vous en sortirez sans peine. Fixez des priorités et ajustez avec souplesse.",
+      "action": "Choisissez dans le programme du jour une chose qui peut attendre et allégez votre emploi du temps.",
+      "watch": "N'essayez pas de tout jongler à la fois. Si vous voyez des signes de déséquilibre, réduisez."
+    },
+    "three-of-pentacles": {
+      "headline": "Quand les compétences de chacun se réunissent, le résultat est bon.",
+      "message": "Le Trois de Pentacles représente le savoir-faire, la coopération et l'esprit artisan de créer ensemble. Aujourd'hui, le résultat s'améliore si vous partagez les rôles avec des personnes compétentes plutôt que de travailler seul. La reconnaissance et les retours deviennent le terreau de la croissance.",
+      "action": "Dans votre travail, demandez clairement de l'aide à une personne pour la partie où vous en avez besoin.",
+      "watch": "Ne vous obstinez pas seulement à votre manière. Essayez aussi d'intégrer l'avis des autres."
+    },
+    "four-of-pentacles": {
+      "headline": "En desserrant un peu la main serrée, un flux apparaît.",
+      "message": "Le Quatre de Pentacles représente l'état où le désir de préserver la stabilité devient attachement. Aujourd'hui, il s'agit de voir si la peur de perdre ce que vous avez bloque le changement. Gérer est important, mais trop gérer arrête la croissance.",
+      "action": "Choisissez une chose à laquelle vous vous accrochez et que vous pouvez lâcher sans souci, et mettez-la en ordre.",
+      "watch": "Économiser et être avare sont deux choses différentes. Dépensez avec mesure là où il le faut."
+    },
+    "five-of-pentacles": {
+      "headline": "L'aide est plus proche que vous ne le pensez.",
+      "message": "Le Cinq de Pentacles représente le manque, la difficulté et la solitude, mais dans l'image il y a une fenêtre éclairée. Un cœur lourd peut brouiller la vue et vous faire manquer l'aide toute proche. Aujourd'hui, il s'agit de tendre la main en premier.",
+      "action": "Racontez honnêtement votre situation actuelle à une personne de confiance.",
+      "watch": "Penser qu'il faut tout porter seul rend la situation plus difficile. Demander de l'aide n'est pas une faiblesse."
+    },
+    "six-of-pentacles": {
+      "headline": "L'équilibre entre donner et recevoir est aujourd'hui la clé.",
+      "message": "Le Six de Pentacles représente la générosité et le partage équitable. Aujourd'hui, un courant naît naturellement où vous partagez ce que vous pouvez donner ou acceptez ce dont vous avez besoin. Que vous donniez ou que vous receviez, l'équilibre du cœur compte.",
+      "action": "Offrez à une personne quelque chose que vous pouvez partager, que ce soit du temps, des connaissances ou de l'attention.",
+      "watch": "Veillez à ce que votre générosité ne soit pas assortie de conditions. Recevez aussi avec gratitude."
+    },
+    "seven-of-pentacles": {
+      "headline": "Dans l'attente, faites le point sur l'effort accompli jusqu'ici.",
+      "message": "Le Sept de Pentacles représente le temps patient où l'on évalue le résultat après un long effort. Même si les résultats ne se voient pas tout de suite, ce que vous cultivez avec constance est en train de croître. Aujourd'hui est un bon moment pour vérifier si la direction suivie jusqu'ici est la bonne.",
+      "action": "Rassemblez les traces de l'effort accumulé et décidez d'un point à ajuster à l'avenir.",
+      "watch": "N'abandonnez pas facilement parce que le résultat tarde. Mais si la direction était mauvaise, une correction s'impose."
+    },
+    "eight-of-pentacles": {
+      "headline": "La répétition constante construit le savoir-faire.",
+      "message": "Le Huit de Pentacles représente la pratique régulière et la concentration de l'artisan qui perfectionne son art. Aujourd'hui, le travail accumulé avec sérieux, même discret, a une grande valeur. Essayez de vous plonger profondément dans une seule chose.",
+      "action": "Réservez trente minutes à une compétence que vous voulez acquérir et concentrez-vous sans interruption.",
+      "watch": "Ne repoussez pas le début par attachement à la perfection. La répétition améliore la qualité."
+    },
+    "nine-of-pentacles": {
+      "headline": "Vous pouvez pleinement profiter de l'abondance que vous avez bâtie.",
+      "message": "Le Neuf de Pentacles représente l'indépendance et la stabilité matérielle acquises par l'effort. Aujourd'hui, même le temps seul est agréable et serein. Reconnaissez avec fierté ce que vous avez créé.",
+      "action": "Offrez-vous une petite récompense ou un moment de détente.",
+      "watch": "Veillez à ce que le sentiment d'aller bien seul ne devienne pas une raison de fermer vos relations."
+    },
+    "ten-of-pentacles": {
+      "headline": "Regardez le fondement d'une stabilité durable.",
+      "message": "Le Dix de Pentacles représente la famille, l'héritage et l'abondance et la stabilité qui durent longtemps. Aujourd'hui est un bon jour pour examiner les questions de finances à long terme, de famille ou de foyer. Plus que ce qui est devant les yeux, c'est une base durable qui compte.",
+      "action": "Parlez d'un projet à long terme avec votre famille ou avec une personne avec qui vous serez longtemps.",
+      "watch": "Ne vous concentrez pas tant sur la préservation de la stabilité que vous manquiez la joie du moment."
+    },
+    "page-of-pentacles": {
+      "headline": "Un petit apprentissage devient un solide commencement.",
+      "message": "Cette carte représente l'attitude d'apprendre de nouvelles compétences et de bâtir des objectifs réalistes pas à pas. Aujourd'hui, cela se passe bien si vous découpez le plan en parties concrètes et commencez. Apprendre sans se presser devient votre force.",
+      "action": "Trouvez une ressource ou un cours pour ce que vous voulez apprendre et lisez la première page.",
+      "watch": "N'accumulez pas seulement de la théorie ; essayez par vous-même, même en petit. L'expérience achève l'apprentissage."
+    },
+    "knight-of-pentacles": {
+      "headline": "La constance est la vitesse la plus fiable.",
+      "message": "Le Chevalier de Pentacles représente la fiabilité et le sérieux de celui qui réussit lentement mais sûrement. Aujourd'hui, terminer pas à pas ce qui vous incombe donne de meilleurs résultats qu'un coup d'éclat. C'est un jour où le sens des responsabilités est reconnu.",
+      "action": "Terminez les tâches du jour une par une et cochez-les comme faites.",
+      "watch": "Veillez à ce que la prudence ne devienne pas un refus du changement. Si nécessaire, essayez de changer de méthode."
+    },
+    "queen-of-pentacles": {
+      "headline": "La force de prendre chaleureusement soin du réel est aujourd'hui votre sagesse.",
+      "message": "La Reine de Pentacles représente la sagesse pratique, l'attention chaleureuse et la capacité de créer un environnement d'abondance. Aujourd'hui, en mettant en ordre les bases du quotidien comme le foyer, le travail et la santé, le cœur s'apaise aussi. Une attitude économe et aimable aide.",
+      "action": "Rangez ou soignez un endroit inconfortable de votre espace quotidien.",
+      "watch": "Veillez à ce que tout ce dont vous prenez soin ne devienne pas votre responsabilité. Vous aussi, vous méritez qu'on prenne soin de vous."
+    },
+    "king-of-pentacles": {
+      "headline": "Ce que vous bâtissez avec une vue à long terme devient confiance.",
+      "message": "Le Roi de Pentacles représente le leadership stable, l'excellent sens pratique et la réussite matérielle. Aujourd'hui, décider avec une vision à long terme en matière de finances, d'affaires ou de travail apporte des résultats fiables. L'important est une attitude qui gère avec aisance.",
+      "action": "Résumez en chiffres la situation de vos finances ou de votre travail et faites un plan pour les trois prochains mois.",
+      "watch": "Ne placez pas la valeur seulement dans les résultats et les possessions. Voyez aussi la valeur des personnes et du temps."
+    }
+  }
+}

@@ -1,0 +1,482 @@
+{
+  "lang": "vi",
+  "_meta": {
+    "title": "Vận May Hôm Nay",
+    "labels": {
+      "headline": "Hôm nay trong một câu",
+      "message": "Thông điệp hôm nay",
+      "action": "Việc có thể thử hôm nay",
+      "watch": "Điều cần lưu ý hôm nay"
+    }
+  },
+  "cards": {
+    "the-fool": {
+      "headline": "Dù chưa biết đáp án, bạn vẫn có thể bước bước đầu tiên.",
+      "message": "Chàng Ngốc tượng trưng cho trang giấy trắng, trạng thái khi chưa có gì được quyết định. Nếu bạn đang trì hoãn điều gì đó vì chưa thấy mình sẵn sàng hoàn toàn, hôm nay là ngày tốt để bắt đầu với tâm thế nhẹ nhàng. Ai cũng bắt đầu bằng những bước chập chững.",
+      "action": "Chọn một bước đầu thật nhỏ cho việc bạn đã do dự từ lâu và làm nó trước khi hết ngày.",
+      "watch": "Hãy kiểm tra xem sự háo hức có khiến bạn quên nhìn xuống chân mình không. Lạc quan và liều lĩnh không giống nhau."
+    },
+    "the-magician": {
+      "headline": "Công cụ bạn cần đã nằm trong tay bạn.",
+      "message": "Trên bàn trước mặt Nhà Ảo Thuật có gậy, cốc, kiếm và đồng tiền. Thay vì tìm kiếm thứ mới, hãy quyết định cách dùng tài năng, các mối quan hệ và thời gian bạn đã có. Nếu có việc cứ quanh quẩn trong đầu, dòng chảy hôm nay thuận lợi để biến nó thành hành động đầu tiên.",
+      "action": "Chọn một việc đang trì hoãn, viết một câu về điều bạn sẽ làm, rồi bắt đầu chỉ mười phút.",
+      "watch": "Hãy xem nhiệt huyết có khiến bạn nói nhiều hơn làm không. Sức mạnh của lá bài này nằm ở việc thực sự làm, không phải phô diễn."
+    },
+    "the-high-priestess": {
+      "headline": "Hôm nay, lắng nghe dạy bạn nhiều hơn nói.",
+      "message": "Nữ Tư Tế tượng trưng cho những điều chưa lộ ra: trực giác và tiếng nói bên trong. Hôm nay nên lặng lẽ quan sát tình huống hơn là vội kết luận. Phía sau thông tin nhìn thấy được, điều trái tim bạn vốn đã biết có thể trồi lên.",
+      "action": "Dành một khoảng lặng ngắn và ghi lại cảm giác đầu tiên hiện lên trong lòng bạn lúc này.",
+      "watch": "Đừng đoán và phán xét mọi thứ một mình. Trực giác sẽ chính xác hơn khi đi kèm với việc kiểm chứng."
+    },
+    "the-empress": {
+      "headline": "Chăm sóc và vun trồng sẽ làm quả hôm nay lớn lên.",
+      "message": "Hoàng Hậu tượng trưng cho sự sung túc, sức sáng tạo và sự chăm sóc ấm áp. Khi bạn dành năng lượng để chăm lo cho bản thân và những người xung quanh, cả tâm hồn lẫn cuộc sống thường ngày cùng trở nên phong phú. Mở rộng các giác quan và tận hưởng điều tốt đẹp cũng là phần quan trọng của hôm nay.",
+      "action": "Chọn một điều làm các giác quan vui, như món ăn yêu thích, hoa hay âm nhạc, và thong thả tận hưởng.",
+      "watch": "Đừng cho đi quá nhiều đến mức bản thân cạn kiệt. Chăm sóc bản thân cũng là một phần của sự chăm sóc."
+    },
+    "the-emperor": {
+      "headline": "Chuẩn mực và trật tự giữ vững trọng tâm của bạn hôm nay.",
+      "message": "Hoàng Đế tượng trưng cho cấu trúc, trách nhiệm và sự lãnh đạo vững vàng. Sắp xếp thứ tự ưu tiên cho những việc rải rác và vạch ranh giới rõ ràng sẽ giúp lòng bạn nhẹ nhõm hơn nhiều hôm nay. Phán đoán theo nguyên tắc thay vì bị cảm xúc cuốn đi sẽ làm kết quả vững chắc.",
+      "action": "Sắp xếp thứ tự các việc hôm nay và hoàn thành việc quan trọng nhất trước.",
+      "watch": "Đừng để nguyên tắc biến thành bướng bỉnh. Bạn cần chút rộng lượng để lắng nghe hoàn cảnh của người kia một lần."
+    },
+    "the-hierophant": {
+      "headline": "Phương pháp đã kiểm chứng và lời khuyên tốt có điều để học.",
+      "message": "Giáo Hoàng tượng trưng cho truyền thống, sự giáo huấn và các cam kết của cộng đồng. Hôm nay làm theo cách đã được kiểm chứng hoặc lời khuyên của người có kinh nghiệm an toàn hơn là tìm cách mới. Quy tắc và quy trình đôi khi còn rút ngắn đường đi.",
+      "action": "Xin một lời khuyên từ người bạn kính trọng hoặc nguồn đáng tin, rồi áp dụng đúng như vậy.",
+      "watch": "Hãy xem bạn có đang làm theo chỉ vì người khác làm vậy không, và nó có hợp với giá trị của bạn không."
+    },
+    "the-lovers": {
+      "headline": "Nơi trái tim nghiêng về cho thấy lựa chọn của hôm nay.",
+      "message": "Đôi Tình Nhân không chỉ nói về cảm xúc mà còn về sự lựa chọn phù hợp với giá trị của bạn. Hôm nay, điều thật sự quan trọng với bạn có thể lộ ra trong một mối quan hệ hay quyết định. Nếu thành thật kiểm tra lòng mình, việc chọn sẽ dễ hơn nhiều.",
+      "action": "Với lựa chọn bạn đang cân nhắc, hãy viết ra bên nào gần hơn với \"giá trị tôi thật sự muốn giữ gìn\".",
+      "watch": "Đừng làm mờ lựa chọn của mình để đáp ứng kỳ vọng của người khác. Sự cuốn hút và lựa chọn hợp với mình có thể khác nhau."
+    },
+    "the-chariot": {
+      "headline": "Khi đã định hướng, sức mạnh sẽ dồn về một điểm.",
+      "message": "Cỗ Xe tượng trưng cho ý chí gom các lực khác nhau về một hướng để tiến lên. Ngay cả việc từng kéo bạn đi hai ngả hôm nay cũng có đà khi mục tiêu rõ ràng. Nếu tập trung, bạn có thể đi xa hơn thường lệ.",
+      "action": "Chỉ chọn một mục tiêu cho hôm nay và dời các lịch khác ra sau nó.",
+      "watch": "Đừng say tốc độ mà quên nhìn xung quanh. Điều chỉnh nhịp độ cũng là bản lĩnh như tiến về phía trước."
+    },
+    "strength": {
+      "headline": "Sự dịu dàng là sức mạnh vững chắc nhất.",
+      "message": "Sức Mạnh không phải sự cứng rắn đè nén mà là lòng can đảm xoa dịu nỗi sợ và dẫn dắt nó. Khi giận dữ hay lo lắng trỗi lên, không cần gạt đi thô bạo; để chúng yên bên cạnh một cách bình tĩnh lại có thể mở ra con đường. Hôm nay sự kiên nhẫn là vũ khí lớn nhất của bạn.",
+      "action": "Khi bực bội hay lo âu trỗi dậy, hãy hít sâu ba lần và đặt tên cho cảm xúc ấy.",
+      "watch": "Chịu đựng và đè nén không giống nhau. Hãy giải tỏa cảm xúc chất chứa ở nơi an toàn."
+    },
+    "the-hermit": {
+      "headline": "Ở nơi bạn dừng lại, con đường hiện ra.",
+      "message": "Ẩn Sĩ tượng trưng cho khoảng thời gian rời xa ồn ào để tìm ánh sáng của riêng mình. Hôm nay bạn cần thời gian suy nghĩ một mình hơn là tìm đáp án giữa mọi người. Nếu sắp xếp trong yên tĩnh, điều phức tạp sẽ trở nên đơn giản.",
+      "action": "Để điện thoại xa khoảng nửa tiếng và nghĩ xem điều gì thật sự quan trọng lúc này.",
+      "watch": "Đừng để nghỉ ngơi thành cô lập. Trò chuyện với một người đáng tin sẽ giúp ích."
+    },
+    "wheel-of-fortune": {
+      "headline": "Khoảnh khắc dòng chảy đổi hướng luôn đến không báo trước.",
+      "message": "Bánh Xe Vận Mệnh tượng trưng cho vòng tuần hoàn xoay chuyển và các giai đoạn mới. Dù tình hình hiện tại tốt hay khó, nó không ở lại mãi, và đó vừa là sự an ủi vừa là lời nhắc hôm nay. Khi thay đổi đến, hãy tìm cách cưỡi lên nó thay vì cưỡng lại.",
+      "action": "Hãy nhìn mọi thay đổi bất ngờ hôm nay với giả định \"biết đâu đó là cơ hội\".",
+      "watch": "Đừng chủ quan trong lúc thuận lợi, cũng đừng nản trong lúc khó khăn. Cả hai đều sẽ qua."
+    },
+    "justice": {
+      "headline": "Phán đoán theo sự thật khiến lòng nhẹ đi.",
+      "message": "Công Lý tượng trưng cho nhân quả, sự công bằng và cân bằng. Nếu tạm gác cảm xúc sang bên và nhìn sự việc đúng như nó là, điều cần làm sẽ rõ. Hôm nay cũng là ngày tốt để sắp xếp hợp đồng, lời hứa và các khoản thanh toán.",
+      "action": "Kiểm tra một lời hứa hay khoản thanh toán còn dang dở và sắp xếp dựa trên sự thật.",
+      "watch": "Hãy xem bạn có diễn giải mọi thứ theo hướng có lợi cho mình không. Sự công bằng cũng áp dụng cho bạn."
+    },
+    "the-hanged-man": {
+      "headline": "Dừng lại, bạn sẽ thấy một khung cảnh khác.",
+      "message": "Người Treo Ngược tượng trưng cho thời gian cố ý dừng lại để có góc nhìn khác. Việc đẩy mãi vẫn không gỡ được, hôm nay nên tạm đặt xuống và nhìn theo cách khác. Sự chờ đợi tưởng như thiệt thòi sẽ mang lại hiểu biết lớn về sau.",
+      "action": "Hãy nghĩ về vấn đề đang bế tắc từ lập trường hoàn toàn đối lập và ghi lại những gì nảy ra.",
+      "watch": "Đừng để chờ đợi thành né tránh. Tự quyết định nghỉ đến khi nào sẽ có ích."
+    },
+    "death": {
+      "headline": "Điều kết thúc là sự dọn dẹp để mở ra chương kế tiếp.",
+      "message": "Thần Chết không có nghĩa là cái chết thật mà là sự khép lại của một giai đoạn. Như bình minh hé ở chân trời, nếu có điều bạn biết cần buông mà vẫn giữ, hôm nay là ngày tốt để đối diện cảm xúc ấy. Tiếc nuối là tự nhiên, và phải đi qua nó mới bước tiếp được.",
+      "action": "Dọn dẹp một thói quen, món đồ hay cam kết không còn hợp với bạn. Không cần lớn.",
+      "watch": "Hãy xem bạn có đang cố giữ hiện tại để tránh thay đổi không. Điều này không có nghĩa là phải cắt bỏ mọi thứ vội vã."
+    },
+    "temperance": {
+      "headline": "Cân bằng không vội vã là con đường nhanh nhất.",
+      "message": "Sự Điều Độ tượng trưng cho sự hòa hợp và kiên nhẫn khi pha trộn những thứ khác nhau cho vừa phải. Hôm nay mấu chốt là tìm điểm giữa và điều chỉnh nhịp độ thay vì đi đến cực đoan. Khi cân bằng công việc và nghỉ ngơi, lời nói và im lặng, lòng bạn sẽ ổn định.",
+      "action": "Xếp thời gian nghỉ vào lịch hôm nay trước, rồi bố trí các việc còn lại xung quanh.",
+      "watch": "Hãy xem vì giữ hòa khí, bạn có nuốt xuống những điều cần nói không."
+    },
+    "the-devil": {
+      "headline": "Thứ trói bạn lỏng lẻo hơn bạn nghĩ.",
+      "message": "Ác Quỷ tượng trưng cho trạng thái bị cuốn đi bởi sự dính mắc, thói quen và ham muốn, nhưng sợi xích trong tranh lại treo lỏng. Niềm tin rằng mình không thoát được có lẽ chính là sợi xích bền nhất. Hôm nay là ngày tốt để nhìn thẳng thắn điều gì đang giữ bạn lại.",
+      "action": "Nghĩ đến một thói quen lặp lại và viết riêng điều nó cho bạn và điều nó lấy đi.",
+      "watch": "Đừng tiêu sức vào việc tự trách. Chỉ cần nhận ra đã là bước đầu."
+    },
+    "the-tower": {
+      "headline": "Chấn động khó chịu nhưng làm lộ nền móng giả.",
+      "message": "Tòa Tháp tượng trưng cho thay đổi đột ngột và điều bất ngờ. Dù hôm nay kế hoạch lệch đi hay bạn đối mặt sự thật khó chịu, đó có thể là quá trình làm lộ ra phần chưa vững. Khi cú sốc qua đi, điều bạn thực sự cần sẽ rõ hơn.",
+      "action": "Khi có chuyện bất ngờ, đừng phán xét ngay; hãy thở một hơi rồi chỉ tìm \"một điều tôi có thể thay đổi bây giờ\".",
+      "watch": "Đừng đưa ra quyết định lớn vào lúc cảm xúc dâng cao nhất. Nếu xem lại sau một hai ngày, nhận định có thể đổi."
+    },
+    "the-star": {
+      "headline": "Hy vọng chầm chậm trở lại trong trái tim mệt mỏi.",
+      "message": "Ngôi Sao tượng trưng cho sự hồi phục và hy vọng đến sau thời kỳ khó khăn. Dù chưa phải mọi thứ đã được giải quyết, hôm nay lòng bạn dần nhẹ hơn. Không cần vội, bạn vẫn có thể tiến lên từng chút một.",
+      "action": "Viết ra ba điều gần đây bạn làm tốt hoặc biết ơn.",
+      "watch": "Đừng chỉ chờ hy vọng; hãy nối nó với hành động nhỏ. Hồi phục vững vàng hơn khi bạn chuyển động."
+    },
+    "the-moon": {
+      "headline": "Nỗi bất an mơ hồ sẽ nhỏ đi khi được kiểm chứng.",
+      "message": "Mặt Trăng tượng trưng cho sự bất định, nỗi sợ mơ hồ và bóng tối của vô thức. Hôm nay điều nhìn thấy không phải tất cả nên phán đoán có thể chao đảo. Thay vì khẳng định điều chưa chắc, tốt hơn là kiểm chứng từng sự thật một.",
+      "action": "Chia điều bạn đang bận tâm thành \"sự thật\" và \"tưởng tượng của tôi\" rồi ghi ra.",
+      "watch": "Lo lắng ban đêm dễ có vẻ lớn hơn thực tế. Hãy để quyết định quan trọng đến buổi sáng."
+    },
+    "the-sun": {
+      "headline": "Hôm nay đừng giấu mình, hãy tỏa sáng.",
+      "message": "Mặt Trời tượng trưng cho niềm vui, thành tựu và sự rõ ràng. Hôm nay tâm trạng tươi sáng và mọi việc dễ sáng tỏ. Nếu có điều muốn nói hay muốn cho người khác thấy, hãy bày tỏ chân thành.",
+      "action": "Báo tin vui hoặc lời cảm ơn trực tiếp cho một người.",
+      "watch": "Dù mọi chuyện suôn sẻ, đừng bỏ sót những chi tiết cần chú ý. Ngay cả ngày nắng đẹp, nền tảng vẫn cần thiết."
+    },
+    "judgement": {
+      "headline": "Đã đến lúc đáp lại tiếng gọi từ bên trong.",
+      "message": "Phán Xét tượng trưng cho tiếng gọi nội tâm thúc giục sắp xếp quá khứ và bước lên giai đoạn cao hơn. Thay vì nhai lại chuyện đã qua, hôm nay hãy thừa nhận những gì mình đã học và tiến bước. Nếu một quyết tâm bị hoãn lâu lại trỗi lên, đó có thể là dấu hiệu.",
+      "action": "Chọn một điều trong quá khứ để tha thứ hoặc khép lại, và nói với nó: \"đến đây thôi\".",
+      "watch": "Đừng dành thời gian phán xét lại bản thân hay người khác. Hãy tập trung vào những lựa chọn sắp tới."
+    },
+    "the-world": {
+      "headline": "Hãy ghi nhận bản thân đã hoàn thành một chặng.",
+      "message": "Thế Giới tượng trưng cho một quá trình khép lại và trạng thái mọi thứ hòa quyện trọn vẹn. Có thể là lúc những nỗ lực bấy lâu kết trái hoặc đi đến hồi kết. Chỉ khi nếm trọn sự viên mãn, khởi đầu tiếp theo mới nhẹ nhàng.",
+      "action": "Nhìn lại điều bạn mới hoàn thành hay đạt được và dành cho bản thân một lời khen ngắn.",
+      "watch": "Đừng vội chuyển ngay sang việc kế tiếp chỉ vì một việc đã xong. Thời gian nghỉ cũng là một phần của viên mãn."
+    },
+    "ace-of-swords": {
+      "headline": "Suy nghĩ rõ ràng chặt đứt vấn đề đang bế tắc.",
+      "message": "Át Kiếm tượng trưng cho tư duy sáng rõ, sự thật và những bước đột phá. Đó là ngày cốt lõi của một tình huống rối rắm có thể hiện ra trong tức khắc. Nếu có ý tưởng hay quyết tâm mới, hãy sắp xếp ngay.",
+      "action": "Viết ra trong một câu cốt lõi của điều bạn đang lo nghĩ.",
+      "watch": "Điều đúng nếu nói gay gắt vẫn có thể làm tổn thương. Hãy chọn cả cách nói."
+    },
+    "two-of-swords": {
+      "headline": "Càng trì hoãn quyết định, lòng càng nặng.",
+      "message": "Hai Kiếm tượng trưng cho thế bế tắc, nhắm mắt né tránh lựa chọn. Nếu cả hai lựa chọn đều vướng mắc và bạn không bước nổi, thứ thiếu có thể là thông tin, có thể là dũng khí. Hôm nay là ngày phân biệt đó là cái nào.",
+      "action": "Viết ba ưu điểm và ba nhược điểm cho từng lựa chọn, rồi tự đặt hạn chót.",
+      "watch": "Không quyết định cũng là một quyết định. Nếu cứ trì hoãn, cơ hội có thể trôi qua."
+    },
+    "three-of-swords": {
+      "headline": "Thừa nhận nỗi đau là khởi đầu của hồi phục.",
+      "message": "Ba Kiếm tượng trưng cho nỗi buồn, vết thương và nỗi đau chia ly. Nếu có điều làm tim bạn nhói, hôm nay không cần giả vờ ổn. Chỉ khi trải qua việc đau đủ và chấp nhận nó, trái tim mới bắt đầu lành.",
+      "action": "Viết ra cảm xúc hiện có đúng như nó là, hoặc tâm sự với người bạn tin tưởng.",
+      "watch": "Đừng lặp đi lặp lại nỗi đau trong đầu. Nếu cảm xúc quá nặng, tìm sự giúp đỡ chuyên môn cũng là một lựa chọn."
+    },
+    "four-of-swords": {
+      "headline": "Nghỉ ngơi cũng là việc quan trọng hôm nay.",
+      "message": "Bốn Kiếm tượng trưng cho sự nghỉ ngơi và phục hồi sau trận chiến. Đây là ngày thân tâm mệt mỏi cần thời gian chỉnh đốn. Nếu dừng lại một lát, bước tiếp theo sẽ nhẹ nhàng hơn nhiều.",
+      "action": "Bớt một việc trong lịch hôm nay, ngủ đủ hoặc nghỉ ngơi yên tĩnh.",
+      "watch": "Đừng thấy tội lỗi khi nghỉ ngơi. Hồi phục cũng là chuẩn bị cho kết quả."
+    },
+    "five-of-swords": {
+      "headline": "Hãy nhìn xem điều cần giữ là gì, chứ không chỉ thắng.",
+      "message": "Năm Kiếm tượng trưng cho khoảng trống còn lại dù đã thắng một cuộc xung đột. Hôm nay cẩn thận đừng để mất mối quan hệ hay lòng tin quan trọng vì cố thắng trong tranh luận. Trước hết hãy nhớ lại kết quả bạn thực sự muốn.",
+      "action": "Khi ý kiến va chạm, hãy tìm một điểm bạn có thể nhường một lần.",
+      "watch": "Hãy xem lại bạn có đang nói bằng giọng điệu nhằm đè bẹp đối phương không."
+    },
+    "six-of-swords": {
+      "headline": "Dù chậm, bạn đang hướng tới nơi tốt đẹp hơn.",
+      "message": "Sáu Kiếm tượng trưng cho thời kỳ chuyển tiếp, lặng lẽ rời khỏi hoàn cảnh khó khăn. Mọi thứ chưa hồi phục hết nhưng hướng đi chắc chắn đang khá lên. Hãy mang theo điều thật sự cần, còn gánh nặng không cần thiết có thể bỏ lại.",
+      "action": "Chọn đúng một bước tiếp theo để thoát khỏi tình cảnh hiện tại và thực hiện nó.",
+      "watch": "Hành trình có thể thấy dài. Đừng nóng vội, hãy tin vào dòng chảy."
+    },
+    "seven-of-swords": {
+      "headline": "Lựa chọn càng khôn khéo, sự trung thực càng giữ thăng bằng.",
+      "message": "Bảy Kiếm tượng trưng cho sự né tránh có chiến lược và hành động lén lút. Đôi khi đi vòng khôn ngoan hơn đối đầu trực diện, nhưng cách giấu giếm về sau sẽ thành gánh nặng. Hôm nay cứ lập kế hoạch, nhưng hành động trong phạm vi bạn có thể công khai.",
+      "action": "Sắp xếp một cách trung thực một việc bạn chưa nói hoặc chưa kiểm tra.",
+      "watch": "Một mánh nhỏ cuối cùng làm chính lòng mình bất an nhất. Nếu bạn đang che giấu điều gì, hãy nghĩ lại."
+    },
+    "eight-of-swords": {
+      "headline": "Bức tường thấp hơn bạn nghĩ và dây trói lỏng hơn bạn tưởng.",
+      "message": "Tám Kiếm tượng trưng cho cảm giác bị nhốt trong nỗi sợ do chính mình tạo ra. Dù cảm thấy không có lối ra, tấm bịt mắt và sợi dây lỏng là thứ bạn có thể tự tháo. Hôm nay hãy nghi ngờ một lần suy nghĩ \"tôi không làm được\".",
+      "action": "Chọn một việc bạn tin là mình không làm được, rồi tìm hành động nhỏ nhất có thể làm ngay bây giờ.",
+      "watch": "Đừng coi việc nhờ giúp đỡ là yếu đuối. Nhìn từ bên ngoài có thể thấy lối ra."
+    },
+    "nine-of-swords": {
+      "headline": "Nỗi lo ban đêm đổi kích cỡ khi trời sáng.",
+      "message": "Chín Kiếm tượng trưng cho tâm trí mất ngủ vì lo âu và nghĩ ngợi quá mức. Có thể đó là nỗi lo bị thổi phồng trong đầu lớn hơn thực tế. Hôm nay một hành động cụ thể làm giảm lo lắng sẽ giúp ích.",
+      "action": "Viết ra mọi điều lo lắng, rồi chỉ đánh dấu những việc hôm nay bạn có thể làm.",
+      "watch": "Đừng ôm một mình. Chỉ cần nói ra điều trong lòng, gánh nặng sẽ nhẹ đi."
+    },
+    "ten-of-swords": {
+      "headline": "Sau giờ phút tối nhất, bình minh sẽ đến.",
+      "message": "Mười Kiếm tượng trưng cho kết thúc và đáy của một tình huống, nhưng cũng cho thấy rạng đông ở chân trời. Dù lúc này mọi thứ như đã chấm dứt, vẫn còn chỗ để chuẩn bị cho một khởi đầu mới. Hôm nay là ngày tốt để buông điều đã kết thúc.",
+      "action": "Viết ra một điều bạn học được từ việc bạn đã chấp nhận là đã xong.",
+      "watch": "Thay vì cố gắng đảo ngược điều đã kết thúc, hãy nghĩ đến điều bạn cần từ nay về sau."
+    },
+    "page-of-swords": {
+      "headline": "Sự tò mò là kim chỉ nam của bạn hôm nay.",
+      "message": "Lá bài này tượng trưng cho tinh thần tìm tòi, tìm thông tin mới và quan sát sắc bén. Nếu hỏi và tìm hiểu điều mình tò mò, hôm nay có thể gặp manh mối bất ngờ. Thái độ hỏi một cách chân thành sẽ giúp ích.",
+      "action": "Chọn một chủ đề bạn tò mò, tìm hiểu chỉ hai mươi phút rồi tóm tắt các ý chính.",
+      "watch": "Đừng vội lan truyền hay khẳng định điều vừa biết. Hãy kiểm chứng rồi hãy nói."
+    },
+    "knight-of-swords": {
+      "headline": "Quyết định nhanh cần thêm một lần kiểm tra.",
+      "message": "Kỵ Sĩ Kiếm tượng trưng cho hành động nhanh chóng và tham vọng trí tuệ. Hôm nay dễ có xung lực làm một mạch điều bạn từng chần chừ. Nhưng càng có tốc độ, càng phải kiểm tra hướng đi trước.",
+      "action": "Trước khi hành động, hãy nghĩ một lần \"ai sẽ bị ảnh hưởng\" rồi mới bắt đầu.",
+      "watch": "Đừng để lời nói đi trước mà đánh mất người đối diện. Kiểm tra xem vì vội mà bỏ sót chi tiết nào không."
+    },
+    "queen-of-swords": {
+      "headline": "Sự thẳng thắn là niềm tin lớn nhất hôm nay.",
+      "message": "Nữ Hoàng Kiếm tượng trưng cho phán đoán sáng suốt không bị cảm xúc chi phối và tính độc lập. Đây là ngày nên nói rõ ràng từ những chuẩn mực rút ra từ kinh nghiệm và giữ vững ranh giới. Không nói vòng vo điều cần nói đôi khi lại khiến mối quan hệ dễ chịu hơn.",
+      "action": "Sắp xếp một cuộc trò chuyện khó chịu bạn đã hoãn và truyền đạt bằng những câu bình tĩnh, cụ thể.",
+      "watch": "Đừng để sự điềm tĩnh trở thành lạnh lùng. Một lời quan tâm làm nhẹ đi sức nặng của lời nói."
+    },
+    "king-of-swords": {
+      "headline": "Tiêu chuẩn công bằng giữ vững trọng tâm của bạn hôm nay.",
+      "message": "Vua Kiếm tượng trưng cho logic, uy quyền trí tuệ và phán đoán công bằng. Đây là ngày khi tách cảm xúc khỏi sự thật và sắp xếp theo nguyên tắc, kết luận sẽ rõ ràng. Đặc biệt hữu ích trước các hợp đồng hay quyết định quan trọng.",
+      "action": "Với việc cần phán đoán, hãy đặt ba tiêu chí và chỉ đánh giá bằng những tiêu chí đó.",
+      "watch": "Đừng dồn người khác vào chân tường bằng đáp án đúng. Hoàn cảnh của con người cũng là một phần sự thật."
+    },
+    "ace-of-wands": {
+      "headline": "Một tia lửa làm khởi động điều mới.",
+      "message": "Át Gậy tượng trưng cho khởi đầu mới, cảm hứng sáng tạo và tia lửa đam mê. Nếu bỗng muốn làm điều gì, đừng bỏ lỡ nguồn năng lượng ấy. Hôm nay là ngày tốt để biến ý tưởng thành hành động.",
+      "action": "Ghi lại ý tưởng vừa nảy ra và làm bước đầu tiên trước khi hết ngày.",
+      "watch": "Dù tia lửa lớn, đừng bắt đầu quá nhiều việc cùng lúc. Chỉ tập trung vào một việc mới bền lâu."
+    },
+    "two-of-wands": {
+      "headline": "Từ chỗ đang đứng, hãy hình dung sân khấu kế tiếp.",
+      "message": "Hai Gậy tượng trưng cho giai đoạn dựa trên điều đã đạt được để vạch kế hoạch lớn hơn. Đây là ngày bạn hài lòng với hiện tại nhưng tò mò về thế giới rộng hơn. Vẽ ra viễn cảnh cụ thể sẽ làm hướng đi rõ ràng hơn.",
+      "action": "Viết ba dòng về hình ảnh bạn muốn trở thành sau một năm và định bước đầu tiên.",
+      "watch": "Để không dành hết thời gian chỉ lập kế hoạch, hãy chọn một việc sẽ thực hiện hôm nay."
+    },
+    "three-of-wands": {
+      "headline": "Hãy tin rằng nỗ lực đã gửi đi sẽ quay về.",
+      "message": "Ba Gậy tượng trưng cho giai đoạn mở rộng, kỳ vọng dõi theo kết quả của điều đã gửi đi xa. Việc bạn đã khởi sự có thể đang dần đơm hoa kết trái. Thay vì sốt ruột, tốt hơn là chuẩn bị cho lần mở rộng tiếp theo.",
+      "action": "Kiểm tra tình hình việc đang tiến hành và làm một việc chuẩn bị cho bước kế tiếp.",
+      "watch": "Đừng lo lắng vì kết quả đến chậm. Nếu có điều cần xác nhận, hãy liên lạc trước."
+    },
+    "four-of-wands": {
+      "headline": "Đừng bỏ lỡ khoảnh khắc cùng nhau vui mừng.",
+      "message": "Bốn Gậy tượng trưng cho cảm giác thành tựu sau khi vượt qua chặng quan trọng và niềm vui của cộng đồng ổn định. Đây là ngày tốt để chia sẻ điều tốt đẹp với người thân thiết. Thừa nhận và tận hưởng điều đã đạt trở thành năng lượng cho bước tiếp theo.",
+      "action": "Cùng người thân thiết ăn mừng thành tựu nhỏ gần đây.",
+      "watch": "Đừng yên vị trong sự ổn định mà quên chuẩn bị tiếp. Sau khi tận hưởng, hãy lên kế hoạch thêm một bước."
+    },
+    "five-of-wands": {
+      "headline": "Dù ý kiến va chạm, có thể đó là sân khấu đang mở rộng.",
+      "message": "Năm Gậy tượng trưng cho cạnh tranh và năng lượng hỗn loạn nơi nhiều ý kiến đan xen. Có thể không phải cãi vã thật mà giống buổi luyện tập đo sức các ý tưởng. Hãy lên tiếng, nhưng điều phối sao cho không phá vỡ tổng thể.",
+      "action": "Trong cuộc họp hay cuộc trò chuyện, hãy tóm tắt cốt lõi ý kiến của đối phương trong một câu trước.",
+      "watch": "Đừng để ý muốn thắng lan thành cuộc cãi vã cảm xúc. Đừng tiêu hao năng lượng vào chuyện nhỏ."
+    },
+    "six-of-wands": {
+      "headline": "Hãy tự tin đón nhận khoảnh khắc nỗ lực được công nhận.",
+      "message": "Sáu Gậy tượng trưng cho thành quả nỗ lực và sự công nhận của mọi người xung quanh. Hôm nay thành tích có thể hiện ra hoặc bạn nhận được lời khen. Hãy khiêm tốn nhưng đừng hạ thấp mình, và đón nhận niềm vui.",
+      "action": "Xem lại điều bạn vừa hoàn thành và, nếu thấy phù hợp, chia sẻ với những người xung quanh.",
+      "watch": "Đừng quá phụ thuộc vào việc được công nhận. Không có tiếng vỗ tay, điều bạn đã làm cũng không mất đi."
+    },
+    "seven-of-wands": {
+      "headline": "Nếu có điều muốn bảo vệ, đừng lùi bước.",
+      "message": "Bảy Gậy tượng trưng cho hình ảnh đứng ở nơi cao đối diện thử thách và áp lực từ nhiều hướng. Hôm nay có thể xuất hiện tình huống cần bảo vệ rõ ràng lập trường của bạn. Thay vì cố chặn mọi thứ, hãy tập trung bảo vệ điều quan trọng nhất.",
+      "action": "Xác định một nguyên tắc cốt lõi cần giữ và chỉ kiên quyết ở điểm đó.",
+      "watch": "Nếu coi mọi lời phê bình là công kích, bạn sẽ kiệt sức. Hãy chọn lọc những lời khuyên cần nghe."
+    },
+    "eight-of-wands": {
+      "headline": "Việc đang bế tắc bắt đầu chuyển động nhanh.",
+      "message": "Tám Gậy tượng trưng cho dòng chảy khi sự trì hoãn chấm dứt và mọi việc tiến triển nhanh. Đây là ngày có thể có tin tức đến, liên lạc, di chuyển và tiến độ trở nên sôi động. Điều quan trọng là không bỏ lỡ thời điểm khi dòng chảy tới.",
+      "action": "Sắp xếp các tin nhắn hay câu trả lời đã hoãn và gửi đi ngay hôm nay.",
+      "watch": "Khi nhanh hơn, sai sót cũng có thể nhiều hơn. Hãy kiểm tra lại một lần trước khi gửi."
+    },
+    "nine-of-wands": {
+      "headline": "Dù mệt mỏi, bạn vẫn còn sức vượt qua cửa ải cuối.",
+      "message": "Chín Gậy tượng trưng cho sự bền bỉ không bỏ cuộc sau nhiều khó khăn. Dù thân tâm mỏi mệt, đó là bằng chứng bạn đã đạt được rất nhiều. Hôm nay là ngày vừa giữ cảnh giác vừa chăm lo phục hồi.",
+      "action": "Thừa nhận phần khiến bạn mệt nhất lúc này và sắp xếp lịch hôm nay để tiết kiệm sức.",
+      "watch": "Đừng nghi ngờ tất cả mọi người vì vết thương cũ. Với người đáng tin, bạn có thể nhờ giúp đỡ."
+    },
+    "ten-of-wands": {
+      "headline": "Hãy tìm cách chia sẻ gánh nặng bạn mang một mình.",
+      "message": "Mười Gậy tượng trưng cho trạng thái quá tải khi một mình gánh quá nhiều trách nhiệm. Đích đến có vẻ gần nhưng thân tâm có thể đã kiệt sức. Hôm nay là ngày xem điều gì có thể đặt xuống hoặc chia sẻ.",
+      "action": "Chọn trong danh sách việc một thứ có thể giao người khác hoặc hoãn lại, rồi xử lý.",
+      "watch": "Ý nghĩ mọi thứ đều là phần của mình làm gánh nặng lớn thêm. Nhờ giúp đỡ cũng là một cách có trách nhiệm."
+    },
+    "page-of-wands": {
+      "headline": "Sự tò mò châm lửa cho thử nghiệm mới.",
+      "message": "Lá bài này tượng trưng cho năng lượng trẻ trung khám phá điều mới bằng đam mê và tò mò. Kinh nghiệm có thể còn ít nhưng đó là ngày tràn đầy háo hức và ý tưởng. Thử một việc nhỏ có thể mang lại niềm vui và manh mối bất ngờ.",
+      "action": "Thử mười lăm phút một điều mới bạn muốn làm nhưng cứ hoãn.",
+      "watch": "Hứng thú có thể nguội nhanh, nên hãy đặt mục tiêu là thử một lần chứ không phải làm đến cùng."
+    },
+    "knight-of-wands": {
+      "headline": "Hành động táo bạo thay đổi bầu không khí.",
+      "message": "Kỵ Sĩ Gậy tượng trưng cho tinh thần phiêu lưu, đam mê cháy bỏng và sức bật nhanh. Hôm nay năng lượng của bạn cao hơn thường lệ nên hành động táo bạo có thể dẫn đến kết quả tốt. Chỉ cần định hướng để đam mê không hóa thành bốc đồng.",
+      "action": "Tập trung một giờ vào điều bạn háo hức nhất trong những việc muốn làm.",
+      "watch": "Đừng chỉ khởi đầu rồi bỏ lỡ kết thúc. Chỉ hứa những điều bạn giữ được."
+    },
+    "queen-of-wands": {
+      "headline": "Sự tự tin làm bừng sáng cả những người xung quanh.",
+      "message": "Nữ Hoàng Gậy tượng trưng cho sự tự tin, sức hút ấm áp và tính độc lập tràn sinh lực. Hôm nay càng bộc lộ con người thật mà không giấu giếm, dòng chảy tốt càng theo sau. Sự tự tin của bạn cũng tiếp thêm dũng khí cho những người xung quanh.",
+      "action": "Nói thẳng, không do dự, điều bạn muốn nói hoặc đề xuất hôm nay.",
+      "watch": "Để sự tự tin không gây cảm giác áp đảo, hãy để ý cả phản ứng của người khác."
+    },
+    "king-of-wands": {
+      "headline": "Hãy nói ra tầm nhìn và dẫn dắt những người cùng đi với bạn.",
+      "message": "Vua Gậy tượng trưng cho sự lãnh đạo có sức hút được kinh nghiệm mài giũa và có tầm nhìn. Hôm nay là ngày tốt để trình bày bức tranh lớn và thúc đẩy mọi người. Kế hoạch cụ thể biến đam mê thành hiện thực sẽ phát huy sức mạnh.",
+      "action": "Nói mục tiêu của việc bạn đang làm bằng một câu và chia sẻ với những người cùng làm.",
+      "watch": "Đừng chạy trước một mình. Hãy kiểm tra nhịp độ của những người cùng đi."
+    },
+    "ace-of-cups": {
+      "headline": "Đừng bỏ lỡ khoảnh khắc trái tim rộng mở.",
+      "message": "Át Cốc tượng trưng cho sự khởi đầu của cảm xúc mới, tình yêu và nguồn cảm hứng tuôn trào. Hôm nay bạn có thể gặp điều hoặc người làm lòng ấm lên. Đừng kìm nén cảm xúc; hãy để chúng được cảm nhận đúng như vậy.",
+      "action": "Viết một dòng về cảm xúc đang chạm đến bạn lúc này hoặc điều bạn biết ơn.",
+      "watch": "Đừng vội kết luận chỉ vì cảm xúc dâng tràn. Hãy để việc cảm nhận và quyết định nối nhau từ từ."
+    },
+    "two-of-cups": {
+      "headline": "Khi trái tim được trao đổi, mối quan hệ sâu sắc hơn.",
+      "message": "Hai Cốc tượng trưng cho tình yêu đáp lại và sự đồng hành hòa hợp. Hôm nay là ngày tốt để thấu hiểu nhau và tìm sự cân bằng trong các mối quan hệ. Lòng tin có thể vững hơn không chỉ với người yêu mà cả với đồng nghiệp và bạn bè.",
+      "action": "Nói lời cảm ơn với một người thân thiết bằng một câu cụ thể.",
+      "watch": "Đừng để mối quan hệ chỉ có một phía điều chỉnh. Hãy bày tỏ cả lòng mình."
+    },
+    "three-of-cups": {
+      "headline": "Thời gian bên nhau là năng lượng của bạn hôm nay.",
+      "message": "Ba Cốc tượng trưng cho tình bạn, cộng đồng và niềm vui được ở bên nhau. Cười nói cùng những người quan trọng làm lòng nhẹ đi. Ngay cả việc cần hợp tác cũng suôn sẻ trong bầu không khí giúp đỡ lẫn nhau.",
+      "action": "Gửi lời hỏi thăm ngắn đến người bạn hay đồng nghiệp đã lâu không liên lạc.",
+      "watch": "Đừng hoãn việc hay trách nhiệm vì mải vui. Giao thiệp cũng cần cân bằng."
+    },
+    "four-of-cups": {
+      "headline": "Hãy xem cơ hội trước mắt có đang vụt qua không.",
+      "message": "Bốn Cốc tượng trưng cho trạng thái chán chường, thờ ơ khiến không thấy khả năng xung quanh. Khi điều đang có trở nên nhạt nhòa, lời đề nghị mới có thể lặng lẽ đến gần. Hôm nay hãy mở lòng một chút và nhìn quanh lại lần nữa.",
+      "action": "Kiểm tra lại xem trong các đề nghị hay liên lạc gần đây có điều nào bạn vô tình bỏ qua không.",
+      "watch": "Thử phân biệt sự không hài lòng hiện tại đến từ đâu. Có thể không phải mọi thứ đều tệ."
+    },
+    "five-of-cups": {
+      "headline": "Bên cạnh điều đã mất, vẫn còn điều còn lại.",
+      "message": "Năm Cốc tượng trưng cho trạng thái tập trung vào mất mát và hối tiếc mà không thấy điều còn lại. Nỗi buồn là tự nhiên, nhưng chỉ cần xoay ánh nhìn một chút, vẫn còn hai chiếc cốc đứng đó. Hôm nay hãy thừa nhận nỗi tiếc và nhìn cả điều còn lại.",
+      "action": "Viết cạnh nhau một điều đã mất và một điều bạn vẫn còn.",
+      "watch": "Ở lâu trong nuối tiếc khiến không nhìn thấy phía trước. Hãy thừa nhận đủ nỗi buồn, rồi dần hướng ánh nhìn về cuộc sống thường ngày."
+    },
+    "six-of-cups": {
+      "headline": "Ký ức ấm áp là sức mạnh của bạn hôm nay.",
+      "message": "Sáu Cốc tượng trưng cho nỗi nhớ, niềm vui trong trẻo và hơi ấm từ kỷ niệm. Người, nơi chốn hay ký ức xưa có thể xoa dịu lòng bạn hôm nay. Hãy thử mang hơi ấm đó vào các mối quan hệ và cuộc sống hiện tại.",
+      "action": "Tìm một bức ảnh hay bài hát gợi nhớ kỷ niệm đẹp.",
+      "watch": "Đừng mắc kẹt trong ý nghĩ quá khứ tốt hơn mà bỏ lỡ hiện tại."
+    },
+    "seven-of-cups": {
+      "headline": "Càng nhiều lựa chọn, càng cần một tiêu chí.",
+      "message": "Bảy Cốc tượng trưng cho trạng thái ảo tưởng và thực tế lẫn lộn trước nhiều khả năng. Có nhiều điều cuốn hút, nhưng cần phân biệt điều nào thật sự đạt được. Hôm nay hãy bớt ảo tưởng và kiểm tra tính thực tế.",
+      "action": "Viết ra các lựa chọn nảy ra và đánh dấu mỗi lựa chọn có \"hành động thực tế làm được hôm nay\" hay không.",
+      "watch": "Nếu cố nắm hết các lựa chọn, khó đạt được dù chỉ một. Hãy xác định thứ tự ưu tiên."
+    },
+    "eight-of-cups": {
+      "headline": "Ra đi không phải bỏ cuộc mà là đến nơi sâu hơn.",
+      "message": "Tám Cốc tượng trưng cho quyết định lên đường tìm ý nghĩa mới khi lòng không được lấp đầy dù bên ngoài tưởng đủ đầy. Hôm nay là ngày xem lại nơi bạn đang đứng có hợp với mình không. Khi biết thiếu gì, hướng đi cũng hiện ra.",
+      "action": "Viết ra một điều \"chưa được lấp đầy\" trong công việc hay mối quan hệ hiện tại.",
+      "watch": "Đừng bỏ đi bốc đồng khi cảm xúc đang dâng cao. Hãy hành động sau khi đã sắp xếp lòng mình ổn thỏa."
+    },
+    "nine-of-cups": {
+      "headline": "Một ngày điều ước thành hiện thực có thể đem lại sự mãn nguyện.",
+      "message": "Chín Cốc được gọi là lá bài điều ước, tượng trưng cho sự mãn nguyện khi điều mong ước thành hiện thực và sự sung túc về cảm xúc. Hôm nay là ngày tốt để tận hưởng trọn vẹn điều đang có và cảm nhận niềm vui. Khi thừa nhận điều đã thành, điều ước tiếp theo cũng rõ hơn.",
+      "action": "Nói lời cảm ơn với chính mình về điều vừa thành hiện thực.",
+      "watch": "Đừng dừng lại trong mãn nguyện mà bỏ lỡ mục tiêu tiếp theo. Tận hưởng và dừng lại không giống nhau."
+    },
+    "ten-of-cups": {
+      "headline": "Sự bình yên bên những người thương yêu là báu vật hôm nay.",
+      "message": "Mười Cốc tượng trưng cho sự viên mãn tình cảm bên gia đình và những người thương yêu. Hôm nay là ngày tốt để cảm nhận cuộc sống thường nhật bên người cạnh mình là hạnh phúc lớn nhất. Dù không hoàn hảo, vẫn có những khoảnh khắc đủ ấm áp.",
+      "action": "Ngồi lại nói chuyện với người thân thiết hôm nay, dù chỉ mười phút.",
+      "watch": "Đừng so sánh hiện tại với hình mẫu lý tưởng. Hãy nhìn sự ấm áp như nó vốn có."
+    },
+    "page-of-cups": {
+      "headline": "Hãy lắng nghe thông điệp nhỏ trồi lên trong lòng.",
+      "message": "Lá bài này tượng trưng cho năng lượng trẻ trung giàu nhạy cảm và sáng tạo, cùng những thông điệp bằng trực giác. Từ nơi bất ngờ có thể đến tin tức hay ý tưởng chạm vào lòng bạn. Nếu bày tỏ cảm xúc nhẹ nhàng, con đường sẽ mở ra.",
+      "action": "Ghi lại ý tưởng hay hình ảnh như trong mơ chợt hiện lên.",
+      "watch": "Cảm xúc dễ dao động, nên đừng hứa những điều lớn chỉ vì tâm trạng."
+    },
+    "knight-of-cups": {
+      "headline": "Lời đề nghị chân thành lay động trái tim.",
+      "message": "Kỵ Sĩ Cốc tượng trưng cho sự lãng mạn, lời mời tinh tế và cách thể hiện nghệ thuật. Hôm nay có dòng chảy cho tin vui đến hoặc thuận lợi để bày tỏ lòng mình. Thái độ dịu dàng chậm rãi tiến về lý tưởng sẽ giúp ích.",
+      "action": "Thử viết tâm tình chân thành bạn muốn gửi thành một lá thư hay tin nhắn.",
+      "watch": "Đừng say bầu không khí mà bỏ qua việc kiểm tra thực tế. Hãy để lời nói và hành động khớp nhau."
+    },
+    "queen-of-cups": {
+      "headline": "Sự đồng cảm sâu sắc là sức mạnh của bạn hôm nay.",
+      "message": "Nữ Hoàng Cốc tượng trưng cho sự trưởng thành về cảm xúc, đồng cảm sâu sắc và trí tuệ trực giác. Đây là ngày bạn có thể thấu hiểu cảm xúc của người khác và chăm sóc lòng mình. Lắng nghe người khác bản thân nó đã có thể chữa lành.",
+      "action": "Với người có vẻ đang vất vả, thay vì đưa giải pháp, hãy chăm chú nghe câu chuyện của họ.",
+      "watch": "Đừng gánh cảm xúc của người khác. Giữ cả ranh giới trong lòng mình, bạn mới đồng cảm được lâu."
+    },
+    "king-of-cups": {
+      "headline": "Giữ vững trọng tâm ngay cả trên con sóng cảm xúc.",
+      "message": "Vua Cốc tượng trưng cho sự cân bằng trưởng thành, làm chủ cảm xúc mà không mất đi hơi ấm. Hôm nay là ngày tốt để giữ bình tĩnh và vững vàng cả trong tình huống náo động hay chông chênh. Đừng đè nén cảm xúc, hãy xử lý chúng cùng lý trí.",
+      "action": "Khi cảm xúc dâng lên, hãy dừng lại trước khi phản ứng, điều hòa hơi thở rồi mới nói.",
+      "watch": "Giấu cảm xúc và làm chủ cảm xúc là hai việc khác nhau. Hãy bày tỏ những cảm xúc cần bày tỏ."
+    },
+    "ace-of-pentacles": {
+      "headline": "Đã đến lúc nuôi lớn cơ hội trong tay thành hiện thực.",
+      "message": "Át Tiền tượng trưng cho cơ hội mới dẫn đến kết quả cụ thể và khởi đầu của sự ổn định. Hôm nay bạn có thể nhận một hạt giống thiết thực về tài chính, công việc hay sức khỏe. Hãy lập kế hoạch thực tế, dù nhỏ.",
+      "action": "Chọn một cơ hội bạn muốn nuôi lớn lúc này, viết ra nguồn lực cần thiết và bước đầu tiên.",
+      "watch": "Đừng chi tiền bạc hay thời gian lớn mà không kiểm tra chỉ vì phấn khích cơ hội đã đến."
+    },
+    "two-of-pentacles": {
+      "headline": "Nếu cân bằng một cách linh hoạt, chao đảo cũng không sao.",
+      "message": "Hai Tiền tượng trưng cho khả năng thích ứng để giữ cân bằng giữa nhiều việc và trách nhiệm. Hôm nay dù việc chồng chéo, nếu bắt được nhịp bạn sẽ vượt qua không gượng ép. Hãy xác định thứ tự ưu tiên và điều chỉnh linh hoạt.",
+      "action": "Chọn một việc trong danh sách hôm nay có thể hoãn và làm lịch trình nhẹ đi.",
+      "watch": "Đừng cố tung hứng mọi thứ cùng lúc. Nếu thấy dấu hiệu mất cân bằng, hãy giảm bớt."
+    },
+    "three-of-pentacles": {
+      "headline": "Khi tay nghề mỗi người hội tụ, kết quả sẽ tốt.",
+      "message": "Ba Tiền tượng trưng cho kỹ năng, sự hợp tác và tinh thần thợ thủ công cùng tạo nên. Hôm nay kết quả tốt hơn khi bạn chia vai với người có chuyên môn thay vì làm một mình. Sự công nhận và phản hồi trở thành nền tảng cho trưởng thành.",
+      "action": "Trong công việc, hãy nhờ rõ ràng một người giúp ở phần bạn cần.",
+      "watch": "Đừng chỉ khăng khăng cách của mình. Hãy thử tiếp thu cả ý kiến của người khác."
+    },
+    "four-of-pentacles": {
+      "headline": "Nới lỏng bàn tay đang nắm chặt một chút, dòng chảy sẽ xuất hiện.",
+      "message": "Bốn Tiền tượng trưng cho trạng thái mong muốn giữ ổn định biến thành sự bám víu. Hôm nay là ngày xem nỗi sợ mất điều đang có có cản trở thay đổi không. Quản lý là quan trọng, nhưng quá mức sẽ làm ngừng tăng trưởng.",
+      "action": "Chọn một thứ bạn đang nắm giữ nhưng có thể buông, rồi sắp xếp lại.",
+      "watch": "Tiết kiệm và keo kiệt không giống nhau. Hãy chi tiêu vừa phải ở nơi cần thiết."
+    },
+    "five-of-pentacles": {
+      "headline": "Sự giúp đỡ gần hơn bạn nghĩ.",
+      "message": "Năm Tiền tượng trưng cho thiếu thốn, khó khăn và cô đơn, nhưng trong tranh có một ô cửa sáng đèn. Lòng nặng trĩu có thể che mắt khiến bạn bỏ lỡ sự giúp đỡ ngay bên cạnh. Hôm nay là ngày chủ động đưa tay ra trước.",
+      "action": "Kể thành thật tình cảnh hiện tại cho một người bạn tin tưởng.",
+      "watch": "Ý nghĩ phải tự gánh hết làm tình hình thêm khó. Nhờ giúp đỡ không phải yếu đuối."
+    },
+    "six-of-pentacles": {
+      "headline": "Cân bằng giữa cho và nhận là chìa khóa hôm nay.",
+      "message": "Sáu Tiền tượng trưng cho sự hào phóng và chia sẻ công bằng. Hôm nay dòng chảy chia sẻ điều có thể cho hoặc nhận điều cần đến một cách tự nhiên. Dù là bên cho hay bên nhận, cân bằng trong lòng mới quan trọng.",
+      "action": "Trao cho một người điều bạn có thể chia sẻ, dù là thời gian, kiến thức hay tấm lòng.",
+      "watch": "Đừng để việc cho đi kèm điều kiện. Khi nhận cũng hãy nhận với lòng biết ơn."
+    },
+    "seven-of-pentacles": {
+      "headline": "Trong lúc chờ đợi, hãy xem lại nỗ lực bấy lâu.",
+      "message": "Bảy Tiền tượng trưng cho khoảng thời gian kiên nhẫn đánh giá kết quả sau nỗ lực dài. Dù kết quả chưa hiện ngay, điều bạn vun trồng đều đặn đang lớn lên. Hôm nay thích hợp để kiểm tra hướng đi đến nay có đúng không.",
+      "action": "Tập hợp dấu vết nỗ lực đã tích lũy và định một điểm sẽ điều chỉnh về sau.",
+      "watch": "Đừng dễ bỏ cuộc vì kết quả chậm. Nhưng nếu hướng đi sai thì cần chỉnh lại."
+    },
+    "eight-of-pentacles": {
+      "headline": "Sự lặp lại đều đặn tạo nên tay nghề.",
+      "message": "Tám Tiền tượng trưng cho luyện tập đều đặn và sự tập trung của người thợ mài giũa kỹ năng. Hôm nay công việc được tích lũy tận tâm dù không nổi bật vẫn có giá trị lớn. Hãy thử đắm mình sâu vào một việc.",
+      "action": "Dành ba mươi phút cho một kỹ năng bạn muốn học và tập trung không bị làm phiền.",
+      "watch": "Đừng hoãn việc bắt đầu vì chấp vào sự hoàn hảo. Lặp lại nâng cao chất lượng."
+    },
+    "nine-of-pentacles": {
+      "headline": "Bạn có thể tận hưởng trọn vẹn sự sung túc tự mình gây dựng.",
+      "message": "Chín Tiền tượng trưng cho sự độc lập và ổn định vật chất có được nhờ nỗ lực. Hôm nay ngay cả thời gian một mình cũng dễ chịu và thư thả. Hãy tự hào thừa nhận những gì bạn đã tạo nên.",
+      "action": "Tặng bản thân một phần thưởng nhỏ hoặc khoảng thời gian thư giãn.",
+      "watch": "Đừng để cảm giác một mình cũng ổn trở thành lý do đóng cửa các mối quan hệ."
+    },
+    "ten-of-pentacles": {
+      "headline": "Hãy nhìn vào nền móng của sự ổn định lâu dài.",
+      "message": "Mười Tiền tượng trưng cho gia đình, di sản, cùng sự sung túc và ổn định bền lâu. Hôm nay là ngày tốt để xem xét chuyện tài chính dài hạn, gia đình hay nhà cửa. Điều quan trọng hơn cái trước mắt là nền tảng bền vững.",
+      "action": "Bàn một kế hoạch dài hạn với gia đình hoặc người sẽ đồng hành lâu dài với bạn.",
+      "watch": "Đừng tập trung giữ ổn định đến mức bỏ lỡ niềm vui hiện tại."
+    },
+    "page-of-pentacles": {
+      "headline": "Một chút học hỏi nhỏ thành khởi đầu vững chắc.",
+      "message": "Lá bài này tượng trưng cho thái độ học kỹ năng mới và xây dựng mục tiêu thực tế từng bước. Hôm nay mọi việc suôn sẻ nếu bạn chia kế hoạch thành những phần cụ thể rồi bắt đầu. Thái độ học không vội vàng trở thành sức mạnh.",
+      "action": "Tìm một tài liệu hoặc khóa học cho điều bạn muốn học và đọc trang đầu tiên.",
+      "watch": "Đừng chỉ tích lũy lý thuyết; hãy tự làm thử dù nhỏ. Trải nghiệm hoàn thiện việc học."
+    },
+    "knight-of-pentacles": {
+      "headline": "Sự bền bỉ là tốc độ đáng tin cậy nhất.",
+      "message": "Kỵ Sĩ Tiền tượng trưng cho sự đáng tin và tận tụy của người làm chậm nhưng chắc. Hôm nay hoàn thành từng bước việc được giao cho kết quả tốt hơn một cú hoành tráng. Đây là ngày tinh thần trách nhiệm được công nhận.",
+      "action": "Hoàn thành từng việc cần làm hôm nay và đánh dấu đã xong.",
+      "watch": "Đừng để sự thận trọng thành từ chối thay đổi. Nếu cần, hãy thử đổi cách làm."
+    },
+    "queen-of-pentacles": {
+      "headline": "Sức mạnh chăm sóc thực tại một cách ấm áp là trí tuệ của bạn hôm nay.",
+      "message": "Nữ Hoàng Tiền tượng trưng cho trí tuệ thực tế, sự chăm sóc ấm áp và khả năng tạo ra môi trường sung túc. Hôm nay nếu sắp xếp nền tảng cuộc sống như nhà cửa, công việc, sức khỏe, lòng bạn cũng yên ổn. Thái độ tiết kiệm và thân thiện sẽ giúp ích.",
+      "action": "Dọn dẹp hay chăm sóc một chỗ bất tiện trong không gian sinh hoạt hằng ngày.",
+      "watch": "Đừng để mọi điều bạn chăm lo đều thành trách nhiệm của riêng mình. Bạn cũng xứng đáng được chăm sóc."
+    },
+    "king-of-pentacles": {
+      "headline": "Điều xây dựng bằng tầm nhìn dài hạn trở thành niềm tin.",
+      "message": "Vua Tiền tượng trưng cho sự lãnh đạo vững vàng, óc thực tế xuất sắc và thành công vật chất. Hôm nay nếu quyết định về tài chính, kinh doanh hay công việc bằng tầm nhìn dài hạn, kết quả đáng tin sẽ theo sau. Quan trọng là thái độ quản lý thong dong.",
+      "action": "Tóm tắt tình hình tài chính hay công việc bằng con số và lập kế hoạch cho ba tháng tới.",
+      "watch": "Đừng chỉ đặt giá trị vào thành tích và tài sản. Hãy nhìn cả giá trị của con người và thời gian."
+    }
+  }
+}

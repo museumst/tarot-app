@@ -1,0 +1,482 @@
+{
+  "lang": "pl",
+  "_meta": {
+    "title": "Dzienna fortuna",
+    "labels": {
+      "headline": "Dzisiaj w jednym zdaniu",
+      "message": "Wiadomość dnia",
+      "action": "Co warto dziś wypróbować",
+      "watch": "Na co zwrócić dziś uwagę"
+    }
+  },
+  "cards": {
+    "the-fool": {
+      "headline": "Nawet nie znając odpowiedzi, możesz zrobić pierwszy krok.",
+      "message": "Głupiec symbolizuje czystą kartkę, stan, w którym nic jeszcze nie jest przesądzone. Jeśli odkładasz coś, bo wydaje ci się, że brakuje jeszcze pełnego przygotowania, dziś dobry dzień, by zacząć z lekkim sercem. Każdy zaczyna od niepewnych kroków.",
+      "action": "Wybierz bardzo mały pierwszy krok w sprawie, nad którą długo się wahasz, i zrób go przed końcem dnia.",
+      "watch": "Sprawdź, czy ekscytacja nie każe ci zapomnieć o patrzeniu pod nogi. Optymizm i brawura to nie to samo."
+    },
+    "the-magician": {
+      "headline": "Narzędzia, których potrzebujesz, są już w twoich rękach.",
+      "message": "Na stole przed Magiem leżą buława, puchar, miecz i pentakl. Zamiast szukać czegoś nowego, zdecyduj, jak wykorzystać talenty, znajomości i czas, które już masz. Jeśli coś długo krąży ci po głowie, dzisiejszy nurt sprzyja przekształceniu tego w pierwsze działanie.",
+      "action": "Wybierz jedno odłożone zadanie, zapisz jednym zdaniem, co zrobisz, i zacznij tylko na dziesięć minut.",
+      "watch": "Zauważ, czy zapał nie każe ci mówić więcej, niż robisz. Siła tej karty tkwi w działaniu, nie w pokazywaniu."
+    },
+    "the-high-priestess": {
+      "headline": "Dziś słuchanie uczy cię więcej niż mówienie.",
+      "message": "Najwyższa Kapłanka symbolizuje to, co ukryte: intuicję i głos wewnętrzny. Dziś lepiej spokojnie obserwować sytuację, niż się spieszyć z wnioskami. Poza widocznymi informacjami może wypłynąć to, co twoje serce już wie.",
+      "action": "Zrób sobie chwilę ciszy i zapisz pierwsze odczucie, które pojawia się teraz w sercu.",
+      "watch": "Nie zgaduj i nie oceniaj wszystkiego w pojedynkę. Intuicja jest trafniejsza, gdy idzie w parze ze sprawdzeniem."
+    },
+    "the-empress": {
+      "headline": "Troska i pielęgnowanie rozwijają dzisiejszy owoc.",
+      "message": "Cesarzowa symbolizuje obfitość, twórczość i ciepłą opiekę. Gdy poświęcasz energię na dbanie o siebie i najbliższych, bogacą się zarówno serce, jak i codzienność. Otwarcie zmysłów i pełne cieszenie się dobrymi rzeczami to dziś ważna część dnia.",
+      "action": "Wybierz jedną rzecz, która raduje zmysły, na przykład ulubione jedzenie, kwiaty albo muzykę, i powoli się nią ciesz.",
+      "watch": "Uważaj, by nie dawać tak dużo, że dla ciebie samego nic nie zostanie. Dbanie o siebie też jest częścią troski."
+    },
+    "the-emperor": {
+      "headline": "Zasady i porządek utrzymują dziś twój środek ciężkości.",
+      "message": "Cesarz symbolizuje strukturę, odpowiedzialność i stabilne przywództwo. Ustalenie priorytetów wśród rozproszonych spraw i wyraźne granice przyniosą dziś sporą ulgę. Ocenianie według zasad, a nie pod wpływem emocji, czyni wynik solidnym.",
+      "action": "Ustaw dzisiejsze zadania w kolejności i najpierw skończ to najważniejsze.",
+      "watch": "Pilnuj, by zasady nie zamieniły się w upór. Potrzebujesz odrobiny luzu, by raz wysłuchać sytuacji drugiej osoby."
+    },
+    "the-hierophant": {
+      "headline": "Sprawdzone metody i dobre rady mają czegoś do nauczenia.",
+      "message": "Najwyższy Kapłan symbolizuje tradycję, nauczanie i wspólne zobowiązania. Dziś bezpieczniej jest iść za sprawdzoną metodą lub radą doświadczonej osoby niż szukać nowego. Reguły i procedury mogą nawet skrócić drogę.",
+      "action": "Poproś o jedną radę osobę, którą szanujesz, lub zaufane źródło i zastosuj ją tak, jak jest.",
+      "watch": "Sprawdź, czy nie idziesz za jakąś metodą tylko dlatego, że robią tak inni, i czy pasuje ona do twoich wartości."
+    },
+    "the-lovers": {
+      "headline": "Tam, ku czemu skłania się serce, leży dzisiejszy wybór.",
+      "message": "Kochankowie mówią nie tylko o uczuciach, lecz o wyborach zgodnych z twoimi wartościami. Dziś w relacji lub decyzji może się ujawnić, co naprawdę jest dla ciebie ważne. Jeśli szczerze zajrzysz do serca, wybór stanie się dużo łatwiejszy.",
+      "action": "Przy wyborze, który cię zaprząta, zapisz, która strona jest bliższa „wartościom, które naprawdę chcę chronić”.",
+      "watch": "Nie rozmywaj swojego wyboru, by spełnić cudze oczekiwania. Pociąg i wybór, który ci służy, mogą się różnić."
+    },
+    "the-chariot": {
+      "headline": "Gdy ustalisz kierunek, siła zbiera się w jednym miejscu.",
+      "message": "Rydwan symbolizuje wolę łączenia różnych sił i podążania jednym kierunkiem. Nawet to, co rozdzierało cię na dwie strony, dziś nabierze rozpędu, gdy cel stanie się jasny. Dzięki skupieniu zajdziesz dalej niż zwykle.",
+      "action": "Wybierz na dziś tylko jeden cel, a resztę planów przesuń za niego.",
+      "watch": "Nie upajaj się prędkością tak, by tracić z oczu otoczenie. Regulowanie tempa jest taką samą umiejętnością jak parcie do przodu."
+    },
+    "strength": {
+      "headline": "Łagodność jest najtrwalszą siłą.",
+      "message": "Siła to nie tłumiąca moc, lecz odwaga uspokajania lęku i kierowania nim. Gdy narasta złość lub niepokój, nie trzeba ich szorstko odpychać; spokojne trzymanie ich obok może otworzyć drogę. Dziś cierpliwość jest twoją największą bronią.",
+      "action": "Gdy wzbiera irytacja lub niepokój, weź trzy głębokie oddechy i nadaj temu uczuciu nazwę.",
+      "watch": "Wytrzymywanie i tłumienie to nie to samo. Rozładuj nagromadzone emocje w bezpiecznym miejscu."
+    },
+    "the-hermit": {
+      "headline": "W miejscu, w którym się zatrzymasz, pojawia się droga.",
+      "message": "Pustelnik symbolizuje czas z dala od hałasu, w którym odnajduje się własne światło. Dziś bardziej niż odpowiedzi wśród ludzi potrzebujesz czasu na samotne myślenie. Jeśli cicho wszystko uporządkujesz, to, co było skomplikowane, stanie się proste.",
+      "action": "Odłóż telefon na około pół godziny i zastanów się, co jest teraz naprawdę ważne.",
+      "watch": "Pilnuj, by odpoczynek nie przerodził się w izolację. Rozmowa z jedną zaufaną osobą może pomóc."
+    },
+    "wheel-of-fortune": {
+      "headline": "Chwile, w których zmienia się nurt, zawsze przychodzą bez zapowiedzi.",
+      "message": "Koło Fortuny symbolizuje krążące cykle i nowe fazy. Czy obecna sytuacja jest dobra, czy trudna, nie trwa wiecznie, i to jest dziś zarówno pociechą, jak i przestrogą. Gdy przyjdzie zmiana, szukaj sposobu, by się z nią zgrać, zamiast jej się sprzeciwiać.",
+      "action": "Spójrz na każdą dzisiejszą nieoczekiwaną zmianę z założeniem, że „to może być szansa”.",
+      "watch": "Nie trać czujności w dobrej passie ani nadziei w złej. Jedno i drugie mija."
+    },
+    "justice": {
+      "headline": "Ocenianie według faktów odciąża serce.",
+      "message": "Sprawiedliwość symbolizuje przyczynę i skutek, uczciwość i równowagę. Jeśli odłożysz na chwilę emocje i spojrzysz na rzeczy takimi, jakie są, stanie się jasne, co trzeba zrobić. Dziś to też dobry dzień na uporządkowanie umów, obietnic i rozliczeń.",
+      "action": "Sprawdź jedną odłożoną obietnicę lub rozliczenie i uporządkuj je w oparciu o fakty.",
+      "watch": "Sprawdź, czy nie interpretujesz wszystkiego na swoją korzyść. Uczciwość dotyczy także ciebie."
+    },
+    "the-hanged-man": {
+      "headline": "Gdy się zatrzymasz, zobaczysz inny widok.",
+      "message": "Wisielec symbolizuje czas, gdy celowo się zatrzymujesz, by zyskać inną perspektywę. To, co nie ustępowało mimo nacisku, dziś lepiej odłożyć na chwilę i spojrzeć inaczej. Czekanie, które wygląda na stratę, przyniesie później wielkie zrozumienie.",
+      "action": "Pomyśl o zablokowanym problemie z dokładnie przeciwnego stanowiska i zapisz, co ci przyjdzie do głowy.",
+      "watch": "Nie pozwól, by czekanie stało się unikaniem. Pomaga samodzielne ustalenie, jak długo odpoczywasz."
+    },
+    "death": {
+      "headline": "To, co się kończy, jest porządkowaniem, które otwiera następny rozdział.",
+      "message": "Śmierć nie oznacza prawdziwej śmierci, lecz zamknięcie pewnego okresu. Jak świt widoczny na horyzoncie: jeśli jest coś, co wiesz, że trzeba puścić, a wciąż trzymasz, dziś dobry dzień, by stanąć twarzą w twarz z tym uczuciem. Żal jest naturalny i dopiero przechodząc przez niego, można iść dalej.",
+      "action": "Uporządkuj jeden nawyk, przedmiot albo zobowiązanie, które już do ciebie nie pasują. Nie musi być duże.",
+      "watch": "Zobacz, czy nie utrzymujesz na siłę obecnego stanu, by uniknąć zmiany. To nie znaczy, że masz wszystko ucinać w pośpiechu."
+    },
+    "temperance": {
+      "headline": "Równowaga bez pośpiechu to najszybsza droga.",
+      "message": "Umiarkowanie symbolizuje harmonię i cierpliwość mieszania różnych rzeczy w odpowiedniej mierze. Dziś kluczem jest szukanie środka i regulowanie tempa zamiast popadania w skrajności. Gdy zrównoważysz pracę i odpoczynek, słowa i milczenie, serce się uspokoi.",
+      "action": "Najpierw wpisz w dzisiejszy plan czas na odpoczynek, a pozostałe zadania ułóż wokół niego.",
+      "watch": "Sprawdź, czy dla zachowania harmonii nie połykasz słów, które trzeba było powiedzieć."
+    },
+    "the-devil": {
+      "headline": "To, co cię wiąże, jest luźniejsze, niż myślisz.",
+      "message": "Diabeł symbolizuje stan uległości wobec przywiązania, nawyku i pożądania, ale łańcuchy na obrazie wiszą luźno. Przekonanie, że się nie uwolnisz, może być najmocniejszym łańcuchem. Dziś dobry dzień, by szczerze spojrzeć na to, co cię trzyma.",
+      "action": "Pomyśl o jednym powtarzającym się nawyku i zapisz osobno, co ci daje, a co zabiera.",
+      "watch": "Nie trać siły na obwinianie siebie. Samo zauważenie jest już pierwszym krokiem."
+    },
+    "the-tower": {
+      "headline": "Wstrząs jest niewygodny, ale odsłania fałszywy fundament.",
+      "message": "Wieża symbolizuje nagłą zmianę i to, co niespodziewane. Nawet jeśli dziś plan się posypie lub staniesz wobec niewygodnej prawdy, może to być proces ujawniania tego, co nie było trwałe. Gdy minie zaskoczenie, wyraźniej zobaczysz, czego naprawdę było trzeba.",
+      "action": "Gdy zdarzy się coś nieoczekiwanego, nie oceniaj od razu; wciągnij powietrze i poszukaj tylko „jednej rzeczy, którą mogę teraz zmienić”.",
+      "watch": "Nie podejmuj dużej decyzji w chwili największego wzburzenia. Po dniu lub dwóch ocena może się zmienić."
+    },
+    "the-star": {
+      "headline": "Nadzieja powoli wraca do zmęczonego serca.",
+      "message": "Gwiazda symbolizuje odnowę i nadzieję, które przychodzą po trudnym czasie. Choć nie wszystko jeszcze się wyjaśniło, dziś serce stopniowo staje się lżejsze. Nawet bez pośpiechu możesz iść krok po kroku do przodu.",
+      "action": "Zapisz trzy rzeczy, które ostatnio dobrze ci wyszły lub za które czujesz wdzięczność.",
+      "watch": "Nie tylko czekaj na nadzieję; połącz ją z małym działaniem. Odnowa umacnia się, gdy się ruszasz."
+    },
+    "the-moon": {
+      "headline": "Mglisty niepokój maleje, gdy go sprawdzisz.",
+      "message": "Księżyc symbolizuje niepewność, mglisty lęk i cienie nieświadomości. Dziś to, co widać, nie jest wszystkim, więc osąd może się chwiać. Zamiast przesądzać o tym, co niepewne, lepiej sprawdzać fakty jeden po drugim.",
+      "action": "Podziel to, co cię gnębi, na „fakty” i „moją wyobraźnię” i zapisz.",
+      "watch": "Nocne zmartwienia wydają się większe, niż są. Ważne decyzje zostaw na rano."
+    },
+    "the-sun": {
+      "headline": "Dziś nie ukrywaj się, pokaż się promiennie.",
+      "message": "Słońce symbolizuje radość, osiągnięcie i jasność. Dziś nastrój się rozjaśnia, a sprawy łatwo wyjaśniają. Jeśli jest coś, co chcesz powiedzieć lub pokazać, wyraź to szczerze.",
+      "action": "Przekaż dobrą wiadomość lub podziękowanie jednej osobie osobiście.",
+      "watch": "Mimo że wszystko idzie dobrze, nie przeoczaj szczegółów wymagających uwagi. Nawet w jasne dni podstawy są potrzebne."
+    },
+    "judgement": {
+      "headline": "Czas odpowiedzieć na wewnętrzne wezwanie.",
+      "message": "Sąd Ostateczny symbolizuje wewnętrzne wezwanie do uporządkowania przeszłości i wejścia na wyższy etap. Zamiast rozpamiętywać to, co minęło, dziś czas uznać to, czego życie już cię nauczyło, i iść dalej. Jeśli dawno odkładane postanowienie wraca, może to być znak.",
+      "action": "Wybierz jedną rzecz z przeszłości do wybaczenia lub zamknięcia i powiedz jej: „do tego miejsca”.",
+      "watch": "Nie trać czasu na ponowne osądzanie siebie lub innych. Skup się na przyszłych wyborach."
+    },
+    "the-world": {
+      "headline": "Doceń siebie za ukończenie etapu.",
+      "message": "Świat symbolizuje zakończenie jednego procesu i stan, w którym wszystko zespala się w harmonii. To może być moment, w którym dotychczasowy wysiłek owocuje lub dobiega końca. Dopiero gdy w pełni posmakujesz spełnienia, następny początek też będzie lekki.",
+      "action": "Spójrz na coś, co niedawno zostało ukończone lub osiągnięte, i powiedz sobie krótką pochwałę.",
+      "watch": "Nie przechodź od razu do następnego zadania tylko dlatego, że coś się skończyło. Odpoczynek jest także częścią spełnienia."
+    },
+    "ace-of-swords": {
+      "headline": "Jasna myśl przecina zablokowany problem.",
+      "message": "As Mieczy symbolizuje jasność myśli, prawdę i przełomy. To dzień, w którym sedno zagmatwanej sytuacji może ukazać się od razu. Jeśli pojawi się nowy pomysł lub postanowienie, od razu je uporządkuj.",
+      "action": "Zapisz jednym zdaniem sedno tego, co cię teraz niepokoi.",
+      "watch": "Nawet prawdziwe słowa mogą zranić, jeśli zostaną powiedziane ostro. Dobierz także sposób, w jaki je przekażesz."
+    },
+    "two-of-swords": {
+      "headline": "Im dłużej odkładasz decyzję, tym cięższe staje się serce.",
+      "message": "Dwójka Mieczy symbolizuje impas, unikanie wyboru z zasłoniętymi oczami. Jeśli obie możliwości cię uwierają i nie robisz ani kroku, brakować może informacji, a może odwagi. Dziś czas, by rozpoznać, czego.",
+      "action": "Zapisz po trzy plusy i minusy każdej opcji i wyznacz sobie termin.",
+      "watch": "Niepodejmowanie decyzji też jest decyzją. Jeśli będziesz dalej odkładać, okazja może przeminąć."
+    },
+    "three-of-swords": {
+      "headline": "Uznanie bólu to początek zdrowienia.",
+      "message": "Trójka Mieczy symbolizuje smutek, ranę i ból rozstania. Jeśli coś rani twoje serce, dziś nie musisz udawać, że wszystko w porządku. Dopiero gdy przejdziesz przez proces odczuwania bólu i jego przyjęcia, serce zaczyna się goić.",
+      "action": "Zapisz to, co czujesz, takim, jakie jest, albo opowiedz o tym zaufanej osobie.",
+      "watch": "Nie rozpamiętuj bólu w kółko. Jeśli uczucie jest zbyt ciężkie, szukanie pomocy specjalisty także jest opcją."
+    },
+    "four-of-swords": {
+      "headline": "Odpoczynek jest dziś ważnym zadaniem.",
+      "message": "Czwórka Mieczy symbolizuje odpoczynek i regenerację po bitwie. To dzień, w którym zmęczone ciało i umysł potrzebują czasu na pozbieranie się. Jeśli na chwilę się zatrzymasz, następny krok będzie dużo lżejszy.",
+      "action": "Wykreśl dziś jedną pozycję z planu i wyśpij się albo odpocznij w ciszy.",
+      "watch": "Nie czuj winy podczas odpoczynku. Regeneracja to także przygotowanie do wyników."
+    },
+    "five-of-swords": {
+      "headline": "Patrz na to, co chcesz ochronić, nie tylko na wygraną.",
+      "message": "Piątka Mieczy symbolizuje pustkę, która zostaje nawet po wygranym konflikcie. Dziś uważaj, by w dążeniu do wygrania sporu nie stracić ważnej relacji ani zaufania. Najpierw przypomnij sobie, jakiego wyniku naprawdę chcesz.",
+      "action": "Gdy opinie się zderzają, poszukaj punktu, w którym możesz raz ustąpić.",
+      "watch": "Przyjrzyj się, czy nie mówisz tonem, który ma pokonać drugą stronę."
+    },
+    "six-of-swords": {
+      "headline": "Powoli, ale zmierzasz ku lepszemu miejscu.",
+      "message": "Szóstka Mieczy symbolizuje okres przejścia, ciche wychodzenie z trudnej sytuacji. Nie wszystko jeszcze się podniosło, ale kierunek niewątpliwie się poprawia. Weź ze sobą to, co naprawdę potrzebne, a zbędne ciężary możesz zostawić.",
+      "action": "Wybierz tylko jeden następny krok, by wyjść z obecnej sytuacji, i go wykonaj.",
+      "watch": "Droga może wydawać się długa. Nie niecierpliw się i zaufaj nurtowi."
+    },
+    "seven-of-swords": {
+      "headline": "Im sprytniejszy wybór, tym bardziej uczciwość trzyma równowagę.",
+      "message": "Siódemka Mieczy symbolizuje strategiczne unikanie i działanie po cichu. Czasem obejście jest mądrzejsze niż zderzenie czołowe, ale sposób oparty na ukrywaniu później staje się ciężarem. Dziś układaj plany, lecz działaj w granicach, które możesz otwarcie obronić.",
+      "action": "Szczerze uporządkuj jedną rzecz, którą zostawiono niewypowiedzianą lub niesprawdzoną.",
+      "watch": "Mały podstęp na końcu najbardziej niepokoi twoje własne serce. Jeśli coś ukrywasz, pomyśl o tym jeszcze raz."
+    },
+    "eight-of-swords": {
+      "headline": "Mur jest niższy, niż sądzisz, a więzy luźne.",
+      "message": "Ósemka Mieczy symbolizuje poczucie uwięzienia w lękach stworzonych przez siebie. Nawet jeśli nie widzisz wyjścia, opaskę i luźne sznury możesz zdjąć własnymi rękami. Dziś zakwestionuj choć raz myśl „nie dam rady”.",
+      "action": "Wybierz jedną rzecz, której uważasz, że nie zrobisz, i znajdź najmniejsze działanie możliwe teraz.",
+      "watch": "Nie traktuj proszenia o pomoc jak słabości. Z zewnątrz wyjście może być widoczne."
+    },
+    "nine-of-swords": {
+      "headline": "Nocne zmartwienia rano zmieniają rozmiar.",
+      "message": "Dziewiątka Mieczy symbolizuje umysł pozbawiony snu przez lęk i nadmierne zamartwianie się. Może to być troska, która w głowie urosła bardziej niż w rzeczywistości. Dziś pomoże konkretne działanie zmniejszające zmartwienie.",
+      "action": "Zapisz wszystko, co cię martwi, i zaznacz tylko to, co możesz zrobić dzisiaj.",
+      "watch": "Nie dźwigaj wszystkiego w pojedynkę. Samo powiedzenie, co masz na sercu, zmniejsza ciężar."
+    },
+    "ten-of-swords": {
+      "headline": "Po najciemniejszej godzinie przychodzi świt.",
+      "message": "Dziesiątka Mieczy symbolizuje koniec i dno pewnej sytuacji, lecz pokazuje też świt na horyzoncie. Choć teraz wszystko wydaje się skończone, jest miejsce na przygotowanie nowego początku. Dziś dobry dzień, by puścić to, co się skończyło.",
+      "action": "Zapisz jedną rzecz, której nauczyło cię to, co uznajesz już za zakończone.",
+      "watch": "Zamiast usiłować cofnąć to, co się skończyło, pomyśl o tym, czego będziesz potrzebować dalej."
+    },
+    "page-of-swords": {
+      "headline": "Ciekawość jest dziś twoim przewodnikiem.",
+      "message": "Ta karta symbolizuje ducha badacza, który szuka nowych informacji i ostro obserwuje. Jeśli zapytasz i sprawdzisz to, co cię nurtuje, dziś możesz znaleźć nieoczekiwaną wskazówkę. Pomaga postawa szczerego pytania.",
+      "action": "Wybierz temat, który cię ciekawił, poszukaj o nim przez dwadzieścia minut i podsumuj najważniejsze punkty.",
+      "watch": "Nie rozpowszechniaj ani nie stwierdzaj zbyt pochopnie tego, co udało się ustalić. Najpierw sprawdź, potem mów."
+    },
+    "knight-of-swords": {
+      "headline": "Szybka decyzja potrzebuje jeszcze jednego sprawdzenia.",
+      "message": "Rycerz Mieczy symbolizuje szybkie działanie i ambicję intelektualną. Dziś łatwo o rozmach, by jednym ruchem przepchnąć to, co budziło wahanie. Ale im więcej prędkości, tym bardziej trzeba najpierw sprawdzić kierunek.",
+      "action": "Przed działaniem pomyśl raz o tym, „kogo to dotknie”, i dopiero ruszaj.",
+      "watch": "Nie pozwól, by słowa wyprzedziły cię tak, że stracisz rozmówcę. Sprawdź, czy w pośpiechu nie umknął ci jakiś szczegół."
+    },
+    "queen-of-swords": {
+      "headline": "Szczerość jest dziś twoim największym zaufaniem.",
+      "message": "Królowa Mieczy symbolizuje jasny osąd niepodlegający emocjom oraz niezależność. To dzień, w którym wyraźnie mówisz, opierając się na kryteriach zdobytych doświadczeniem, i pilnujesz granic. Niekręcenie wokół tego, co trzeba powiedzieć, może wręcz ułatwić relację.",
+      "action": "Uporządkuj odkładaną niewygodną rozmowę i przekaż ją spokojnymi, konkretnymi zdaniami.",
+      "watch": "Pilnuj, by twój chłód nie wyglądał na oziębłość. Słowo troski odciąża ciężar wypowiedzi."
+    },
+    "king-of-swords": {
+      "headline": "Uczciwe kryterium utrzymuje dziś twój środek ciężkości.",
+      "message": "Król Mieczy symbolizuje logikę, intelektualny autorytet i sprawiedliwy osąd. To dzień, w którym oddzielenie emocji od faktów i uporządkowanie według zasad czyni wniosek jasnym. Szczególnie pomaga przed ważną umową lub decyzją.",
+      "action": "Dla sprawy wymagającej oceny ustal trzy kryteria i oceń tylko według nich.",
+      "watch": "Nie przyciskaj innych do muru słuszną odpowiedzią. Sytuacja człowieka też jest częścią faktów."
+    },
+    "ace-of-wands": {
+      "headline": "Jedna iskra uruchamia coś nowego.",
+      "message": "As Buław symbolizuje nowy początek, twórczą inspirację i iskrę pasji. Jeśli nagle zechce ci się coś zrobić, nie przepuść tej energii. Dziś dobry dzień, by zamienić pomysł w działanie.",
+      "action": "Zanotuj pomysł, który się pojawił, i zrób pierwszy krok przed końcem dnia.",
+      "watch": "Choć iskra jest duża, nie zaczynaj wielu rzeczy naraz. Tylko skupienie na jednej pozwala wytrwać."
+    },
+    "two-of-wands": {
+      "headline": "Z miejsca, w którym stoisz, wyobraź sobie następną scenę.",
+      "message": "Dwójka Buław symbolizuje okres budowania większego planu na tym, co już zdobyte. To dzień, w którym teraźniejszość cię zadowala, a jednocześnie ciekawi cię szerszy świat. Narysowanie konkretnej wizji wyostrza kierunek.",
+      "action": "Napisz w trzech linijkach, kim chcesz być za rok, i ustal pierwszy krok.",
+      "watch": "By nie spędzić całego czasu tylko na planowaniu, wyznacz jedną rzecz, którą wykonasz dziś."
+    },
+    "three-of-wands": {
+      "headline": "Zaufaj, że wysłany wysiłek wróci.",
+      "message": "Trójka Buław symbolizuje okres ekspansji, w którym z nadzieją obserwuje się efekt tego, co wysłano daleko. To, co zostało już rozpoczęte, może powoli owocować. Zamiast się niecierpliwić, lepiej przygotować kolejne rozszerzenie.",
+      "action": "Sprawdź stan trwającej sprawy i zrób jedno przygotowanie potrzebne do następnego kroku.",
+      "watch": "Nie martw się, że wynik się spóźnia. Jeśli trzeba coś potwierdzić, odezwij się jako pierwsza lub pierwszy."
+    },
+    "four-of-wands": {
+      "headline": "Nie przegap chwili wspólnej radości.",
+      "message": "Czwórka Buław symbolizuje poczucie spełnienia po ważnym etapie oraz radość stabilnej wspólnoty. To dobry dzień, by dzielić dobre rzeczy z bliskimi. Docenienie i cieszenie się osiągniętym stają się energią na następny krok.",
+      "action": "Uczcij niedawny mały sukces razem z kimś bliskim.",
+      "watch": "Nie osiadaj w stabilności, zapominając o przygotowaniach na dalej. Po radości zaplanuj jeszcze jeden krok."
+    },
+    "five-of-wands": {
+      "headline": "Nawet gdy opinie się zderzają, scena może się powiększać.",
+      "message": "Piątka Buław symbolizuje rywalizację i chaotyczną energię, w której splata się wiele opinii. To może być mniej prawdziwa kłótnia, a bardziej ćwiczenie mierzenia się pomysłami. Zabierz głos, ale koordynuj tak, by nie rozbić całości.",
+      "action": "Na spotkaniu lub w rozmowie najpierw podsumuj jednym zdaniem sedno opinii drugiej strony.",
+      "watch": "Nie pozwól, by chęć wygranej przerodziła się w kłótnię na emocjach. Nie trać energii na drobiazgi."
+    },
+    "six-of-wands": {
+      "headline": "Przyjmij pewnie moment, w którym twój wysiłek zostaje doceniony.",
+      "message": "Szóstka Buław symbolizuje owoc wysiłku i uznanie otoczenia. Dziś wyniki mogą stać się widoczne lub możesz usłyszeć pochwałę. Zachowaj skromność, ale się nie umniejszaj, i przyjmij radość.",
+      "action": "Przejrzyj to, co ostatnio ci się udało, i jeśli uznasz za stosowne, podziel się tym z otoczeniem.",
+      "watch": "Nie uzależniaj się zbytnio od uznania. Nawet bez oklasków to, co zrobiono, nie znika."
+    },
+    "seven-of-wands": {
+      "headline": "Jeśli jest coś, co chcesz ochronić, nie cofaj się.",
+      "message": "Siódemka Buław symbolizuje postać stojącą wysoko, mierzącą się z wyzwaniami i naciskiem z wielu stron. Dziś może zdarzyć się sytuacja, w której musisz wyraźnie obronić swoje stanowisko. Zamiast próbować odeprzeć wszystko, skup się na ochronie tego, co najważniejsze.",
+      "action": "Wybierz jedną kluczową zasadę, której musisz bronić, i zachowaj stanowczość tylko w tej sprawie.",
+      "watch": "Jeśli każdą krytykę weźmiesz za atak, się zmęczysz. Selektywnie słuchaj potrzebnych rad."
+    },
+    "eight-of-wands": {
+      "headline": "To, co stało, zaczyna szybko ruszać.",
+      "message": "Ósemka Buław symbolizuje nurt, w którym opóźnienia się kończą, a sprawy toczą się szybko. To dzień, w którym mogą nadejść wieści, a kontakty, podróże i postępy się ożywiają. Ważne, by nie przegapić chwili, gdy nadpływa prąd.",
+      "action": "Uporządkuj odkładane wiadomości lub odpowiedzi i wyślij je jeszcze dziś.",
+      "watch": "Przy większej prędkości mogą też przybyć błędy. Przed wysłaniem sprawdź jeszcze raz."
+    },
+    "nine-of-wands": {
+      "headline": "Nawet w zmęczeniu masz jeszcze siłę na ostatnią przeszkodę.",
+      "message": "Dziewiątka Buław symbolizuje wytrwałość, która nie poddaje się po wielu trudnościach. Nawet jeśli ciało i serce są zmęczone, to dowód, że wiele już udało się zrobić. Dziś czas, by troszczyć się jednocześnie o czujność i regenerację.",
+      "action": "Uznaj, która część męczy cię teraz najbardziej, i ułóż dzisiejszy plan tak, by oszczędzać energię.",
+      "watch": "Nie podejrzewaj wszystkich z powodu dawnych ran. Od tych, którzy na to zasługują, możesz prosić o pomoc."
+    },
+    "ten-of-wands": {
+      "headline": "Znajdź sposób, by podzielić ciężar niesiony w pojedynkę.",
+      "message": "Dziesiątka Buław symbolizuje przeciążenie wynikające z dźwigania samotnie zbyt wielu obowiązków. Cel może wydawać się bliski, ale ciało i serce mogą być wyczerpane. Dziś czas, by sprawdzić, co możesz odłożyć lub podzielić.",
+      "action": "Wybierz z listy zadań jedno, które możesz komuś przekazać lub odłożyć, i się nim zajmij.",
+      "watch": "Myśl, że wszystko jest twoją sprawą, powiększa ciężar. Prośba o pomoc też jest formą odpowiedzialności."
+    },
+    "page-of-wands": {
+      "headline": "Ciekawość rozpala ogień nowych prób.",
+      "message": "Ta karta symbolizuje młodą energię odkrywania nowego z pasją i ciekawością. Doświadczenia może brakować, ale to dzień pełen ekscytacji i pomysłów. Próbując czegoś małego, możesz znaleźć nieoczekiwaną radość i wskazówki.",
+      "action": "Wypróbuj przez piętnaście minut coś nowego, co chcesz zrobić, ale odkładasz.",
+      "watch": "Zainteresowanie może szybko ostygnąć, więc za cel obierz spróbowanie raz, a nie doprowadzenie do końca."
+    },
+    "knight-of-wands": {
+      "headline": "Odważny ruch zmienia atmosferę.",
+      "message": "Rycerz Buław symbolizuje ducha przygody, płomienną pasję i szybki zryw. Dziś masz więcej energii niż zwykle, a odważne działanie może zaowocować dobrym wynikiem. Wyznacz tylko kierunek, by pasja nie zamieniła się w impuls.",
+      "action": "Skup się przez godzinę na tym, czego najbardziej pragniesz.",
+      "watch": "Nie zaczynaj, by potem przegapić zakończenie. Obiecuj tylko to, czego dotrzymasz."
+    },
+    "queen-of-wands": {
+      "headline": "Pewność siebie rozjaśnia też otoczenie.",
+      "message": "Królowa Buław symbolizuje pewność siebie, ciepły magnetyzm i żywiołową niezależność. Dziś im bardziej pokazujesz prawdziwego siebie bez ukrywania się, tym lepszy nurt za tobą podąża. Twoja pewność siebie dodaje odwagi także ludziom wokół.",
+      "action": "Powiedz dziś bezpośrednio, bez wahania, to, co chcesz powiedzieć lub zaproponować.",
+      "watch": "By twoja pewność siebie nie przytłaczała, obserwuj także reakcje innych."
+    },
+    "king-of-wands": {
+      "headline": "Wyraź wizję i prowadź tych, którzy idą z tobą.",
+      "message": "Król Buław symbolizuje przywództwo z charyzmą ukształtowaną przez doświadczenie oraz z wizją. Dziś dobry dzień, by pokazać szerszy obraz i poruszyć ludzi. Konkretny plan zamieniający pasję w rzeczywistość pokaże swoją siłę.",
+      "action": "Wypowiedz jednym zdaniem cel tego, co teraz robisz, i podziel się nim z osobami, z którymi pracujesz.",
+      "watch": "Nie biegnij z przodu w pojedynkę. Sprawdź tempo tych, którzy idą razem z tobą."
+    },
+    "ace-of-cups": {
+      "headline": "Nie przegap chwili, gdy otwiera się serce.",
+      "message": "As Pucharów symbolizuje początek nowego uczucia, miłości i tryskającej inspiracji. Dziś możesz spotkać coś lub kogoś, kto rozgrzeje ci serce. Nie powstrzymuj emocji; poczuj je takimi, jakie są.",
+      "action": "Zapisz w jednej linijce uczucie, które cię teraz porusza, lub coś, co cenisz z wdzięcznością.",
+      "watch": "Nie wyciągaj pochopnych wniosków tylko dlatego, że emocje przelewają się przez brzegi. Pozwól, by odczuwanie i decydowanie łączyły się powoli."
+    },
+    "two-of-cups": {
+      "headline": "Gdy serca się wymieniają, relacja się pogłębia.",
+      "message": "Dwójka Pucharów symbolizuje wzajemną miłość i harmonijne partnerstwo. Dziś dobry dzień, by rozumieć się nawzajem i szukać równowagi w relacjach. Zaufanie może się umocnić nie tylko z partnerem, lecz także ze współpracownikami i przyjaciółmi.",
+      "action": "Powiedz bliskiej osobie jednym konkretnym zdaniem, że jesteś jej wdzięczna lub wdzięczny.",
+      "watch": "Nie dopuść, by relacja stała się taką, w której dostosowuje się tylko jedna strona. Wyraź też swoje serce."
+    },
+    "three-of-cups": {
+      "headline": "Wspólnie spędzony czas jest dziś twoją energią.",
+      "message": "Trójka Pucharów symbolizuje przyjaźń, wspólnotę i radość bycia razem. Śmiech i rozmowa z ważnymi ludźmi odciążają serce. Nawet sprawy wymagające współpracy idą gładko w atmosferze wzajemnej pomocy.",
+      "action": "Wyślij krótkie pozdrowienie do przyjaciela lub współpracownika, z którym dawno nie było kontaktu.",
+      "watch": "Nie odkładaj zadań ani obowiązków przez to, że porwała cię zabawa. Nawet życie towarzyskie potrzebuje równowagi."
+    },
+    "four-of-cups": {
+      "headline": "Zobacz, czy szansa tuż przed oczami nie umyka.",
+      "message": "Czwórka Pucharów symbolizuje znudzenie i obojętność, w których nie widać możliwości wokół. Gdy to, co masz, wydaje się wyblakłe, nowa propozycja może po cichu się zbliżać. Dziś otwórz trochę serce i rozejrzyj się ponownie.",
+      "action": "Sprawdź jeszcze raz, czy wśród ostatnich propozycji lub wiadomości nie ma czegoś, co mimochodem pominięto.",
+      "watch": "Spróbuj rozpoznać, skąd bierze się dzisiejsze niezadowolenie. Może nie wszystko jest złe."
+    },
+    "five-of-cups": {
+      "headline": "Obok tego, co utracone, jest jeszcze coś, co zostało.",
+      "message": "Piątka Pucharów symbolizuje stan skupienia na stracie i żalu, gdy nie widać tego, co pozostało. Smutek jest naturalny, ale gdy trochę odwrócisz wzrok, wciąż stoją dwa puchary. Dziś przyznaj się do rozczarowania, ale spójrz też na to, co zostaje.",
+      "action": "Zapisz obok siebie jedną rzecz, którą utracono, i jedną, która ci jeszcze została.",
+      "watch": "Zbyt długie tkwienie w żalu zasłania widok przed sobą. Uznaj smutek w pełni, ale stopniowo kieruj wzrok także na codzienność."
+    },
+    "six-of-cups": {
+      "headline": "Ciepłe wspomnienia są dziś twoją siłą.",
+      "message": "Szóstka Pucharów symbolizuje tęsknotę, czystą radość i ciepło płynące ze wspomnień. Dawna osoba, miejsce lub wspomnienie może dziś ukoić twoje serce. Spróbuj przenieść to ciepło do obecnych relacji i codzienności.",
+      "action": "Znajdź jedno zdjęcie lub piosenkę, która przypomina miłe wspomnienie.",
+      "watch": "Nie zatrzymuj się w myśli, że dawniej było lepiej, i nie przegap teraźniejszości."
+    },
+    "seven-of-cups": {
+      "headline": "Im więcej wyborów, tym bardziej potrzeba kryterium.",
+      "message": "Siódemka Pucharów symbolizuje stan, w którym wobec wielu możliwości mieszają się iluzja i rzeczywistość. Wiele cię przyciąga, ale trzeba rozróżnić, co naprawdę da się osiągnąć. Dziś ogranicz złudzenia i sprawdź realność.",
+      "action": "Zapisz opcje, które przychodzą ci do głowy, i zaznacz przy każdej, czy jest „realne działanie możliwe dzisiaj”.",
+      "watch": "Jeśli spróbujesz utrzymać wszystkie opcje, trudno zrealizować choćby jedną. Ustal priorytety."
+    },
+    "eight-of-cups": {
+      "headline": "Odejście to nie poddanie się, lecz droga w głębsze miejsce.",
+      "message": "Ósemka Pucharów symbolizuje decyzję o wyruszeniu na poszukiwanie nowego sensu, gdy serce nie jest wypełnione, choć z zewnątrz wszystko wydaje się wystarczające. Dziś dzień, by zastanowić się, czy obecne miejsce ci odpowiada. Gdy zrozumiesz, czego brakuje, pojawi się też kierunek.",
+      "action": "Zapisz jedną rzecz, która „nie jest wypełniona” w twojej obecnej pracy lub relacji.",
+      "watch": "Nie odchodź pod wpływem impulsu, gdy emocje są wysokie. Działaj dopiero po dobrym uporządkowaniu serca."
+    },
+    "nine-of-cups": {
+      "headline": "To dzień, w którym spełnione życzenie może dać satysfakcję.",
+      "message": "Dziewiątka Pucharów, zwana kartą życzeń, symbolizuje satysfakcję ze spełnionego pragnienia i emocjonalną obfitość. Dziś dobry dzień, by w pełni cieszyć się tym, co masz, i poczuć radość. Gdy uznasz to, co się spełniło, następne życzenie też się wyostrzy.",
+      "action": "Powiedz sobie słowa podziękowania za coś, co niedawno się spełniło.",
+      "watch": "Nie zatrzymuj się w zadowoleniu tak, by przegapić kolejny cel. Cieszenie się i zatrzymanie to nie to samo."
+    },
+    "ten-of-cups": {
+      "headline": "Spokój z ukochanymi osobami jest dziś twoim skarbem.",
+      "message": "Dziesiątka Pucharów symbolizuje emocjonalne spełnienie w gronie rodziny i bliskich. Dziś dobry dzień, by poczuć, że codzienność z osobami obok to największe szczęście. Nawet jeśli nie jest doskonale, są chwile wystarczająco ciepłe.",
+      "action": "Usiądź dziś z bliską osobą i porozmawiaj, choćby dziesięć minut.",
+      "watch": "Nie porównuj teraźniejszości z idealnym obrazem. Zobacz ciepło takim, jakie jest."
+    },
+    "page-of-cups": {
+      "headline": "Wsłuchaj się w małą wiadomość, która wypływa w sercu.",
+      "message": "Ta karta symbolizuje młodą energię pełną wrażliwości i twórczości oraz intuicyjne przekazy. Z nieoczekiwanego miejsca może przyjść wieść lub pomysł, który dotknie serca. Jeśli wyrazisz uczucia lekko, otworzy się droga.",
+      "action": "Zanotuj pomysły lub senne obrazy, które nagle ci przychodzą.",
+      "watch": "Uczucia łatwo się chwieją, więc nie składaj wielkich obietnic tylko pod wpływem nastroju."
+    },
+    "knight-of-cups": {
+      "headline": "Szczera propozycja porusza serca.",
+      "message": "Rycerz Pucharów symbolizuje romantyzm, delikatne zaproszenie i wyraz artystyczny. Dziś nurt sprzyja dobrym wieściom albo wyrażeniu uczuć. Pomaga łagodna postawa, która powoli zmierza ku ideałowi.",
+      "action": "Spróbuj zapisać szczere uczucie, które chcesz przekazać, w liście lub wiadomości.",
+      "watch": "Nie daj się upoić nastrojowi i nie pomijaj realistycznych sprawdzeń. Niech słowa i czyny będą spójne."
+    },
+    "queen-of-cups": {
+      "headline": "Głęboka empatia jest dziś twoją siłą.",
+      "message": "Królowa Pucharów symbolizuje dojrzałość emocjonalną, głęboką empatię i intuicyjną mądrość. To dzień, w którym możesz dobrze rozumieć uczucia innych i dbać też o własne serce. Samo wysłuchanie kogoś bywa uzdrawiające.",
+      "action": "Gdy ktoś wydaje się mieć ciężko, zamiast oferować rozwiązania, uważnie wysłuchaj, co mówi.",
+      "watch": "Nie bierz na siebie cudzych emocji. Chroniąc także granice własnego serca, zachowasz empatię na długo."
+    },
+    "king-of-cups": {
+      "headline": "Zachowaj środek ciężkości nawet na falach emocji.",
+      "message": "Król Pucharów symbolizuje dojrzałą równowagę, w której opanowuje się emocje, nie tracąc ciepła. Dziś dobry dzień, by zachować spokój i stabilność nawet w sytuacjach pełnych wrzenia lub chwiejnych. Nie tłum uczuć, lecz obchodź się z nimi razem z rozsądkiem.",
+      "action": "Gdy wzbierają emocje, zatrzymaj się przed reakcją, uspokój oddech, a potem mów.",
+      "watch": "Ukrywanie uczuć i panowanie nad nimi to dwie różne rzeczy. Wyrażaj emocje, które trzeba wyrazić."
+    },
+    "ace-of-pentacles": {
+      "headline": "Czas wyhodować szansę z twojej dłoni w rzeczywistość.",
+      "message": "As Pentakli symbolizuje nową okazję prowadzącą do konkretnych rezultatów i początek stabilności. Dziś w finansach, pracy lub zdrowiu może się pojawić praktyczne ziarno. Ułóż realistyczny plan, choćby niewielki.",
+      "action": "Wybierz jedną szansę, którą chcesz teraz wyhodować, i zapisz potrzebne zasoby oraz pierwszy krok.",
+      "watch": "Nie wydawaj bez sprawdzenia dużych pieniędzy ani czasu z ekscytacji, że pojawiła się okazja."
+    },
+    "two-of-pentacles": {
+      "headline": "Jeśli utrzymasz równowagę elastycznie, chwiejność nie szkodzi.",
+      "message": "Dwójka Pentakli symbolizuje zdolność przystosowania się do utrzymania równowagi między wieloma zadaniami i obowiązkami. Nawet jeśli dziś zadania się nakładają, gdy znajdziesz rytm, przejdziesz bez wysiłku. Ustal priorytety i dostosowuj elastycznie.",
+      "action": "Wybierz z dzisiejszej listy jedną rzecz, która może poczekać, i odciąż plan.",
+      "watch": "Nie próbuj żonglować wszystkim naraz. Jeśli zobaczysz oznaki zachwiania równowagi, zmniejsz tempo."
+    },
+    "three-of-pentacles": {
+      "headline": "Gdy zbiegają się umiejętności każdego, powstaje dobry wynik.",
+      "message": "Trójka Pentakli symbolizuje kunszt, współpracę i rzemieślniczego ducha tworzenia razem. Dziś wynik będzie lepszy, jeśli podzielisz role z osobami, które mają wiedzę, zamiast pracować w pojedynkę. Uznanie i informacja zwrotna stają się glebą wzrostu.",
+      "action": "W swojej pracy poproś jedną osobę o pomoc w tej części, której potrzebujesz.",
+      "watch": "Nie upieraj się tylko przy swoim sposobie. Spróbuj uwzględnić też opinie innych."
+    },
+    "four-of-pentacles": {
+      "headline": "Rozluźnij odrobinę mocno zaciśniętą dłoń, a pojawi się przepływ.",
+      "message": "Czwórka Pentakli symbolizuje stan, w którym pragnienie zachowania stabilności zamienia się w kurczowe trzymanie. Dziś czas, by zobaczyć, czy lęk przed utratą tego, co masz, nie blokuje zmiany. Zarządzanie jest ważne, ale nadmierne zatrzymuje rozwój.",
+      "action": "Wybierz jedną rzecz, której się trzymasz, a którą można spokojnie puścić, i ją uporządkuj.",
+      "watch": "Oszczędność i skąpstwo to nie to samo. Wydawaj z umiarem tam, gdzie trzeba."
+    },
+    "five-of-pentacles": {
+      "headline": "Pomoc jest bliżej, niż myślisz.",
+      "message": "Piątka Pentakli symbolizuje niedostatek, trudność i samotność, ale na obrazie jest oświetlone okno. Ciężkie serce może zasłonić wzrok i sprawić, że przeoczysz pomoc tuż obok. Dziś czas, by wyciągnąć rękę jako pierwsza lub pierwszy.",
+      "action": "Opowiedz szczerze o swojej obecnej sytuacji jednej zaufanej osobie.",
+      "watch": "Myśl, że musisz dźwigać wszystko w pojedynkę, utrudnia sytuację. Proszenie o pomoc nie jest słabością."
+    },
+    "six-of-pentacles": {
+      "headline": "Równowaga dawania i brania jest dziś kluczem.",
+      "message": "Szóstka Pentakli symbolizuje hojność i sprawiedliwy podział. Dziś naturalnie pojawia się nurt dzielenia się tym, co możesz dać, lub przyjmowania tego, czego potrzebujesz. Czy dajesz, czy przyjmujesz, liczy się równowaga serca.",
+      "action": "Ofiaruj jednej osobie coś, czym możesz się podzielić: czas, wiedzę albo troskę.",
+      "watch": "Pilnuj, by twoje dawanie nie miało warunków. Przyjmuj też z wdzięcznością."
+    },
+    "seven-of-pentacles": {
+      "headline": "W oczekiwaniu przejrzyj dotychczasowy wysiłek.",
+      "message": "Siódemka Pentakli symbolizuje cierpliwy czas oceny wyników po długim wysiłku. Nawet jeśli efekty nie są widoczne od razu, to, co konsekwentnie pielęgnujesz, rośnie. Dziś dobry moment, by sprawdzić, czy dotychczasowy kierunek jest właściwy.",
+      "action": "Zbierz ślady nagromadzonego wysiłku i ustal jedną rzecz do skorygowania na przyszłość.",
+      "watch": "Nie poddawaj się łatwo, bo wynik jest powolny. Ale jeśli kierunek był błędny, korekta jest potrzebna."
+    },
+    "eight-of-pentacles": {
+      "headline": "Stałe powtarzanie buduje mistrzostwo.",
+      "message": "Ósemka Pentakli symbolizuje stałe ćwiczenie i skupienie rzemieślnika doskonalącego swój kunszt. Dziś praca rzetelnie gromadzona, choć niewidowiskowa, ma wielką wartość. Spróbuj zanurzyć się głęboko w jednej rzeczy.",
+      "action": "Wyznacz trzydzieści minut na umiejętność, której chcesz się nauczyć, i skup się bez zakłóceń.",
+      "watch": "Nie odkładaj początku z przywiązania do doskonałości. Powtarzanie podnosi jakość."
+    },
+    "nine-of-pentacles": {
+      "headline": "Możesz w pełni cieszyć się obfitością, którą udało ci się zbudować.",
+      "message": "Dziewiątka Pentakli symbolizuje niezależność i materialną stabilność zdobytą wysiłkiem. Dziś nawet czas spędzony samotnie jest przyjemny i swobodny. Z dumą uznaj to, co stworzono.",
+      "action": "Podaruj sobie małą nagrodę albo chwilę wytchnienia.",
+      "watch": "Nie pozwól, by poczucie, że samotnie też jest dobrze, stało się powodem zamykania się na relacje."
+    },
+    "ten-of-pentacles": {
+      "headline": "Przyjrzyj się fundamentowi trwałej stabilności.",
+      "message": "Dziesiątka Pentakli symbolizuje rodzinę, dziedzictwo oraz trwałą obfitość i stabilność. Dziś dobry dzień, by przejrzeć sprawy finansów długoterminowych, rodziny lub domu. Ważniejsze od tego, co przed oczami, jest podłoże, które przetrwa.",
+      "action": "Porozmawiaj o jednym planie długoterminowym z rodziną lub osobą, z którą będziesz długo.",
+      "watch": "Nie koncentruj się tak na utrzymaniu stabilności, by przegapić radość teraźniejszości."
+    },
+    "page-of-pentacles": {
+      "headline": "Małe uczenie się staje się solidnym początkiem.",
+      "message": "Ta karta symbolizuje postawę uczenia się nowych umiejętności i budowania realistycznych celów krok po kroku. Dziś dobrze pójdzie, jeśli rozbijesz plan na konkretne części i zaczniesz. Uczenie się bez pośpiechu staje się twoją siłą.",
+      "action": "Znajdź materiał lub kurs do tego, czego chcesz się nauczyć, i przeczytaj pierwszą stronę.",
+      "watch": "Nie gromadź samej teorii; spróbuj osobiście, choćby w małej skali. Doświadczenie dopełnia naukę."
+    },
+    "knight-of-pentacles": {
+      "headline": "Konsekwencja to najbardziej niezawodne tempo.",
+      "message": "Rycerz Pentakli symbolizuje wiarygodność i sumienność tych, którzy osiągają wolno, ale pewnie. Dziś skończenie krok po kroku tego, co ci powierzono, daje lepszy wynik niż efektowny ruch. To dzień, w którym odpowiedzialność jest doceniana.",
+      "action": "Kończ dzisiejsze zadania jedno po drugim i zaznaczaj je jako zrobione.",
+      "watch": "Pilnuj, by ostrożność nie przerodziła się w odrzucanie zmian. W razie potrzeby spróbuj zmienić metodę."
+    },
+    "queen-of-pentacles": {
+      "headline": "Siła ciepłego dbania o rzeczywistość jest dziś twoją mądrością.",
+      "message": "Królowa Pentakli symbolizuje praktyczną mądrość, ciepłą opiekę i zdolność tworzenia obfitego otoczenia. Dziś, gdy uporządkujesz podstawy codzienności, takie jak dom, praca i zdrowie, uspokoi się też serce. Pomaga oszczędna i życzliwa postawa.",
+      "action": "Uporządkuj lub zadbaj o jedno niewygodne miejsce w swojej codziennej przestrzeni.",
+      "watch": "Pilnuj, by wszystko, o co dbasz, nie stało się wyłącznie twoją odpowiedzialnością. Ty także zasługujesz na troskę."
+    },
+    "king-of-pentacles": {
+      "headline": "To, co budujesz z długofalowej perspektywy, staje się zaufaniem.",
+      "message": "Król Pentakli symbolizuje stabilne przywództwo, doskonały zmysł praktyczny i materialny sukces. Dziś, jeśli zdecydujesz w sprawach finansów, biznesu lub pracy z długofalowym spojrzeniem, nadejdą wiarygodne wyniki. Ważna jest postawa zarządzania z zapasem.",
+      "action": "Podsumuj w liczbach stan swoich finansów lub pracy i ułóż plan na najbliższe trzy miesiące.",
+      "watch": "Nie lokuj wartości tylko w osiągnięciach i posiadaniu. Dostrzegaj też wartość ludzi i czasu."
+    }
+  }
+}
