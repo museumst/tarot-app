@@ -9,7 +9,7 @@ body.site-shell { display: flex; flex-direction: column; min-height: 100dvh; pad
 }
 .site-topbar .site-primary-nav { display: flex; align-items: center; gap: clamp(10px, 1.6vw, 26px); margin-right: auto; white-space: nowrap; }
 .site-primary-nav a { color: #e8e3d8; font-size: .88rem; text-decoration: none; }
-.site-primary-nav a:hover, .site-primary-nav a[aria-current="page"] { color: #d9bf8e; }
+.site-primary-nav a:hover { color: #d9bf8e; }
 .site-primary-nav .site-brand { color: #d9bf8e; font-size: 1.05rem; font-weight: 700; }
 .site-primary-nav .site-mode { font-weight: 700; }
 .site-footer { border-top: 1px solid rgba(196, 169, 107, .15); margin-top: 60px; padding: 32px 20px; text-align: center; }

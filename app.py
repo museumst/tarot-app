@@ -364,7 +364,7 @@ def brand_of(lang: str) -> str:
 
 
 SITE_NAV = {
-    "ko": ("앱 소개", "타로카드란?", "카드 도감", "저장한 리딩"),
+    "ko": ("앱 소개", "타로카드란?", "타로카드 도감", "저장한 리딩"),
     "en": ("About", "What is Tarot?", "Card Guide", "Saved Readings"),
     "ja": ("アプリについて", "タロットとは？", "カード図鑑", "保存したリーディング"),
     "es": ("Sobre la app", "¿Qué es el tarot?", "Guía de cartas", "Lecturas guardadas"),
@@ -533,7 +533,7 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
 <meta name="twitter:image" content="{_e(og_image)}">
 <link rel="icon" href="/static/favicon.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/site-shell.css?v=6">
+<link rel="stylesheet" href="/static/site-shell.css?v=7">
 <link rel="stylesheet" href="/static/acct-bar.css?v=3">
 <style>
   *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}

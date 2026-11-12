@@ -32,7 +32,7 @@
 
   <link rel="icon" href="/static/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="/static/favicon.png" />
-  <link rel="stylesheet" href="/static/site-shell.css?v=6" />
+  <link rel="stylesheet" href="/static/site-shell.css?v=7" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -970,7 +970,7 @@
       <a class="site-mode" data-reading-mode="today" href="/?mode=today">오늘의 타로</a>
       <a class="site-mode" data-reading-mode="choice" href="/?mode=choice">양자택일</a>
       <a class="site-mode" data-reading-mode="birthday" href="/birth-card">나의 생일수</a>
-      <a id="nav-label-cards" href="/cards">카드 도감</a>
+      <a id="nav-label-cards" href="/cards">타로카드 도감</a>
       <a id="nav-label-saved" href="/saved-readings">저장한 리딩</a>
     </nav>
     <!-- 언어 선택기 -->
@@ -993,7 +993,7 @@
   </div>
 <div class="container">
   <header style="position:relative">
-    <h1 id="hdr-title">✨ 타로 리딩</h1>
+    <h1 id="hdr-title">✨ 질문하기</h1>
     <div class="divider"></div>
     <p id="hdr-sub">당신의 운명을 읽어드립니다</p>
   </header>
@@ -1206,7 +1206,7 @@
 <script>
 // ── 다국어 ──
 const NAV_LABELS = {
-  ko: { about:'앱 소개', tarot:'타로카드란?', cards:'카드 도감', back:'← 뒤로' },
+  ko: { about:'앱 소개', tarot:'타로카드란?', cards:'타로카드 도감', back:'← 뒤로' },
   en: { about:'About', tarot:'What is Tarot?', cards:'Card Guide', back:'← Back' },
   ja: { about:'アプリについて', tarot:'タロットとは？', cards:'カード図鑑', back:'← 戻る' },
   zh: { about:'关于应用', tarot:'什么是塔罗？', cards:'塔罗牌图鉴', back:'← 返回' },
@@ -1699,10 +1699,15 @@ function modeText(index) { return (MODE_COPY[currentLang] || MODE_COPY.en)[index
 // 카드 도감 주소: 한국어는 /cards, 그 외는 /{언어코드}/cards
 function cardsHref() { return currentLang === 'ko' ? '/cards' : '/' + currentLang + '/cards'; }
 
+// 상단 큰 제목: 현재 선택한 모드 이름(질문하기 / 오늘의 타로 / 양자택일)을 보여 준다
+function headerTitle() {
+  return '✨ ' + modeText({ reading: 0, today: 1, choice: 2 }[readingMode] ?? 0);
+}
+
 function applyLang() {
   const el = id => document.getElementById(id);
 
-  el('hdr-title').textContent = t('title');
+  el('hdr-title').textContent = headerTitle();
   el('hdr-sub').textContent   = t('subtitle');
   el('s1-title').textContent  = readingMode === 'choice' ? modeText(2) : t('s1_title');
   el('question-input').placeholder = t('q_placeholder');
@@ -1837,6 +1842,7 @@ document.querySelectorAll('[data-reading-mode]:not(:disabled)').forEach(button =
     document.querySelectorAll('[data-reading-mode]').forEach(tab => {
       if (tab === button) tab.setAttribute('aria-current', 'page'); else tab.removeAttribute('aria-current');
     });
+    document.getElementById('hdr-title').textContent = headerTitle();
     document.getElementById('s1-title').textContent = mode === 'choice' ? modeText(2) : t('s1_title');
     document.getElementById('draw-instr-text').textContent = mode === 'today' ? modeText(4) : t('draw_instr');
     document.getElementById('choice-area').classList.toggle('hidden', mode !== 'choice');
