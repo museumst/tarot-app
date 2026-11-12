@@ -3,7 +3,7 @@
   "_meta": {
     "title": "Daily Fortune",
     "labels": {
-      "headline": "Today in a line",
+      "headline": "Today's takeaway",
       "message": "Today's message",
       "action": "Something to try today",
       "watch": "Something to watch today"
@@ -18,55 +18,55 @@
     },
     "the-magician": {
       "headline": "The tools you need are already in your hands.",
-      "message": "On the table in front of the Magician lie the wand, the cup, the sword and the pentacle. Rather than looking for something new, decide how to use the talents, connections and time you already have. If a task has stayed in your head for a while, the flow today favors turning it into a first action.",
+      "message": "On the table in front of the Magician lie the wand, the cup, the sword and the pentacle. Rather than looking for something new, decide how to use the talents, connections and time you already have. If a task has stayed in your head for a while, today is a good day to take the first step.",
       "action": "Pick one task you have put off, write down in a single sentence what you will do, and start for just ten minutes.",
-      "watch": "Notice whether enthusiasm is making you talk bigger than you act. This card's strength lies in actually doing, not in showing."
+      "watch": "Notice whether enthusiasm is making you promise more than you deliver. This card's strength lies in actually doing, not in showing."
     },
     "the-high-priestess": {
       "headline": "Today, listening teaches you more than speaking.",
-      "message": "The High Priestess stands for what is hidden: intuition and the inner voice. Today it is better to observe the situation quietly than to rush to a conclusion. Beyond the information on the surface, something your heart already knows may begin to rise.",
+      "message": "The High Priestess stands for what is hidden: intuition and the inner voice. Today it is better to observe the situation quietly than to rush to a conclusion. Beyond the information on the surface, something you already know deep down may come to the surface.",
       "action": "Make a little quiet time and write down the very first feeling that comes to you right now.",
       "watch": "Do not guess and judge everything alone. Intuition becomes more accurate when it is paired with checking the facts."
     },
     "the-empress": {
-      "headline": "Caring and nurturing grow today's fruit.",
+      "headline": "Care and nurturing help today's efforts bear fruit.",
       "message": "The Empress stands for abundance, creativity and warm care. When you spend your energy looking after yourself and those around you, both your heart and your daily life grow richer. Opening your senses and fully enjoying good things is also an important part of today.",
       "action": "Choose one thing that delights your senses, such as a favorite food, flowers or music, and enjoy it slowly.",
-      "watch": "Be careful not to give so much that you run empty yourself. Taking care of yourself is part of taking care of others."
+      "watch": "Be careful not to give so much that you leave yourself drained. Taking care of yourself is part of taking care of others."
     },
     "the-emperor": {
       "headline": "Standards and order hold your day steady.",
-      "message": "The Emperor stands for structure, responsibility and steady leadership. Setting priorities among scattered tasks and drawing clear boundaries will ease your mind today. Judging by principle rather than being carried off by emotion makes the outcome solid.",
+      "message": "The Emperor stands for structure, responsibility and steady leadership. Setting priorities among scattered tasks and drawing clear boundaries will ease your mind today. Making decisions based on principles rather than being swept away by emotions can lead to more reliable outcomes.",
       "action": "Put today's tasks in order and finish the most important one first.",
-      "watch": "Make sure principle does not harden into stubbornness. You need room to hear the other person's circumstances once."
+      "watch": "Make sure principle does not harden into stubbornness. Leave room to hear out the other person's circumstances."
     },
     "the-hierophant": {
       "headline": "There is something to learn from proven methods and good advice.",
       "message": "The Hierophant stands for tradition, teaching and shared commitments. Today it is safer to follow a method that has been tested, or the advice of an experienced person, than to look for a new way. Rules and procedures may actually shorten the road.",
-      "action": "Ask for one piece of advice from someone you respect or a source you trust, and apply it as it is.",
+      "action": "Ask someone you respect, or turn to a source you trust, for one piece of advice, and follow it as given.",
       "watch": "Check whether you are following a way simply because others do, and whether it fits your own values."
     },
     "the-lovers": {
-      "headline": "The direction your heart leans shows today's choice.",
+      "headline": "Where your heart leads can guide today's choice.",
       "message": "The Lovers is not only about feelings but about choices that match your values. Today what truly matters to you may come into view in a relationship or a decision. If you check in honestly with your heart, the choice becomes much easier.",
-      "action": "Take a choice you are weighing and write down which side is closer to \"the values I truly want to protect.\"",
+      "action": "Consider the options you are weighing and write down which one aligns more closely with \"the values I truly want to protect.\"",
       "watch": "Do not blur your choice just to meet other people's expectations. Attraction and the choice that suits you can be different things."
     },
     "the-chariot": {
       "headline": "Once you set a direction, your strength gathers in one place.",
-      "message": "The Chariot stands for the will to bring different forces together and move forward in one direction. Even something that has been pulling you in two ways can gain momentum today once the goal is clear. With focus, you can go farther than usual.",
-      "action": "Choose just one goal for today and push the rest of your schedule behind it.",
+      "message": "The Chariot stands for the will to bring different forces together and move forward in one direction. Even a situation that has left you feeling torn can gain momentum today once the goal is clear. With focus, you can go farther than usual.",
+      "action": "Choose just one goal for today and set the rest of your schedule aside.",
       "watch": "Do not get so carried away by speed that you lose sight of what is around you. Adjusting your pace is as much a skill as moving forward."
     },
     "strength": {
       "headline": "Gentleness is the firmest kind of strength.",
-      "message": "Strength is not about holding things down but about the courage to calm your fear and guide it. When anger or anxiety rises, you do not have to push it away roughly; keeping it calmly beside you can open a path. Today patience is your greatest weapon.",
+      "message": "Strength is not about holding things down but about the courage to calm your fear and guide it. When anger or anxiety rises, you do not have to force it away; calmly acknowledging it may help you find a way forward. Today patience is your greatest weapon.",
       "action": "When irritation or worry rises, take three deep breaths and give the feeling a name.",
       "watch": "Enduring and suppressing are different things. Release the feelings you have stored up in a safe place."
     },
     "the-hermit": {
       "headline": "A path appears in the place where you pause.",
-      "message": "The Hermit stands for time spent away from the noise, finding a light of your own. Today you need time to think alone more than answers from the people around you. Sorting things out quietly can make a complicated matter simple.",
+      "message": "The Hermit stands for stepping away from the noise to find your own inner light. Today you need time to think alone more than answers from the people around you. Sorting things out quietly can make a complicated matter simple.",
       "action": "Stay away from your phone for about thirty minutes and think about what matters most right now.",
       "watch": "Do not let rest turn into isolation. A conversation with one person you trust can help."
     },
@@ -79,23 +79,23 @@
     "justice": {
       "headline": "Judging by the facts lightens the heart.",
       "message": "Justice stands for cause and effect, fairness and balance. If you set emotion aside for a moment and see things as they are, what you need to do becomes clear. It is also a good day to sort out contracts, promises and accounts.",
-      "action": "Check one promise or settlement you have left pending and organize it around the facts.",
+      "action": "Check one promise or settlement you have left pending and sort out the details based on the facts.",
       "watch": "Check whether you have been reading things only in your own favor. Fairness applies to you as well."
     },
     "the-hanged-man": {
       "headline": "When you stand still, a different view appears.",
-      "message": "The Hanged Man stands for stopping on purpose to gain another perspective. For something that will not move however hard you push, it is better today to set it down for a while and look at it differently. A wait that looks like a loss may bring a deep understanding later.",
+      "message": "The Hanged Man stands for stopping on purpose to gain another perspective. If a problem remains unresolved no matter how hard you try, it is better today to set it down for a while and look at it differently. A wait that looks like a loss may bring a deep understanding later.",
       "action": "Think about a stuck problem from the exact opposite point of view and write down what comes up.",
       "watch": "Do not let waiting become avoidance. It helps to decide for yourself how long you will rest."
     },
     "death": {
-      "headline": "What ends is a tidying up that opens the next chapter.",
-      "message": "Death does not mean actual death but the closing of a period. Like the dawn glimpsed on the horizon, if there is something you know you should let go of but have kept holding, today is a good day to face that feeling. Regret is natural, and only by passing through it can you move on.",
-      "action": "Choose one habit, object or commitment that no longer suits you and tidy it away. It does not have to be big.",
+      "headline": "An ending can clear the way for the next chapter.",
+      "message": "Death does not mean actual death but the closing of a period. As in the card's scene of dawn on the horizon, if there is something you know you should let go of but have kept holding on to, today is a good day to face those feelings. Regret is natural, and only by passing through it can you move on.",
+      "action": "Choose one habit, object or commitment that no longer suits you and let it go. It does not have to be big.",
       "watch": "See whether you are holding on to the present just to avoid change. This does not mean cutting off everything in a hurry."
     },
     "temperance": {
-      "headline": "Balance without hurry is the fastest road.",
+      "headline": "Finding balance without rushing may be the quickest way forward.",
       "message": "Temperance stands for harmony and patience, for blending different things in the right measure. Today the key is to find the middle ground and adjust your pace rather than go to extremes. Balancing work and rest, words and silence will steady your heart.",
       "action": "Put rest into today's schedule first, then arrange the other tasks around it.",
       "watch": "Check whether, in trying to keep the peace, you have swallowed words that needed to be said."
@@ -107,7 +107,7 @@
       "watch": "Do not spend your energy blaming yourself. Simply noticing is already the first step."
     },
     "the-tower": {
-      "headline": "Shaking is uncomfortable, but it reveals a false foundation.",
+      "headline": "Upheaval is unsettling, but it exposes a false foundation.",
       "message": "The Tower stands for sudden change and the unexpected. Even if a plan goes awry today or you face an uncomfortable truth, it may be the process of revealing what was never solid. Once the surprise passes, what you truly needed becomes clearer.",
       "action": "When something unexpected happens, instead of judging right away, take a breath and look for just \"one thing I can change now.\"",
       "watch": "Do not make a big decision at the moment your feelings run highest. Looking again a day or two later can change your judgment."
@@ -116,10 +116,10 @@
       "headline": "Hope slowly returns to a weary heart.",
       "message": "The Star stands for recovery and hope that come after a hard time. Even if not everything has been resolved, it is a day when your heart grows a little lighter. Even without rushing, you can move forward bit by bit.",
       "action": "Write down three things you have done well lately or are grateful for.",
-      "watch": "Do not only wait for hope; connect it to a small action. Recovery grows firm when you move."
+      "watch": "Do not just wait for hope; follow it with a small action. Recovery grows stronger when you move."
     },
     "the-moon": {
-      "headline": "Vague anxiety shrinks when you check it.",
+      "headline": "Vague worries can ease when you examine them.",
       "message": "The Moon stands for uncertainty, vague fear and the shadows of the unconscious. Today what you see is not the whole picture, so your judgment may waver. Rather than jumping to conclusions about uncertain things, it is better to confirm the facts one at a time.",
       "action": "Take what is weighing on you and divide it into \"facts\" and \"my imagination.\"",
       "watch": "Worries at night tend to look bigger than they are. Leave important decisions for the morning."
@@ -132,12 +132,12 @@
     },
     "judgement": {
       "headline": "It is time to answer the call from within.",
-      "message": "Judgement stands for an inner call to tidy up the past and move to a higher stage. Rather than dwelling on what has passed, today is for acknowledging what you have already learned and going on. If a resolution you have long put off returns to mind, it may be a sign.",
-      "action": "Choose one thing from the past to forgive or to finish, and say to it, \"this far.\"",
+      "message": "Judgement stands for an inner call to settle the past and step up to a new stage. Rather than dwelling on what has passed, today is for acknowledging what you have already learned and going on. If a resolution you have long put off returns to mind, it may be a sign.",
+      "action": "Choose one thing from the past to forgive or to finish, and tell yourself, \"This is where it ends.\"",
       "watch": "Do not spend time judging yourself or others again. Focus on the choices ahead."
     },
     "the-world": {
-      "headline": "Acknowledge yourself for completing a stage.",
+      "headline": "Give yourself credit for reaching this milestone.",
       "message": "The World stands for one process coming to an end and everything coming together in harmony. It may be a moment when your efforts so far bear fruit or reach their close. Only by savoring the completion can the next beginning feel light.",
       "action": "Look back on something you recently finished or achieved and give yourself a short word of praise.",
       "watch": "Do not rush straight on to the next task just because something is over. Rest is part of completion too."
@@ -150,13 +150,13 @@
     },
     "two-of-swords": {
       "headline": "The longer you delay a decision, the heavier your heart grows.",
-      "message": "The Two of Swords stands for a deadlock, avoiding a choice with eyes covered. If both options weigh on you and you cannot take a single step, what is missing may be information, or it may be courage. Today is for telling which one it is.",
+      "message": "The Two of Swords stands for a deadlock where you avoid a choice with your eyes covered. If both options weigh on you and you cannot take a single step, what is missing may be information, or it may be courage. Today is a good day to work out which one it is.",
       "action": "Write three pros and cons for each option, and set a deadline for yourself.",
       "watch": "Not deciding is also a decision. If you keep delaying, the chance may pass."
     },
     "three-of-swords": {
       "headline": "Acknowledging the pain is the beginning of recovery.",
-      "message": "The Three of Swords stands for sorrow, hurt and the pain of parting. If something is aching in your heart, today you do not have to pretend to be fine. Only by going through the process of hurting fully and accepting it does the heart begin to heal.",
+      "message": "The Three of Swords stands for sorrow, hurt and the pain of parting. If something is aching in your heart, today you do not have to pretend to be fine. Allowing yourself to feel and acknowledge the pain is an important part of healing.",
       "action": "Write down what you feel just as it is, or confide in someone you trust.",
       "watch": "Do not keep replaying the pain over and over. If the feeling is too heavy, seeking professional help is also an option."
     },
@@ -168,19 +168,19 @@
     },
     "five-of-swords": {
       "headline": "Look at what you need to protect, not just at winning.",
-      "message": "The Five of Swords stands for the emptiness that remains even after winning a conflict. Today be careful not to lose an important relationship or trust while trying to win an argument. First recall what result you actually want.",
+      "message": "The Five of Swords stands for the emptiness that remains even after winning a conflict. Today be careful not to lose an important relationship or trust while trying to win an argument. First, think about what outcome you really want.",
       "action": "When opinions clash, look for one point where you can give way.",
-      "watch": "Look back and see whether you are speaking in a way meant to beat the other person."
+      "watch": "Ask yourself whether your tone is aimed at putting the other person down."
     },
     "six-of-swords": {
-      "headline": "Slowly, but you are heading toward a better place.",
+      "headline": "You are moving toward a better place, even if progress is slow.",
       "message": "The Six of Swords stands for a time of transition, quietly leaving a hard situation behind. Not everything has recovered yet, but the direction is clearly improving. Take what you truly need and feel free to set down the burdens you do not.",
       "action": "Decide on just one next step to move away from your current situation, and carry it out.",
       "watch": "The journey may feel long. Do not be impatient; trust the flow."
     },
     "seven-of-swords": {
-      "headline": "The cleverer the choice, the more honesty keeps it balanced.",
-      "message": "The Seven of Swords stands for strategic avoidance and acting in secret. A detour is sometimes wiser than a head-on clash, but ways that rely on hiding become a burden later. Today make your plans, but act within what you can be open about.",
+      "headline": "The cleverer the choice, the more honesty is needed to keep it balanced.",
+      "message": "The Seven of Swords stands for strategic avoidance and acting in secret. A detour is sometimes wiser than a head-on clash, but keeping things hidden can become a burden later. Today make your plans, but act within what you can be open about.",
       "action": "Honestly sort out one thing you have left unsaid or unchecked.",
       "watch": "A small deception ends up unsettling your own heart the most. If you are hiding something, think about it again."
     },
@@ -192,7 +192,7 @@
     },
     "nine-of-swords": {
       "headline": "The worries of the night look different in the morning.",
-      "message": "The Nine of Swords stands for a mind kept awake by anxiety and excessive worry. These may be worries that have swelled larger in your head than in reality. Today a concrete action that reduces worry will help.",
+      "message": "The Nine of Swords stands for a mind kept awake by anxiety and excessive worry. These may be worries that have swelled larger in your head than in reality. Taking a practical step to ease your worries may help today.",
       "action": "Write down everything that worries you, and mark only the things you can do something about today.",
       "watch": "Do not hold it all alone. Simply saying what is on your mind lightens the weight."
     },
@@ -204,27 +204,27 @@
     },
     "page-of-swords": {
       "headline": "Curiosity is your guide today.",
-      "message": "This card stands for a spirit of inquiry, looking for new information and observing sharply. If you ask what you are curious about and look into it, you may find an unexpected clue today. An attitude of asking honestly helps.",
+      "message": "This card represents curiosity, a desire for new information, and keen observation. Asking questions and exploring what interests you may reveal unexpected clues today. Being open and direct with your questions can help.",
       "action": "Pick one topic you have been curious about, research it for twenty minutes, and note the key points.",
       "watch": "Do not spread or assert what you have learned too hastily. Verify first, then speak."
     },
     "knight-of-swords": {
       "headline": "A quick decision needs one more check.",
       "message": "The Knight of Swords stands for swift action and intellectual ambition. Today you may easily find the drive to push through something you had hesitated over. But as speed builds, you need to check your direction first.",
-      "action": "Before you act, think once about \"who will be affected,\" then move.",
-      "watch": "Don't let your words run ahead and lose the other person. Check whether you have missed any details in your haste."
+      "action": "Before you act, pause and think about \"who will be affected.\"",
+      "watch": "Don't speak so hastily that you lose sight of the other person's feelings. Check whether you have missed any details in your haste."
     },
     "queen-of-swords": {
       "headline": "Candor is your greatest source of trust today.",
-      "message": "The Queen of Swords stands for clear judgment unswayed by emotion, and independence. It is a day to speak plainly from the standards you have gained through experience and to hold your boundaries. Not talking around what needs to be said can actually make relationships easier.",
+      "message": "The Queen of Swords stands for clear judgment unswayed by emotion, and independence. It is a day to speak plainly from the standards you have gained through experience and to hold your boundaries. Speaking directly about what needs to be said can actually make relationships easier.",
       "action": "Organize an uncomfortable conversation you have put off and say it in calm, specific words.",
-      "watch": "Make sure your coolness does not feel cold. A word of consideration lightens the weight of what you say."
+      "watch": "Be careful that your composure does not come across as coldness. A word of consideration lightens the weight of what you say."
     },
     "king-of-swords": {
       "headline": "A fair standard keeps your day steady.",
-      "message": "The King of Swords stands for logic, intellectual authority and fair judgment. It is a day when separating feelings from facts and organizing by principle makes the conclusion clear. It helps especially before important contracts or decisions.",
+      "message": "The King of Swords stands for logic, intellectual authority and fair judgment. It is a day when separating feelings from facts and applying clear principles can help you reach a sound conclusion. It helps especially before important contracts or decisions.",
       "action": "For something that needs judging, set three criteria and evaluate using only those.",
-      "watch": "Do not press others with the right answer. People's circumstances are part of the facts too."
+      "watch": "Do not use being right as a reason to pressure others. People's circumstances are part of the facts too."
     },
     "ace-of-wands": {
       "headline": "A single spark sets something new in motion.",
@@ -239,25 +239,25 @@
       "watch": "So that you do not spend all your time planning, decide on one thing to carry out today."
     },
     "three-of-wands": {
-      "headline": "Trust that the effort you sent out will return.",
-      "message": "The Three of Wands stands for a time of expansion, watching with expectation for the results of what you sent far away. What you have already begun may be slowly bearing fruit. Rather than being impatient, it is better to prepare for the next expansion.",
+      "headline": "Trust that the effort you have put out will come back to you.",
+      "message": "The Three of Wands stands for a time of expansion, watching expectantly for the results of work you have sent out into the distance. What you have already begun may be slowly bearing fruit. Rather than being impatient, it is better to prepare for the next expansion.",
       "action": "Check the status of something in progress and make one preparation needed for the next step.",
       "watch": "Do not worry because results are late. If there is something to confirm, reach out first."
     },
     "four-of-wands": {
       "headline": "Do not miss a moment to rejoice together.",
-      "message": "The Four of Wands stands for the sense of achievement that comes from finishing an important stage, and for the joy of a stable community. It is a good day to share good things with those close to you. Acknowledging and enjoying what you have achieved becomes energy for the next step.",
+      "message": "The Four of Wands stands for the sense of achievement that comes from finishing an important stage, and for the joy of a stable community. It is a good day to share good things with those close to you. Recognizing and celebrating your achievements can give you energy for what comes next.",
       "action": "Celebrate a recent small achievement together with someone close.",
       "watch": "Do not settle into comfort and forget to prepare for what is next. After enjoying it, plan one step further."
     },
     "five-of-wands": {
-      "headline": "Even when opinions clash, it may be the stage growing larger.",
-      "message": "The Five of Wands stands for competition and chaotic energy where many opinions tangle. It may be less a real fight than a practice of testing each other's ideas. Speak up, but coordinate in a way that does not break the whole thing.",
+      "headline": "Clashing opinions may be part of something bigger taking shape.",
+      "message": "The Five of Wands stands for competition and chaotic energy where many opinions tangle. It may be more about testing each other's ideas than a genuine conflict. Speak your mind, but work toward common ground without disrupting the group.",
       "action": "In a meeting or conversation, first sum up the core of the other person's opinion in one sentence.",
       "watch": "Do not let the wish to win turn into an emotional quarrel. Do not waste energy on small matters."
     },
     "six-of-wands": {
-      "headline": "Receive the moment your effort is recognized with confidence.",
+      "headline": "Accept recognition for your efforts with confidence.",
       "message": "The Six of Wands stands for the fruit of effort and recognition from those around you. Today your results may become visible, or you may receive praise. Be modest, but do not belittle yourself; accept the joy.",
       "action": "Review what you have recently accomplished and, if it feels right, share it with those around you.",
       "watch": "Do not depend too much on being recognized. Even without applause, what you have done does not disappear."
@@ -276,7 +276,7 @@
     },
     "nine-of-wands": {
       "headline": "Even tired, you still have strength for the last stretch.",
-      "message": "The Nine of Wands stands for perseverance that does not give up after many hardships. Even if your body and mind are tired, it is proof that you have already achieved a great deal. Today is a day to look after both your guard and your recovery.",
+      "message": "The Nine of Wands stands for perseverance that does not give up after many hardships. Even if you feel exhausted in body and mind, you have already come a long way. Today, balance staying alert with giving yourself time to recover.",
       "action": "Admit which part of you is most tired, and plan today so that you save your energy.",
       "watch": "Do not distrust everyone because of old wounds. You may ask for help from those you can trust."
     },
@@ -289,41 +289,41 @@
     "page-of-wands": {
       "headline": "Curiosity lights the fire for something new.",
       "message": "This card stands for the youthful energy to explore something new with passion and curiosity. You may lack experience, but it is a day full of excitement and ideas. Trying something small can bring unexpected fun and clues.",
-      "action": "Try for just fifteen minutes something new you have wanted to do but put off.",
+      "action": "Spend just fifteen minutes trying something new you have wanted to do but kept putting off.",
       "watch": "Interest can fade quickly, so aim not to see it through to the end but simply to try it once."
     },
     "knight-of-wands": {
       "headline": "A bold move changes the atmosphere.",
       "message": "The Knight of Wands stands for adventure, fiery passion and swift drive. Today your energy is higher than usual, so a bold action can lead to a good result. Just set a direction so that passion does not turn into impulse.",
-      "action": "Focus one hour on whatever you most want to do.",
-      "watch": "Do not start and then miss the finish. Make only the promises you can keep."
+      "action": "Spend an hour focusing on whatever excites you most.",
+      "watch": "Do not get so caught up in starting that you forget to follow through. Make only the promises you can keep."
     },
     "queen-of-wands": {
       "headline": "Confidence brightens everyone around you.",
-      "message": "The Queen of Wands stands for confidence, warm charisma and lively independence. Today the more you show your true self without hiding, the better the flow that follows. Your confidence also gives courage to the people around you.",
+      "message": "The Queen of Wands stands for confidence, warm charisma and lively independence. Today, showing your true self with confidence may help things go more smoothly. Your confidence also gives courage to the people around you.",
       "action": "Say the thing you want to say or propose today directly, without hesitation.",
       "watch": "So that your confidence does not overwhelm others, watch how they respond too."
     },
     "king-of-wands": {
       "headline": "Speak your vision and lead those who will go with you.",
-      "message": "The King of Wands stands for leadership with charisma refined by experience and a clear vision. It is a good day to show the big picture and move people. A concrete plan that turns passion into reality shows its strength.",
+      "message": "The King of Wands stands for leadership with charisma refined by experience and a clear vision. It is a good day to share the big picture and inspire others to act. A concrete plan can help turn your passion into reality.",
       "action": "State the goal of your current work in one sentence and share it with the people you work with.",
       "watch": "Do not run ahead alone. Check the pace of those who go with you."
     },
     "ace-of-cups": {
       "headline": "Do not miss the moment your heart opens.",
-      "message": "The Ace of Cups stands for the start of new feeling, love and a spring of inspiration. Today you may meet something or someone who warms your heart. Do not hold your feelings back; let yourself feel them as they are.",
+      "message": "The Ace of Cups stands for the beginning of new emotions, love, and a fresh flow of inspiration. Today you may meet something or someone who warms your heart. Do not hold your feelings back; let yourself feel them as they are.",
       "action": "Write in one line a feeling that touches you now, or something you are grateful for.",
       "watch": "Do not jump to a conclusion just because your emotions are overflowing. Let feeling and deciding unfold slowly."
     },
     "two-of-cups": {
-      "headline": "When hearts are exchanged, a relationship deepens.",
+      "headline": "Relationships deepen when feelings are shared.",
       "message": "The Two of Cups stands for mutual love and harmonious partnership. It is a good day to understand each other and find balance in a relationship. Trust can grow stronger not only with a partner but with colleagues and friends.",
       "action": "Tell someone close to you that you are thankful, in one specific sentence.",
-      "watch": "Do not let the relationship become one where only one side adjusts. Express your own heart as well."
+      "watch": "Do not let yourself be the only one making compromises. Make sure to express your own feelings too."
     },
     "three-of-cups": {
-      "headline": "Time spent together is today's energy.",
+      "headline": "Time spent together is what gives you energy today.",
       "message": "The Three of Cups stands for friendship, community and the joy of being together. Laughing and talking with people who matter to you lightens the heart. Even work that needs cooperation goes smoothly in an atmosphere of helping one another.",
       "action": "Send a short hello to a friend or colleague you have not been in touch with for a long time.",
       "watch": "Do not put off tasks or responsibilities because you are caught up in the fun. Even socializing needs balance."

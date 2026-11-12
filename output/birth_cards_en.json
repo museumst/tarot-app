@@ -1,7 +1,7 @@
 {
   "_meta": {
     "title": "Birth Card Guide",
-    "disclaimer": "This reading is based on card symbolism and is not a scientific personality test. It is meant as a reference for self-understanding and does not replace career decisions or other important life choices.",
+    "disclaimer": "This reading is based on card symbolism and is not a scientific personality test. It is meant as a reference for self-understanding and should not be used to make career or other important life decisions for you.",
     "deck_note": "Based on the Waite (Rider-Waite) numbering: Strength is 8 and Justice is 11. A total of 22 is read as The Fool (0).",
     "calculation": [
       "Add up every digit of your birth date written as eight digits (YYYYMMDD).",
@@ -27,9 +27,9 @@
     "the-fool": {
       "name": "The Fool",
       "tagline": "The eternal adventurer who takes the first step without borders",
-      "personality": "You tend to be curious and optimistic, and you dislike being boxed in by fixed frames. Whatever your age, you keep a pure side, and you approach unfamiliar places and people without hesitation. You lean toward trusting instinct and flow over plans, so those around you see you as a free and fresh presence.",
-      "life_lesson": "Your life is about learning the balance between freedom and responsibility. Keep the thrill of not knowing where you are headed, but practice checking the ground beneath your feet and preparing for reality.",
-      "relationships": "You feel comfortable in light, free relationships that neither bind you nor tie the other person down. You may hesitate before deep commitment, but once trust has grown you become a frank and warm companion like few others.",
+      "personality": "You tend to be curious and optimistic, and you dislike being confined by rigid expectations. Whatever your age, you retain a sense of innocence and approach unfamiliar places and people without hesitation. You tend to follow your instincts and go with the flow rather than stick to plans, so others see you as free-spirited and refreshing.",
+      "life_lesson": "Your life is about learning the balance between freedom and responsibility. Keep the thrill of not knowing where you are headed, but practice checking the ground beneath your feet and making practical preparations.",
+      "relationships": "You feel comfortable in light, free relationships that neither bind you nor tie the other person down. You may hesitate before deep commitment, but once trust has grown you become an exceptionally open and caring partner.",
       "keywords": [
         "Freedom",
         "Curiosity",
@@ -48,7 +48,7 @@
         "When the first excitement fades, you can lose interest before finishing"
       ],
       "career": {
-        "style": "You shine in environments with new attempts and plenty of change rather than fixed procedures.",
+        "style": "You shine in environments that encourage experimentation and change rather than rigid procedures.",
         "fields": [
           "Travel and tourism",
           "Start-ups and early-stage ventures",
@@ -63,10 +63,10 @@
     },
     "the-magician": {
       "name": "The Magician",
-      "tagline": "Someone who turns possibility into reality through will",
+      "tagline": "Someone who turns possibilities into reality through determination",
       "personality": "You are quick-witted, skilled with your hands or your words, and once you have a goal you find the means to reach it. You tend to be confident and want to lead situations yourself. Your mind moves fast, so you handle several things at once with ease.",
-      "life_lesson": "Your life is about making your intention clear: what will you use your innate talent for? The greater the ability, the more important it is to use it responsibly.",
-      "relationships": "You win hearts through conversation and ideas. If your drive to hold the initiative is strong, the other person may feel pressured, so make time to listen as well.",
+      "life_lesson": "Your life is about being clear on how you want to use your natural talents. The greater your abilities, the more important it becomes to use them responsibly.",
+      "relationships": "You win hearts through conversation and ideas. If your urge to take charge is strong, the other person may feel pressured, so make time to listen as well.",
       "keywords": [
         "Will",
         "Talent",
@@ -75,12 +75,12 @@
         "Initiative"
       ],
       "strengths": [
-        "The execution power to turn ideas into reality",
-        "Communication skills that help others understand and be persuaded",
+        "The ability to turn ideas into reality",
+        "Communication skills that help you explain ideas and persuade others",
         "Versatility that crosses many fields"
       ],
       "shadow": [
-        "Trusting your talent, you may try to get by on tricks",
+        "You may rely too much on your talents and try to get by with shortcuts",
         "Your interests can scatter and weaken your focus",
         "Words that run ahead of action can cost you trust"
       ],
@@ -95,14 +95,14 @@
         ],
         "caution": "When too many projects pile up, finishing them can become your weak point."
       },
-      "soul_note": "Whatever you look like on the outside, within you lives the will that says \"I can do it\" and a curiosity about new possibilities. In your heart you always want to test something new.",
+      "soul_note": "However you may appear to others, within you lives the will that says \"I can do it\" and a curiosity about new possibilities. In your heart you always want to test something new.",
       "year_theme": "A good year for taking your talents and ideas out into the world. Opportunities to start something new or to put what you have learned to real use may appear."
     },
     "the-high-priestess": {
       "name": "The High Priestess",
-      "tagline": "Someone whose intuition knows deeply without a word",
+      "tagline": "Someone with deep, unspoken intuition",
       "personality": "You carry a calm, mysterious air and do not easily reveal what is in your heart. Your power of observation is sharp, so you readily pick up on moods and on people's true feelings. Even without many words you think deeply, and you tend to draw strength from time alone.",
-      "life_lesson": "Your life is about trusting your inner voice and learning to bring it into words. The task is to tell stillness from isolation, and to open the door of your heart when it is needed.",
+      "life_lesson": "Your life is about trusting your inner voice and learning to bring it into words. The challenge is to distinguish quiet reflection from isolation and learn to open up when needed.",
       "relationships": "You open up slowly, but once you do, you want deep emotional connection. You may hope the other person will notice feelings you never voiced, so practicing expression makes relationships more comfortable.",
       "keywords": [
         "Intuition",
@@ -132,13 +132,13 @@
         ],
         "caution": "If you never state your views, your results can go unnoticed, so build a habit of sharing what you find."
       },
-      "soul_note": "Even if you seem active on the outside, within you lie quiet wisdom and a secret landscape. You are someone who meets your true self in time spent alone.",
+      "soul_note": "Even if you seem active on the outside, you have quiet wisdom and a rich, private inner world. You are someone who meets your true self in time spent alone.",
       "year_theme": "A year to listen to inner signals rather than outside noise. Your intuition grows sharper, so do not rush; record your impressions as you decide."
     },
     "the-empress": {
       "name": "The Empress",
       "tagline": "Someone who nurtures and cares, bringing abundance",
-      "personality": "You are warm and kind, and you know how to enjoy life through all five senses. You have a charm that embraces those near you and makes them feel at ease, and you have a refined sense for beautiful things, good food, and comfortable spaces. Your affection tends to draw people to you.",
+      "personality": "You are warm and kind, and you know how to enjoy life through all five senses. You have a welcoming warmth that makes those around you feel at ease, and you have a refined sense for beautiful things, good food, and comfortable spaces. Your affection tends to draw people to you.",
       "life_lesson": "Your life is about learning the balance between giving and receiving. The task is to care for yourself as much as you care for others, and to practice receiving with ease.",
       "relationships": "You are affectionate and devoted, wanting to embrace your partner. When expectations grow, hurt can build up, so say honestly what you want.",
       "keywords": [
@@ -156,10 +156,10 @@
       "shadow": [
         "Excessive caretaking can feel like interference",
         "You may settle into comfort and put off challenges",
-        "It can lead to mood swings or overspending"
+        "You may experience mood swings or spend excessively"
       ],
       "career": {
-        "style": "You find satisfaction in work where you nurture people and results with care.",
+        "style": "You find satisfaction in work where you help people and projects grow through attentive care.",
         "fields": [
           "Food service and cooking",
           "Design and the arts",
@@ -169,15 +169,15 @@
         ],
         "caution": "If you feel unrecognized, you can wear out easily, so keep a visible record of your results."
       },
-      "soul_note": "Within you live a warm wish to embrace and nurture someone and a longing for abundance. Even if you seem indifferent outwardly, deep inside you are a person with a lot of heart.",
+      "soul_note": "Deep within, you have a warm desire to care for and nurture others, along with a longing for abundance. Even if you seem indifferent on the outside, you are deeply caring at heart.",
       "year_theme": "A year of abundance and care. What you pour effort into among people, work, and hobbies may visibly grow, so look after your body and mind as well."
     },
     "the-emperor": {
       "name": "The Emperor",
       "tagline": "Someone who builds a foundation through order and responsibility",
-      "personality": "You are realistic and decisive, and skilled at building structure. You try to take responsibility for what you are given through to the end, and you tend to be placed naturally in leading roles. You move by principle and plan more than by feeling, which gives an impression of reliability.",
-      "life_lesson": "Your life is about learning the balance between control and trust. The task is to trust and delegate rather than grip everything, and to admit your own vulnerability.",
-      "relationships": "You take on the role of a dependable protector and value stability and trust. You may leave others feeling there is too little conversation about feelings, so practicing expressing your heart helps.",
+      "personality": "You are practical and decisive, with a talent for creating structure. You strive to see your responsibilities through to the end and naturally tend to take on leadership roles. You follow principles and plans rather than emotions, which makes you seem dependable.",
+      "life_lesson": "Your life is about learning the balance between control and trust. The task is to delegate and trust others rather than trying to control everything, and to admit your own vulnerability.",
+      "relationships": "You take on the role of a dependable protector and value stability and trust. You may leave others feeling there is too little conversation about feelings, so practicing open emotional expression can help.",
       "keywords": [
         "Order",
         "Responsibility",
@@ -188,7 +188,7 @@
       "strengths": [
         "The ability to build and sustain a system",
         "Quick, decisive judgment",
-        "A reliability that takes responsibility to the end"
+        "Dependability in seeing responsibilities through to the end"
       ],
       "shadow": [
         "You can be stubborn and have a strong need to control",
@@ -207,13 +207,13 @@
         "caution": "If you cannot accept people with different views, your team's energy can drop."
       },
       "soul_note": "Within you is a strong desire to build a stable foundation and a sense of responsibility. Even if you seem gentle outwardly, in your heart you value order and principle.",
-      "year_theme": "A year of laying foundations. Making plans and setting rules to firm up the frame of your life and work will help your stability later."
+      "year_theme": "A year of laying foundations. Making plans and setting rules to give your life and work a solid framework will help your stability later."
     },
     "the-hierophant": {
       "name": "The Hierophant",
       "tagline": "Someone who carries tradition and teaching forward",
-      "personality": "You have clear beliefs and values and respect norms and tradition. You have a natural interest in learning and teaching, so people often come to you for advice. You carry a stable, trustworthy atmosphere.",
-      "life_lesson": "Your life is about digesting what you have learned into your own words. The task is to choose for yourself what to carry on and what to change between tradition and being yourself.",
+      "personality": "You have clear beliefs and values and respect norms and tradition. You have a natural interest in learning and teaching, so people often come to you for advice. You have a steady, trustworthy presence.",
+      "life_lesson": "Your life is about absorbing what you have learned and expressing it in your own words. The task is to choose for yourself which traditions to preserve and which to change while staying true to yourself.",
       "relationships": "You are sincere, treasure promises, and value lasting relationships with family. Strong standards can make others feel stifled, so you need room to accept each other's differences.",
       "keywords": [
         "Tradition",
@@ -228,12 +228,12 @@
         "A sense of responsibility toward community and relationships"
       ],
       "shadow": [
-        "You may cling to frames and be unwelcoming to new ways",
+        "You may cling to established ways and resist new approaches",
         "You may care too much about others' views and convention",
-        "You may try to fit standards rather than express your own opinion"
+        "You may try to conform to established standards rather than express your own opinion"
       ],
       "career": {
-        "style": "You suit work that conveys knowledge and leads people on a foundation of structure and trust.",
+        "style": "You are well suited to work that involves sharing knowledge and guiding others through structure and trust.",
         "fields": [
           "Education and lecturing",
           "Religion and philosophy",
@@ -249,9 +249,9 @@
     "the-lovers": {
       "name": "The Lovers",
       "tagline": "Someone who comes to know themselves through choice and relationship",
-      "personality": "You care deeply about people and relationships and give your whole heart to what draws you. Your empathy is strong, and you treasure the harmony of becoming one with another. At important moments in life you tend to face choices that depend on your values.",
+      "personality": "You care deeply about people and relationships and give your whole heart to what draws you. Your empathy is strong, and you value the harmony of feeling deeply connected to another person. At important moments in life you tend to face choices that depend on your values.",
       "life_lesson": "Your life is about choosing what your heart wants and taking responsibility for the results of that choice. The task is to ask, in love, which choice matches your own values.",
-      "relationships": "Relationships sit at the center of your life, and you want deep oneness. You can easily idealize and then be disappointed, so practice seeing the other person as they are.",
+      "relationships": "Relationships sit at the center of your life, and you seek a deep sense of connection. You can easily idealize and then be disappointed, so practice seeing the other person as they are.",
       "keywords": [
         "Love",
         "Choice",
@@ -267,10 +267,10 @@
       "shadow": [
         "You may be indecisive and put off decisions",
         "You may depend too much on relationships",
-        "Your heart may sway under temptation or atmosphere"
+        "You may be swayed by temptation or the mood of the moment"
       ],
       "career": {
-        "style": "Your strengths show in work that connects people and builds things together.",
+        "style": "Your strengths show in work that brings people together and encourages collaboration.",
         "fields": [
           "Counseling and coaching",
           "Service and hospitality",
@@ -285,8 +285,8 @@
     },
     "the-chariot": {
       "name": "The Chariot",
-      "tagline": "Someone who sets a direction by will and drives toward it",
-      "personality": "You have a strong drive and push on to the end once a goal is set. You are competitive and find fulfillment in moving toward the direction you have chosen. You can gather opposing impulses into one direction, so you seem strong-willed.",
+      "tagline": "Someone who chooses a direction through determination and pursues it",
+      "personality": "You have a strong drive and push on to the end once a goal is set. You are competitive and find fulfillment in pursuing the path you have chosen. You can channel conflicting impulses toward a single goal, which makes you appear strong-willed.",
       "life_lesson": "Your life is about harmonizing opposing forces (reason and emotion, desire and responsibility) as you move forward. Direction matters as much as speed, and the task is to choose the right destination rather than simply win.",
       "relationships": "You tend to lead in relationships too, but may avoid talking about feelings. You feel at ease beside someone who can run in the same direction with you.",
       "keywords": [
@@ -297,8 +297,8 @@
         "Victory"
       ],
       "strengths": [
-        "A breakthrough power that focuses on one thing and pushes through",
-        "Self-control that governs yourself",
+        "The drive to focus on one goal and overcome obstacles",
+        "Strong self-control",
         "The persistence to produce results in competition"
       ],
       "shadow": [
@@ -317,14 +317,14 @@
         ],
         "caution": "In a long race burnout can come, so build rest into your schedule."
       },
-      "soul_note": "Within you is a strong will to get things done and a wish to be recognized. In your heart you are always running toward somewhere.",
-      "year_theme": "A year of picking up speed toward a goal. If you first fix the direction firmly, your drive can lead to great results, but guard against overspeed and overreach."
+      "soul_note": "Within you is a strong will to get things done and a wish to be recognized. Deep down, you are always striving toward a destination.",
+      "year_theme": "A year of picking up speed toward a goal. If you establish a clear direction first, your drive may lead to significant achievements, but be careful not to rush or push yourself too hard."
     },
     "strength": {
       "name": "Strength",
-      "tagline": "The inner power that governs through gentleness",
+      "tagline": "The inner strength to guide with gentleness",
       "personality": "You are gentle on the outside but firm inside. You have the strength to stay calm and endure in the face of great crises and waves of emotion. You tend to handle situations and people by understanding and soothing rather than overpowering.",
-      "life_lesson": "Your life is about building a strength that tames rather than suppresses. The task is to see fear and impulse not as enemies but to understand them, and to practice trusting yourself.",
+      "life_lesson": "Your life is about developing the strength to guide rather than suppress. The challenge is to understand fear and impulses instead of treating them as enemies, while learning to trust yourself.",
       "relationships": "You are tolerant and resolve conflict gently. You can easily burn out by devoting yourself to someone, so tell them honestly about your own limits and needs.",
       "keywords": [
         "Courage",
@@ -335,7 +335,7 @@
       ],
       "strengths": [
         "The patience and perseverance to endure for a long time",
-        "A gentle leadership that guides through empathy",
+        "Gentle leadership grounded in empathy",
         "Composure that does not waver even in a crisis"
       ],
       "shadow": [
@@ -354,14 +354,14 @@
         ],
         "caution": "You can wear out by carrying more than your share, so set the boundaries of your role."
       },
-      "soul_note": "Within you hide a courage and warmth stronger than anyone's. In your heart you are calming fear and impulse and governing yourself.",
+      "soul_note": "Deep within, you hold exceptional courage and warmth. Deep down, you are calming your fears and impulses and keeping yourself steady.",
       "year_theme": "A year of patience and self-trust. Even when things are hard, handling them gently without rushing can take you further."
     },
     "the-hermit": {
       "name": "The Hermit",
       "tagline": "A seeker who digs deep alone",
       "personality": "You are careful and independent and treasure time to think alone. Rather than standing out, you dig deep into one field and build your own standards. You say little, but each word carries weight.",
-      "life_lesson": "Your life is about sharing the wisdom you have gained rather than keeping it to yourself. The task is to tell solitude from disconnection, and to step one pace toward the world when needed.",
+      "life_lesson": "Your life is about sharing the wisdom you have gained rather than keeping it to yourself. The challenge is to distinguish solitude from isolation and reach out to the wider world when needed.",
       "relationships": "You form deep, lasting relationships with a few people. If you explain in advance that you need time alone, you can reduce misunderstandings.",
       "keywords": [
         "Reflection",
@@ -378,7 +378,7 @@
       "shadow": [
         "You may become isolated by staying alone",
         "You may hold everything in rather than ask for help",
-        "You may drift toward excess perfectionism or pessimism"
+        "You may drift toward excessive perfectionism or pessimism"
       ],
       "career": {
         "style": "You shine in work where you research deeply and build expertise independently.",
@@ -397,8 +397,8 @@
     "wheel-of-fortune": {
       "name": "Wheel of Fortune",
       "tagline": "Someone who rides the flow of change",
-      "personality": "You are sensitive to the flow of life and to change, and you catch opportunities well when they come. You are optimistic, so even through ups and downs you endure with the belief that it will come around again. You have a wide view of the big picture, and quite often you are carried by fortune and timing.",
-      "life_lesson": "Your life is about keeping your center through rises and falls. The task is to tell what you can change from what you cannot, and to build skill ahead of time for when the flow arrives.",
+      "personality": "You are attuned to life's changes and good at recognizing opportunities when they arise. Your optimism helps you weather ups and downs with the belief that things will turn around again. You tend to see the bigger picture, and luck and timing often play a significant role in your experiences.",
+      "life_lesson": "Your life is about keeping your center through rises and falls. The task is to tell what you can change from what you cannot, and to develop your skills so you are ready when opportunities arise.",
       "relationships": "You value the timing of connections and may experience dramatic meetings and partings. Frequent change can raise worries about stability, so practice giving your partner consistent signals.",
       "keywords": [
         "Change",
@@ -418,7 +418,7 @@
         "You may feel anxious about what you cannot control"
       ],
       "career": {
-        "style": "Your strengths come out in work with a lot of change that reads the flow.",
+        "style": "Your strengths shine in fast-changing fields where recognizing trends is important.",
         "fields": [
           "Trade and distribution",
           "Investment and finance",
@@ -426,9 +426,9 @@
           "Trend analysis",
           "New ventures with lots of change"
         ],
-        "caution": "Betting too much on a single chance is risky, so spread it out."
+        "caution": "Relying too heavily on a single opportunity can be risky, so avoid putting everything into one option."
       },
-      "soul_note": "Within you are curiosity about where life will flow and a heart that accepts change. When it appears as a middle card, it tells you that fortune and timing are a major theme of your life.",
+      "soul_note": "Deep down, you are curious about where life may lead and open to embracing change. When it appears as a middle card, it tells you that fortune and timing are a major theme of your life.",
       "year_theme": "A year when the flow shifts. Unexpected opportunities or turning points may arrive, so welcome them with an open mind, and remember you can grasp only as much as you have prepared."
     },
     "justice": {
@@ -436,7 +436,7 @@
       "tagline": "Someone who values fairness and balance",
       "personality": "You are logical and honest and sensitive to right and wrong. You try to judge by facts and principle rather than being swayed by feeling. You value promises and rules and tend to take responsibility for your actions.",
       "life_lesson": "Your life is about learning the balance between fairness and mercy. The task is to apply to yourself the same fair and generous standard you give to others.",
-      "relationships": "You value fair and honest relationships and keep your promises. You may express hurt by keeping score and make the other person shrink, so practice conveying feelings gently.",
+      "relationships": "You value fair and honest relationships and keep your promises. You may express hurt by keeping score and make the other person feel small, so practice conveying feelings gently.",
       "keywords": [
         "Fairness",
         "Logic",
@@ -446,7 +446,7 @@
       ],
       "strengths": [
         "A sense of balance that judges objectively",
-        "Constant honesty and principle",
+        "Consistent honesty and strong principles",
         "The diligence to take responsibility for your actions"
       ],
       "shadow": [
@@ -455,7 +455,7 @@
         "You can be too strict with yourself"
       ],
       "career": {
-        "style": "You suit work where you judge and adjust on the basis of standards and evidence.",
+        "style": "You are well suited to work that involves making judgments and resolving issues based on clear standards and evidence.",
         "fields": [
           "Law",
           "Accounting and auditing",
@@ -470,9 +470,9 @@
     },
     "the-hanged-man": {
       "name": "The Hanged Man",
-      "tagline": "Someone who turns perspective upside down",
-      "personality": "You see the world from a distinct viewpoint unlike others. You know how to wait without hurrying, and you have the composure to step back and view a situation. At times you make choices that are hard to understand and puzzle those around you.",
-      "life_lesson": "Your life is about learning the paradox that you must let go to gain. The task is to tell waiting from avoidance, and to use times of pause as a chance to gain a new view.",
+      "tagline": "Someone who flips the usual point of view",
+      "personality": "You see the world from a perspective that sets you apart from others. You know how to wait without hurrying, and you have the composure to step back and view a situation. At times you make choices that are hard to understand and puzzle those around you.",
+      "life_lesson": "Your life is about learning the paradox that you must let go to gain. The challenge is to distinguish patience from avoidance and use periods of stillness as opportunities to gain a fresh perspective.",
       "relationships": "You tend to yield and wait for the other person. If you do not state your own wishes, resentment can build up, so try expressing what you need.",
       "keywords": [
         "Waiting",
@@ -482,7 +482,7 @@
         "Pause"
       ],
       "strengths": [
-        "A flexible viewpoint that turns things upside down",
+        "The flexibility to see situations from a completely different angle",
         "The patience to wait a long time",
         "The courage to let go of attachment"
       ],
@@ -503,14 +503,14 @@
         "caution": "When results come slowly you may blame yourself, so set milestones."
       },
       "soul_note": null,
-      "year_theme": "A year of pause and a change of perspective. Even if things feel slow, do not be impatient; think of the present waiting as something that can bring you a new view."
+      "year_theme": "A year of pause and a change of perspective. Even if things feel slow, do not be impatient; consider how this period of waiting might offer a fresh perspective."
     },
     "death": {
       "name": "Death",
-      "tagline": "Someone who ends and is born again",
-      "personality": "You tend to go through major changes and transitions in life more than once. When you judge it necessary, you boldly clear things out and choose a fresh start. You care more about essence than surface and seek deep change.",
+      "tagline": "Someone who lets old things end and is born again",
+      "personality": "You tend to go through major changes and transitions in life more than once. When you judge it necessary, you boldly clear things out and choose a fresh start. You care more about what lies beneath the surface and seek profound change.",
       "life_lesson": "Your life is about learning to let go. The task is to accept that an ending is another name for a new beginning, and to release what has passed with gratitude.",
-      "relationships": "You may experience the clearing out and reshaping of relationships several times and seek relationships that carry deep change. Settling things through conversation rather than abrupt cutoff leaves fewer regrets.",
+      "relationships": "You may go through several periods of ending or redefining relationships and seek connections that bring profound change. Talking things through rather than cutting ties abruptly can help reduce regret.",
       "keywords": [
         "Change",
         "Clearing out",
