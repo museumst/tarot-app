@@ -93,7 +93,17 @@ if (bar) {
   });
   $('acct-logout').addEventListener('click', () => signOut(auth));
 
+  // 로그인 안내 상자(data-login-cta): 비로그인일 때만 보인다. 누르면 구글 로그인 후 질문하기 화면으로 이동한다.
+  const setGuestCta = guest => document.querySelectorAll('[data-login-cta]').forEach(e => e.classList.toggle('is-guest', guest));
+  document.querySelectorAll('[data-login-cta] .cta-btn').forEach(btn => btn.addEventListener('click', async () => {
+    try { await signInWithPopup(auth, googleProvider()); location.href = home; }
+    catch (e) { console.error('로그인 실패', e); }
+  }));
+
   onAuthStateChanged(auth, async user => {
+    // 비회원 결제를 없앴으므로, 옛 익명 세션이 남아 있으면 로그아웃해 깨끗한 상태로 만든다
+    if (user && user.isAnonymous) { try { await signOut(auth); } catch (e) {} return; }
+    setGuestCta(!user);
     if (!user) {
       $('acct-user').style.display = 'none';
       $('acct-login').style.display = 'inline-block';

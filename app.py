@@ -1,10 +1,12 @@
 import json
 import os
 import re
+import time
 import html as _html
 import anthropic
 import httpx
-from fastapi import FastAPI, HTTPException
+import jwt
+from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, StreamingResponse, HTMLResponse, PlainTextResponse, Response, RedirectResponse, JSONResponse
@@ -130,6 +132,58 @@ def build_comparison_spread(n_options: int, language: str, client) -> dict:
         spread["name_translated"] = d.get("name") or name
         spread["reason"] = d.get("reason") or ""
     return spread
+
+# ── Firebase 로그인 확인 ─────────────────────────────────────────────────────
+# 리딩 API 는 AI 호출 비용이 들기 때문에 로그인한 사용자(Firebase ID 토큰)만 쓸 수 있다.
+# - 구글 등 일반 계정: 통과 (무료 횟수·크레딧 차감은 클라이언트가 Firestore 에 기록한다)
+# - 익명 계정: 비회원 결제를 없앴으므로 거절한다 (옛 세션이 남아 있어도 리딩은 쓸 수 없다)
+FIREBASE_PROJECT_ID = os.environ.get("FIREBASE_PROJECT_ID", "tarot-7bad9")
+_FIREBASE_JWKS_URL = "https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com"
+_JWKS_CACHE = {"keys": {}, "expires": 0.0}
+
+
+async def _get_signing_key(kid: str):
+    """토큰 서명 검증용 구글 공개키. 모르는 kid 가 오면 한 번 더 받아온다(키 교체 대응)."""
+    now = time.time()
+    if kid not in _JWKS_CACHE["keys"] or now > _JWKS_CACHE["expires"]:
+        async with httpx.AsyncClient(timeout=5) as client:
+            resp = await client.get(_FIREBASE_JWKS_URL)
+        resp.raise_for_status()
+        m = re.search(r"max-age=(\d+)", resp.headers.get("cache-control", ""))
+        _JWKS_CACHE["keys"] = {k["kid"]: jwt.PyJWK.from_dict(k).key for k in resp.json().get("keys", [])}
+        _JWKS_CACHE["expires"] = now + (int(m.group(1)) if m else 3600)
+    return _JWKS_CACHE["keys"].get(kid)
+
+
+async def verify_firebase_token(token: str) -> dict:
+    try:
+        kid = jwt.get_unverified_header(token).get("kid")
+        key = await _get_signing_key(kid) if kid else None
+        if key is None:
+            raise jwt.InvalidTokenError("unknown key id")
+        claims = jwt.decode(
+            token, key, algorithms=["RS256"],
+            audience=FIREBASE_PROJECT_ID, issuer=f"https://securetoken.google.com/{FIREBASE_PROJECT_ID}",
+            options={"require": ["exp", "iat", "sub"]}, leeway=30,   # 서버·구글 시계 오차 허용
+        )
+    except (jwt.PyJWTError, httpx.HTTPError):
+        raise HTTPException(status_code=401, detail="로그인이 필요합니다.")
+    if not claims.get("sub"):
+        raise HTTPException(status_code=401, detail="로그인이 필요합니다.")
+    return claims
+
+
+async def require_user(request: Request) -> dict:
+    header = request.headers.get("authorization", "")
+    scheme, _, token = header.partition(" ")
+    if scheme.lower() != "bearer" or not token.strip():
+        raise HTTPException(status_code=401, detail="로그인이 필요합니다.")
+    token = token.strip()
+    claims = await verify_firebase_token(token)
+    if (claims.get("firebase") or {}).get("sign_in_provider") == "anonymous":
+        raise HTTPException(status_code=403, detail="Google 로그인이 필요합니다.")
+    return claims
+
 
 # 포트원 API Secret (Render 대시보드에서도 PORTONE_API_SECRET 환경변수를 설정해야 합니다)
 PORTONE_API_SECRET = os.environ.get("PORTONE_API_SECRET", "")
@@ -383,6 +437,26 @@ SITE_NAV = {
 
 
 # 상단 메뉴의 리딩 모드 4개 (질문하기 · 오늘의 타로 · 양자택일 · 나의 생일수). index.html 의 MODE_COPY 와 같은 문구.
+# 로그인 안내 상자(생일수 결과 아래 등): (무료 횟수 문구, 버튼 문구) — index.html 의 gate_badge / login_need_title 과 같다
+LOGIN_CTA = {
+    'ko': ('무료 3회 제공', '로그인하고 시작하기'),
+    'en': ('3 free readings', 'Sign in to begin'),
+    'ja': ('無料3回提供', 'ログインして始める'),
+    'es': ('3 lecturas gratuitas', 'Inicia sesión para empezar'),
+    'fr': ('3 lectures gratuites', 'Connectez-vous pour commencer'),
+    'de': ('3 kostenlose Legungen', 'Zum Starten anmelden'),
+    'pt': ('3 leituras gratuitas', 'Entre para começar'),
+    'th': ('ฟรี 3 ครั้ง', 'เข้าสู่ระบบเพื่อเริ่ม'),
+    'ru': ('3 бесплатных расклада', 'Войдите, чтобы начать'),
+    'zh': ('免费3次', '登录后开始'),
+    'it': ('3 letture gratuite', 'Accedi per iniziare'),
+    'id': ('3 pembacaan gratis', 'Masuk untuk memulai'),
+    'vi': ('3 lần đọc miễn phí', 'Đăng nhập để bắt đầu'),
+    'tr': ('3 ücretsiz okuma', 'Başlamak için giriş yapın'),
+    'pl': ('3 bezpłatne czytania', 'Zaloguj się, aby zacząć'),
+}
+
+
 MODE_NAV = {
     "ko": ("질문하기", "오늘의 타로", "양자택일", "나의 생일수"),
     "en": ("Ask a Question", "Today's Tarot", "Either or", "Birthday Number"),
@@ -533,7 +607,7 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
 <meta name="twitter:image" content="{_e(og_image)}">
 <link rel="icon" href="/static/favicon.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/site-shell.css?v=7">
+<link rel="stylesheet" href="/static/site-shell.css?v=12">
 <link rel="stylesheet" href="/static/acct-bar.css?v=3">
 <style>
   *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
@@ -599,7 +673,7 @@ function switchLang(sel){{
   location.href=o.value;
 }}
 </script>
-<script type="module" src="/static/acct-bar.js?v=5"></script>
+<script type="module" src="/static/acct-bar.js?v=6"></script>
 </body>
 </html>"""
 
@@ -659,8 +733,8 @@ def render_cards_index(lang: str) -> str:
         "</script>"
     )
     body = (
-        f"<h1>{_e(ui['index_title'])}</h1>"
-        f'<p class="sub">{_e(_fmt(ui["index_sub"], n=n))}</p>'
+        f'<header class="page-header"><h1>{_e(ui["index_title"])}</h1><div class="divider"></div>'
+        f'<p class="sub">{_e(_fmt(ui["index_sub"], n=n))}</p></header>'
         + search + "".join(sections)
         + f'<p style="text-align:center"><a class="cta" href="{_e(home_path(lang))}">{_e(ui["cta_index"])}</a></p>'
     )
@@ -832,8 +906,11 @@ def render_birth_card_page(lang: str) -> str:
     disclaimer = meta.get("disclaimer") or "This symbolic reading is for self-reflection, not a scientific personality test or a substitute for important decisions."
     body = f"""
 <div id="birth-app" data-lang="{_e(lang)}">
-  <h1 id="birth-title">{'나의 생일수' if korean else 'My Birth Cards'}</h1>
-  <p class="sub" id="birth-intro">{_e(desc)}</p>
+  <header class="page-header">
+    <h1 id="birth-title">{'나의 생일수' if korean else 'My Birth Cards'}</h1>
+    <div class="divider"></div>
+    <p class="sub" id="birth-intro">{_e(desc)}</p>
+  </header>
   <form id="birth-form" class="birth-form">
     <div id="birth-date-label" class="birth-date-label">{'생년월일' if korean else 'Date of birth'}</div>
     <div class="birth-wheel-labels" aria-hidden="true">
@@ -852,10 +929,15 @@ def render_birth_card_page(lang: str) -> str:
     <p id="birth-error" role="alert" hidden></p>
   </form>
   <div id="birth-result" hidden aria-live="polite"></div>
+  <div id="birth-cta" class="login-cta" data-login-cta>
+    <div class="cta-title">{_e(MODE_NAV.get(lang, MODE_NAV["en"])[0])}</div>
+    <div class="cta-badge">{_e(LOGIN_CTA.get(lang, LOGIN_CTA["en"])[0])}</div>
+    <button type="button" class="cta-btn"><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg><span>{_e(LOGIN_CTA.get(lang, LOGIN_CTA["en"])[1])}</span></button>
+  </div>
   <p class="birth-disclaimer">{_e(disclaimer)}</p>
 </div>
 <script id="birth-data" type="application/json">{data}</script>
-<script src="/static/birth-card.js?v=3" defer></script>
+<script src="/static/birth-card.js?v=4" defer></script>
 """
     return _page(lang, title, desc, birth_card_path(lang), body,
                  f"{SITE_URL}/static/og-image.jpg",
@@ -955,7 +1037,7 @@ class SpreadSelectRequest(BaseModel):
 
 
 @app.post("/api/select-spread")
-async def select_spread(request: SpreadSelectRequest):
+async def select_spread(request: SpreadSelectRequest, user: dict = Depends(require_user)):
     if request.mode == 'choice':
         return build_comparison_spread(2, request.language, anthropic.Anthropic())
     with open(os.path.join(BASE_DIR, "output", "spreads.json"), encoding="utf-8") as f:
@@ -1045,7 +1127,7 @@ class ReadingRequest(BaseModel):
 
 
 @app.post("/api/reading")
-async def tarot_reading(request: ReadingRequest):
+async def tarot_reading(request: ReadingRequest, user: dict = Depends(require_user)):
     async def generate():
         client = anthropic.AsyncAnthropic()
 

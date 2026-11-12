@@ -12,6 +12,27 @@ body.site-shell { display: flex; flex-direction: column; min-height: 100dvh; pad
 .site-primary-nav a:hover { color: #d9bf8e; }
 .site-primary-nav .site-brand { color: #d9bf8e; font-size: 1.05rem; font-weight: 700; }
 .site-primary-nav .site-mode { font-weight: 700; }
+/* 페이지 상단 큰 제목(메인 앱의 header 와 같은 모양): 도감·생일수 페이지가 함께 쓴다 */
+.page-header { text-align: center; padding: 4px 20px 30px; }
+.page-header h1 {
+  font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 700; line-height: 1.5; letter-spacing: 2px; margin-bottom: 10px;
+  background: linear-gradient(135deg, #c4a96b, #d9bf8e, #c4a96b);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.page-header h1::before { content: "✨ "; }
+.page-header .divider { width: 200px; height: 1px; margin: 20px auto; background: linear-gradient(90deg, transparent, #c4a96b, transparent); }
+.page-header .sub { color: #7c8090; font-size: 1rem; letter-spacing: 1px; max-width: 640px; margin: 0 auto; word-break: keep-all; }
+@media (max-width: 600px) { .page-header .sub { font-size: .9rem; letter-spacing: .5px; } }
+/* 로그인 안내 상자(생일수 결과 아래): 결과가 나왔고(is-ready) 비로그인(is-guest)일 때만 보인다 */
+.login-cta { display: none; flex-direction: column; align-items: center; gap: 12px; margin: 28px 0 8px; padding: 24px 20px; text-align: center;
+  background: linear-gradient(135deg, #16122a, #1e1836); border: 1px solid rgba(196, 169, 107, .3); border-radius: 14px; }
+.login-cta.is-ready.is-guest { display: flex; }
+.login-cta .cta-title { color: #c4a96b; font-size: 1.1rem; font-weight: 500; }
+.login-cta .cta-badge { background: rgba(196, 169, 107, .12); border: 1px solid rgba(196, 169, 107, .4); border-radius: 20px; color: #d9bf8e; font-size: .78rem; padding: 3px 14px; }
+.login-cta .cta-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 11px 22px; border: 0; border-radius: 8px;
+  background: #fff; color: #333; font: 500 .92rem/1 inherit; font-family: inherit; cursor: pointer; }
+.login-cta .cta-btn:hover { filter: brightness(.95); }
+.login-cta .cta-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
 .site-footer { border-top: 1px solid rgba(196, 169, 107, .15); margin-top: 60px; padding: 32px 20px; text-align: center; }
 .footer-inner { max-width: 960px; margin: 0 auto; }
 .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; flex-wrap: wrap; }

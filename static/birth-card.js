@@ -247,6 +247,7 @@ function initBirthPage() {
     if (result.bridge !== null) renderCard(output, result.bridge, 'bridge');
     if (result.soul !== null) renderCard(output, result.soul, 'soul');
     output.hidden = false;
+    get('birth-cta')?.classList.add('is-ready');   // 비로그인이면 결과 아래에 로그인 안내가 보인다
     if (typeof window !== 'undefined' && window.track) window.track('birth_card_calc');   // 생년월일·결과 카드는 보내지 않는다
     output.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
