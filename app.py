@@ -100,6 +100,57 @@ def count_options(text: str) -> int:
     return min(n, COMPARISON_MAX_OPTIONS)
 
 
+# 양자택일 5장(깊이 있게 보기): 현재 상황 1장 + A·B 각각의 과정 2장 + A·B 각각의 결과 2장. 선택지가 2개일 때만 쓴다.
+# 클라이언트는 이 name 으로 5장 배치(현재 상황이 아래, 그 위에 과정 2장, 맨 위에 결과 2장)를 그리고,
+# /api/reading 은 같은 name 일 때 5장 전용 해설 지침을 쓴다. 이름을 바꾸면 둘 다 함께 바꿔야 한다.
+DEEP_CHOICE_NAME = "양자택일 5장 스프레드"
+DEEP_CHOICE_POSITIONS = [
+    {"position": 1, "label": "현재 상황", "meanings": ["두 선택지 앞에 선 지금의 상황과 마음 (공통 출발점)"]},
+    {"position": 2, "label": "선택지 A의 과정", "meanings": ["선택지 A를 택했을 때 거치게 될 과정"]},
+    {"position": 3, "label": "선택지 B의 과정", "meanings": ["선택지 B를 택했을 때 거치게 될 과정"]},
+    {"position": 4, "label": "선택지 A의 결과", "meanings": ["선택지 A를 택했을 때 이르게 될 결과"]},
+    {"position": 5, "label": "선택지 B의 결과", "meanings": ["선택지 B를 택했을 때 이르게 될 결과"]},
+]
+
+
+def _translate_spread_texts(name_en: str, reason_en: str, language: str, client) -> dict:
+    """스프레드 이름과 선택 이유를 해당 언어로 번역한다(실패하면 빈 dict)."""
+    import re as _re
+    try:
+        tr = client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=200,
+            messages=[{"role": "user", "content": f"""Translate these JSON values into {LANG_NAMES.get(language, 'English')}. Respond ONLY with JSON, no other text:
+{{"name": {json.dumps(name_en)}, "reason": {json.dumps(reason_en)}}}"""}]
+        )
+        m = _re.search(r'\{.*\}', tr.content[0].text, _re.DOTALL)
+        return json.loads(m.group()) if m else {}
+    except Exception:
+        return {}
+
+
+def build_deep_choice_spread(language: str, client) -> dict:
+    spread = {
+        "name": DEEP_CHOICE_NAME,
+        "card_count": 5,
+        "layout": "choice-deep",
+        "positions": [dict(p, meanings=list(p["meanings"])) for p in DEEP_CHOICE_POSITIONS],
+        "when_to_use": "두 선택지 중 하나를 신중하게 결정해야 할 때",
+        "how_to_read": "현재 상황에서 출발해 각 선택지의 과정과 결과를 나란히 비교한다",
+    }
+    if language == 'ko':
+        spread["name_translated"] = DEEP_CHOICE_NAME
+        spread["reason"] = "중요한 결정이라 현재 상황과 각 선택지의 과정·결과까지 나란히 비교해 보기 위해 선택했습니다."
+    else:
+        d = _translate_spread_texts(
+            "Two-Option Spread (5 cards)",
+            "Chosen to compare both options in depth: your present situation, then the path and outcome of each option.",
+            language, client)
+        spread["name_translated"] = d.get("name") or DEEP_CHOICE_NAME
+        spread["reason"] = d.get("reason") or ""
+    return spread
+
+
 def build_comparison_spread(n_options: int, language: str, client) -> dict:
     """선택지 개수(n)에 맞춰 카드 n+1장짜리 비교 스프레드를 생성 (마지막 1장은 종합 조언)."""
     n = max(2, min(int(n_options), COMPARISON_MAX_OPTIONS))
@@ -120,18 +171,10 @@ def build_comparison_spread(n_options: int, language: str, client) -> dict:
         spread["name_translated"] = name
         spread["reason"] = f"{n}가지 선택지를 각각 카드에 대응시켜 비교·판단하기 위해 선택했습니다."
     else:
-        import re as _re
-        try:
-            tr = client.messages.create(
-                model="claude-haiku-4-5-20251001",
-                max_tokens=200,
-                messages=[{"role": "user", "content": f"""Translate these JSON values into {LANG_NAMES.get(language, 'English')}. Respond ONLY with JSON, no other text:
-{{"name": "Comparison Spread for {n} Options", "reason": "Chosen to compare your {n} options side by side, each mapped to a card, then reach a conclusion."}}"""}]
-            )
-            m = _re.search(r'\{.*\}', tr.content[0].text, _re.DOTALL)
-            d = json.loads(m.group()) if m else {}
-        except Exception:
-            d = {}
+        d = _translate_spread_texts(
+            f"Comparison Spread for {n} Options",
+            f"Chosen to compare your {n} options side by side, each mapped to a card, then reach a conclusion.",
+            language, client)
         spread["name_translated"] = d.get("name") or name
         spread["reason"] = d.get("reason") or ""
     return spread
@@ -1148,11 +1191,14 @@ class SpreadSelectRequest(BaseModel):
     question: str
     language: str = 'ko'
     mode: str = 'reading'
+    depth: str = 'simple'      # 양자택일에서만 쓴다: 'simple'(3장) | 'deep'(5장)
 
 
 @app.post("/api/select-spread")
 async def select_spread(request: SpreadSelectRequest, user: dict = Depends(require_user)):
     if request.mode == 'choice':
+        if request.depth == 'deep':
+            return build_deep_choice_spread(request.language, anthropic.Anthropic())
         return build_comparison_spread(2, request.language, anthropic.Anthropic())
     with open(os.path.join(BASE_DIR, "output", "spreads.json"), encoding="utf-8") as f:
         spreads = json.load(f)
@@ -1313,8 +1359,25 @@ REMINDER: Your entire response must be written in {lang_name}."""
         if request.language == 'ko':
             system_prompt += "\nFor Korean card sections, use the exact heading format <1번 카드: 카드 이름 - 고정 자리 제목>, changing only the number, supplied card name, and supplied fixed label. Use native Korean counters such as '다섯 개의 컵', '여섯 개의 검', and '일곱 개의 지팡이'; never write '오개의', '육개의', or '칠개의'."
 
+        # 양자택일 5장: 위치마다 역할이 정해져 있으므로 전용 지침을 쓴다(아래 일반 비교 지침과 섞지 않는다)
+        if request.spread_name == DEEP_CHOICE_NAME:
+            system_prompt += """
+
+IMPORTANT - This is a TWO-OPTION decision read with a fixed 5-card layout. The cards are in this exact order:
+1) the present situation (the shared starting point of both options)
+2) Option A - the process: what choosing A will involve along the way
+3) Option B - the process: what choosing B will involve along the way
+4) Option A - the outcome: where choosing A is likely to lead
+5) Option B - the outcome: where choosing B is likely to lead
+Option A and Option B are the first and second options named in the user's question, in that order.
+- Begin directly with the section for card 1. Do not write any introduction, summary or extra heading before the card sections, and never repeat a paragraph.
+- Write exactly one section per card in the order 1 to 5, using the required heading format. Read card 1 as the context both options start from.
+- In the sections for cards 4 and 5, connect the outcome back to the process card of the same option (card 2 for A, card 3 for B), so each option reads as one story: path, then destination.
+- Compare what each option demands and what each gives in return. Point out real contrasts between A and B (for example a hard start with a strong outcome versus an easy start with a plateau) instead of describing each card in isolation.
+- Do not add a sixth card. After the five card sections, add a section (angle-bracket title, e.g. <Final Judgment>) that states which option the cards lean toward and why. State clearly, in a sentence of its own written entirely in the response language, that this is only a reference for reflection and the decision remains the client's. Do not give an order such as "you must choose X".
+- Do not pad the reading. Let each card's section be as long as what that card actually shows, and avoid repeating the same point across cards."""
         # 선택 질문이거나 비교 스프레드가 선택된 경우 비교/종합판단 지시를 추가
-        if is_binary_question(request.question) or "비교 스프레드" in (request.spread_name or ""):
+        elif is_binary_question(request.question) or "비교 스프레드" in (request.spread_name or ""):
             system_prompt += """
 
 IMPORTANT - This is a CHOICE question where the user is deciding among two or more options. Handle it as a COMPARISON reading:
