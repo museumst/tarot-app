@@ -14,6 +14,7 @@ from fastapi.responses import FileResponse, StreamingResponse, HTMLResponse, Pla
 from pydantic import BaseModel
 from typing import List, Optional
 
+import credits as credit_ledger
 import refunds
 from tarot_i18n import SITE_LANGS, LANG_LABELS, OG_LOCALE, UI_KO, ui_overrides, minor_name
 
@@ -989,11 +990,11 @@ async def robots():
 class PaymentVerifyRequest(BaseModel):
     payment_id: str
     amount: int
-    uid: str
+    uid: Optional[str] = None      # 예전 클라이언트가 보내던 값. 이제는 로그인 토큰의 uid 만 믿는다
 
 
 @app.post("/api/payment/verify")
-async def verify_payment(request: PaymentVerifyRequest):
+async def verify_payment(request: PaymentVerifyRequest, user: dict = Depends(require_user)):
     # 포트원 API로 결제 정보 조회
     async with httpx.AsyncClient() as client:
         resp = await client.get(
@@ -1034,7 +1035,24 @@ async def verify_payment(request: PaymentVerifyRequest):
     if credits is None:
         raise HTTPException(status_code=400, detail="유효하지 않은 결제 금액입니다.")
 
-    return {"ok": True, "credits": credits}
+    # 결제한 사람과 로그인한 사람이 같은지 확인한다 (다른 사람의 결제번호로 크레딧을 받는 것을 막는다).
+    # 결제 때 구매자 이메일을 로그인 이메일로 보내므로 같아야 하고, 포트원이 이메일을 돌려주지 않는 예외에는
+    # 결제번호 앞부분(t_<uid 14자>_)으로 대신 확인한다.
+    token_email = (user.get("email") or "").strip().lower()
+    pay_email = ((data.get("customer") or {}).get("email") or "").strip().lower()
+    prefix_ok = request.payment_id.startswith(f"t_{user['sub'][:14]}_")
+    if not token_email or not (pay_email == token_email or (not pay_email and prefix_ok)):
+        raise HTTPException(status_code=403, detail="결제자 정보가 로그인 계정과 일치하지 않습니다.")
+
+    # 크레딧 지급은 서버가 한다(결제번호당 1번만 — 같은 결제를 다시 확인해도 중복 지급되지 않는다)
+    store = get_credit_store()
+    try:
+        result = await run_in_threadpool(store.grant_purchase, user["sub"], token_email, request.payment_id,
+                                         credits, currency, paid)
+    except PermissionError:
+        raise HTTPException(status_code=403, detail="이미 다른 계정에 지급된 결제입니다.")
+    print(f"[payment-verify] {request.payment_id}: +{credits} credits already={result['already']}")
+    return {"ok": True, "credits": credits, "balance": result["credits"], "already": result["already"]}
 
 
 # ── 환불 자동 처리: 포트원 웹훅 → 크레딧 회수 ──────────────────────────────────
@@ -1051,6 +1069,24 @@ def get_refund_store():
         except RuntimeError:
             raise HTTPException(status_code=503, detail="Refund automation is not configured")
     return _REFUND_STORE
+
+
+ADMIN_EMAILS = {e.strip().lower() for e in os.environ.get("ADMIN_EMAILS", "museumst@gmail.com").split(",") if e.strip()}
+
+
+def is_admin(claims: dict) -> bool:
+    """관리자(크레딧·무료 횟수 차감 없음): 이메일이 인증된 구글 계정이어야 한다."""
+    return bool(claims.get("email_verified")) and (claims.get("email") or "").lower() in ADMIN_EMAILS
+
+
+_CREDIT_STORE = None
+
+
+def get_credit_store():
+    global _CREDIT_STORE
+    if _CREDIT_STORE is None:
+        _CREDIT_STORE = credit_ledger.CreditStore(get_refund_store().db)   # 같은 서비스 계정·Firestore 연결을 쓴다
+    return _CREDIT_STORE
 
 
 async def fetch_portone_payment(payment_id: str) -> dict:
@@ -1206,6 +1242,12 @@ class ReadingRequest(BaseModel):
 
 @app.post("/api/reading")
 async def tarot_reading(request: ReadingRequest, user: dict = Depends(require_user)):
+    # 리딩 시작 시 서버가 무료 횟수 → 크레딧 순으로 차감한다(관리자는 차감 없음). 모자라면 402.
+    store = get_credit_store()
+    grant = await run_in_threadpool(store.consume_reading, user["sub"], user.get("email") or "", is_admin(user))
+    if grant["kind"] == "none":
+        raise HTTPException(status_code=402, detail="no_credit")
+
     async def generate():
         client = anthropic.AsyncAnthropic()
 
@@ -1280,16 +1322,24 @@ IMPORTANT - This is a CHOICE question where the user is deciding among two or mo
 - Clearly compare the energy and the likely outcome of every option side by side.
 - After the comparison, add a section (angle-bracket title, e.g. <Final Judgment>) that states which option the cards lean toward and why, giving the client a clear, well-reasoned direction. Note that this is guidance for reflection, not a guaranteed outcome."""
 
-        async with client.messages.stream(
-            model="claude-haiku-4-5-20251001",
-            max_tokens=8000,
-            system=system_prompt,
-            messages=[{"role": "user", "content": user_prompt}]
-        ) as stream:
-            async for text in stream.text_stream:
-                # Escape newlines for SSE
-                escaped = text.replace("\n", "\\n")
-                yield f"data: {escaped}\n\n"
+        sent = False
+        try:
+            async with client.messages.stream(
+                model="claude-haiku-4-5-20251001",
+                max_tokens=8000,
+                system=system_prompt,
+                messages=[{"role": "user", "content": user_prompt}]
+            ) as stream:
+                async for text in stream.text_stream:
+                    sent = True
+                    # Escape newlines for SSE
+                    escaped = text.replace("\n", "\\n")
+                    yield f"data: {escaped}\n\n"
+        except Exception:
+            if not sent and grant["kind"] in ("free", "credit"):
+                # 한 글자도 못 보내고 실패했으면 차감을 되돌린다
+                await run_in_threadpool(store.restore_reading, user["sub"], grant["kind"])
+            raise
 
         yield "data: [DONE]\n\n"
 
@@ -1299,6 +1349,10 @@ IMPORTANT - This is a CHOICE question where the user is deciding among two or mo
         headers={
             "Cache-Control": "no-cache",
             "X-Accel-Buffering": "no",
+            # 차감 후 잔액: 클라이언트가 배지(무료 n회 남음·크레딧)를 갱신하는 데 쓴다
+            "X-Entitlement": grant["kind"],
+            "X-Free-Used": str(grant["free_used"]),
+            "X-Credits": str(grant["credits"]),
         }
     )
 

@@ -49,8 +49,11 @@ class ReadingPositionsTest(unittest.IsolatedAsyncioTestCase):
                         position_label=spread["positions"][0]["label"],
                     )],
                 )
-                with patch.object(app.anthropic, "AsyncAnthropic", return_value=client):
-                    response = await app.tarot_reading(request)
+                store = type("Store", (), {"consume_reading": lambda self, *a: {"kind": "free", "free_used": 1, "credits": 0}})()
+                user = {"sub": "u1", "email": "a@example.com"}
+                with patch.object(app.anthropic, "AsyncAnthropic", return_value=client), \
+                        patch.object(app, "get_credit_store", return_value=store):
+                    response = await app.tarot_reading(request, user=user)
                     chunks = [chunk async for chunk in response.body_iterator]
 
                 self.assertIn("[DONE]", "".join(chunks))

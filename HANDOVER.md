@@ -235,23 +235,25 @@ users/{uid}/readings/{autoId}           # 사용자가 저장한 리딩
 - 내역은 `users/{uid}/creditHistory` 에 `type: 'refund'`(크레딧 −N, `paymentId` 포함)로 남는다.
 - 설정: 포트원 콘솔에 웹훅 URL `https://ultratarot.com/api/portone/webhook` 등록 + 위 환경변수 2개. 이 컬렉션들은 서버(서비스 계정)만 쓰며 `firestore.rules` 에 규칙이 없으므로 클라이언트는 접근 불가.
 
+### 크레딧은 서버가 관리한다 (`credits.py`)
+`users/{uid}` 의 `free_used`·`credits` 와 `creditHistory` 는 **서버(서비스 계정)만** 바꾼다. 브라우저는 읽기만 한다.
+- **결제 지급**: `POST /api/payment/verify` 가 포트원 결제를 확인한 뒤 `grant_purchase` 로 크레딧을 지급한다.
+  결제번호당 1번만(`payments/{paymentId}`), 결제자 이메일이 로그인 계정과 같아야 한다. 요청의 `uid` 는 무시하고 로그인 토큰의 uid 를 쓴다.
+- **리딩 차감**: `POST /api/reading` 이 시작할 때 `consume_reading` 으로 무료 3회 → 크레딧 순으로 차감한다(관리자 제외, 모자라면 402).
+  글이 한 글자도 나가기 전에 실패하면 `restore_reading` 으로 되돌린다. 응답 헤더 `X-Entitlement`·`X-Free-Used`·`X-Credits` 로 남은 값을 알려 주고 화면은 `window.applyBalance()` 로 갱신한다.
+- **환불 회수**: `refunds.py` (위 환불 자동 처리).
+- 관리자 이메일은 환경변수 `ADMIN_EMAILS`(기본 `museumst@gmail.com`, 쉼표 구분)이고 이메일이 인증된 계정이어야 한다. 클라이언트의 `ADMIN_EMAILS` 는 표시용(무제한 배지)일 뿐이다.
+- ⚠️ 새로 만든 클라이언트 코드는 Firestore 의 크레딧을 쓰지 않는다. 크레딧을 바꾸는 기능은 서버에 추가할 것.
+
 ### 보안 규칙 (`firestore.rules`; Firebase 콘솔에도 게시 필요)
 ```
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /users/{uid} {
-      allow read, write: if request.auth != null && request.auth.uid == uid;
-      match /creditHistory/{docId} {
-        allow read, write: if request.auth != null && request.auth.uid == uid;
-      }
-      match /readings/{readingId} {
-        allow read, write: if request.auth != null && request.auth.uid == uid;
-      }
-    }
-  }
-}
+users/{uid}          읽기: 본인 / 생성: 본인, 0 으로 시작할 때만 / 수정·삭제: 불가
+  creditHistory      읽기: 본인 / 쓰기: 불가(서버 전용)
+  readings           읽기·쓰기: 본인
+그 밖의 컬렉션(payments, refundLedger, refundIssues)은 규칙이 없어 클라이언트 접근 불가
 ```
+전체 규칙은 `firestore.rules` 파일을 보고, **Firebase 콘솔 → Firestore → 규칙**에 그대로 붙여 넣어 게시한다. 게시는 서버·클라이언트 코드를 배포한 **뒤에** 한다(예전 클라이언트가 크레딧을 직접 쓰다가 막히지 않도록).
+
 ⚠️ **Firestore 규칙은 하위 컬렉션에 자동 상속되지 않습니다.** `creditHistory` 또는 `readings` 규칙을 빠뜨리면 해당 기능에서 "Missing or insufficient permissions" 오류가 납니다. 새 하위 컬렉션을 추가할 때 Firebase 콘솔의 규칙도 함께 갱신하세요. Firebase 콘솔에서 `firestore.rules` 내용을 게시해야 실제 서비스에 적용됩니다.
 
 저장 리딩은 `users/{uid}/readings`에 보관하며 소유 계정만 읽고 쓸 수 있습니다. 익명 계정은 기기별 Firebase UID를 사용하지만, 저장 리딩 화면의 Google 계정 연결 기능으로 익명 UID를 Google 계정에 연결하면 기존 데이터와 크레딧을 유지하면서 다른 기기에서도 접근할 수 있습니다.

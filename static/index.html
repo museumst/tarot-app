@@ -2384,7 +2384,30 @@ async function startReading(storedDaily = null) {
       headers: { 'Content-Type': 'application/json', ...(await authHeaders()) },
       body: JSON.stringify(payload)
     });
+    if (resp.status === 402) {
+      // 무료 횟수와 크레딧이 모두 없다 (서버가 확인)
+      spinner.classList.remove('active');
+      readingInProgress = false;
+      hide('reading-section');
+      show('step2');
+      document.getElementById('no-credit-box').classList.add('visible');
+      return;
+    }
+    if (resp.status === 401 || resp.status === 403) {
+      spinner.classList.remove('active');
+      readingInProgress = false;
+      hide('reading-section');
+      show('step1');
+      showLoginNeeded();
+      return;
+    }
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    // 서버가 리딩 시작 때 무료 횟수/크레딧을 차감하고 남은 값을 돌려준다
+    if (resp.headers.get('X-Entitlement') !== 'admin') {
+      const used = resp.headers.get('X-Free-Used'), left = resp.headers.get('X-Credits');
+      window.applyBalance && window.applyBalance({
+        freeUsed: used != null ? Number(used) : null, credits: left != null ? Number(left) : null });
+    }
 
     spinner.classList.remove('active');
     const cursor = document.createElement('span');
@@ -2408,18 +2431,7 @@ async function startReading(storedDaily = null) {
           cursor.remove();
           window.track?.('reading_complete', { mode: readingMode, card_count: cardCount, language: currentLang });
           if (currentLang === 'ko') output.textContent = normalizeKoreanReading(output.textContent);
-          if (!window.currentUser) {
-            window.applyReadingGate();
-          } else if (window.isAdmin && window.isAdmin()) {
-            // 관리자: 차감 없음
-          } else if ((window.freeUsed || 0) < FREE_LIMIT) {
-            // 무료 차감
-            window.recordReading && window.recordReading();
-          } else {
-            // 크레딧 차감
-            window.deductCredit && window.deductCredit();
-          }
-          return;
+          return;   // 무료 횟수·크레딧 차감은 서버가 리딩 시작 때 처리했다
         }
         const text = data.replace(/\\n/g, '\n');
         cursor.insertAdjacentText('beforebegin', text);
@@ -3054,25 +3066,22 @@ async function startPayment(amount) {
     statusEl.textContent = t.pay_verifying;
     const verifyRes = await fetch('/api/payment/verify', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...(await authHeaders()) },
       body: JSON.stringify({
         payment_id: response.paymentId,
         amount,
-        uid: window.currentUser.uid,
       }),
     });
 
     if (!verifyRes.ok) {
-      const err = await verifyRes.json();
+      const err = await verifyRes.json().catch(() => ({}));
       statusEl.textContent = t.pay_verify_failed(err.detail);
       return;
     }
 
     const result = await verifyRes.json();
-
-    if (window.addCredits) {
-      await window.addCredits(result.credits, amount, 'KRW');
-    }
+    // 크레딧 지급과 이용내역 기록은 서버가 했다. 화면의 잔액만 갱신한다.
+    window.applyBalance && window.applyBalance({ credits: result.balance });
 
     window.track?.('purchase', { transaction_id: response.paymentId, method: selectedPayMethod, currency: 'KRW', value: amount, credits: result.credits });
     closeChargeModal();
@@ -3148,11 +3157,10 @@ async function handlePaypalSuccess(response) {
     statusEl.textContent = 'Verifying payment...';
     const verifyRes = await fetch('/api/payment/verify', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...(await authHeaders()) },
       body: JSON.stringify({
         payment_id: response.paymentId,
         amount: cents,
-        uid: window.currentUser.uid,
       }),
     });
     if (!verifyRes.ok) {
@@ -3161,10 +3169,8 @@ async function handlePaypalSuccess(response) {
       return;
     }
     const result = await verifyRes.json();
-    if (window.addCredits) {
-      // 실제 결제 통화(USD)와 금액($2.99 등)을 그대로 기록
-      await window.addCredits(result.credits, cents / 100, 'USD');
-    }
+    // 크레딧 지급과 이용내역 기록은 서버가 했다(결제 통화 USD·금액 포함). 화면의 잔액만 갱신한다.
+    window.applyBalance && window.applyBalance({ credits: result.balance });
     window.track?.('purchase', { transaction_id: response.paymentId, method: 'paypal', currency: 'USD', value: cents / 100, credits: result.credits });
     closeChargeModal();
     notify(getCT().pay_success(result.credits));
@@ -4044,52 +4050,14 @@ const googleProvider = () => { const p = new GoogleAuthProvider(); p.setCustomPa
     await linkWithPopup(user, googleProvider());
   };
 
-  // ── Firestore: 리딩 1회 기록 ──
-  window.recordReading = async () => {
-    if (!window.currentUser) return;
-    if (ADMIN_EMAILS.includes(window.currentUser.email)) return; // 관리자는 차감 안 함
-    const ref = doc(db, 'users', window.currentUser.uid);
-    await updateDoc(ref, { free_used: increment(1) });
-    window.freeUsed = (window.freeUsed || 0) + 1;
-    updateFreeBadge(window.freeUsed);
-  };
-
-  // ── 크레딧 추가 (충전 후 호출) ──
-  // amount: 실제 결제 금액(표시 단위 — KRW는 1000, USD는 0.99), currency: 'KRW' | 'USD'
-  window.addCredits = async (credits, amount, currency) => {
-    if (!window.currentUser) return;
-    const uid = window.currentUser.uid;
-    const cur = currency || 'KRW';
-    const amt = (typeof amount === 'number') ? amount : credits * 100;
-    const ref = doc(db, 'users', uid);
-    await updateDoc(ref, { credits: increment(credits) });
-    await addDoc(collection(db, 'users', uid, 'creditHistory'), {
-      type: 'charge', credits,
-      currency: cur,
-      amount: amt,
-      amount_krw: cur === 'KRW' ? amt : null,  // 기존 기록과의 하위호환
-      purpose: `타로 크레딧 ${credits}회 충전`,
-      date: serverTimestamp()
-    });
-    window.userCredits = (window.userCredits || 0) + credits;
-    updateCreditBadge(window.userCredits);
-  };
-
-  // ── 크레딧 차감 (리딩 완료 후 호출) ──
-  window.deductCredit = async () => {
-    if (!window.currentUser) return;
-    if (window.isAdmin && window.isAdmin()) return;
-    const uid = window.currentUser.uid;
-    const ref = doc(db, 'users', uid);
-    await updateDoc(ref, { credits: increment(-1) });
-    await addDoc(collection(db, 'users', uid, 'creditHistory'), {
-      type: 'use', credits: -1,
-      currency: 'KRW', amount: 100, amount_krw: 100,
-      purpose: '타로 리딩',
-      date: serverTimestamp()
-    });
-    window.userCredits = Math.max(0, (window.userCredits || 0) - 1);
-    updateCreditBadge(window.userCredits);
+  // ── 서버가 바꾼 잔액을 화면에 반영 ──
+  // 무료 횟수·크레딧의 증감(결제 지급, 리딩 차감)은 서버만 한다. Firestore 보안 규칙도 클라이언트의 쓰기를 막는다.
+  window.applyBalance = ({ credits, freeUsed } = {}) => {
+    if (credits != null) { window.userCredits = credits; updateCreditBadge(credits); }
+    if (freeUsed != null) {
+      window.freeUsed = freeUsed;
+      if (!(window.isAdmin && window.isAdmin())) updateFreeBadge(freeUsed);
+    }
   };
 
   // ── 관리자 여부 확인 ──
