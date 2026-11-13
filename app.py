@@ -315,6 +315,9 @@ NAV_CARDS = {
     "vi": "Từ điển bài", "tr": "Kart Rehberi", "pl": "Przewodnik po kartach",
 }
 
+# 도감의 공식 이름: 상단 메뉴·푸터·도감 페이지 제목에 모두 이 이름을 쓴다 (한국어는 NAV_CARDS 가 '전체 보기' 라서 따로 둔다)
+CARDS_NAME = dict(NAV_CARDS, ko="타로카드 도감")
+
 
 def _slugify(name: str) -> str:
     return re.sub(r'[^a-z0-9]+', '-', (name or '').lower()).strip('-')
@@ -362,6 +365,7 @@ def get_ui(lang: str) -> dict:
             ui.update(_read_json(os.path.join(I18N_DIR, f"ui_{lang}.json"), {}))
             ui.update(ui_overrides(lang))          # 수트 용어·어색한 문구는 고정값이 번역보다 우선
         ui["nav_cards"] = NAV_CARDS.get(lang, ui["nav_cards"])
+        ui["index_title"] = CARDS_NAME.get(lang, ui["index_title"])   # 도감 제목은 메뉴 이름과 같게
         _I18N_CACHE[key] = ui
     return _I18N_CACHE[key]
 
@@ -434,6 +438,7 @@ SITE_NAV = {
     "tr": ("Hakkında", "Tarot nedir?", "Kart rehberi", "Kaydedilen açılımlar"),
     "pl": ("O aplikacji", "Czym jest Tarot?", "Przewodnik po kartach", "Zapisane rozkłady"),
 }
+SITE_NAV = {lang: (v[0], v[1], CARDS_NAME.get(lang, v[2]), v[3]) for lang, v in SITE_NAV.items()}   # 도감 이름 통일
 
 
 # 상단 메뉴의 리딩 모드 4개 (질문하기 · 오늘의 타로 · 양자택일 · 나의 생일수). index.html 의 MODE_COPY 와 같은 문구.
