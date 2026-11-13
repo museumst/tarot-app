@@ -42,6 +42,8 @@ uvicorn app:app --reload --port 8000
 | `PORTONE_API_SECRET` | 결제 검증(서버→포트원 조회) | Railway 대시보드에 설정되어 있음 |
 | `PORTONE_WEBHOOK_SECRET` | 환불 자동 처리: 포트원 웹훅 서명 검증 | 포트원 콘솔 웹훅 설정의 시크릿(`whsec_…`). 실연동·테스트 시크릿은 다르므로 둘 다 쓰려면 쉼표로 이어 쓴다. 없으면 웹훅은 503 |
 | `FIREBASE_SERVICE_ACCOUNT_JSON` | 환불 자동 처리: 서버가 Firestore 에 접속 | Firebase 콘솔 → 프로젝트 설정 → 서비스 계정 → 새 비공개 키 생성한 JSON 전체. 없으면 웹훅은 503 |
+| `NOTIFY_DISCORD_WEBHOOK_URL` | (선택) 환불 처리 결과를 운영자 휴대폰으로 알림 | 디스코드 채널의 웹훅 URL. 환불 회수 성공·확인 필요 건만 알린다(이메일 등 개인정보는 보내지 않음) |
+| `NOTIFY_TELEGRAM_BOT_TOKEN`, `NOTIFY_TELEGRAM_CHAT_ID` | (선택) 같은 알림을 텔레그램으로 | BotFather 로 만든 봇 토큰과 내 채팅 ID. 디스코드와 함께 써도 된다 |
 
 > 값은 Railway 환경변수와 로컬 셸에만 존재합니다. **코드에 하드코딩 금지.**
 

@@ -113,7 +113,35 @@ def process_cancellation(store, payment: dict) -> dict:
     plan = store.apply_refund(uids[0], payment_id, cancelled, target,
                               {"currency": currency, "total": total})
     return {"status": "noop" if plan["noop"] else "ok", "uid": uids[0], "target_remove": target,
-            "remove_now": plan["remove_now"], "shortfall": plan["shortfall"]}
+            "remove_now": plan["remove_now"], "shortfall": plan["shortfall"],
+            "currency": currency, "cancelled": cancelled}
+
+
+# ── 운영자 알림 문구 ─────────────────────────────────────────────────────────
+def _money(currency: str, amount) -> str:
+    return f"${int(amount) / 100:.2f}" if currency == "USD" else f"{int(amount):,}원"
+
+
+def build_notification(result: dict, payment_id: str) -> Optional[str]:
+    """처리 결과를 운영자에게 보낼 한 줄 알림으로 바꾼다. 알릴 필요가 없으면 None.
+    이메일 같은 개인정보는 넣지 않는다(결제번호 끝자리와 금액·크레딧 수만)."""
+    ref = f"결제 …{(payment_id or '')[-10:]}"
+    status = result.get("status")
+    if status == "ok":
+        amount = _money(result.get("currency", ""), result.get("cancelled", 0))
+        if result.get("shortfall"):
+            return (f"⚠️ 환불 처리, 확인 필요: {ref} 취소 {amount}. 크레딧 {result['remove_now']}개를 회수했지만 "
+                    f"{result['shortfall']}개는 잔액이 모자라 회수하지 못했습니다.")
+        if result.get("remove_now"):
+            return f"💸 환불 처리: {ref} 취소 {amount} → 크레딧 {result['remove_now']}개 회수"
+        return None
+    if status == "user_not_found":
+        return f"⚠️ 환불 처리, 확인 필요: {ref} 취소됐지만 구매자 이메일과 일치하는 사용자를 찾지 못해 크레딧을 회수하지 않았습니다."
+    if status == "ambiguous_user":
+        return f"⚠️ 환불 처리, 확인 필요: {ref} 취소됐지만 같은 이메일의 사용자가 여러 명이라 크레딧을 회수하지 않았습니다."
+    if status == "unknown_product":
+        return f"⚠️ 환불 처리, 확인 필요: {ref} 취소됐지만 상품표에 없는 금액이라 크레딧을 회수하지 않았습니다."
+    return None
 
 
 # ── 웹훅 서명 검증 (Standard Webhooks) ────────────────────────────────────────

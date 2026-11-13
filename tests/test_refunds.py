@@ -180,6 +180,52 @@ def make_request(body: bytes, headers: dict):
     return Request({"type": "http", "method": "POST", "path": "/api/portone/webhook", "headers": raw}, receive)
 
 
+class NotificationTest(unittest.TestCase):
+    def test_messages_for_each_outcome(self):
+        ok = {"status": "ok", "remove_now": 14, "shortfall": 0, "currency": "KRW", "cancelled": 2500}
+        self.assertIn("크레딧 14개 회수", refunds.build_notification(ok, "t_abcdefghij123456"))
+        self.assertIn("2,500원", refunds.build_notification(ok, "t_1"))
+        usd = {"status": "ok", "remove_now": 14, "shortfall": 0, "currency": "USD", "cancelled": 279}
+        self.assertIn("$2.79", refunds.build_notification(usd, "t_1"))
+        short = {**ok, "remove_now": 3, "shortfall": 12}
+        self.assertIn("확인 필요", refunds.build_notification(short, "t_1"))
+        for status in ("user_not_found", "ambiguous_user", "unknown_product"):
+            self.assertIn("확인 필요", refunds.build_notification({"status": status}, "t_1"))
+
+    def test_nothing_to_report_when_noop_or_ignored(self):
+        self.assertIsNone(refunds.build_notification({"status": "noop"}, "t_1"))
+        self.assertIsNone(refunds.build_notification({"status": "ignored"}, "t_1"))
+        self.assertIsNone(refunds.build_notification({"status": "ok", "remove_now": 0, "shortfall": 0,
+                                                      "currency": "KRW", "cancelled": 0}, "t_1"))
+
+    def test_message_contains_no_email(self):
+        text = refunds.build_notification({"status": "user_not_found", "email": "a@example.com"}, "t_1")
+        self.assertNotIn("@", text)
+
+
+class NotifyOperatorTest(unittest.IsolatedAsyncioTestCase):
+    async def test_failure_does_not_raise(self):
+        with mock.patch.dict("os.environ", {"NOTIFY_DISCORD_WEBHOOK_URL": "https://discord.invalid/x"}), \
+                mock.patch("httpx.AsyncClient.post", mock.AsyncMock(side_effect=RuntimeError("down"))):
+            await app.notify_operator("hello")          # 예외 없이 끝나야 한다
+
+    async def test_sends_to_discord_and_telegram_when_configured(self):
+        env = {"NOTIFY_DISCORD_WEBHOOK_URL": "https://discord.invalid/x",
+               "NOTIFY_TELEGRAM_BOT_TOKEN": "tok", "NOTIFY_TELEGRAM_CHAT_ID": "42"}
+        with mock.patch.dict("os.environ", env), \
+                mock.patch("httpx.AsyncClient.post", mock.AsyncMock()) as post:
+            await app.notify_operator("hello")
+        urls = [c.args[0] for c in post.await_args_list]
+        self.assertEqual(urls, ["https://discord.invalid/x", "https://api.telegram.org/bottok/sendMessage"])
+
+    async def test_does_nothing_without_configuration(self):
+        with mock.patch.dict("os.environ", {"NOTIFY_DISCORD_WEBHOOK_URL": "", "NOTIFY_TELEGRAM_BOT_TOKEN": "",
+                                            "NOTIFY_TELEGRAM_CHAT_ID": ""}), \
+                mock.patch("httpx.AsyncClient.post", mock.AsyncMock()) as post:
+            await app.notify_operator("hello")
+        post.assert_not_awaited()
+
+
 class WebhookEndpointTest(unittest.IsolatedAsyncioTestCase):
     async def test_not_configured_returns_503(self):
         with mock.patch.dict("os.environ", {"PORTONE_WEBHOOK_SECRET": ""}):
@@ -204,11 +250,14 @@ class WebhookEndpointTest(unittest.IsolatedAsyncioTestCase):
         store = MemoryStore({"u1": {"email": "a@example.com", "credits": 14}})
         with mock.patch.dict("os.environ", {"PORTONE_WEBHOOK_SECRET": SECRET}), \
                 mock.patch.object(app, "fetch_portone_payment", mock.AsyncMock(return_value=payment())) as fetch, \
-                mock.patch.object(app, "get_refund_store", return_value=store):
+                mock.patch.object(app, "get_refund_store", return_value=store), \
+                mock.patch.object(app, "notify_operator", mock.AsyncMock()) as notify:
             result = await app.portone_webhook(make_request(body, sign(SECRET, body)))
         fetch.assert_awaited_once_with("t_1")
         self.assertEqual(result["status"], "ok")
         self.assertEqual(store.users["u1"]["credits"], 0)
+        notify.assert_awaited_once()
+        self.assertIn("크레딧 14개 회수", notify.await_args.args[0])
 
 
 if __name__ == "__main__":

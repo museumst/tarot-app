@@ -1065,6 +1065,23 @@ async def fetch_portone_payment(payment_id: str) -> dict:
     return resp.json()
 
 
+async def notify_operator(text: str) -> None:
+    """운영자 휴대폰 알림(선택). 디스코드 웹훅 URL 또는 텔레그램 봇이 설정돼 있으면 보낸다.
+    알림이 실패해도 환불 처리 자체에는 영향이 없도록 오류는 삼킨다."""
+    discord = os.environ.get("NOTIFY_DISCORD_WEBHOOK_URL", "").strip()
+    tg_token = os.environ.get("NOTIFY_TELEGRAM_BOT_TOKEN", "").strip()
+    tg_chat = os.environ.get("NOTIFY_TELEGRAM_CHAT_ID", "").strip()
+    try:
+        async with httpx.AsyncClient(timeout=5) as client:
+            if discord:
+                await client.post(discord, json={"content": text})
+            if tg_token and tg_chat:
+                await client.post(f"https://api.telegram.org/bot{tg_token}/sendMessage",
+                                  json={"chat_id": tg_chat, "text": text})
+    except Exception as exc:   # noqa: BLE001 — 알림 실패는 무시하고 로그만 남긴다
+        print(f"[notify] failed: {type(exc).__name__}")
+
+
 @app.post("/api/portone/webhook")
 async def portone_webhook(request: Request):
     secret = os.environ.get("PORTONE_WEBHOOK_SECRET", "")
@@ -1085,6 +1102,9 @@ async def portone_webhook(request: Request):
     store = get_refund_store()
     result = await run_in_threadpool(refunds.process_cancellation, store, payment)
     print(f"[refund-webhook] {payment_id}: {result}")   # Railway 로그에서 확인
+    message = refunds.build_notification(result, payment_id)
+    if message:
+        await notify_operator(message)
     return {"ok": True, **result}
 
 
