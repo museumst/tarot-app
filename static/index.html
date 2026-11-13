@@ -124,17 +124,6 @@
     }
     .choice-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
     .choice-fields label { display: grid; gap: 8px; color: var(--gold); font-weight: 600; }
-    .choice-depth { margin-top: 16px; }
-    .choice-depth-options { display: flex; gap: 8px; flex-wrap: wrap; }
-    .choice-depth-btn {
-      flex: 1 1 140px; padding: 10px 14px; border-radius: 8px; cursor: pointer;
-      border: 1px solid rgba(196,169,107,.3); background: rgba(14,16,30,.7);
-      color: var(--text-dim); font: inherit; font-size: .88rem;
-      transition: border-color .2s, color .2s, background .2s;
-    }
-    .choice-depth-btn:hover { border-color: var(--gold); color: var(--text); }
-    .choice-depth-btn.active { border-color: var(--gold); color: var(--gold-light); background: rgba(196,169,107,.12); font-weight: 600; }
-    .choice-depth-hint { margin: 8px 0 0; color: var(--text-dim); font-size: .8rem; }
     .choice-fields input {
       width: 100%; min-width: 0; padding: 14px 16px;
       border: 1px solid rgba(196,169,107,.3); border-radius: 8px;
@@ -1040,13 +1029,6 @@
         <label for="choice-a"><span id="choice-a-label">선택지 A</span><input id="choice-a" type="text" maxlength="200" autocomplete="off"></label>
         <label for="choice-b"><span id="choice-b-label">선택지 B</span><input id="choice-b" type="text" maxlength="200" autocomplete="off"></label>
       </div>
-      <div class="choice-depth" role="group" aria-labelledby="choice-depth-hint">
-        <div class="choice-depth-options">
-          <button type="button" class="choice-depth-btn active" id="depth-simple" data-depth="simple" aria-pressed="true">간단히 보기 · 3장</button>
-          <button type="button" class="choice-depth-btn" id="depth-deep" data-depth="deep" aria-pressed="false">깊이 있게 보기 · 6장</button>
-        </div>
-        <p class="choice-depth-hint" id="choice-depth-hint">직장·이사·결혼처럼 큰 결정이라면 깊이 있게 보세요.</p>
-      </div>
       <div class="mt-16"><button class="btn" id="choice-next">카드선택 →</button></div>
     </div>
     <div id="login-need-box" role="status">
@@ -1752,21 +1734,21 @@ function t(key, ...args) {
 }
 
 const MODE_COPY = {
-  ko: ['질문하기', '오늘의 타로', '양자택일', '나의 생일수', '오늘의 타로카드를 한 장 고르세요', '선택지 A', '선택지 B', '두 선택지를 모두 입력하세요', '준비 중', '간단히 보기 · 3장', '깊이 있게 보기 · 6장', '직장·이사·결혼처럼 큰 결정이라면 깊이 있게 보세요.'],
-  en: ['Ask a Question', "Today's Tarot", 'Either or', 'Birthday Number', 'Choose one tarot card for today', 'Option A', 'Option B', 'Enter both options', 'Coming soon', 'Quick · 3 cards', 'In depth · 6 cards', 'For big decisions like a job, a move or marriage, choose in depth.'],
-  ja: ['質問する', '今日のタロット', '二者択一', '誕生数', '今日のタロットカードを1枚選んでください', '選択肢 A', '選択肢 B', '両方の選択肢を入力してください', '準備中', 'さっと見る・3枚', 'じっくり見る・6枚', '就職・引っ越し・結婚のような大きな決断はじっくり見るのがおすすめです。'],
-  es: ['Hacer una pregunta', 'Tarot de hoy', 'A o B', 'Número de nacimiento', 'Elige una carta de tarot para hoy', 'Opción A', 'Opción B', 'Escribe ambas opciones', 'Próximamente', 'Rápida · 3 cartas', 'En profundidad · 6 cartas', 'Para decisiones importantes (trabajo, mudanza, matrimonio), elige en profundidad.'],
-  fr: ['Poser une question', "Tarot du jour", 'A ou B', 'Nombre de naissance', "Choisissez une carte de tarot pour aujourd'hui", 'Option A', 'Option B', 'Saisissez les deux options', 'Bientôt disponible', 'Rapide · 3 cartes', 'Approfondie · 6 cartes', 'Pour une grande décision (emploi, déménagement, mariage), choisissez l\'approfondie.'],
-  de: ['Frage stellen', 'Tarot des Tages', 'A oder B', 'Geburtszahl', 'Wähle eine Tarotkarte für heute', 'Option A', 'Option B', 'Gib beide Optionen ein', 'Demnächst', 'Kurz · 3 Karten', 'Ausführlich · 6 Karten', 'Bei großen Entscheidungen wie Job, Umzug oder Heirat wähle ausführlich.'],
-  pt: ['Fazer uma pergunta', 'Tarot de hoje', 'A ou B', 'Número de nascimento', 'Escolha uma carta de tarot para hoje', 'Opção A', 'Opção B', 'Preencha as duas opções', 'Em breve', 'Rápida · 3 cartas', 'Aprofundada · 6 cartas', 'Para decisões importantes (emprego, mudança, casamento), escolha a aprofundada.'],
-  th: ['ถามคำถาม', 'ไพ่ทาโรต์วันนี้', 'เลือก A หรือ B', 'เลขวันเกิด', 'เลือกไพ่ทาโรต์หนึ่งใบสำหรับวันนี้', 'ตัวเลือก A', 'ตัวเลือก B', 'กรอกทั้งสองตัวเลือก', 'เร็ว ๆ นี้', 'แบบสั้น · 3 ใบ', 'แบบละเอียด · 6 ใบ', 'สำหรับการตัดสินใจสำคัญ เช่น งาน ย้ายบ้าน หรือแต่งงาน แนะนำแบบละเอียด'],
-  ru: ['Задать вопрос', 'Таро на сегодня', 'А или Б', 'Число рождения', 'Выберите одну карту Таро на сегодня', 'Вариант А', 'Вариант Б', 'Введите оба варианта', 'Скоро', 'Кратко · 3 карты', 'Подробно · 6 карт', 'Для важных решений (работа, переезд, брак) выберите подробный расклад.'],
-  zh: ['提问', '今日塔罗', '二选一', '生日数字', '请选择一张今日塔罗牌', '选项 A', '选项 B', '请填写两个选项', '即将推出', '简略 · 3张', '深入 · 6张', '工作、搬家、结婚等重大决定，建议选择深入解读。'],
-  it: ['Fai una domanda', 'Tarocchi di oggi', 'A o B', 'Numero di nascita', 'Scegli una carta dei tarocchi per oggi', 'Opzione A', 'Opzione B', 'Inserisci entrambe le opzioni', 'Prossimamente', 'Rapida · 3 carte', 'Approfondita · 6 carte', 'Per decisioni importanti (lavoro, trasloco, matrimonio) scegli l\'approfondita.'],
-  id: ['Ajukan pertanyaan', 'Tarot hari ini', 'A atau B', 'Angka kelahiran', 'Pilih satu kartu tarot untuk hari ini', 'Pilihan A', 'Pilihan B', 'Isi kedua pilihan', 'Segera hadir', 'Singkat · 3 kartu', 'Mendalam · 6 kartu', 'Untuk keputusan besar seperti pekerjaan, pindah, atau menikah, pilih yang mendalam.'],
-  vi: ['Đặt câu hỏi', 'Tarot hôm nay', 'A hay B', 'Con số ngày sinh', 'Chọn một lá bài tarot cho hôm nay', 'Lựa chọn A', 'Lựa chọn B', 'Nhập cả hai lựa chọn', 'Sắp ra mắt', 'Nhanh · 3 lá', 'Chuyên sâu · 6 lá', 'Với quyết định lớn như việc làm, chuyển nhà hay kết hôn, hãy chọn chuyên sâu.'],
-  tr: ['Soru sor', 'Günün tarotu', 'A mı B mi', 'Doğum sayısı', 'Bugün için bir tarot kartı seçin', 'Seçenek A', 'Seçenek B', 'İki seçeneği de girin', 'Yakında', 'Kısa · 3 kart', 'Derinlemesine · 6 kart', 'İş, taşınma veya evlilik gibi büyük kararlar için derinlemesine seçeneğini seçin.'],
-  pl: ['Zadaj pytanie', 'Tarot na dziś', 'A czy B', 'Liczba urodzenia', 'Wybierz jedną kartę tarota na dziś', 'Opcja A', 'Opcja B', 'Wpisz obie opcje', 'Wkrótce', 'Krótko · 3 karty', 'Dogłębnie · 6 kart', 'Przy dużych decyzjach, jak praca, przeprowadzka czy ślub, wybierz wersję dogłębną.']
+  ko: ['질문하기', '오늘의 타로', '양자택일', '나의 생일수', '오늘의 타로카드를 한 장 고르세요', '선택지 A', '선택지 B', '두 선택지를 모두 입력하세요', '준비 중'],
+  en: ['Ask a Question', "Today's Tarot", 'Either or', 'Birthday Number', 'Choose one tarot card for today', 'Option A', 'Option B', 'Enter both options', 'Coming soon'],
+  ja: ['質問する', '今日のタロット', '二者択一', '誕生数', '今日のタロットカードを1枚選んでください', '選択肢 A', '選択肢 B', '両方の選択肢を入力してください', '準備中'],
+  es: ['Hacer una pregunta', 'Tarot de hoy', 'A o B', 'Número de nacimiento', 'Elige una carta de tarot para hoy', 'Opción A', 'Opción B', 'Escribe ambas opciones', 'Próximamente'],
+  fr: ['Poser une question', "Tarot du jour", 'A ou B', 'Nombre de naissance', "Choisissez une carte de tarot pour aujourd'hui", 'Option A', 'Option B', 'Saisissez les deux options', 'Bientôt disponible'],
+  de: ['Frage stellen', 'Tarot des Tages', 'A oder B', 'Geburtszahl', 'Wähle eine Tarotkarte für heute', 'Option A', 'Option B', 'Gib beide Optionen ein', 'Demnächst'],
+  pt: ['Fazer uma pergunta', 'Tarot de hoje', 'A ou B', 'Número de nascimento', 'Escolha uma carta de tarot para hoje', 'Opção A', 'Opção B', 'Preencha as duas opções', 'Em breve'],
+  th: ['ถามคำถาม', 'ไพ่ทาโรต์วันนี้', 'เลือก A หรือ B', 'เลขวันเกิด', 'เลือกไพ่ทาโรต์หนึ่งใบสำหรับวันนี้', 'ตัวเลือก A', 'ตัวเลือก B', 'กรอกทั้งสองตัวเลือก', 'เร็ว ๆ นี้'],
+  ru: ['Задать вопрос', 'Таро на сегодня', 'А или Б', 'Число рождения', 'Выберите одну карту Таро на сегодня', 'Вариант А', 'Вариант Б', 'Введите оба варианта', 'Скоро'],
+  zh: ['提问', '今日塔罗', '二选一', '生日数字', '请选择一张今日塔罗牌', '选项 A', '选项 B', '请填写两个选项', '即将推出'],
+  it: ['Fai una domanda', 'Tarocchi di oggi', 'A o B', 'Numero di nascita', 'Scegli una carta dei tarocchi per oggi', 'Opzione A', 'Opzione B', 'Inserisci entrambe le opzioni', 'Prossimamente'],
+  id: ['Ajukan pertanyaan', 'Tarot hari ini', 'A atau B', 'Angka kelahiran', 'Pilih satu kartu tarot untuk hari ini', 'Pilihan A', 'Pilihan B', 'Isi kedua pilihan', 'Segera hadir'],
+  vi: ['Đặt câu hỏi', 'Tarot hôm nay', 'A hay B', 'Con số ngày sinh', 'Chọn một lá bài tarot cho hôm nay', 'Lựa chọn A', 'Lựa chọn B', 'Nhập cả hai lựa chọn', 'Sắp ra mắt'],
+  tr: ['Soru sor', 'Günün tarotu', 'A mı B mi', 'Doğum sayısı', 'Bugün için bir tarot kartı seçin', 'Seçenek A', 'Seçenek B', 'İki seçeneği de girin', 'Yakında'],
+  pl: ['Zadaj pytanie', 'Tarot na dziś', 'A czy B', 'Liczba urodzenia', 'Wybierz jedną kartę tarota na dziś', 'Opcja A', 'Opcja B', 'Wpisz obie opcje', 'Wkrótce']
 };
 function modeText(index) { return (MODE_COPY[currentLang] || MODE_COPY.en)[index]; }
 
@@ -1798,9 +1780,6 @@ function applyLang() {
   });
   el('choice-a-label').textContent = modeText(5);
   el('choice-b-label').textContent = modeText(6);
-  el('depth-simple').textContent = modeText(9);
-  el('depth-deep').textContent = modeText(10);
-  el('choice-depth-hint').textContent = modeText(11);
   el('choice-next').textContent = t('btn_select');
   el('draw-suffix').textContent    = t('draw_suffix');
   el('step2-back').textContent     = t('btn_back');
@@ -1871,7 +1850,6 @@ let cardCount = 3;
 let deckCards = [];
 let drawnCards = [];
 let readingMode = 'reading';
-let choiceDepth = 'simple';   // 양자택일: 'simple'(3장) | 'deep'(6장)
 let readingInProgress = false;
 let spreadRequest = null;
 let activeQuestion = '';      // 리딩을 시작할 때 고정한 질문(저장·공유에 그대로 사용)
@@ -2044,8 +2022,7 @@ async function selectSpread() {
     const res = await fetch('/api/select-spread', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', ...(await authHeaders()) },
-      body: JSON.stringify({ question: q, language: currentLang, mode: readingMode,
-                             depth: readingMode === 'choice' ? choiceDepth : 'simple' }),
+      body: JSON.stringify({ question: q, language: currentLang, mode: readingMode }),
       signal: controller.signal
     });
     if (res.status === 401 || res.status === 403) {
@@ -2080,14 +2057,6 @@ async function selectSpread() {
 }
 document.getElementById('step1-next').addEventListener('click', selectSpread);
 document.getElementById('choice-next').addEventListener('click', selectSpread);
-document.querySelectorAll('.choice-depth-btn').forEach(btn => btn.addEventListener('click', () => {
-  choiceDepth = btn.dataset.depth;
-  document.querySelectorAll('.choice-depth-btn').forEach(b => {
-    const on = b === btn;
-    b.classList.toggle('active', on);
-    b.setAttribute('aria-pressed', on ? 'true' : 'false');
-  });
-}));
 document.getElementById('question-input').addEventListener('input', () => {
   document.getElementById('question-hint').textContent = '';
 });
@@ -2123,18 +2092,11 @@ const SPREAD_LAYOUTS = {
   10: [[0,0],[1,0],[2,0],[0,1],[1,1],[2,1],[0,2],[1,2],[2,2],[1,3]],
 };
 
-// 양자택일 6장 배치 (뽑는 순서대로): 현재 상황 → A 과정 → B 과정 → A 결과 → B 결과 → 결정의 열쇠
-// 맨 위 줄은 A 결과·결정의 열쇠·B 결과(열쇠가 두 결과 사이), 가운데 줄이 과정, 맨 아래 가운데가 현재 상황이다.
-const CHOICE_DEEP_LAYOUT = [[1,2],[0,1],[2,1],[0,0],[2,0],[1,0]];
-function currentLayout() {
-  return selectedSpread?.layout === 'choice-deep' ? CHOICE_DEEP_LAYOUT : SPREAD_LAYOUTS[cardCount];
-}
-
 function initDrawnRow() {
   const row = document.getElementById('drawn-row');
   row.innerHTML = '';
   row.classList.add('hidden');
-  const layout = currentLayout();
+  const layout = SPREAD_LAYOUTS[cardCount];
   const cardW = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-w')) || 110;
   const cardH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-h')) || 190;
   const unitX = cardW + 12;
@@ -2225,7 +2187,7 @@ function selectCard(deckIdx) {
   const el = document.createElement('div');
   el.className = 'drawn-card';
 
-  const layout = currentLayout();
+  const layout = SPREAD_LAYOUTS[cardCount];
   if (layout && cardIndex < layout.length) {
     const [col, rowIdx] = layout[cardIndex];
     const unitX = parseFloat(row.dataset.unitX) || 122;
@@ -2539,7 +2501,7 @@ async function buildShareCanvas() {
   ctx.font = '400 34px "Noto Sans KR", sans-serif';
   const questionLines = q ? wrapLines(ctx, `“${q}”`, W - 160, 2) : [];
   const cardTop = q ? 176 + questionLines.length * 46 + 14 : 186;
-  const cards = drawnCards.slice(0, 6);
+  const cards = drawnCards.slice(0, 5);
   const n = Math.max(cards.length, 1);
   const cw = Math.min(190, Math.floor((W - 120) / n) - 16);
   const ch = Math.round(cw * 1.72);
@@ -2586,7 +2548,7 @@ async function buildShareCanvas() {
     y = 186;
   }
 
-  // 카드 (최대 6장)
+  // 카드 (최대 5장)
   const imgs = await Promise.all(cards.map(({ card }) => loadImg(`/images/${card.image_file}`)));
   let cxp = (W - totalW) / 2;
 
