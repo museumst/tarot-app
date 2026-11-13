@@ -615,8 +615,9 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
 <meta name="twitter:image" content="{_e(og_image)}">
 <link rel="icon" href="/static/favicon.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/site-shell.css?v=12">
-<link rel="stylesheet" href="/static/acct-bar.css?v=3">
+<link rel="stylesheet" href="/static/site-shell.css?v=16">
+<link rel="stylesheet" href="/static/acct-bar.css?v=6">
+<script src="/static/mobile-menu.js?v=4" defer></script>
 <style>
   *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
   body{{background:#0d0d1a;color:#e8e3d8;font-family:'Noto Sans KR','Noto Sans',system-ui,sans-serif;font-weight:300;line-height:1.75}}

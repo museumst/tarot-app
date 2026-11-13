@@ -32,7 +32,8 @@
 
   <link rel="icon" href="/static/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="/static/favicon.png" />
-  <link rel="stylesheet" href="/static/site-shell.css?v=12" />
+  <link rel="stylesheet" href="/static/site-shell.css?v=16" />
+  <script src="/static/mobile-menu.js?v=4" defer></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -552,23 +553,14 @@
       .spread-result-actions { gap: 8px; }
       .spread-result-actions .btn { flex: 1 1 0; padding: 10px 6px; font-size: .82rem; }
 
-      /* 모바일: 상단 고정바 정돈 (2줄 — 1행: 메뉴·언어 / 2행: 유저정보) */
-      #top-bar {
-        left: 0; right: 0; top: 0; min-height: 88px;
-        padding: 8px 12px 10px 12px;
-        background: rgba(10,12,24,.96);
-        -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
-        border-bottom: 1px solid rgba(196,169,107,.15);
-        justify-content: flex-end; align-items: center;
-        flex-wrap: wrap; gap: 6px; row-gap: 8px;
-      }
-      .user-info { gap: 7px; flex-wrap: nowrap; }  /* 유저정보는 한 줄로 */
-      .user-info #user-name { display: none; }     /* 좁은 화면에선 이름 숨김 */
-      .user-info img { width: 28px; height: 28px; }
-      #lang-btn { padding: 6px 11px; font-size: .78rem; }
-      .user-info button { padding: 4px 9px; font-size: .72rem; }
-      #free-badge { font-size: .72rem; padding: 4px 9px; }
-      #credit-badge { font-size: .74rem; padding: 4px 11px; }
+      /* 모바일 상단바: 1행 로고·남은 횟수·충전·☰, 2행 핵심 메뉴 (공통 규칙은 site-shell.css, 보조 항목은 mobile-menu.js 의 ☰ 메뉴) */
+      #top-bar { background: rgba(10,12,24,.96); }
+      #user-info { order: 2; gap: 6px; flex-wrap: nowrap; min-width: 0; }
+      #user-info #user-name, #user-info img, #user-info #history-btn, #user-info #logout-btn { display: none; }
+      #header-login-btn { order: 2; padding: 6px 12px; }
+      #guest-checkout-btn { display: none !important; }
+      #top-bar #free-badge { font-size: .68rem; padding: 3px 8px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      #top-bar #credit-badge { font-size: .72rem; padding: 3px 10px; }
     }
 
     /* ── 구글 로그인 버튼 공통 ── */
