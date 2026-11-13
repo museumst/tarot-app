@@ -1043,7 +1043,7 @@
       <div class="choice-depth" role="group" aria-labelledby="choice-depth-hint">
         <div class="choice-depth-options">
           <button type="button" class="choice-depth-btn active" id="depth-simple" data-depth="simple" aria-pressed="true">간단히 보기 · 3장</button>
-          <button type="button" class="choice-depth-btn" id="depth-deep" data-depth="deep" aria-pressed="false">깊이 있게 보기 · 5장</button>
+          <button type="button" class="choice-depth-btn" id="depth-deep" data-depth="deep" aria-pressed="false">깊이 있게 보기 · 6장</button>
         </div>
         <p class="choice-depth-hint" id="choice-depth-hint">직장·이사·결혼처럼 큰 결정이라면 깊이 있게 보세요.</p>
       </div>
@@ -1752,21 +1752,21 @@ function t(key, ...args) {
 }
 
 const MODE_COPY = {
-  ko: ['질문하기', '오늘의 타로', '양자택일', '나의 생일수', '오늘의 타로카드를 한 장 고르세요', '선택지 A', '선택지 B', '두 선택지를 모두 입력하세요', '준비 중', '간단히 보기 · 3장', '깊이 있게 보기 · 5장', '직장·이사·결혼처럼 큰 결정이라면 깊이 있게 보세요.'],
-  en: ['Ask a Question', "Today's Tarot", 'Either or', 'Birthday Number', 'Choose one tarot card for today', 'Option A', 'Option B', 'Enter both options', 'Coming soon', 'Quick · 3 cards', 'In depth · 5 cards', 'For big decisions like a job, a move or marriage, choose in depth.'],
-  ja: ['質問する', '今日のタロット', '二者択一', '誕生数', '今日のタロットカードを1枚選んでください', '選択肢 A', '選択肢 B', '両方の選択肢を入力してください', '準備中', 'さっと見る・3枚', 'じっくり見る・5枚', '就職・引っ越し・結婚のような大きな決断はじっくり見るのがおすすめです。'],
-  es: ['Hacer una pregunta', 'Tarot de hoy', 'A o B', 'Número de nacimiento', 'Elige una carta de tarot para hoy', 'Opción A', 'Opción B', 'Escribe ambas opciones', 'Próximamente', 'Rápida · 3 cartas', 'En profundidad · 5 cartas', 'Para decisiones importantes (trabajo, mudanza, matrimonio), elige en profundidad.'],
-  fr: ['Poser une question', "Tarot du jour", 'A ou B', 'Nombre de naissance', "Choisissez une carte de tarot pour aujourd'hui", 'Option A', 'Option B', 'Saisissez les deux options', 'Bientôt disponible', 'Rapide · 3 cartes', 'Approfondie · 5 cartes', 'Pour une grande décision (emploi, déménagement, mariage), choisissez l\'approfondie.'],
-  de: ['Frage stellen', 'Tarot des Tages', 'A oder B', 'Geburtszahl', 'Wähle eine Tarotkarte für heute', 'Option A', 'Option B', 'Gib beide Optionen ein', 'Demnächst', 'Kurz · 3 Karten', 'Ausführlich · 5 Karten', 'Bei großen Entscheidungen wie Job, Umzug oder Heirat wähle ausführlich.'],
-  pt: ['Fazer uma pergunta', 'Tarot de hoje', 'A ou B', 'Número de nascimento', 'Escolha uma carta de tarot para hoje', 'Opção A', 'Opção B', 'Preencha as duas opções', 'Em breve', 'Rápida · 3 cartas', 'Aprofundada · 5 cartas', 'Para decisões importantes (emprego, mudança, casamento), escolha a aprofundada.'],
-  th: ['ถามคำถาม', 'ไพ่ทาโรต์วันนี้', 'เลือก A หรือ B', 'เลขวันเกิด', 'เลือกไพ่ทาโรต์หนึ่งใบสำหรับวันนี้', 'ตัวเลือก A', 'ตัวเลือก B', 'กรอกทั้งสองตัวเลือก', 'เร็ว ๆ นี้', 'แบบสั้น · 3 ใบ', 'แบบละเอียด · 5 ใบ', 'สำหรับการตัดสินใจสำคัญ เช่น งาน ย้ายบ้าน หรือแต่งงาน แนะนำแบบละเอียด'],
-  ru: ['Задать вопрос', 'Таро на сегодня', 'А или Б', 'Число рождения', 'Выберите одну карту Таро на сегодня', 'Вариант А', 'Вариант Б', 'Введите оба варианта', 'Скоро', 'Кратко · 3 карты', 'Подробно · 5 карт', 'Для важных решений (работа, переезд, брак) выберите подробный расклад.'],
-  zh: ['提问', '今日塔罗', '二选一', '生日数字', '请选择一张今日塔罗牌', '选项 A', '选项 B', '请填写两个选项', '即将推出', '简略 · 3张', '深入 · 5张', '工作、搬家、结婚等重大决定，建议选择深入解读。'],
-  it: ['Fai una domanda', 'Tarocchi di oggi', 'A o B', 'Numero di nascita', 'Scegli una carta dei tarocchi per oggi', 'Opzione A', 'Opzione B', 'Inserisci entrambe le opzioni', 'Prossimamente', 'Rapida · 3 carte', 'Approfondita · 5 carte', 'Per decisioni importanti (lavoro, trasloco, matrimonio) scegli l\'approfondita.'],
-  id: ['Ajukan pertanyaan', 'Tarot hari ini', 'A atau B', 'Angka kelahiran', 'Pilih satu kartu tarot untuk hari ini', 'Pilihan A', 'Pilihan B', 'Isi kedua pilihan', 'Segera hadir', 'Singkat · 3 kartu', 'Mendalam · 5 kartu', 'Untuk keputusan besar seperti pekerjaan, pindah, atau menikah, pilih yang mendalam.'],
-  vi: ['Đặt câu hỏi', 'Tarot hôm nay', 'A hay B', 'Con số ngày sinh', 'Chọn một lá bài tarot cho hôm nay', 'Lựa chọn A', 'Lựa chọn B', 'Nhập cả hai lựa chọn', 'Sắp ra mắt', 'Nhanh · 3 lá', 'Chuyên sâu · 5 lá', 'Với quyết định lớn như việc làm, chuyển nhà hay kết hôn, hãy chọn chuyên sâu.'],
-  tr: ['Soru sor', 'Günün tarotu', 'A mı B mi', 'Doğum sayısı', 'Bugün için bir tarot kartı seçin', 'Seçenek A', 'Seçenek B', 'İki seçeneği de girin', 'Yakında', 'Kısa · 3 kart', 'Derinlemesine · 5 kart', 'İş, taşınma veya evlilik gibi büyük kararlar için derinlemesine seçeneğini seçin.'],
-  pl: ['Zadaj pytanie', 'Tarot na dziś', 'A czy B', 'Liczba urodzenia', 'Wybierz jedną kartę tarota na dziś', 'Opcja A', 'Opcja B', 'Wpisz obie opcje', 'Wkrótce', 'Krótko · 3 karty', 'Dogłębnie · 5 kart', 'Przy dużych decyzjach, jak praca, przeprowadzka czy ślub, wybierz wersję dogłębną.']
+  ko: ['질문하기', '오늘의 타로', '양자택일', '나의 생일수', '오늘의 타로카드를 한 장 고르세요', '선택지 A', '선택지 B', '두 선택지를 모두 입력하세요', '준비 중', '간단히 보기 · 3장', '깊이 있게 보기 · 6장', '직장·이사·결혼처럼 큰 결정이라면 깊이 있게 보세요.'],
+  en: ['Ask a Question', "Today's Tarot", 'Either or', 'Birthday Number', 'Choose one tarot card for today', 'Option A', 'Option B', 'Enter both options', 'Coming soon', 'Quick · 3 cards', 'In depth · 6 cards', 'For big decisions like a job, a move or marriage, choose in depth.'],
+  ja: ['質問する', '今日のタロット', '二者択一', '誕生数', '今日のタロットカードを1枚選んでください', '選択肢 A', '選択肢 B', '両方の選択肢を入力してください', '準備中', 'さっと見る・3枚', 'じっくり見る・6枚', '就職・引っ越し・結婚のような大きな決断はじっくり見るのがおすすめです。'],
+  es: ['Hacer una pregunta', 'Tarot de hoy', 'A o B', 'Número de nacimiento', 'Elige una carta de tarot para hoy', 'Opción A', 'Opción B', 'Escribe ambas opciones', 'Próximamente', 'Rápida · 3 cartas', 'En profundidad · 6 cartas', 'Para decisiones importantes (trabajo, mudanza, matrimonio), elige en profundidad.'],
+  fr: ['Poser une question', "Tarot du jour", 'A ou B', 'Nombre de naissance', "Choisissez une carte de tarot pour aujourd'hui", 'Option A', 'Option B', 'Saisissez les deux options', 'Bientôt disponible', 'Rapide · 3 cartes', 'Approfondie · 6 cartes', 'Pour une grande décision (emploi, déménagement, mariage), choisissez l\'approfondie.'],
+  de: ['Frage stellen', 'Tarot des Tages', 'A oder B', 'Geburtszahl', 'Wähle eine Tarotkarte für heute', 'Option A', 'Option B', 'Gib beide Optionen ein', 'Demnächst', 'Kurz · 3 Karten', 'Ausführlich · 6 Karten', 'Bei großen Entscheidungen wie Job, Umzug oder Heirat wähle ausführlich.'],
+  pt: ['Fazer uma pergunta', 'Tarot de hoje', 'A ou B', 'Número de nascimento', 'Escolha uma carta de tarot para hoje', 'Opção A', 'Opção B', 'Preencha as duas opções', 'Em breve', 'Rápida · 3 cartas', 'Aprofundada · 6 cartas', 'Para decisões importantes (emprego, mudança, casamento), escolha a aprofundada.'],
+  th: ['ถามคำถาม', 'ไพ่ทาโรต์วันนี้', 'เลือก A หรือ B', 'เลขวันเกิด', 'เลือกไพ่ทาโรต์หนึ่งใบสำหรับวันนี้', 'ตัวเลือก A', 'ตัวเลือก B', 'กรอกทั้งสองตัวเลือก', 'เร็ว ๆ นี้', 'แบบสั้น · 3 ใบ', 'แบบละเอียด · 6 ใบ', 'สำหรับการตัดสินใจสำคัญ เช่น งาน ย้ายบ้าน หรือแต่งงาน แนะนำแบบละเอียด'],
+  ru: ['Задать вопрос', 'Таро на сегодня', 'А или Б', 'Число рождения', 'Выберите одну карту Таро на сегодня', 'Вариант А', 'Вариант Б', 'Введите оба варианта', 'Скоро', 'Кратко · 3 карты', 'Подробно · 6 карт', 'Для важных решений (работа, переезд, брак) выберите подробный расклад.'],
+  zh: ['提问', '今日塔罗', '二选一', '生日数字', '请选择一张今日塔罗牌', '选项 A', '选项 B', '请填写两个选项', '即将推出', '简略 · 3张', '深入 · 6张', '工作、搬家、结婚等重大决定，建议选择深入解读。'],
+  it: ['Fai una domanda', 'Tarocchi di oggi', 'A o B', 'Numero di nascita', 'Scegli una carta dei tarocchi per oggi', 'Opzione A', 'Opzione B', 'Inserisci entrambe le opzioni', 'Prossimamente', 'Rapida · 3 carte', 'Approfondita · 6 carte', 'Per decisioni importanti (lavoro, trasloco, matrimonio) scegli l\'approfondita.'],
+  id: ['Ajukan pertanyaan', 'Tarot hari ini', 'A atau B', 'Angka kelahiran', 'Pilih satu kartu tarot untuk hari ini', 'Pilihan A', 'Pilihan B', 'Isi kedua pilihan', 'Segera hadir', 'Singkat · 3 kartu', 'Mendalam · 6 kartu', 'Untuk keputusan besar seperti pekerjaan, pindah, atau menikah, pilih yang mendalam.'],
+  vi: ['Đặt câu hỏi', 'Tarot hôm nay', 'A hay B', 'Con số ngày sinh', 'Chọn một lá bài tarot cho hôm nay', 'Lựa chọn A', 'Lựa chọn B', 'Nhập cả hai lựa chọn', 'Sắp ra mắt', 'Nhanh · 3 lá', 'Chuyên sâu · 6 lá', 'Với quyết định lớn như việc làm, chuyển nhà hay kết hôn, hãy chọn chuyên sâu.'],
+  tr: ['Soru sor', 'Günün tarotu', 'A mı B mi', 'Doğum sayısı', 'Bugün için bir tarot kartı seçin', 'Seçenek A', 'Seçenek B', 'İki seçeneği de girin', 'Yakında', 'Kısa · 3 kart', 'Derinlemesine · 6 kart', 'İş, taşınma veya evlilik gibi büyük kararlar için derinlemesine seçeneğini seçin.'],
+  pl: ['Zadaj pytanie', 'Tarot na dziś', 'A czy B', 'Liczba urodzenia', 'Wybierz jedną kartę tarota na dziś', 'Opcja A', 'Opcja B', 'Wpisz obie opcje', 'Wkrótce', 'Krótko · 3 karty', 'Dogłębnie · 6 kart', 'Przy dużych decyzjach, jak praca, przeprowadzka czy ślub, wybierz wersję dogłębną.']
 };
 function modeText(index) { return (MODE_COPY[currentLang] || MODE_COPY.en)[index]; }
 
@@ -1871,7 +1871,7 @@ let cardCount = 3;
 let deckCards = [];
 let drawnCards = [];
 let readingMode = 'reading';
-let choiceDepth = 'simple';   // 양자택일: 'simple'(3장) | 'deep'(5장)
+let choiceDepth = 'simple';   // 양자택일: 'simple'(3장) | 'deep'(6장)
 let readingInProgress = false;
 let spreadRequest = null;
 let activeQuestion = '';      // 리딩을 시작할 때 고정한 질문(저장·공유에 그대로 사용)
@@ -2123,9 +2123,9 @@ const SPREAD_LAYOUTS = {
   10: [[0,0],[1,0],[2,0],[0,1],[1,1],[2,1],[0,2],[1,2],[2,2],[1,3]],
 };
 
-// 양자택일 5장 배치 (뽑는 순서대로): 현재 상황 → A 과정 → B 과정 → A 결과 → B 결과
-// 맨 위 줄이 결과, 가운데 줄이 과정, 맨 아래 가운데가 현재 상황이다.
-const CHOICE_DEEP_LAYOUT = [[0.5,2],[0,1],[1,1],[0,0],[1,0]];
+// 양자택일 6장 배치 (뽑는 순서대로): 현재 상황 → A 과정 → B 과정 → A 결과 → B 결과 → 결정의 열쇠
+// 맨 위 줄은 A 결과·결정의 열쇠·B 결과(열쇠가 두 결과 사이), 가운데 줄이 과정, 맨 아래 가운데가 현재 상황이다.
+const CHOICE_DEEP_LAYOUT = [[1,2],[0,1],[2,1],[0,0],[2,0],[1,0]];
 function currentLayout() {
   return selectedSpread?.layout === 'choice-deep' ? CHOICE_DEEP_LAYOUT : SPREAD_LAYOUTS[cardCount];
 }
@@ -2539,7 +2539,7 @@ async function buildShareCanvas() {
   ctx.font = '400 34px "Noto Sans KR", sans-serif';
   const questionLines = q ? wrapLines(ctx, `“${q}”`, W - 160, 2) : [];
   const cardTop = q ? 176 + questionLines.length * 46 + 14 : 186;
-  const cards = drawnCards.slice(0, 5);
+  const cards = drawnCards.slice(0, 6);
   const n = Math.max(cards.length, 1);
   const cw = Math.min(190, Math.floor((W - 120) / n) - 16);
   const ch = Math.round(cw * 1.72);
@@ -2586,7 +2586,7 @@ async function buildShareCanvas() {
     y = 186;
   }
 
-  // 카드 (최대 5장)
+  // 카드 (최대 6장)
   const imgs = await Promise.all(cards.map(({ card }) => loadImg(`/images/${card.image_file}`)));
   let cxp = (W - totalW) / 2;
 

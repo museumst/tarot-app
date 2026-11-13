@@ -25,20 +25,20 @@ class FakeMessages:
 
 
 class DeepSpreadTest(unittest.TestCase):
-    def test_korean_spread_has_five_fixed_positions_in_draw_order(self):
+    def test_korean_spread_has_six_fixed_positions_in_draw_order(self):
         spread = app.build_deep_choice_spread("ko", mock.Mock(side_effect=AssertionError("no AI call for ko")))
-        self.assertEqual(spread["card_count"], 5)
+        self.assertEqual(spread["card_count"], 6)
         self.assertEqual(spread["layout"], "choice-deep")
         self.assertEqual(spread["name"], app.DEEP_CHOICE_NAME)
         self.assertEqual([p["label"] for p in spread["positions"]],
-                         ["현재 상황", "선택지 A의 과정", "선택지 B의 과정", "선택지 A의 결과", "선택지 B의 결과"])
+                         ["현재 상황", "선택지 A의 과정", "선택지 B의 과정", "선택지 A의 결과", "선택지 B의 결과", "결정의 열쇠"])
         self.assertTrue(all(p["meanings"] for p in spread["positions"]))
 
     def test_other_languages_get_translated_name_and_reason(self):
-        reply = mock.Mock(content=[mock.Mock(text='{"name": "Two-Option Spread (5 cards)", "reason": "Because."}')])
+        reply = mock.Mock(content=[mock.Mock(text='{"name": "Two-Option Spread (6 cards)", "reason": "Because."}')])
         client = mock.Mock(messages=mock.Mock(create=mock.Mock(return_value=reply)))
         spread = app.build_deep_choice_spread("en", client)
-        self.assertEqual(spread["name_translated"], "Two-Option Spread (5 cards)")
+        self.assertEqual(spread["name_translated"], "Two-Option Spread (6 cards)")
         self.assertEqual(spread["name"], app.DEEP_CHOICE_NAME)       # 서버가 구분하는 이름은 한국어 그대로
 
     def test_translation_failure_falls_back_instead_of_breaking(self):
@@ -59,9 +59,9 @@ class SelectSpreadEndpointTest(unittest.IsolatedAsyncioTestCase):
         with mock.patch.object(app.anthropic, "Anthropic", return_value=mock.Mock()):
             return await app.select_spread(req, user={"sub": "u1"})
 
-    async def test_deep_depth_returns_five_card_spread(self):
+    async def test_deep_depth_returns_six_card_spread(self):
         spread = await self.call(depth="deep")
-        self.assertEqual((spread["card_count"], spread["layout"]), (5, "choice-deep"))
+        self.assertEqual((spread["card_count"], spread["layout"]), (6, "choice-deep"))
 
     async def test_default_and_simple_depth_keep_three_cards(self):
         self.assertEqual((await self.call())["card_count"], 3)
@@ -89,14 +89,15 @@ class ReadingPromptTest(unittest.IsolatedAsyncioTestCase):
 
     async def test_deep_spread_uses_its_own_instructions_only(self):
         prompt = await self.system_prompt(app.DEEP_CHOICE_NAME, "선택지 A: 가 vs 선택지 B: 나")
-        self.assertIn("fixed 5-card layout", prompt)
-        self.assertIn("Do not add a sixth card", prompt)
+        self.assertIn("fixed 6-card layout", prompt)
+        self.assertIn("Do not add a seventh card", prompt)
+        self.assertIn("key to the decision", prompt)
         self.assertNotIn("Treat EACH card except the last one", prompt)       # 일반 비교 지침과 섞이지 않는다
 
     async def test_three_card_comparison_keeps_the_original_instructions(self):
         prompt = await self.system_prompt("양자택일 비교 스프레드", "선택지 A: 가 vs 선택지 B: 나")
         self.assertIn("Treat EACH card except the last one", prompt)
-        self.assertNotIn("fixed 5-card layout", prompt)
+        self.assertNotIn("fixed 6-card layout", prompt)
 
 
 if __name__ == "__main__":
