@@ -7,12 +7,14 @@ import anthropic
 import httpx
 import jwt
 from fastapi import Depends, FastAPI, HTTPException, Request
+from fastapi.concurrency import run_in_threadpool
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, StreamingResponse, HTMLResponse, PlainTextResponse, Response, RedirectResponse, JSONResponse
 from pydantic import BaseModel
 from typing import List, Optional
 
+import refunds
 from tarot_i18n import SITE_LANGS, LANG_LABELS, OG_LOCALE, UI_KO, ui_overrides, minor_name
 
 app = FastAPI(title="AI Tarot Reading")
@@ -1033,6 +1035,57 @@ async def verify_payment(request: PaymentVerifyRequest):
         raise HTTPException(status_code=400, detail="유효하지 않은 결제 금액입니다.")
 
     return {"ok": True, "credits": credits}
+
+
+# ── 환불 자동 처리: 포트원 웹훅 → 크레딧 회수 ──────────────────────────────────
+# 필요한 환경변수: PORTONE_WEBHOOK_SECRET(포트원 콘솔의 웹훅 시크릿), FIREBASE_SERVICE_ACCOUNT_JSON(서비스 계정 키 JSON),
+# PORTONE_API_SECRET(이미 있음). 포트원 콘솔 웹훅 URL: https://<도메인>/api/portone/webhook
+_REFUND_STORE = None
+
+
+def get_refund_store():
+    global _REFUND_STORE
+    if _REFUND_STORE is None:
+        try:
+            _REFUND_STORE = refunds.FirestoreStore.from_env()
+        except RuntimeError:
+            raise HTTPException(status_code=503, detail="Refund automation is not configured")
+    return _REFUND_STORE
+
+
+async def fetch_portone_payment(payment_id: str) -> dict:
+    """웹훅 본문 대신 포트원 API 에서 결제 정보를 다시 조회한다."""
+    if not PORTONE_API_SECRET:
+        raise HTTPException(status_code=503, detail="PORTONE_API_SECRET is not configured")
+    async with httpx.AsyncClient(timeout=10) as client:
+        resp = await client.get(f"https://api.portone.io/payments/{payment_id}",
+                                headers={"Authorization": f"PortOne {PORTONE_API_SECRET}"})
+    if resp.status_code != 200:
+        raise HTTPException(status_code=502, detail="Failed to fetch payment")
+    return resp.json()
+
+
+@app.post("/api/portone/webhook")
+async def portone_webhook(request: Request):
+    secret = os.environ.get("PORTONE_WEBHOOK_SECRET", "")
+    if not secret:
+        raise HTTPException(status_code=503, detail="Webhook is not configured")
+    body = await request.body()
+    try:
+        refunds.verify_webhook(secret, request.headers, body)
+        event = json.loads(body)
+    except (refunds.WebhookError, ValueError):
+        raise HTTPException(status_code=401, detail="Invalid webhook")
+    if event.get("type") not in refunds.CANCEL_EVENTS:
+        return {"ok": True, "ignored": event.get("type")}
+    payment_id = (event.get("data") or {}).get("paymentId")
+    if not payment_id:
+        return {"ok": True, "ignored": "no paymentId"}
+    payment = await fetch_portone_payment(payment_id)
+    store = get_refund_store()
+    result = await run_in_threadpool(refunds.process_cancellation, store, payment)
+    print(f"[refund-webhook] {payment_id}: {result}")   # Railway 로그에서 확인
+    return {"ok": True, **result}
 
 
 class SpreadSelectRequest(BaseModel):

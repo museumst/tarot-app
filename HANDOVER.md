@@ -40,6 +40,8 @@ uvicorn app:app --reload --port 8000
 |---|---|---|
 | `ANTHROPIC_API_KEY` | Claude API 호출 | anthropic SDK가 자동으로 읽음 |
 | `PORTONE_API_SECRET` | 결제 검증(서버→포트원 조회) | Railway 대시보드에 설정되어 있음 |
+| `PORTONE_WEBHOOK_SECRET` | 환불 자동 처리: 포트원 웹훅 서명 검증 | 포트원 콘솔 웹훅 설정의 시크릿(`whsec_…`). 실연동·테스트 시크릿은 다르므로 둘 다 쓰려면 쉼표로 이어 쓴다. 없으면 웹훅은 503 |
+| `FIREBASE_SERVICE_ACCOUNT_JSON` | 환불 자동 처리: 서버가 Firestore 에 접속 | Firebase 콘솔 → 프로젝트 설정 → 서비스 계정 → 새 비공개 키 생성한 JSON 전체. 없으면 웹훅은 503 |
 
 > 값은 Railway 환경변수와 로컬 셸에만 존재합니다. **코드에 하드코딩 금지.**
 
@@ -221,6 +223,15 @@ users/{uid}/readings/{autoId}           # 사용자가 저장한 리딩
 ```
 
 > `currency`/`amount`는 나중에 추가된 필드입니다. **`currency`가 없는 과거 기록은 KRW로 간주**해 표시합니다 (`fmtHistoryAmount()`).
+
+### 환불 자동 처리 (`refunds.py`, `POST /api/portone/webhook`)
+포트원에서 결제를 취소(전액/부분)하면 웹훅이 와서 **해당 사용자의 크레딧을 자동 회수**하고 내역을 남긴다.
+- 사용자는 결제 때 입력한 구매자 **이메일**로 찾는다(0명/2명 이상이면 회수하지 않고 `refundIssues` 에 기록).
+- 회수 크레딧 = 환불정책과 같은 규칙: 사용분을 뺀 잔여 크레딧(원화는 수수료 300원, USD 는 수수료 없음). 전액 환불이면 구매 크레딧 전부.
+- `refundLedger/{paymentId}` 에 처리한 누적 취소 금액·회수 크레딧을 기록해 같은 웹훅이 다시 와도 두 번 회수하지 않는다(여러 번 부분 환불도 누적으로 계산).
+- 잔액이 모자라면 가능한 만큼만 회수하고 `needsReview: true` 로 표시한다(잔액이 음수가 되지 않음). `refundIssues`·`needsReview` 항목은 사람이 확인한다.
+- 내역은 `users/{uid}/creditHistory` 에 `type: 'refund'`(크레딧 −N, `paymentId` 포함)로 남는다.
+- 설정: 포트원 콘솔에 웹훅 URL `https://ultratarot.com/api/portone/webhook` 등록 + 위 환경변수 2개. 이 컬렉션들은 서버(서비스 계정)만 쓰며 `firestore.rules` 에 규칙이 없으므로 클라이언트는 접근 불가.
 
 ### 보안 규칙 (`firestore.rules`; Firebase 콘솔에도 게시 필요)
 ```

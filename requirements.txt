@@ -4,3 +4,4 @@ anthropic
 python-multipart
 httpx
 pyjwt[crypto]
+google-cloud-firestore
