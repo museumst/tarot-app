@@ -9,7 +9,7 @@
 ## 1. 프로젝트 개요
 
 - **서비스명**: 울트라타로 (https://ultratarot.com)
-- **내용**: AI(Claude)가 타로 카드를 해석해주는 웹 서비스. 무료 3회 후 크레딧(유료) 차감 방식
+- **내용**: AI(Claude)가 타로 카드를 해석해주는 웹 서비스. 무료 2회 후 크레딧(유료) 차감 방식
 - **사업자**: 회색돌 (대표 박상범) — 사업자·연락처 정보는 `static/index.html` 푸터와 `static/legal.html` 참조
 - **저장소**: https://github.com/museumst/tarot-app (main 브랜치 단일 운영, 브랜치 전략 없음)
 
@@ -251,7 +251,7 @@ users/{uid}/readings/{autoId}           # 사용자가 저장한 리딩
 `users/{uid}` 의 `free_used`·`credits` 와 `creditHistory` 는 **서버(서비스 계정)만** 바꾼다. 브라우저는 읽기만 한다.
 - **결제 지급**: `POST /api/payment/verify` 가 포트원 결제를 확인한 뒤 `grant_purchase` 로 크레딧을 지급한다.
   결제번호당 1번만(`payments/{paymentId}`), 결제자 이메일이 로그인 계정과 같아야 한다. 요청의 `uid` 는 무시하고 로그인 토큰의 uid 를 쓴다.
-- **리딩 차감**: `POST /api/reading` 이 시작할 때 `consume_reading` 으로 무료 3회 → 크레딧 순으로 차감한다(관리자 제외, 모자라면 402).
+- **리딩 차감**: `POST /api/reading` 이 시작할 때 `consume_reading` 으로 무료 2회 → 크레딧 순으로 차감한다(관리자 제외, 모자라면 402).
   글이 한 글자도 나가기 전에 실패하면 `restore_reading` 으로 되돌린다. 응답 헤더 `X-Entitlement`·`X-Free-Used`·`X-Credits` 로 남은 값을 알려 주고 화면은 `window.applyBalance()` 로 갱신한다.
 - **환불 회수**: `refunds.py` (위 환불 자동 처리).
 - 관리자 이메일은 환경변수 `ADMIN_EMAILS`(기본 `museumst@gmail.com`, 쉼표 구분)이고 이메일이 인증된 계정이어야 한다. 클라이언트의 `ADMIN_EMAILS` 는 표시용(무제한 배지)일 뿐이다.
@@ -274,7 +274,8 @@ users/{uid}          읽기: 본인 / 생성: 본인, 0 으로 시작할 때만 
 
 ## 8. 크레딧 / 무료 정책
 
-- **무료 3회** (`FREE_LIMIT = 3`) — 일반 스크립트와 모듈 스크립트에 **각각 선언되어 있으니 바꿀 때 둘 다** 수정
+- **무료 2회** (`FREE_LIMIT = 2`) — `credits.py`, `static/acct-bar.js`, `static/index.html`(일반 스크립트·모듈 스크립트 두 곳)에 각각 선언되어 있으니 **바꿀 때 모두** 수정. "무료 N회" 문구(meta, `gate_badge` 15개 언어, `app.py` `LOGIN_CTA`, `legal.html`)도 함께 고친다.
+- **헤더 배지는 하나** (`#credit-badge` / 서버 페이지는 `#acct-credit`): 무료만 남으면 "무료 N회", 유료가 있으면 무료 남은 횟수를 더한 "N회", 합계 0이면 "충전하기". 잔액을 읽기 전에는 글자를 숨긴다(`pending`). 규칙은 `renderBalanceBadge()`(index.html)와 `setBalance()`(acct-bar.js)에 같은 모양으로 있다.
 - 무료 소진 후 크레딧 차감 (**1크레딧 = 리딩 1회**, 가격은 상품별 상이: 회당 200원 / 178.6원 / 166.7원)
 - 크레딧 유효기간 **1년**은 법적 고지에 명시돼 있으나 **실제로는 소멸시키지 않는다**(운영 방침, 소멸 로직 없음)
 - 관리자는 차감 없음

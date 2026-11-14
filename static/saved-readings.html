@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/site-shell.css?v=16">
-  <link rel="stylesheet" href="/static/acct-bar.css?v=6">
+  <link rel="stylesheet" href="/static/acct-bar.css?v=7">
 <script src="/static/mobile-menu.js?v=4" defer></script>
   <style>
     :root { color-scheme: dark; --bg:#0d0d1a; --panel:#151725; --panel2:#1c2030; --line:rgba(196,169,107,.2); --gold:#d9bf8e; --text:#f0eee8; --muted:#a4a8b5; }
@@ -90,8 +90,8 @@
     <nav class="site-primary-nav" aria-label="Site">
       <a class="site-brand" id="brand" href="/">✨ 울트라타로</a>
       <a class="site-mode" id="mode-reading" href="/?mode=reading"></a>
-      <a class="site-mode" id="mode-today" href="/?mode=today"></a>
       <a class="site-mode" id="mode-choice" href="/?mode=choice"></a>
+      <a class="site-mode" id="mode-today" href="/?mode=today"></a>
       <a class="site-mode" id="mode-birth" href="/birth-card"></a>
       <a href="/cards" id="nav-cards"></a>
       <a href="/saved-readings" id="nav-saved" aria-current="page"></a>
@@ -99,7 +99,6 @@
     <select id="language-select" aria-label="Language"></select>
     <button id="acct-login" type="button"></button>
     <div id="acct-user">
-      <span id="acct-free" class="plenty"></span>
       <a id="acct-credit" href="/"></a>
       <a id="acct-history" href="/"></a>
       <img id="acct-avatar" src="" alt="">
@@ -194,7 +193,8 @@ const googleProvider = () => { const p = new GoogleAuthProvider(); p.setCustomPa
     const home=lang==='ko'?'/' : `/?lang=${lang}`;
     document.getElementById('brand').href=home;
     const modeLabels=MODES[lang] || MODES.en, modeSep=home.includes('?')?'&':'?';
-    [['mode-reading',`${home}${modeSep}mode=reading`],['mode-today',`${home}${modeSep}mode=today`],['mode-choice',`${home}${modeSep}mode=choice`],['mode-birth',lang==='ko'?'/birth-card':`/birth-card?lang=${lang}`]].forEach(([id,href],i)=>{const a=document.getElementById(id); a.textContent=modeLabels[i]; a.href=href;});
+    // 세 번째 값은 MODES 문구의 위치(0 질문하기, 1 오늘의 타로, 2 양자택일, 3 나의 생일수). 메뉴 순서와는 별개다.
+    [['mode-reading',`${home}${modeSep}mode=reading`,0],['mode-choice',`${home}${modeSep}mode=choice`,2],['mode-today',`${home}${modeSep}mode=today`,1],['mode-birth',lang==='ko'?'/birth-card':`/birth-card?lang=${lang}`,3]].forEach(([id,href,i])=>{const a=document.getElementById(id); a.textContent=modeLabels[i]; a.href=href;});
     document.getElementById('nav-about').href=`${home}${home.includes('?')?'&':'?'}open=about`;
     document.getElementById('nav-tarot').href=`${home}${home.includes('?')?'&':'?'}open=tarot`;
     document.getElementById('nav-cards').href=lang==='ko'?'/cards':`/${lang}/cards`;
@@ -344,6 +344,6 @@ const googleProvider = () => { const p = new GoogleAuthProvider(); p.setCustomPa
       await loadReadings(user);
     });
   </script>
-  <script type="module" src="/static/acct-bar.js?v=6"></script>
+  <script type="module" src="/static/acct-bar.js?v=7"></script>
 </body>
 </html>

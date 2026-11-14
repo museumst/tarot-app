@@ -35,5 +35,5 @@ test('shared image grows to include the full reading without a promo tagline', a
   assert.ok(canvas.height > 1350);
   assert.ok(drawn.includes('LAST_LINE'));
   assert.ok(drawn.includes('ultratarot.com'));
-  assert.ok(!drawn.some(text => String(text).includes('무료 3회')));
+  assert.ok(!drawn.some(text => String(text).includes('무료 2회')));
 });

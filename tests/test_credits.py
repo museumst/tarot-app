@@ -75,23 +75,23 @@ def make_store(db=None):
 class PlanConsumeTest(unittest.TestCase):
     def test_priority_is_free_then_credit(self):
         self.assertEqual(credits.plan_consume({"free_used": 0, "credits": 5}, False), "free")
-        self.assertEqual(credits.plan_consume({"free_used": 3, "credits": 5}, False), "credit")
-        self.assertEqual(credits.plan_consume({"free_used": 3, "credits": 0}, False), "none")
+        self.assertEqual(credits.plan_consume({"free_used": 2, "credits": 5}, False), "credit")
+        self.assertEqual(credits.plan_consume({"free_used": 2, "credits": 0}, False), "none")
         self.assertEqual(credits.plan_consume(None, False), "free")
-        self.assertEqual(credits.plan_consume({"free_used": 3, "credits": 0}, True), "admin")
+        self.assertEqual(credits.plan_consume({"free_used": 2, "credits": 0}, True), "admin")
 
 
 class ConsumeReadingTest(unittest.TestCase):
-    def test_new_user_gets_three_free_readings_then_must_buy(self):
+    def test_new_user_gets_two_free_readings_then_must_buy(self):
         db, store = make_store()
-        kinds = [store.consume_reading("u1", "a@example.com", False)["kind"] for _ in range(4)]
-        self.assertEqual(kinds, ["free", "free", "free", "none"])
-        self.assertEqual(db.docs[("users", "u1")]["free_used"], 3)
+        kinds = [store.consume_reading("u1", "a@example.com", False)["kind"] for _ in range(3)]
+        self.assertEqual(kinds, ["free", "free", "none"])
+        self.assertEqual(db.docs[("users", "u1")]["free_used"], 2)
         self.assertEqual(db.docs[("users", "u1")]["email"], "a@example.com")
 
     def test_credit_is_used_after_free_readings_and_history_is_written(self):
         db, store = make_store()
-        db.docs[("users", "u1")] = {"email": "a@example.com", "free_used": 3, "credits": 2}
+        db.docs[("users", "u1")] = {"email": "a@example.com", "free_used": 2, "credits": 2}
         result = store.consume_reading("u1", "a@example.com", False)
         self.assertEqual((result["kind"], result["credits"]), ("credit", 1))
         history = db.history("u1")
@@ -100,19 +100,19 @@ class ConsumeReadingTest(unittest.TestCase):
 
     def test_never_goes_negative(self):
         db, store = make_store()
-        db.docs[("users", "u1")] = {"free_used": 3, "credits": 0}
+        db.docs[("users", "u1")] = {"free_used": 2, "credits": 0}
         self.assertEqual(store.consume_reading("u1", "a@example.com", False)["kind"], "none")
         self.assertEqual(db.docs[("users", "u1")]["credits"], 0)
 
     def test_admin_is_not_charged(self):
         db, store = make_store()
-        db.docs[("users", "u1")] = {"free_used": 3, "credits": 0}
+        db.docs[("users", "u1")] = {"free_used": 2, "credits": 0}
         self.assertEqual(store.consume_reading("u1", "admin@example.com", True)["kind"], "admin")
-        self.assertEqual(db.docs[("users", "u1")], {"free_used": 3, "credits": 0})
+        self.assertEqual(db.docs[("users", "u1")], {"free_used": 2, "credits": 0})
 
     def test_restore_undoes_the_charge(self):
         db, store = make_store()
-        db.docs[("users", "u1")] = {"free_used": 3, "credits": 2}
+        db.docs[("users", "u1")] = {"free_used": 2, "credits": 2}
         store.consume_reading("u1", "a@example.com", False)
         store.restore_reading("u1", "credit")
         self.assertEqual(db.docs[("users", "u1")]["credits"], 2)
@@ -209,7 +209,7 @@ class ReadingEndpointChargeTest(unittest.IsolatedAsyncioTestCase):
         return app.ReadingRequest(question="q", spread_name="s", language="ko", cards=[])
 
     async def test_no_credit_returns_402_and_never_calls_the_ai(self):
-        store = mock.Mock(consume_reading=mock.Mock(return_value={"kind": "none", "free_used": 3, "credits": 0}))
+        store = mock.Mock(consume_reading=mock.Mock(return_value={"kind": "none", "free_used": 2, "credits": 0}))
         with mock.patch.object(app, "get_credit_store", return_value=store), \
                 mock.patch.object(app.anthropic, "AsyncAnthropic") as ai:
             with self.assertRaises(HTTPException) as caught:
@@ -218,7 +218,7 @@ class ReadingEndpointChargeTest(unittest.IsolatedAsyncioTestCase):
         ai.assert_not_called()
 
     async def test_response_reports_balance_headers(self):
-        store = mock.Mock(consume_reading=mock.Mock(return_value={"kind": "credit", "free_used": 3, "credits": 9}))
+        store = mock.Mock(consume_reading=mock.Mock(return_value={"kind": "credit", "free_used": 2, "credits": 9}))
 
         class Stream:
             async def __aenter__(self):
@@ -242,7 +242,7 @@ class ReadingEndpointChargeTest(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(response.headers["x-entitlement"], "credit")
 
     async def test_failure_before_any_text_restores_the_charge(self):
-        store = mock.Mock(consume_reading=mock.Mock(return_value={"kind": "credit", "free_used": 3, "credits": 9}),
+        store = mock.Mock(consume_reading=mock.Mock(return_value={"kind": "credit", "free_used": 2, "credits": 9}),
                           restore_reading=mock.Mock())
 
         class Boom:

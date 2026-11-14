@@ -6,7 +6,7 @@
 
   <!-- ── SEO ── -->
   <title>울트라타로 — AI 타로 리딩 | 무료 타로카드 운세</title>
-  <meta name="description" content="질문을 적고 카드를 뽑으면 AI가 깊이 있는 타로 해석을 들려드립니다. 연애·직장·선택의 고민까지, 무료 3회로 지금 바로 시작하세요. 15개 언어 지원." />
+  <meta name="description" content="질문을 적고 카드를 뽑으면 AI가 깊이 있는 타로 해석을 들려드립니다. 연애·직장·선택의 고민까지, 무료 2회로 지금 바로 시작하세요. 15개 언어 지원." />
   <meta name="keywords" content="타로, 타로카드, 무료타로, AI타로, 온라인 타로, 타로점, 오늘의 운세, 타로 리딩" />
   <link rel="canonical" href="https://ultratarot.com/" />
   <meta name="robots" content="index, follow" />
@@ -17,7 +17,7 @@
   <meta property="og:site_name" content="울트라타로" />
   <meta property="og:url" content="https://ultratarot.com/" />
   <meta property="og:title" content="울트라타로 — AI가 읽어주는 타로 카드" />
-  <meta property="og:description" content="질문을 적고 카드를 뽑으면 AI가 깊이 있는 해석을 들려드립니다. 무료 3회로 지금 시작하세요." />
+  <meta property="og:description" content="질문을 적고 카드를 뽑으면 AI가 깊이 있는 해석을 들려드립니다. 무료 2회로 지금 시작하세요." />
   <meta property="og:image" content="https://ultratarot.com/static/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -27,7 +27,7 @@
   <!-- ── Twitter/X 카드 ── -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="울트라타로 — AI가 읽어주는 타로 카드" />
-  <meta name="twitter:description" content="질문을 적고 카드를 뽑으면 AI가 깊이 있는 해석을 들려드립니다. 무료 3회로 지금 시작하세요." />
+  <meta name="twitter:description" content="질문을 적고 카드를 뽑으면 AI가 깊이 있는 해석을 들려드립니다. 무료 2회로 지금 시작하세요." />
   <meta name="twitter:image" content="https://ultratarot.com/static/og-image.jpg" />
 
   <link rel="icon" href="/static/favicon.png" type="image/png" />
@@ -559,7 +559,6 @@
       #user-info #user-name, #user-info img, #user-info #history-btn, #user-info #logout-btn { display: none; }
       #header-login-btn { order: 2; padding: 6px 12px; }
       #guest-checkout-btn { display: none !important; }
-      #top-bar #free-badge { font-size: .68rem; padding: 3px 8px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
       #top-bar #credit-badge { font-size: .72rem; padding: 3px 10px; }
     }
 
@@ -673,15 +672,6 @@
       transition: border-color .2s, color .2s;
     }
     .user-info button:hover { border-color: var(--gold); color: var(--gold); }
-    #free-badge {
-      font-size: .75rem; padding: 3px 10px;
-      border-radius: 20px; border: 1px solid;
-      white-space: nowrap;
-    }
-    #free-badge.plenty  { color: #90d490; border-color: rgba(144,212,144,.4); }
-    #free-badge.warning { color: #f0d060; border-color: rgba(240,208,96,.4); }
-    #free-badge.empty   { color: #f08080; border-color: rgba(240,128,128,.4); }
-
     /* ── 크레딧 배지 ── */
     #credit-badge {
       font-size: .78rem; padding: 5px 13px;
@@ -692,6 +682,10 @@
     }
     #credit-badge:hover { background: rgba(196,169,107,.18); border-color: var(--gold); }
     #credit-badge.low { color: #f08080; border-color: rgba(240,128,128,.6); background: rgba(240,128,128,.07); }
+    /* 무료 횟수만 남았을 때(초록·노랑), 잔액을 아직 모를 때(자리만 유지) */
+    #credit-badge.plenty  { color: #90d490; border-color: rgba(144,212,144,.45); background: rgba(144,212,144,.07); }
+    #credit-badge.warning { color: #f0d060; border-color: rgba(240,208,96,.5); background: rgba(240,208,96,.07); }
+    #credit-badge.pending { visibility: hidden; min-width: 64px; }
 
     /* ── 헤더 로그인 버튼 ── */
     .header-login-btn {
@@ -796,6 +790,7 @@
       border-bottom: 1px solid rgba(196,169,107,.25);
     }
     #history-balance strong { color: var(--gold); font-size: 1.1rem; }
+    #history-balance-note { color: var(--text-dim); font-size: .78rem; }
     #history-list { overflow-y: auto; flex: 1; text-align: left; }
     .history-row {
       display: grid; grid-template-columns: 64px 1fr auto auto auto;
@@ -973,8 +968,8 @@
     <nav class="site-primary-nav" aria-label="Site">
       <a class="site-brand" id="nav-logo" href="/">✨ 울트라타로</a>
       <a class="site-mode" data-reading-mode="reading" href="/?mode=reading" aria-current="page">질문하기</a>
-      <a class="site-mode" data-reading-mode="today" href="/?mode=today">오늘의 타로</a>
       <a class="site-mode" data-reading-mode="choice" href="/?mode=choice">양자택일</a>
+      <a class="site-mode" data-reading-mode="today" href="/?mode=today">오늘의 타로</a>
       <a class="site-mode" data-reading-mode="birthday" href="/birth-card">나의 생일수</a>
       <a id="nav-label-cards" href="/cards">타로카드 도감</a>
       <a id="nav-label-saved" href="/saved-readings">저장한 리딩</a>
@@ -989,7 +984,6 @@
     <button id="guest-checkout-btn" class="header-login-btn">🛒 비회원 결제</button>
     <!-- 유저 정보 -->
     <div class="user-info" id="user-info">
-      <span id="free-badge" class="plenty"></span>
       <span id="credit-badge" data-charge-trigger role="button" tabindex="0" title="클릭하여 충전"></span>
       <button id="history-btn" onclick="openHistoryModal()" title="크레딧 이용내역">내역</button>
       <img id="user-avatar" src="" alt="프로필" />
@@ -1025,7 +1019,7 @@
     </div>
     <div id="login-need-box" role="status">
       <div class="nc-title" id="login-need-title">✨ 로그인하고 시작하기</div>
-      <div class="free-badge" id="login-need-badge">무료 3회 제공</div>
+      <div class="free-badge" id="login-need-badge">무료 2회 제공</div>
       <div class="nc-desc" id="login-need-desc">질문은 그대로 남아 있어요. Google 계정으로 로그인하면 바로 이어서 카드를 고를 수 있습니다.</div>
       <button class="google-btn" id="login-need-btn">
         <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
@@ -1091,7 +1085,7 @@
     </div>
     <div id="reading-gate">
       <div class="gate-title" id="gate-title">✨ 전체 리딩 보기</div>
-      <div class="free-badge" id="gate-free-badge">무료 3회 제공</div>
+      <div class="free-badge" id="gate-free-badge">무료 2회 제공</div>
       <div class="gate-desc" id="gate-desc">Google 계정으로 로그인하면 전체 리딩을 확인할 수 있습니다.</div>
       <button class="google-btn" id="gate-login-btn">
         <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
@@ -1105,7 +1099,7 @@
     </div>
     <div id="today-cta" role="status">
       <div class="nc-title" id="today-cta-title">질문하기</div>
-      <div class="free-badge" id="today-cta-badge">무료 3회 제공</div>
+      <div class="free-badge" id="today-cta-badge">무료 2회 제공</div>
       <button class="google-btn" id="today-cta-btn">
         <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
           <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
@@ -1197,7 +1191,7 @@
   <div id="history-box">
     <button id="history-close" onclick="closeHistoryModal()">✕</button>
     <h3>💳 크레딧 이용내역</h3>
-    <div id="history-balance">잔여 크레딧: <strong id="history-balance-val">—</strong>회</div>
+    <div id="history-balance">잔여 크레딧: <strong id="history-balance-val">—</strong>회 <span id="history-balance-note"></span></div>
     <div id="history-list">
       <div id="history-empty">내역을 불러오는 중...</div>
     </div>
@@ -1285,7 +1279,7 @@ const TRANSLATIONS = {
     s2_title:'카드를 뽑으세요', draw_instr:'마음을 집중하고 끌리는 카드를 클릭하세요',
     draw_suffix:'장 선택됨', btn_back:'← 이전', btn_start:'리딩 시작 ✨',
     s3_title:'AI 타로 리딩', spinner:'카드를 읽는 중...',
-    gate_title:'✨ 전체 리딩 보기', gate_badge:'무료 3회 제공',
+    gate_title:'✨ 전체 리딩 보기', gate_badge:'무료 2회 제공',
     gate_desc:'Google 계정으로 로그인하면 전체 리딩을 확인할 수 있습니다.',
     gate_btn:'Google로 계속하기',
     login_need_title:'✨ 로그인하고 시작하기', login_need_desc:'질문은 그대로 남아 있어요. Google 계정으로 로그인하면 바로 이어서 카드를 고를 수 있습니다.',
@@ -1311,7 +1305,7 @@ const TRANSLATIONS = {
     s2_title:'Draw your cards', draw_instr:'Focus your mind and click the card that calls to you',
     draw_suffix:'card(s) selected', btn_back:'← Back', btn_start:'Start Reading ✨',
     s3_title:'Tarot Reading', spinner:'Reading the cards...',
-    gate_title:'✨ View Full Reading', gate_badge:'3 free readings',
+    gate_title:'✨ View Full Reading', gate_badge:'2 free readings',
     gate_desc:'Sign in with Google to unlock the full reading.',
     gate_btn:'Continue with Google',
     login_need_title:'✨ Sign in to begin', login_need_desc:'Your question is saved. Sign in with Google and we\'ll continue right where you left off.',
@@ -1337,7 +1331,7 @@ const TRANSLATIONS = {
     s2_title:'カードを引いてください', draw_instr:'心を集中させ、引かれるカードをクリックしてください',
     draw_suffix:'枚選択済み', btn_back:'← 戻る', btn_start:'占いを始める ✨',
     s3_title:'タロット占い', spinner:'カードを読み解き中...',
-    gate_title:'✨ 全文を見る', gate_badge:'無料3回提供',
+    gate_title:'✨ 全文を見る', gate_badge:'無料2回提供',
     gate_desc:'Googleアカウントでログインすると全文をご確認いただけます。',
     gate_btn:'Googleで続ける',
     login_need_title:'✨ ログインして始める', login_need_desc:'ご質問はそのまま残っています。Googleアカウントでログインすると、このまま続けられます。',
@@ -1363,7 +1357,7 @@ const TRANSLATIONS = {
     s2_title:'Saca tus cartas', draw_instr:'Concéntrate y haz clic en la carta que te llame',
     draw_suffix:'carta(s) seleccionada(s)', btn_back:'← Atrás', btn_start:'Iniciar Lectura ✨',
     s3_title:'Lectura de Tarot', spinner:'Leyendo las cartas...',
-    gate_title:'✨ Ver Lectura Completa', gate_badge:'3 lecturas gratuitas',
+    gate_title:'✨ Ver Lectura Completa', gate_badge:'2 lecturas gratuitas',
     gate_desc:'Inicia sesión con Google para ver la lectura completa.',
     gate_btn:'Continuar con Google',
     login_need_title:'✨ Inicia sesión para empezar', login_need_desc:'Tu pregunta se conserva. Inicia sesión con Google y continuaremos justo donde lo dejaste.',
@@ -1389,7 +1383,7 @@ const TRANSLATIONS = {
     s2_title:'Tirez vos cartes', draw_instr:'Concentrez-vous et cliquez sur la carte qui vous attire',
     draw_suffix:'carte(s) sélectionnée(s)', btn_back:'← Retour', btn_start:'Commencer ✨',
     s3_title:'Lecture de Tarot', spinner:'Lecture des cartes...',
-    gate_title:'✨ Voir la Lecture Complète', gate_badge:'3 lectures gratuites',
+    gate_title:'✨ Voir la Lecture Complète', gate_badge:'2 lectures gratuites',
     gate_desc:'Connectez-vous avec Google pour voir la lecture complète.',
     gate_btn:'Continuer avec Google',
     login_need_title:'✨ Connectez-vous pour commencer', login_need_desc:'Votre question est conservée. Connectez-vous avec Google et nous reprendrons là où vous en étiez.',
@@ -1415,7 +1409,7 @@ const TRANSLATIONS = {
     s2_title:'Ziehen Sie Ihre Karten', draw_instr:'Konzentrieren Sie sich und klicken Sie auf die Karte, die Sie anzieht',
     draw_suffix:'Karte(n) ausgewählt', btn_back:'← Zurück', btn_start:'Legung starten ✨',
     s3_title:'Tarot-Legung', spinner:'Karten werden gelesen...',
-    gate_title:'✨ Vollständige Legung ansehen', gate_badge:'3 kostenlose Legungen',
+    gate_title:'✨ Vollständige Legung ansehen', gate_badge:'2 kostenlose Legungen',
     gate_desc:'Melden Sie sich mit Google an, um die vollständige Legung zu sehen.',
     gate_btn:'Mit Google fortfahren',
     login_need_title:'✨ Zum Starten anmelden', login_need_desc:'Ihre Frage bleibt erhalten. Melden Sie sich mit Google an, dann geht es direkt weiter.',
@@ -1441,7 +1435,7 @@ const TRANSLATIONS = {
     s2_title:'Tire suas cartas', draw_instr:'Concentre-se e clique na carta que te chamar',
     draw_suffix:'carta(s) selecionada(s)', btn_back:'← Voltar', btn_start:'Iniciar Leitura ✨',
     s3_title:'Leitura de Tarot', spinner:'Lendo as cartas...',
-    gate_title:'✨ Ver Leitura Completa', gate_badge:'3 leituras gratuitas',
+    gate_title:'✨ Ver Leitura Completa', gate_badge:'2 leituras gratuitas',
     gate_desc:'Faça login com o Google para ver a leitura completa.',
     gate_btn:'Continuar com Google',
     login_need_title:'✨ Entre para começar', login_need_desc:'Sua pergunta foi mantida. Entre com o Google e continuaremos de onde você parou.',
@@ -1467,7 +1461,7 @@ const TRANSLATIONS = {
     s2_title:'จั่วไพ่ของคุณ', draw_instr:'ตั้งสมาธิและคลิกไพ่ที่ดึงดูดคุณ',
     draw_suffix:'ใบที่เลือก', btn_back:'← กลับ', btn_start:'เริ่มการอ่าน ✨',
     s3_title:'การอ่านไพ่ทาโรต์', spinner:'กำลังอ่านไพ่...',
-    gate_title:'✨ ดูการอ่านทั้งหมด', gate_badge:'ฟรี 3 ครั้ง',
+    gate_title:'✨ ดูการอ่านทั้งหมด', gate_badge:'ฟรี 2 ครั้ง',
     gate_desc:'เข้าสู่ระบบด้วย Google เพื่อดูการอ่านทั้งหมด',
     gate_btn:'ดำเนินการต่อด้วย Google',
     login_need_title:'✨ เข้าสู่ระบบเพื่อเริ่ม', login_need_desc:'คำถามของคุณยังอยู่ครบ เข้าสู่ระบบด้วย Google แล้วดำเนินการต่อได้ทันที',
@@ -1493,7 +1487,7 @@ const TRANSLATIONS = {
     s2_title:'Вытяните ваши карты', draw_instr:'Сосредоточьтесь и нажмите на карту, которая вас привлекает',
     draw_suffix:'карт(а) выбрано', btn_back:'← Назад', btn_start:'Начать расклад ✨',
     s3_title:'Расклад Таро', spinner:'Читаем карты...',
-    gate_title:'✨ Посмотреть полный расклад', gate_badge:'3 бесплатных расклада',
+    gate_title:'✨ Посмотреть полный расклад', gate_badge:'2 бесплатных расклада',
     gate_desc:'Войдите через Google, чтобы увидеть полный расклад.',
     gate_btn:'Продолжить с Google',
     login_need_title:'✨ Войдите, чтобы начать', login_need_desc:'Ваш вопрос сохранён. Войдите через Google, и мы продолжим с того же места.',
@@ -1519,7 +1513,7 @@ const TRANSLATIONS = {
     s2_title:'请抽取您的牌', draw_instr:'集中心神，点击您感应到的牌',
     draw_suffix:'张已选', btn_back:'← 返回', btn_start:'开始解读 ✨',
     s3_title:'塔罗解读', spinner:'正在解读牌意...',
-    gate_title:'✨ 查看完整解读', gate_badge:'免费3次',
+    gate_title:'✨ 查看完整解读', gate_badge:'免费2次',
     gate_desc:'使用Google账号登录即可查看完整解读。',
     gate_btn:'使用Google继续',
     login_need_title:'✨ 登录后开始', login_need_desc:'您的问题已保留。使用 Google 账号登录后即可继续。',
@@ -1545,7 +1539,7 @@ const TRANSLATIONS = {
     s2_title:'Pesca le tue carte', draw_instr:'Concentrati e clicca sulla carta che ti chiama',
     draw_suffix:'carta/e selezionata/e', btn_back:'← Indietro', btn_start:'Inizia la Lettura ✨',
     s3_title:'Lettura dei Tarocchi', spinner:'Lettura delle carte...',
-    gate_title:'✨ Visualizza la Lettura Completa', gate_badge:'3 letture gratuite',
+    gate_title:'✨ Visualizza la Lettura Completa', gate_badge:'2 letture gratuite',
     gate_desc:'Accedi con Google per vedere la lettura completa.',
     gate_btn:'Continua con Google',
     login_need_title:'✨ Accedi per iniziare', login_need_desc:'La tua domanda è conservata. Accedi con Google e proseguiremo subito.',
@@ -1571,7 +1565,7 @@ const TRANSLATIONS = {
     s2_title:'Ambil kartumu', draw_instr:'Fokuskan pikiranmu dan klik kartu yang kamu rasakan',
     draw_suffix:'kartu dipilih', btn_back:'← Kembali', btn_start:'Mulai Pembacaan ✨',
     s3_title:'Pembacaan Tarot', spinner:'Membaca kartu...',
-    gate_title:'✨ Lihat Pembacaan Lengkap', gate_badge:'3 pembacaan gratis',
+    gate_title:'✨ Lihat Pembacaan Lengkap', gate_badge:'2 pembacaan gratis',
     gate_desc:'Masuk dengan Google untuk melihat pembacaan lengkap.',
     gate_btn:'Lanjutkan dengan Google',
     login_need_title:'✨ Masuk untuk memulai', login_need_desc:'Pertanyaanmu tersimpan. Masuk dengan Google dan kita lanjutkan langsung.',
@@ -1597,7 +1591,7 @@ const TRANSLATIONS = {
     s2_title:'Rút bài của bạn', draw_instr:'Tập trung tâm trí và nhấp vào lá bài thu hút bạn',
     draw_suffix:'lá đã chọn', btn_back:'← Quay lại', btn_start:'Bắt đầu Đọc Bài ✨',
     s3_title:'Đọc Bài Tarot', spinner:'Đang đọc bài...',
-    gate_title:'✨ Xem Toàn Bộ Bài Đọc', gate_badge:'3 lần đọc miễn phí',
+    gate_title:'✨ Xem Toàn Bộ Bài Đọc', gate_badge:'2 lần đọc miễn phí',
     gate_desc:'Đăng nhập bằng Google để xem toàn bộ bài đọc.',
     gate_btn:'Tiếp tục với Google',
     login_need_title:'✨ Đăng nhập để bắt đầu', login_need_desc:'Câu hỏi của bạn vẫn được giữ nguyên. Đăng nhập bằng Google để tiếp tục ngay.',
@@ -1623,7 +1617,7 @@ const TRANSLATIONS = {
     s2_title:'Kartlarınızı çekin', draw_instr:'Zihninizi odaklayın ve sizi çeken karta tıklayın',
     draw_suffix:'kart seçildi', btn_back:'← Geri', btn_start:'Okumayı Başlat ✨',
     s3_title:'Tarot Okuması', spinner:'Kartlar okunuyor...',
-    gate_title:'✨ Tam Okumayı Gör', gate_badge:'3 ücretsiz okuma',
+    gate_title:'✨ Tam Okumayı Gör', gate_badge:'2 ücretsiz okuma',
     gate_desc:'Tam okumayı görmek için Google ile giriş yapın.',
     gate_btn:'Google ile Devam Et',
     login_need_title:'✨ Başlamak için giriş yapın', login_need_desc:'Sorunuz saklandı. Google ile giriş yapın, hemen devam edelim.',
@@ -1649,7 +1643,7 @@ const TRANSLATIONS = {
     s2_title:'Dobierz swoje karty', draw_instr:'Skup się i kliknij kartę, która Cię przyciąga',
     draw_suffix:'karta/y wybrana/e', btn_back:'← Wstecz', btn_start:'Rozpocznij czytanie ✨',
     s3_title:'Czytanie Tarota', spinner:'Czytanie kart...',
-    gate_title:'✨ Zobacz pełne czytanie', gate_badge:'3 bezpłatne czytania',
+    gate_title:'✨ Zobacz pełne czytanie', gate_badge:'2 bezpłatne czytania',
     gate_desc:'Zaloguj się przez Google, aby zobaczyć pełne czytanie.',
     gate_btn:'Kontynuuj z Google',
     login_need_title:'✨ Zaloguj się, aby zacząć', login_need_desc:'Twoje pytanie zostało zachowane. Zaloguj się przez Google, a przejdziemy dalej.',
@@ -1668,21 +1662,21 @@ const TRANSLATIONS = {
 };
 
 const HEADER_CREDIT_COPY = {
-  ko: { topUp: '💳 충전하기', balance: n => `💳 ${n}회`, history: '내역', historyTitle: '크레딧 이용내역' },
-  en: { topUp: '💳 Top Up', balance: n => `💳 ${n} credits`, history: 'History', historyTitle: 'Credit history' },
-  ja: { topUp: '💳 チャージ', balance: n => `💳 ${n}回`, history: '履歴', historyTitle: 'クレジット利用履歴' },
-  es: { topUp: '💳 Recargar', balance: n => `💳 ${n} créditos`, history: 'Historial', historyTitle: 'Historial de créditos' },
-  fr: { topUp: '💳 Recharger', balance: n => `💳 ${n} crédits`, history: 'Historique', historyTitle: 'Historique des crédits' },
-  de: { topUp: '💳 Aufladen', balance: n => `💳 ${n} Credits`, history: 'Verlauf', historyTitle: 'Credit-Verlauf' },
-  pt: { topUp: '💳 Recarregar', balance: n => `💳 ${n} créditos`, history: 'Histórico', historyTitle: 'Histórico de créditos' },
-  th: { topUp: '💳 เติมเครดิต', balance: n => `💳 ${n} เครดิต`, history: 'ประวัติ', historyTitle: 'ประวัติเครดิต' },
-  ru: { topUp: '💳 Пополнить', balance: n => `💳 ${n} кредитов`, history: 'История', historyTitle: 'История кредитов' },
-  zh: { topUp: '💳 充值', balance: n => `💳 ${n}积分`, history: '记录', historyTitle: '积分记录' },
-  it: { topUp: '💳 Ricarica', balance: n => `💳 ${n} crediti`, history: 'Storico', historyTitle: 'Storico crediti' },
-  id: { topUp: '💳 Isi Ulang', balance: n => `💳 ${n} kredit`, history: 'Riwayat', historyTitle: 'Riwayat kredit' },
-  vi: { topUp: '💳 Nạp thêm', balance: n => `💳 ${n} lượt`, history: 'Lịch sử', historyTitle: 'Lịch sử lượt' },
-  tr: { topUp: '💳 Kredi Yükle', balance: n => `💳 ${n} kredi`, history: 'Geçmiş', historyTitle: 'Kredi geçmişi' },
-  pl: { topUp: '💳 Doładuj', balance: n => `💳 ${n} kredytów`, history: 'Historia', historyTitle: 'Historia kredytów' },
+  ko: { free: n => `💳 무료 ${n}회`, topUp: '💳 충전하기', balance: n => `💳 ${n}회`, history: '내역', historyTitle: '크레딧 이용내역' },
+  en: { free: n => `💳 ${n} free`, topUp: '💳 Top Up', balance: n => `💳 ${n} credits`, history: 'History', historyTitle: 'Credit history' },
+  ja: { free: n => `💳 無料${n}回`, topUp: '💳 チャージ', balance: n => `💳 ${n}回`, history: '履歴', historyTitle: 'クレジット利用履歴' },
+  es: { free: n => `💳 ${n} gratis`, topUp: '💳 Recargar', balance: n => `💳 ${n} créditos`, history: 'Historial', historyTitle: 'Historial de créditos' },
+  fr: { free: n => `💳 ${n} gratuit${n>1?"s":""}`, topUp: '💳 Recharger', balance: n => `💳 ${n} crédits`, history: 'Historique', historyTitle: 'Historique des crédits' },
+  de: { free: n => `💳 ${n} gratis`, topUp: '💳 Aufladen', balance: n => `💳 ${n} Credits`, history: 'Verlauf', historyTitle: 'Credit-Verlauf' },
+  pt: { free: n => `💳 ${n} grátis`, topUp: '💳 Recarregar', balance: n => `💳 ${n} créditos`, history: 'Histórico', historyTitle: 'Histórico de créditos' },
+  th: { free: n => `💳 ฟรี ${n} ครั้ง`, topUp: '💳 เติมเครดิต', balance: n => `💳 ${n} เครดิต`, history: 'ประวัติ', historyTitle: 'ประวัติเครดิต' },
+  ru: { free: n => `💳 ${n} бесплатно`, topUp: '💳 Пополнить', balance: n => `💳 ${n} кредитов`, history: 'История', historyTitle: 'История кредитов' },
+  zh: { free: n => `💳 免费${n}次`, topUp: '💳 充值', balance: n => `💳 ${n}积分`, history: '记录', historyTitle: '积分记录' },
+  it: { free: n => `💳 ${n} gratis`, topUp: '💳 Ricarica', balance: n => `💳 ${n} crediti`, history: 'Storico', historyTitle: 'Storico crediti' },
+  id: { free: n => `💳 ${n} gratis`, topUp: '💳 Isi Ulang', balance: n => `💳 ${n} kredit`, history: 'Riwayat', historyTitle: 'Riwayat kredit' },
+  vi: { free: n => `💳 ${n} lượt miễn phí`, topUp: '💳 Nạp thêm', balance: n => `💳 ${n} lượt`, history: 'Lịch sử', historyTitle: 'Lịch sử lượt' },
+  tr: { free: n => `💳 ${n} ücretsiz`, topUp: '💳 Kredi Yükle', balance: n => `💳 ${n} kredi`, history: 'Geçmiş', historyTitle: 'Kredi geçmişi' },
+  pl: { free: n => `💳 ${n} gratis`, topUp: '💳 Doładuj', balance: n => `💳 ${n} kredytów`, history: 'Historia', historyTitle: 'Historia kredytów' },
 };
 
 const SAVED_READING_COPY = {
@@ -1766,7 +1760,10 @@ function applyLang() {
   el('go-draw-btn').textContent    = t('btn_go_draw');
   el('s2-title').textContent       = t('s2_title');
   el('draw-instr-text').textContent = readingMode === 'today' ? modeText(4) : t('draw_instr');
-  document.querySelectorAll('[data-reading-mode]').forEach((button, index) => {
+  // 메뉴 순서와 상관없이 모드 키로 이름을 붙인다 (modeText 의 0·1·2·3 = 질문하기·오늘의 타로·양자택일·나의 생일수)
+  const MODE_TEXT_INDEX = { reading: 0, today: 1, choice: 2, birthday: 3 };
+  document.querySelectorAll('[data-reading-mode]').forEach(button => {
+    const index = MODE_TEXT_INDEX[button.dataset.readingMode] ?? 0;
     button.textContent = modeText(index);
     button.title = button.disabled ? modeText(8) : '';
   });
@@ -2760,7 +2757,7 @@ function resetAll(restartMode = true) {
 }
 
 // ── 포트원 v2 설정 ──
-const FREE_LIMIT = 3; // Firebase 모듈과 동기화
+const FREE_LIMIT = 2; // Firebase 모듈과 동기화
 // 비회원(익명) 결제: 꺼 둠. 카카오페이 재심사 등으로 결제창만 보여 줘야 할 때 true 로 바꿔 다시 배포한다.
 window.GUEST_CHECKOUT_ENABLED = false;
 const PORTONE_STORE_ID       = 'store-62ed5f10-8b20-4a78-90f1-8b1bd9d6b313';
@@ -2826,12 +2823,25 @@ function highlightPaypalOption(krw) {
 }
 
 // ── 크레딧 UI ──
-function updateCreditBadge(credits) {
+// 상단 배지 하나로 무료 횟수와 유료 크레딧을 합쳐 보여 준다. 차감은 서버가 무료부터 한다.
+//   무료만 남음 → "무료 N회" / 유료가 있음 → "N회"(무료 남은 횟수 포함 합계) / 합계 0 → "충전하기"
+// 잔액을 아직 모르면(로그인 직후) 자리만 잡아 두고 글자는 숨겨, "충전하기"가 잠깐 비치는 일이 없게 한다.
+function renderBalanceBadge() {
   const el = document.getElementById('credit-badge');
   if (!el) return;
   const copy = HEADER_CREDIT_COPY[currentLang] || HEADER_CREDIT_COPY.en;
-  el.textContent = credits === 0 ? copy.topUp : copy.balance(credits);
-  el.className = credits === 0 ? 'empty' : credits <= 5 ? 'low' : '';
+  if (window.isAdmin && window.isAdmin()) {
+    el.textContent = '💳 ' + (window.t ? window.t('unlimited') : '무제한');
+    el.className = 'plenty';
+    return;
+  }
+  if (!window.balanceReady) { el.textContent = '💳'; el.className = 'pending'; return; }
+  const credits = window.userCredits || 0;
+  const freeLeft = Math.max(0, FREE_LIMIT - (window.freeUsed || 0));
+  const total = credits + freeLeft;
+  if (total === 0) { el.textContent = copy.topUp; el.className = 'empty'; }
+  else if (credits === 0) { el.textContent = copy.free(freeLeft); el.className = freeLeft >= 2 ? 'plenty' : 'warning'; }
+  else { el.textContent = copy.balance(total); el.className = total <= 5 ? 'low' : ''; }
 }
 
 function updateHeaderCreditUI() {
@@ -2841,7 +2851,7 @@ function updateHeaderCreditUI() {
     historyButton.textContent = copy.history;
     historyButton.title = copy.historyTitle;
   }
-  updateCreditBadge(window.userCredits || 0);
+  renderBalanceBadge();
 }
 
 function openChargeModal() {
@@ -2920,7 +2930,11 @@ function fmtHistoryAmount(r) {
 async function loadCreditHistory() {
   const listEl = document.getElementById('history-list');
   const balEl  = document.getElementById('history-balance-val');
-  balEl.textContent = window.userCredits ?? 0;
+  const paid = window.userCredits ?? 0;
+  const freeLeft = Math.max(0, FREE_LIMIT - (window.freeUsed || 0));
+  balEl.textContent = paid + freeLeft;
+  const noteEl = document.getElementById('history-balance-note');
+  if (noteEl) noteEl.textContent = freeLeft > 0 ? `(무료 ${freeLeft}회 + 충전 ${paid}회)` : '';
   listEl.innerHTML = '<div id="history-empty">불러오는 중...</div>';
 
   if (!window.currentUser) {
@@ -3969,7 +3983,7 @@ const googleProvider = () => { const p = new GoogleAuthProvider(); p.setCustomPa
            addDoc, collection, serverTimestamp, query, orderBy, limit, getDocs }
     from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
-  const FREE_LIMIT = 3;
+  const FREE_LIMIT = 2;
   const ADMIN_EMAILS = ['museumst@gmail.com'];
 
   const firebaseConfig = {
@@ -3985,15 +3999,6 @@ const googleProvider = () => { const p = new GoogleAuthProvider(); p.setCustomPa
   const auth = getAuth(app);
   const db   = getFirestore(app);
 
-  // ── 무료 잔여 횟수 배지 업데이트 ──
-  function updateFreeBadge(freeUsed) {
-    const remaining = Math.max(0, FREE_LIMIT - freeUsed);
-    const badge = document.getElementById('free-badge');
-    badge.textContent = window.t ? window.t('free_left', remaining) : `무료 ${remaining}회 남음`;
-    badge.className = remaining >= 2 ? 'plenty' : remaining === 1 ? 'warning' : 'empty';
-    badge.id = 'free-badge';
-  }
-
   // ── Firestore: 사용자 문서 가져오기 (없으면 생성) ──
   async function loadUserDoc(user) {
     const ref  = doc(db, 'users', user.uid);
@@ -4001,13 +4006,15 @@ const googleProvider = () => { const p = new GoogleAuthProvider(); p.setCustomPa
     if (!snap.exists()) {
       await setDoc(ref, { email: user.email, free_used: 0, credits: 0, created_at: new Date() });
       window.userCredits = 0;
-      updateCreditBadge(0);
-      return 0;
+      window.freeUsed = 0;
+    } else {
+      const data = snap.data();
+      window.userCredits = data.credits || 0;
+      window.freeUsed = data.free_used || 0;
     }
-    const data = snap.data();
-    window.userCredits = data.credits || 0;
-    updateCreditBadge(window.userCredits);
-    return data.free_used || 0;
+    window.balanceReady = true;
+    renderBalanceBadge();
+    return window.freeUsed;
   }
 
   window.saveReadingRecord = async (reading) => {
@@ -4045,11 +4052,10 @@ const googleProvider = () => { const p = new GoogleAuthProvider(); p.setCustomPa
   // ── 서버가 바꾼 잔액을 화면에 반영 ──
   // 무료 횟수·크레딧의 증감(결제 지급, 리딩 차감)은 서버만 한다. Firestore 보안 규칙도 클라이언트의 쓰기를 막는다.
   window.applyBalance = ({ credits, freeUsed } = {}) => {
-    if (credits != null) { window.userCredits = credits; updateCreditBadge(credits); }
-    if (freeUsed != null) {
-      window.freeUsed = freeUsed;
-      if (!(window.isAdmin && window.isAdmin())) updateFreeBadge(freeUsed);
-    }
+    if (credits != null) window.userCredits = credits;
+    if (freeUsed != null) window.freeUsed = freeUsed;
+    if (credits != null || freeUsed != null) window.balanceReady = true;
+    renderBalanceBadge();
   };
 
   // ── 관리자 여부 확인 ──
@@ -4089,21 +4095,10 @@ const googleProvider = () => { const p = new GoogleAuthProvider(); p.setCustomPa
       document.getElementById('user-avatar').src = user.photoURL || '';
       document.getElementById('user-name').textContent = user.isAnonymous ? '비회원' : (user.displayName || user.email);
       document.getElementById('credit-badge').style.display = '';
-      updateCreditBadge(window.userCredits || 0);
-      // Firestore에서 사용 횟수 로드
-      if (ADMIN_EMAILS.includes(user.email)) {
-        const badge = document.getElementById('free-badge');
-        badge.textContent = window.t ? window.t('unlimited') : '무제한'; badge.className = 'plenty'; badge.id = 'free-badge';
-        loadUserDoc(user).catch(err => console.warn('크레딧 로드 실패', err)); // 백그라운드로 크레딧 잔액 로드
-      } else {
-        updateFreeBadge(window.freeUsed || 0);
-        try {
-          window.freeUsed = await loadUserDoc(user);
-          updateFreeBadge(window.freeUsed);
-        } catch (err) {
-          console.warn('사용자 크레딧 로드 실패', err);
-        }
-      }
+      window.balanceReady = false;     // 잔액을 읽어 오기 전에는 배지 글자를 숨긴다
+      renderBalanceBadge();
+      try { await loadUserDoc(user); }
+      catch (err) { console.warn('사용자 크레딧 로드 실패', err); }
       // 게이트가 열려있으면 해제
       if (document.getElementById('reading-gate').classList.contains('visible')) removeGate();
       document.getElementById('today-cta').classList.remove('visible');
@@ -4129,7 +4124,7 @@ const googleProvider = () => { const p = new GoogleAuthProvider(); p.setCustomPa
       if (guestBtn) guestBtn.style.display = window.GUEST_CHECKOUT_ENABLED ? 'block' : 'none';
       userInfo.style.display = 'none';
       document.getElementById('credit-badge').style.display = 'none';
-      window.userCredits = 0;
+      window.userCredits = 0; window.freeUsed = 0; window.balanceReady = false;
     }
     // 상단바 구성이 바뀌었으므로(1줄↔2줄) 메뉴 위치 재계산
     window.syncTopbarH && window.syncTopbarH();

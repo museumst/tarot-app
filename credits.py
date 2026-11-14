@@ -11,7 +11,7 @@
 """
 from typing import Optional
 
-FREE_LIMIT = 3          # static/index.html·acct-bar.js 의 FREE_LIMIT 과 같다
+FREE_LIMIT = 2          # static/index.html·acct-bar.js 의 FREE_LIMIT 과 같다
 USE_VALUE_KRW = 100     # 이용내역에 기록하는 '사용 1회' 표시 금액(기존 기록과 동일)
 
 

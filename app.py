@@ -447,21 +447,21 @@ SITE_NAV = {lang: (v[0], v[1], CARDS_NAME.get(lang, v[2]), v[3]) for lang, v in 
 # 상단 메뉴의 리딩 모드 4개 (질문하기 · 오늘의 타로 · 양자택일 · 나의 생일수). index.html 의 MODE_COPY 와 같은 문구.
 # 로그인 안내 상자(생일수 결과 아래 등): (무료 횟수 문구, 버튼 문구) — index.html 의 gate_badge / login_need_title 과 같다
 LOGIN_CTA = {
-    'ko': ('무료 3회 제공', '로그인하고 시작하기'),
-    'en': ('3 free readings', 'Sign in to begin'),
-    'ja': ('無料3回提供', 'ログインして始める'),
-    'es': ('3 lecturas gratuitas', 'Inicia sesión para empezar'),
-    'fr': ('3 lectures gratuites', 'Connectez-vous pour commencer'),
-    'de': ('3 kostenlose Legungen', 'Zum Starten anmelden'),
-    'pt': ('3 leituras gratuitas', 'Entre para começar'),
-    'th': ('ฟรี 3 ครั้ง', 'เข้าสู่ระบบเพื่อเริ่ม'),
-    'ru': ('3 бесплатных расклада', 'Войдите, чтобы начать'),
-    'zh': ('免费3次', '登录后开始'),
-    'it': ('3 letture gratuite', 'Accedi per iniziare'),
-    'id': ('3 pembacaan gratis', 'Masuk untuk memulai'),
-    'vi': ('3 lần đọc miễn phí', 'Đăng nhập để bắt đầu'),
-    'tr': ('3 ücretsiz okuma', 'Başlamak için giriş yapın'),
-    'pl': ('3 bezpłatne czytania', 'Zaloguj się, aby zacząć'),
+    'ko': ('무료 2회 제공', '로그인하고 시작하기'),
+    'en': ('2 free readings', 'Sign in to begin'),
+    'ja': ('無料2回提供', 'ログインして始める'),
+    'es': ('2 lecturas gratuitas', 'Inicia sesión para empezar'),
+    'fr': ('2 lectures gratuites', 'Connectez-vous pour commencer'),
+    'de': ('2 kostenlose Legungen', 'Zum Starten anmelden'),
+    'pt': ('2 leituras gratuitas', 'Entre para começar'),
+    'th': ('ฟรี 2 ครั้ง', 'เข้าสู่ระบบเพื่อเริ่ม'),
+    'ru': ('2 бесплатных расклада', 'Войдите, чтобы начать'),
+    'zh': ('免费2次', '登录后开始'),
+    'it': ('2 letture gratuite', 'Accedi per iniziare'),
+    'id': ('2 pembacaan gratis', 'Masuk untuk memulai'),
+    'vi': ('2 lần đọc miễn phí', 'Đăng nhập để bắt đầu'),
+    'tr': ('2 ücretsiz okuma', 'Başlamak için giriş yapın'),
+    'pl': ('2 bezpłatne czytania', 'Zaloguj się, aby zacząć'),
 }
 
 
@@ -492,8 +492,8 @@ def render_site_nav(lang: str, active: str = "") -> str:
     items = f'<a class="site-brand" href="{_e(home)}">✨ {_e(brand_of(lang))}</a>'
     mode_links = (
         (f"{home}{sep}mode=reading", modes[0], "reading"),
-        (f"{home}{sep}mode=today", modes[1], "today"),
         (f"{home}{sep}mode=choice", modes[2], "choice"),
+        (f"{home}{sep}mode=today", modes[1], "today"),
         (birth_card_path(lang), modes[3], "birth"),
     )
     for url, name, key in mode_links:
@@ -616,7 +616,7 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
 <link rel="icon" href="/static/favicon.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/site-shell.css?v=16">
-<link rel="stylesheet" href="/static/acct-bar.css?v=6">
+<link rel="stylesheet" href="/static/acct-bar.css?v=7">
 <script src="/static/mobile-menu.js?v=4" defer></script>
 <style>
   *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
@@ -663,7 +663,6 @@ def _page(lang: str, title: str, desc: str, path: str, body: str, og_image: str,
     <select id="lang-select" aria-label="{_e(ui['lang_label'])}" onchange="switchLang(this)">{options}</select>
     <button id="acct-login" type="button"></button>
     <div id="acct-user">
-      <span id="acct-free" class="plenty"></span>
       <a id="acct-credit" href="/"></a>
       <a id="acct-history" href="/"></a>
       <img id="acct-avatar" src="" alt="">
@@ -682,7 +681,7 @@ function switchLang(sel){{
   location.href=o.value;
 }}
 </script>
-<script type="module" src="/static/acct-bar.js?v=6"></script>
+<script type="module" src="/static/acct-bar.js?v=7"></script>
 </body>
 </html>"""
 
