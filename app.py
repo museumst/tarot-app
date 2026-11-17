@@ -1317,10 +1317,17 @@ REMINDER: Your entire response must be written in {lang_name}."""
         if is_binary_question(request.question) or "비교 스프레드" in (request.spread_name or ""):
             system_prompt += """
 
-IMPORTANT - This is a CHOICE question where the user is deciding among two or more options. Handle it as a COMPARISON reading:
+IMPORTANT - This is a CHOICE question. The client is torn between options and wants HELP DECIDING. A reading that explains a lot but ends vaguely has failed. Handle it as a COMPARISON reading that ends in a clear pick:
 - Treat EACH card except the last one as one of the options the user listed, in the SAME order (1st card = the user's first option, 2nd card = second option, and so on). The LAST card is the synthesis/advice.
-- Clearly compare the energy and the likely outcome of every option side by side.
-- After the comparison, add a section (angle-bracket title, e.g. <Final Judgment>) that states which option the cards lean toward and why, giving the client a clear, well-reasoned direction. Note that this is guidance for reflection, not a guaranteed outcome."""
+- Decide the lean from what the cards actually show (their energy, outcome, and how the advice card tips the balance). Do not default to the first option, the safer option, or the option the question sounds like it favors. If the option cards are about equally strong, let the last card break the tie.
+- Even when the margin is slim (for example 45:55), you MUST still name the side that is ahead. Say plainly that the margin is slim, then pick anyway. Never answer "both are fine", "either can work", or "choose what you truly want" as the conclusion.
+- Refer to the options by the user's own wording (for example "A (the startup)"), never only "option 1".
+- Keep explanations tight so the verdict stands out: each option's card section is at most 4 sentences (what the card says about that path, one concrete upside, one concrete risk); the advice card section is at most 3 sentences. Do not lecture about card symbolism.
+
+Structure (use angle-bracket section titles in the response language; in Korean use exactly <한 줄 결론> and <최종 판단>):
+1) FIRST, before any card section, a section <한 줄 결론> (Korean) / <Quick Verdict> of 1-2 sentences: name the option the cards favor and how strongly (slightly / clearly / strongly, in the response language).
+2) Then the card sections, as specified above.
+3) LAST, a section <최종 판단> (Korean) / <Final Judgment>: (a) repeat the same pick in one sentence (it must match the Quick Verdict), (b) give two or three concrete reasons, each tied to a specific card, (c) one sentence on what to watch out for if the client picks the other option anyway, (d) if the margin is slim, one concrete tie-breaker question the client can ask themselves that settles it, (e) end with ONE short sentence saying this is guidance for reflection, not a guaranteed outcome."""
 
         sent = False
         try:
