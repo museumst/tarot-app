@@ -384,7 +384,9 @@
       outline-color: var(--gold-light);
     }
     .deck-card.selected-card {
-      opacity: 0.2;
+      opacity: 0.9;
+      z-index: 3; /* 이웃 카드에 가려지지 않고 앞면이 온전히 보이도록 */
+      outline-color: var(--gold-light);
       pointer-events: none;
     }
     /* 좁은 화면: 가로 스크롤 없이 화면 폭에 맞춰 여러 줄로 겹쳐 펼친다(줄 수는 JS가 계산). */
