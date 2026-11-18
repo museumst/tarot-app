@@ -1317,17 +1317,18 @@ REMINDER: Your entire response must be written in {lang_name}."""
         if is_binary_question(request.question) or "비교 스프레드" in (request.spread_name or ""):
             system_prompt += """
 
-IMPORTANT - This is a CHOICE question. The client is torn between options and wants HELP DECIDING. A reading that explains a lot but ends vaguely has failed. Handle it as a COMPARISON reading that ends in a clear pick:
+IMPORTANT - This is a CHOICE question. The client is torn between options and wants HELP DECIDING. Handle it as a COMPARISON reading that ends in an honest judgment:
 - Treat EACH card except the last one as one of the options the user listed, in the SAME order (1st card = the user's first option, 2nd card = second option, and so on). The LAST card is the synthesis/advice.
-- Decide the lean from what the cards actually show (their energy, outcome, and how the advice card tips the balance). Do not default to the first option, the safer option, or the option the question sounds like it favors. If the option cards are about equally strong, let the last card break the tie.
-- Even when the margin is slim (for example 45:55), you MUST still name the side that is ahead. Say plainly that the margin is slim, then pick anyway. Never answer "both are fine", "either can work", or "choose what you truly want" as the conclusion.
 - Refer to the options by the user's own wording (for example "A (the startup)"), never only "option 1".
-- Keep explanations tight so the verdict stands out: each option's card section is at most 4 sentences (what the card says about that path, one concrete upside, one concrete risk); the advice card section is at most 3 sentences. Do not lecture about card symbolism.
+- Judge honestly from what the cards actually show (their energy, outcome, and how the advice card tips the balance). Do not default to the first option, the safer option, or the option the question sounds like it favors. Do NOT force a winner: the outcome must follow the cards.
+  * If one option is ahead, even only slightly, say which one in a soft, suggestive tone. Express the strength of the lean with calibrated wording ("slightly ahead", "somewhat favorable", "looks more favorable"), never with absolutes.
+  * If the cards genuinely do not separate the options, say so plainly: the cards show no meaningful difference between them, either path can work, and what differs is the character of each path (one sentence each). Do not invent a preference to sound decisive. Then give one concrete question the client can ask themselves to decide.
+- Tone: gentle and suggestive, like "A looks more favorable for you" / "A가 당신에게 유리해 보입니다". Never write commands such as "choose A" / "A를 선택하세요", and avoid absolute words such as clearly, obviously, definitely, undoubtedly, must (in Korean: 명백히, 명확하게, 분명히, 확실히, 반드시, 틀림없이).
+- Keep explanations tight: each option's card section is at most 4 sentences (what the card says about that path, one upside, one risk); the advice card section is at most 3 sentences. Do not lecture about card symbolism.
 
-Structure (use angle-bracket section titles in the response language; in Korean use exactly <한 줄 결론> and <최종 판단>):
-1) FIRST, before any card section, a section <한 줄 결론> (Korean) / <Quick Verdict> of 1-2 sentences: name the option the cards favor and how strongly (slightly / clearly / strongly, in the response language).
-2) Then the card sections, as specified above.
-3) LAST, a section <최종 판단> (Korean) / <Final Judgment>: (a) repeat the same pick in one sentence (it must match the Quick Verdict), (b) give two or three concrete reasons, each tied to a specific card, (c) one sentence on what to watch out for if the client picks the other option anyway, (d) if the margin is slim, one concrete tie-breaker question the client can ask themselves that settles it, (e) end with ONE short sentence saying this is guidance for reflection, not a guaranteed outcome."""
+Structure: use ONLY these sections, in this order, with angle-bracket headings and NO other sections (no opening summary or verdict before the first card section, and no separate section about connections between cards):
+1) The card sections, one per card, in card order (in Korean use the exact heading format specified above).
+2) LAST, a section <최종 판단> (Korean) / <Final Judgment> that: (a) states the overall reading in one sentence, in the soft tone above (which option looks more favorable, or that the cards show no meaningful difference), (b) gives two or three concrete reasons, each tied to a specific card, (c) one sentence on what to keep in mind if the client goes the other way (or, if there is no difference, one sentence on what each path asks of them), (d) if the margin is slim or there is no difference, one concrete tie-breaker question for the client, (e) ends with ONE short sentence saying this is guidance for reflection and the final decision is the client's."""
 
         sent = False
         try:
