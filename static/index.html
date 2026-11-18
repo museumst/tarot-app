@@ -348,6 +348,8 @@
     }
 
     .deck-fan {
+      --deck-card-w: 92px;
+      --deck-card-h: 160px;
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -366,8 +368,8 @@
       border: 0;
       border-radius: 8px;
       padding: 0;
-      width: 92px;
-      height: 160px;
+      width: var(--deck-card-w);
+      height: var(--deck-card-h);
       cursor: pointer;
       position: absolute;
       left: var(--fan-x);
@@ -385,12 +387,15 @@
       opacity: 0.2;
       pointer-events: none;
     }
+    /* 좁은 화면: 가로 스크롤 없이 화면 폭에 맞춰 여러 줄로 겹쳐 펼친다(줄 수는 JS가 계산). */
     @media (max-width: 1000px) {
       .deck-fan {
-        overflow-x: auto;
-        padding: 20px 18px 10px;
+        --deck-card-w: 64px;
+        --deck-card-h: 112px;
+        gap: 0;
+        padding: 14px 18px 56px;
       }
-      .deck-row { min-width: 1210px; }
+      .deck-row { height: 84px; }
     }
     .deck-card .card-inner {
       display: block;
@@ -2118,14 +2123,31 @@ function buildDeck() {
   renderDeck();
 }
 
+// 한 줄에 몇 장을 펼칠지: 넓은 화면은 26장씩, 좁은 화면은 화면 폭에 맞춰 줄 수를 정하고 균등 분배.
+function deckPerRow() {
+  const total = deckCards.length;
+  if (!window.matchMedia('(max-width: 1000px)').matches) return 26;
+  const fan = document.getElementById('deck-fan');
+  const inner = fan.clientWidth - 36; // 좌우 padding 18px×2
+  if (inner <= 0) return 8;
+  const perRow = Math.max(4, Math.floor((inner - 64) / 28) + 1); // 카드 64px, 보이는 폭 약 28px
+  const rows = Math.ceil(total / perRow);
+  return Math.ceil(total / rows);
+}
+
+let renderedPerRow = 0;
+
 function renderDeck() {
   const fan = document.getElementById('deck-fan');
   fan.innerHTML = '';
+  const perRow = deckPerRow();
+  renderedPerRow = perRow;
+  const compact = perRow !== 26 && window.matchMedia('(max-width: 1000px)').matches;
 
-  for (let start = 0; start < deckCards.length; start += 26) {
+  for (let start = 0; start < deckCards.length; start += perRow) {
     const row = document.createElement('div');
     row.className = 'deck-row';
-    const count = Math.min(26, deckCards.length - start);
+    const count = Math.min(perRow, deckCards.length - start);
 
     for (let index = 0; index < count; index++) {
       const deckIdx = start + index;
@@ -2136,9 +2158,9 @@ function renderDeck() {
       card.className = 'deck-card';
       card.dataset.deckIdx = deckIdx;
       card.setAttribute('aria-label', t('card_label', deckIdx));
-      card.style.setProperty('--fan-x', `calc(${position * 100}% - ${position * 92}px)`);
-      card.style.setProperty('--fan-y', `${12 + 28 * arc * arc}px`);
-      card.style.setProperty('--fan-angle', `${arc * 13}deg`);
+      card.style.setProperty('--fan-x', `calc(${position * 100}% - ${position} * var(--deck-card-w))`);
+      card.style.setProperty('--fan-y', compact ? `${4 + 10 * arc * arc}px` : `${12 + 28 * arc * arc}px`);
+      card.style.setProperty('--fan-angle', `${arc * (compact ? 7 : 13)}deg`);
       card.innerHTML = `
         <span class="card-inner">
           <span class="card-back"></span>
@@ -2149,7 +2171,30 @@ function renderDeck() {
     }
     fan.appendChild(row);
   }
+
+  // 화면 크기 변화로 다시 그릴 때, 이미 뽑은 카드는 뽑힌 상태로 복원
+  drawnCards.forEach(d => {
+    const el = fan.querySelector(`.deck-card[data-deck-idx="${d.deckIdx}"]`);
+    if (!el) return;
+    el.querySelector('.card-front').innerHTML = `<img src="/images/${d.card.image_file}" alt="${d.card.name_en}" loading="lazy" />`;
+    el.classList.add('flipped', 'selected-card');
+    el.disabled = true;
+  });
 }
+
+// 회전·창 크기 변경, 또는 숨겨져 있다 보이게 될 때(폭 0 → 실제 폭) 줄 구성이 달라지면 다시 그린다.
+(function watchDeckLayout() {
+  const fan = document.getElementById('deck-fan');
+  if (!fan || typeof ResizeObserver === 'undefined') return;
+  let timer = null;
+  new ResizeObserver(() => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      if (!deckCards.length || fan.clientWidth === 0) return;
+      if (deckPerRow() !== renderedPerRow) renderDeck();
+    }, 120);
+  }).observe(fan);
+})();
 
 function selectCard(deckIdx) {
   if (drawnCards.length >= cardCount) return;
