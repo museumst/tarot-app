@@ -384,8 +384,7 @@
       outline-color: var(--gold-light);
     }
     .deck-card.selected-card {
-      opacity: 0.9;
-      z-index: 3; /* 이웃 카드에 가려지지 않고 앞면이 온전히 보이도록 */
+      opacity: 1; /* 이웃 카드와 같은 포개짐 순서를 유지하되 흐리지 않게 */
       outline-color: var(--gold-light);
       pointer-events: none;
     }
